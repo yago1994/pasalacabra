@@ -1,0 +1,31 @@
+{
+  "id": "set_05",
+  "title": "Set 05 (prototype)",
+  "questions": [
+    { "letter": "A", "question": "Empieza por A: Fenómeno meteorológico con colores en el cielo tras la lluvia.", "answer": "Arcoíris" },
+    { "letter": "B", "question": "Empieza por B: Conjunto de pilas o dispositivo que almacena energía eléctrica.", "answer": "Batería" },
+    { "letter": "C", "question": "Empieza por C: Utensilio para comer sopa o guisos.", "answer": "Cuchara" },
+    { "letter": "D", "question": "Empieza por D: Ser fantástico que suele aparecer en cuentos y leyendas.", "answer": "Dragón" },
+    { "letter": "E", "question": "Empieza por E: Libro de consulta con información organizada por temas o letras.", "answer": "Enciclopedia" },
+    { "letter": "F", "question": "Empieza por F: Poste de luz en una calle.", "answer": "Farola" },
+    { "letter": "G", "question": "Empieza por G: Fuerza que atrae los cuerpos hacia la Tierra.", "answer": "Gravedad" },
+    { "letter": "H", "question": "Empieza por H: Lugar donde se atiende a enfermos.", "answer": "Hospital" },
+    { "letter": "I", "question": "Empieza por I: Construcción con plantas que suele mantener calor y humedad.", "answer": "Invernadero" },
+    { "letter": "J", "question": "Empieza por J: Animal salvaje parecido al cerdo.", "answer": "Jabalí" },
+    { "letter": "L", "question": "Empieza por L: Bebida hecha con limón, azúcar y agua.", "answer": "Limonada" },
+    { "letter": "M", "question": "Empieza por M: Pieza de metal usada como dinero.", "answer": "Moneda" },
+    { "letter": "N", "question": "Empieza por N: Persona que viaja sin residencia fija.", "answer": "Nómada" },
+    { "letter": "Ñ", "question": "Empieza por Ñ: Pasta italiana en forma de bolitas, típica con salsa.", "answer": "Ñoquis" },
+    { "letter": "O", "question": "Empieza por O: Obra musical teatral cantada.", "answer": "Ópera" },
+    { "letter": "P", "question": "Empieza por P: Gema que se forma dentro de algunas ostras.", "answer": "Perla" },
+    { "letter": "Q", "question": "Empieza por Q: Expresión de disgusto o petición de cambio.", "answer": "Queja" },
+    { "letter": "R", "question": "Empieza por R: Prenda o conjunto de prendas que llevas puesto.", "answer": "Ropa" },
+    { "letter": "S", "question": "Empieza por S: Medidas para evitar riesgos o daños.", "answer": "Seguridad" },
+    { "letter": "T", "question": "Empieza por T: Postre horneado, normalmente dulce, con base y relleno.", "answer": "Tarta" },
+    { "letter": "U", "question": "Empieza por U: Fruta pequeña, redonda, usada para hacer vino.", "answer": "Uva" },
+    { "letter": "V", "question": "Empieza por V: Desplazamiento de un lugar a otro por ocio o trabajo.", "answer": "Viaje" },
+    { "letter": "X", "question": "Contiene la X: Palabra que significa que algo está cerca en el tiempo o el espacio.", "answer": "Próximo" },
+    { "letter": "Y", "question": "Contiene la Y: Salsa fría muy común en bocadillos y ensaladas.", "answer": "Mayonesa" },
+    { "letter": "Z", "question": "Empieza por Z: Conjunto de constelaciones usadas en astrología.", "answer": "Zodiaco" }
+  ]
+}

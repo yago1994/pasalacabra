@@ -1,0 +1,31 @@
+{
+  "id": "set_04",
+  "title": "Set 04 (prototype)",
+  "questions": [
+    { "letter": "A", "question": "Empieza por A: Recipiente con agua donde viven peces; también instalación pública para verlos.", "answer": "Acuario" },
+    { "letter": "B", "question": "Empieza por B: Instrumento para orientarse con una aguja imantada.", "answer": "Brújula" },
+    { "letter": "C", "question": "Empieza por C: Objeto que suena al agitarlo, típico en instrumentos o collares de animales.", "answer": "Cascabel" },
+    { "letter": "D", "question": "Empieza por D: Región muy seca con poca vegetación.", "answer": "Desierto" },
+    { "letter": "E", "question": "Empieza por E: Obra artística hecha tallando o modelando materiales.", "answer": "Escultura" },
+    { "letter": "F", "question": "Empieza por F: Elemento que quema y da calor y luz.", "answer": "Fuego" },
+    { "letter": "G", "question": "Empieza por G: Conjunto de estrellas, polvo y gas.", "answer": "Galaxia" },
+    { "letter": "H", "question": "Empieza por H: Agua en estado sólido.", "answer": "Hielo" },
+    { "letter": "I", "question": "Empieza por I: Mensaje o tarjeta para pedir a alguien que asista a un evento.", "answer": "Invitación" },
+    { "letter": "J", "question": "Empieza por J: Producto curado muy típico de España.", "answer": "Jamón" },
+    { "letter": "L", "question": "Empieza por L: Pieza de cerámica o piedra para construir paredes o suelos.", "answer": "Ladrillo" },
+    { "letter": "M", "question": "Empieza por M: Aparato que realiza un trabajo mecánico.", "answer": "Máquina" },
+    { "letter": "N", "question": "Empieza por N: Persona que cuenta una historia.", "answer": "Narrador" },
+    { "letter": "Ñ", "question": "Empieza por Ñ: Persona algo ingenua o fácil de engañar (coloquial).", "answer": "Ñoño" },
+    { "letter": "O", "question": "Empieza por O: Estación del año entre verano e invierno.", "answer": "Otoño" },
+    { "letter": "P", "question": "Empieza por P: Persona que pesca como oficio o afición.", "answer": "Pescador" },
+    { "letter": "Q", "question": "Empieza por Q: Sala de hospital donde se realizan operaciones.", "answer": "Quirófano" },
+    { "letter": "R", "question": "Empieza por R: Edificio muy alto con muchos pisos.", "answer": "Rascacielos" },
+    { "letter": "S", "question": "Empieza por S: Zona oscura que se forma al bloquear la luz.", "answer": "Sombra" },
+    { "letter": "T", "question": "Empieza por T: Aparato para ver programas y películas.", "answer": "Televisión" },
+    { "letter": "U", "question": "Empieza por U: Conjunto de prendas iguales, típico de trabajo o colegio.", "answer": "Uniforme" },
+    { "letter": "V", "question": "Empieza por V: Montaña que puede expulsar lava.", "answer": "Volcán" },
+    { "letter": "X", "question": "Contiene la X: Conjunto de palabras escritas con sentido.", "answer": "Texto" },
+    { "letter": "Y", "question": "Contiene la Y: Disciplina física y mental con posturas y respiración.", "answer": "Yoga" },
+    { "letter": "Z", "question": "Empieza por Z: Bebida hecha exprimiendo fruta.", "answer": "Zumo" }
+  ]
+}

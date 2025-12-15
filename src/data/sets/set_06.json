@@ -1,0 +1,31 @@
+{
+  "id": "set_06",
+  "title": "Set 06 (prototype)",
+  "questions": [
+    { "letter": "A", "question": "Empieza por A: Persona que viaja al espacio.", "answer": "Astronauta" },
+    { "letter": "B", "question": "Empieza por B: Borde elevado de una acera.", "answer": "Bordillo" },
+    { "letter": "C", "question": "Empieza por C: Gran iglesia principal de una diócesis.", "answer": "Catedral" },
+    { "letter": "D", "question": "Empieza por D: Representación hecha a mano con lápiz o pintura.", "answer": "Dibujo" },
+    { "letter": "E", "question": "Empieza por E: Capacidad para realizar trabajo; también fuerza para moverse.", "answer": "Energía" },
+    { "letter": "F", "question": "Empieza por F: Evento con música, comida o actividades, normalmente al aire libre.", "answer": "Festival" },
+    { "letter": "G", "question": "Empieza por G: Lugar con máquinas y pesas para entrenar.", "answer": "Gimnasio" },
+    { "letter": "H", "question": "Empieza por H: Pieza metálica en forma de U que llevan los caballos en las pezuñas.", "answer": "Herradura" },
+    { "letter": "I", "question": "Empieza por I: Creencia o sensación agradable que no siempre coincide con la realidad.", "answer": "Ilusión" },
+    { "letter": "J", "question": "Empieza por J: Fin de la vida laboral y comienzo de la pensión.", "answer": "Jubilación" },
+    { "letter": "L", "question": "Empieza por L: Forma de pensar basada en reglas y coherencia.", "answer": "Lógica" },
+    { "letter": "M", "question": "Empieza por M: Algo desconocido que despierta curiosidad.", "answer": "Misterio" },
+    { "letter": "N", "question": "Empieza por N: Programa o app para explorar internet.", "answer": "Navegador" },
+    { "letter": "Ñ", "question": "Empieza por Ñ: Extra o regalo añadido, típico en algunos comercios (coloquial).", "answer": "Ñapa" },
+    { "letter": "O", "question": "Empieza por O: Lugar con telescopios para estudiar el cielo.", "answer": "Observatorio" },
+    { "letter": "P", "question": "Empieza por P: Dispositivo de tela que permite caer desde el aire de forma segura.", "answer": "Paracaídas" },
+    { "letter": "Q", "question": "Empieza por Q: Apuesta o juego de pronósticos deportivos (en España).", "answer": "Quiniela" },
+    { "letter": "R", "question": "Empieza por R: Pieza circular que gira y permite moverse a vehículos.", "answer": "Rueda" },
+    { "letter": "S", "question": "Empieza por S: Ausencia de ruido.", "answer": "Silencio" },
+    { "letter": "T", "question": "Empieza por T: Habilidad natural o aprendida para hacer algo muy bien.", "answer": "Talento" },
+    { "letter": "U", "question": "Empieza por U: Ave blanca y negra parecida al cuervo.", "answer": "Urraca" },
+    { "letter": "V", "question": "Empieza por V: Persona que viaja con frecuencia.", "answer": "Viajero" },
+    { "letter": "X", "question": "Contiene la X: Gas imprescindible para respirar.", "answer": "Oxígeno" },
+    { "letter": "Y", "question": "Contiene la Y: Frutos pequeños y redondos, como los arándanos o frambuesas.", "answer": "Bayas" },
+    { "letter": "Z", "question": "Empieza por Z: Calzado que cubre el pie.", "answer": "Zapato" }
+  ]
+}

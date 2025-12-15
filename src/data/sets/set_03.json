@@ -1,0 +1,31 @@
+{
+  "id": "set_03",
+  "title": "Set 03 (prototype)",
+  "questions": [
+    { "letter": "A", "question": "Empieza por A: Juego de mesa con piezas blancas y negras.", "answer": "Ajedrez" },
+    { "letter": "B", "question": "Empieza por B: Estructura exterior de un edificio para asomarse.", "answer": "Balcón" },
+    { "letter": "C", "question": "Empieza por C: Recipiente o plato hondo para cocinar guisos.", "answer": "Cazuela" },
+    { "letter": "D", "question": "Empieza por D: Animal prehistórico de gran tamaño.", "answer": "Dinosaurio" },
+    { "letter": "E", "question": "Empieza por E: Superficie que refleja la imagen.", "answer": "Espejo" },
+    { "letter": "F", "question": "Empieza por F: Lugar donde se produce algo en serie.", "answer": "Fábrica" },
+    { "letter": "G", "question": "Empieza por G: Parte del cuerpo por donde pasa la comida.", "answer": "Garganta" },
+    { "letter": "H", "question": "Empieza por H: Tormenta muy fuerte con vientos intensos.", "answer": "Huracán" },
+    { "letter": "I", "question": "Empieza por I: Pago obligatorio al Estado.", "answer": "Impuesto" },
+    { "letter": "J", "question": "Empieza por J: Animal africano con cuello muy largo.", "answer": "Jirafa" },
+    { "letter": "L", "question": "Empieza por L: Agua que cae del cielo.", "answer": "Lluvia" },
+    { "letter": "M", "question": "Empieza por M: Dulce para untar hecho con fruta y azúcar.", "answer": "Mermelada" },
+    { "letter": "N", "question": "Empieza por N: Agua congelada que cae en copos.", "answer": "Nieve" },
+    { "letter": "Ñ", "question": "Empieza por Ñ: Antílope africano (también llamado wildebeest).", "answer": "Ñu" },
+    { "letter": "O", "question": "Empieza por O: Gas imprescindible para respirar.", "answer": "Oxígeno" },
+    { "letter": "P", "question": "Empieza por P: Persona que toca el piano profesionalmente.", "answer": "Pianista" },
+    { "letter": "Q", "question": "Empieza por Q: Lugar donde se elabora o vende queso artesanal.", "answer": "Quesería" },
+    { "letter": "R", "question": "Empieza por R: Animal grande con cuerno(s) en la nariz.", "answer": "Rinoceronte" },
+    { "letter": "S", "question": "Empieza por S: Bioma de llanuras tropicales con pastos.", "answer": "Sabana" },
+    { "letter": "T", "question": "Empieza por T: Instrumento para medir la temperatura.", "answer": "Termómetro" },
+    { "letter": "U", "question": "Empieza por U: Idea o plan ideal pero difícil de realizar.", "answer": "Utopía" },
+    { "letter": "V", "question": "Empieza por V: Sustancia esencial en pequeñas cantidades para el organismo.", "answer": "Vitamina" },
+    { "letter": "X", "question": "Contiene la X: Pretexto que se da para justificar algo.", "answer": "Excusa" },
+    { "letter": "Y", "question": "Contiene la Y: Animal bovino macho usado tradicionalmente para arar.", "answer": "Buey" },
+    { "letter": "Z", "question": "Empieza por Z: Piedra preciosa azul.", "answer": "Zafiro" }
+  ]
+}

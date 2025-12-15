@@ -1,0 +1,31 @@
+{
+  "id": "set_02",
+  "title": "Set 02 (prototype)",
+  "questions": [
+    { "letter": "A", "question": "Empieza por A: Lugar por donde despegan y aterrizan aviones.", "answer": "Aeropuerto" },
+    { "letter": "B", "question": "Empieza por B: Instrumento para medir la presión atmosférica.", "answer": "Barómetro" },
+    { "letter": "C", "question": "Empieza por C: Salto de agua natural que cae desde una altura.", "answer": "Cascada" },
+    { "letter": "D", "question": "Empieza por D: Libro que explica el significado de las palabras.", "answer": "Diccionario" },
+    { "letter": "E", "question": "Empieza por E: Conjunto de escalones para subir o bajar.", "answer": "Escalera" },
+    { "letter": "F", "question": "Empieza por F: Línea que separa territorios o países.", "answer": "Frontera" },
+    { "letter": "G", "question": "Empieza por G: Gran masa de hielo que se desplaza lentamente.", "answer": "Glaciar" },
+    { "letter": "H", "question": "Empieza por H: Insecto muy común que vive en colonias.", "answer": "Hormiga" },
+    { "letter": "I", "question": "Empieza por I: Creación nueva fruto de una idea.", "answer": "Invento" },
+    { "letter": "J", "question": "Empieza por J: Objeto para jugar, especialmente de niños.", "answer": "Juguete" },
+    { "letter": "L", "question": "Empieza por L: Aparato portátil que ilumina.", "answer": "Linterna" },
+    { "letter": "M", "question": "Empieza por M: Elevación natural del terreno, más grande que una colina.", "answer": "Montaña" },
+    { "letter": "N", "question": "Empieza por N: Información reciente que aparece en medios.", "answer": "Noticia" },
+    { "letter": "Ñ", "question": "Empieza por Ñ: Tubérculo comestible parecido a una patata.", "answer": "Ñame" },
+    { "letter": "O", "question": "Empieza por O: Conjunto musical grande con muchos instrumentos.", "answer": "Orquesta" },
+    { "letter": "P", "question": "Empieza por P: Obra de arte hecha con pintura.", "answer": "Pintura" },
+    { "letter": "Q", "question": "Empieza por Q: Ciencia que estudia la composición de la materia.", "answer": "Química" },
+    { "letter": "R", "question": "Empieza por R: Texto breve que condensa una idea principal.", "answer": "Resumen" },
+    { "letter": "S", "question": "Empieza por S: Señal luminosa que regula el tráfico.", "answer": "Semáforo" },
+    { "letter": "T", "question": "Empieza por T: Dispositivo para llamar y enviar mensajes.", "answer": "Teléfono" },
+    { "letter": "U", "question": "Empieza por U: Instrumento musical pequeño parecido a una guitarra.", "answer": "Ukelele" },
+    { "letter": "V", "question": "Empieza por V: Abertura en una pared para dejar entrar luz y aire.", "answer": "Ventana" },
+    { "letter": "X", "question": "Contiene la X: Vehículo con taxímetro para transportar pasajeros.", "answer": "Taxi" },
+    { "letter": "Y", "question": "Contiene la Y: Salsa fría hecha con huevo y aceite.", "answer": "Mayonesa" },
+    { "letter": "Z", "question": "Empieza por Z: Lugar con animales para visitar y aprender.", "answer": "Zoológico" }
+  ]
+}
