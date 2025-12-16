@@ -505,8 +505,10 @@ export default function App() {
       if (phase !== "playing") return;
       const key = `${activePlayerId ?? "noplayer"}:${activeSetId}:${currentLetter}:${currentIndex}`;
       if (sttCommandKeyRef.current === key) return;
-      const normalized = normalizeForCompare(finalText).replace(/\s+/g, "");
-      if (normalized.includes("pasalacabra") || normalized.includes("pasapalabra")) {
+      const normalizedWords = normalizeForCompare(finalText);
+      const normalizedJoined = normalizedWords.replace(/\s+/g, "");
+      const hasPasaWord = /\bpasa\b/.test(normalizedWords);
+      if (hasPasaWord || normalizedJoined.includes("pasalacabra") || normalizedJoined.includes("pasapalabra")) {
         sttCommandKeyRef.current = key;
         stopListening();
         // Don't keep the command text in the input.
