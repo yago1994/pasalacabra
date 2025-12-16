@@ -183,6 +183,10 @@ export default function App() {
   const [answerText, setAnswerText] = useState<string>("");
   const userEditedAnswerRef = useRef<boolean>(false);
   const sttCommandKeyRef = useRef<string | null>(null);
+  const sttDesiredRef = useRef<boolean>(false);
+  const sttLastHintsRef = useRef<string[]>([]);
+  const sttRestartTimerRef = useRef<number | null>(null);
+  const sttRestartCountRef = useRef<number>(0);
 
   // Sound effects (Web Audio, preloaded + pre-decoded for low latency)
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -422,10 +426,11 @@ export default function App() {
     window.speechSynthesis.cancel();
   }
 
-  function stopListening() {
+  function stopListening(reason: "replace" | "user" = "user") {
     const r = recognitionRef.current;
     recognitionRef.current = null;
     setIsListening(false);
+    if (reason === "user") sttDesiredRef.current = false;
     if (!r) return;
     try {
       // Prefer `stop()`; `abort()` often causes immediate "aborted" endings.
@@ -451,7 +456,10 @@ export default function App() {
     setSttSupported(true);
     setSttError("");
 
-    stopListening();
+    // Replace any existing recognizer without disabling STT desire.
+    stopListening("replace");
+    sttDesiredRef.current = true;
+    sttLastHintsRef.current = hints;
 
     const r = new SR();
     recognitionRef.current = r;
@@ -515,7 +523,7 @@ export default function App() {
         normalizedJoined.includes("pasapalabra")
       ) {
         sttCommandKeyRef.current = key;
-        stopListening();
+        stopListening("user");
         // Don't keep the command text in the input.
         userEditedAnswerRef.current = false;
         setAnswerText("");
@@ -535,6 +543,16 @@ export default function App() {
 
     r.onend = () => {
       setIsListening(false);
+      // Browsers may stop recognition due to silence/background noise/timeouts.
+      // If we are still in the "answering" window, auto-restart.
+      if (!sttDesiredRef.current) return;
+      if (phase !== "playing") return;
+      if (sttRestartTimerRef.current) window.clearTimeout(sttRestartTimerRef.current);
+      sttRestartCountRef.current += 1;
+      if (sttRestartCountRef.current > 10) return; // safety guard
+      sttRestartTimerRef.current = window.setTimeout(() => {
+        startListeningWithHints(sttLastHintsRef.current);
+      }, 250);
     };
 
     try {
@@ -585,6 +603,7 @@ export default function App() {
     userEditedAnswerRef.current = false;
     setAnswerText("");
     setSttError("");
+    sttRestartCountRef.current = 0;
 
     const hints = [...buildPhraseHintsForAnswer(currentQA.answer), "pasalacabra", "pasapalabra", "pasa", "cabra"];
 
@@ -906,7 +925,7 @@ export default function App() {
     if (phase !== "playing") return;
 
     unlockAudioOnce();
-    stopListening();
+    stopListening("user");
     stopSpeaking();
     // Goat SFX + end turn (timer stops because phase changes away from "playing")
     void ensureSfxReady().then(() => playSfx("pasalacabra"));
@@ -937,7 +956,7 @@ export default function App() {
     if (phase !== "playing") return;
 
     unlockAudioOnce();
-    stopListening();
+    stopListening("user");
     stopSpeaking();
     if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
     setFeedback("correct");
@@ -971,7 +990,7 @@ export default function App() {
     if (phase !== "playing") return;
 
     unlockAudioOnce();
-    stopListening();
+    stopListening("user");
     if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
     setFeedback("wrong");
     setRevealed(true);
@@ -1002,7 +1021,7 @@ export default function App() {
     if (!spoken) return;
 
     // Stop mic before we speak feedback / play SFX.
-    stopListening();
+    stopListening("user");
 
     if (isAnswerCorrect(spoken, currentQA.answer)) {
       markCorrect();
