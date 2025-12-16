@@ -507,11 +507,11 @@ export default function App() {
       if (sttCommandKeyRef.current === key) return;
       const normalizedWords = normalizeForCompare(finalText);
       const normalizedJoined = normalizedWords.replace(/\s+/g, "");
-      const hasPasaWord = /\bpasa\b/.test(normalizedWords);
-      const hasCabraWord = /\bcabra\b/.test(normalizedWords);
+      const hasPasa = normalizedJoined.includes("pasa");
+      const hasCabra = normalizedJoined.includes("cabra");
       if (
-        hasPasaWord ||
-        hasCabraWord ||
+        hasPasa ||
+        hasCabra ||
         normalizedJoined.includes("pasalacabra") ||
         normalizedJoined.includes("pasapalabra")
       ) {
