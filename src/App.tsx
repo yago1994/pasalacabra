@@ -188,11 +188,21 @@ export default function App() {
   const sttLastHintsRef = useRef<string[]>([]);
   const sttRestartTimerRef = useRef<number | null>(null);
   const sttRestartCountRef = useRef<number>(0);
+  const phaseRef = useRef<GamePhase>("idle");
+  const activePlayerIdRef = useRef<string | null>(null);
+  const activeSetIdRef = useRef<string>("");
+  const currentLetterRef = useRef<Letter>(letters[0]);
+  const currentIndexRef = useRef<number>(0);
 
   function sttLog(...args: unknown[]) {
     if (!DEBUG_STT) return;
     console.log("[stt]", ...args);
   }
+
+  // Keep latest values for async STT callbacks (avoid stale closures).
+  useEffect(() => {
+    phaseRef.current = phase;
+  }, [phase]);
 
   // Sound effects (Web Audio, preloaded + pre-decoded for low latency)
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -388,6 +398,14 @@ export default function App() {
     answer: "(sin respuesta)",
   };
 
+  // Keep latest values for async STT callbacks (avoid stale closures).
+  useEffect(() => {
+    activePlayerIdRef.current = activePlayerId;
+    activeSetIdRef.current = activeSetId;
+    currentLetterRef.current = currentLetter;
+    currentIndexRef.current = currentIndex;
+  }, [activePlayerId, activeSetId, currentLetter, currentIndex]);
+
   const currentPlayerLabel = useMemo(() => {
     if (!session) return "";
     const idx = session.currentPlayerIndex;
@@ -520,8 +538,8 @@ export default function App() {
       // Voice command: "pasalacabra" / "pasapalabra" triggers the button action.
       // We only trigger on *final* results to avoid false positives from interim text.
       if (!finalText.trim()) return;
-      if (phase !== "playing") return;
-      const key = `${activePlayerId ?? "noplayer"}:${activeSetId}:${currentLetter}:${currentIndex}`;
+      if (phaseRef.current !== "playing") return;
+      const key = `${activePlayerIdRef.current ?? "noplayer"}:${activeSetIdRef.current}:${currentLetterRef.current}:${currentIndexRef.current}`;
       if (sttCommandKeyRef.current === key) return;
       const normalizedWords = normalizeForCompare(finalText);
       const normalizedJoined = normalizedWords.replace(/\s+/g, "");
@@ -557,11 +575,11 @@ export default function App() {
 
     r.onend = () => {
       setIsListening(false);
-      sttLog("onend", { desired: sttDesiredRef.current, phase });
+      sttLog("onend", { desired: sttDesiredRef.current, phase: phaseRef.current });
       // Browsers may stop recognition due to silence/background noise/timeouts.
       // If we are still in the "answering" window, auto-restart.
       if (!sttDesiredRef.current) return;
-      if (phase !== "playing") return;
+      if (phaseRef.current !== "playing") return;
       if (sttRestartTimerRef.current) window.clearTimeout(sttRestartTimerRef.current);
       sttRestartCountRef.current += 1;
       sttLog("restart-scheduled", { count: sttRestartCountRef.current });
