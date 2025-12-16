@@ -182,6 +182,7 @@ export default function App() {
   const [sttError, setSttError] = useState<string>("");
   const [answerText, setAnswerText] = useState<string>("");
   const userEditedAnswerRef = useRef<boolean>(false);
+  const sttCommandKeyRef = useRef<string | null>(null);
 
   // Sound effects (Web Audio, preloaded + pre-decoded for low latency)
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -497,6 +498,22 @@ export default function App() {
       }
       const combined = `${finalText} ${interimText}`.replace(/\s+/g, " ").trim();
       if (!userEditedAnswerRef.current) setAnswerText(combined);
+
+      // Voice command: "pasalacabra" / "pasapalabra" triggers the button action.
+      // We only trigger on *final* results to avoid false positives from interim text.
+      if (!finalText.trim()) return;
+      if (phase !== "playing") return;
+      const key = `${activePlayerId ?? "noplayer"}:${activeSetId}:${currentLetter}:${currentIndex}`;
+      if (sttCommandKeyRef.current === key) return;
+      const normalized = normalizeForCompare(finalText).replace(/\s+/g, "");
+      if (normalized.includes("pasalacabra") || normalized.includes("pasapalabra")) {
+        sttCommandKeyRef.current = key;
+        stopListening();
+        // Don't keep the command text in the input.
+        userEditedAnswerRef.current = false;
+        setAnswerText("");
+        handlePasalacabra();
+      }
     };
 
     r.onerror = (ev: SpeechRecognitionErrorEvent) => {
@@ -557,14 +574,16 @@ export default function App() {
     setAnswerText("");
     setSttError("");
 
+    const hints = [...buildPhraseHintsForAnswer(currentQA.answer), "pasalacabra", "pasapalabra"];
+
     if (!("speechSynthesis" in window)) {
-      startListeningWithHints(buildPhraseHintsForAnswer(currentQA.answer));
+      startListeningWithHints(hints);
       return;
     }
 
     const t = currentQA.question.trim();
     if (!t) {
-      startListeningWithHints(buildPhraseHintsForAnswer(currentQA.answer));
+      startListeningWithHints(hints);
       return;
     }
 
@@ -582,7 +601,8 @@ export default function App() {
     const finish = () => {
       if (done) return;
       done = true;
-      startListeningWithHints(buildPhraseHintsForAnswer(currentQA.answer));
+      sttCommandKeyRef.current = null;
+      startListeningWithHints(hints);
     };
     utterance.onend = finish;
     utterance.onerror = finish;
@@ -874,6 +894,7 @@ export default function App() {
     if (phase !== "playing") return;
 
     unlockAudioOnce();
+    stopListening();
     stopSpeaking();
     // Goat SFX + end turn (timer stops because phase changes away from "playing")
     void ensureSfxReady().then(() => playSfx("pasalacabra"));
