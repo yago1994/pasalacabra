@@ -123,6 +123,7 @@ function anyUnresolved(statusByLetter: Record<Letter, LetterStatus>, letters: re
 }
 
 export default function App() {
+  const DEBUG_STT = true;
   const letters = SPANISH_LETTERS;
   const availableSets = useMemo(() => listSets(), []);
 
@@ -187,6 +188,11 @@ export default function App() {
   const sttLastHintsRef = useRef<string[]>([]);
   const sttRestartTimerRef = useRef<number | null>(null);
   const sttRestartCountRef = useRef<number>(0);
+
+  function sttLog(...args: unknown[]) {
+    if (!DEBUG_STT) return;
+    console.log("[stt]", ...args);
+  }
 
   // Sound effects (Web Audio, preloaded + pre-decoded for low latency)
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -431,6 +437,7 @@ export default function App() {
     recognitionRef.current = null;
     setIsListening(false);
     if (reason === "user") sttDesiredRef.current = false;
+    sttLog("stopListening", { reason, hadRecognizer: Boolean(r), desired: sttDesiredRef.current });
     if (!r) return;
     try {
       // Prefer `stop()`; `abort()` often causes immediate "aborted" endings.
@@ -450,6 +457,7 @@ export default function App() {
     if (!SR) {
       setSttSupported(false);
       setIsListening(false);
+      sttLog("SpeechRecognition not supported");
       return;
     }
 
@@ -460,6 +468,7 @@ export default function App() {
     stopListening("replace");
     sttDesiredRef.current = true;
     sttLastHintsRef.current = hints;
+    sttLog("startListeningWithHints", { hintsCount: hints.length, desired: sttDesiredRef.current });
 
     const r = new SR();
     recognitionRef.current = r;
@@ -504,6 +513,8 @@ export default function App() {
         else interimText += `${t} `;
       }
       const combined = `${finalText} ${interimText}`.replace(/\s+/g, " ").trim();
+      if (DEBUG_STT && finalText.trim()) sttLog("final", finalText.trim());
+      if (DEBUG_STT && interimText.trim()) sttLog("interim", interimText.trim());
       if (!userEditedAnswerRef.current) setAnswerText(combined);
 
       // Voice command: "pasalacabra" / "pasapalabra" triggers the button action.
@@ -516,6 +527,7 @@ export default function App() {
       const normalizedJoined = normalizedWords.replace(/\s+/g, "");
       const hasPasa = normalizedJoined.includes("pasa");
       const hasCabra = normalizedJoined.includes("cabra");
+      sttLog("command-check", { normalizedJoined, hasPasa, hasCabra });
       if (
         hasPasa ||
         hasCabra ||
@@ -527,11 +539,13 @@ export default function App() {
         // Don't keep the command text in the input.
         userEditedAnswerRef.current = false;
         setAnswerText("");
+        sttLog("-> triggering PASALACABRA");
         handlePasalacabra();
       }
     };
 
     r.onerror = (ev: SpeechRecognitionErrorEvent) => {
+      sttLog("onerror", { error: ev?.error, message: ev?.message });
       // Ignore benign stop-induced aborts; they look like "mic opens then closes".
       if (ev?.error === "aborted") {
         setIsListening(false);
@@ -543,14 +557,17 @@ export default function App() {
 
     r.onend = () => {
       setIsListening(false);
+      sttLog("onend", { desired: sttDesiredRef.current, phase });
       // Browsers may stop recognition due to silence/background noise/timeouts.
       // If we are still in the "answering" window, auto-restart.
       if (!sttDesiredRef.current) return;
       if (phase !== "playing") return;
       if (sttRestartTimerRef.current) window.clearTimeout(sttRestartTimerRef.current);
       sttRestartCountRef.current += 1;
+      sttLog("restart-scheduled", { count: sttRestartCountRef.current });
       if (sttRestartCountRef.current > 10) return; // safety guard
       sttRestartTimerRef.current = window.setTimeout(() => {
+        sttLog("restarting now");
         startListeningWithHints(sttLastHintsRef.current);
       }, 250);
     };
@@ -558,9 +575,11 @@ export default function App() {
     try {
       r.start();
       setIsListening(true);
+      sttLog("started");
     } catch (err) {
       setIsListening(false);
       setSttError(String(err));
+      sttLog("start() threw", String(err));
     }
   }
 
@@ -712,6 +731,7 @@ export default function App() {
   useEffect(() => {
     if (phase === "playing") return;
     stopListening();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase]);
 
   // End on timer
