@@ -188,6 +188,7 @@ export default function App() {
   const sttLastHintsRef = useRef<string[]>([]);
   const sttRestartTimerRef = useRef<number | null>(null);
   const sttRestartCountRef = useRef<number>(0);
+  const sttArmedRef = useRef<boolean>(false);
   const phaseRef = useRef<GamePhase>("idle");
   const activePlayerIdRef = useRef<string | null>(null);
   const activeSetIdRef = useRef<string>("");
@@ -533,6 +534,8 @@ export default function App() {
       const combined = `${finalText} ${interimText}`.replace(/\s+/g, " ").trim();
       if (DEBUG_STT && finalText.trim()) sttLog("final", finalText.trim());
       if (DEBUG_STT && interimText.trim()) sttLog("interim", interimText.trim());
+      // Only accept transcriptions after the question has finished reading.
+      if (!sttArmedRef.current) return;
       if (!userEditedAnswerRef.current) setAnswerText(combined);
 
       // Voice command: "pasalacabra" / "pasapalabra" triggers the button action.
@@ -601,6 +604,15 @@ export default function App() {
     }
   }
 
+  function ensureListeningForQuestion(hints: string[]) {
+    // Start recognition once from a user gesture (Start button). After that, keep it running.
+    // This avoids WebKit/Safari immediately aborting starts that are not gesture-initiated.
+    sttDesiredRef.current = true;
+    sttLastHintsRef.current = hints;
+    if (recognitionRef.current) return;
+    startListeningWithHints(hints);
+  }
+
   function speakWithCallback(text: string, onDone: () => void) {
     if (!("speechSynthesis" in window)) {
       onDone();
@@ -641,17 +653,20 @@ export default function App() {
     setAnswerText("");
     setSttError("");
     sttRestartCountRef.current = 0;
+    sttArmedRef.current = false;
 
     const hints = [...buildPhraseHintsForAnswer(currentQA.answer), "pasalacabra", "pasapalabra", "pasa", "cabra"];
+    ensureListeningForQuestion(hints);
 
     if (!("speechSynthesis" in window)) {
-      startListeningWithHints(hints);
+      // No TTS; arm immediately.
+      sttArmedRef.current = true;
       return;
     }
 
     const t = currentQA.question.trim();
     if (!t) {
-      startListeningWithHints(hints);
+      sttArmedRef.current = true;
       return;
     }
 
@@ -670,7 +685,8 @@ export default function App() {
       if (done) return;
       done = true;
       sttCommandKeyRef.current = null;
-      startListeningWithHints(hints);
+      // Arm recognition right after TTS ends.
+      sttArmedRef.current = true;
     };
     utterance.onend = finish;
     utterance.onerror = finish;
