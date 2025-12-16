@@ -1,8 +1,8 @@
 import type { Letter } from "../data/sets";
 
-export type LetterStatus = "pending" | "current" | "passed" | "correct" | "wrong";
+type LetterStatus = "pending" | "current" | "passed" | "correct" | "wrong";
 
-export function statusToFill(status: LetterStatus): string {
+function statusToFill(status: LetterStatus): string {
   switch (status) {
     case "current": return "var(--letter-current)";
     case "correct": return "var(--letter-correct)";

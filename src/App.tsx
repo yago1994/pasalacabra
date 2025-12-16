@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import LetterRing, { type LetterStatus } from "./components/LetterRing";
+import LetterRing from "./components/LetterRing";
 import {
   SPANISH_LETTERS,
   type Letter,
@@ -11,12 +11,87 @@ import {
 import sfxCorrectUrl from "./assets/sfx-correct.wav";
 import sfxWrongUrl from "./assets/sfx-wrong.wav";
 import sfxPasalacabraUrl from "./assets/sfx-pasalacabra.wav";
-import type { GameSession, Player } from "./game/engine";
+import type { GameSession, Player, LetterStatus } from "./game/engine";
 
 type GamePhase = "idle" | "playing" | "ended";
 type Screen = "setup" | "game";
 
 const TURN_SECONDS = 120;
+
+function removeDiacritics(s: string) {
+  // `NFD` splits letters+diacritics into separate codepoints.
+  // Then we remove the combining diacritic marks.
+  return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function normalizeForCompare(raw: string) {
+  const s = removeDiacritics(raw)
+    .toLowerCase()
+    .replace(/[¡!¿?.,;:()[\]{}"“”'’`]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  // Strip common Spanish leading articles / contractions (helps with STT).
+  return s.replace(/^(el|la|los|las|un|una|unos|unas|al|del)\s+/i, "").trim();
+}
+
+function uniqueNonEmpty(list: string[]) {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (const v of list) {
+    const t = v.trim();
+    if (!t) continue;
+    const k = t.toLowerCase();
+    if (seen.has(k)) continue;
+    seen.add(k);
+    out.push(t);
+  }
+  return out;
+}
+
+function buildPhraseHintsForAnswer(answer: string) {
+  // Phrase hints for recognition bias (answer + common variants/confusions).
+  // Keep this list small; big lists can hurt latency/quality.
+  const a = answer.trim();
+  const aNoDiacritics = removeDiacritics(a);
+  const aNtildeToN = a.replace(/[ñÑ]/g, (m) => (m === "Ñ" ? "N" : "n"));
+  const aNoDiacriticsNtildeToN = removeDiacritics(aNtildeToN);
+
+  const lower = a.toLowerCase();
+  const pluralS = lower.endsWith("s") ? a.slice(0, -1) : `${a}s`;
+  const pluralEs = lower.endsWith("s") ? a : `${a}es`;
+
+  return uniqueNonEmpty([
+    a,
+    aNoDiacritics,
+    aNtildeToN,
+    aNoDiacriticsNtildeToN,
+    pluralS,
+    removeDiacritics(pluralS),
+    pluralEs,
+    removeDiacritics(pluralEs),
+    `el ${a}`,
+    `la ${a}`,
+  ]).slice(0, 10);
+}
+
+function isAnswerCorrect(spoken: string, expected: string) {
+  const s = normalizeForCompare(spoken);
+  const e = normalizeForCompare(expected);
+  if (!s || !e) return false;
+  if (s === e) return true;
+
+  // Common STT confusion in Spanish: ñ → n.
+  const sN = s.replace(/ñ/g, "n");
+  const eN = e.replace(/ñ/g, "n");
+  if (sN === eN) return true;
+
+  // Very small plural/singular tolerance for short one-word answers.
+  if (s === `${e}s` || e === `${s}s`) return true;
+  if (s === `${e}es` || e === `${s}es`) return true;
+
+  return false;
+}
 
 function formatTime(totalSeconds: number) {
   const m = Math.floor(totalSeconds / 60);
@@ -99,6 +174,14 @@ export default function App() {
   // Speech (Text-to-speech)
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const lastSpokenKeyRef = useRef<string | null>(null);
+
+  // Speech-to-text (browser)
+  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const [isListening, setIsListening] = useState<boolean>(false);
+  const [sttSupported, setSttSupported] = useState<boolean>(true);
+  const [sttError, setSttError] = useState<string>("");
+  const [answerText, setAnswerText] = useState<string>("");
+  const userEditedAnswerRef = useRef<boolean>(false);
 
   // Sound effects (Web Audio, preloaded + pre-decoded for low latency)
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -338,21 +421,100 @@ export default function App() {
     window.speechSynthesis.cancel();
   }
 
-  function speak(text: string) {
-    if (!("speechSynthesis" in window)) return;
-    const t = text.trim();
-    if (!t) return;
+  function stopListening() {
+    const r = recognitionRef.current;
+    recognitionRef.current = null;
+    setIsListening(false);
+    if (!r) return;
+    try {
+      // stop() triggers onend; abort() is immediate.
+      r.onresult = null;
+      r.onend = null;
+      r.onerror = null;
+      r.abort?.();
+      r.stop?.();
+    } catch {
+      // ignore
+    }
+  }
 
-    // Cancel any ongoing speech before starting a new one.
-    window.speechSynthesis.cancel();
+  function startListeningWithHints(hints: string[]) {
+    const SR = window.SpeechRecognition ?? window.webkitSpeechRecognition;
+    const SGL = window.SpeechGrammarList ?? window.webkitSpeechGrammarList;
 
-    const utterance = new SpeechSynthesisUtterance(t);
-    const v = getSpanishVoice(voices);
-    if (v) utterance.voice = v;
-    utterance.lang = (v?.lang || "es-ES") as string;
-    utterance.rate = 1;
-    utterance.pitch = 1;
-    window.speechSynthesis.speak(utterance);
+    if (!SR) {
+      setSttSupported(false);
+      setIsListening(false);
+      return;
+    }
+
+    setSttSupported(true);
+    setSttError("");
+
+    stopListening();
+
+    const r = new SR();
+    recognitionRef.current = r;
+
+    r.lang = "es-ES";
+    r.continuous = true;
+    r.interimResults = true;
+    r.maxAlternatives = 1;
+
+    // Bias per question (low-latency accuracy win): phrase list / grammar hints.
+    // Web Speech API doesn’t have Azure phrase lists, but JSGF grammars are the closest analogue.
+    if (SGL && Array.isArray(hints) && hints.length > 0) {
+      try {
+        const gl = new SGL();
+        const safe = hints
+          .map((h) =>
+            h
+              .trim()
+              .replace(/[|;]/g, " ")
+              .replace(/\s+/g, " ")
+              .trim()
+          )
+          .filter(Boolean);
+        if (safe.length > 0) {
+          const body = safe.join(" | ");
+          const jsgf = `#JSGF V1.0; grammar answers; public <answer> = ${body} ;`;
+          gl.addFromString(jsgf, 1);
+          r.grammars = gl;
+        }
+      } catch {
+        // ignore; hints are best-effort
+      }
+    }
+
+    r.onresult = (ev: SpeechRecognitionEvent) => {
+      let finalText = "";
+      let interimText = "";
+      for (let i = 0; i < ev.results.length; i++) {
+        const res = ev.results[i];
+        const t = res?.[0]?.transcript ?? "";
+        if (res.isFinal) finalText += `${t} `;
+        else interimText += `${t} `;
+      }
+      const combined = `${finalText} ${interimText}`.replace(/\s+/g, " ").trim();
+      if (!userEditedAnswerRef.current) setAnswerText(combined);
+    };
+
+    r.onerror = (ev: SpeechRecognitionErrorEvent) => {
+      setIsListening(false);
+      setSttError(String(ev?.error || "Speech recognition error"));
+    };
+
+    r.onend = () => {
+      setIsListening(false);
+    };
+
+    try {
+      r.start();
+      setIsListening(true);
+    } catch (err) {
+      setIsListening(false);
+      setSttError(String(err));
+    }
   }
 
   function speakWithCallback(text: string, onDone: () => void) {
@@ -388,9 +550,49 @@ export default function App() {
     window.setTimeout(finish, 600);
   }
 
-  function speakCurrentQuestion() {
-    // Read the question out loud; we intentionally do not display it in the UI.
-    speak(currentQA.question);
+  function speakCurrentQuestionThenListen() {
+    // Clear previous draft + (re)start STT only after TTS finishes.
+    stopListening();
+    userEditedAnswerRef.current = false;
+    setAnswerText("");
+    setSttError("");
+
+    if (!("speechSynthesis" in window)) {
+      startListeningWithHints(buildPhraseHintsForAnswer(currentQA.answer));
+      return;
+    }
+
+    const t = currentQA.question.trim();
+    if (!t) {
+      startListeningWithHints(buildPhraseHintsForAnswer(currentQA.answer));
+      return;
+    }
+
+    // Cancel any ongoing speech before starting a new one.
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(t);
+    const v = getSpanishVoice(voices);
+    if (v) utterance.voice = v;
+    utterance.lang = (v?.lang || "es-ES") as string;
+    utterance.rate = 1;
+    utterance.pitch = 1;
+
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      startListeningWithHints(buildPhraseHintsForAnswer(currentQA.answer));
+    };
+    utterance.onend = finish;
+    utterance.onerror = finish;
+
+    window.speechSynthesis.speak(utterance);
+
+    // Fallback: only fire if onend never arrives (avoid firing too early).
+    const words = t.split(/\s+/).filter(Boolean).length;
+    const fallbackMs = Math.min(20000, Math.max(2500, words * 650));
+    window.setTimeout(finish, fallbackMs);
   }
 
   // Ensure only one "current"
@@ -408,6 +610,9 @@ export default function App() {
     });
     setRevealed(false);
     setFeedback(null);
+    userEditedAnswerRef.current = false;
+    setAnswerText("");
+    setSttError("");
   }, [currentIndex, currentLetter, letters]);
 
   // Timer
@@ -448,9 +653,15 @@ export default function App() {
     if (lastSpokenKeyRef.current === key) return;
 
     lastSpokenKeyRef.current = key;
-    speakCurrentQuestion();
+    speakCurrentQuestionThenListen();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, currentLetter, activePlayerId, activeSetId]);
+
+  // Ensure mic stops outside of play
+  useEffect(() => {
+    if (phase === "playing") return;
+    stopListening();
+  }, [phase]);
 
   // End on timer
   useEffect(() => {
@@ -501,7 +712,7 @@ export default function App() {
         videoRef.current.srcObject = stream;
         await videoRef.current.play();
       }
-    } catch (e) {
+    } catch {
       setCameraError("");
     }
   }
@@ -617,7 +828,7 @@ export default function App() {
     if (activePlayerId) {
       lastSpokenKeyRef.current = `${activePlayerId}:${activeSetId}:${currentLetter}`;
     }
-    speakCurrentQuestion();
+    speakCurrentQuestionThenListen();
 
     // Preload/prepare SFX in the background; don't await (keeps this handler "gesture-synchronous").
     void ensureSfxReady();
@@ -689,15 +900,12 @@ export default function App() {
     endTurn("");
   }
 
-  function handleReveal() {
-    if (phase !== "playing") return;
-    setRevealed(true);
-  }
-
   function markCorrect() {
     if (phase !== "playing") return;
 
     unlockAudioOnce();
+    stopListening();
+    stopSpeaking();
     if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
     setFeedback("correct");
     speakWithCallback("Sí", () => {
@@ -730,8 +938,10 @@ export default function App() {
     if (phase !== "playing") return;
 
     unlockAudioOnce();
+    stopListening();
     if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
     setFeedback("wrong");
+    setRevealed(true);
     // End the turn immediately to stop the timer, but don't cancel speech.
     endTurn("");
     speakWithCallback(`No. La respuesta correcta es ${currentQA.answer}.`, () => {
@@ -751,6 +961,21 @@ export default function App() {
 
     // No need to show "Incorrecto" label; SFX + turn end is enough.
     endTurn("");
+  }
+
+  function submitAnswer() {
+    if (phase !== "playing") return;
+    const spoken = answerText.trim();
+    if (!spoken) return;
+
+    // Stop mic before we speak feedback / play SFX.
+    stopListening();
+
+    if (isAnswerCorrect(spoken, currentQA.answer)) {
+      markCorrect();
+    } else {
+      markWrong();
+    }
   }
 
   // Note: We don't auto-cancel speech on phase changes because mobile browsers can
@@ -882,29 +1107,53 @@ export default function App() {
               ) : null}
 
                 <div className="revealSlot">
-                {phase === "ended" ? null : phase === "playing" ? (
-                    revealed ? (
-                      <>
-                        <div className="answerReveal answerRevealBig">
+                  {phase === "playing" ? (
+                    <>
+                      <input
+                        className="answerInput"
+                        value={answerText}
+                        placeholder={
+                          sttSupported
+                            ? isListening
+                              ? "Escuchando… (pulsa Enter para enviar)"
+                              : "Pulsa Enter para enviar"
+                            : "Tu navegador no soporta voz: escribe y pulsa Enter"
+                        }
+                        onChange={(e) => {
+                          userEditedAnswerRef.current = true;
+                          setAnswerText(e.target.value);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key !== "Enter") return;
+                          e.preventDefault();
+                          submitAnswer();
+                        }}
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        spellCheck={false}
+                        inputMode="text"
+                      />
+                      {sttError ? (
+                        <div className="answerReveal" style={{ marginTop: 6 }}>
+                          Aviso: {sttError}
+                        </div>
+                      ) : null}
+                      {!sttError ? (
+                        <div className="answerReveal" style={{ marginTop: 6 }}>
+                          {sttSupported ? (isListening ? "Escuchando…" : "Micrófono listo") : "Escritura manual"}
+                        </div>
+                      ) : null}
+                      {feedback === "wrong" || revealed ? (
+                        <div className="answerReveal answerRevealBig" style={{ marginTop: 8 }}>
                           Respuesta: <strong>{currentQA.answer}</strong>
                         </div>
-                        {!feedback ? (
-                          <div className="revealRow">
-                            <button className="btnWrong" onClick={markWrong} aria-label="Incorrecto">
-                              ✗
-                            </button>
-                            <button className="btnCorrect" onClick={markCorrect} aria-label="Correcto">
-                              ✓
-                            </button>
-                          </div>
-                        ) : null}
-                      </>
-                    ) : (
-                      <button className="btnGhost" onClick={handleReveal}>
-                        Reveal
-                      </button>
-                    )
-                ) : null}
+                      ) : feedback === "correct" ? (
+                        <div className="answerReveal answerRevealBig" style={{ marginTop: 8 }}>
+                          <strong>Correcto</strong>
+                        </div>
+                      ) : null}
+                    </>
+                  ) : null}
                 </div>
 
                 {phase === "ended" && (

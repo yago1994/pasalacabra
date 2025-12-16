@@ -219,6 +219,23 @@ html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text);
   gap: 10px;
 }
 
+.answerInput {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 16px;
+  padding: 14px 14px;
+  font-size: 16px;
+  font-weight: 650;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  outline: none;
+}
+
+.answerInput:focus {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
 .revealSlot > button {
   width: 100%;
 }
