@@ -428,11 +428,10 @@ export default function App() {
     setIsListening(false);
     if (!r) return;
     try {
-      // stop() triggers onend; abort() is immediate.
+      // Prefer `stop()`; `abort()` often causes immediate "aborted" endings.
       r.onresult = null;
       r.onend = null;
       r.onerror = null;
-      r.abort?.();
       r.stop?.();
     } catch {
       // ignore
@@ -525,6 +524,11 @@ export default function App() {
     };
 
     r.onerror = (ev: SpeechRecognitionErrorEvent) => {
+      // Ignore benign stop-induced aborts; they look like "mic opens then closes".
+      if (ev?.error === "aborted") {
+        setIsListening(false);
+        return;
+      }
       setIsListening(false);
       setSttError(String(ev?.error || "Speech recognition error"));
     };
@@ -577,7 +581,7 @@ export default function App() {
 
   function speakCurrentQuestionThenListen() {
     // Clear previous draft + (re)start STT only after TTS finishes.
-    stopListening();
+    // Don't stop here; `startListeningWithHints()` already replaces the previous recognizer.
     userEditedAnswerRef.current = false;
     setAnswerText("");
     setSttError("");
