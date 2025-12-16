@@ -508,7 +508,13 @@ export default function App() {
       const normalizedWords = normalizeForCompare(finalText);
       const normalizedJoined = normalizedWords.replace(/\s+/g, "");
       const hasPasaWord = /\bpasa\b/.test(normalizedWords);
-      if (hasPasaWord || normalizedJoined.includes("pasalacabra") || normalizedJoined.includes("pasapalabra")) {
+      const hasCabraWord = /\bcabra\b/.test(normalizedWords);
+      if (
+        hasPasaWord ||
+        hasCabraWord ||
+        normalizedJoined.includes("pasalacabra") ||
+        normalizedJoined.includes("pasapalabra")
+      ) {
         sttCommandKeyRef.current = key;
         stopListening();
         // Don't keep the command text in the input.
@@ -576,7 +582,7 @@ export default function App() {
     setAnswerText("");
     setSttError("");
 
-    const hints = [...buildPhraseHintsForAnswer(currentQA.answer), "pasalacabra", "pasapalabra"];
+    const hints = [...buildPhraseHintsForAnswer(currentQA.answer), "pasalacabra", "pasapalabra", "pasa", "cabra"];
 
     if (!("speechSynthesis" in window)) {
       startListeningWithHints(hints);
