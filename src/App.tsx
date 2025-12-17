@@ -188,6 +188,7 @@ export default function App() {
   const sttLastHintsRef = useRef<string[]>([]);
   const sttRestartTimerRef = useRef<number | null>(null);
   const sttRestartCountRef = useRef<number>(0);
+  const sttLastErrorRef = useRef<string | null>(null);
   const sttArmedRef = useRef<boolean>(false);
   const phaseRef = useRef<GamePhase>("idle");
   const activePlayerIdRef = useRef<string | null>(null);
@@ -567,9 +568,16 @@ export default function App() {
 
     r.onerror = (ev: SpeechRecognitionErrorEvent) => {
       sttLog("onerror", { error: ev?.error, message: ev?.message });
-      // Ignore benign stop-induced aborts; they look like "mic opens then closes".
+      sttLastErrorRef.current = ev?.error || null;
+      // IMPORTANT: "aborted" here is not a harmless event in WebKit; it often means the
+      // OS/browser refused to start speech recognition (permissions / gesture / service).
+      // If we treat it as benign, our auto-restart loop will thrash forever.
       if (ev?.error === "aborted") {
         setIsListening(false);
+        sttDesiredRef.current = false; // stop auto-restarts
+        setSttError(
+          "Speech recognition aborted by the browser/OS. Check mic permission and try Chrome; Safari/WebKit can abort immediately."
+        );
         return;
       }
       setIsListening(false);
@@ -583,6 +591,8 @@ export default function App() {
       // If we are still in the "answering" window, auto-restart.
       if (!sttDesiredRef.current) return;
       if (phaseRef.current !== "playing") return;
+      // If the last error was "aborted", don't restart (it will just loop).
+      if (sttLastErrorRef.current === "aborted") return;
       if (sttRestartTimerRef.current) window.clearTimeout(sttRestartTimerRef.current);
       sttRestartCountRef.current += 1;
       sttLog("restart-scheduled", { count: sttRestartCountRef.current });
