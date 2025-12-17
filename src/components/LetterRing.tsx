@@ -16,9 +16,10 @@ function statusToFill(status: LetterStatus): string {
 type Props = {
   letters: readonly Letter[];
   statusByLetter: Record<Letter, LetterStatus>;
+  recentlyCorrect?: Letter | null;
 };
 
-export default function LetterRing({ letters, statusByLetter }: Props) {
+export default function LetterRing({ letters, statusByLetter, recentlyCorrect }: Props) {
   // SVG coordinate system
   const size = 400;
   const cx = size / 2;
@@ -28,6 +29,14 @@ export default function LetterRing({ letters, statusByLetter }: Props) {
   const ringR = 178;
   const nodeR = 18;
 
+  // Find the index of the recently correct letter
+  const correctLetterIndex = recentlyCorrect ? letters.indexOf(recentlyCorrect) : -1;
+  const correctAngle = correctLetterIndex >= 0 
+    ? (correctLetterIndex / letters.length) * Math.PI * 2 - Math.PI / 2 
+    : 0;
+  const correctX = correctLetterIndex >= 0 ? cx + ringR * Math.cos(correctAngle) : 0;
+  const correctY = correctLetterIndex >= 0 ? cy + ringR * Math.sin(correctAngle) : 0;
+
   return (
     <svg
       viewBox={`0 0 ${size} ${size}`}
@@ -35,6 +44,16 @@ export default function LetterRing({ letters, statusByLetter }: Props) {
       height="100%"
       aria-label="Ring of letters"
     >
+      {/* Glow filter definition */}
+      <defs>
+        <filter id="particle-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
       {letters.map((letter, i) => {
         // Start near top, clockwise
         const angle = (i / letters.length) * Math.PI * 2 - Math.PI / 2;
@@ -61,6 +80,64 @@ export default function LetterRing({ letters, statusByLetter }: Props) {
           </g>
         );
       })}
+      {/* Particle effects for correct answer - render on top */}
+      {recentlyCorrect && correctLetterIndex >= 0 && (
+        <g className="particle-effects">
+          {Array.from({ length: 16 }).map((_, i) => {
+            const particleAngle = (i / 16) * Math.PI * 2;
+            const startDistance = nodeR + 2; // Start from letter bubble edge
+            const endDistance = 55; // End distance from center
+            const startX = startDistance * Math.cos(particleAngle);
+            const startY = startDistance * Math.sin(particleAngle);
+            const deltaX = (endDistance - startDistance) * Math.cos(particleAngle);
+            const deltaY = (endDistance - startDistance) * Math.sin(particleAngle);
+            const delay = i * 0.04;
+            const size = 5 + (i % 3) * 1.5; // Varying particle sizes
+            
+            return (
+              <g 
+                key={`particle-${recentlyCorrect}-${i}`}
+                transform={`translate(${correctX}, ${correctY})`}
+              >
+                {/* Star/particle with animation */}
+                <circle
+                  cx={startX}
+                  cy={startY}
+                  r={size}
+                  fill="#FFD700"
+                  opacity="0"
+                  filter="url(#particle-glow)"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    values={`0,0;${deltaX},${deltaY}`}
+                    dur="1.2s"
+                    begin={`${delay}s`}
+                    fill="freeze"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    values="0;1;1;0"
+                    keyTimes="0;0.2;0.8;1"
+                    dur="1.2s"
+                    begin={`${delay}s`}
+                    fill="freeze"
+                  />
+                  <animate
+                    attributeName="r"
+                    values={`${size * 0.5};${size * 1.4};${size}`}
+                    keyTimes="0;0.3;1"
+                    dur="1.2s"
+                    begin={`${delay}s`}
+                    fill="freeze"
+                  />
+                </circle>
+              </g>
+            );
+          })}
+        </g>
+      )}
     </svg>
   );
 }

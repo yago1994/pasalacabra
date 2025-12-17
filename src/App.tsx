@@ -166,6 +166,15 @@ export default function App() {
   const DEBUG_STT = true;
   const letters = SPANISH_LETTERS;
   const availableSets = useMemo(() => listSets(), []);
+  const isSafari = useMemo(() => {
+    // Safari (including iOS Safari). We skip early mic start here because
+    // activating the microphone can duck/alter TTS audio and make endings trail off.
+    const ua = navigator.userAgent;
+    const hasSafari = /Safari/i.test(ua);
+    const hasOther =
+      /(Chrome|CriOS|Chromium|Edg|OPR|Opera|Firefox|FxiOS|SamsungBrowser)/i.test(ua);
+    return hasSafari && !hasOther;
+  }, []);
 
   const [screen, setScreen] = useState<Screen>("setup");
   const [setupPlayerCount, setSetupPlayerCount] = useState<number>(2);
@@ -204,6 +213,7 @@ export default function App() {
   const [turnMessage, setTurnMessage] = useState<string>("");
   const [feedback, setFeedback] = useState<null | "correct" | "wrong">(null);
   const feedbackTimerRef = useRef<number | null>(null);
+  const [recentlyCorrectLetter, setRecentlyCorrectLetter] = useState<Letter | null>(null);
 
   // Camera
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -229,6 +239,7 @@ export default function App() {
   const ttsWarmRef = useRef<boolean>(false);
   const ttsPrimeAtRef = useRef<number>(0);
   const ttsPrimingRef = useRef<boolean>(false);
+  const ttsSeqRef = useRef<number>(0);
   const sttMicReadyChimeKeyRef = useRef<string | null>(null);
   const sttPreStartTimerRef = useRef<number | null>(null);
   const [isListening, setIsListening] = useState<boolean>(false);
@@ -537,7 +548,7 @@ export default function App() {
     osc.frequency.exponentialRampToValueAtTime(990, t0 + 0.08);
 
     gain.gain.setValueAtTime(0.0001, t0);
-    gain.gain.exponentialRampToValueAtTime(0.18, t0 + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.28, t0 + 0.01);
     gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.12);
 
     osc.connect(gain);
@@ -912,6 +923,7 @@ export default function App() {
   }
 
   function speakCurrentQuestionThenListen() {
+    const ttsSeq = ++ttsSeqRef.current;
     // Clear previous draft + (re)start STT only after TTS finishes.
     // Stop mic immediately so the TTS doesn't leak into recognition.
     stopListening("replace");
@@ -946,21 +958,17 @@ export default function App() {
     }
 
     const speakQuestion = () => {
-      // Cancel any ongoing speech before starting a new one.
-      window.speechSynthesis.cancel();
+      const QUESTION_RATE = 1.15;
+      const INTRO_TO_BODY_PAUSE_MS = 500;
 
-      const utterance = new SpeechSynthesisUtterance(t);
-      const v = getSpanishVoice(voices);
-      if (v) utterance.voice = v;
-      utterance.lang = (v?.lang || "es-ES") as string;
-      utterance.rate = 1.15;
-      utterance.pitch = 1;
-      utterance.volume = 1;
+      // Split "Empieza por X:" / "Contiene la X:" so the prefix is read at normal speed,
+      // and the actual clue is read at the configured question speed.
+      const m = t.match(/^(Empieza\s+por|Contiene\s+la)\s+([A-ZÑ])\s*:\s*(.+)$/i);
+      const intro = m ? `${m[1]} ${m[2].toUpperCase()}.` : "";
+      const body = (m ? m[3] : t).trim();
 
-      let done = false;
-      const finish = () => {
-        if (done) return;
-        done = true;
+      const finishAll = () => {
+        if (ttsSeq !== ttsSeqRef.current) return;
         if (sttPreStartTimerRef.current) window.clearTimeout(sttPreStartTimerRef.current);
         sttPreStartTimerRef.current = null;
         sttCommandKeyRef.current = null;
@@ -970,24 +978,83 @@ export default function App() {
         sttArmedRef.current = true; // accept results right away
         setQuestionRead(true);
       };
-      utterance.onend = finish;
-      utterance.onerror = finish;
 
-      window.speechSynthesis.speak(utterance);
+      const speakChunk = (text: string, rate: number, allowPreStart: boolean, onDone: () => void) => {
+        const chunk = text.trim();
+        if (!chunk) {
+          onDone();
+          return;
+        }
 
-      // Fallback: only fire if onend never arrives (avoid firing too early).
-      const words = t.split(/\s+/).filter(Boolean).length;
-      const fallbackMs = Math.min(20000, Math.max(2500, words * 650));
-      // Start STT slightly before we expect TTS to end so the first user syllable is captured.
-      // We still keep `sttArmedRef` false until `finish()`, so partials won't update the UI.
-      const preStartMs = Math.max(0, fallbackMs - 500);
-      sttPreStartTimerRef.current = window.setTimeout(() => {
-        // Only pre-start while the question is still being read.
-        if (phaseRef.current !== "playing") return;
-        if (sttArmedRef.current) return; // already finished
-        ensureListeningForQuestion(hints);
-      }, preStartMs);
-      window.setTimeout(finish, fallbackMs);
+        const utterance = new SpeechSynthesisUtterance(chunk);
+        const v = getSpanishVoice(voices);
+        if (v) utterance.voice = v;
+        utterance.lang = (v?.lang || "es-ES") as string;
+        utterance.rate = rate;
+        utterance.pitch = 1;
+        utterance.volume = 1;
+
+        let done = false;
+        let pollId: number | null = null;
+        let maxTimer: number | null = null;
+
+        const finish = () => {
+          if (done) return;
+          done = true;
+          if (pollId) window.clearInterval(pollId);
+          if (maxTimer) window.clearTimeout(maxTimer);
+          onDone();
+        };
+        utterance.onend = finish;
+        utterance.onerror = finish;
+
+        window.speechSynthesis.speak(utterance);
+
+        // Dynamic TTS end detection:
+        // - Safari can have unreliable `onend` timing; also, we never want to "end early".
+        // - We poll `speechSynthesis.speaking` and only finish when it truly stops.
+        // We still include a generous max timeout as a safety valve.
+        const startedAt = Date.now();
+        const words = chunk.split(/\s+/).filter(Boolean).length;
+        const maxMs = allowPreStart
+          ? Math.min(45000, Math.max(12000, words * 1200))
+          : Math.min(10000, Math.max(2000, words * 900));
+
+        // Pre-start STT (non-Safari only) near the expected end to catch the first syllable.
+        if (allowPreStart && !isSafari) {
+          const expectedMs = Math.min(maxMs, Math.max(2500, words * 650));
+          const preStartMs = Math.max(0, expectedMs - 500);
+          sttPreStartTimerRef.current = window.setTimeout(() => {
+            if (phaseRef.current !== "playing") return;
+            if (sttArmedRef.current) return;
+            ensureListeningForQuestion(hints);
+          }, preStartMs);
+        }
+
+        pollId = window.setInterval(() => {
+          if (done) return;
+          const now = Date.now();
+          if (now - startedAt < 400) return; // avoid false negatives right after speak()
+          if (!window.speechSynthesis.speaking) finish();
+        }, 120);
+
+        maxTimer = window.setTimeout(finish, maxMs);
+      };
+
+      // Cancel any ongoing speech before starting the (intro + question) sequence.
+      window.speechSynthesis.cancel();
+
+      if (intro) {
+        speakChunk(intro, 1.0, false, () => {
+          if (ttsSeq !== ttsSeqRef.current) return;
+          window.setTimeout(() => {
+            if (ttsSeq !== ttsSeqRef.current) return;
+            speakChunk(body, QUESTION_RATE, true, finishAll);
+          }, INTRO_TO_BODY_PAUSE_MS);
+        });
+      } else {
+        speakChunk(body, QUESTION_RATE, true, finishAll);
+      }
     };
 
     // Prime immediately before the first real question to avoid "first word volume dip".
@@ -1347,8 +1414,14 @@ export default function App() {
     stopSpeaking();
     if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
     setFeedback("correct");
-    speakWithCallback("Sí", () => {
-      void ensureSfxReady().then(() => playSfx("correct"));
+    // Play SFX first, then speak.
+    void ensureSfxReady().then(() => {
+      playSfx("correct");
+      window.setTimeout(() => {
+        speakWithCallback("Sí", () => {
+          // no-op
+        });
+      }, 120);
     });
 
     setStatusByLetter((prev) => {
@@ -1356,6 +1429,10 @@ export default function App() {
       next[currentLetter] = "correct";
       return next;
     });
+
+    // Trigger particle animation
+    setRecentlyCorrectLetter(currentLetter);
+    setTimeout(() => setRecentlyCorrectLetter(null), 1200);
 
     // Delay the next question a bit so "Correcto" + sound are perceivable.
     const statusAfter = { ...statusByLetter, [currentLetter]: "correct" as LetterStatus };
@@ -1383,13 +1460,15 @@ export default function App() {
     setRevealed(true);
     // End the turn immediately to stop the timer, but don't cancel speech.
     endTurn("");
-    speakWithCallback(
-      `No. La respuesta correcta es ${currentQA.answer}.`,
-      () => {
-      void ensureSfxReady().then(() => playSfx("wrong"));
-      },
-      { rate: 1 }
-    );
+    // Play SFX first, then speak a short "No" (no answer content).
+    void ensureSfxReady().then(() => {
+      playSfx("wrong");
+      window.setTimeout(() => {
+        speakWithCallback("No", () => {
+          // no-op
+        });
+      }, 120);
+    });
 
     setStatusByLetter((prev) => {
       const next = { ...prev };
@@ -1561,7 +1640,11 @@ export default function App() {
                   playsInline
                   autoPlay
                 />
-                <LetterRing letters={letters} statusByLetter={statusByLetter} />
+                <LetterRing 
+                  letters={letters} 
+                  statusByLetter={statusByLetter}
+                  recentlyCorrect={recentlyCorrectLetter}
+                />
               </div>
 
               <div className="controls">
@@ -1584,8 +1667,8 @@ export default function App() {
                         placeholder={
                           sttSupported
                             ? isListening
-                              ? "Escuchando… (pulsa Enter para enviar)"
-                              : "Pulsa Enter para enviar"
+                              ? "Escuchando…"
+                              : ""
                             : "Tu navegador no soporta voz: escribe y pulsa Enter"
                         }
                         readOnly={sttSupported}
@@ -1620,10 +1703,6 @@ export default function App() {
                       {feedback === "wrong" || revealed ? (
                         <div className="answerReveal answerRevealBig" style={{ marginTop: 8 }}>
                           Respuesta: <strong>{currentQA.answer}</strong>
-                        </div>
-                      ) : feedback === "correct" ? (
-                        <div className="answerReveal answerRevealBig" style={{ marginTop: 8 }}>
-                          <strong>Correcto</strong>
                         </div>
                       ) : null}
                     </>
