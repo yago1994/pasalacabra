@@ -83,6 +83,35 @@ function isAnswerCorrect(spoken: string, expected: string) {
   if (!s || !e) return false;
   if (s === e) return true;
 
+  function levenshteinRatio(a: string, b: string) {
+    if (a === b) return 1;
+    const n = a.length;
+    const m = b.length;
+    if (n === 0 || m === 0) return 0;
+    const maxLen = Math.max(n, m);
+
+    // DP with two rows to keep it small.
+    let prev = new Array<number>(m + 1);
+    let cur = new Array<number>(m + 1);
+    for (let j = 0; j <= m; j++) prev[j] = j;
+    for (let i = 1; i <= n; i++) {
+      cur[0] = i;
+      const ca = a.charCodeAt(i - 1);
+      for (let j = 1; j <= m; j++) {
+        const cost = ca === b.charCodeAt(j - 1) ? 0 : 1;
+        const del = prev[j] + 1;
+        const ins = cur[j - 1] + 1;
+        const sub = prev[j - 1] + cost;
+        cur[j] = Math.min(del, ins, sub);
+      }
+      const tmp = prev;
+      prev = cur;
+      cur = tmp;
+    }
+    const dist = prev[m];
+    return 1 - dist / maxLen;
+  }
+
   // Common STT confusion in Spanish: ñ → n.
   const sN = s.replace(/ñ/g, "n");
   const eN = e.replace(/ñ/g, "n");
@@ -91,6 +120,15 @@ function isAnswerCorrect(spoken: string, expected: string) {
   // Very small plural/singular tolerance for short one-word answers.
   if (s === `${e}s` || e === `${s}s`) return true;
   if (s === `${e}es` || e === `${s}es`) return true;
+
+  // Fuzzy match for single-word answers (helps with minor phoneme confusions like d→k):
+  // e.g. "delfin" vs "kelfin" should be accepted.
+  const sOneWord = !/\s/.test(sN);
+  const eOneWord = !/\s/.test(eN);
+  if (sOneWord && eOneWord && sN.length >= 4 && eN.length >= 4) {
+    const ratio = levenshteinRatio(sN, eN);
+    if (ratio >= 0.6) return true;
+  }
 
   return false;
 }
@@ -192,6 +230,7 @@ export default function App() {
   const ttsPrimeAtRef = useRef<number>(0);
   const ttsPrimingRef = useRef<boolean>(false);
   const sttMicReadyChimeKeyRef = useRef<string | null>(null);
+  const sttPreStartTimerRef = useRef<number | null>(null);
   const [isListening, setIsListening] = useState<boolean>(false);
   const [sttSupported, setSttSupported] = useState<boolean>(true);
   const [sttError, setSttError] = useState<string>("");
@@ -831,6 +870,7 @@ export default function App() {
     // This avoids WebKit/Safari immediately aborting starts that are not gesture-initiated.
     sttDesiredRef.current = true;
     sttLastHintsRef.current = hints;
+    if (recognitionRef.current) return;
     if (sttStartPromiseRef.current) return;
     sttStartPromiseRef.current = startListeningWithHints(hints).finally(() => {
       sttStartPromiseRef.current = null;
@@ -876,6 +916,8 @@ export default function App() {
     // Stop mic immediately so the TTS doesn't leak into recognition.
     stopListening("replace");
     sttMicReadyChimeKeyRef.current = null;
+    if (sttPreStartTimerRef.current) window.clearTimeout(sttPreStartTimerRef.current);
+    sttPreStartTimerRef.current = null;
     userEditedAnswerRef.current = false;
     setAnswerText("");
     setSttError("");
@@ -919,6 +961,8 @@ export default function App() {
       const finish = () => {
         if (done) return;
         done = true;
+        if (sttPreStartTimerRef.current) window.clearTimeout(sttPreStartTimerRef.current);
+        sttPreStartTimerRef.current = null;
         sttCommandKeyRef.current = null;
         // Start mic immediately after TTS ends (prevents TTS leakage into the answer).
         // This also reduces the "dead air" window where the user starts speaking too early.
@@ -934,6 +978,15 @@ export default function App() {
       // Fallback: only fire if onend never arrives (avoid firing too early).
       const words = t.split(/\s+/).filter(Boolean).length;
       const fallbackMs = Math.min(20000, Math.max(2500, words * 650));
+      // Start STT slightly before we expect TTS to end so the first user syllable is captured.
+      // We still keep `sttArmedRef` false until `finish()`, so partials won't update the UI.
+      const preStartMs = Math.max(0, fallbackMs - 500);
+      sttPreStartTimerRef.current = window.setTimeout(() => {
+        // Only pre-start while the question is still being read.
+        if (phaseRef.current !== "playing") return;
+        if (sttArmedRef.current) return; // already finished
+        ensureListeningForQuestion(hints);
+      }, preStartMs);
       window.setTimeout(finish, fallbackMs);
     };
 
@@ -1374,14 +1427,16 @@ export default function App() {
 
   return (
     <div className="app">
-      <video
-        ref={videoRef}
-        className="camera"
-        muted
-        playsInline
-        autoPlay
-      />
-
+      <div className="backgroundDecoration" aria-hidden="true">
+        <span className="goat goat1">🐐</span>
+        <span className="goat goat2">🐐</span>
+        <span className="goat goat3">🐐</span>
+        <span className="goat goat4">🐐</span>
+        <span className="goat goat5">🐐</span>
+        <span className="goat goat6">🐐</span>
+        <span className="goat goat7">🐐</span>
+        <span className="goat goat8">🐐</span>
+      </div>
       <div className="overlay">
         <div className="topBar">
           {screen === "game" ? (
@@ -1499,6 +1554,13 @@ export default function App() {
           <div className="center">
             <div className="ringAndControls">
               <div className="ringWrap">
+                <video
+                  ref={videoRef}
+                  className="cameraInRing"
+                  muted
+                  playsInline
+                  autoPlay
+                />
                 <LetterRing letters={letters} statusByLetter={statusByLetter} />
               </div>
 
