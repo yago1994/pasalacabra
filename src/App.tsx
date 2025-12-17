@@ -188,6 +188,10 @@ export default function App() {
   const sttLastFinalTextRef = useRef<string>("");
   const sttLastFinalAtRef = useRef<number>(0);
   const micWarmRef = useRef<boolean>(false);
+  const ttsWarmRef = useRef<boolean>(false);
+  const ttsPrimeAtRef = useRef<number>(0);
+  const ttsPrimingRef = useRef<boolean>(false);
+  const sttMicReadyChimeKeyRef = useRef<string | null>(null);
   const [isListening, setIsListening] = useState<boolean>(false);
   const [sttSupported, setSttSupported] = useState<boolean>(true);
   const [sttError, setSttError] = useState<string>("");
@@ -223,6 +227,64 @@ export default function App() {
     } catch (err) {
       // If permission is denied, we still mark warmed to avoid repeated prompts.
       sttLog("mic warmup failed", String(err));
+    }
+  }
+
+  function warmupSpeechSynthesisOnce() {
+    if (ttsWarmRef.current) return;
+    if (!("speechSynthesis" in window)) return;
+    ttsWarmRef.current = true;
+    try {
+      // Some browsers "warm up" the TTS pipeline on first utterance (volume ducking / ramp).
+      // Speak a near-instant, muted utterance once so the first real question sounds consistent.
+      const u = new SpeechSynthesisUtterance(".");
+      u.volume = 0;
+      u.rate = 10;
+      u.pitch = 1;
+      window.speechSynthesis.speak(u);
+    } catch {
+      // ignore
+    }
+  }
+
+  function primeSpeechSynthesisIfNeeded(onReady: () => void) {
+    if (!("speechSynthesis" in window)) {
+      onReady();
+      return;
+    }
+    const now = Date.now();
+    // iOS/Safari can "duck/ramp" TTS volume on the first utterance after inactivity or audio-session changes.
+    // Prime with a near-silent, very short utterance so the *real* question starts at full volume.
+    if (ttsPrimingRef.current) return;
+    if (ttsPrimeAtRef.current && now - ttsPrimeAtRef.current < 60_000) {
+      onReady();
+      return;
+    }
+
+    ttsPrimingRef.current = true;
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      ttsPrimingRef.current = false;
+      ttsPrimeAtRef.current = Date.now();
+      onReady();
+    };
+
+    try {
+      const u = new SpeechSynthesisUtterance("a");
+      u.volume = 0.02; // low but non-zero so the audio path engages
+      u.rate = 4;
+      u.pitch = 1;
+      u.onend = finish;
+      u.onerror = finish;
+      // Cancel any pending speech before priming.
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+      // Fallback in case onend doesn't fire (some mobile edge cases)
+      window.setTimeout(finish, 250);
+    } catch {
+      finish();
     }
   }
 
@@ -420,6 +482,29 @@ export default function App() {
     }
 
     start();
+  }
+
+  function playMicReadyChime() {
+    const ctx = getAudioCtx();
+    if (!ctx) return;
+
+    const t0 = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sine";
+
+    // Short upward chirp.
+    osc.frequency.setValueAtTime(660, t0);
+    osc.frequency.exponentialRampToValueAtTime(990, t0 + 0.08);
+
+    gain.gain.setValueAtTime(0.0001, t0);
+    gain.gain.exponentialRampToValueAtTime(0.18, t0 + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.12);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(t0);
+    osc.stop(t0 + 0.13);
   }
 
   const activePlayer = session?.players[session.currentPlayerIndex];
@@ -718,6 +803,15 @@ export default function App() {
       if (gen !== sttGenRef.current) return;
       setIsListening(true);
       sttLog("started");
+
+      // Signal to the user that they can respond (once per question).
+      if (sttArmedRef.current && phaseRef.current === "playing") {
+        const key = `${activePlayerIdRef.current ?? "noplayer"}:${activeSetIdRef.current}:${currentLetterRef.current}:${currentIndexRef.current}`;
+        if (sttMicReadyChimeKeyRef.current !== key) {
+          sttMicReadyChimeKeyRef.current = key;
+          playMicReadyChime();
+        }
+      }
     } catch (err) {
       if (gen !== sttGenRef.current) return;
       setIsListening(false);
@@ -759,7 +853,7 @@ export default function App() {
     const v = getSpanishVoice(voices);
     if (v) utterance.voice = v;
     utterance.lang = (v?.lang || "es-ES") as string;
-    utterance.rate = opts?.rate ?? 1.10;
+    utterance.rate = opts?.rate ?? 1.0;
     utterance.pitch = 1;
     utterance.volume = 1;
 
@@ -781,6 +875,7 @@ export default function App() {
     // Clear previous draft + (re)start STT only after TTS finishes.
     // Stop mic immediately so the TTS doesn't leak into recognition.
     stopListening("replace");
+    sttMicReadyChimeKeyRef.current = null;
     userEditedAnswerRef.current = false;
     setAnswerText("");
     setSttError("");
@@ -808,36 +903,42 @@ export default function App() {
       return;
     }
 
-    // Cancel any ongoing speech before starting a new one.
-    window.speechSynthesis.cancel();
+    const speakQuestion = () => {
+      // Cancel any ongoing speech before starting a new one.
+      window.speechSynthesis.cancel();
 
-    const utterance = new SpeechSynthesisUtterance(t);
-    const v = getSpanishVoice(voices);
-    if (v) utterance.voice = v;
-    utterance.lang = (v?.lang || "es-ES") as string;
-    utterance.rate = 1.25;
-    utterance.pitch = 1;
-    utterance.volume = 1;
+      const utterance = new SpeechSynthesisUtterance(t);
+      const v = getSpanishVoice(voices);
+      if (v) utterance.voice = v;
+      utterance.lang = (v?.lang || "es-ES") as string;
+      utterance.rate = 1.15;
+      utterance.pitch = 1;
+      utterance.volume = 1;
 
-    let done = false;
-    const finish = () => {
-      if (done) return;
-      done = true;
-      sttCommandKeyRef.current = null;
-      // Start mic only after TTS ends (prevents TTS leakage into the answer).
-      window.setTimeout(() => ensureListeningForQuestion(hints), 100);
-      sttArmedRef.current = true; // accept results right away
-      setQuestionRead(true);
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        sttCommandKeyRef.current = null;
+        // Start mic immediately after TTS ends (prevents TTS leakage into the answer).
+        // This also reduces the "dead air" window where the user starts speaking too early.
+        ensureListeningForQuestion(hints);
+        sttArmedRef.current = true; // accept results right away
+        setQuestionRead(true);
+      };
+      utterance.onend = finish;
+      utterance.onerror = finish;
+
+      window.speechSynthesis.speak(utterance);
+
+      // Fallback: only fire if onend never arrives (avoid firing too early).
+      const words = t.split(/\s+/).filter(Boolean).length;
+      const fallbackMs = Math.min(20000, Math.max(2500, words * 650));
+      window.setTimeout(finish, fallbackMs);
     };
-    utterance.onend = finish;
-    utterance.onerror = finish;
 
-    window.speechSynthesis.speak(utterance);
-
-    // Fallback: only fire if onend never arrives (avoid firing too early).
-    const words = t.split(/\s+/).filter(Boolean).length;
-    const fallbackMs = Math.min(20000, Math.max(2500, words * 650));
-    window.setTimeout(finish, fallbackMs);
+    // Prime immediately before the first real question to avoid "first word volume dip".
+    primeSpeechSynthesisIfNeeded(speakQuestion);
   }
 
   // Ensure only one "current"
@@ -1005,12 +1106,17 @@ export default function App() {
     }
   }
 
-  // Camera on by default (even when turn is stopped). Restart it on facingMode changes.
+  // Request camera only after entering the game screen.
+  // This avoids prompting for camera on the setup screen and ensures mic warmup can happen first.
   useEffect(() => {
+    if (screen !== "game") {
+      stopCamera();
+      return;
+    }
     void startCamera(cameraFacingMode);
     return () => stopCamera();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cameraFacingMode]);
+  }, [cameraFacingMode, screen]);
 
   // Keep setup players array sized to player count.
   useEffect(() => {
@@ -1044,10 +1150,13 @@ export default function App() {
     }));
   }, [activePlayerId, screen, statusByLetter, currentIndex, timeLeft, revealed]);
 
-  function startFromSetup() {
+  async function startFromSetup() {
     unlockAudioOnce();
-    // Warm up microphone permission/initialization on game entry (user gesture).
-    void warmupMicrophoneOnce();
+    // Warm up microphone permission first. On some browsers, requesting mic can temporarily
+    // affect the audio session, so we do it before the first meaningful TTS utterance.
+    await warmupMicrophoneOnce();
+
+    warmupSpeechSynthesisOnce();
     setGameOver(false);
     setGameOverMessage("");
     const players: Player[] = Array.from({ length: setupPlayerCount }, (_, i) => {
@@ -1065,25 +1174,30 @@ export default function App() {
       initialStates[p.id] = { statusByLetter: s, currentIndex: 0, timeLeft: TURN_SECONDS, revealed: false };
     }
 
-    setPlayerStates(initialStates);
-    setSession({ players, currentPlayerIndex: 0 });
-    setScreen("game");
-    setPhase("idle");
-    setTurnMessage("");
-    setFeedback(null);
+    const proceedToGame = () => {
+      setPlayerStates(initialStates);
+      setSession({ players, currentPlayerIndex: 0 });
+      setScreen("game"); // triggers camera permission request (see effect above)
+      setPhase("idle");
+      setTurnMessage("");
+      setFeedback(null);
 
-    const first = players[0];
-    if (first) {
-      const st = initialStates[first.id];
-      setStatusByLetter(st.statusByLetter);
-      setCurrentIndex(st.currentIndex);
-      setTimeLeft(st.timeLeft);
-      setRevealed(st.revealed);
-    }
+      const first = players[0];
+      if (first) {
+        const st = initialStates[first.id];
+        setStatusByLetter(st.statusByLetter);
+        setCurrentIndex(st.currentIndex);
+        setTimeLeft(st.timeLeft);
+        setRevealed(st.revealed);
+      }
+    };
+
+    proceedToGame();
   }
 
   async function startTurn() {
     unlockAudioOnce();
+    warmupSpeechSynthesisOnce();
     setTurnMessage("");
     // Do NOT reset the clock here: each player has a single 2:00 bank for the whole game.
     // `timeLeft` is already loaded from the active player's saved state.
