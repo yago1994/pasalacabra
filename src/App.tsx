@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import LetterRing from "./components/LetterRing";
 import {
   SPANISH_LETTERS,
@@ -12,6 +13,7 @@ import sfxCorrectUrl from "./assets/sfx-correct.wav";
 import sfxWrongUrl from "./assets/sfx-wrong.wav";
 import sfxPasalacabraUrl from "./assets/sfx-pasalacabra.wav";
 import type { GameSession, Player, LetterStatus } from "./game/engine";
+import { createAzureRecognizer, setPhraseHints } from "./speech/speechazure";
 
 type GamePhase = "idle" | "playing" | "ended";
 type Screen = "setup" | "game";
@@ -177,12 +179,21 @@ export default function App() {
   const lastSpokenKeyRef = useRef<string | null>(null);
 
   // Speech-to-text (browser)
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const recognitionRef = useRef<sdk.SpeechRecognizer | null>(null);
+  const phraseListRef = useRef<sdk.PhraseListGrammar | null>(null);
+  const sttStartPromiseRef = useRef<Promise<void> | null>(null);
+  const sttGenRef = useRef<number>(0);
+  const sttAutoSubmitTimerRef = useRef<number | null>(null);
+  const sttAutoSubmitSeqRef = useRef<number>(0);
+  const sttLastFinalTextRef = useRef<string>("");
+  const sttLastFinalAtRef = useRef<number>(0);
+  const micWarmRef = useRef<boolean>(false);
   const [isListening, setIsListening] = useState<boolean>(false);
   const [sttSupported, setSttSupported] = useState<boolean>(true);
   const [sttError, setSttError] = useState<string>("");
   const [answerText, setAnswerText] = useState<string>("");
   const userEditedAnswerRef = useRef<boolean>(false);
+  const [questionRead, setQuestionRead] = useState<boolean>(false);
   const sttCommandKeyRef = useRef<string | null>(null);
   const sttDesiredRef = useRef<boolean>(false);
   const sttLastHintsRef = useRef<string[]>([]);
@@ -199,6 +210,33 @@ export default function App() {
   function sttLog(...args: unknown[]) {
     if (!DEBUG_STT) return;
     console.log("[stt]", ...args);
+  }
+
+  async function warmupMicrophoneOnce() {
+    if (micWarmRef.current) return;
+    micWarmRef.current = true;
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+      for (const t of stream.getTracks()) t.stop();
+      sttLog("mic warmup ok");
+    } catch (err) {
+      // If permission is denied, we still mark warmed to avoid repeated prompts.
+      sttLog("mic warmup failed", String(err));
+    }
+  }
+
+  function shouldTriggerPasalacabra(text: string) {
+    const normalizedWords = normalizeForCompare(text);
+    const normalizedJoined = normalizedWords.replace(/\s+/g, "");
+    if (!normalizedJoined) return { ok: false as const, normalizedJoined };
+    const hasExact =
+      normalizedJoined.includes("pasalacabra") || normalizedJoined.includes("pasapalabra");
+    const tokens = normalizedWords.split(/\s+/g).filter(Boolean);
+    // Match whole words to avoid false positives like "pasado" matching "pasa".
+    const hasPasaWord = tokens.includes("pasa");
+    const hasCabraWord = tokens.includes("cabra");
+    // Treat "pasa" as a valid command by itself (user intent: "pasa la cabra").
+    return { ok: hasExact || hasPasaWord || hasCabraWord, normalizedJoined };
   }
 
   // Keep latest values for async STT callbacks (avoid stale closures).
@@ -453,35 +491,55 @@ export default function App() {
   }
 
   function stopListening(reason: "replace" | "user" = "user") {
+    sttGenRef.current += 1; // invalidate any in-flight recognizer/events
+    // Allow re-starting immediately even if a prior start promise is still pending.
+    sttStartPromiseRef.current = null;
+    if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
+    sttAutoSubmitTimerRef.current = null;
     const r = recognitionRef.current;
     recognitionRef.current = null;
+    phraseListRef.current = null;
     setIsListening(false);
     if (reason === "user") sttDesiredRef.current = false;
     sttLog("stopListening", { reason, hadRecognizer: Boolean(r), desired: sttDesiredRef.current });
     if (!r) return;
     try {
-      // Prefer `stop()`; `abort()` often causes immediate "aborted" endings.
-      r.onresult = null;
-      r.onend = null;
-      r.onerror = null;
-      r.stop?.();
+      // Detach callbacks first (avoid state updates after stop).
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (r as any).recognizing = undefined;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (r as any).recognized = undefined;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (r as any).canceled = undefined;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (r as any).sessionStopped = undefined;
+
+      r.stopContinuousRecognitionAsync(
+        () => {
+          try {
+            r.close();
+          } catch {
+            // ignore
+          }
+        },
+        () => {
+          try {
+            r.close();
+          } catch {
+            // ignore
+          }
+        }
+      );
     } catch {
-      // ignore
+      try {
+        r.close();
+      } catch {
+        // ignore
+      }
     }
   }
 
-  function startListeningWithHints(hints: string[]) {
-    const SR = window.SpeechRecognition ?? window.webkitSpeechRecognition;
-    const SGL = window.SpeechGrammarList ?? window.webkitSpeechGrammarList;
-
-    if (!SR) {
-      setSttSupported(false);
-      setIsListening(false);
-      sttLog("SpeechRecognition not supported");
-      return;
-    }
-
-    setSttSupported(true);
+  async function startListeningWithHints(hints: string[]): Promise<void> {
     setSttError("");
 
     // Replace any existing recognizer without disabling STT desire.
@@ -490,72 +548,107 @@ export default function App() {
     sttLastHintsRef.current = hints;
     sttLog("startListeningWithHints", { hintsCount: hints.length, desired: sttDesiredRef.current });
 
-    const r = new SR();
-    recognitionRef.current = r;
+    const gen = sttGenRef.current;
 
-    r.lang = "es-ES";
-    r.continuous = true;
-    r.interimResults = true;
-    r.maxAlternatives = 1;
-
-    // Bias per question (low-latency accuracy win): phrase list / grammar hints.
-    // Web Speech API doesn’t have Azure phrase lists, but JSGF grammars are the closest analogue.
-    if (SGL && Array.isArray(hints) && hints.length > 0) {
-      try {
-        const gl = new SGL();
-        const safe = hints
-          .map((h) =>
-            h
-              .trim()
-              .replace(/[|;]/g, " ")
-              .replace(/\s+/g, " ")
-              .trim()
-          )
-          .filter(Boolean);
-        if (safe.length > 0) {
-          const body = safe.join(" | ");
-          const jsgf = `#JSGF V1.0; grammar answers; public <answer> = ${body} ;`;
-          gl.addFromString(jsgf, 1);
-          r.grammars = gl;
-        }
-      } catch {
-        // ignore; hints are best-effort
-      }
+    let r: sdk.SpeechRecognizer | null = null;
+    try {
+      r = await createAzureRecognizer();
+    } catch (err) {
+      setSttSupported(false);
+      setIsListening(false);
+      sttDesiredRef.current = false;
+      setSttError(String(err));
+      sttLog("createAzureRecognizer failed", String(err));
+      return;
     }
 
-    r.onresult = (ev: SpeechRecognitionEvent) => {
-      let finalText = "";
-      let interimText = "";
-      for (let i = 0; i < ev.results.length; i++) {
-        const res = ev.results[i];
-        const t = res?.[0]?.transcript ?? "";
-        if (res.isFinal) finalText += `${t} `;
-        else interimText += `${t} `;
+    // If something changed while we were awaiting token/mic, discard this recognizer.
+    if (gen !== sttGenRef.current || !sttDesiredRef.current) {
+      try {
+        r.close();
+      } catch {
+        // ignore
       }
-      const combined = `${finalText} ${interimText}`.replace(/\s+/g, " ").trim();
-      if (DEBUG_STT && finalText.trim()) sttLog("final", finalText.trim());
-      if (DEBUG_STT && interimText.trim()) sttLog("interim", interimText.trim());
+      return;
+    }
+
+    setSttSupported(true);
+    recognitionRef.current = r;
+
+    // Phrase hints: take effect at the start of the NEXT recognition, so set them before start.
+    try {
+      const pl = sdk.PhraseListGrammar.fromRecognizer(r);
+      phraseListRef.current = pl;
+      if (Array.isArray(hints) && hints.length > 0) setPhraseHints(pl, hints);
+    } catch {
+      // ignore; hints are best-effort
+    }
+
+    r.recognizing = (_s, e) => {
+      if (gen !== sttGenRef.current) return;
+      const t = (e.result.text ?? "").trim();
+      if (DEBUG_STT && t) sttLog("interim", t);
+      // NOTE: don't cancel a pending auto-submit on empty/no-op partial events.
+      // Azure can emit a trailing recognizing event with empty text right after a final,
+      // which would otherwise cancel the first auto-submit.
+      if (t) {
+        // Also: after a final, Azure may emit additional partials that repeat the final text.
+        // Don't cancel the pending submit unless the user is clearly still speaking (text changed).
+        if (sttAutoSubmitTimerRef.current) {
+          const lastFinal = sttLastFinalTextRef.current.trim();
+          const lastFinalComparable = lastFinal.replace(/[.?!]+$/g, "").trim().toLowerCase();
+          const tComparable = t.replace(/[.?!]+$/g, "").trim().toLowerCase();
+          const repeatsFinal =
+            Boolean(lastFinalComparable) &&
+            (tComparable === lastFinalComparable || tComparable.startsWith(lastFinalComparable));
+          if (!repeatsFinal) {
+            window.clearTimeout(sttAutoSubmitTimerRef.current);
+            sttAutoSubmitTimerRef.current = null;
+          }
+        }
+      }
+      if (!sttArmedRef.current) return;
+      if (!userEditedAnswerRef.current) setAnswerText(t);
+
+      // Voice command should be responsive; Azure sometimes never emits a final RecognizedSpeech.
+      if (!t) return;
+      if (phaseRef.current !== "playing") return;
+      const key = `${activePlayerIdRef.current ?? "noplayer"}:${activeSetIdRef.current}:${currentLetterRef.current}:${currentIndexRef.current}`;
+      if (sttCommandKeyRef.current === key) return;
+      const { ok, normalizedJoined } = shouldTriggerPasalacabra(t);
+      if (!ok) return;
+      sttLog("command-check(interim)", { normalizedJoined });
+      sttCommandKeyRef.current = key;
+      stopListening("user");
+      userEditedAnswerRef.current = false;
+      setAnswerText("");
+      sttLog("-> triggering PASALACABRA (interim)");
+      handlePasalacabra();
+    };
+
+    r.recognized = (_s, e) => {
+      if (gen !== sttGenRef.current) return;
+      if (e.result.reason !== sdk.ResultReason.RecognizedSpeech) return;
+      const finalText = (e.result.text ?? "").trim();
+      if (DEBUG_STT && finalText) sttLog("final", finalText);
+
       // Only accept transcriptions after the question has finished reading.
       if (!sttArmedRef.current) return;
-      if (!userEditedAnswerRef.current) setAnswerText(combined);
+      sttLastFinalTextRef.current = finalText;
+      sttLastFinalAtRef.current = Date.now();
+      if (finalText && !userEditedAnswerRef.current) setAnswerText(finalText);
 
       // Voice command: "pasalacabra" / "pasapalabra" triggers the button action.
-      // We only trigger on *final* results to avoid false positives from interim text.
-      if (!finalText.trim()) return;
+      // Trigger only on *final* results.
+      if (!finalText) return;
       if (phaseRef.current !== "playing") return;
       const key = `${activePlayerIdRef.current ?? "noplayer"}:${activeSetIdRef.current}:${currentLetterRef.current}:${currentIndexRef.current}`;
       if (sttCommandKeyRef.current === key) return;
       const normalizedWords = normalizeForCompare(finalText);
       const normalizedJoined = normalizedWords.replace(/\s+/g, "");
-      const hasPasa = normalizedJoined.includes("pasa");
-      const hasCabra = normalizedJoined.includes("cabra");
-      sttLog("command-check", { normalizedJoined, hasPasa, hasCabra });
-      if (
-        hasPasa ||
-        hasCabra ||
-        normalizedJoined.includes("pasalacabra") ||
-        normalizedJoined.includes("pasapalabra")
-      ) {
+      const { ok } = shouldTriggerPasalacabra(finalText);
+      sttLog("command-check(final)", { normalizedJoined, ok });
+      if (ok) {
         sttCommandKeyRef.current = key;
         stopListening("user");
         // Don't keep the command text in the input.
@@ -563,54 +656,78 @@ export default function App() {
         setAnswerText("");
         sttLog("-> triggering PASALACABRA");
         handlePasalacabra();
-      }
-    };
-
-    r.onerror = (ev: SpeechRecognitionErrorEvent) => {
-      sttLog("onerror", { error: ev?.error, message: ev?.message });
-      sttLastErrorRef.current = ev?.error || null;
-      // IMPORTANT: "aborted" here is not a harmless event in WebKit; it often means the
-      // OS/browser refused to start speech recognition (permissions / gesture / service).
-      // If we treat it as benign, our auto-restart loop will thrash forever.
-      if (ev?.error === "aborted") {
-        setIsListening(false);
-        sttDesiredRef.current = false; // stop auto-restarts
-        setSttError(
-          "Speech recognition aborted by the browser/OS. Check mic permission and try Chrome; Safari/WebKit can abort immediately."
-        );
         return;
       }
-      setIsListening(false);
-      setSttError(String(ev?.error || "Speech recognition error"));
+
+      // Auto-submit shortly after the user finishes an utterance.
+      // Debounced: any new partial/final cancels the pending submit.
+      if (userEditedAnswerRef.current) return;
+      if (!finalText) return;
+      if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
+      const seq = (sttAutoSubmitSeqRef.current += 1);
+      sttAutoSubmitTimerRef.current = window.setTimeout(() => {
+        if (seq !== sttAutoSubmitSeqRef.current) return;
+        if (phaseRef.current !== "playing") return;
+        if (!sttArmedRef.current) return;
+        submitAnswer(finalText);
+      }, 450);
     };
 
-    r.onend = () => {
+    const scheduleRestart = (why: string) => {
       setIsListening(false);
-      sttLog("onend", { desired: sttDesiredRef.current, phase: phaseRef.current });
-      // Browsers may stop recognition due to silence/background noise/timeouts.
-      // If we are still in the "answering" window, auto-restart.
+      sttLog("restart-check", { why, desired: sttDesiredRef.current, phase: phaseRef.current });
       if (!sttDesiredRef.current) return;
       if (phaseRef.current !== "playing") return;
-      // If the last error was "aborted", don't restart (it will just loop).
-      if (sttLastErrorRef.current === "aborted") return;
       if (sttRestartTimerRef.current) window.clearTimeout(sttRestartTimerRef.current);
       sttRestartCountRef.current += 1;
-      sttLog("restart-scheduled", { count: sttRestartCountRef.current });
+      sttLog("restart-scheduled", { count: sttRestartCountRef.current, why });
       if (sttRestartCountRef.current > 10) return; // safety guard
       sttRestartTimerRef.current = window.setTimeout(() => {
         sttLog("restarting now");
-        startListeningWithHints(sttLastHintsRef.current);
+        void startListeningWithHints(sttLastHintsRef.current);
       }, 250);
     };
 
+    r.canceled = (_s, e) => {
+      if (gen !== sttGenRef.current) return;
+      sttLog("canceled", {
+        reason: e.reason,
+        errorCode: e.errorCode,
+        errorDetails: e.errorDetails,
+      });
+      sttLastErrorRef.current = String(e.reason ?? "canceled");
+      if (e.reason === sdk.CancellationReason.Error) {
+        setSttError(e.errorDetails || "Speech recognition canceled");
+      }
+      scheduleRestart("canceled");
+    };
+
+    r.sessionStopped = () => {
+      if (gen !== sttGenRef.current) return;
+      scheduleRestart("sessionStopped");
+    };
+
     try {
-      r.start();
+      await new Promise<void>((resolve, reject) => {
+        r!.startContinuousRecognitionAsync(
+          () => resolve(),
+          (err) => reject(err)
+        );
+      });
+      if (gen !== sttGenRef.current) return;
       setIsListening(true);
       sttLog("started");
     } catch (err) {
+      if (gen !== sttGenRef.current) return;
       setIsListening(false);
+      sttDesiredRef.current = false; // don't thrash if start failed
       setSttError(String(err));
-      sttLog("start() threw", String(err));
+      sttLog("startContinuousRecognitionAsync failed", String(err));
+      try {
+        r.close();
+      } catch {
+        // ignore
+      }
     }
   }
 
@@ -619,11 +736,13 @@ export default function App() {
     // This avoids WebKit/Safari immediately aborting starts that are not gesture-initiated.
     sttDesiredRef.current = true;
     sttLastHintsRef.current = hints;
-    if (recognitionRef.current) return;
-    startListeningWithHints(hints);
+    if (sttStartPromiseRef.current) return;
+    sttStartPromiseRef.current = startListeningWithHints(hints).finally(() => {
+      sttStartPromiseRef.current = null;
+    });
   }
 
-  function speakWithCallback(text: string, onDone: () => void) {
+  function speakWithCallback(text: string, onDone: () => void, opts?: { rate?: number }) {
     if (!("speechSynthesis" in window)) {
       onDone();
       return;
@@ -639,8 +758,9 @@ export default function App() {
     const v = getSpanishVoice(voices);
     if (v) utterance.voice = v;
     utterance.lang = (v?.lang || "es-ES") as string;
-    utterance.rate = 1;
+    utterance.rate = opts?.rate ?? 1.10;
     utterance.pitch = 1;
+    utterance.volume = 1;
 
     let done = false;
     const finish = () => {
@@ -658,25 +778,32 @@ export default function App() {
 
   function speakCurrentQuestionThenListen() {
     // Clear previous draft + (re)start STT only after TTS finishes.
-    // Don't stop here; `startListeningWithHints()` already replaces the previous recognizer.
+    // Stop mic immediately so the TTS doesn't leak into recognition.
+    stopListening("replace");
     userEditedAnswerRef.current = false;
     setAnswerText("");
     setSttError("");
     sttRestartCountRef.current = 0;
     sttArmedRef.current = false;
+    setQuestionRead(false);
 
     const hints = [...buildPhraseHintsForAnswer(currentQA.answer), "pasalacabra", "pasapalabra", "pasa", "cabra"];
-    ensureListeningForQuestion(hints);
 
     if (!("speechSynthesis" in window)) {
-      // No TTS; arm immediately.
+      // No TTS; start mic immediately.
+      sttCommandKeyRef.current = null;
+      ensureListeningForQuestion(hints);
       sttArmedRef.current = true;
+      setQuestionRead(true);
       return;
     }
 
     const t = currentQA.question.trim();
     if (!t) {
+      sttCommandKeyRef.current = null;
+      ensureListeningForQuestion(hints);
       sttArmedRef.current = true;
+      setQuestionRead(true);
       return;
     }
 
@@ -687,16 +814,19 @@ export default function App() {
     const v = getSpanishVoice(voices);
     if (v) utterance.voice = v;
     utterance.lang = (v?.lang || "es-ES") as string;
-    utterance.rate = 1;
+    utterance.rate = 1.25;
     utterance.pitch = 1;
+    utterance.volume = 1;
 
     let done = false;
     const finish = () => {
       if (done) return;
       done = true;
       sttCommandKeyRef.current = null;
-      // Arm recognition right after TTS ends.
-      sttArmedRef.current = true;
+      // Start mic only after TTS ends (prevents TTS leakage into the answer).
+      window.setTimeout(() => ensureListeningForQuestion(hints), 100);
+      sttArmedRef.current = true; // accept results right away
+      setQuestionRead(true);
     };
     utterance.onend = finish;
     utterance.onerror = finish;
@@ -775,6 +905,7 @@ export default function App() {
   useEffect(() => {
     if (phase === "playing") return;
     stopListening();
+    setQuestionRead(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase]);
 
@@ -892,6 +1023,8 @@ export default function App() {
 
   function startFromSetup() {
     unlockAudioOnce();
+    // Warm up microphone permission/initialization on game entry (user gesture).
+    void warmupMicrophoneOnce();
     setGameOver(false);
     setGameOverMessage("");
     const players: Player[] = Array.from({ length: setupPlayerCount }, (_, i) => {
@@ -986,7 +1119,7 @@ export default function App() {
   }
 
   function handlePasalacabra() {
-    if (phase !== "playing") return;
+    if (phaseRef.current !== "playing") return;
 
     unlockAudioOnce();
     stopListening("user");
@@ -1017,7 +1150,7 @@ export default function App() {
   }
 
   function markCorrect() {
-    if (phase !== "playing") return;
+    if (phaseRef.current !== "playing") return;
 
     unlockAudioOnce();
     stopListening("user");
@@ -1051,7 +1184,7 @@ export default function App() {
   }
 
   function markWrong() {
-    if (phase !== "playing") return;
+    if (phaseRef.current !== "playing") return;
 
     unlockAudioOnce();
     stopListening("user");
@@ -1060,9 +1193,13 @@ export default function App() {
     setRevealed(true);
     // End the turn immediately to stop the timer, but don't cancel speech.
     endTurn("");
-    speakWithCallback(`No. La respuesta correcta es ${currentQA.answer}.`, () => {
+    speakWithCallback(
+      `No. La respuesta correcta es ${currentQA.answer}.`,
+      () => {
       void ensureSfxReady().then(() => playSfx("wrong"));
-    });
+      },
+      { rate: 1 }
+    );
 
     setStatusByLetter((prev) => {
       const next = { ...prev };
@@ -1079,9 +1216,9 @@ export default function App() {
     endTurn("");
   }
 
-  function submitAnswer() {
-    if (phase !== "playing") return;
-    const spoken = answerText.trim();
+  function submitAnswer(spokenOverride?: string) {
+    if (phaseRef.current !== "playing") return;
+    const spoken = (spokenOverride ?? answerText).trim();
     if (!spoken) return;
 
     // Stop mic before we speak feedback / play SFX.
@@ -1217,7 +1354,7 @@ export default function App() {
                     Start
                   </button>
               ) : phase === "playing" ? (
-                  <button className="btnPrimary" onClick={handlePasalacabra}>
+                  <button className="btnPrimary" onClick={handlePasalacabra} disabled={!questionRead}>
                     Pasalacabra
                   </button>
               ) : null}
