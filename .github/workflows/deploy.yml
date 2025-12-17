@@ -35,6 +35,7 @@ jobs:
         env:
           NODE_ENV: production
           VITE_BASE_PATH: /pasalacabra/
+          VITE_SPEECH_TOKEN_URL: ${{ vars.VITE_SPEECH_TOKEN_URL }}
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

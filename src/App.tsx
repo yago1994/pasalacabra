@@ -13,7 +13,7 @@ import sfxCorrectUrl from "./assets/sfx-correct.wav";
 import sfxWrongUrl from "./assets/sfx-wrong.wav";
 import sfxPasalacabraUrl from "./assets/sfx-pasalacabra.wav";
 import type { GameSession, Player, LetterStatus } from "./game/engine";
-import { createAzureRecognizer, setPhraseHints } from "./speech/speechazure";
+import { createAzureRecognizer, preflightAzureAuth, setPhraseHints } from "./speech/speechazure";
 
 type GamePhase = "idle" | "playing" | "ended";
 type Screen = "setup" | "game";
@@ -194,6 +194,7 @@ export default function App() {
   const [answerText, setAnswerText] = useState<string>("");
   const userEditedAnswerRef = useRef<boolean>(false);
   const [questionRead, setQuestionRead] = useState<boolean>(false);
+  const [sttPreflightChecking, setSttPreflightChecking] = useState<boolean>(false);
   const sttCommandKeyRef = useRef<string | null>(null);
   const sttDesiredRef = useRef<boolean>(false);
   const sttLastHintsRef = useRef<string[]>([]);
@@ -909,6 +910,28 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase]);
 
+  // Preflight Azure auth on setup screen (avoid network during gameplay/TTS).
+  useEffect(() => {
+    if (screen !== "setup") return;
+    let alive = true;
+    setSttPreflightChecking(true);
+    void preflightAzureAuth().then((r) => {
+      if (!alive) return;
+      setSttPreflightChecking(false);
+      if (r.ok) {
+        setSttSupported(true);
+        setSttError("");
+      } else {
+        // Fail gracefully: allow manual typing.
+        setSttSupported(false);
+        setSttError(`Voz no disponible: ${r.error}`);
+      }
+    });
+    return () => {
+      alive = false;
+    };
+  }, [screen]);
+
   // End on timer
   useEffect(() => {
     if (phase === "playing" && timeLeft === 0) {
@@ -1251,20 +1274,20 @@ export default function App() {
             <>
               <div className="playerTag">{currentPlayerLabel}</div>
               <div className="timerBig">{formatTime(timeLeft)}</div>
+              <button
+                className="btnCamFlip"
+                type="button"
+                onClick={toggleCamera}
+                disabled={isSwitchingCamera}
+                aria-label="Cambiar cámara"
+                title="Cambiar cámara"
+              >
+                📷 ⟲
+              </button>
             </>
           ) : (
-            <div className="setupTopTitle">Configura jugadores</div>
+            <div className="setupTopTitle"></div>
           )}
-          <button
-            className="btnCamFlip"
-            type="button"
-            onClick={toggleCamera}
-            disabled={isSwitchingCamera}
-            aria-label="Cambiar cámara"
-            title="Cambiar cámara"
-          >
-            📷 ⟲
-          </button>
         </div>
 
         {screen === "setup" ? (
@@ -1318,11 +1341,14 @@ export default function App() {
                         });
                       }}
                     >
-                      {availableSets.map((s) => (
-                        <option key={s.id} value={s.id}>
-                          {s.title ? `${s.id} — ${s.title}` : s.id}
-                        </option>
-                      ))}
+                      {availableSets.map((s) => {
+                        const setNumber = s.id.match(/\d+/)?.[0] ?? "0";
+                        return (
+                          <option key={s.id} value={s.id}>
+                            Set {setNumber}
+                          </option>
+                        );
+                      })}
                     </select>
                   </label>
                 ))}
@@ -1333,6 +1359,20 @@ export default function App() {
                   Continuar
                 </button>
               </div>
+
+              {sttPreflightChecking ? (
+                <div className="answerReveal" style={{ marginTop: 8 }}>
+                  Preparando voz…
+                </div>
+              ) : sttError ? (
+                <div className="answerReveal" style={{ marginTop: 8 }}>
+                  ⚠️ {sttError}
+                </div>
+              ) : (
+                <div className="answerReveal" style={{ marginTop: 8 }}>
+                  Voz lista
+                </div>
+              )}
 
               {cameraError && (
                 <div className="answerReveal" style={{ marginTop: 8 }}>
@@ -1372,10 +1412,15 @@ export default function App() {
                               : "Pulsa Enter para enviar"
                             : "Tu navegador no soporta voz: escribe y pulsa Enter"
                         }
-                        onChange={(e) => {
-                          userEditedAnswerRef.current = true;
-                          setAnswerText(e.target.value);
-                        }}
+                        readOnly={sttSupported}
+                        onChange={
+                          sttSupported
+                            ? undefined
+                            : (e) => {
+                                userEditedAnswerRef.current = true;
+                                setAnswerText(e.target.value);
+                              }
+                        }
                         onKeyDown={(e) => {
                           if (e.key !== "Enter") return;
                           e.preventDefault();
