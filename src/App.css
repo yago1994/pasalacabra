@@ -210,7 +210,7 @@ html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text);
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1.7);
+  transform: translate(-50%, -50%) scale(1.7) scaleX(-1);
   transform-origin: center center;
   /* Match the letter circle size: ringR (178) * 2 / SVG size (400) = 0.89 = 89% */
   width: 89%;
@@ -268,13 +268,55 @@ html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text);
   background: var(--panel);
   border-radius: 18px;
   padding: 16px;
+  padding-bottom: 24px;
   backdrop-filter: blur(10px);
+  margin: 8px 0;
 }
 
 .setupTitle {
   font-size: 20px;
   font-weight: 900;
   margin-bottom: 10px;
+}
+
+.topicTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+.topicTab {
+  appearance: none;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #ffffff;
+  color: #0b0f1a;
+  border: 1.5px solid #ffffff;
+  transition: all 0.2s ease;
+  text-transform: capitalize;
+}
+
+.topicTab:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.topicTabUnselected {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--muted);
+  border-color: rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+}
+
+.topicTabUnselected:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--text);
 }
 
 .setupPlayers {
@@ -352,6 +394,9 @@ html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text);
   display: grid;
   place-items: center;
   padding: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 100%;
 }
 
 .ringAndControls {

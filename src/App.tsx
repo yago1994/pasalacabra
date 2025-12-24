@@ -9,11 +9,14 @@ import {
   getSet,
   listSets,
 } from "./data/sets";
+import { generatePlayerBanks } from "./questions/index";
+import type { QA as TopicQA } from "./questions/types";
 import sfxCorrectUrl from "./assets/sfx-correct.wav";
 import sfxWrongUrl from "./assets/sfx-wrong.wav";
 import sfxPasalacabraUrl from "./assets/sfx-pasalacabra.wav";
 import type { GameSession, Player, LetterStatus } from "./game/engine";
 import { createAzureRecognizer, preflightAzureAuth, setPhraseHints } from "./speech/speechazure";
+import type { Topic } from "./questions/types";
 
 type GamePhase = "idle" | "playing" | "ended";
 type Screen = "setup" | "game";
@@ -166,21 +169,34 @@ export default function App() {
   const DEBUG_STT = true;
   const letters = SPANISH_LETTERS;
   const availableSets = useMemo(() => listSets(), []);
-  const isSafari = useMemo(() => {
-    // Safari (including iOS Safari). We skip early mic start here because
-    // activating the microphone can duck/alter TTS audio and make endings trail off.
-    const ua = navigator.userAgent;
-    const hasSafari = /Safari/i.test(ua);
-    const hasOther =
-      /(Chrome|CriOS|Chromium|Edg|OPR|Opera|Firefox|FxiOS|SamsungBrowser)/i.test(ua);
-    return hasSafari && !hasOther;
-  }, []);
 
   const [screen, setScreen] = useState<Screen>("setup");
   const [setupPlayerCount, setSetupPlayerCount] = useState<number>(2);
+  
+  // Topic selection state
+  // Topics with available question files (value is the Topic key, label is for display)
+  const allTopics: { value: Topic; label: string }[] = [
+    { value: "astronomia", label: "🌃 Astronomía" },
+    { value: "biologia", label: "🌱 Biología" },
+    { value: "musica", label: "🎵 Música" },
+    { value: "deporte", label: "🏆 Deporte" },
+    { value: "ciencia", label: "🔬 Ciencia" },
+    { value: "cine", label: "🎥 Cine" },
+    { value: "historia", label: "🗺️ Historia" },
+    { value: "geografia", label: "🌍 Geografía" },
+    { value: "arte", label: "🎨 Arte" },
+    { value: "folklore", label: "✨ Folklore" },
+  ];
+  const [selectedTopics, setSelectedTopics] = useState<Set<Topic>>(new Set());
+  const [topicSelectionError, setTopicSelectionError] = useState<string>("");
+  const [showHowToPlay, setShowHowToPlay] = useState<boolean>(false);
+  const [testMode, setTestMode] = useState<boolean>(false);
+  // Generated question banks for each player (indexed by player id)
+  const [generatedBanks, setGeneratedBanks] = useState<Record<string, Map<Letter, TopicQA>>>({});
+  
   type SetupPlayer = { name: string; setId: string };
   const [setupPlayers, setSetupPlayers] = useState<SetupPlayer[]>(() => {
-    const def = listSets()[0]?.id ?? "set_01";
+    const def = "set_04"; // Set all to set 4 as requested
     return [
       { name: "", setId: def },
       { name: "", setId: def },
@@ -248,6 +264,8 @@ export default function App() {
   const [answerText, setAnswerText] = useState<string>("");
   const userEditedAnswerRef = useRef<boolean>(false);
   const [questionRead, setQuestionRead] = useState<boolean>(false);
+  const [earlySkipAllowed, setEarlySkipAllowed] = useState<boolean>(false);
+  const earlySkipTimerRef = useRef<number | null>(null);
   const [sttPreflightChecking, setSttPreflightChecking] = useState<boolean>(false);
   const sttCommandKeyRef = useRef<string | null>(null);
   const sttDesiredRef = useRef<boolean>(false);
@@ -261,6 +279,12 @@ export default function App() {
   const activeSetIdRef = useRef<string>("");
   const currentLetterRef = useRef<Letter>(letters[0]);
   const currentIndexRef = useRef<number>(0);
+  const currentQARef = useRef<{ question: string; answer: string }>({ question: "", answer: "" });
+  const statusByLetterRef = useRef<Record<Letter, LetterStatus>>({} as Record<Letter, LetterStatus>);
+  const sessionRef = useRef<GameSession | null>(null);
+  const playerStatesRef = useRef<Record<string, PlayerState>>({});
+  // Ref to always call the latest submitAnswer (avoids stale closures in persistent recognizer)
+  const submitAnswerRef = useRef<(spokenOverride?: string) => void>(() => {});
 
   function sttLog(...args: unknown[]) {
     if (!DEBUG_STT) return;
@@ -561,11 +585,27 @@ export default function App() {
   const activePlayerId = activePlayer?.id ?? null;
   const activeSetId = activePlayer?.setId ?? (availableSets[0]?.id ?? "set_01");
   const activeSet = getSet(activeSetId) ?? (availableSets[0]?.id ? getSet(availableSets[0].id) : undefined);
-  const qaMap = useMemo(
-    () => (activeSet ? buildSetQuestionMap(activeSet) : new Map<Letter, QA>()),
+  
+  // Use generated bank if available (dynamic mode), otherwise use set-based questions (test mode)
+  const qaMap = useMemo(() => {
+    // Check if we have a generated bank for this player
+    if (activePlayerId && generatedBanks[activePlayerId]) {
+      // Convert TopicQA to QA format
+      const bank = generatedBanks[activePlayerId];
+      const converted = new Map<Letter, QA>();
+      for (const [letter, q] of bank.entries()) {
+        converted.set(letter, {
+          letter: q.letter,
+          question: q.question,
+          answer: q.answer,
+        });
+      }
+      return converted;
+    }
+    // Fallback to set-based questions (test mode)
+    return activeSet ? buildSetQuestionMap(activeSet) : new Map<Letter, QA>();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [activeSetId]
-  );
+  }, [activeSetId, activePlayerId, generatedBanks]);
 
   const currentLetter: Letter = letters[currentIndex];
   const currentQA = qaMap.get(currentLetter) ?? {
@@ -580,7 +620,11 @@ export default function App() {
     activeSetIdRef.current = activeSetId;
     currentLetterRef.current = currentLetter;
     currentIndexRef.current = currentIndex;
-  }, [activePlayerId, activeSetId, currentLetter, currentIndex]);
+    currentQARef.current = currentQA;
+    statusByLetterRef.current = statusByLetter;
+    sessionRef.current = session;
+    playerStatesRef.current = playerStates;
+  }, [activePlayerId, activeSetId, currentLetter, currentIndex, currentQA, statusByLetter, session, playerStates]);
 
   const currentPlayerLabel = useMemo(() => {
     if (!session) return "";
@@ -589,7 +633,7 @@ export default function App() {
     if (!p) return "";
     const n = idx + 1;
     const name = p.name?.trim();
-    return name ? `Jugador ${n}: ${name}` : `Jugador ${n}`;
+    return name || `Jugador ${n}`;
   }, [session]);
 
   const nextPlayerButtonLabel = useMemo(() => {
@@ -600,6 +644,14 @@ export default function App() {
     const name = p?.name?.trim();
     return `Siguiente: ${name || `Jugador ${n}`}`;
   }, [session]);
+
+  // Check if the current player has completed the first round (reached Z at least once)
+  // The first round ends when the Z letter has been answered/passed
+  // TODO: Remove `true ||` after testing - this enables early skip from the start for testing
+  const hasCompletedFirstRound = useMemo(() => {
+    const zStatus = statusByLetter["Z" as Letter];
+    return true || zStatus === "correct" || zStatus === "wrong" || zStatus === "passed";
+  }, [statusByLetter]);
 
   function findNextPlayerIndexWithTimeLeft(sess: GameSession, states: Record<string, PlayerState>) {
     const n = sess.players.length;
@@ -612,6 +664,48 @@ export default function App() {
       if (t > 0) return idx;
     }
     return -1;
+  }
+
+  function countPlayersWithTimeLeft(sess: GameSession, states: Record<string, PlayerState>) {
+    let count = 0;
+    for (const p of sess.players) {
+      const t = states[p.id]?.timeLeft ?? TURN_SECONDS;
+      if (t > 0) count++;
+    }
+    return count;
+  }
+
+  function calculatePlayerScore(states: Record<string, PlayerState>, playerId: string) {
+    const state = states[playerId];
+    if (!state) return { correct: 0, wrong: 0 };
+    let correct = 0;
+    let wrong = 0;
+    for (const status of Object.values(state.statusByLetter)) {
+      if (status === "correct") correct++;
+      else if (status === "wrong") wrong++;
+    }
+    return { correct, wrong };
+  }
+
+  function determineWinners(sess: GameSession, states: Record<string, PlayerState>) {
+    const scores = sess.players.map((p) => {
+      const { correct, wrong } = calculatePlayerScore(states, p.id);
+      return { player: p, correct, wrong };
+    });
+
+    // Sort by correct (desc), then by wrong (asc)
+    scores.sort((a, b) => {
+      if (b.correct !== a.correct) return b.correct - a.correct;
+      return a.wrong - b.wrong;
+    });
+
+    // Find all players with the same best score
+    const best = scores[0];
+    const winners = scores.filter(
+      (s) => s.correct === best.correct && s.wrong === best.wrong
+    );
+
+    return { winners, allScores: scores };
   }
 
   function getSpanishVoice(vs: SpeechSynthesisVoice[]) {
@@ -805,8 +899,9 @@ export default function App() {
         if (seq !== sttAutoSubmitSeqRef.current) return;
         if (phaseRef.current !== "playing") return;
         if (!sttArmedRef.current) return;
-        submitAnswer(finalText);
-      }, 450);
+        // Use ref to call the LATEST submitAnswer (avoids stale closure)
+        submitAnswerRef.current(finalText);
+      }, 300);
     };
 
     const scheduleRestart = (why: string) => {
@@ -876,12 +971,33 @@ export default function App() {
     }
   }
 
+  function disarmListening() {
+    // Just disarm the mic (ignore results) without stopping it.
+    // This avoids audio ducking from re-initializing the mic.
+    sttArmedRef.current = false;
+    if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
+    sttAutoSubmitTimerRef.current = null;
+  }
+
   function ensureListeningForQuestion(hints: string[]) {
     // Start recognition once from a user gesture (Start button). After that, keep it running.
     // This avoids WebKit/Safari immediately aborting starts that are not gesture-initiated.
     sttDesiredRef.current = true;
     sttLastHintsRef.current = hints;
-    if (recognitionRef.current) return;
+
+    // If recognizer is already running, just update the phrase hints
+    if (recognitionRef.current) {
+      if (phraseListRef.current) {
+        try {
+          setPhraseHints(phraseListRef.current, hints);
+          sttLog("updated hints on running recognizer", { hintsCount: hints.length });
+        } catch {
+          // ignore; hints are best-effort
+        }
+      }
+      return;
+    }
+
     if (sttStartPromiseRef.current) return;
     sttStartPromiseRef.current = startListeningWithHints(hints).finally(() => {
       sttStartPromiseRef.current = null;
@@ -924,9 +1040,9 @@ export default function App() {
 
   function speakCurrentQuestionThenListen() {
     const ttsSeq = ++ttsSeqRef.current;
-    // Clear previous draft + (re)start STT only after TTS finishes.
-    // Stop mic immediately so the TTS doesn't leak into recognition.
-    stopListening("replace");
+    // Disarm mic during TTS - don't stop it to avoid audio ducking.
+    // The mic stays running continuously; we just ignore its output during TTS.
+    disarmListening();
     sttMicReadyChimeKeyRef.current = null;
     if (sttPreStartTimerRef.current) window.clearTimeout(sttPreStartTimerRef.current);
     sttPreStartTimerRef.current = null;
@@ -934,15 +1050,27 @@ export default function App() {
     setAnswerText("");
     setSttError("");
     sttRestartCountRef.current = 0;
-    sttArmedRef.current = false;
     setQuestionRead(false);
+    // Reset early skip state and start 1s timer for early skip after first round
+    setEarlySkipAllowed(false);
+    if (earlySkipTimerRef.current) window.clearTimeout(earlySkipTimerRef.current);
+    earlySkipTimerRef.current = window.setTimeout(() => {
+      setEarlySkipAllowed(true);
+    }, 1000);
+    // Reset last final text to avoid stale data affecting the new question
+    sttLastFinalTextRef.current = "";
+    sttLastFinalAtRef.current = 0;
 
     const hints = [...buildPhraseHintsForAnswer(currentQA.answer), "pasalacabra", "pasapalabra", "pasa", "cabra"];
 
+    // Ensure mic is running BEFORE TTS starts.
+    // If already running, this just updates the phrase hints.
+    // Starting before TTS avoids mid-question audio ducking.
+    ensureListeningForQuestion(hints);
+
     if (!("speechSynthesis" in window)) {
-      // No TTS; start mic immediately.
+      // No TTS; arm mic immediately.
       sttCommandKeyRef.current = null;
-      ensureListeningForQuestion(hints);
       sttArmedRef.current = true;
       setQuestionRead(true);
       return;
@@ -951,7 +1079,6 @@ export default function App() {
     const t = currentQA.question.trim();
     if (!t) {
       sttCommandKeyRef.current = null;
-      ensureListeningForQuestion(hints);
       sttArmedRef.current = true;
       setQuestionRead(true);
       return;
@@ -972,14 +1099,22 @@ export default function App() {
         if (sttPreStartTimerRef.current) window.clearTimeout(sttPreStartTimerRef.current);
         sttPreStartTimerRef.current = null;
         sttCommandKeyRef.current = null;
-        // Start mic immediately after TTS ends (prevents TTS leakage into the answer).
-        // This also reduces the "dead air" window where the user starts speaking too early.
-        ensureListeningForQuestion(hints);
-        sttArmedRef.current = true; // accept results right away
+        // Mic is already running (started at the beginning of TTS).
+        // Just arm it to accept results now that TTS is done.
+        sttArmedRef.current = true;
         setQuestionRead(true);
+
+        // Play the mic ready chime to signal the user can speak.
+        if (recognitionRef.current && phaseRef.current === "playing") {
+          const key = `${activePlayerIdRef.current ?? "noplayer"}:${activeSetIdRef.current}:${currentLetterRef.current}:${currentIndexRef.current}`;
+          if (sttMicReadyChimeKeyRef.current !== key) {
+            sttMicReadyChimeKeyRef.current = key;
+            playMicReadyChime();
+          }
+        }
       };
 
-      const speakChunk = (text: string, rate: number, allowPreStart: boolean, onDone: () => void) => {
+      const speakChunk = (text: string, rate: number, onDone: () => void) => {
         const chunk = text.trim();
         if (!chunk) {
           onDone();
@@ -1016,20 +1151,8 @@ export default function App() {
         // We still include a generous max timeout as a safety valve.
         const startedAt = Date.now();
         const words = chunk.split(/\s+/).filter(Boolean).length;
-        const maxMs = allowPreStart
-          ? Math.min(45000, Math.max(12000, words * 1200))
-          : Math.min(10000, Math.max(2000, words * 900));
-
-        // Pre-start STT (non-Safari only) near the expected end to catch the first syllable.
-        if (allowPreStart && !isSafari) {
-          const expectedMs = Math.min(maxMs, Math.max(2500, words * 650));
-          const preStartMs = Math.max(0, expectedMs - 500);
-          sttPreStartTimerRef.current = window.setTimeout(() => {
-            if (phaseRef.current !== "playing") return;
-            if (sttArmedRef.current) return;
-            ensureListeningForQuestion(hints);
-          }, preStartMs);
-        }
+        // Adjust for speech rate: at rate 1.15, TTS is ~15% faster
+        const maxMs = Math.min(45000, Math.max(8000, words * (1000 / rate)));
 
         pollId = window.setInterval(() => {
           if (done) return;
@@ -1045,15 +1168,15 @@ export default function App() {
       window.speechSynthesis.cancel();
 
       if (intro) {
-        speakChunk(intro, 1.0, false, () => {
+        speakChunk(intro, 1.0, () => {
           if (ttsSeq !== ttsSeqRef.current) return;
           window.setTimeout(() => {
             if (ttsSeq !== ttsSeqRef.current) return;
-            speakChunk(body, QUESTION_RATE, true, finishAll);
+            speakChunk(body, QUESTION_RATE, finishAll);
           }, INTRO_TO_BODY_PAUSE_MS);
         });
       } else {
-        speakChunk(body, QUESTION_RATE, true, finishAll);
+        speakChunk(body, QUESTION_RATE, finishAll);
       }
     };
 
@@ -1123,9 +1246,16 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, currentLetter, activePlayerId, activeSetId]);
 
-  // Ensure mic stops outside of play
+  // Ensure mic stops when game ends, but keep it running during idle (player handoff)
   useEffect(() => {
     if (phase === "playing") return;
+    if (phase === "idle") {
+      // During handoff, just disarm but keep mic running for quick start
+      disarmListening();
+      setQuestionRead(false);
+      return;
+    }
+    // Phase is "ended" - stop the mic fully
     stopListening();
     setQuestionRead(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1165,7 +1295,7 @@ export default function App() {
         const idxWithTime = findNextPlayerIndexWithTimeLeft(session, playerStates);
         if (idxWithTime === -1) {
           setGameOver(true);
-          setGameOverMessage("⏱️ Tiempo. Juego terminado.");
+          setGameOverMessage("⏱️ Tiempo. Fin del juego.");
           endTurn("");
           return;
         }
@@ -1181,7 +1311,7 @@ export default function App() {
 
       // Single player: game ends when their time is over.
       setGameOver(true);
-      setGameOverMessage("⏱️ Tiempo. Juego terminado.");
+      setGameOverMessage("⏱️ Tiempo. Fin del juego.");
       endTurn("");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1240,7 +1370,7 @@ export default function App() {
 
   // Keep setup players array sized to player count.
   useEffect(() => {
-    const def = availableSets[0]?.id ?? "set_01";
+    const def = "set_04"; // Set all to set 4 as requested
     setSetupPlayers((prev) => {
       const next = prev.slice(0, setupPlayerCount);
       while (next.length < setupPlayerCount) next.push({ name: "", setId: def });
@@ -1271,6 +1401,13 @@ export default function App() {
   }, [activePlayerId, screen, statusByLetter, currentIndex, timeLeft, revealed]);
 
   async function startFromSetup() {
+    // Validate that at least one topic is selected (unless in test mode)
+    if (!testMode && selectedTopics.size === 0) {
+      setTopicSelectionError("Selecciona al menos un tema para jugar.");
+      return;
+    }
+    setTopicSelectionError("");
+    
     unlockAudioOnce();
     // Warm up microphone permission first. On some browsers, requesting mic can temporarily
     // affect the audio session, so we do it before the first meaningful TTS utterance.
@@ -1282,9 +1419,26 @@ export default function App() {
     const players: Player[] = Array.from({ length: setupPlayerCount }, (_, i) => {
       const raw = setupPlayers[i]?.name ?? "";
       const name = raw.trim() || `Jugador ${i + 1}`;
-      const setId = setupPlayers[i]?.setId ?? (availableSets[0]?.id ?? "set_01");
+      const setId = setupPlayers[i]?.setId ?? "set_04";
       return { id: `p${i + 1}`, name, setId };
     });
+
+    // Generate question banks for each player if not in test mode
+    let banks: Record<string, Map<Letter, TopicQA>> = {};
+    if (!testMode && selectedTopics.size > 0) {
+      try {
+        const topicsArray = Array.from(selectedTopics);
+        const generatedBanksList = generatePlayerBanks(topicsArray, setupPlayerCount);
+        for (let i = 0; i < players.length; i++) {
+          banks[players[i].id] = generatedBanksList[i];
+        }
+        setGeneratedBanks(banks);
+      } catch (err) {
+        console.error("Error generating question banks:", err);
+        setTopicSelectionError("Error al generar preguntas. Intenta seleccionar más temas.");
+        return;
+      }
+    }
 
     const initialStates: Record<string, PlayerState> = {};
     for (const p of players) {
@@ -1310,6 +1464,12 @@ export default function App() {
         setTimeLeft(st.timeLeft);
         setRevealed(st.revealed);
       }
+
+      // Start the recognizer early (before first TTS) to avoid audio ducking.
+      // Use generic hints; they'll be updated when the first question starts.
+      const genericHints = ["pasalacabra", "pasapalabra", "pasa", "cabra"];
+      sttArmedRef.current = false; // Don't process results yet
+      ensureListeningForQuestion(genericHints);
     };
 
     proceedToGame();
@@ -1329,6 +1489,13 @@ export default function App() {
     setPhase("playing");
     lastSpokenKeyRef.current = null;
     setFeedback(null);
+
+    // If mic is still initializing (from handoff), wait for it to complete.
+    // This prevents audio ducking when the next player presses Start quickly.
+    if (sttStartPromiseRef.current) {
+      await sttStartPromiseRef.current;
+    }
+
     // Speak the question directly in the user gesture (mobile Safari often blocks TTS from effects).
     if (activePlayerId) {
       lastSpokenKeyRef.current = `${activePlayerId}:${activeSetId}:${currentLetter}`;
@@ -1367,50 +1534,82 @@ export default function App() {
       const idxWithTime = findNextPlayerIndexWithTimeLeft(prev, playerStates);
       if (idxWithTime === -1) {
         setGameOver(true);
-        setGameOverMessage("Juego terminado.");
+        setGameOverMessage("Fin del juego.");
         endTurn("");
         return prev;
       }
       return { ...prev, currentPlayerIndex: idxWithTime };
     });
+
+    // Mic stays running during idle (phase effect just disarms it).
+    // Ensure it's running in case it was stopped for some reason.
+    const genericHints = ["pasalacabra", "pasapalabra", "pasa", "cabra"];
+    ensureListeningForQuestion(genericHints);
   }
 
   function handlePasalacabra() {
     if (phaseRef.current !== "playing") return;
 
+    // Use refs to get current values (avoids stale closures from persistent recognizer)
+    const letter = currentLetterRef.current;
+    const idx = currentIndexRef.current;
+    const status = statusByLetterRef.current;
+    const currentSession = sessionRef.current;
+    const states = playerStatesRef.current;
+
     unlockAudioOnce();
-    stopListening("user");
+    
+    // Check if this is effectively single-player mode:
+    // - Actually single player, OR
+    // - Only one player left with time remaining
+    const isSinglePlayer = !currentSession || currentSession.players.length <= 1;
+    const playersWithTime = currentSession ? countPlayersWithTimeLeft(currentSession, states) : 1;
+    const isLastPlayerStanding = playersWithTime <= 1;
+    const shouldContinuePlaying = isSinglePlayer || isLastPlayerStanding;
+    
+    if (shouldContinuePlaying) {
+      disarmListening();
+    } else {
+      stopListening("user");
+    }
     stopSpeaking();
     // Goat SFX + end turn (timer stops because phase changes away from "playing")
     void ensureSfxReady().then(() => playSfx("pasalacabra"));
 
     setStatusByLetter((prev) => {
       const next = { ...prev };
-      const st = next[currentLetter];
-      if (st === "current" || st === "pending") next[currentLetter] = "passed";
+      const st = next[letter];
+      if (st === "current" || st === "pending") next[letter] = "passed";
       // passed stays passed
       return next;
     });
 
     // Move to next unresolved so the next turn starts there.
-    const nextIdx = nextUnresolvedIndex(letters, { ...statusByLetter, [currentLetter]: "passed" }, currentIndex);
+    const nextIdx = nextUnresolvedIndex(letters, { ...status, [letter]: "passed" }, idx);
     if (nextIdx !== -1) setCurrentIndex(nextIdx);
-    // Single player: Pasalacabra just passes and continues playing.
-    if (!session || session.players.length <= 1) {
+    
+    // Single player or last player standing: just skip to next question
+    if (shouldContinuePlaying) {
       setRevealed(false);
       setFeedback(null);
       return;
     }
 
-    // Multiplayer: end the turn and require handoff.
+    // Multiplayer with multiple players remaining: end the turn and require handoff.
     endTurn("");
   }
 
   function markCorrect() {
     if (phaseRef.current !== "playing") return;
 
+    // Use refs to get current values (avoids stale closures from persistent recognizer)
+    const letter = currentLetterRef.current;
+    const idx = currentIndexRef.current;
+    const status = statusByLetterRef.current;
+
     unlockAudioOnce();
-    stopListening("user");
+    // Just disarm - keep mic running for next question
+    disarmListening();
     stopSpeaking();
     if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
     setFeedback("correct");
@@ -1426,45 +1625,55 @@ export default function App() {
 
     setStatusByLetter((prev) => {
       const next = { ...prev };
-      next[currentLetter] = "correct";
+      next[letter] = "correct";
       return next;
     });
 
     // Trigger particle animation
-    setRecentlyCorrectLetter(currentLetter);
+    setRecentlyCorrectLetter(letter);
     setTimeout(() => setRecentlyCorrectLetter(null), 1200);
 
-    // Delay the next question a bit so "Correcto" + sound are perceivable.
-    const statusAfter = { ...statusByLetter, [currentLetter]: "correct" as LetterStatus };
+    // Pause so "Sí" + sound are fully perceivable before next question starts.
+    const statusAfter = { ...status, [letter]: "correct" as LetterStatus };
     feedbackTimerRef.current = window.setTimeout(() => {
       if (!anyUnresolved(statusAfter, letters)) {
         endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
         return;
       }
-      const nextIdx = nextUnresolvedIndex(letters, statusAfter, currentIndex);
+      const nextIdx = nextUnresolvedIndex(letters, statusAfter, idx);
       if (nextIdx === -1) {
         endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
         return;
       }
       setCurrentIndex(nextIdx);
-    }, 700);
+    }, 650);
   }
 
   function markWrong() {
     if (phaseRef.current !== "playing") return;
 
+    // Use refs to get current values (avoids stale closures from persistent recognizer)
+    const letter = currentLetterRef.current;
+    const idx = currentIndexRef.current;
+    const status = statusByLetterRef.current;
+
+    // Get the correct answer before any state changes
+    const correctAnswer = currentQARef.current.answer;
+
     unlockAudioOnce();
-    stopListening("user");
+    // Disarm to prevent picking up stray audio. The phase change to "ended"
+    // will trigger the effect that fully stops the mic.
+    disarmListening();
     if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
     setFeedback("wrong");
     setRevealed(true);
     // End the turn immediately to stop the timer, but don't cancel speech.
     endTurn("");
-    // Play SFX first, then speak a short "No" (no answer content).
+    // Play SFX first, then speak the correct answer.
     void ensureSfxReady().then(() => {
       playSfx("wrong");
       window.setTimeout(() => {
-        speakWithCallback("No", () => {
+        speakWithCallback(`No. La respuesta correcta es: ${correctAnswer}`, () => {
           // no-op
         });
       }, 120);
@@ -1472,13 +1681,13 @@ export default function App() {
 
     setStatusByLetter((prev) => {
       const next = { ...prev };
-      next[currentLetter] = "wrong";
+      next[letter] = "wrong";
       return next;
     });
 
     // Move index so the next player starts on the next unresolved letter.
-    const statusAfter = { ...statusByLetter, [currentLetter]: "wrong" as LetterStatus };
-    const nextIdx = nextUnresolvedIndex(letters, statusAfter, currentIndex);
+    const statusAfter = { ...status, [letter]: "wrong" as LetterStatus };
+    const nextIdx = nextUnresolvedIndex(letters, statusAfter, idx);
     if (nextIdx !== -1) setCurrentIndex(nextIdx);
 
     // No need to show "Incorrecto" label; SFX + turn end is enough.
@@ -1490,15 +1699,19 @@ export default function App() {
     const spoken = (spokenOverride ?? answerText).trim();
     if (!spoken) return;
 
-    // Stop mic before we speak feedback / play SFX.
-    stopListening("user");
-
-    if (isAnswerCorrect(spoken, currentQA.answer)) {
+    // Use ref to get the CURRENT answer (avoids stale closure when recognizer persists across questions)
+    const expectedAnswer = currentQARef.current.answer;
+    
+    // markCorrect/markWrong will handle disarming the mic
+    if (isAnswerCorrect(spoken, expectedAnswer)) {
       markCorrect();
     } else {
       markWrong();
     }
   }
+
+  // Keep submitAnswerRef updated so callbacks always use the latest version
+  submitAnswerRef.current = submitAnswer;
 
   // Note: We don't auto-cancel speech on phase changes because mobile browsers can
   // cancel "No" immediately when ending a turn. We explicitly cancel in the handlers
@@ -1550,7 +1763,7 @@ export default function App() {
                   value={setupPlayerCount}
                   onChange={(e) => setSetupPlayerCount(Number(e.target.value))}
                 >
-                  {[1, 2, 3, 4, 5, 6].map((n) => (
+                  {[2, 3, 4, 5, 6].map((n) => (
                     <option key={n} value={n}>
                       {n}
                     </option>
@@ -1560,47 +1773,100 @@ export default function App() {
 
               <div className="setupPlayers">
                 {Array.from({ length: setupPlayerCount }, (_, i) => (
-                  <label key={i} className="setupLabel">
-                    Jugador {i + 1}
+                  <div 
+                    key={i} 
+                    style={{ 
+                      display: "flex", 
+                      alignItems: "center", 
+                      gap: 10, 
+                      marginBottom: 8 
+                    }}
+                  >
+                    <span style={{ minWidth: 80, fontSize: "0.95rem" }}>Jugador {i + 1}</span>
                     <input
                       className="setupInput"
+                      style={{ flex: 1, margin: 0 }}
                       value={setupPlayers[i]?.name ?? ""}
-                      placeholder={`Nombre del jugador ${i + 1}`}
+                      placeholder="Nombre"
                       onChange={(e) => {
                         const v = e.target.value;
                         setSetupPlayers((prev) => {
                           const copy = [...prev];
-                          const cur = copy[i] ?? { name: "", setId: availableSets[0]?.id ?? "set_01" };
+                          const cur = copy[i] ?? { name: "", setId: "set_04" };
                           copy[i] = { ...cur, name: v };
                           return copy;
                         });
                       }}
                     />
-                    <select
-                      className="setupSelect"
-                      value={setupPlayers[i]?.setId ?? (availableSets[0]?.id ?? "set_01")}
-                      onChange={(e) => {
-                        const setId = e.target.value;
-                        setSetupPlayers((prev) => {
-                          const copy = [...prev];
-                          const cur = copy[i] ?? { name: "", setId };
-                          copy[i] = { ...cur, setId };
-                          return copy;
-                        });
-                      }}
-                    >
-                      {availableSets.map((s) => {
-                        const setNumber = s.id.match(/\d+/)?.[0] ?? "0";
-                        return (
-                          <option key={s.id} value={s.id}>
-                            Set {setNumber}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </label>
+                  </div>
                 ))}
               </div>
+
+              {/* Test Mode Toggle */}
+              <label 
+                className="testModeToggle" 
+                style={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  gap: 10, 
+                  marginTop: 24,
+                  padding: "10px 14px",
+                  background: testMode ? "rgba(255,200,0,0.2)" : "rgba(255,255,255,0.1)",
+                  borderRadius: 8,
+                  cursor: "pointer",
+                  border: testMode ? "1px solid rgba(255,200,0,0.5)" : "1px solid transparent",
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={testMode}
+                  onChange={(e) => setTestMode(e.target.checked)}
+                  style={{ width: 18, height: 18, cursor: "pointer" }}
+                />
+                <span>🧪 Modo Test (usa Set 4 predefinido)</span>
+              </label>
+
+              {!testMode && (
+                <>
+                  <div className="setupTitle" style={{ marginTop: 24 }}>Temas</div>
+                  
+                  <div className="topicTabs">
+                {allTopics.map(({ value, label }) => {
+                  const isSelected = selectedTopics.has(value);
+                  return (
+                    <button
+                      key={value}
+                      type="button"
+                      className={`topicTab ${!isSelected ? "topicTabUnselected" : ""}`}
+                      onClick={() => {
+                        setSelectedTopics((prev) => {
+                          const next = new Set(prev);
+                          if (next.has(value)) {
+                            next.delete(value);
+                          } else {
+                            next.add(value);
+                          }
+                          return next;
+                        });
+                        // Clear error when user selects a topic
+                        if (topicSelectionError) {
+                          setTopicSelectionError("");
+                        }
+                      }}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {topicSelectionError && (
+                <div className="answerReveal" style={{ marginTop: 12, color: "#ffffff" }}>
+                  ⚠️ {topicSelectionError}
+                </div>
+              )}
+                </>
+              )}
 
               <div className="setupActions">
                 <button className="btnPrimary" type="button" onClick={startFromSetup}>
@@ -1610,7 +1876,7 @@ export default function App() {
 
               {sttPreflightChecking ? (
                 <div className="answerReveal" style={{ marginTop: 8 }}>
-                  Preparando voz…
+                  Preparando reconocimiento de voz…
                 </div>
               ) : sttError ? (
                 <div className="answerReveal" style={{ marginTop: 8 }}>
@@ -1618,7 +1884,7 @@ export default function App() {
                 </div>
               ) : (
                 <div className="answerReveal" style={{ marginTop: 8 }}>
-                  Voz lista
+                  Listo
                 </div>
               )}
 
@@ -1627,6 +1893,75 @@ export default function App() {
                   ⚠️ {cameraError}
                 </div>
               )}
+
+              {/* How to Play Drawer */}
+              <div className="howToPlaySection" style={{ marginTop: 24 }}>
+                <button
+                  type="button"
+                  className="howToPlayToggle"
+                  onClick={() => setShowHowToPlay(!showHowToPlay)}
+                  style={{
+                    background: "transparent",
+                    border: "1px solid rgba(255,255,255,0.3)",
+                    borderRadius: 8,
+                    padding: "10px 16px",
+                    color: "#fff",
+                    cursor: "pointer",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    fontSize: "1rem",
+                  }}
+                >
+                  <span>📖 Cómo Jugar</span>
+                  <span style={{ transform: showHowToPlay ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s" }}>
+                    ▼
+                  </span>
+                </button>
+                
+                {showHowToPlay && (
+                  <div
+                    className="howToPlayContent"
+                    style={{
+                      marginTop: 12,
+                      padding: 16,
+                      background: "rgba(0,0,0,0.3)",
+                      borderRadius: 8,
+                      textAlign: "left",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>🎯 Objetivo</h3>
+                    <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
+                      Conoces este juego 😉. Responde correctamente a las preguntas de cada letra del abecedario lo más rápido que puedas. 
+                      El jugador con más aciertos gana.
+                    </p>
+
+                    <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>🎮 Cómo se juega</h3>
+                    <ul style={{ margin: "0 0 16px 0", paddingLeft: 20, opacity: 0.9 }}>
+                      <li>El narrador lee una pregunta en voz alta</li>
+                      <li>Responde hablando cuando escuches el pitido</li>
+                      <li>Si aciertas, pasas a la siguiente letra</li>
+                      <li>Si fallas, tu turno termina</li>
+                      <li>Di <strong>"Pasalacabra"</strong> para saltar la pregunta</li>
+                    </ul>
+
+                    <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>⏱️ El tiempo</h3>
+                    <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
+                      Cada jugador tiene 2 minutos en total. El tiempo solo corre durante tu turno.
+                      Si eres el último jugador, puedes seguir hasta que se te agote el tiempo.
+                    </p>
+
+                    <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>🏆 Puntuación</h3>
+                    <ul style={{ margin: 0, paddingLeft: 20, opacity: 0.9 }}>
+                      <li>✓ Acierto = +1 punto</li>
+                      <li>✗ Fallo = penalización en desempate</li>
+                      <li>Pasalacabra = sin penalización</li>
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         ) : (
@@ -1649,11 +1984,15 @@ export default function App() {
 
               <div className="controls">
               {phase === "idle" ? (
-                  <button className="btnPrimary" onClick={startTurn} disabled={timeLeft <= 0}>
-                    Start
+                  <button className="btnPrimary" onClick={startTurn} disabled={timeLeft <= 0 || !isListening}>
+                    Empezar
                   </button>
               ) : phase === "playing" ? (
-                  <button className="btnPrimary" onClick={handlePasalacabra} disabled={!questionRead}>
+                  <button 
+                    className="btnPrimary" 
+                    onClick={handlePasalacabra} 
+                    disabled={!(hasCompletedFirstRound && earlySkipAllowed) && !questionRead}
+                  >
                     Pasalacabra
                   </button>
               ) : null}
@@ -1669,7 +2008,7 @@ export default function App() {
                             ? isListening
                               ? "Escuchando…"
                               : ""
-                            : "Tu navegador no soporta voz: escribe y pulsa Enter"
+                            : "Tu navegador no soporta reconocimiento de voz: prueba a usar otro buscador"
                         }
                         readOnly={sttSupported}
                         onChange={
@@ -1697,7 +2036,7 @@ export default function App() {
                       ) : null}
                       {!sttError ? (
                         <div className="answerReveal" style={{ marginTop: 6 }}>
-                          {sttSupported ? (isListening ? "Escuchando…" : "Micrófono listo") : "Escritura manual"}
+                          {sttSupported ? (isListening ? "Escuchando…" : "Micrófono listo") : "Intenta jugar con otro navegador"}
                         </div>
                       ) : null}
                       {feedback === "wrong" || revealed ? (
@@ -1716,9 +2055,51 @@ export default function App() {
                         <strong>{turnMessage}</strong>
                       </div>
                     ) : null}
-                  {gameOver ? (
+                  {gameOver && session ? (
+                    (() => {
+                      const { winners, allScores } = determineWinners(session, playerStates);
+                      const isTie = winners.length > 1;
+                      const isSinglePlayer = session.players.length === 1;
+                      return (
+                        <div className="gameOverResults" style={{ marginTop: 8 }}>
+                          <div className="answerReveal answerRevealBig" style={{ marginBottom: 12 }}>
+                            <strong>🎮 Fin del juego!</strong>
+                          </div>
+                          
+                          {!isSinglePlayer && (
+                            <div className="winnerAnnouncement" style={{ marginBottom: 16 }}>
+                              {isTie ? (
+                                <div className="answerReveal answerRevealBig">
+                                  🏆 ¡Empate! Ganadores: {winners.map(w => w.player.name).join(" y ")}
+                                </div>
+                              ) : (
+                                <div className="answerReveal answerRevealBig">
+                                  🏆 ¡Ganador: {winners[0].player.name}!
+                                </div>
+                              )}
+                            </div>
+                          )}
+                          
+                          <div className="scoresTable" style={{ textAlign: "left" }}>
+                            {allScores.map((s, i) => (
+                              <div 
+                                key={s.player.id} 
+                                className="answerReveal" 
+                                style={{ 
+                                  marginBottom: 4,
+                                  fontWeight: winners.some(w => w.player.id === s.player.id) ? "bold" : "normal"
+                                }}
+                              >
+                                {i + 1}. {s.player.name}: {s.correct} ✓ / {s.wrong} ✗
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })()
+                  ) : gameOver ? (
                     <div className="answerReveal answerRevealBig" style={{ marginTop: 2 }}>
-                      <strong>{gameOverMessage || "Juego terminado."}</strong>
+                      <strong>{gameOverMessage || "Fin del juego."}</strong>
                     </div>
                   ) : (
                     <button className="btnPrimary" type="button" onClick={startNextPlayerTurn}>
