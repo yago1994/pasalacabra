@@ -11,7 +11,8 @@ export type Topic =
   | "historia" 
   | "geografia" 
   | "arte" 
-  | "folklore";
+  | "folklore"
+  | "culturageneral";
 
 export type QA = {
   id: string;

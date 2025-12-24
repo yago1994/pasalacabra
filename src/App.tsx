@@ -21,7 +21,7 @@ import type { Topic } from "./questions/types";
 type GamePhase = "idle" | "playing" | "ended";
 type Screen = "setup" | "game";
 
-const TURN_SECONDS = 120;
+const TURN_SECONDS =180;
 
 function removeDiacritics(s: string) {
   // `NFD` splits letters+diacritics into separate codepoints.
@@ -186,6 +186,7 @@ export default function App() {
     { value: "geografia", label: "🌍 Geografía" },
     { value: "arte", label: "🎨 Arte" },
     { value: "folklore", label: "✨ Folklore" },
+    { value: "culturageneral", label: "📚 Cultura" },
   ];
   const [selectedTopics, setSelectedTopics] = useState<Set<Topic>>(new Set());
   const [topicSelectionError, setTopicSelectionError] = useState<string>("");
@@ -650,7 +651,7 @@ export default function App() {
   // TODO: Remove `true ||` after testing - this enables early skip from the start for testing
   const hasCompletedFirstRound = useMemo(() => {
     const zStatus = statusByLetter["Z" as Letter];
-    return true || zStatus === "correct" || zStatus === "wrong" || zStatus === "passed";
+    return false || zStatus === "correct" || zStatus === "wrong" || zStatus === "passed";
   }, [statusByLetter]);
 
   function findNextPlayerIndexWithTimeLeft(sess: GameSession, states: Record<string, PlayerState>) {
@@ -1085,12 +1086,12 @@ export default function App() {
     }
 
     const speakQuestion = () => {
-      const QUESTION_RATE = 1.15;
+      const QUESTION_RATE = 1.05;
       const INTRO_TO_BODY_PAUSE_MS = 500;
 
-      // Split "Empieza por X:" / "Contiene la X:" so the prefix is read at normal speed,
+      // Split "Con la X:" / "Empieza por X:" / "Contiene la X:" so the prefix is read at normal speed,
       // and the actual clue is read at the configured question speed.
-      const m = t.match(/^(Empieza\s+por|Contiene\s+la)\s+([A-ZÑ])\s*:\s*(.+)$/i);
+      const m = t.match(/^(Con\s+la|Empieza\s+por|Contiene\s+la)\s+([A-ZÑ])\s*:\s*(.+)$/i);
       const intro = m ? `${m[1]} ${m[2].toUpperCase()}.` : "";
       const body = (m ? m[3] : t).trim();
 
@@ -1151,7 +1152,7 @@ export default function App() {
         // We still include a generous max timeout as a safety valve.
         const startedAt = Date.now();
         const words = chunk.split(/\s+/).filter(Boolean).length;
-        // Adjust for speech rate: at rate 1.15, TTS is ~15% faster
+        // Adjust for speech rate: at rate 1.05, TTS is ~5% faster
         const maxMs = Math.min(45000, Math.max(8000, words * (1000 / rate)));
 
         pollId = window.setInterval(() => {
@@ -1289,30 +1290,40 @@ export default function App() {
       // Move index so the next player starts on the next unresolved letter.
       const nextIdx = nextUnresolvedIndex(letters, statusByLetter, currentIndex);
       if (nextIdx !== -1) setCurrentIndex(nextIdx);
+      unlockAudioOnce();
       stopSpeaking();
-      // If there are multiple players, advance automatically to the next player who still has time.
-      if (session && session.players.length > 1) {
-        const idxWithTime = findNextPlayerIndexWithTimeLeft(session, playerStates);
-        if (idxWithTime === -1) {
+      disarmListening();
+      
+      // Stop the turn immediately by changing phase, then speak "Tiempoooo!"
+      setPhase("idle");
+      
+      // Small delay to ensure speech cancellation completes before speaking "Tiempoooo!"
+      window.setTimeout(() => {
+        speakWithCallback("Tieeeeeeeempoo!", () => {
+          // If there are multiple players, advance automatically to the next player who still has time.
+          if (session && session.players.length > 1) {
+            const idxWithTime = findNextPlayerIndexWithTimeLeft(session, playerStates);
+            if (idxWithTime === -1) {
+              setGameOver(true);
+              setGameOverMessage("⏱️ Tiempo. Fin del juego.");
+              endTurn("");
+              return;
+            }
+            // Pause at idle for handoff (timer should not run while passing the phone).
+            setSession((prev) => (prev ? { ...prev, currentPlayerIndex: idxWithTime } : prev));
+            setTurnMessage("");
+            setFeedback(null);
+            setRevealed(false);
+            lastSpokenKeyRef.current = null;
+            return;
+          }
+
+          // Single player: game ends when their time is over.
           setGameOver(true);
           setGameOverMessage("⏱️ Tiempo. Fin del juego.");
           endTurn("");
-          return;
-        }
-        // Pause at idle for handoff (timer should not run while passing the phone).
-        setSession((prev) => (prev ? { ...prev, currentPlayerIndex: idxWithTime } : prev));
-        setPhase("idle");
-        setTurnMessage("");
-        setFeedback(null);
-        setRevealed(false);
-        lastSpokenKeyRef.current = null;
-        return;
-      }
-
-      // Single player: game ends when their time is over.
-      setGameOver(true);
-      setGameOverMessage("⏱️ Tiempo. Fin del juego.");
-      endTurn("");
+        });
+      }, 50);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft, phase]);
@@ -1689,9 +1700,6 @@ export default function App() {
     const statusAfter = { ...status, [letter]: "wrong" as LetterStatus };
     const nextIdx = nextUnresolvedIndex(letters, statusAfter, idx);
     if (nextIdx !== -1) setCurrentIndex(nextIdx);
-
-    // No need to show "Incorrecto" label; SFX + turn end is enough.
-    endTurn("");
   }
 
   function submitAnswer(spokenOverride?: string) {

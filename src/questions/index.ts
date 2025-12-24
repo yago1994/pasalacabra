@@ -8,6 +8,7 @@ import { HISTORIA } from "./historia";
 import { GEOGRAFIA } from "./geografia";
 import { ARTE } from "./arte";
 import { FOLKLORE } from "./folklore";
+import { CULTURAGENERAL } from "./cultura";
 import type { QA, Topic, Letter } from "./types";
 
 // All questions from all topics
@@ -22,6 +23,7 @@ export const ALL_QUESTIONS: QA[] = [
   ...GEOGRAFIA,
   ...ARTE,
   ...FOLKLORE,
+  ...CULTURAGENERAL,
 ];
 
 // Map of topic name to questions array
@@ -36,6 +38,7 @@ export const TOPIC_QUESTIONS: Partial<Record<Topic, QA[]>> = {
   geografia: GEOGRAFIA,
   arte: ARTE,
   folklore: FOLKLORE,
+  culturageneral: CULTURAGENERAL,
 };
 
 export function buildBank(qs: QA[]) {

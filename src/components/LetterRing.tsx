@@ -37,12 +37,34 @@ export default function LetterRing({ letters, statusByLetter, recentlyCorrect }:
   const correctX = correctLetterIndex >= 0 ? cx + ringR * Math.cos(correctAngle) : 0;
   const correctY = correctLetterIndex >= 0 ? cy + ringR * Math.sin(correctAngle) : 0;
 
+  // Find the current letter (status === "current")
+  const currentLetter = letters.find((letter) => statusByLetter[letter] === "current");
+  const currentLetterIndex = currentLetter ? letters.indexOf(currentLetter) : -1;
+  const currentAngle = currentLetterIndex >= 0 
+    ? (currentLetterIndex / letters.length) * Math.PI * 2 - Math.PI / 2 
+    : 0;
+  const currentX = currentLetterIndex >= 0 ? cx + ringR * Math.cos(currentAngle) : 0;
+  const currentY = currentLetterIndex >= 0 ? cy + ringR * Math.sin(currentAngle) : 0;
+  // Position goat emoji OUTSIDE the bubble (on the outer edge, away from center)
+  // Offset from bubble center = nodeR + extra margin for the emoji to sit on the edge
+  const goatOffset = nodeR + 8;
+  const goatX = currentLetterIndex >= 0 ? currentX + goatOffset * Math.cos(currentAngle) : 0;
+  const goatY = currentLetterIndex >= 0 ? currentY + goatOffset * Math.sin(currentAngle) : 0;
+  // Rotate goat to face the direction of movement (clockwise around the ring)
+  // The emoji 🐐 faces left by default (angle = π)
+  // Tangent direction (clockwise) at currentAngle is: currentAngle + π/2
+  // To rotate a left-facing emoji to face direction φ: rotate by (φ - π)
+  // So: rotation = (currentAngle + π/2 - π) = (currentAngle - π/2)
+  const goatRotation = currentLetterIndex >= 0 
+    ? ((currentAngle - Math.PI / 2) * 180 / Math.PI) : 0;
+
   return (
     <svg
       viewBox={`0 0 ${size} ${size}`}
       width="100%"
       height="100%"
       aria-label="Ring of letters"
+      style={{ overflow: "visible" }}
     >
       {/* Glow filter definition */}
       <defs>
@@ -80,6 +102,21 @@ export default function LetterRing({ letters, statusByLetter, recentlyCorrect }:
           </g>
         );
       })}
+      {/* Goat emoji on current letter */}
+      {currentLetterIndex >= 0 && (
+        <g transform={`translate(${goatX}, ${goatY}) rotate(${goatRotation}) scale(1, -1)`}>
+          <text
+            x={0}
+            y={0}
+            textAnchor="middle"
+            fontSize="24"
+            dominantBaseline="middle"
+            style={{ userSelect: "none", pointerEvents: "none" }}
+          >
+            🐐
+          </text>
+        </g>
+      )}
       {/* Particle effects for correct answer - render on top */}
       {recentlyCorrect && correctLetterIndex >= 0 && (
         <g className="particle-effects">
