@@ -107,6 +107,12 @@ If Vite blocks the host when using ngrok, add it to:
 Example host from a previous run:
 `erma-dogged-edmond.ngrok-free.dev`
 
+## Recent Updates
+
+- Refactored question files for consistency and maintainability
+- Enhanced UI components and styling
+- Improved game logic and component behavior
+
 ## Repo
 
 GitHub: `https://github.com/yago1994/pasalacabra.git`
