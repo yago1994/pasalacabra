@@ -10,7 +10,7 @@
      - Wrong: red
   */
   --letter-default: #4f8dff;
-  --letter-current: #6aa6ff;
+  --letter-current: #00d4ff;
   --letter-correct: #2bb673;
   --letter-wrong: #ff4d4d;
   --letter-passed: #4f8dff;
@@ -19,7 +19,7 @@
 /* Particle animation for correct answers */
 .particle {
   opacity: 0;
-  animation: particleEmit 1.2s ease-out var(--delay, 0s) forwards;
+  animation: particleEmit 10s ease-out var(--delay, 0s) forwards;
   filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.8));
 }
 
@@ -28,16 +28,21 @@
     transform: translate(0, 0) scale(0.3);
     opacity: 0;
   }
-  15% {
+  2% {
     opacity: 1;
   }
-  85% {
+  90% {
     opacity: 1;
   }
   100% {
     transform: translate(var(--delta-x, 0), var(--delta-y, 0)) scale(1.2);
     opacity: 0;
   }
+}
+
+/* Goat smooth movement between letters */
+.goat-move {
+  transition: transform 0.3s ease-in-out;
 }
 
 * { box-sizing: border-box; }
@@ -404,6 +409,8 @@ html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text);
   flex-direction: column;
   align-items: center;
   gap: 14px;
+  overflow: visible;
+  padding-top: 40px; /* Extra space for goat emoji at top */
 }
 
 .ringWrap {
@@ -437,8 +444,17 @@ html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text);
 }
 
 .answerRevealBig {
-  font-size: 18px;
+  font-size: 32px;
   color: rgba(255, 255, 255, 0.92);
+  font-weight: 700;
+}
+
+.gameOverResults .answerRevealBig {
+  font-size: 38px;
+}
+
+.gameOverResults .answerReveal {
+  font-size: 22px;
 }
 
 .controls {
@@ -526,4 +542,29 @@ button:disabled {
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
+}
+
+/* Confetti goats animation */
+.goatConfetti {
+  position: fixed;
+  top: -50px;
+  font-size: 40px;
+  pointer-events: none;
+  z-index: 1000;
+  animation: goatConfettiFall 3s linear forwards;
+  opacity: 1;
+}
+
+@keyframes goatConfettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(calc(100vh + 50px)) rotate(1080deg);
+    opacity: 0;
+  }
 }

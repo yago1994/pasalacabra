@@ -21,7 +21,7 @@ import type { Topic } from "./questions/types";
 type GamePhase = "idle" | "playing" | "ended";
 type Screen = "setup" | "game";
 
-const TURN_SECONDS =180;
+const TURN_SECONDS =15;
 
 function removeDiacritics(s: string) {
   // `NFD` splits letters+diacritics into separate codepoints.
@@ -85,6 +85,10 @@ function isAnswerCorrect(spoken: string, expected: string) {
   const e = normalizeForCompare(expected);
   if (!s || !e) return false;
   if (s === e) return true;
+
+  // If the spoken text contains the expected answer (like "pasalacabra" detection),
+  // mark it as correct. This handles cases like "Es ADN" or "La respuesta es ADN".
+  if (s.includes(e)) return true;
 
   function levenshteinRatio(a: string, b: string) {
     if (a === b) return 1;
@@ -209,6 +213,7 @@ export default function App() {
   const [timeLeft, setTimeLeft] = useState<number>(TURN_SECONDS); // active player's time
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [gameOverMessage, setGameOverMessage] = useState<string>("");
+  const [confettiGoats, setConfettiGoats] = useState<Array<{ id: number; left: number; delay: number }>>([]);
 
   // Per-player saved progress
   type PlayerState = {
@@ -236,8 +241,7 @@ export default function App() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const [cameraError, setCameraError] = useState<string>("");
-  const [cameraFacingMode, setCameraFacingMode] = useState<"user" | "environment">("user");
-  const [isSwitchingCamera, setIsSwitchingCamera] = useState<boolean>(false);
+  const cameraFacingMode: "user" | "environment" = "user";
 
   // Speech (Text-to-speech)
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
@@ -286,6 +290,8 @@ export default function App() {
   const playerStatesRef = useRef<Record<string, PlayerState>>({});
   // Ref to always call the latest submitAnswer (avoids stale closures in persistent recognizer)
   const submitAnswerRef = useRef<(spokenOverride?: string) => void>(() => {});
+  // Track player switches to avoid persisting stale values when loading a new player's state
+  const lastLoadedPlayerIdRef = useRef<string | null>(null);
 
   function sttLog(...args: unknown[]) {
     if (!DEBUG_STT) return;
@@ -639,12 +645,14 @@ export default function App() {
 
   const nextPlayerButtonLabel = useMemo(() => {
     if (!session || session.players.length === 0) return "Siguiente";
-    const nextIdx = (session.currentPlayerIndex + 1) % session.players.length;
+    // Find the next player who still has time left
+    const nextIdx = findNextPlayerIndexWithTimeLeft(session, playerStates);
+    if (nextIdx === -1) return "Siguiente";
     const p = session.players[nextIdx];
     const n = nextIdx + 1;
     const name = p?.name?.trim();
     return `Siguiente: ${name || `Jugador ${n}`}`;
-  }, [session]);
+  }, [session, playerStates]);
 
   // Check if the current player has completed the first round (reached Z at least once)
   // The first round ends when the Z letter has been answered/passed
@@ -1062,7 +1070,9 @@ export default function App() {
     sttLastFinalTextRef.current = "";
     sttLastFinalAtRef.current = 0;
 
-    const hints = [...buildPhraseHintsForAnswer(currentQA.answer), "pasalacabra", "pasapalabra", "pasa", "cabra"];
+    // Use ref to get current QA (avoids stale closures when called from setTimeout)
+    const qa = currentQARef.current;
+    const hints = [...buildPhraseHintsForAnswer(qa.answer), "pasalacabra", "pasapalabra", "pasa", "cabra"];
 
     // Ensure mic is running BEFORE TTS starts.
     // If already running, this just updates the phrase hints.
@@ -1077,7 +1087,7 @@ export default function App() {
       return;
     }
 
-    const t = currentQA.question.trim();
+    const t = qa.question.trim();
     if (!t) {
       sttCommandKeyRef.current = null;
       sttArmedRef.current = true;
@@ -1086,7 +1096,7 @@ export default function App() {
     }
 
     const speakQuestion = () => {
-      const QUESTION_RATE = 1.05;
+      const QUESTION_RATE = 0.9;
       const INTRO_TO_BODY_PAUSE_MS = 500;
 
       // Split "Con la X:" / "Empieza por X:" / "Contiene la X:" so the prefix is read at normal speed,
@@ -1152,7 +1162,7 @@ export default function App() {
         // We still include a generous max timeout as a safety valve.
         const startedAt = Date.now();
         const words = chunk.split(/\s+/).filter(Boolean).length;
-        // Adjust for speech rate: at rate 1.05, TTS is ~5% faster
+        // Adjust for speech rate: at rate 0.9, TTS is ~10% slower
         const maxMs = Math.min(45000, Math.max(8000, words * (1000 / rate)));
 
         pollId = window.setInterval(() => {
@@ -1300,21 +1310,23 @@ export default function App() {
       // Small delay to ensure speech cancellation completes before speaking "Tiempoooo!"
       window.setTimeout(() => {
         speakWithCallback("Tieeeeeeeempoo!", () => {
-          // If there are multiple players, advance automatically to the next player who still has time.
-          if (session && session.players.length > 1) {
-            const idxWithTime = findNextPlayerIndexWithTimeLeft(session, playerStates);
+          // Use refs to get current values (avoids stale closures)
+          const currentSession = sessionRef.current;
+          const states = playerStatesRef.current;
+          
+          // Check if there are other players with time left
+          if (currentSession && currentSession.players.length > 1) {
+            const idxWithTime = findNextPlayerIndexWithTimeLeft(currentSession, states);
             if (idxWithTime === -1) {
+              // No players left with time - game ends
               setGameOver(true);
               setGameOverMessage("⏱️ Tiempo. Fin del juego.");
               endTurn("");
               return;
             }
-            // Pause at idle for handoff (timer should not run while passing the phone).
-            setSession((prev) => (prev ? { ...prev, currentPlayerIndex: idxWithTime } : prev));
-            setTurnMessage("");
-            setFeedback(null);
-            setRevealed(false);
-            lastSpokenKeyRef.current = null;
+            // End turn and wait for manual "Siguiente" click
+            // The game continues as long as other players have time
+            endTurn("");
             return;
           }
 
@@ -1327,6 +1339,29 @@ export default function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft, phase]);
+
+  // Confetti goats when game ends
+  useEffect(() => {
+    if (!gameOver) {
+      setConfettiGoats([]);
+      return;
+    }
+
+    // Create 100 confetti goats with random positions and delays spread over 10 seconds
+    const goats = Array.from({ length: 100 }, (_, i) => ({
+      id: Date.now() + i,
+      left: Math.random() * 100, // Random horizontal position (0-100%)
+      delay: Math.random() * 10, // Random delay spread over 10 seconds
+    }));
+    setConfettiGoats(goats);
+
+    // Clean up after animation completes (10s max delay + 3s animation)
+    const cleanup = setTimeout(() => {
+      setConfettiGoats([]);
+    }, 14000);
+
+    return () => clearTimeout(cleanup);
+  }, [gameOver]);
 
   async function startCamera(facingMode: "user" | "environment" = cameraFacingMode) {
     setCameraError("");
@@ -1356,16 +1391,6 @@ export default function App() {
     streamRef.current = null;
   }
 
-  async function toggleCamera() {
-    setIsSwitchingCamera(true);
-    try {
-      const next: "user" | "environment" = cameraFacingMode === "user" ? "environment" : "user";
-      setCameraFacingMode(next);
-      await startCamera(next);
-    } finally {
-      setIsSwitchingCamera(false);
-    }
-  }
 
   // Request camera only after entering the game screen.
   // This avoids prompting for camera on the setup screen and ensures mic warmup can happen first.
@@ -1392,8 +1417,15 @@ export default function App() {
   // Load active player's saved state when switching players.
   useEffect(() => {
     if (!activePlayerId) return;
+    // Only load if this is a DIFFERENT player than before
+    if (activePlayerId === lastLoadedPlayerIdRef.current) return;
+    
     const st = playerStates[activePlayerId];
     if (!st) return;
+    
+    // Mark that we're loading this player's state
+    lastLoadedPlayerIdRef.current = activePlayerId;
+    
     setStatusByLetter(st.statusByLetter);
     setCurrentIndex(st.currentIndex);
     setTimeLeft(st.timeLeft);
@@ -1405,6 +1437,10 @@ export default function App() {
   // Persist active player's state on changes.
   useEffect(() => {
     if (!activePlayerId || screen !== "game") return;
+    // Only persist if this player's state has been loaded
+    // (prevents persisting stale values during player switch)
+    if (activePlayerId !== lastLoadedPlayerIdRef.current) return;
+    
     setPlayerStates((prev) => ({
       ...prev,
       [activePlayerId]: { statusByLetter, currentIndex, timeLeft, revealed },
@@ -1474,6 +1510,8 @@ export default function App() {
         setCurrentIndex(st.currentIndex);
         setTimeLeft(st.timeLeft);
         setRevealed(st.revealed);
+        // Mark this player as loaded so the persist effect works correctly
+        lastLoadedPlayerIdRef.current = first.id;
       }
 
       // Start the recognizer early (before first TTS) to avoid audio ducking.
@@ -1490,10 +1528,15 @@ export default function App() {
     unlockAudioOnce();
     warmupSpeechSynthesisOnce();
     setTurnMessage("");
+    
+    // Use refs to get current values (avoids stale closures when called from setTimeout)
+    const playerId = activePlayerIdRef.current;
+    const states = playerStatesRef.current;
+    
     // Do NOT reset the clock here: each player has a single 2:00 bank for the whole game.
     // `timeLeft` is already loaded from the active player's saved state.
-    if (activePlayerId) {
-      const remaining = playerStates[activePlayerId]?.timeLeft ?? TURN_SECONDS;
+    if (playerId) {
+      const remaining = states[playerId]?.timeLeft ?? TURN_SECONDS;
       if (remaining <= 0) return;
       setTimeLeft(remaining);
     }
@@ -1508,8 +1551,8 @@ export default function App() {
     }
 
     // Speak the question directly in the user gesture (mobile Safari often blocks TTS from effects).
-    if (activePlayerId) {
-      lastSpokenKeyRef.current = `${activePlayerId}:${activeSetId}:${currentLetter}`;
+    if (playerId) {
+      lastSpokenKeyRef.current = `${playerId}:${activeSetIdRef.current}:${currentLetterRef.current}`;
     }
     speakCurrentQuestionThenListen();
 
@@ -1517,11 +1560,11 @@ export default function App() {
     void ensureSfxReady();
 
     // Don't reset player time here; only clear per-turn UI flags if needed.
-    if (activePlayerId) {
+    if (playerId) {
       setPlayerStates((prev) => {
-        const existing = prev[activePlayerId];
+        const existing = prev[playerId];
         if (!existing) return prev;
-        return { ...prev, [activePlayerId]: { ...existing, revealed: false } };
+        return { ...prev, [playerId]: { ...existing, revealed: false } };
       });
     }
   }
@@ -1532,28 +1575,35 @@ export default function App() {
   }
 
   function startNextPlayerTurn() {
-    // Handoff: next player must press Start (we go back to idle), and their timer resets.
+    // Handoff: advance to next player and automatically start their turn.
     setTurnMessage("");
     setFeedback(null);
     setRevealed(false);
-    setPhase("idle");
     lastSpokenKeyRef.current = null;
 
+    // Use refs to get current values (avoids stale closures)
+    const currentSession = sessionRef.current;
+    const states = playerStatesRef.current;
+
+    // Check if there's a next player with time
+    const idxWithTime = currentSession ? findNextPlayerIndexWithTimeLeft(currentSession, states) : -1;
+    if (idxWithTime === -1) {
+      setGameOver(true);
+      setGameOverMessage("Fin del juego.");
+      endTurn("");
+      return;
+    }
+
+    // Advance to next player (they'll be in idle state, waiting for Empezar button)
     setSession((prev) => {
       if (!prev || prev.players.length === 0) return prev;
-      // Skip players who are out of time; if nobody has time left, end the game.
-      const idxWithTime = findNextPlayerIndexWithTimeLeft(prev, playerStates);
-      if (idxWithTime === -1) {
-        setGameOver(true);
-        setGameOverMessage("Fin del juego.");
-        endTurn("");
-        return prev;
-      }
       return { ...prev, currentPlayerIndex: idxWithTime };
     });
-
-    // Mic stays running during idle (phase effect just disarms it).
-    // Ensure it's running in case it was stopped for some reason.
+    
+    // Go to idle state so the next player can click "Empezar"
+    setPhase("idle");
+    
+    // Ensure mic stays running during idle for quick start
     const genericHints = ["pasalacabra", "pasapalabra", "pasa", "cabra"];
     ensureListeningForQuestion(genericHints);
   }
@@ -1737,22 +1787,26 @@ export default function App() {
         <span className="goat goat7">🐐</span>
         <span className="goat goat8">🐐</span>
       </div>
+      {/* Confetti goats when game ends */}
+      {confettiGoats.map((goat) => (
+        <div
+          key={goat.id}
+          className="goatConfetti"
+          style={{
+            left: `${goat.left}%`,
+            animationDelay: `${goat.delay}s`,
+          }}
+          aria-hidden="true"
+        >
+          🐐
+        </div>
+      ))}
       <div className="overlay">
         <div className="topBar">
           {screen === "game" ? (
             <>
               <div className="playerTag">{currentPlayerLabel}</div>
               <div className="timerBig">{formatTime(timeLeft)}</div>
-              <button
-                className="btnCamFlip"
-                type="button"
-                onClick={toggleCamera}
-                disabled={isSwitchingCamera}
-                aria-label="Cambiar cámara"
-                title="Cambiar cámara"
-              >
-                📷 ⟲
-              </button>
             </>
           ) : (
             <div className="setupTopTitle"></div>
@@ -1771,7 +1825,7 @@ export default function App() {
                   value={setupPlayerCount}
                   onChange={(e) => setSetupPlayerCount(Number(e.target.value))}
                 >
-                  {[2, 3, 4, 5, 6].map((n) => (
+                  {[2, 3, 4].map((n) => (
                     <option key={n} value={n}>
                       {n}
                     </option>
@@ -1951,13 +2005,13 @@ export default function App() {
                       <li>El narrador lee una pregunta en voz alta</li>
                       <li>Responde hablando cuando escuches el pitido</li>
                       <li>Si aciertas, pasas a la siguiente letra</li>
-                      <li>Si fallas, tu turno termina</li>
+                      <li>Si fallas, termina tu turno</li>
                       <li>Di <strong>"Pasalacabra"</strong> para saltar la pregunta</li>
                     </ul>
 
                     <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>⏱️ El tiempo</h3>
                     <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
-                      Cada jugador tiene 2 minutos en total. El tiempo solo corre durante tu turno.
+                      Cada jugador 3 minutos en total. El tiempo solo corre durante tu turno.
                       Si eres el último jugador, puedes seguir hasta que se te agote el tiempo.
                     </p>
 
@@ -1987,6 +2041,7 @@ export default function App() {
                   letters={letters} 
                   statusByLetter={statusByLetter}
                   recentlyCorrect={recentlyCorrectLetter}
+                  currentIndex={currentIndex}
                 />
               </div>
 

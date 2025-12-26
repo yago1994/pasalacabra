@@ -17,9 +17,10 @@ type Props = {
   letters: readonly Letter[];
   statusByLetter: Record<Letter, LetterStatus>;
   recentlyCorrect?: Letter | null;
+  currentIndex: number;
 };
 
-export default function LetterRing({ letters, statusByLetter, recentlyCorrect }: Props) {
+export default function LetterRing({ letters, statusByLetter, recentlyCorrect, currentIndex }: Props) {
   // SVG coordinate system
   const size = 400;
   const cx = size / 2;
@@ -37,25 +38,25 @@ export default function LetterRing({ letters, statusByLetter, recentlyCorrect }:
   const correctX = correctLetterIndex >= 0 ? cx + ringR * Math.cos(correctAngle) : 0;
   const correctY = correctLetterIndex >= 0 ? cy + ringR * Math.sin(correctAngle) : 0;
 
-  // Find the current letter (status === "current")
-  const currentLetter = letters.find((letter) => statusByLetter[letter] === "current");
-  const currentLetterIndex = currentLetter ? letters.indexOf(currentLetter) : -1;
-  const currentAngle = currentLetterIndex >= 0 
-    ? (currentLetterIndex / letters.length) * Math.PI * 2 - Math.PI / 2 
+  // Use the passed currentIndex to position the goat (ensures smooth transition even during status changes)
+  const currentAngle = currentIndex >= 0 
+    ? (currentIndex / letters.length) * Math.PI * 2 - Math.PI / 2 
     : 0;
-  const currentX = currentLetterIndex >= 0 ? cx + ringR * Math.cos(currentAngle) : 0;
-  const currentY = currentLetterIndex >= 0 ? cy + ringR * Math.sin(currentAngle) : 0;
+  const currentX = currentIndex >= 0 ? cx + ringR * Math.cos(currentAngle) : 0;
+  const currentY = currentIndex >= 0 ? cy + ringR * Math.sin(currentAngle) : 0;
   // Position goat emoji OUTSIDE the bubble (on the outer edge, away from center)
-  // Offset from bubble center = nodeR + extra margin for the emoji to sit on the edge
-  const goatOffset = nodeR + 8;
-  const goatX = currentLetterIndex >= 0 ? currentX + goatOffset * Math.cos(currentAngle) : 0;
-  const goatY = currentLetterIndex >= 0 ? currentY + goatOffset * Math.sin(currentAngle) : 0;
+  // Emoji size is 56px, so radius is ~28px. Offset needs to account for this.
+  const emojiSize = 56;
+  const emojiRadius = emojiSize / 2;
+  const goatOffset = nodeR + emojiRadius - 8; // Position so emoji sits on bubble edge
+  const goatX = currentIndex >= 0 ? currentX + goatOffset * Math.cos(currentAngle) : 0;
+  const goatY = currentIndex >= 0 ? currentY + goatOffset * Math.sin(currentAngle) : 0;
   // Rotate goat to face the direction of movement (clockwise around the ring)
   // The emoji 🐐 faces left by default (angle = π)
   // Tangent direction (clockwise) at currentAngle is: currentAngle + π/2
   // To rotate a left-facing emoji to face direction φ: rotate by (φ - π)
   // So: rotation = (currentAngle + π/2 - π) = (currentAngle - π/2)
-  const goatRotation = currentLetterIndex >= 0 
+  const goatRotation = currentIndex >= 0 
     ? ((currentAngle - Math.PI / 2) * 180 / Math.PI) : 0;
 
   return (
@@ -88,7 +89,7 @@ export default function LetterRing({ letters, statusByLetter, recentlyCorrect }:
         return (
           <g key={letter}>
             <circle cx={x} cy={y} r={nodeR} fill={fill} opacity={0.95} />
-            <circle cx={x} cy={y} r={nodeR} fill="transparent" stroke="rgba(255,255,255,0.35)" strokeWidth="2" />
+            <circle cx={x} cy={y} r={nodeR} fill="transparent" stroke={status === "current" ? "rgb(255,255,255)" : "rgba(255,255,255,0.35)"} strokeWidth="2" />
             <text
               x={x}
               y={y + 6}
@@ -102,14 +103,19 @@ export default function LetterRing({ letters, statusByLetter, recentlyCorrect }:
           </g>
         );
       })}
-      {/* Goat emoji on current letter */}
-      {currentLetterIndex >= 0 && (
-        <g transform={`translate(${goatX}, ${goatY}) rotate(${goatRotation}) scale(1, -1)`}>
+      {/* Goat emoji on current letter with smooth transition */}
+      {currentIndex >= 0 && (
+        <g 
+          className="goat-move"
+          style={{
+            transform: `translate(${goatX}px, ${goatY}px) rotate(${goatRotation}deg) scale(1, -1)`,
+          }}
+        >
           <text
             x={0}
             y={0}
             textAnchor="middle"
-            fontSize="24"
+            fontSize={emojiSize}
             dominantBaseline="middle"
             style={{ userSelect: "none", pointerEvents: "none" }}
           >
@@ -149,23 +155,23 @@ export default function LetterRing({ letters, statusByLetter, recentlyCorrect }:
                     attributeName="transform"
                     type="translate"
                     values={`0,0;${deltaX},${deltaY}`}
-                    dur="1.2s"
+                    dur="10s"
                     begin={`${delay}s`}
                     fill="freeze"
                   />
                   <animate
                     attributeName="opacity"
                     values="0;1;1;0"
-                    keyTimes="0;0.2;0.8;1"
-                    dur="1.2s"
+                    keyTimes="0;0.02;0.9;1"
+                    dur="10s"
                     begin={`${delay}s`}
                     fill="freeze"
                   />
                   <animate
                     attributeName="r"
                     values={`${size * 0.5};${size * 1.4};${size}`}
-                    keyTimes="0;0.3;1"
-                    dur="1.2s"
+                    keyTimes="0;0.05;1"
+                    dur="10s"
                     begin={`${delay}s`}
                     fill="freeze"
                   />
