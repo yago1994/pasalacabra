@@ -21,7 +21,7 @@ import type { Topic } from "./questions/types";
 type GamePhase = "idle" | "playing" | "ended";
 type Screen = "setup" | "game";
 
-const TURN_SECONDS =15;
+const TURN_SECONDS =180;
 
 function removeDiacritics(s: string) {
   // `NFD` splits letters+diacritics into separate codepoints.
@@ -1864,29 +1864,31 @@ export default function App() {
                 ))}
               </div>
 
-              {/* Test Mode Toggle */}
-              <label 
-                className="testModeToggle" 
-                style={{ 
-                  display: "flex", 
-                  alignItems: "center", 
-                  gap: 10, 
-                  marginTop: 24,
-                  padding: "10px 14px",
-                  background: testMode ? "rgba(255,200,0,0.2)" : "rgba(255,255,255,0.1)",
-                  borderRadius: 8,
-                  cursor: "pointer",
-                  border: testMode ? "1px solid rgba(255,200,0,0.5)" : "1px solid transparent",
-                }}
-              >
-                <input
-                  type="checkbox"
-                  checked={testMode}
-                  onChange={(e) => setTestMode(e.target.checked)}
-                  style={{ width: 18, height: 18, cursor: "pointer" }}
-                />
-                <span>🧪 Modo Test (usa Set 4 predefinido)</span>
-              </label>
+              {/* Test Mode Toggle - Hidden from UI */}
+              {false && (
+                <label 
+                  className="testModeToggle" 
+                  style={{ 
+                    display: "flex", 
+                    alignItems: "center", 
+                    gap: 10, 
+                    marginTop: 24,
+                    padding: "10px 14px",
+                    background: testMode ? "rgba(255,200,0,0.2)" : "rgba(255,255,255,0.1)",
+                    borderRadius: 8,
+                    cursor: "pointer",
+                    border: testMode ? "1px solid rgba(255,200,0,0.5)" : "1px solid transparent",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={testMode}
+                    onChange={(e) => setTestMode(e.target.checked)}
+                    style={{ width: 18, height: 18, cursor: "pointer" }}
+                  />
+                  <span>🧪 Modo Test (usa Set 4 predefinido)</span>
+                </label>
+              )}
 
               {!testMode && (
                 <>
