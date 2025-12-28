@@ -14,14 +14,22 @@ import type { QA as TopicQA } from "./questions/types";
 import sfxCorrectUrl from "./assets/sfx-correct.wav";
 import sfxWrongUrl from "./assets/sfx-wrong.wav";
 import sfxPasalacabraUrl from "./assets/sfx-pasalacabra.wav";
-import type { GameSession, Player, LetterStatus } from "./game/engine";
+import type { GameSession, Player, LetterStatus, DifficultyMode } from "./game/engine";
 import { createAzureRecognizer, preflightAzureAuth, setPhraseHints } from "./speech/speechazure";
 import type { Topic } from "./questions/types";
 
 type GamePhase = "idle" | "playing" | "ended";
 type Screen = "setup" | "game";
 
-const TURN_SECONDS =180;
+const TURN_SECONDS =180; // Default fallback (will be replaced by difficulty-based time)
+
+function getTimeFromDifficulty(difficulty: DifficultyMode): number {
+  switch (difficulty) {
+    case "dificil": return 180; // 3 minutes
+    case "medio": return 240; // 4 minutes
+    case "facil": return 300; // 5 minutes
+  }
+}
 
 function removeDiacritics(s: string) {
   // `NFD` splits letters+diacritics into separate codepoints.
@@ -176,6 +184,7 @@ export default function App() {
 
   const [screen, setScreen] = useState<Screen>("setup");
   const [setupPlayerCount, setSetupPlayerCount] = useState<number>(2);
+  const [difficultyMode, setDifficultyMode] = useState<DifficultyMode>("medio");
   
   // Topic selection state
   // Topics with available question files (value is the Topic key, label is for display)
@@ -666,10 +675,11 @@ export default function App() {
     const n = sess.players.length;
     if (n <= 1) return -1;
     const from = sess.currentPlayerIndex;
+    const defaultTime = getTimeFromDifficulty(sess.difficulty);
     for (let offset = 1; offset < n; offset++) {
       const idx = (from + offset) % n;
       const p = sess.players[idx];
-      const t = states[p.id]?.timeLeft ?? TURN_SECONDS;
+      const t = states[p.id]?.timeLeft ?? defaultTime;
       if (t > 0) return idx;
     }
     return -1;
@@ -677,8 +687,9 @@ export default function App() {
 
   function countPlayersWithTimeLeft(sess: GameSession, states: Record<string, PlayerState>) {
     let count = 0;
+    const defaultTime = getTimeFromDifficulty(sess.difficulty);
     for (const p of sess.players) {
-      const t = states[p.id]?.timeLeft ?? TURN_SECONDS;
+      const t = states[p.id]?.timeLeft ?? defaultTime;
       if (t > 0) count++;
     }
     return count;
@@ -718,11 +729,38 @@ export default function App() {
   }
 
   function getSpanishVoice(vs: SpeechSynthesisVoice[]) {
-    // Prefer Spanish voices; fall back gracefully.
-    const es = vs.filter((v) => v.lang?.toLowerCase().startsWith("es"));
-    const esES = es.find((v) => v.lang?.toLowerCase() === "es-es");
-    return esES ?? es[0] ?? vs[0] ?? null;
+    if (vs.length === 0) return null;
+    
+    const userAgent = navigator.userAgent.toLowerCase();
+    const defaultVoice = (() => {
+      // Prefer Spanish voices; fall back gracefully.
+      const es = vs.filter((v) => v.lang?.toLowerCase().startsWith("es"));
+      const esES = es.find((v) => v.lang?.toLowerCase() === "es-es");
+      return esES ?? es[0] ?? vs[0] ?? null;
+    })();
+    
+    // Firefox detection - use Monica voice
+    if (userAgent.includes("firefox")) {
+      const firefoxVoice = vs.find(
+        (v) => v.voiceURI === "urn:moz-tts:osx:com.apple.voice.compact.es-ES.Monica"
+      );
+      if (firefoxVoice) return firefoxVoice;
+      // Fallback to default if specific voice not found
+      return defaultVoice;
+    }
+    
+    // Chrome detection - use Mónica voice
+    if (userAgent.includes("chrome") && !userAgent.includes("edg")) {
+      const chromeVoice = vs.find((v) => v.voiceURI === "Mónica");
+      if (chromeVoice) return chromeVoice;
+      // Fallback to default if specific voice not found
+      return defaultVoice;
+    }
+    
+    // Safari or other browsers - use default Spanish voice
+    return defaultVoice;
   }
+
 
   function stopSpeaking() {
     if (!("speechSynthesis" in window)) return;
@@ -1487,17 +1525,18 @@ export default function App() {
       }
     }
 
+    const timePerPlayer = getTimeFromDifficulty(difficultyMode);
     const initialStates: Record<string, PlayerState> = {};
     for (const p of players) {
       const s = {} as Record<Letter, LetterStatus>;
       for (const l of letters) s[l] = "pending";
       s[letters[0]] = "current";
-      initialStates[p.id] = { statusByLetter: s, currentIndex: 0, timeLeft: TURN_SECONDS, revealed: false };
+      initialStates[p.id] = { statusByLetter: s, currentIndex: 0, timeLeft: timePerPlayer, revealed: false };
     }
 
     const proceedToGame = () => {
       setPlayerStates(initialStates);
-      setSession({ players, currentPlayerIndex: 0 });
+      setSession({ players, currentPlayerIndex: 0, difficulty: difficultyMode });
       setScreen("game"); // triggers camera permission request (see effect above)
       setPhase("idle");
       setTurnMessage("");
@@ -1533,10 +1572,12 @@ export default function App() {
     const playerId = activePlayerIdRef.current;
     const states = playerStatesRef.current;
     
-    // Do NOT reset the clock here: each player has a single 2:00 bank for the whole game.
+    // Do NOT reset the clock here: each player has a single time bank for the whole game.
     // `timeLeft` is already loaded from the active player's saved state.
     if (playerId) {
-      const remaining = states[playerId]?.timeLeft ?? TURN_SECONDS;
+      const currentSession = sessionRef.current;
+      const defaultTime = currentSession ? getTimeFromDifficulty(currentSession.difficulty) : TURN_SECONDS;
+      const remaining = states[playerId]?.timeLeft ?? defaultTime;
       if (remaining <= 0) return;
       setTimeLeft(remaining);
     }
@@ -1830,6 +1871,19 @@ export default function App() {
                       {n}
                     </option>
                   ))}
+                </select>
+              </label>
+
+              <label className="setupLabel" style={{ marginTop: 24 }}>
+                Dificultad
+                <select
+                  className="setupSelect"
+                  value={difficultyMode}
+                  onChange={(e) => setDifficultyMode(e.target.value as DifficultyMode)}
+                >
+                  <option value="dificil">Difícil: 3 mins</option>
+                  <option value="medio">Media: 4 mins</option>
+                  <option value="facil">Fácil: 5 mins</option>
                 </select>
               </label>
 

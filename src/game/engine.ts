@@ -7,7 +7,8 @@ export type LetterStatus = "pending" | "current" | "passed" | "correct" | "wrong
 
 // Session
 export type Player = { id: string; name: string; setId: string };
-export type GameSession = { players: Player[]; currentPlayerIndex: number };
+export type DifficultyMode = "dificil" | "medio" | "facil";
+export type GameSession = { players: Player[]; currentPlayerIndex: number; difficulty: DifficultyMode };
 
 // Progress tracking (per player)
 export type PlayerState = {
