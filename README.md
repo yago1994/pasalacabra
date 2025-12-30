@@ -57,9 +57,17 @@ npm run build
 - **Siguiente: <nombre>**: appears when the turn ends. Rotates to the next player who still has time. If nobody has time, the game ends.
 
 ### Timer end behavior
+- When a player's timer hits **0**, the game automatically **captures a snapshot** of their final game state (camera + letter ring with all correct/wrong/passed letters).
 - If there are **multiple players**: when time hits **0**, it automatically rotates to the **next player with time left** (idle handoff).
 - If **no players** have time left: the game shows the **winner** based on most correct answers (ties broken by fewer mistakes).
 - If there is **only 1 player**: the game ends when their time hits **0**.
+
+### End of game slideshow
+- After the game ends, a **slideshow animation** automatically plays showing each player's snapshot.
+- Each player's photo is displayed for 4 seconds with their name, score (✓ correct / ✗ wrong), and a **🏆 ¡Ganador!** badge for the winner(s).
+- The slideshow loops continuously until manually closed.
+- **Video recording**: The slideshow is automatically recorded at 30fps when it starts.
+- A **💾 Download** button appears in the slideshow overlay to save the recorded video (`.webm` format) for sharing on social media.
 
 ## Data & architecture
 
@@ -109,6 +117,10 @@ Example host from a previous run:
 
 ## Recent Updates
 
+- **Snapshot capture**: Automatically captures player photos when timer runs out, showing their final letter ring state
+- **End-of-game slideshow**: Beautiful animated slideshow displaying all player snapshots with scores and winner badges
+- **Video recording**: Automatic recording of the slideshow animation for easy sharing (30fps, WebM format)
+- **Enhanced UI**: Improved letter ring rendering with exact game proportions and better visual consistency
 - Refactored question files for consistency and maintainability
 - Enhanced UI components and styling
 - Improved game logic and component behavior

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import LetterRing from "./components/LetterRing";
 import {
@@ -17,6 +17,22 @@ import sfxPasalacabraUrl from "./assets/sfx-pasalacabra.wav";
 import type { GameSession, Player, LetterStatus, DifficultyMode } from "./game/engine";
 import { createAzureRecognizer, preflightAzureAuth, setPhraseHints } from "./speech/speechazure";
 import type { Topic } from "./questions/types";
+import {
+  captureSnapshotWithRing,
+  type StatusByLetter as SnapshotStatusByLetter,
+  type LetterStatus as SnapshotLetterStatus,
+} from "./snapshotComposer";
+import { initializePendo } from "./lib/pendo";
+
+// Player snapshot captured when timer runs out
+export type PlayerSnapshot = {
+  playerId: string;
+  playerName: string;
+  blobUrl: string;
+  statusByLetter: Record<Letter, LetterStatus>;
+  correctCount: number;
+  wrongCount: number;
+};
 
 type GamePhase = "idle" | "playing" | "ended";
 type Screen = "setup" | "game";
@@ -25,7 +41,7 @@ const TURN_SECONDS =180; // Default fallback (will be replaced by difficulty-bas
 
 function getTimeFromDifficulty(difficulty: DifficultyMode): number {
   switch (difficulty) {
-    case "dificil": return 180; // 3 minutes
+    case "dificil": return 15; // 3 minutes
     case "medio": return 240; // 4 minutes
     case "facil": return 300; // 5 minutes
   }
@@ -225,6 +241,11 @@ export default function App() {
   const [gameOverMessage, setGameOverMessage] = useState<string>("");
   const [confettiGoats, setConfettiGoats] = useState<Array<{ id: number; left: number; delay: number }>>([]);
 
+  // Player snapshots for end-of-game slideshow
+  const [playerSnapshots, setPlayerSnapshots] = useState<PlayerSnapshot[]>([]);
+  const [slideshowIndex, setSlideshowIndex] = useState<number>(0);
+  const [slideshowActive, setSlideshowActive] = useState<boolean>(false);
+
   // Per-player saved progress
   type PlayerState = {
     statusByLetter: Record<Letter, LetterStatus>;
@@ -253,6 +274,13 @@ export default function App() {
   const streamRef = useRef<MediaStream | null>(null);
   const [cameraError, setCameraError] = useState<string>("");
   const cameraFacingMode: "user" | "environment" = "user";
+
+  // Video recording for sharing
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const recordedChunksRef = useRef<Blob[]>([]);
+  const [isRecording, setIsRecording] = useState<boolean>(false);
+  const [recordingBlobUrl, setRecordingBlobUrl] = useState<string | null>(null);
 
   // Speech (Text-to-speech)
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
@@ -393,6 +421,13 @@ export default function App() {
     // Treat "pasa" as a valid command by itself (user intent: "pasa la cabra").
     return { ok: hasExact || hasPasaWord || hasCabraWord, normalizedJoined };
   }
+
+  // Initialize Pendo analytics
+  useEffect(() => {
+    // TODO: Replace with actual visitor and account IDs when user authentication is implemented
+    // For now, Pendo will use anonymous IDs generated from localStorage
+    initializePendo();
+  }, []);
 
   // Keep latest values for async STT callbacks (avoid stale closures).
   useEffect(() => {
@@ -708,6 +743,100 @@ export default function App() {
     }
     return { correct, wrong };
   }
+
+  // Convert game LetterStatus to snapshot LetterStatus
+  function toSnapshotStatus(status: LetterStatus): SnapshotLetterStatus {
+    switch (status) {
+      case "correct": return "correct";
+      case "wrong": return "wrong";
+      case "passed": return "passed";
+      case "current":
+      case "pending":
+      default: return "idle";
+    }
+  }
+
+  // Capture a snapshot for a player when their timer runs out
+  const capturePlayerSnapshot = useCallback(async (
+    playerId: string,
+    playerName: string,
+    currentStatusByLetter: Record<Letter, LetterStatus>,
+    playerCurrentIndex: number
+  ) => {
+    const video = videoRef.current;
+    if (!video || video.videoWidth === 0) {
+      console.warn("Cannot capture snapshot: video not ready");
+      return;
+    }
+
+    try {
+      // Convert status map for snapshot composer
+      const snapshotStatus: SnapshotStatusByLetter = {};
+      for (const l of letters) {
+        snapshotStatus[l] = toSnapshotStatus(currentStatusByLetter[l]);
+      }
+
+      // Calculate scores
+      let correctCount = 0;
+      let wrongCount = 0;
+      for (const status of Object.values(currentStatusByLetter)) {
+        if (status === "correct") correctCount++;
+        else if (status === "wrong") wrongCount++;
+      }
+
+      // Capture the snapshot with full game UI
+      // Uses same proportions as LetterRing.tsx (800px canvas = 2x the 400px SVG)
+      const canvasSize = 800;
+      const blob = await captureSnapshotWithRing(video, {
+        outWidth: canvasSize,
+        outHeight: canvasSize,
+        fit: "cover",
+        mimeType: "image/webp",
+        quality: 0.92,
+        ring: {
+          letters: [...letters],
+          statusByLetter: snapshotStatus,
+          currentIndex: playerCurrentIndex,
+          // Let the composer calculate dimensions using the game's ratios
+          style: {
+            // Scale font to match: 16px in 400px SVG = 32px in 800px canvas
+            letterFont: "800 32px system-ui, -apple-system, Segoe UI, Roboto",
+            letterColor: "rgba(255,255,255,0.98)",
+            dotStrokeWidth: 4, // Scale: 2px * 2
+            dotStroke: "rgba(255,255,255,0.35)",
+            backgroundColor: "#4f8dff", // --letter-default (blue background)
+            // Use exact game colors from CSS variables
+            statusFill: {
+              correct: "#2bb673", // --letter-correct (green)
+              wrong: "#ff4d4d",   // --letter-wrong (red)
+              passed: "#4f8dff",  // --letter-passed (blue, same as default)
+              idle: "#4f8dff",    // --letter-default (blue)
+            },
+            idleFill: "#4f8dff",
+          },
+        },
+      });
+
+      const blobUrl = URL.createObjectURL(blob);
+
+      const snapshot: PlayerSnapshot = {
+        playerId,
+        playerName,
+        blobUrl,
+        statusByLetter: { ...currentStatusByLetter },
+        correctCount,
+        wrongCount,
+      };
+
+      setPlayerSnapshots((prev) => {
+        console.log(`Adding snapshot for ${playerName}, total will be:`, prev.length + 1);
+        return [...prev, snapshot];
+      });
+      console.log(`Snapshot captured for ${playerName}, blobUrl:`, blobUrl.substring(0, 50));
+    } catch (err) {
+      console.error("Failed to capture snapshot:", err);
+    }
+  }, [letters]);
 
   function determineWinners(sess: GameSession, states: Record<string, PlayerState>) {
     const scores = sess.players.map((p) => {
@@ -1344,6 +1473,25 @@ export default function App() {
       stopSpeaking();
       disarmListening();
       
+      // Capture snapshot for the current player (with a small delay to ensure video frame is stable)
+      const currentSession = sessionRef.current;
+      const currentPlayerId = activePlayerIdRef.current;
+      const snapshotCurrentIndex = currentIndexRef.current;
+      if (currentSession && currentPlayerId) {
+        const player = currentSession.players.find(p => p.id === currentPlayerId);
+        if (player) {
+          // Small delay to ensure video frame is rendered and stable
+          window.setTimeout(() => {
+            void capturePlayerSnapshot(
+              currentPlayerId,
+              player.name || `Jugador ${currentSession.currentPlayerIndex + 1}`,
+              statusByLetterRef.current,
+              snapshotCurrentIndex
+            );
+          }, 200);
+        }
+      }
+      
       // Stop the turn immediately by changing phase, then speak "Tiempoooo!"
       setPhase("idle");
       
@@ -1351,12 +1499,12 @@ export default function App() {
       window.setTimeout(() => {
         speakWithCallback("Tieeeeeeeempoo!", () => {
           // Use refs to get current values (avoids stale closures)
-          const currentSession = sessionRef.current;
+          const sess = sessionRef.current;
           const states = playerStatesRef.current;
           
           // Check if there are other players with time left
-          if (currentSession && currentSession.players.length > 1) {
-            const idxWithTime = findNextPlayerIndexWithTimeLeft(currentSession, states);
+          if (sess && sess.players.length > 1) {
+            const idxWithTime = findNextPlayerIndexWithTimeLeft(sess, states);
             if (idxWithTime === -1) {
               // No players left with time - game ends
               setGameOver(true);
@@ -1378,7 +1526,7 @@ export default function App() {
       }, 50);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeLeft, phase]);
+  }, [timeLeft, phase, capturePlayerSnapshot]);
 
   // Confetti goats when game ends
   useEffect(() => {
@@ -1402,6 +1550,72 @@ export default function App() {
 
     return () => clearTimeout(cleanup);
   }, [gameOver]);
+
+  // Slideshow effect when game ends with snapshots
+  useEffect(() => {
+    if (!gameOver || playerSnapshots.length === 0) {
+      setSlideshowActive(false);
+      setSlideshowIndex(0);
+      return;
+    }
+
+    // Start slideshow after a brief delay
+    const startTimer = setTimeout(() => {
+      setSlideshowActive(true);
+      setSlideshowIndex(0);
+    }, 500);
+
+    return () => clearTimeout(startTimer);
+  }, [gameOver, playerSnapshots.length]);
+
+  // Auto-advance slideshow (loops continuously until closed)
+  useEffect(() => {
+    if (!slideshowActive || playerSnapshots.length === 0) return;
+
+    // Show each snapshot for 4 seconds, then loop
+    const advanceTimer = setInterval(() => {
+      setSlideshowIndex((prev) => {
+        const next = prev + 1;
+        // Loop back to start when reaching the end
+        return next >= playerSnapshots.length ? 0 : next;
+      });
+    }, 4000);
+
+    return () => clearInterval(advanceTimer);
+  }, [slideshowActive, playerSnapshots.length]);
+
+  // Function to close the slideshow
+  function closeSlideshow() {
+    if (isRecording) {
+      stopRecording();
+    }
+    setSlideshowActive(false);
+  }
+
+  // Function to replay the slideshow
+  function replaySlideshow() {
+    setSlideshowIndex(0);
+    setSlideshowActive(true);
+  }
+
+  // Clean up blob URLs only when component unmounts (not on every change)
+  // We use a ref to track URLs that need cleanup
+  const snapshotUrlsRef = useRef<string[]>([]);
+  
+  useEffect(() => {
+    // Track new blob URLs for cleanup
+    const currentUrls = playerSnapshots.map(s => s.blobUrl);
+    snapshotUrlsRef.current = currentUrls;
+  }, [playerSnapshots]);
+
+  useEffect(() => {
+    // Only cleanup on unmount
+    return () => {
+      for (const url of snapshotUrlsRef.current) {
+        URL.revokeObjectURL(url);
+      }
+    };
+  }, []);
 
   async function startCamera(facingMode: "user" | "environment" = cameraFacingMode) {
     setCameraError("");
@@ -1431,6 +1645,65 @@ export default function App() {
     streamRef.current = null;
   }
 
+  // Video recording functions
+  async function startRecording() {
+    if (!canvasRef.current) {
+      console.error("Canvas ref not available");
+      return;
+    }
+
+    try {
+      // Get stream from canvas at 30fps
+      const stream = canvasRef.current.captureStream(30);
+      
+      // Create MediaRecorder
+      const mediaRecorder = new MediaRecorder(stream, {
+        mimeType: "video/webm;codecs=vp9",
+      });
+
+      recordedChunksRef.current = [];
+
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          recordedChunksRef.current.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunksRef.current, { type: "video/webm" });
+        const url = URL.createObjectURL(blob);
+        setRecordingBlobUrl(url);
+        setIsRecording(false);
+      };
+
+      mediaRecorderRef.current = mediaRecorder;
+      mediaRecorder.start();
+      setIsRecording(true);
+      console.log("Recording started");
+    } catch (err) {
+      console.error("Failed to start recording:", err);
+      setIsRecording(false);
+    }
+  }
+
+  function stopRecording() {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
+      mediaRecorderRef.current.stop();
+      console.log("Recording stopped");
+    }
+  }
+
+  function downloadRecording() {
+    if (recordingBlobUrl) {
+      const a = document.createElement("a");
+      a.href = recordingBlobUrl;
+      a.download = `pasalacabra-${new Date().toISOString().slice(0, 19).replace(/:/g, "-")}.webm`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  }
+
 
   // Request camera only after entering the game screen.
   // This avoids prompting for camera on the setup screen and ensures mic warmup can happen first.
@@ -1443,6 +1716,185 @@ export default function App() {
     return () => stopCamera();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cameraFacingMode, screen]);
+
+  // Record slideshow animation when it starts
+  useEffect(() => {
+    if (!slideshowActive || !playerSnapshots.length || !canvasRef.current) {
+      return;
+    }
+
+    // Auto-start recording when slideshow begins
+    const startRec = async () => {
+      if (!isRecording) {
+        await startRecording();
+      }
+    };
+    void startRec();
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    
+    // TypeScript guard - ctx is guaranteed to be non-null after this point
+    const drawCtx: CanvasRenderingContext2D = ctx;
+
+    // Set canvas size to match viewport (or use a standard size)
+    const canvasWidth = 800;
+    const canvasHeight = 800;
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    let animationFrameId: number;
+    let lastFrameTime = 0;
+    const targetFPS = 30;
+    const frameInterval = 1000 / targetFPS;
+    const slideshowDuration = playerSnapshots.length * 4000; // 4 seconds per slide
+    const startTime = Date.now();
+
+    function drawFrame() {
+      const now = Date.now();
+      if (now - lastFrameTime < frameInterval) {
+        animationFrameId = requestAnimationFrame(drawFrame);
+        return;
+      }
+      lastFrameTime = now;
+
+      const elapsed = now - startTime;
+      
+      // Stop recording after slideshow completes one full cycle
+      if (elapsed > slideshowDuration && isRecording) {
+        stopRecording();
+        return;
+      }
+
+      try {
+        // Calculate which slide should be visible based on elapsed time
+        const slideIndex = Math.floor((elapsed % slideshowDuration) / 4000);
+        const currentSlide = playerSnapshots[slideIndex];
+        
+        if (!currentSlide) {
+          animationFrameId = requestAnimationFrame(drawFrame);
+          return;
+        }
+
+        // Clear canvas with dark background
+        drawCtx.fillStyle = "rgba(0, 0, 0, 0.85)";
+        drawCtx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Find the image element in the DOM (already loaded)
+        const slideElement = document.querySelector(`[data-slide-id="${currentSlide.playerId}"]`);
+        let img: HTMLImageElement | null = null;
+        
+        if (slideElement) {
+          const imgElement = slideElement.querySelector("img");
+          if (imgElement && imgElement.complete) {
+            img = imgElement;
+          }
+        }
+
+        if (!img) {
+          // Fallback: create new image and wait for it
+          const newImg = new Image();
+          newImg.crossOrigin = "anonymous";
+          newImg.src = currentSlide.blobUrl;
+          if (newImg.complete) {
+            img = newImg;
+          } else {
+            // Skip this frame if image not ready
+            animationFrameId = requestAnimationFrame(drawFrame);
+            return;
+          }
+        }
+
+        // Calculate image dimensions to fit canvas while maintaining aspect ratio
+        const imgAspect = img.width / img.height;
+        const canvasAspect = canvas.width / canvas.height;
+        
+        let drawWidth: number, drawHeight: number, drawX: number, drawY: number;
+        
+        if (imgAspect > canvasAspect) {
+          // Image is wider - fit to width
+          drawWidth = canvas.width * 0.9;
+          drawHeight = drawWidth / imgAspect;
+          drawX = (canvas.width - drawWidth) / 2;
+          drawY = (canvas.height - drawHeight) / 2;
+        } else {
+          // Image is taller - fit to height
+          drawHeight = canvas.height * 0.9;
+          drawWidth = drawHeight * imgAspect;
+          drawX = (canvas.width - drawWidth) / 2;
+          drawY = (canvas.height - drawHeight) / 2;
+        }
+
+        // Draw image with rounded corners
+        drawCtx.save();
+        const radius = 24;
+        drawCtx.beginPath();
+        drawCtx.moveTo(drawX + radius, drawY);
+        drawCtx.lineTo(drawX + drawWidth - radius, drawY);
+        drawCtx.quadraticCurveTo(drawX + drawWidth, drawY, drawX + drawWidth, drawY + radius);
+        drawCtx.lineTo(drawX + drawWidth, drawY + drawHeight - radius);
+        drawCtx.quadraticCurveTo(drawX + drawWidth, drawY + drawHeight, drawX + drawWidth - radius, drawY + drawHeight);
+        drawCtx.lineTo(drawX + radius, drawY + drawHeight);
+        drawCtx.quadraticCurveTo(drawX, drawY + drawHeight, drawX, drawY + drawHeight - radius);
+        drawCtx.lineTo(drawX, drawY + radius);
+        drawCtx.quadraticCurveTo(drawX, drawY, drawX + radius, drawY);
+        drawCtx.closePath();
+        drawCtx.clip();
+        drawCtx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+        drawCtx.restore();
+
+        // Draw player name and score at bottom
+        const winnerIds = new Set(
+          (() => {
+            const maxCorrect = Math.max(...playerSnapshots.map(s => s.correctCount));
+            const topPlayers = playerSnapshots.filter(s => s.correctCount === maxCorrect);
+            const minWrong = Math.min(...topPlayers.map(s => s.wrongCount));
+            return topPlayers.filter(s => s.wrongCount === minWrong).map(s => s.playerId);
+          })()
+        );
+        const isWinner = winnerIds.has(currentSlide.playerId);
+
+        drawCtx.fillStyle = "rgba(0, 0, 0, 0.5)";
+        drawCtx.fillRect(0, canvas.height - 120, canvas.width, 120);
+
+        if (isWinner) {
+          drawCtx.fillStyle = "#FFD700";
+          drawCtx.font = "bold 36px system-ui";
+          drawCtx.textAlign = "center";
+          drawCtx.textBaseline = "middle";
+          drawCtx.fillText("🏆 ¡Ganador!", canvas.width / 2, canvas.height - 100);
+        }
+
+        drawCtx.fillStyle = "#ffffff";
+        drawCtx.font = "bold 32px system-ui";
+        drawCtx.textAlign = "center";
+        drawCtx.textBaseline = "middle";
+        drawCtx.fillText(currentSlide.playerName, canvas.width / 2, canvas.height - 60);
+
+        drawCtx.fillStyle = "#2bb673";
+        drawCtx.font = "24px system-ui";
+        drawCtx.fillText(`✓ ${currentSlide.correctCount}`, canvas.width / 2 - 40, canvas.height - 25);
+
+        drawCtx.fillStyle = "#ff4d4d";
+        drawCtx.fillText(`✗ ${currentSlide.wrongCount}`, canvas.width / 2 + 40, canvas.height - 25);
+      } catch (err) {
+        console.error("Error drawing slideshow frame:", err);
+      }
+
+      animationFrameId = requestAnimationFrame(drawFrame);
+    }
+
+    drawFrame();
+
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slideshowActive, playerSnapshots.length, isRecording]);
 
   // Keep setup players array sized to player count.
   useEffect(() => {
@@ -1503,6 +1955,13 @@ export default function App() {
     warmupSpeechSynthesisOnce();
     setGameOver(false);
     setGameOverMessage("");
+    // Clear previous snapshots when starting a new game
+    for (const snapshot of playerSnapshots) {
+      URL.revokeObjectURL(snapshot.blobUrl);
+    }
+    setPlayerSnapshots([]);
+    setSlideshowActive(false);
+    setSlideshowIndex(0);
     const players: Player[] = Array.from({ length: setupPlayerCount }, (_, i) => {
       const raw = setupPlayers[i]?.name ?? "";
       const name = raw.trim() || `Jugador ${i + 1}`;
@@ -1874,6 +2333,85 @@ export default function App() {
           🐐
         </div>
       ))}
+
+      {/* Snapshot slideshow overlay when game ends */}
+      {slideshowActive && playerSnapshots.length > 0 && (() => {
+        // Calculate winner(s) from snapshots
+        const maxCorrect = Math.max(...playerSnapshots.map(s => s.correctCount));
+        const topPlayers = playerSnapshots.filter(s => s.correctCount === maxCorrect);
+        const minWrong = Math.min(...topPlayers.map(s => s.wrongCount));
+        const winnerIds = new Set(
+          topPlayers.filter(s => s.wrongCount === minWrong).map(s => s.playerId)
+        );
+        
+        return (
+          <div className="slideshowOverlay">
+            <div style={{ position: "absolute", top: 20, right: 20, display: "flex", gap: 12, zIndex: 10 }}>
+              {recordingBlobUrl && !isRecording && (
+                <button 
+                  className="slideshowCloseBtn" 
+                  onClick={downloadRecording}
+                  aria-label="Descargar video"
+                  style={{ background: "rgba(34,197,94,0.8)" }}
+                >
+                  💾
+                </button>
+              )}
+              <button 
+                className="slideshowCloseBtn" 
+                onClick={closeSlideshow}
+                aria-label="Cerrar presentación"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="slideshowContent">
+              {playerSnapshots.map((snapshot, idx) => {
+                const isWinner = winnerIds.has(snapshot.playerId);
+                return (
+                  <div
+                    key={snapshot.playerId}
+                    data-slide-id={snapshot.playerId}
+                    className={`slideshowSlide ${idx === slideshowIndex ? "slideshowSlideActive" : ""}`}
+                  >
+                    <img
+                      src={snapshot.blobUrl}
+                      alt={`Snapshot de ${snapshot.playerName}`}
+                      className="slideshowImage"
+                      onError={(e) => {
+                        console.error("Failed to load snapshot image:", snapshot.playerName, snapshot.blobUrl);
+                        (e.target as HTMLImageElement).style.display = "none";
+                      }}
+                      onLoad={() => {
+                        console.log("Snapshot image loaded:", snapshot.playerName);
+                      }}
+                    />
+                    <div className="slideshowCaption">
+                      {isWinner && (
+                        <div className="slideshowWinnerBadge">🏆 ¡Ganador!</div>
+                      )}
+                      <div className="slideshowPlayerName">{snapshot.playerName}</div>
+                      <div className="slideshowScore">
+                        <span className="slideshowCorrect">✓ {snapshot.correctCount}</span>
+                        <span className="slideshowWrong">✗ {snapshot.wrongCount}</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+              <div className="slideshowProgress">
+                {playerSnapshots.map((_, idx) => (
+                  <div
+                    key={idx}
+                    className={`slideshowDot ${idx === slideshowIndex ? "slideshowDotActive" : ""} ${idx < slideshowIndex ? "slideshowDotPast" : ""}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
       <div className="overlay">
         <div className="topBar">
           {screen === "game" ? (
@@ -2167,23 +2705,31 @@ export default function App() {
             </div>
           </div>
         ) : (
-          <div className="center">
-            <div className="ringAndControls">
-              <div className="ringWrap">
-                <video
-                  ref={videoRef}
-                  className="cameraInRing"
-                  muted
-                  playsInline
-                  autoPlay
-                />
-                <LetterRing 
-                  letters={letters} 
-                  statusByLetter={statusByLetter}
-                  recentlyCorrect={recentlyCorrectLetter}
-                  currentIndex={currentIndex}
-                />
-              </div>
+<div className="center">
+          {/* Hidden canvas for video recording */}
+          <canvas
+            ref={canvasRef}
+            width={800}
+            height={800}
+            style={{ display: "none" }}
+          />
+          
+          <div className="ringAndControls">
+            <div className="ringWrap">
+              <video
+                ref={videoRef}
+                className="cameraInRing"
+                muted
+                playsInline
+                autoPlay
+              />
+              <LetterRing 
+                letters={letters} 
+                statusByLetter={statusByLetter}
+                recentlyCorrect={recentlyCorrectLetter}
+                currentIndex={currentIndex}
+              />
+            </div>
 
               <div className="controls">
               {phase === "idle" ? (
@@ -2297,6 +2843,17 @@ export default function App() {
                               </div>
                             ))}
                           </div>
+                          
+                          {playerSnapshots.length > 0 && (
+                            <button 
+                              className="btnOutline" 
+                              type="button" 
+                              onClick={replaySlideshow}
+                              style={{ marginTop: 20, width: "100%" }}
+                            >
+                              📸 Ver fotos
+                            </button>
+                          )}
                         </div>
                       );
                     })()
