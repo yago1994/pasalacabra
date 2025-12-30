@@ -514,6 +514,15 @@ button:disabled {
 
 .btnPrimary { background: #ffffff; color: #0b0f1a; }
 .btnGhost { background: var(--panel); color: var(--text); backdrop-filter: blur(10px); }
+.btnOutline { 
+  background: transparent; 
+  border: 2px solid white; 
+  color: white;
+  transition: background 0.2s, color 0.2s;
+}
+.btnOutline:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
 
 .revealRow {
   display: grid;

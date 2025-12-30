@@ -204,6 +204,7 @@ export default function App() {
   const [selectedTopics, setSelectedTopics] = useState<Set<Topic>>(new Set());
   const [topicSelectionError, setTopicSelectionError] = useState<string>("");
   const [showHowToPlay, setShowHowToPlay] = useState<boolean>(false);
+  const [showAbout, setShowAbout] = useState<boolean>(false);
   const [testMode, setTestMode] = useState<boolean>(false);
   // Generated question banks for each player (indexed by player id)
   const [generatedBanks, setGeneratedBanks] = useState<Record<string, Map<Letter, TopicQA>>>({});
@@ -245,6 +246,7 @@ export default function App() {
   const [feedback, setFeedback] = useState<null | "correct" | "wrong">(null);
   const feedbackTimerRef = useRef<number | null>(null);
   const [recentlyCorrectLetter, setRecentlyCorrectLetter] = useState<Letter | null>(null);
+  const [lastWrongLetter, setLastWrongLetter] = useState<Letter | null>(null); // For override button
 
   // Camera
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -1567,6 +1569,7 @@ export default function App() {
     unlockAudioOnce();
     warmupSpeechSynthesisOnce();
     setTurnMessage("");
+    setLastWrongLetter(null); // Clear any pending override from previous turn
     
     // Use refs to get current values (avoids stale closures when called from setTimeout)
     const playerId = activePlayerIdRef.current;
@@ -1787,10 +1790,39 @@ export default function App() {
       return next;
     });
 
+    // Track which letter was marked wrong (for override button)
+    setLastWrongLetter(letter);
+
     // Move index so the next player starts on the next unresolved letter.
     const statusAfter = { ...status, [letter]: "wrong" as LetterStatus };
     const nextIdx = nextUnresolvedIndex(letters, statusAfter, idx);
     if (nextIdx !== -1) setCurrentIndex(nextIdx);
+  }
+
+  // Override a wrong answer to correct (when speech recognizer made a mistake)
+  function overrideToCorrect() {
+    if (!lastWrongLetter) return;
+    
+    const letter = lastWrongLetter;
+    
+    // Play the correct sound
+    void ensureSfxReady().then(() => {
+      playSfx("correct");
+    });
+    
+    // Update status to correct
+    setStatusByLetter((prev) => {
+      const next = { ...prev };
+      next[letter] = "correct";
+      return next;
+    });
+    
+    // Trigger particle animation
+    setRecentlyCorrectLetter(letter);
+    setTimeout(() => setRecentlyCorrectLetter(null), 1200);
+    
+    // Clear the override state
+    setLastWrongLetter(null);
   }
 
   function submitAnswer(spokenOverride?: string) {
@@ -2053,7 +2085,7 @@ export default function App() {
                     <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>🎯 Objetivo</h3>
                     <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
                       Conoces este juego 😉. Responde correctamente a las preguntas de cada letra del abecedario lo más rápido que puedas. 
-                      El jugador con más aciertos gana.
+                      El jugador con más aciertos gana. Prueba a conectar el teléfono a la tele y pruébalo en familia.
                     </p>
 
                     <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>🎮 Cómo se juega</h3>
@@ -2063,6 +2095,7 @@ export default function App() {
                       <li>Si aciertas, pasas a la siguiente letra</li>
                       <li>Si fallas, termina tu turno</li>
                       <li>Di <strong>"Pasalacabra"</strong> para saltar la pregunta</li>
+                      <li>Si te equivocas, puedes usar el botón de "Oye! La respuesta era correcta" para corregir tu respuesta</li>
                     </ul>
 
                     <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>⏱️ El tiempo</h3>
@@ -2077,6 +2110,57 @@ export default function App() {
                       <li>✗ Fallo = penalización en desempate</li>
                       <li>Pasalacabra = sin penalización</li>
                     </ul>
+                  </div>
+                )}
+              </div>
+
+              {/* About Drawer */}
+              <div className="howToPlaySection" style={{ marginTop: 24 }}>
+                <button
+                  type="button"
+                  className="howToPlayToggle"
+                  onClick={() => setShowAbout(!showAbout)}
+                  style={{
+                    background: "transparent",
+                    border: "1px solid rgba(255,255,255,0.3)",
+                    borderRadius: 8,
+                    padding: "10px 16px",
+                    color: "#fff",
+                    cursor: "pointer",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    fontSize: "1rem",
+                  }}
+                >
+                  <span>❓ ¿Y esto de dónde ha salido?</span>
+                  <span style={{ transform: showAbout ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s" }}>
+                    ▼
+                  </span>
+                </button>
+                
+                {showAbout && (
+                  <div
+                    className="howToPlayContent"
+                    style={{
+                      marginTop: 12,
+                      padding: 16,
+                      background: "rgba(0,0,0,0.3)",
+                      borderRadius: 8,
+                      textAlign: "left",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
+                    Pues mira, por una parte a mi abuela le encantaba este programa y no se perdía una, así que esto va por ella.
+                    </p>
+                    <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
+                    Y por otra, demasiadas cenas de Navidad hablando de política que podían ser mucho más entretenidas.
+                    </p>
+                    <p style={{ margin: 0, opacity: 0.9 }}>
+                    ¡Qué os divirtáis! Cualquier cosa, sugerencias, ideas, o si queréis contribuir al proyecto, mandad un email a info(arroba)pasalacabra.com
+                    </p>
                   </div>
                 )}
               </div>
@@ -2221,9 +2305,21 @@ export default function App() {
                       <strong>{gameOverMessage || "Fin del juego."}</strong>
                     </div>
                   ) : (
-                    <button className="btnPrimary" type="button" onClick={startNextPlayerTurn}>
-                      {nextPlayerButtonLabel}
-                    </button>
+                    <>
+                      <button className="btnPrimary" type="button" onClick={startNextPlayerTurn}>
+                        {nextPlayerButtonLabel}
+                      </button>
+                      {lastWrongLetter && (
+                        <button 
+                          className="btnOutline" 
+                          type="button" 
+                          onClick={overrideToCorrect}
+                          style={{ marginTop: 12 }}
+                        >
+                          Oye! La respuesta era correcta
+                        </button>
+                      )}
+                    </>
                   )}
                   </>
                 )}
