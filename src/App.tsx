@@ -41,7 +41,7 @@ const TURN_SECONDS =180; // Default fallback (will be replaced by difficulty-bas
 
 function getTimeFromDifficulty(difficulty: DifficultyMode): number {
   switch (difficulty) {
-    case "dificil": return 15; // 3 minutes
+    case "dificil": return 180; // 3 minutes
     case "medio": return 240; // 4 minutes
     case "facil": return 300; // 5 minutes
   }
