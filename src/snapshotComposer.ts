@@ -170,7 +170,6 @@ export async function captureSnapshotWithRing(
   // Use exact same ratios as LetterRing.tsx, with 20% size reduction
   const SIZE_SCALE = 0.80;
   const RING_RATIO = (178 / 400) * SIZE_SCALE;
-  const NODE_RATIO = (18 / 400) * SIZE_SCALE;
 
   // 1) Draw background color (the blue game background)
   ctx.fillStyle = style.backgroundColor!;
@@ -180,7 +179,6 @@ export async function captureSnapshotWithRing(
   const cx = opts.ring.centerX ?? outW / 2;
   const cy = opts.ring.centerY ?? outH / 2;
   const ringRadius = opts.ring.radius ?? size * RING_RATIO;
-  const dotR = opts.ring.dotRadius ?? (style.dotRadius && style.dotRadius > 0 ? style.dotRadius : size * NODE_RATIO);
   
   // Video circle should intersect the middle of the bubbles (at ringRadius)
   // This matches the game UI where the camera circle goes through the center of the letter bubbles
@@ -369,34 +367,32 @@ export function drawRing(
     ctx.restore();
   }
 
-  // Draw the goat emoji at the current letter position
-  const currentIndex = ring.currentIndex;
-  if (currentIndex !== undefined && currentIndex >= 0 && currentIndex < letters.length) {
-    const currentAngle = start + dir * currentIndex * step;
-    const currentX = cx + radius * Math.cos(currentAngle);
-    const currentY = cy + radius * Math.sin(currentAngle);
-    
-    // Match game's goat positioning: goatOffset = nodeR + emojiRadius - 8
-    // In 400x400: goatOffset = 18 + 28 - 8 = 38
-    const emojiRadius = emojiSize / 2;
-    const goatOffsetBase = 8 / 400 * size; // The -8 adjustment
-    const goatOffset = dotR + emojiRadius - goatOffsetBase;
-    const goatX = currentX + goatOffset * Math.cos(currentAngle);
-    const goatY = currentY + goatOffset * Math.sin(currentAngle);
-    
-    // Calculate rotation (goat faces direction of movement)
-    // From game: goatRotation = (currentAngle - Math.PI / 2) * 180 / Math.PI (in degrees)
-    const goatRotation = currentAngle - Math.PI / 2;
-    
-    ctx.save();
-    ctx.translate(goatX, goatY);
-    ctx.rotate(goatRotation);
-    ctx.scale(1, -1); // Flip vertically like the game's scale(1, -1)
-    ctx.font = `${emojiSize}px sans-serif`;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText("🐐", 0, 0);
-    ctx.restore();
+    // Draw the goat emoji at the current letter position (MATCH UI: outside bubble + rotated + flipped)
+    const currentIndex = ring.currentIndex;
+    if (currentIndex !== undefined && currentIndex >= 0 && currentIndex < letters.length) {
+      const currentAngle = start + dir * currentIndex * step;
+      const bubbleX = cx + radius * Math.cos(currentAngle);
+      const bubbleY = cy + radius * Math.sin(currentAngle);
+  
+      const emojiRadius = emojiSize / 2;
+  
+      // Match UI offset: nodeR + emojiRadius - 4
+      const goatOffset = dotR + emojiRadius - (4 / 400) * size; // scale the "-4" with snapshot size
+      const goatX = bubbleX + goatOffset * Math.cos(currentAngle);
+      const goatY = bubbleY + goatOffset * Math.sin(currentAngle);
+  
+      // Match UI rotation: (currentAngle - PI/2) in degrees
+      const goatRotation = currentAngle - Math.PI / 2;
+  
+      ctx.save();
+      ctx.translate(goatX, goatY);
+      ctx.rotate(goatRotation);
+      ctx.scale(1, -1); // match UI flip
+      ctx.font = `${emojiSize}px sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("🐐", 0, 0);
+      ctx.restore();
   }
 }
 

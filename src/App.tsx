@@ -281,6 +281,7 @@ export default function App() {
   const recordedChunksRef = useRef<Blob[]>([]);
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [recordingBlobUrl, setRecordingBlobUrl] = useState<string | null>(null);
+  const isRecordingRef = useRef<boolean>(false);
 
   // Speech (Text-to-speech)
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
@@ -1572,14 +1573,14 @@ export default function App() {
   useEffect(() => {
     if (!slideshowActive || playerSnapshots.length === 0) return;
 
-    // Show each snapshot for 4 seconds, then loop
+    // Show each snapshot for 2 seconds, then loop
     const advanceTimer = setInterval(() => {
       setSlideshowIndex((prev) => {
         const next = prev + 1;
         // Loop back to start when reaching the end
         return next >= playerSnapshots.length ? 0 : next;
       });
-    }, 4000);
+    }, 2000);
 
     return () => clearInterval(advanceTimer);
   }, [slideshowActive, playerSnapshots.length]);
@@ -1672,13 +1673,16 @@ export default function App() {
       mediaRecorder.onstop = () => {
         const blob = new Blob(recordedChunksRef.current, { type: "video/webm" });
         const url = URL.createObjectURL(blob);
+        console.log("Recording stopped, blob size:", blob.size, "url:", url.substring(0, 50));
         setRecordingBlobUrl(url);
         setIsRecording(false);
+        isRecordingRef.current = false;
       };
 
       mediaRecorderRef.current = mediaRecorder;
       mediaRecorder.start();
       setIsRecording(true);
+      isRecordingRef.current = true;
       console.log("Recording started");
     } catch (err) {
       console.error("Failed to start recording:", err);
@@ -1688,8 +1692,12 @@ export default function App() {
 
   function stopRecording() {
     if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
+      console.log("Calling stop() on MediaRecorder, current state:", mediaRecorderRef.current.state);
       mediaRecorderRef.current.stop();
-      console.log("Recording stopped");
+      setIsRecording(false);
+      isRecordingRef.current = false;
+    } else {
+      console.log("MediaRecorder not available or already stopped");
     }
   }
 
@@ -1702,6 +1710,37 @@ export default function App() {
       a.click();
       document.body.removeChild(a);
     }
+  }
+
+  async function shareRecording() {
+    if (!recordingBlobUrl) return;
+
+    // Check if Web Share API is available (mobile devices)
+    if (navigator.share && navigator.canShare) {
+      try {
+        // Convert blob to File for sharing
+        const response = await fetch(recordingBlobUrl);
+        const blob = await response.blob();
+        const file = new File([blob], `pasalacabra-${new Date().toISOString().slice(0, 19).replace(/:/g, "-")}.webm`, {
+          type: "video/webm",
+        });
+
+        if (navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: "Pasalacabra - Resultados del juego",
+            text: "¡Mira los resultados de nuestro juego de Pasalacabra!",
+            files: [file],
+          });
+          return;
+        }
+      } catch (err) {
+        // If sharing fails or is cancelled, fall back to download
+        console.log("Share cancelled or failed, falling back to download:", err);
+      }
+    }
+
+    // Fallback to download if Web Share API is not available
+    downloadRecording();
   }
 
 
@@ -1725,7 +1764,7 @@ export default function App() {
 
     // Auto-start recording when slideshow begins
     const startRec = async () => {
-      if (!isRecording) {
+      if (!isRecordingRef.current) {
         await startRecording();
       }
     };
@@ -1749,8 +1788,16 @@ export default function App() {
     let lastFrameTime = 0;
     const targetFPS = 30;
     const frameInterval = 1000 / targetFPS;
-    const slideshowDuration = playerSnapshots.length * 4000; // 4 seconds per slide
+    const slideshowDuration = playerSnapshots.length * 2000; // 2 seconds per slide
     const startTime = Date.now();
+    
+    // Backup timeout: ensure recording stops after slideshow duration
+    const stopTimeout = setTimeout(() => {
+      if (isRecordingRef.current) {
+        console.log("Backup timeout: forcing recording stop after", slideshowDuration + 1000, "ms");
+        stopRecording();
+      }
+    }, slideshowDuration + 1000); // Add 1 second buffer
 
     function drawFrame() {
       const now = Date.now();
@@ -1763,14 +1810,24 @@ export default function App() {
       const elapsed = now - startTime;
       
       // Stop recording after slideshow completes one full cycle
-      if (elapsed > slideshowDuration && isRecording) {
+      if (elapsed >= slideshowDuration && isRecordingRef.current) {
+        console.log("Stopping recording after slideshow duration:", slideshowDuration, "elapsed:", elapsed);
         stopRecording();
+        // Continue drawing for a bit to ensure final frame is captured
+        if (elapsed < slideshowDuration + 500) {
+          animationFrameId = requestAnimationFrame(drawFrame);
+        }
+        return;
+      }
+      
+      // Stop drawing if recording has stopped
+      if (!isRecordingRef.current && elapsed > slideshowDuration) {
         return;
       }
 
       try {
         // Calculate which slide should be visible based on elapsed time
-        const slideIndex = Math.floor((elapsed % slideshowDuration) / 4000);
+        const slideIndex = Math.floor((elapsed % slideshowDuration) / 2000);
         const currentSlide = playerSnapshots[slideIndex];
         
         if (!currentSlide) {
@@ -1892,9 +1949,14 @@ export default function App() {
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
       }
+      clearTimeout(stopTimeout);
+      // Stop recording if still active when effect cleans up
+      if (isRecordingRef.current) {
+        stopRecording();
+      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slideshowActive, playerSnapshots.length, isRecording]);
+  }, [slideshowActive, playerSnapshots.length]);
 
   // Keep setup players array sized to player count.
   useEffect(() => {
@@ -2346,25 +2408,14 @@ export default function App() {
         
         return (
           <div className="slideshowOverlay">
-            <div style={{ position: "absolute", top: 20, right: 20, display: "flex", gap: 12, zIndex: 10 }}>
-              {recordingBlobUrl && !isRecording && (
-                <button 
-                  className="slideshowCloseBtn" 
-                  onClick={downloadRecording}
-                  aria-label="Descargar video"
-                  style={{ background: "rgba(34,197,94,0.8)" }}
-                >
-                  💾
-                </button>
-              )}
-              <button 
-                className="slideshowCloseBtn" 
-                onClick={closeSlideshow}
-                aria-label="Cerrar presentación"
-              >
-                ✕
-              </button>
-            </div>
+            <button 
+              className="slideshowCloseBtn" 
+              onClick={closeSlideshow}
+              aria-label="Cerrar presentación"
+              style={{ position: "absolute", top: 20, right: 20, zIndex: 10 }}
+            >
+              ✕
+            </button>
             <div className="slideshowContent">
               {playerSnapshots.map((snapshot, idx) => {
                 const isWinner = winnerIds.has(snapshot.playerId);
@@ -2407,6 +2458,62 @@ export default function App() {
                   />
                 ))}
               </div>
+            </div>
+            
+            {/* Share and Download buttons - below slideshow content */}
+            <div style={{ 
+              marginTop: 120,
+              display: "flex",
+              justifyContent: "center",
+              gap: 16,
+              width: "100%",
+              flexWrap: "wrap"
+            }}>
+              {isRecording ? (
+                <div style={{ 
+                  color: "white", 
+                  fontSize: "16px",
+                  padding: "14px 28px",
+                  background: "rgba(255, 255, 255, 0.1)",
+                  borderRadius: "24px"
+                }}>
+                  🔴 Grabando...
+                </div>
+              ) : recordingBlobUrl ? (
+                <>
+                  <button
+                    className="slideshowShareBtn"
+                    onClick={shareRecording}
+                    style={{
+                      fontSize: "18px",
+                      padding: "14px 28px",
+                      boxShadow: "0 6px 25px rgba(102, 126, 234, 0.5)",
+                    }}
+                  >
+                    📤 Compartir video
+                  </button>
+                  <button
+                    className="slideshowShareBtn"
+                    onClick={downloadRecording}
+                    style={{
+                      fontSize: "18px",
+                      padding: "14px 28px",
+                      background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                      boxShadow: "0 6px 25px rgba(34, 197, 94, 0.5)",
+                    }}
+                  >
+                    💾 Descargar video
+                  </button>
+                </>
+              ) : (
+                <div style={{ 
+                  color: "rgba(255, 255, 255, 0.7)", 
+                  fontSize: "14px",
+                  padding: "14px 28px"
+                }}>
+                  Preparando video...
+                </div>
+              )}
             </div>
           </div>
         );
