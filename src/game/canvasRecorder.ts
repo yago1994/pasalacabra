@@ -140,7 +140,7 @@ export async function shareOrDownloadRecording(
   if (navigator.canShare?.({ files: [file] })) {
     await navigator.share({
       title: "Pasalacabra",
-      text: "¡Mira mis resultados!",
+      text: "¡Mira mi puntuación! Juega y comparte la tuya en https://pasalacabra.com",
       files: [file],
     });
     return;
