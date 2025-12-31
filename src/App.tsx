@@ -45,7 +45,7 @@ function getTimeFromDifficulty(difficulty: DifficultyMode): number {
   switch (difficulty) {
     case "dificil": return isStaging ? 2 : 180; // 2 seconds in staging, 3 minutes in prod
     case "medio": return isStaging ? 15 : 240; // 15 seconds in staging, 4 minutes in prod
-    case "facil": return 300; // 5 minutes
+    case "facil": return isStaging ? 30 : 300; // 5 minutes
   }
 }
 
