@@ -23,6 +23,7 @@ import {
   type LetterStatus as SnapshotLetterStatus,
 } from "./snapshotComposer";
 import { initializePendo } from "./lib/pendo";
+import { isStagingMode } from "./env/getSpeechTokenUrl";
 
 // Player snapshot captured when timer runs out
 export type PlayerSnapshot = {
@@ -221,7 +222,7 @@ export default function App() {
   const [topicSelectionError, setTopicSelectionError] = useState<string>("");
   const [showHowToPlay, setShowHowToPlay] = useState<boolean>(false);
   const [showAbout, setShowAbout] = useState<boolean>(false);
-  const [testMode, setTestMode] = useState<boolean>(false);
+  const [testMode, setTestMode] = useState<boolean>(isStagingMode());
   // Generated question banks for each player (indexed by player id)
   const [generatedBanks, setGeneratedBanks] = useState<Record<string, Map<Letter, TopicQA>>>({});
   
@@ -2595,8 +2596,8 @@ export default function App() {
                 ))}
               </div>
 
-              {/* Test Mode Toggle - Hidden from UI */}
-              {false && (
+              {/* Test Mode Toggle - Visible in staging */}
+              {isStagingMode() && (
                 <label 
                   className="testModeToggle" 
                   style={{ 
