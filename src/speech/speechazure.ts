@@ -1,4 +1,5 @@
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
+import { getSpeechTokenUrl, isLocalDevHost } from "../env/getSpeechTokenUrl";
 
 type AzureAuth = {
   token: string;
@@ -9,21 +10,26 @@ type AzureAuth = {
 const AUTH_TTL_MS = 8 * 60 * 1000; // tokens are short-lived; refresh proactively
 let cachedAuth: AzureAuth | null = null;
 
-async function fetchAzureAuth(): Promise<AzureAuth> {
-  const url = import.meta.env.VITE_SPEECH_TOKEN_URL as string | undefined;
-  if (!url) {
-    throw new Error("Missing VITE_SPEECH_TOKEN_URL");
+export async function fetchSpeechToken(): Promise<{ token: string; region: string }> {
+  const headers: Record<string, string> = {};
+
+  // Only send dev gate from localhost
+  if (isLocalDevHost() && import.meta.env.VITE_DEV_GATE_KEY) {
+    headers["X-Dev-Key"] = import.meta.env.VITE_DEV_GATE_KEY;
   }
-  const res = await fetch(url);
+
+  const res = await fetch(getSpeechTokenUrl(), { method: "GET", headers });
+
   if (!res.ok) {
-    throw new Error(`Token endpoint returned ${res.status}`);
+    const text = await res.text().catch(() => "");
+    throw new Error(`Speech token failed: ${res.status} ${text}`);
   }
-  const json = (await res.json()) as { token?: unknown; region?: unknown };
-  const token = typeof json.token === "string" ? json.token : "";
-  const region = typeof json.region === "string" ? json.region : "";
-  if (!token || !region) {
-    throw new Error("Token endpoint JSON must include { token, region }");
-  }
+
+  return await res.json();
+}
+
+async function fetchAzureAuth(): Promise<AzureAuth> {
+  const { token, region } = await fetchSpeechToken();
   return { token, region, fetchedAt: Date.now() };
 }
 
