@@ -338,6 +338,7 @@ export default function App() {
   const sttRestartCountRef = useRef<number>(0);
   const sttLastErrorRef = useRef<string | null>(null);
   const sttArmedRef = useRef<boolean>(false);
+  const sttArmedAtRef = useRef<number>(0); // Timestamp when mic was armed - used to ignore stale results
   const phaseRef = useRef<GamePhase>("idle");
   const activePlayerIdRef = useRef<string | null>(null);
   const activeSetIdRef = useRef<string>("");
@@ -1064,6 +1065,11 @@ export default function App() {
         }
       }
       if (!sttArmedRef.current) return;
+
+      // Ignore stale partials that were captured during TTS but arrive right after arming.
+      const msSinceArmed = Date.now() - sttArmedAtRef.current;
+      if (msSinceArmed < 150) return;
+
       if (!userEditedAnswerRef.current) setAnswerText(t);
 
       // Voice command should be responsive; Azure sometimes never emits a final RecognizedSpeech.
@@ -1090,6 +1096,15 @@ export default function App() {
 
       // Only accept transcriptions after the question has finished reading.
       if (!sttArmedRef.current) return;
+
+      // Ignore stale results that were captured during TTS but arrive right after arming.
+      // If the result comes within 150ms of arming, it's likely from speech during TTS.
+      const msSinceArmed = Date.now() - sttArmedAtRef.current;
+      if (msSinceArmed < 150) {
+        if (DEBUG_STT) sttLog("ignoring-stale-result", { finalText, msSinceArmed });
+        return;
+      }
+
       sttLastFinalTextRef.current = finalText;
       sttLastFinalAtRef.current = Date.now();
       if (finalText && !userEditedAnswerRef.current) setAnswerText(finalText);
@@ -1300,6 +1315,7 @@ export default function App() {
       // No TTS; arm mic immediately.
       sttCommandKeyRef.current = null;
       sttArmedRef.current = true;
+      sttArmedAtRef.current = Date.now();
       setQuestionRead(true);
       return;
     }
@@ -1308,6 +1324,7 @@ export default function App() {
     if (!t) {
       sttCommandKeyRef.current = null;
       sttArmedRef.current = true;
+      sttArmedAtRef.current = Date.now();
       setQuestionRead(true);
       return;
     }
@@ -1329,7 +1346,12 @@ export default function App() {
         sttCommandKeyRef.current = null;
         // Mic is already running (started at the beginning of TTS).
         // Just arm it to accept results now that TTS is done.
+        // Also clear any pending answer text that might have been captured during TTS.
+        setAnswerText("");
+        sttLastFinalTextRef.current = "";
+        sttLastFinalAtRef.current = 0;
         sttArmedRef.current = true;
+        sttArmedAtRef.current = Date.now();
         setQuestionRead(true);
 
         // Play the mic ready chime to signal the user can speak.
