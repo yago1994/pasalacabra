@@ -41,9 +41,10 @@ type Screen = "setup" | "game";
 const TURN_SECONDS =180; // Default fallback (will be replaced by difficulty-based time)
 
 function getTimeFromDifficulty(difficulty: DifficultyMode): number {
+  const isStaging = isStagingMode();
   switch (difficulty) {
-    case "dificil": return 180; // 3 minutes
-    case "medio": return 240; // 4 minutes
+    case "dificil": return isStaging ? 2 : 180; // 2 seconds in staging, 3 minutes in prod
+    case "medio": return isStaging ? 15 : 240; // 15 seconds in staging, 4 minutes in prod
     case "facil": return 300; // 5 minutes
   }
 }
@@ -2559,8 +2560,12 @@ export default function App() {
                   value={difficultyMode}
                   onChange={(e) => setDifficultyMode(e.target.value as DifficultyMode)}
                 >
-                  <option value="dificil">Difícil: 3 mins</option>
-                  <option value="medio">Media: 4 mins</option>
+                  <option value="dificil">
+                    Difícil: {isStagingMode() ? "2 secs" : "3 mins"}
+                  </option>
+                  <option value="medio">
+                    Media: {isStagingMode() ? "15 secs" : "4 mins"}
+                  </option>
                   <option value="facil">Fácil: 5 mins</option>
                 </select>
               </label>
