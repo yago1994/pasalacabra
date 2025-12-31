@@ -3,10 +3,22 @@ export function isLocalDevHost() {
 }
 
 export function isStagingMode() {
+  // Check environment variable set during build
+  if (import.meta.env.VITE_DEFAULT_ENV === "staging") {
+    return true;
+  }
   // For mobile testing on the real domain:
   // https://pasalacabra.com/?env=staging
   const env = new URLSearchParams(location.search).get("env");
-  return env === "staging" || isLocalDevHost();
+  if (env === "staging") {
+    return true;
+  }
+  // Check if we're in the staging deployment path
+  if (location.pathname.includes("/staging/")) {
+    return true;
+  }
+  // Local development
+  return isLocalDevHost();
 }
 
 export function getSpeechTokenUrl() {
