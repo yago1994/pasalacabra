@@ -559,7 +559,7 @@ button:disabled {
   top: -50px;
   font-size: 40px;
   pointer-events: none;
-  z-index: 1000;
+  z-index: 3000;
   animation: goatConfettiFall 3s linear forwards;
   opacity: 1;
 }
@@ -582,7 +582,7 @@ button:disabled {
 .slideshowOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(12px);
   z-index: 2000;
   display: flex;

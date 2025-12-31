@@ -1701,7 +1701,7 @@ export default function App() {
   
     await shareOrDownloadRecording(
       recording,
-      `pasalacabra-${new Date().toISOString().slice(0, 19).replace(/:/g, "-")}`
+      `pasalacabra-${crypto.randomUUID()}`
     );
   }
 
@@ -1709,7 +1709,7 @@ export default function App() {
     if (!recording) return;
     downloadRecording(
       recording,
-      `pasalacabra-${new Date().toISOString().slice(0, 19).replace(/:/g, "-")}`
+      `pasalacabra-${crypto.randomUUID()}`
     );
   }
 
@@ -1742,12 +1742,12 @@ export default function App() {
     const result = await stopRecording();
     if (!result) return;
   
-    // intenta compartir (si el navegador lo bloquea, el botón “Compartir video” seguirá funcionando)
-    try {
-      await shareOrDownloadRecording(
-        result,
-        `pasalacabra-${new Date().toISOString().slice(0, 19).replace(/:/g, "-")}`
-      );
+      // intenta compartir (si el navegador lo bloquea, el botón "Compartir video" seguirá funcionando)
+      try {
+        await shareOrDownloadRecording(
+          result,
+          `pasalacabra-${crypto.randomUUID()}`
+        );
     } catch (e) {
       console.log("Share blocked/cancelled:", e);
     }
@@ -2249,28 +2249,27 @@ export default function App() {
     const letter = currentLetterRef.current;
     const idx = currentIndexRef.current;
     const status = statusByLetterRef.current;
+    const currentSession = sessionRef.current;
+    const states = playerStatesRef.current;
 
     // Get the correct answer before any state changes
     const correctAnswer = currentQARef.current.answer;
 
     unlockAudioOnce();
-    // Disarm to prevent picking up stray audio. The phase change to "ended"
-    // will trigger the effect that fully stops the mic.
+    
+    // Check if this is effectively single-player mode:
+    // - Actually single player, OR
+    // - Only one player left with time remaining
+    const isSinglePlayer = !currentSession || currentSession.players.length <= 1;
+    const playersWithTime = currentSession ? countPlayersWithTimeLeft(currentSession, states) : 1;
+    const isLastPlayerStanding = playersWithTime <= 1;
+    const shouldContinuePlaying = isSinglePlayer || isLastPlayerStanding;
+    
+    // Disarm to prevent picking up stray audio during feedback
     disarmListening();
     if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
     setFeedback("wrong");
     setRevealed(true);
-    // End the turn immediately to stop the timer, but don't cancel speech.
-    endTurn("");
-    // Play SFX first, then speak the correct answer.
-    void ensureSfxReady().then(() => {
-      playSfx("wrong");
-      window.setTimeout(() => {
-        speakWithCallback(`No. La respuesta correcta es: ${correctAnswer}`, () => {
-          // no-op
-        });
-      }, 120);
-    });
 
     setStatusByLetter((prev) => {
       const next = { ...prev };
@@ -2281,10 +2280,38 @@ export default function App() {
     // Track which letter was marked wrong (for override button)
     setLastWrongLetter(letter);
 
-    // Move index so the next player starts on the next unresolved letter.
+    // Calculate next index
     const statusAfter = { ...status, [letter]: "wrong" as LetterStatus };
     const nextIdx = nextUnresolvedIndex(letters, statusAfter, idx);
-    if (nextIdx !== -1) setCurrentIndex(nextIdx);
+
+    // Play SFX first, then speak the correct answer.
+    void ensureSfxReady().then(() => {
+      playSfx("wrong");
+      window.setTimeout(() => {
+        speakWithCallback(`No. La respuesta correcta es: ${correctAnswer}`, () => {
+          // After speaking, either continue or end turn
+          if (shouldContinuePlaying) {
+            // Single player or last player standing: continue to next question
+            if (nextIdx === -1 || !anyUnresolved(statusAfter, letters)) {
+              // No more questions - game ends
+              setGameOver(true);
+              setGameOverMessage("🎮 Fin del juego.");
+              endTurn("");
+            } else {
+              // Continue to next question
+              setCurrentIndex(nextIdx);
+              setRevealed(false);
+              setFeedback(null);
+              setLastWrongLetter(null);
+            }
+          } else {
+            // Multiplayer with multiple players remaining: end the turn
+            if (nextIdx !== -1) setCurrentIndex(nextIdx);
+            endTurn("");
+          }
+        });
+      }, 120);
+    });
   }
 
   // Override a wrong answer to correct (when speech recognizer made a mistake)
