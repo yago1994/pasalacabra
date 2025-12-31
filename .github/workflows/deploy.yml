@@ -24,7 +24,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-          VITE_BASE_PATH: ${{ github.ref_name == 'staging' && '/pasalacabra/staging/' || '/pasalacabra/' }}
+          VITE_BASE_PATH: ${{ github.ref_name == 'staging' && '/staging/' || '/' }}
           VITE_SPEECH_TOKEN_URL: ${{ github.ref_name == 'staging' && vars.VITE_SPEECH_TOKEN_URL_STAGING || vars.VITE_SPEECH_TOKEN_URL }}
           VITE_DEFAULT_ENV: ${{ github.ref_name == 'staging' && 'staging' || 'prod' }}
 
