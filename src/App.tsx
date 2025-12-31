@@ -446,7 +446,20 @@ export default function App() {
   useEffect(() => {
     // TODO: Replace with actual visitor and account IDs when user authentication is implemented
     // For now, Pendo will use anonymous IDs generated from localStorage
-    initializePendo();
+    
+    // Determine environment (staging or production) from build-time variable
+    const env = (import.meta.env.VITE_DEFAULT_ENV as string | undefined) || 'prod';
+    const isStaging = env === 'staging';
+    
+    initializePendo(
+      undefined, // visitorId - using anonymous
+      undefined, // accountId - using anonymous
+      undefined, // visitorData
+      {
+        name: isStaging ? 'Staging' : 'Production',
+        environment: env,
+      }
+    );
   }, []);
 
   // Keep latest values for async STT callbacks (avoid stale closures).
@@ -473,11 +486,8 @@ export default function App() {
   }
 
   function unlockAudioOnce() {
-    if (audioUnlockedRef.current) return;
     const ctx = getAudioCtx();
     if (!ctx) return;
-
-    audioUnlockedRef.current = true;
 
     // IMPORTANT: do not await here; we want this to run in the same user-gesture call stack.
     try {
@@ -487,6 +497,7 @@ export default function App() {
     }
 
     // iOS Safari sometimes needs an actual (silent) start() call to fully unlock audio output.
+    // We do this every time on mobile to ensure audio stays unlocked.
     try {
       const b = ctx.createBuffer(1, 1, ctx.sampleRate);
       const s = ctx.createBufferSource();
@@ -501,7 +512,10 @@ export default function App() {
     }
 
     // Kick off decoding in the background (may complete before first SFX is needed).
-    void ensureSfxReady();
+    if (!audioUnlockedRef.current) {
+      audioUnlockedRef.current = true;
+      void ensureSfxReady();
+    }
   }
 
   // Prefetch audio bytes early (doesn't require user gesture).
@@ -535,29 +549,37 @@ export default function App() {
   }, []);
 
   // Mobile browsers often require a user gesture to enable audio output.
-  // Unlock on the very first pointer interaction anywhere in the app.
+  // On mobile, the AudioContext can get suspended again (e.g., after backgrounding),
+  // so we re-unlock on every tap to ensure audio keeps working.
   useEffect(() => {
     const handler = () => unlockAudioOnce();
-    window.addEventListener("pointerdown", handler, { once: true });
-    return () => window.removeEventListener("pointerdown", handler);
+    // Use capture phase to ensure we run before any other handlers
+    window.addEventListener("pointerdown", handler, { capture: true });
+    window.addEventListener("touchstart", handler, { capture: true, passive: true });
+    return () => {
+      window.removeEventListener("pointerdown", handler, { capture: true });
+      window.removeEventListener("touchstart", handler, { capture: true });
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function ensureSfxReady() {
+    const ctx = getAudioCtx();
+    if (!ctx) return;
+
+    // On mobile, ALWAYS try to resume the audio context before playing,
+    // even if buffers are already loaded. Context can get suspended unexpectedly.
+    try {
+      if (ctx.state !== "running") {
+        await ctx.resume();
+      }
+    } catch {
+      // If resume fails, we keep going; playback may no-op until a later gesture.
+    }
+
     if (sfxLoadPromiseRef.current) return sfxLoadPromiseRef.current;
 
     sfxLoadPromiseRef.current = (async () => {
-      const ctx = getAudioCtx();
-      if (!ctx) return;
-
-      // On iOS/Safari, AudioContext starts "suspended" until user gesture.
-      // Also, some browsers may suspend again; we try to resume whenever we prepare SFX.
-      try {
-        if (ctx.state !== "running") await ctx.resume();
-      } catch {
-        // If resume fails, we keep going; playback may no-op until a later gesture.
-      }
-
       // "Unlock" audio output path (helps on some mobile Safari versions).
       try {
         const b = ctx.createBuffer(1, 1, ctx.sampleRate);
@@ -604,26 +626,32 @@ export default function App() {
     if (!ctx || !buf) return;
 
     const start = () => {
-      const src = ctx.createBufferSource();
-      src.buffer = buf;
+      try {
+        const src = ctx.createBufferSource();
+        src.buffer = buf;
 
-      const gain = ctx.createGain();
-      // Slight per-SFX tuning.
-      const volume = key === "pasalacabra" ? 1.0 : 0.95;
-      gain.gain.value = volume;
+        const gain = ctx.createGain();
+        // Slight per-SFX tuning.
+        const volume = key === "pasalacabra" ? 1.0 : 0.95;
+        gain.gain.value = volume;
 
-      src.connect(gain);
-      gain.connect(ctx.destination);
-      src.start();
+        src.connect(gain);
+        gain.connect(ctx.destination);
+        src.start();
+      } catch (err) {
+        console.warn("Failed to play SFX:", key, err);
+      }
     };
 
-    // If the context is suspended (e.g. after backgrounding), resume then play.
+    // Always try to resume first on mobile (context can get suspended unexpectedly).
+    // Then play the sound.
     if (ctx.state !== "running") {
       void ctx
         .resume()
         .then(() => start())
         .catch(() => {
-          /* ignore */
+          // Try to play anyway - some browsers report wrong state
+          start();
         });
       return;
     }
@@ -2167,6 +2195,11 @@ export default function App() {
     }
     stopSpeaking();
     // Goat SFX + end turn (timer stops because phase changes away from "playing")
+    // On mobile, always try to resume audio context before playing
+    const ctx = getAudioCtx();
+    if (ctx && ctx.state !== "running") {
+      void ctx.resume().catch(() => {});
+    }
     void ensureSfxReady().then(() => playSfx("pasalacabra"));
 
     setStatusByLetter((prev) => {
