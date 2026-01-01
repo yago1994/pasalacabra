@@ -15,7 +15,8 @@ import sfxCorrectUrl from "./assets/sfx-correct.wav";
 import sfxWrongUrl from "./assets/sfx-wrong.wav";
 import sfxPasalacabraUrl from "./assets/sfx-pasalacabra.wav";
 import type { GameSession, Player, LetterStatus, DifficultyMode } from "./game/engine";
-import { createAzureRecognizer, preflightAzureAuth, setPhraseHints } from "./speech/speechazure";
+import { preflightAzureAuth, setPhraseHints } from "./speech/speechazure";
+import { createAzureRecognizer } from "./speech/createAzureRecognizer";
 import type { Topic } from "./questions/types";
 import {
   captureSnapshotWithRing,
@@ -353,6 +354,11 @@ export default function App() {
   // Track player switches to avoid persisting stale values when loading a new player's state
   const lastLoadedPlayerIdRef = useRef<string | null>(null);
 
+  // Speech-to-text (Azure)// Holds a cleanup function for the Azure mic stream + meter
+  const azureMicCloseRef = useRef<null | (() => void)>(null);
+
+  // Optional: expose current mic volume in dB for gating/debug
+  const micDbRef = useRef<null | (() => number)>(null);
   function sttLog(...args: unknown[]) {
     if (!DEBUG_STT) return;
     console.log("[stt]", ...args);
@@ -951,6 +957,9 @@ export default function App() {
     sttGenRef.current += 1; // invalidate any in-flight recognizer/events
     // Allow re-starting immediately even if a prior start promise is still pending.
     sttStartPromiseRef.current = null;
+    azureMicCloseRef.current?.();
+    azureMicCloseRef.current = null;
+    micDbRef.current = null;
     if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
     sttAutoSubmitTimerRef.current = null;
     const r = recognitionRef.current;
@@ -1009,7 +1018,15 @@ export default function App() {
 
     let r: sdk.SpeechRecognizer | null = null;
     try {
-      r = await createAzureRecognizer();
+      const bundle = await createAzureRecognizer();
+      r = bundle.recognizer;
+
+      
+
+      // store these so your recognizing/recognized handlers can gate
+      azureMicCloseRef.current?.();      // close any previous stream if it exists  
+      azureMicCloseRef.current = bundle.close;   // so you can cleanup on replace/stop
+      micDbRef.current = bundle.getDb;           // store function
     } catch (err) {
       setSttSupported(false);
       setIsListening(false);
@@ -1100,7 +1117,7 @@ export default function App() {
       // Ignore stale results that were captured during TTS but arrive right after arming.
       // If the result comes within 150ms of arming, it's likely from speech during TTS.
       const msSinceArmed = Date.now() - sttArmedAtRef.current;
-      if (msSinceArmed < 150) {
+      if (msSinceArmed < 300) {
         if (DEBUG_STT) sttLog("ignoring-stale-result", { finalText, msSinceArmed });
         return;
       }
