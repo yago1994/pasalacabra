@@ -340,6 +340,8 @@ export default function App() {
   const sttLastErrorRef = useRef<string | null>(null);
   const sttArmedRef = useRef<boolean>(false);
   const sttArmedAtRef = useRef<number>(0); // Timestamp when mic was armed - used to ignore stale results
+  const sttPostFlushRef = useRef<boolean>(false); // True when arming after a barrier restart/flush
+  const sttBellPendingRef = useRef<boolean>(false); // True when we should play chime on first non-empty partial
   const phaseRef = useRef<GamePhase>("idle");
   const activePlayerIdRef = useRef<string | null>(null);
   const activeSetIdRef = useRef<string>("");
@@ -1084,8 +1086,25 @@ export default function App() {
       if (!sttArmedRef.current) return;
 
       // Ignore stale partials that were captured during TTS but arrive right after arming.
+      // After a barrier restart/flush, use a shorter guard (20ms) since there shouldn't be stale audio.
       const msSinceArmed = Date.now() - sttArmedAtRef.current;
-      if (msSinceArmed < 150) return;
+      const guardMs = sttPostFlushRef.current ? 20 : 150;
+      if (msSinceArmed < guardMs) return;
+
+      // Once we accept any event post-flush, clear the flag
+      if (sttPostFlushRef.current) sttPostFlushRef.current = false;
+
+      // Play the mic ready chime on the first non-empty partial after arming
+      if (sttArmedRef.current && sttBellPendingRef.current && t) {
+        sttBellPendingRef.current = false;
+        if (phaseRef.current === "playing") {
+          const key = `${activePlayerIdRef.current ?? "noplayer"}:${activeSetIdRef.current}:${currentLetterRef.current}:${currentIndexRef.current}`;
+          if (sttMicReadyChimeKeyRef.current !== key) {
+            sttMicReadyChimeKeyRef.current = key;
+            playMicReadyChime();
+          }
+        }
+      }
 
       if (!userEditedAnswerRef.current) setAnswerText(t);
 
@@ -1115,12 +1134,16 @@ export default function App() {
       if (!sttArmedRef.current) return;
 
       // Ignore stale results that were captured during TTS but arrive right after arming.
-      // If the result comes within 150ms of arming, it's likely from speech during TTS.
+      // After a barrier restart/flush, use a shorter guard (20ms) since there shouldn't be stale audio.
       const msSinceArmed = Date.now() - sttArmedAtRef.current;
-      if (msSinceArmed < 300) {
-        if (DEBUG_STT) sttLog("ignoring-stale-result", { finalText, msSinceArmed });
+      const guardMs = sttPostFlushRef.current ? 20 : 150;
+      if (msSinceArmed < guardMs) {
+        if (DEBUG_STT) sttLog("ignoring-stale-result", { finalText, msSinceArmed, guardMs });
         return;
       }
+
+      // Once we accept any event post-flush, clear the flag
+      if (sttPostFlushRef.current) sttPostFlushRef.current = false;
 
       sttLastFinalTextRef.current = finalText;
       sttLastFinalAtRef.current = Date.now();
@@ -1233,6 +1256,8 @@ export default function App() {
     // Just disarm the mic (ignore results) without stopping it.
     // This avoids audio ducking from re-initializing the mic.
     sttArmedRef.current = false;
+    sttPostFlushRef.current = false;
+    sttBellPendingRef.current = false;
     if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
     sttAutoSubmitTimerRef.current = null;
   }
@@ -1259,6 +1284,25 @@ export default function App() {
     if (sttStartPromiseRef.current) return;
     sttStartPromiseRef.current = startListeningWithHints(hints).finally(() => {
       sttStartPromiseRef.current = null;
+    });
+  }
+
+  async function barrierRestartRecognizer() {
+    const r = recognitionRef.current;
+    if (!r) return;
+  
+    await new Promise<void>((resolve) => {
+      r.stopContinuousRecognitionAsync(
+        () => resolve(),
+        () => resolve() // treat stop errors as non-fatal
+      );
+    });
+  
+    await new Promise<void>((resolve, reject) => {
+      r.startContinuousRecognitionAsync(
+        () => resolve(),
+        (err) => reject(err)
+      );
     });
   }
 
@@ -1364,21 +1408,19 @@ export default function App() {
         // Mic is already running (started at the beginning of TTS).
         // Just arm it to accept results now that TTS is done.
         // Also clear any pending answer text that might have been captured during TTS.
-        setAnswerText("");
-        sttLastFinalTextRef.current = "";
-        sttLastFinalAtRef.current = 0;
-        sttArmedRef.current = true;
-        sttArmedAtRef.current = Date.now();
-        setQuestionRead(true);
-
-        // Play the mic ready chime to signal the user can speak.
-        if (recognitionRef.current && phaseRef.current === "playing") {
-          const key = `${activePlayerIdRef.current ?? "noplayer"}:${activeSetIdRef.current}:${currentLetterRef.current}:${currentIndexRef.current}`;
-          if (sttMicReadyChimeKeyRef.current !== key) {
-            sttMicReadyChimeKeyRef.current = key;
-            playMicReadyChime();
-          }
-        }
+        void (async () => {
+          await barrierRestartRecognizer();
+        
+          // now arm immediately after flush
+          setAnswerText("");
+          sttLastFinalTextRef.current = "";
+          sttLastFinalAtRef.current = 0;
+          sttPostFlushRef.current = true;
+          sttBellPendingRef.current = true;
+          sttArmedRef.current = true;
+          sttArmedAtRef.current = Date.now();
+          setQuestionRead(true);
+        })();
       };
 
       const speakChunk = (text: string, rate: number, onDone: () => void) => {
@@ -2932,7 +2974,7 @@ export default function App() {
                         value={answerText}
                         placeholder={
                           sttSupported
-                            ? isListening
+                            ? isListening && questionRead
                               ? "Escuchando…"
                               : ""
                             : "Tu navegador no soporta reconocimiento de voz: prueba a usar otro buscador"
@@ -2963,7 +3005,7 @@ export default function App() {
                       ) : null}
                       {!sttError ? (
                         <div className="answerReveal" style={{ marginTop: 6 }}>
-                          {sttSupported ? (isListening ? "Escuchando…" : "Micrófono listo") : "Intenta jugar con otro navegador"}
+                          {sttSupported ? (isListening && questionRead ? "Escuchando…" : "Micrófono listo") : "Intenta jugar con otro navegador"}
                         </div>
                       ) : null}
                       {feedback === "wrong" || revealed ? (
