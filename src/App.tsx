@@ -27,6 +27,7 @@ import type { CanvasRecording } from "./game/canvasRecorder";
 import { createCanvasRecorder, downloadRecording, shareOrDownloadRecording } from "./game/canvasRecorder";
 import { initializePendo } from "./lib/pendo";
 import { isStagingMode } from "./env/getSpeechTokenUrl";
+import { shareEmojiSequence } from "./game/shareRing";
 
 // Player snapshot captured when timer runs out
 export type PlayerSnapshot = {
@@ -1862,6 +1863,26 @@ export default function App() {
     }
   }
 
+  async function handleShareEmojiSequence() {
+    // Only available for single-player games
+    if (!session || session.players.length !== 1) {
+      alert("La función de compartir emoji solo está disponible para juegos de un solo jugador.");
+      return;
+    }
+
+    // Get the first (and only) player snapshot
+    if (playerSnapshots.length === 0) {
+      alert("No hay resultados para compartir.");
+      return;
+    }
+
+    const snapshot = playerSnapshots[0];
+    const playerName = session.players[0]?.name;
+
+    // Use the refactored function from shareRing
+    await shareEmojiSequence(snapshot.statusByLetter, playerName);
+  }
+
   // Request camera only after entering the game screen.
   // This avoids prompting for camera on the setup screen and ensures mic warmup can happen first.
   useEffect(() => {
@@ -2594,6 +2615,18 @@ export default function App() {
                   >
                     💾 Descargar video
                   </button>
+                  {session && session.players.length === 1 && playerSnapshots.length > 0 && (
+                    <button
+                      className="slideshowShareBtn"
+                      onClick={handleShareEmojiSequence}
+                      style={{
+                        background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+                        boxShadow: "0 6px 25px rgba(139, 92, 246, 0.5)",
+                      }}
+                    >
+                      📱 Compartir resultados
+                    </button>
+                  )}
                   <div
                     style={{
                       width: "100%",
@@ -2611,9 +2644,23 @@ export default function App() {
                   </div>
                 </>
               ) : (
-                <button className="slideshowShareBtn" onClick={grabarYCompartir}>
-                  🎥 Grabar y compartir
-                </button>
+                <>
+                  <button className="slideshowShareBtn" onClick={grabarYCompartir}>
+                    🎥 Grabar y compartir
+                  </button>
+                  {session && session.players.length === 1 && playerSnapshots.length > 0 && (
+                    <button
+                      className="slideshowShareBtn"
+                      onClick={handleShareEmojiSequence}
+                      style={{
+                        background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+                        boxShadow: "0 6px 25px rgba(139, 92, 246, 0.5)",
+                      }}
+                    >
+                      📱 Compartir resultados
+                    </button>
+                  )}
+                </>
               )}
             </div>
           </div>
@@ -2644,7 +2691,7 @@ export default function App() {
                   value={setupPlayerCount}
                   onChange={(e) => setSetupPlayerCount(Number(e.target.value))}
                 >
-                  {[2, 3, 4].map((n) => (
+                  {[1, 2, 3, 4].map((n) => (
                     <option key={n} value={n}>
                       {n}
                     </option>
