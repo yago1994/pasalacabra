@@ -315,6 +315,10 @@ export default function App() {
   const sttGenRef = useRef<number>(0);
   const sttAutoSubmitTimerRef = useRef<number | null>(null);
   const sttAutoSubmitSeqRef = useRef<number>(0);
+  // Interim-based auto-submit: faster response when user stops speaking
+  const sttInterimAutoSubmitTimerRef = useRef<number | null>(null);
+  const sttLastInterimTextRef = useRef<string>("");
+  const sttLastInterimAtRef = useRef<number>(0);
   const sttLastFinalTextRef = useRef<string>("");
   const sttLastFinalAtRef = useRef<number>(0);
   const micWarmRef = useRef<boolean>(false);
@@ -974,6 +978,8 @@ export default function App() {
     resumeAudioContextRef.current = null;
     if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
     sttAutoSubmitTimerRef.current = null;
+    if (sttInterimAutoSubmitTimerRef.current) window.clearTimeout(sttInterimAutoSubmitTimerRef.current);
+    sttInterimAutoSubmitTimerRef.current = null;
     const r = recognitionRef.current;
     recognitionRef.current = null;
     phraseListRef.current = null;
@@ -1128,14 +1134,38 @@ export default function App() {
       const key = `${activePlayerIdRef.current ?? "noplayer"}:${activeSetIdRef.current}:${currentLetterRef.current}:${currentIndexRef.current}`;
       if (sttCommandKeyRef.current === key) return;
       const { ok, normalizedJoined } = shouldTriggerPasalacabra(t);
-      if (!ok) return;
-      sttLog("command-check(interim)", { normalizedJoined });
-      sttCommandKeyRef.current = key;
-      stopListening("user");
-      userEditedAnswerRef.current = false;
-      setAnswerText("");
-      sttLog("-> triggering PASALACABRA (interim)");
-      handlePasalacabra();
+      if (ok) {
+        sttLog("command-check(interim)", { normalizedJoined });
+        sttCommandKeyRef.current = key;
+        stopListening("user");
+        userEditedAnswerRef.current = false;
+        setAnswerText("");
+        sttLog("-> triggering PASALACABRA (interim)");
+        handlePasalacabra();
+        return;
+      }
+
+      // Interim-based auto-submit: if no new speech arrives within 500ms, submit the interim text.
+      // This is faster than waiting for Azure's final (which waits for silence + post-processing).
+      // Only for regular answers (not commands like pasalacabra which are handled above).
+      if (userEditedAnswerRef.current) return;
+      sttLastInterimTextRef.current = t;
+      sttLastInterimAtRef.current = Date.now();
+      if (sttInterimAutoSubmitTimerRef.current) window.clearTimeout(sttInterimAutoSubmitTimerRef.current);
+      const interimSeq = (sttAutoSubmitSeqRef.current += 1);
+      sttInterimAutoSubmitTimerRef.current = window.setTimeout(() => {
+        // Don't submit if a final already handled it or if state changed
+        if (interimSeq !== sttAutoSubmitSeqRef.current) return;
+        if (phaseRef.current !== "playing") return;
+        if (!sttArmedRef.current) return;
+        // Don't submit if user edited the answer manually
+        if (userEditedAnswerRef.current) return;
+        // Submit using the last interim text
+        const textToSubmit = sttLastInterimTextRef.current.trim();
+        if (!textToSubmit) return;
+        sttLog("interim-auto-submit", { textToSubmit });
+        submitAnswerRef.current(textToSubmit);
+      }, 500);
     };
 
     r.recognized = (_s, e) => {
@@ -1143,6 +1173,12 @@ export default function App() {
       if (e.result.reason !== sdk.ResultReason.RecognizedSpeech) return;
       const finalText = (e.result.text ?? "").trim();
       if (DEBUG_STT && finalText) sttLog("final", finalText);
+
+      // Clear any pending interim auto-submit since final is more authoritative
+      if (sttInterimAutoSubmitTimerRef.current) {
+        window.clearTimeout(sttInterimAutoSubmitTimerRef.current);
+        sttInterimAutoSubmitTimerRef.current = null;
+      }
 
       // Only accept transcriptions after the question has finished reading.
       if (!sttArmedRef.current) return;
@@ -1274,6 +1310,8 @@ export default function App() {
     sttBellPendingRef.current = false;
     if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
     sttAutoSubmitTimerRef.current = null;
+    if (sttInterimAutoSubmitTimerRef.current) window.clearTimeout(sttInterimAutoSubmitTimerRef.current);
+    sttInterimAutoSubmitTimerRef.current = null;
   }
 
   function ensureListeningForQuestion(hints: string[]) {
