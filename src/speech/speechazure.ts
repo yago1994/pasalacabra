@@ -52,16 +52,6 @@ export async function preflightAzureAuth(): Promise<{ ok: true } | { ok: false; 
   }
 }
 
-export async function createAzureRecognizer() {
-  const { token, region } = await getAzureAuth(false);
-
-  const speechConfig = sdk.SpeechConfig.fromAuthorizationToken(token, region);
-  speechConfig.speechRecognitionLanguage = "es-ES";
-
-  const audioConfig = sdk.AudioConfig.fromDefaultMicrophoneInput();
-  return new sdk.SpeechRecognizer(speechConfig, audioConfig);
-}
-
 export function setPhraseHints(
   phraseList: sdk.PhraseListGrammar,
   phrases: string[],

@@ -15,7 +15,8 @@ import sfxCorrectUrl from "./assets/sfx-correct.wav";
 import sfxWrongUrl from "./assets/sfx-wrong.wav";
 import sfxPasalacabraUrl from "./assets/sfx-pasalacabra.wav";
 import type { GameSession, Player, LetterStatus, DifficultyMode } from "./game/engine";
-import { createAzureRecognizer, preflightAzureAuth, setPhraseHints } from "./speech/speechazure";
+import { preflightAzureAuth, setPhraseHints } from "./speech/speechazure";
+import { createAzureRecognizer } from "./speech/createAzureRecognizer";
 import type { Topic } from "./questions/types";
 import {
   captureSnapshotWithRing,
@@ -26,6 +27,7 @@ import type { CanvasRecording } from "./game/canvasRecorder";
 import { createCanvasRecorder, downloadRecording, shareOrDownloadRecording } from "./game/canvasRecorder";
 import { initializePendo } from "./lib/pendo";
 import { isStagingMode } from "./env/getSpeechTokenUrl";
+import { shareEmojiSequence } from "./game/shareRing";
 
 // Player snapshot captured when timer runs out
 export type PlayerSnapshot = {
@@ -339,6 +341,8 @@ export default function App() {
   const sttLastErrorRef = useRef<string | null>(null);
   const sttArmedRef = useRef<boolean>(false);
   const sttArmedAtRef = useRef<number>(0); // Timestamp when mic was armed - used to ignore stale results
+  const sttPostFlushRef = useRef<boolean>(false); // True when arming after a barrier restart/flush
+  const sttBellPendingRef = useRef<boolean>(false); // True when we should play chime on first non-empty partial
   const phaseRef = useRef<GamePhase>("idle");
   const activePlayerIdRef = useRef<string | null>(null);
   const activeSetIdRef = useRef<string>("");
@@ -353,6 +357,16 @@ export default function App() {
   // Track player switches to avoid persisting stale values when loading a new player's state
   const lastLoadedPlayerIdRef = useRef<string | null>(null);
 
+  // Speech-to-text (Azure)// Holds a cleanup function for the Azure mic stream + meter
+  const azureMicCloseRef = useRef<null | (() => void)>(null);
+
+  // Optional: expose current mic volume in dB for gating/debug
+  const micDbRef = useRef<null | (() => number)>(null);
+
+  // Push-stream gating: control what audio reaches Azure during TTS
+  const openGateRef = useRef<null | (() => void)>(null);
+  const closeGateRef = useRef<null | (() => void)>(null);
+  const resumeAudioContextRef = useRef<null | (() => Promise<void>)>(null);
   function sttLog(...args: unknown[]) {
     if (!DEBUG_STT) return;
     console.log("[stt]", ...args);
@@ -951,6 +965,13 @@ export default function App() {
     sttGenRef.current += 1; // invalidate any in-flight recognizer/events
     // Allow re-starting immediately even if a prior start promise is still pending.
     sttStartPromiseRef.current = null;
+    azureMicCloseRef.current?.();
+    azureMicCloseRef.current = null;
+    micDbRef.current = null;
+    // Clear gate refs when stopping
+    openGateRef.current = null;
+    closeGateRef.current = null;
+    resumeAudioContextRef.current = null;
     if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
     sttAutoSubmitTimerRef.current = null;
     const r = recognitionRef.current;
@@ -1009,7 +1030,19 @@ export default function App() {
 
     let r: sdk.SpeechRecognizer | null = null;
     try {
-      r = await createAzureRecognizer();
+      const bundle = await createAzureRecognizer();
+      r = bundle.recognizer;
+
+      
+
+      // store these so your recognizing/recognized handlers can gate
+      azureMicCloseRef.current?.();      // close any previous stream if it exists  
+      azureMicCloseRef.current = bundle.close;   // so you can cleanup on replace/stop
+      micDbRef.current = bundle.getDb;           // store function
+      // Store gate control functions for TTS integration
+      openGateRef.current = bundle.openGate;
+      closeGateRef.current = bundle.closeGate;
+      resumeAudioContextRef.current = bundle.resume;
     } catch (err) {
       setSttSupported(false);
       setIsListening(false);
@@ -1067,8 +1100,25 @@ export default function App() {
       if (!sttArmedRef.current) return;
 
       // Ignore stale partials that were captured during TTS but arrive right after arming.
+      // After a barrier restart/flush, use a shorter guard (20ms) since there shouldn't be stale audio.
       const msSinceArmed = Date.now() - sttArmedAtRef.current;
-      if (msSinceArmed < 150) return;
+      const guardMs = sttPostFlushRef.current ? 20 : 150;
+      if (msSinceArmed < guardMs) return;
+
+      // Once we accept any event post-flush, clear the flag
+      if (sttPostFlushRef.current) sttPostFlushRef.current = false;
+
+      // Play the mic ready chime on the first non-empty partial after arming
+      if (sttArmedRef.current && sttBellPendingRef.current && t) {
+        sttBellPendingRef.current = false;
+        if (phaseRef.current === "playing") {
+          const key = `${activePlayerIdRef.current ?? "noplayer"}:${activeSetIdRef.current}:${currentLetterRef.current}:${currentIndexRef.current}`;
+          if (sttMicReadyChimeKeyRef.current !== key) {
+            sttMicReadyChimeKeyRef.current = key;
+            playMicReadyChime();
+          }
+        }
+      }
 
       if (!userEditedAnswerRef.current) setAnswerText(t);
 
@@ -1098,12 +1148,16 @@ export default function App() {
       if (!sttArmedRef.current) return;
 
       // Ignore stale results that were captured during TTS but arrive right after arming.
-      // If the result comes within 150ms of arming, it's likely from speech during TTS.
+      // After a barrier restart/flush, use a shorter guard (20ms) since there shouldn't be stale audio.
       const msSinceArmed = Date.now() - sttArmedAtRef.current;
-      if (msSinceArmed < 150) {
-        if (DEBUG_STT) sttLog("ignoring-stale-result", { finalText, msSinceArmed });
+      const guardMs = sttPostFlushRef.current ? 20 : 150;
+      if (msSinceArmed < guardMs) {
+        if (DEBUG_STT) sttLog("ignoring-stale-result", { finalText, msSinceArmed, guardMs });
         return;
       }
+
+      // Once we accept any event post-flush, clear the flag
+      if (sttPostFlushRef.current) sttPostFlushRef.current = false;
 
       sttLastFinalTextRef.current = finalText;
       sttLastFinalAtRef.current = Date.now();
@@ -1216,6 +1270,8 @@ export default function App() {
     // Just disarm the mic (ignore results) without stopping it.
     // This avoids audio ducking from re-initializing the mic.
     sttArmedRef.current = false;
+    sttPostFlushRef.current = false;
+    sttBellPendingRef.current = false;
     if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
     sttAutoSubmitTimerRef.current = null;
   }
@@ -1284,6 +1340,8 @@ export default function App() {
     // Disarm mic during TTS - don't stop it to avoid audio ducking.
     // The mic stays running continuously; we just ignore its output during TTS.
     disarmListening();
+    // Close the audio gate to send silence to Azure during TTS (prevents leakage).
+    closeGateRef.current?.();
     sttMicReadyChimeKeyRef.current = null;
     if (sttPreStartTimerRef.current) window.clearTimeout(sttPreStartTimerRef.current);
     sttPreStartTimerRef.current = null;
@@ -1312,8 +1370,9 @@ export default function App() {
     ensureListeningForQuestion(hints);
 
     if (!("speechSynthesis" in window)) {
-      // No TTS; arm mic immediately.
+      // No TTS; arm mic and open gate immediately.
       sttCommandKeyRef.current = null;
+      openGateRef.current?.();
       sttArmedRef.current = true;
       sttArmedAtRef.current = Date.now();
       setQuestionRead(true);
@@ -1323,6 +1382,7 @@ export default function App() {
     const t = qa.question.trim();
     if (!t) {
       sttCommandKeyRef.current = null;
+      openGateRef.current?.();
       sttArmedRef.current = true;
       sttArmedAtRef.current = Date.now();
       setQuestionRead(true);
@@ -1345,23 +1405,17 @@ export default function App() {
         sttPreStartTimerRef.current = null;
         sttCommandKeyRef.current = null;
         // Mic is already running (started at the beginning of TTS).
-        // Just arm it to accept results now that TTS is done.
-        // Also clear any pending answer text that might have been captured during TTS.
+        // Open the gate to start sending real audio to Azure, then arm to accept results.
+        // No barrier restart needed: the gate was sending silence during TTS, so no stale audio.
+        openGateRef.current?.();
         setAnswerText("");
         sttLastFinalTextRef.current = "";
         sttLastFinalAtRef.current = 0;
+        sttPostFlushRef.current = true; // Still use short guard since gate was closed
+        sttBellPendingRef.current = true;
         sttArmedRef.current = true;
         sttArmedAtRef.current = Date.now();
         setQuestionRead(true);
-
-        // Play the mic ready chime to signal the user can speak.
-        if (recognitionRef.current && phaseRef.current === "playing") {
-          const key = `${activePlayerIdRef.current ?? "noplayer"}:${activeSetIdRef.current}:${currentLetterRef.current}:${currentIndexRef.current}`;
-          if (sttMicReadyChimeKeyRef.current !== key) {
-            sttMicReadyChimeKeyRef.current = key;
-            playMicReadyChime();
-          }
-        }
       };
 
       const speakChunk = (text: string, rate: number, onDone: () => void) => {
@@ -1481,6 +1535,20 @@ export default function App() {
     load();
     window.speechSynthesis.addEventListener("voiceschanged", load);
     return () => window.speechSynthesis.removeEventListener("voiceschanged", load);
+  }, []);
+
+  // Mobile hardening: resume AudioContext when page becomes visible
+  // This handles iOS/Safari suspending audio when the page is backgrounded
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        sttLog("Page visible, resuming AudioContext");
+        resumeAudioContextRef.current?.();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
   }, []);
 
   // Auto-read the question when the current letter changes during play
@@ -1801,6 +1869,26 @@ export default function App() {
     } catch (e) {
       console.log("Share blocked/cancelled:", e);
     }
+  }
+
+  async function handleShareEmojiSequence() {
+    // Only available for single-player games
+    if (!session || session.players.length !== 1) {
+      alert("La función de compartir emoji solo está disponible para juegos de un solo jugador.");
+      return;
+    }
+
+    // Get the first (and only) player snapshot
+    if (playerSnapshots.length === 0) {
+      alert("No hay resultados para compartir.");
+      return;
+    }
+
+    const snapshot = playerSnapshots[0];
+    const playerName = session.players[0]?.name;
+
+    // Use the refactored function from shareRing
+    await shareEmojiSequence(snapshot.statusByLetter, playerName);
   }
 
   // Request camera only after entering the game screen.
@@ -2523,7 +2611,7 @@ export default function App() {
               ) : recording ? (
                 <>
                   <button className="slideshowShareBtn" onClick={shareRecording}>
-                    📤 Compartir video
+                    📤 Compartir fotos
                   </button>
                   <button
                     className="slideshowShareBtn"
@@ -2533,8 +2621,20 @@ export default function App() {
                       boxShadow: "0 6px 25px rgba(34, 197, 94, 0.5)",
                     }}
                   >
-                    💾 Descargar video
+                    💾 Descargar fotos
                   </button>
+                  {session && session.players.length === 1 && playerSnapshots.length > 0 && (
+                    <button
+                      className="slideshowShareBtn"
+                      onClick={handleShareEmojiSequence}
+                      style={{
+                        background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+                        boxShadow: "0 6px 25px rgba(139, 92, 246, 0.5)",
+                      }}
+                    >
+                      📱 Compartir rueda
+                    </button>
+                  )}
                   <div
                     style={{
                       width: "100%",
@@ -2552,9 +2652,23 @@ export default function App() {
                   </div>
                 </>
               ) : (
-                <button className="slideshowShareBtn" onClick={grabarYCompartir}>
-                  🎥 Grabar y compartir
-                </button>
+                <>
+                  <button className="slideshowShareBtn" onClick={grabarYCompartir}>
+                    🎥 Grabar y compartir
+                  </button>
+                  {session && session.players.length === 1 && playerSnapshots.length > 0 && (
+                    <button
+                      className="slideshowShareBtn"
+                      onClick={handleShareEmojiSequence}
+                      style={{
+                        background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+                        boxShadow: "0 6px 25px rgba(139, 92, 246, 0.5)",
+                      }}
+                    >
+                      📱 Compartir rueda
+                    </button>
+                  )}
+                </>
               )}
             </div>
           </div>
@@ -2585,7 +2699,7 @@ export default function App() {
                   value={setupPlayerCount}
                   onChange={(e) => setSetupPlayerCount(Number(e.target.value))}
                 >
-                  {[2, 3, 4].map((n) => (
+                  {[1, 2, 3, 4].map((n) => (
                     <option key={n} value={n}>
                       {n}
                     </option>
@@ -2915,7 +3029,7 @@ export default function App() {
                         value={answerText}
                         placeholder={
                           sttSupported
-                            ? isListening
+                            ? isListening && questionRead
                               ? "Escuchando…"
                               : ""
                             : "Tu navegador no soporta reconocimiento de voz: prueba a usar otro buscador"
@@ -2946,7 +3060,7 @@ export default function App() {
                       ) : null}
                       {!sttError ? (
                         <div className="answerReveal" style={{ marginTop: 6 }}>
-                          {sttSupported ? (isListening ? "Escuchando…" : "Micrófono listo") : "Intenta jugar con otro navegador"}
+                          {sttSupported ? (isListening && questionRead ? "Escuchando…" : "Micrófono listo") : "Intenta jugar con otro navegador"}
                         </div>
                       ) : null}
                       {feedback === "wrong" || revealed ? (

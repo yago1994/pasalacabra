@@ -21,7 +21,7 @@ npm run build
 ## Game flow
 
 ### Setup screen (before the game)
-- Pick **number of players**: 2–6.
+- Pick **number of players**: 1–4.
 - Enter each player's **name**.
 - Select **topics** for the game (at least one required).
 - Optional: Enable **Test Mode** to use a fixed question set for testing.
@@ -68,6 +68,7 @@ npm run build
 - The slideshow loops continuously until manually closed.
 - **Video recording**: The slideshow is automatically recorded at 30fps when it starts.
 - A **💾 Download** button appears in the slideshow overlay to save the recorded video (`.webm` format) for sharing on social media.
+- **📱 Share results** (single-player only): Share your game results in a Wordle-like emoji format. Displays a circular ring pattern (11x10 grid) with emojis representing correct (🟢), wrong (🔴), and skipped (🔵) letters, along with your score summary. Uses the Web Share API when available, or copies to clipboard as fallback.
 
 ## Data & architecture
 
@@ -117,6 +118,8 @@ Example host from a previous run:
 
 ## Recent Updates
 
+- **Emoji share feature**: Share single-player game results in Wordle-like format with a circular ring pattern (11x10 grid)
+- **Single-player mode**: Added support for 1-player games with dedicated share functionality
 - **Snapshot capture**: Automatically captures player photos when timer runs out, showing their final letter ring state
 - **End-of-game slideshow**: Beautiful animated slideshow displaying all player snapshots with scores and winner badges
 - **Video recording**: Automatic recording of the slideshow animation for easy sharing (30fps, WebM format)
