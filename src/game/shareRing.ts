@@ -166,14 +166,9 @@ export const PASALACABRA_LETTERS: string[] = [
       }
     }
 
-    // Generate a simple game ID (using player name or timestamp)
-    const gameId = playerName
-      ? playerName.toLowerCase().replace(/\s+/g, "-")
-      : `game-${Date.now().toString().slice(-6)}`;
-
     // Build the share text
     const shareText = buildEmojiRingShare({
-      title: `Pasala🐐 #${gameId}`,
+      title: `Pasala🐐`,
       subtitle: `${correct}✅ ${wrong}❌ · ${skip}⏭`,
       letters: PASALACABRA_LETTERS,
       statusesByLetter,
