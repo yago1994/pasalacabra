@@ -2463,12 +2463,32 @@ export default function App() {
     
     const letter = lastWrongLetter;
     
-    // Play the correct sound
+    // Use refs to get current values (avoids stale closures)
+    const status = statusByLetterRef.current;
+    
+    // Get the index of the letter that was marked wrong (not the current index,
+    // which may have already been moved forward in markWrong for multiplayer)
+    const wrongLetterIdx = letters.indexOf(letter);
+    if (wrongLetterIdx === -1) return; // Safety check
+    
+    // Stop any current speaking (e.g., "No. La respuesta correcta es: ...")
+    stopSpeaking();
+    
+    // Clear any existing feedback timer
+    if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
+    
+    // Play the correct sound, then speak "Sí"
     void ensureSfxReady().then(() => {
       playSfx("correct");
+      window.setTimeout(() => {
+        speakWithCallback("Sí", () => {
+          // no-op
+        });
+      }, 120);
     });
     
     // Update status to correct
+    const statusAfter = { ...status, [letter]: "correct" as LetterStatus };
     setStatusByLetter((prev) => {
       const next = { ...prev };
       next[letter] = "correct";
@@ -2481,6 +2501,37 @@ export default function App() {
     
     // Clear the override state
     setLastWrongLetter(null);
+    
+    // Clear feedback and revealed states
+    setFeedback(null);
+    setRevealed(false);
+    setTurnMessage("");
+    
+    // Pause so "Sí" + sound are fully perceivable before next question starts.
+    // This matches the behavior in markCorrect (650ms delay)
+    feedbackTimerRef.current = window.setTimeout(() => {
+      // Check if there are more questions to answer
+      if (!anyUnresolved(statusAfter, letters)) {
+        // No more questions - end the turn
+        endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
+        return;
+      }
+      
+      // Find the next unresolved question starting from the letter that was just corrected
+      // (This matches the behavior in markCorrect where we start from the current letter)
+      const nextIdx = nextUnresolvedIndex(letters, statusAfter, wrongLetterIdx);
+      if (nextIdx === -1) {
+        // No next question found - end the turn
+        endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
+        return;
+      }
+      
+      // Resume the turn: continue playing with the next question
+      // The effect at line 1554 will automatically read the question and start listening
+      // when currentIndex changes and phase is "playing"
+      setPhase("playing");
+      setCurrentIndex(nextIdx);
+    }, 650);
   }
 
   function submitAnswer(spokenOverride?: string) {
