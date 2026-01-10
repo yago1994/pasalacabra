@@ -69,9 +69,9 @@ export const PASALACABRA_LETTERS: string[] = [
         .map(() => Array(gridWidth).fill("⬛"));
       
       // Predefined positions for the ring pattern (11x10 grid)
-      // Positions arranged clockwise starting from top center, matching the visual pattern exactly
+      // Positions arranged clockwise starting from [0,5] (A) and ending at [0,4] (Z)
       // Format: [row, col] for each of the 25 letters
-      // Pattern: ⬛⬛⬛⬛🔵🟢🟢⬛⬛⬛⬛ (row 0)
+      // Pattern: ⬛⬛⬛⬛🔵🟢🟢⬛⬛⬛⬛ (row 0) - Z at [0,4], A at [0,5]
       //          ⬛⬛🔵🔵⬛⬛⬛🟢🟢⬛⬛ (row 1)
       //          ⬛🔵⬛⬛⬛⬛⬛⬛⬛🟢⬛ (row 2)
       //          🔵⬛⬛⬛⬛⬛⬛⬛⬛⬛🟢 (rows 3-6)
@@ -79,19 +79,21 @@ export const PASALACABRA_LETTERS: string[] = [
       //          ⬛⬛🔵⬛⬛⬛⬛⬛🟢⬛⬛ (row 8)
       //          ⬛⬛⬛🔵🔵⬛🔵🟢⬛⬛⬛ (row 9)
       const ringPositions: Array<[number, number]> = [
-        // Top center, going clockwise
-        [0, 4], [0, 5], [0, 6],  // Top center (3)
-        [1, 7], [1, 8],           // Top-right (2) = 5
-        [2, 9],                   // Right upper (1) = 6
-        [3, 10], [4, 10], [5, 10], [6, 10], // Right side (4) = 10
-        [7, 9],                   // Right lower (1) = 11
-        [8, 8],                   // Bottom-right (1) = 12
-        [9, 7], [9, 6], [9, 4], [9, 3], // Bottom (4) = 16 (positions 3,4,6,7 skipping 5)
-        [8, 2],                   // Bottom-left (1) = 17
-        [7, 1],                   // Left lower (1) = 18
-        [6, 0], [5, 0], [4, 0], [3, 0], // Left side (4) = 22
-        [2, 1],                   // Left upper (1) = 23
-        [1, 3], [1, 2],           // Top-left (2) = 25 (closes the ring)
+        // Starting at [0,5] for A, going clockwise, ending at [0,4] for Z
+        [0, 5],                   // A (position 0)
+        [0, 6],                   // B
+        [1, 7], [1, 8],           // C, D
+        [2, 9],                   // E
+        [3, 10], [4, 10], [5, 10], [6, 10], // F, G, H, I
+        [7, 9],                   // J
+        [8, 8],                   // L
+        [9, 7], [9, 6], [9, 4], [9, 3], // M, N, Ñ, O
+        [8, 2],                   // P
+        [7, 1],                   // Q
+        [6, 0], [5, 0], [4, 0], [3, 0], // R, S, T, U
+        [2, 1],                   // V
+        [1, 3], [1, 2],           // X, Y
+        [0, 4],                   // Z (position 24)
       ];
       
       // Place each letter at its predefined position

@@ -362,6 +362,11 @@ export default function App() {
 
   // Optional: expose current mic volume in dB for gating/debug
   const micDbRef = useRef<null | (() => number)>(null);
+
+  // Push-stream gating: control what audio reaches Azure during TTS
+  const openGateRef = useRef<null | (() => void)>(null);
+  const closeGateRef = useRef<null | (() => void)>(null);
+  const resumeAudioContextRef = useRef<null | (() => Promise<void>)>(null);
   function sttLog(...args: unknown[]) {
     if (!DEBUG_STT) return;
     console.log("[stt]", ...args);
@@ -963,6 +968,10 @@ export default function App() {
     azureMicCloseRef.current?.();
     azureMicCloseRef.current = null;
     micDbRef.current = null;
+    // Clear gate refs when stopping
+    openGateRef.current = null;
+    closeGateRef.current = null;
+    resumeAudioContextRef.current = null;
     if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
     sttAutoSubmitTimerRef.current = null;
     const r = recognitionRef.current;
@@ -1030,6 +1039,10 @@ export default function App() {
       azureMicCloseRef.current?.();      // close any previous stream if it exists  
       azureMicCloseRef.current = bundle.close;   // so you can cleanup on replace/stop
       micDbRef.current = bundle.getDb;           // store function
+      // Store gate control functions for TTS integration
+      openGateRef.current = bundle.openGate;
+      closeGateRef.current = bundle.closeGate;
+      resumeAudioContextRef.current = bundle.resume;
     } catch (err) {
       setSttSupported(false);
       setIsListening(false);
@@ -1288,25 +1301,6 @@ export default function App() {
     });
   }
 
-  async function barrierRestartRecognizer() {
-    const r = recognitionRef.current;
-    if (!r) return;
-  
-    await new Promise<void>((resolve) => {
-      r.stopContinuousRecognitionAsync(
-        () => resolve(),
-        () => resolve() // treat stop errors as non-fatal
-      );
-    });
-  
-    await new Promise<void>((resolve, reject) => {
-      r.startContinuousRecognitionAsync(
-        () => resolve(),
-        (err) => reject(err)
-      );
-    });
-  }
-
   function speakWithCallback(text: string, onDone: () => void, opts?: { rate?: number }) {
     if (!("speechSynthesis" in window)) {
       onDone();
@@ -1346,6 +1340,8 @@ export default function App() {
     // Disarm mic during TTS - don't stop it to avoid audio ducking.
     // The mic stays running continuously; we just ignore its output during TTS.
     disarmListening();
+    // Close the audio gate to send silence to Azure during TTS (prevents leakage).
+    closeGateRef.current?.();
     sttMicReadyChimeKeyRef.current = null;
     if (sttPreStartTimerRef.current) window.clearTimeout(sttPreStartTimerRef.current);
     sttPreStartTimerRef.current = null;
@@ -1374,8 +1370,9 @@ export default function App() {
     ensureListeningForQuestion(hints);
 
     if (!("speechSynthesis" in window)) {
-      // No TTS; arm mic immediately.
+      // No TTS; arm mic and open gate immediately.
       sttCommandKeyRef.current = null;
+      openGateRef.current?.();
       sttArmedRef.current = true;
       sttArmedAtRef.current = Date.now();
       setQuestionRead(true);
@@ -1385,6 +1382,7 @@ export default function App() {
     const t = qa.question.trim();
     if (!t) {
       sttCommandKeyRef.current = null;
+      openGateRef.current?.();
       sttArmedRef.current = true;
       sttArmedAtRef.current = Date.now();
       setQuestionRead(true);
@@ -1407,21 +1405,17 @@ export default function App() {
         sttPreStartTimerRef.current = null;
         sttCommandKeyRef.current = null;
         // Mic is already running (started at the beginning of TTS).
-        // Just arm it to accept results now that TTS is done.
-        // Also clear any pending answer text that might have been captured during TTS.
-        void (async () => {
-          await barrierRestartRecognizer();
-        
-          // now arm immediately after flush
-          setAnswerText("");
-          sttLastFinalTextRef.current = "";
-          sttLastFinalAtRef.current = 0;
-          sttPostFlushRef.current = true;
-          sttBellPendingRef.current = true;
-          sttArmedRef.current = true;
-          sttArmedAtRef.current = Date.now();
-          setQuestionRead(true);
-        })();
+        // Open the gate to start sending real audio to Azure, then arm to accept results.
+        // No barrier restart needed: the gate was sending silence during TTS, so no stale audio.
+        openGateRef.current?.();
+        setAnswerText("");
+        sttLastFinalTextRef.current = "";
+        sttLastFinalAtRef.current = 0;
+        sttPostFlushRef.current = true; // Still use short guard since gate was closed
+        sttBellPendingRef.current = true;
+        sttArmedRef.current = true;
+        sttArmedAtRef.current = Date.now();
+        setQuestionRead(true);
       };
 
       const speakChunk = (text: string, rate: number, onDone: () => void) => {
@@ -1541,6 +1535,20 @@ export default function App() {
     load();
     window.speechSynthesis.addEventListener("voiceschanged", load);
     return () => window.speechSynthesis.removeEventListener("voiceschanged", load);
+  }, []);
+
+  // Mobile hardening: resume AudioContext when page becomes visible
+  // This handles iOS/Safari suspending audio when the page is backgrounded
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        sttLog("Page visible, resuming AudioContext");
+        resumeAudioContextRef.current?.();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
   }, []);
 
   // Auto-read the question when the current letter changes during play
