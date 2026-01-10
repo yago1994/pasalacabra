@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import LetterRing from "./components/LetterRing";
+import GameDetails, { type SetupPlayer } from "./components/GameDetails";
+import HomePage from "./components/HomePage";
 import {
   SPANISH_LETTERS,
   type Letter,
@@ -40,7 +42,7 @@ export type PlayerSnapshot = {
 };
 
 type GamePhase = "idle" | "playing" | "ended";
-type Screen = "setup" | "game";
+type Screen = "home" | "setup" | "game";
 
 const TURN_SECONDS =180; // Default fallback (will be replaced by difficulty-based time)
 
@@ -212,34 +214,17 @@ export default function App() {
   const letters = SPANISH_LETTERS;
   const availableSets = useMemo(() => listSets(), []);
 
-  const [screen, setScreen] = useState<Screen>("setup");
+  const [screen, setScreen] = useState<Screen>("home");
   const [setupPlayerCount, setSetupPlayerCount] = useState<number>(2);
   const [difficultyMode, setDifficultyMode] = useState<DifficultyMode>("medio");
   
   // Topic selection state
-  // Topics with available question files (value is the Topic key, label is for display)
-  const allTopics: { value: Topic; label: string }[] = [
-    { value: "astronomia", label: "🌃 Astronomía" },
-    { value: "biologia", label: "🌱 Biología" },
-    { value: "musica", label: "🎵 Música" },
-    { value: "deporte", label: "🏆 Deporte" },
-    { value: "ciencia", label: "🔬 Ciencia" },
-    { value: "cine", label: "🎥 Cine" },
-    { value: "historia", label: "🗺️ Historia" },
-    { value: "geografia", label: "🌍 Geografía" },
-    { value: "arte", label: "🎨 Arte" },
-    { value: "folklore", label: "✨ Folklore" },
-    { value: "culturageneral", label: "📚 Cultura" },
-  ];
   const [selectedTopics, setSelectedTopics] = useState<Set<Topic>>(new Set());
   const [topicSelectionError, setTopicSelectionError] = useState<string>("");
-  const [showHowToPlay, setShowHowToPlay] = useState<boolean>(false);
-  const [showAbout, setShowAbout] = useState<boolean>(false);
   const [testMode, setTestMode] = useState<boolean>(isStagingMode());
   // Generated question banks for each player (indexed by player id)
   const [generatedBanks, setGeneratedBanks] = useState<Record<string, Map<Letter, TopicQA>>>({});
   
-  type SetupPlayer = { name: string; setId: string };
   const [setupPlayers, setSetupPlayers] = useState<SetupPlayer[]>(() => {
     const def = "set_04"; // Set all to set 4 as requested
     return [
@@ -315,6 +300,10 @@ export default function App() {
   const sttGenRef = useRef<number>(0);
   const sttAutoSubmitTimerRef = useRef<number | null>(null);
   const sttAutoSubmitSeqRef = useRef<number>(0);
+  // Interim-based auto-submit: faster response when user stops speaking
+  const sttInterimAutoSubmitTimerRef = useRef<number | null>(null);
+  const sttLastInterimTextRef = useRef<string>("");
+  const sttLastInterimAtRef = useRef<number>(0);
   const sttLastFinalTextRef = useRef<string>("");
   const sttLastFinalAtRef = useRef<number>(0);
   const micWarmRef = useRef<boolean>(false);
@@ -393,6 +382,9 @@ export default function App() {
       // Some browsers "warm up" the TTS pipeline on first utterance (volume ducking / ramp).
       // Speak a near-instant, muted utterance once so the first real question sounds consistent.
       const u = new SpeechSynthesisUtterance(".");
+      const v = getSpanishVoice(voices);
+      if (v) u.voice = v;
+      u.lang = (v?.lang || "es-ES") as string;
       u.volume = 0;
       u.rate = 10;
       u.pitch = 1;
@@ -428,6 +420,9 @@ export default function App() {
 
     try {
       const u = new SpeechSynthesisUtterance("a");
+      const v = getSpanishVoice(voices);
+      if (v) u.voice = v;
+      u.lang = (v?.lang || "es-ES") as string;
       u.volume = 0.02; // low but non-zero so the audio path engages
       u.rate = 4;
       u.pitch = 1;
@@ -933,6 +928,31 @@ export default function App() {
       return esES ?? es[0] ?? vs[0] ?? null;
     })();
     
+    // Helper function to find Monica voice using multiple strategies
+    const findMonicaVoice = () => {
+      // Strategy 1: Exact voiceURI match for macOS Safari
+      const macosVoice = vs.find(
+        (v) => v.voiceURI === "com.apple.voice.super-compact.es-ES.Monica"
+      );
+      if (macosVoice) return macosVoice;
+      
+      // Strategy 2: Search for "monica" or "mónica" in voiceURI (case-insensitive)
+      const uriMatch = vs.find((v) => 
+        v.voiceURI.toLowerCase().includes("monica") || 
+        v.voiceURI.toLowerCase().includes("mónica")
+      );
+      if (uriMatch) return uriMatch;
+      
+      // Strategy 3: Search for "monica" or "mónica" in name (case-insensitive)
+      const nameMatch = vs.find((v) => 
+        v.name.toLowerCase().includes("monica") || 
+        v.name.toLowerCase().includes("mónica")
+      );
+      if (nameMatch) return nameMatch;
+      
+      return null;
+    };
+    
     // Firefox detection - use Monica voice
     if (userAgent.includes("firefox")) {
       const firefoxVoice = vs.find(
@@ -951,7 +971,15 @@ export default function App() {
       return defaultVoice;
     }
     
-    // Safari or other browsers - use default Spanish voice
+    // Safari detection (macOS and iOS) - use Monica voice
+    if (userAgent.includes("safari") && !userAgent.includes("chrome")) {
+      const monicaVoice = findMonicaVoice();
+      if (monicaVoice) return monicaVoice;
+      // Fallback to default if Monica not found
+      return defaultVoice;
+    }
+    
+    // Other browsers - use default Spanish voice
     return defaultVoice;
   }
 
@@ -974,6 +1002,8 @@ export default function App() {
     resumeAudioContextRef.current = null;
     if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
     sttAutoSubmitTimerRef.current = null;
+    if (sttInterimAutoSubmitTimerRef.current) window.clearTimeout(sttInterimAutoSubmitTimerRef.current);
+    sttInterimAutoSubmitTimerRef.current = null;
     const r = recognitionRef.current;
     recognitionRef.current = null;
     phraseListRef.current = null;
@@ -1128,14 +1158,38 @@ export default function App() {
       const key = `${activePlayerIdRef.current ?? "noplayer"}:${activeSetIdRef.current}:${currentLetterRef.current}:${currentIndexRef.current}`;
       if (sttCommandKeyRef.current === key) return;
       const { ok, normalizedJoined } = shouldTriggerPasalacabra(t);
-      if (!ok) return;
-      sttLog("command-check(interim)", { normalizedJoined });
-      sttCommandKeyRef.current = key;
-      stopListening("user");
-      userEditedAnswerRef.current = false;
-      setAnswerText("");
-      sttLog("-> triggering PASALACABRA (interim)");
-      handlePasalacabra();
+      if (ok) {
+        sttLog("command-check(interim)", { normalizedJoined });
+        sttCommandKeyRef.current = key;
+        stopListening("user");
+        userEditedAnswerRef.current = false;
+        setAnswerText("");
+        sttLog("-> triggering PASALACABRA (interim)");
+        handlePasalacabra();
+        return;
+      }
+
+      // Interim-based auto-submit: if no new speech arrives within 500ms, submit the interim text.
+      // This is faster than waiting for Azure's final (which waits for silence + post-processing).
+      // Only for regular answers (not commands like pasalacabra which are handled above).
+      if (userEditedAnswerRef.current) return;
+      sttLastInterimTextRef.current = t;
+      sttLastInterimAtRef.current = Date.now();
+      if (sttInterimAutoSubmitTimerRef.current) window.clearTimeout(sttInterimAutoSubmitTimerRef.current);
+      const interimSeq = (sttAutoSubmitSeqRef.current += 1);
+      sttInterimAutoSubmitTimerRef.current = window.setTimeout(() => {
+        // Don't submit if a final already handled it or if state changed
+        if (interimSeq !== sttAutoSubmitSeqRef.current) return;
+        if (phaseRef.current !== "playing") return;
+        if (!sttArmedRef.current) return;
+        // Don't submit if user edited the answer manually
+        if (userEditedAnswerRef.current) return;
+        // Submit using the last interim text
+        const textToSubmit = sttLastInterimTextRef.current.trim();
+        if (!textToSubmit) return;
+        sttLog("interim-auto-submit", { textToSubmit });
+        submitAnswerRef.current(textToSubmit);
+      }, 500);
     };
 
     r.recognized = (_s, e) => {
@@ -1143,6 +1197,12 @@ export default function App() {
       if (e.result.reason !== sdk.ResultReason.RecognizedSpeech) return;
       const finalText = (e.result.text ?? "").trim();
       if (DEBUG_STT && finalText) sttLog("final", finalText);
+
+      // Clear any pending interim auto-submit since final is more authoritative
+      if (sttInterimAutoSubmitTimerRef.current) {
+        window.clearTimeout(sttInterimAutoSubmitTimerRef.current);
+        sttInterimAutoSubmitTimerRef.current = null;
+      }
 
       // Only accept transcriptions after the question has finished reading.
       if (!sttArmedRef.current) return;
@@ -1274,6 +1334,8 @@ export default function App() {
     sttBellPendingRef.current = false;
     if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
     sttAutoSubmitTimerRef.current = null;
+    if (sttInterimAutoSubmitTimerRef.current) window.clearTimeout(sttInterimAutoSubmitTimerRef.current);
+    sttInterimAutoSubmitTimerRef.current = null;
   }
 
   function ensureListeningForQuestion(hints: string[]) {
@@ -1317,22 +1379,58 @@ export default function App() {
     const v = getSpanishVoice(voices);
     if (v) utterance.voice = v;
     utterance.lang = (v?.lang || "es-ES") as string;
-    utterance.rate = opts?.rate ?? 1.0;
+    const rate = opts?.rate ?? 1.0;
+    utterance.rate = rate;
     utterance.pitch = 1;
     utterance.volume = 1;
 
     let done = false;
+    let pollId: number | null = null;
+    let maxTimer: number | null = null;
+
     const finish = () => {
       if (done) return;
       done = true;
+      if (pollId) window.clearInterval(pollId);
+      if (maxTimer) window.clearTimeout(maxTimer);
       onDone();
     };
     utterance.onend = finish;
     utterance.onerror = finish;
 
     window.speechSynthesis.speak(utterance);
-    // Fallback in case onend doesn't fire (some mobile edge cases)
-    window.setTimeout(finish, 600);
+
+    // Dynamic TTS end detection (same pattern as speakCurrentQuestionThenListen):
+    // - Safari can have unreliable `onend` timing; also, we never want to "end early".
+    // - We poll `speechSynthesis.speaking` and only finish when it truly stops.
+    // - We still include a generous max timeout as a safety valve.
+    const startedAt = Date.now();
+    const words = t.split(/\s+/).filter(Boolean).length;
+    // Adjust for speech rate: at rate 0.9, TTS is ~10% slower
+    // Estimate ~200ms per word at normal rate, with buffer
+    const maxMs = Math.min(45000, Math.max(2000, words * (250 / rate)));
+
+    let speechStoppedAt: number | null = null;
+    pollId = window.setInterval(() => {
+      if (done) return;
+      const now = Date.now();
+      if (now - startedAt < 400) return; // avoid false negatives right after speak()
+      
+      if (!window.speechSynthesis.speaking) {
+        // Speech has stopped, but wait 300ms to ensure audio buffer finishes
+        if (speechStoppedAt === null) {
+          speechStoppedAt = now;
+        } else if (now - speechStoppedAt >= 300) {
+          // Speech has been stopped for at least 300ms, safe to finish
+          finish();
+        }
+      } else {
+        // Speech is still speaking, reset the stopped timer
+        speechStoppedAt = null;
+      }
+    }, 120);
+
+    maxTimer = window.setTimeout(finish, maxMs);
   }
 
   function speakCurrentQuestionThenListen() {
@@ -2106,6 +2204,72 @@ export default function App() {
     }));
   }, [activePlayerId, screen, statusByLetter, currentIndex, timeLeft, revealed]);
 
+  async function startDailyGame() {
+    unlockAudioOnce();
+    // Warm up microphone permission first. On some browsers, requesting mic can temporarily
+    // affect the audio session, so it before the first meaningful TTS utterance.
+    await warmupMicrophoneOnce();
+
+    warmupSpeechSynthesisOnce();
+    setGameOver(false);
+    setGameOverMessage("");
+    // Clear previous snapshots when starting a new game
+    for (const snapshot of playerSnapshots) {
+      URL.revokeObjectURL(snapshot.blobUrl);
+    }
+    setPlayerSnapshots([]);
+    setSlideshowActive(false);
+    setSlideshowIndex(0);
+    
+    // Create a single player using set_01 for daily game
+    const players: Player[] = [{ 
+      id: "p1", 
+      name: "Jugador 1", 
+      setId: "set_01" 
+    }];
+
+    // Don't set generatedBanks - the game will use the set file directly via setId
+    setGeneratedBanks({});
+
+    const dailyDifficulty: DifficultyMode = "medio"; // Default difficulty for daily game
+    const timePerPlayer = getTimeFromDifficulty(dailyDifficulty);
+    const initialStates: Record<string, PlayerState> = {};
+    for (const p of players) {
+      const s = {} as Record<Letter, LetterStatus>;
+      for (const l of letters) s[l] = "pending";
+      s[letters[0]] = "current";
+      initialStates[p.id] = { statusByLetter: s, currentIndex: 0, timeLeft: timePerPlayer, revealed: false };
+    }
+
+    const proceedToGame = () => {
+      setPlayerStates(initialStates);
+      setSession({ players, currentPlayerIndex: 0, difficulty: dailyDifficulty });
+      setScreen("game"); // triggers camera permission request (see effect above)
+      setPhase("idle");
+      setTurnMessage("");
+      setFeedback(null);
+
+      const first = players[0];
+      if (first) {
+        const st = initialStates[first.id];
+        setStatusByLetter(st.statusByLetter);
+        setCurrentIndex(st.currentIndex);
+        setTimeLeft(st.timeLeft);
+        setRevealed(st.revealed);
+        // Mark this player as loaded so the persist effect works correctly
+        lastLoadedPlayerIdRef.current = first.id;
+      }
+
+      // Start the recognizer early (before first TTS) to avoid audio ducking.
+      // Use generic hints; they'll be updated when the first question starts.
+      const genericHints = ["pasalacabra", "pasapalabra", "pasa", "cabra"];
+      sttArmedRef.current = false; // Don't process results yet
+      ensureListeningForQuestion(genericHints);
+    };
+
+    proceedToGame();
+  }
+
   async function startFromSetup() {
     // Validate that at least one topic is selected (unless in test mode)
     if (!testMode && selectedTopics.size === 0) {
@@ -2349,16 +2513,9 @@ export default function App() {
     stopSpeaking();
     if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
     setFeedback("correct");
-    // Play SFX first, then speak.
-    void ensureSfxReady().then(() => {
-      playSfx("correct");
-      window.setTimeout(() => {
-        speakWithCallback("Sí", () => {
-          // no-op
-        });
-      }, 120);
-    });
-
+    
+    // Update status to correct
+    const statusAfter = { ...status, [letter]: "correct" as LetterStatus };
     setStatusByLetter((prev) => {
       const next = { ...prev };
       next[letter] = "correct";
@@ -2369,20 +2526,29 @@ export default function App() {
     setRecentlyCorrectLetter(letter);
     setTimeout(() => setRecentlyCorrectLetter(null), 1200);
 
-    // Pause so "Sí" + sound are fully perceivable before next question starts.
-    const statusAfter = { ...status, [letter]: "correct" as LetterStatus };
-    feedbackTimerRef.current = window.setTimeout(() => {
-      if (!anyUnresolved(statusAfter, letters)) {
-        endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
-        return;
-      }
-      const nextIdx = nextUnresolvedIndex(letters, statusAfter, idx);
-      if (nextIdx === -1) {
-        endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
-        return;
-      }
-      setCurrentIndex(nextIdx);
-    }, 650);
+    // Play SFX first, then speak. When speech finishes, move to next question.
+    void ensureSfxReady().then(() => {
+      playSfx("correct");
+      window.setTimeout(() => {
+        speakWithCallback("Sí", () => {
+          // Speech has finished according to polling, but add a small buffer
+          // to ensure audio buffer is fully done before moving to next question
+          if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
+          feedbackTimerRef.current = window.setTimeout(() => {
+            if (!anyUnresolved(statusAfter, letters)) {
+              endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
+              return;
+            }
+            const nextIdx = nextUnresolvedIndex(letters, statusAfter, idx);
+            if (nextIdx === -1) {
+              endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
+              return;
+            }
+            setCurrentIndex(nextIdx);
+          }, 200); // Small buffer to ensure audio buffer finishes (polling already waits 300ms)
+        });
+      }, 120);
+    });
   }
 
   function markWrong() {
@@ -2432,21 +2598,26 @@ export default function App() {
       playSfx("wrong");
       window.setTimeout(() => {
         speakWithCallback(`No. La respuesta correcta es: ${correctAnswer}`, () => {
-          // After speaking, either continue or end turn
+          // Speech has finished according to polling, but add a small buffer
+          // to ensure audio buffer is fully done before moving to next question
           if (shouldContinuePlaying) {
             // Single player or last player standing: continue to next question
-            if (nextIdx === -1 || !anyUnresolved(statusAfter, letters)) {
-              // No more questions - game ends
-              setGameOver(true);
-              setGameOverMessage("🎮 Fin del juego.");
-              endTurn("");
-            } else {
-              // Continue to next question
-              setCurrentIndex(nextIdx);
-              setRevealed(false);
-              setFeedback(null);
-              setLastWrongLetter(null);
-            }
+            if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
+            feedbackTimerRef.current = window.setTimeout(() => {
+              if (nextIdx === -1 || !anyUnresolved(statusAfter, letters)) {
+                // No more questions - game ends
+                setGameOver(true);
+                setGameOverMessage("🎮 Fin del juego.");
+                endTurn("");
+              } else {
+                // Continue to next question - audio buffer is fully finished now
+                // The effect at line 1610 will automatically read the question when currentIndex changes
+                setCurrentIndex(nextIdx);
+                setRevealed(false);
+                setFeedback(null);
+                setLastWrongLetter(null);
+              }
+            }, 300); // Small buffer to ensure audio buffer finishes (polling already waits 300ms)
           } else {
             // Multiplayer with multiple players remaining: end the turn
             if (nextIdx !== -1) setCurrentIndex(nextIdx);
@@ -2463,12 +2634,32 @@ export default function App() {
     
     const letter = lastWrongLetter;
     
-    // Play the correct sound
+    // Use refs to get current values (avoids stale closures)
+    const status = statusByLetterRef.current;
+    
+    // Get the index of the letter that was marked wrong (not the current index,
+    // which may have already been moved forward in markWrong for multiplayer)
+    const wrongLetterIdx = letters.indexOf(letter);
+    if (wrongLetterIdx === -1) return; // Safety check
+    
+    // Stop any current speaking (e.g., "No. La respuesta correcta es: ...")
+    stopSpeaking();
+    
+    // Clear any existing feedback timer
+    if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
+    
+    // Play the correct sound, then speak "Sí"
     void ensureSfxReady().then(() => {
       playSfx("correct");
+      window.setTimeout(() => {
+        speakWithCallback("Sí", () => {
+          // no-op
+        });
+      }, 120);
     });
     
     // Update status to correct
+    const statusAfter = { ...status, [letter]: "correct" as LetterStatus };
     setStatusByLetter((prev) => {
       const next = { ...prev };
       next[letter] = "correct";
@@ -2481,6 +2672,37 @@ export default function App() {
     
     // Clear the override state
     setLastWrongLetter(null);
+    
+    // Clear feedback and revealed states
+    setFeedback(null);
+    setRevealed(false);
+    setTurnMessage("");
+    
+    // Pause so "Sí" + sound are fully perceivable before next question starts.
+    // This matches the behavior in markCorrect (650ms delay)
+    feedbackTimerRef.current = window.setTimeout(() => {
+      // Check if there are more questions to answer
+      if (!anyUnresolved(statusAfter, letters)) {
+        // No more questions - end the turn
+        endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
+        return;
+      }
+      
+      // Find the next unresolved question starting from the letter that was just corrected
+      // (This matches the behavior in markCorrect where we start from the current letter)
+      const nextIdx = nextUnresolvedIndex(letters, statusAfter, wrongLetterIdx);
+      if (nextIdx === -1) {
+        // No next question found - end the turn
+        endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
+        return;
+      }
+      
+      // Resume the turn: continue playing with the next question
+      // The effect at line 1554 will automatically read the question and start listening
+      // when currentIndex changes and phase is "playing"
+      setPhase("playing");
+      setCurrentIndex(nextIdx);
+    }, 650);
   }
 
   function submitAnswer(spokenOverride?: string) {
@@ -2675,303 +2897,53 @@ export default function App() {
         );
       })()}
 
-      <div className="overlay">
-        <div className="topBar">
-          {screen === "game" ? (
-            <>
-              <div className="playerTag">{currentPlayerLabel}</div>
-              <div className="timerBig">{formatTime(timeLeft)}</div>
-            </>
-          ) : (
-            <div className="setupTopTitle"></div>
-          )}
-        </div>
-
-        {screen === "setup" ? (
-          <div className="center">
-            <div className="setupCard">
-              <div className="setupTitle">Jugadores</div>
-
-              <label className="setupLabel">
-                Número de jugadores
-                <select
-                  className="setupSelect"
-                  value={setupPlayerCount}
-                  onChange={(e) => setSetupPlayerCount(Number(e.target.value))}
-                >
-                  {[1, 2, 3, 4].map((n) => (
-                    <option key={n} value={n}>
-                      {n}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label className="setupLabel" style={{ marginTop: 24 }}>
-                Dificultad
-                <select
-                  className="setupSelect"
-                  value={difficultyMode}
-                  onChange={(e) => setDifficultyMode(e.target.value as DifficultyMode)}
-                >
-                  <option value="dificil">
-                    Difícil: {isStagingMode() ? "2 secs" : "3 mins"}
-                  </option>
-                  <option value="medio">
-                    Media: {isStagingMode() ? "15 secs" : "4 mins"}
-                  </option>
-                  <option value="facil">Fácil: 5 mins</option>
-                </select>
-              </label>
-
-              <div className="setupPlayers">
-                {Array.from({ length: setupPlayerCount }, (_, i) => (
-                  <div 
-                    key={i} 
-                    style={{ 
-                      display: "flex", 
-                      alignItems: "center", 
-                      gap: 10, 
-                      marginBottom: 8 
-                    }}
-                  >
-                    <span style={{ minWidth: 80, fontSize: "0.95rem" }}>Jugador {i + 1}</span>
-                    <input
-                      className="setupInput"
-                      style={{ flex: 1, margin: 0 }}
-                      value={setupPlayers[i]?.name ?? ""}
-                      placeholder="Nombre"
-                      onChange={(e) => {
-                        const v = e.target.value;
-                        setSetupPlayers((prev) => {
-                          const copy = [...prev];
-                          const cur = copy[i] ?? { name: "", setId: "set_04" };
-                          copy[i] = { ...cur, name: v };
-                          return copy;
-                        });
-                      }}
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Test Mode Toggle - Visible in staging */}
-              {isStagingMode() && (
-                <label 
-                  className="testModeToggle" 
-                  style={{ 
-                    display: "flex", 
-                    alignItems: "center", 
-                    gap: 10, 
-                    marginTop: 24,
-                    padding: "10px 14px",
-                    background: testMode ? "rgba(255,200,0,0.2)" : "rgba(255,255,255,0.1)",
-                    borderRadius: 8,
-                    cursor: "pointer",
-                    border: testMode ? "1px solid rgba(255,200,0,0.5)" : "1px solid transparent",
-                  }}
-                >
-                  <input
-                    type="checkbox"
-                    checked={testMode}
-                    onChange={(e) => setTestMode(e.target.checked)}
-                    style={{ width: 18, height: 18, cursor: "pointer" }}
-                  />
-                  <span>🧪 Modo Test (usa Set 4 predefinido)</span>
-                </label>
-              )}
-
-              {!testMode && (
-                <>
-                  <div className="setupTitle" style={{ marginTop: 24 }}>Temas</div>
-                  
-                  <div className="topicTabs">
-                {allTopics.map(({ value, label }) => {
-                  const isSelected = selectedTopics.has(value);
-                  return (
-                    <button
-                      key={value}
-                      type="button"
-                      className={`topicTab ${!isSelected ? "topicTabUnselected" : ""}`}
-                      onClick={() => {
-                        setSelectedTopics((prev) => {
-                          const next = new Set(prev);
-                          if (next.has(value)) {
-                            next.delete(value);
-                          } else {
-                            next.add(value);
-                          }
-                          return next;
-                        });
-                        // Clear error when user selects a topic
-                        if (topicSelectionError) {
-                          setTopicSelectionError("");
-                        }
-                      }}
-                    >
-                      {label}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {topicSelectionError && (
-                <div className="answerReveal" style={{ marginTop: 12, color: "#ffffff" }}>
-                  ⚠️ {topicSelectionError}
-                </div>
-              )}
-                </>
-              )}
-
-              <div className="setupActions">
-                <button className="btnPrimary" type="button" onClick={startFromSetup}>
-                  Continuar
-                </button>
-              </div>
-
-              {sttPreflightChecking ? (
-                <div className="answerReveal" style={{ marginTop: 8 }}>
-                  Preparando reconocimiento de voz…
-                </div>
-              ) : sttError ? (
-                <div className="answerReveal" style={{ marginTop: 8 }}>
-                  ⚠️ {sttError}
-                </div>
-              ) : (
-                <div className="answerReveal" style={{ marginTop: 8 }}>
-                  Listo
-                </div>
-              )}
-
-              {cameraError && (
-                <div className="answerReveal" style={{ marginTop: 8 }}>
-                  ⚠️ {cameraError}
-                </div>
-              )}
-
-              {/* How to Play Drawer */}
-              <div className="howToPlaySection" style={{ marginTop: 24 }}>
-                <button
-                  type="button"
-                  className="howToPlayToggle"
-                  onClick={() => setShowHowToPlay(!showHowToPlay)}
-                  style={{
-                    background: "transparent",
-                    border: "1px solid rgba(255,255,255,0.3)",
-                    borderRadius: 8,
-                    padding: "10px 16px",
-                    color: "#fff",
-                    cursor: "pointer",
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    fontSize: "1rem",
-                  }}
-                >
-                  <span>📖 Cómo Jugar</span>
-                  <span style={{ transform: showHowToPlay ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s" }}>
-                    ▼
-                  </span>
-                </button>
-                
-                {showHowToPlay && (
-                  <div
-                    className="howToPlayContent"
-                    style={{
-                      marginTop: 12,
-                      padding: 16,
-                      background: "rgba(0,0,0,0.3)",
-                      borderRadius: 8,
-                      textAlign: "left",
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>🎯 Objetivo</h3>
-                    <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
-                      Conoces este juego 😉. Responde correctamente a las preguntas de cada letra del abecedario lo más rápido que puedas. 
-                      El jugador con más aciertos gana. Prueba a conectar el teléfono a la tele y pruébalo en familia.
-                    </p>
-
-                    <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>🎮 Cómo se juega</h3>
-                    <ul style={{ margin: "0 0 16px 0", paddingLeft: 20, opacity: 0.9 }}>
-                      <li>El narrador lee una pregunta en voz alta</li>
-                      <li>Responde hablando cuando escuches el pitido</li>
-                      <li>Si aciertas, pasas a la siguiente letra</li>
-                      <li>Si fallas, termina tu turno</li>
-                      <li>Di <strong>"Pasalacabra"</strong> para saltar la pregunta</li>
-                      <li>Si te equivocas, puedes usar el botón de "Oye! La respuesta era correcta" para corregir tu respuesta</li>
-                    </ul>
-
-                    <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>⏱️ El tiempo</h3>
-                    <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
-                      Cada jugador 3 minutos en total. El tiempo solo corre durante tu turno.
-                      Si eres el último jugador, puedes seguir hasta que se te agote el tiempo.
-                    </p>
-
-                    <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>🏆 Puntuación</h3>
-                    <ul style={{ margin: 0, paddingLeft: 20, opacity: 0.9 }}>
-                      <li>✓ Acierto = +1 punto</li>
-                      <li>✗ Fallo = penalización en desempate</li>
-                      <li>Pasalacabra = sin penalización</li>
-                    </ul>
-                  </div>
-                )}
-              </div>
-
-              {/* About Drawer */}
-              <div className="howToPlaySection" style={{ marginTop: 24 }}>
-                <button
-                  type="button"
-                  className="howToPlayToggle"
-                  onClick={() => setShowAbout(!showAbout)}
-                  style={{
-                    background: "transparent",
-                    border: "1px solid rgba(255,255,255,0.3)",
-                    borderRadius: 8,
-                    padding: "10px 16px",
-                    color: "#fff",
-                    cursor: "pointer",
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    fontSize: "1rem",
-                  }}
-                >
-                  <span>❓ ¿Y esto de dónde ha salido?</span>
-                  <span style={{ transform: showAbout ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s" }}>
-                    ▼
-                  </span>
-                </button>
-                
-                {showAbout && (
-                  <div
-                    className="howToPlayContent"
-                    style={{
-                      marginTop: 12,
-                      padding: 16,
-                      background: "rgba(0,0,0,0.3)",
-                      borderRadius: 8,
-                      textAlign: "left",
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
-                    Pues mira, por una parte a mi abuela le encantaba este programa y no se perdía una, así que esto va por ella.
-                    </p>
-                    <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
-                    Y por otra, demasiadas cenas de Navidad hablando de política que podían ser mucho más entretenidas.
-                    </p>
-                    <p style={{ margin: 0, opacity: 0.9 }}>
-                    ¡Qué os divirtáis! Cualquier cosa, sugerencias, ideas, o si queréis contribuir al proyecto, mandad un email a info(arroba)pasalacabra.com
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
+      {screen === "home" ? (
+        <HomePage 
+          onPlayGroup={() => setScreen("setup")}
+          onPlay={startDailyGame}
+          onHowToPlay={() => {
+            // TODO: Show how to play modal/drawer
+            console.log("Como Jugar");
+          }}
+          onAbout={() => {
+            // TODO: Show about modal/drawer
+            console.log("About");
+          }}
+        />
+      ) : (
+        <div className="overlay">
+          <div className="topBar">
+            {screen === "game" ? (
+              <>
+                <div className="playerTag">{currentPlayerLabel}</div>
+                <div className="timerBig">{formatTime(timeLeft)}</div>
+              </>
+            ) : (
+              <div className="setupTopTitle"></div>
+            )}
           </div>
-        ) : (
+
+          {screen === "setup" ? (
+            <GameDetails
+              setupPlayerCount={setupPlayerCount}
+              setSetupPlayerCount={setSetupPlayerCount}
+              difficultyMode={difficultyMode}
+              setDifficultyMode={setDifficultyMode}
+              setupPlayers={setupPlayers}
+              setSetupPlayers={setSetupPlayers}
+              selectedTopics={selectedTopics}
+              setSelectedTopics={setSelectedTopics}
+              topicSelectionError={topicSelectionError}
+              setTopicSelectionError={setTopicSelectionError}
+              testMode={testMode}
+              setTestMode={setTestMode}
+              sttPreflightChecking={sttPreflightChecking}
+              sttError={sttError}
+              cameraError={cameraError}
+              onStart={startFromSetup}
+              onBack={() => setScreen("home")}
+            />
+          ) : (
 <div className="center">
           {/* Hidden canvas for video recording */}
           <canvas
@@ -3164,9 +3136,9 @@ export default function App() {
               </div>
             </div>
           </div>
-        )}
-
-      </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

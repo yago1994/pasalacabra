@@ -269,6 +269,7 @@ html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text);
 }
 
 .setupCard {
+  position: relative;
   width: min(92vw, 520px);
   background: var(--panel);
   border-radius: 18px;

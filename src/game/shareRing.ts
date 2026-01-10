@@ -173,7 +173,7 @@ export const PASALACABRA_LETTERS: string[] = [
 
     // Build the share text
     const shareText = buildEmojiRingShare({
-      title: `Pasalacabra #${gameId}`,
+      title: `Pasala🐐 #${gameId}`,
       subtitle: `${correct}✅ ${wrong}❌ · ${skip}⏭`,
       letters: PASALACABRA_LETTERS,
       statusesByLetter,
@@ -185,7 +185,7 @@ export const PASALACABRA_LETTERS: string[] = [
     try {
       if (navigator.share) {
         await navigator.share({
-          title: "Pasalacabra",
+          title: "Pasala🐐",
           text: shareText,
         });
       } else {
