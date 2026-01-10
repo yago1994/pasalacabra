@@ -1181,7 +1181,8 @@ export default function App() {
       if (ok) {
         sttLog("command-check(interim)", { normalizedJoined });
         sttCommandKeyRef.current = key;
-        stopListening("user");
+        // Don't stop listening yet - let handlePasalacabra decide based on single/multiplayer
+        // This preserves the stream in single-player mode (handlePasalacabra will just disarm)
         userEditedAnswerRef.current = false;
         setAnswerText("");
         sttLog("-> triggering PASALACABRA (interim)");
@@ -1255,7 +1256,8 @@ export default function App() {
       sttLog("command-check(final)", { normalizedJoined, ok });
       if (ok) {
         sttCommandKeyRef.current = key;
-        stopListening("user");
+        // Don't stop listening yet - let handlePasalacabra decide based on single/multiplayer
+        // This preserves the stream in single-player mode (handlePasalacabra will just disarm)
         // Don't keep the command text in the input.
         userEditedAnswerRef.current = false;
         setAnswerText("");
@@ -2550,6 +2552,11 @@ export default function App() {
     void ensureSfxReady().then(() => {
       playSfx("correct");
       window.setTimeout(() => {
+        // On mobile, always try to resume audio context before speaking (required for TTS on iOS/mobile)
+        const ctx = getAudioCtx();
+        if (ctx && ctx.state !== "running") {
+          void ctx.resume().catch(() => {});
+        }
         speakWithCallback("Sí", () => {
           // Speech has finished according to polling, but add a small buffer
           // to ensure audio buffer is fully done before moving to next question
@@ -2617,6 +2624,11 @@ export default function App() {
     void ensureSfxReady().then(() => {
       playSfx("wrong");
       window.setTimeout(() => {
+        // On mobile, always try to resume audio context before speaking (required for TTS on iOS/mobile)
+        const ctx = getAudioCtx();
+        if (ctx && ctx.state !== "running") {
+          void ctx.resume().catch(() => {});
+        }
         speakWithCallback(`No. La respuesta correcta es: ${correctAnswer}`, () => {
           // Speech has finished according to polling, but add a small buffer
           // to ensure audio buffer is fully done before moving to next question
