@@ -166,6 +166,7 @@ export const PASALACABRA_LETTERS: string[] = [
       }
     }
 
+    const gameUrl = "https://pasalacabra.com";
     // Build the share text
     const shareText = buildEmojiRingShare({
       title: `Pasala🐐`,
@@ -174,7 +175,7 @@ export const PASALACABRA_LETTERS: string[] = [
       statusesByLetter,
       mode: "ring",
       playerCount: 1, // Validate single-player
-    });
+    }) + `\n\nIntenta ganarme: ${gameUrl}`;
 
     // Share using Web Share API if available, otherwise copy to clipboard
     try {
@@ -186,7 +187,7 @@ export const PASALACABRA_LETTERS: string[] = [
       } else {
         // Fallback: copy to clipboard
         await navigator.clipboard.writeText(shareText);
-        alert("¡Resultados copiados al portapapeles!");
+        alert("¡Resultados copiados!");
       }
     } catch (err) {
       if ((err as Error).name !== "AbortError") {
@@ -194,7 +195,7 @@ export const PASALACABRA_LETTERS: string[] = [
         // Fallback: try copying to clipboard
         try {
           await navigator.clipboard.writeText(shareText);
-          alert("¡Resultados copiados al portapapeles!");
+          alert("¡Resultados copiados!");
         } catch (clipboardErr) {
           console.error("Failed to copy to clipboard:", clipboardErr);
           alert("Error al compartir. Por favor, copia manualmente el texto.");
