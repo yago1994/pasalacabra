@@ -22,6 +22,7 @@ export interface GameDetailsProps {
   sttError: string | null;
   cameraError: string;
   onStart: () => void;
+  onBack: () => void;
 }
 
 const allTopics: { value: Topic; label: string }[] = [
@@ -55,6 +56,7 @@ export default function GameDetails({
   sttError,
   cameraError,
   onStart,
+  onBack,
 }: GameDetailsProps) {
   const [showHowToPlay, setShowHowToPlay] = useState<boolean>(false);
   const [showAbout, setShowAbout] = useState<boolean>(false);
@@ -62,7 +64,38 @@ export default function GameDetails({
   return (
     <div className="center">
       <div className="setupCard">
-        <div className="setupTitle">Jugadores</div>
+        <div style={{ position: "relative", marginBottom: "20px" }}>
+          <button
+            type="button"
+            onClick={onBack}
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              background: "transparent",
+              border: "none",
+              color: "var(--text)",
+              cursor: "pointer",
+              padding: "8px",
+              fontSize: "24px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "8px",
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "transparent";
+            }}
+            aria-label="Volver"
+          >
+            ←
+          </button>
+          <div className="setupTitle" style={{ textAlign: "center" }}>Jugadores</div>
+        </div>
 
         <label className="setupLabel">
           Número de jugadores

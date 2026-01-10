@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import LetterRing from "./components/LetterRing";
 import GameDetails, { type SetupPlayer } from "./components/GameDetails";
+import HomePage from "./components/HomePage";
 import {
   SPANISH_LETTERS,
   type Letter,
@@ -41,7 +42,7 @@ export type PlayerSnapshot = {
 };
 
 type GamePhase = "idle" | "playing" | "ended";
-type Screen = "setup" | "game";
+type Screen = "home" | "setup" | "game";
 
 const TURN_SECONDS =180; // Default fallback (will be replaced by difficulty-based time)
 
@@ -213,7 +214,7 @@ export default function App() {
   const letters = SPANISH_LETTERS;
   const availableSets = useMemo(() => listSets(), []);
 
-  const [screen, setScreen] = useState<Screen>("setup");
+  const [screen, setScreen] = useState<Screen>("home");
   const [setupPlayerCount, setSetupPlayerCount] = useState<number>(2);
   const [difficultyMode, setDifficultyMode] = useState<DifficultyMode>("medio");
   
@@ -2138,6 +2139,72 @@ export default function App() {
     }));
   }, [activePlayerId, screen, statusByLetter, currentIndex, timeLeft, revealed]);
 
+  async function startDailyGame() {
+    unlockAudioOnce();
+    // Warm up microphone permission first. On some browsers, requesting mic can temporarily
+    // affect the audio session, so it before the first meaningful TTS utterance.
+    await warmupMicrophoneOnce();
+
+    warmupSpeechSynthesisOnce();
+    setGameOver(false);
+    setGameOverMessage("");
+    // Clear previous snapshots when starting a new game
+    for (const snapshot of playerSnapshots) {
+      URL.revokeObjectURL(snapshot.blobUrl);
+    }
+    setPlayerSnapshots([]);
+    setSlideshowActive(false);
+    setSlideshowIndex(0);
+    
+    // Create a single player using set_01 for daily game
+    const players: Player[] = [{ 
+      id: "p1", 
+      name: "Jugador 1", 
+      setId: "set_01" 
+    }];
+
+    // Don't set generatedBanks - the game will use the set file directly via setId
+    setGeneratedBanks({});
+
+    const dailyDifficulty: DifficultyMode = "medio"; // Default difficulty for daily game
+    const timePerPlayer = getTimeFromDifficulty(dailyDifficulty);
+    const initialStates: Record<string, PlayerState> = {};
+    for (const p of players) {
+      const s = {} as Record<Letter, LetterStatus>;
+      for (const l of letters) s[l] = "pending";
+      s[letters[0]] = "current";
+      initialStates[p.id] = { statusByLetter: s, currentIndex: 0, timeLeft: timePerPlayer, revealed: false };
+    }
+
+    const proceedToGame = () => {
+      setPlayerStates(initialStates);
+      setSession({ players, currentPlayerIndex: 0, difficulty: dailyDifficulty });
+      setScreen("game"); // triggers camera permission request (see effect above)
+      setPhase("idle");
+      setTurnMessage("");
+      setFeedback(null);
+
+      const first = players[0];
+      if (first) {
+        const st = initialStates[first.id];
+        setStatusByLetter(st.statusByLetter);
+        setCurrentIndex(st.currentIndex);
+        setTimeLeft(st.timeLeft);
+        setRevealed(st.revealed);
+        // Mark this player as loaded so the persist effect works correctly
+        lastLoadedPlayerIdRef.current = first.id;
+      }
+
+      // Start the recognizer early (before first TTS) to avoid audio ducking.
+      // Use generic hints; they'll be updated when the first question starts.
+      const genericHints = ["pasalacabra", "pasapalabra", "pasa", "cabra"];
+      sttArmedRef.current = false; // Don't process results yet
+      ensureListeningForQuestion(genericHints);
+    };
+
+    proceedToGame();
+  }
+
   async function startFromSetup() {
     // Validate that at least one topic is selected (unless in test mode)
     if (!testMode && selectedTopics.size === 0) {
@@ -2765,38 +2832,53 @@ export default function App() {
         );
       })()}
 
-      <div className="overlay">
-        <div className="topBar">
-          {screen === "game" ? (
-            <>
-              <div className="playerTag">{currentPlayerLabel}</div>
-              <div className="timerBig">{formatTime(timeLeft)}</div>
-            </>
-          ) : (
-            <div className="setupTopTitle"></div>
-          )}
-        </div>
+      {screen === "home" ? (
+        <HomePage 
+          onPlayGroup={() => setScreen("setup")}
+          onPlay={startDailyGame}
+          onHowToPlay={() => {
+            // TODO: Show how to play modal/drawer
+            console.log("Como Jugar");
+          }}
+          onAbout={() => {
+            // TODO: Show about modal/drawer
+            console.log("About");
+          }}
+        />
+      ) : (
+        <div className="overlay">
+          <div className="topBar">
+            {screen === "game" ? (
+              <>
+                <div className="playerTag">{currentPlayerLabel}</div>
+                <div className="timerBig">{formatTime(timeLeft)}</div>
+              </>
+            ) : (
+              <div className="setupTopTitle"></div>
+            )}
+          </div>
 
-        {screen === "setup" ? (
-          <GameDetails
-            setupPlayerCount={setupPlayerCount}
-            setSetupPlayerCount={setSetupPlayerCount}
-            difficultyMode={difficultyMode}
-            setDifficultyMode={setDifficultyMode}
-            setupPlayers={setupPlayers}
-            setSetupPlayers={setSetupPlayers}
-            selectedTopics={selectedTopics}
-            setSelectedTopics={setSelectedTopics}
-            topicSelectionError={topicSelectionError}
-            setTopicSelectionError={setTopicSelectionError}
-            testMode={testMode}
-            setTestMode={setTestMode}
-            sttPreflightChecking={sttPreflightChecking}
-            sttError={sttError}
-            cameraError={cameraError}
-            onStart={startFromSetup}
-          />
-        ) : (
+          {screen === "setup" ? (
+            <GameDetails
+              setupPlayerCount={setupPlayerCount}
+              setSetupPlayerCount={setSetupPlayerCount}
+              difficultyMode={difficultyMode}
+              setDifficultyMode={setDifficultyMode}
+              setupPlayers={setupPlayers}
+              setSetupPlayers={setSetupPlayers}
+              selectedTopics={selectedTopics}
+              setSelectedTopics={setSelectedTopics}
+              topicSelectionError={topicSelectionError}
+              setTopicSelectionError={setTopicSelectionError}
+              testMode={testMode}
+              setTestMode={setTestMode}
+              sttPreflightChecking={sttPreflightChecking}
+              sttError={sttError}
+              cameraError={cameraError}
+              onStart={startFromSetup}
+              onBack={() => setScreen("home")}
+            />
+          ) : (
 <div className="center">
           {/* Hidden canvas for video recording */}
           <canvas
@@ -2989,9 +3071,9 @@ export default function App() {
               </div>
             </div>
           </div>
-        )}
-
-      </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

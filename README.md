@@ -20,11 +20,19 @@ npm run build
 
 ## Game flow
 
-### Setup screen (before the game)
+### Home page (entry screen)
+- **Juego de hoy**: Launch a single-player daily game using the predefined `set_01.json` question set. Starts immediately with medium difficulty (4 minutes).
+- **Crea tu proprio juego**: Navigate to the game setup screen to customize your own game.
+- Expandable sections for **Cómo Jugar** (How to Play) and **¿Y esto de dónde ha salido?** (About) with full game instructions and project background.
+
+### Setup screen (custom game)
+Accessible via "Crea tu proprio juego" button:
 - Pick **number of players**: 1–4.
 - Enter each player's **name**.
-- Select **topics** for the game (at least one required).
+- Select **difficulty mode**: Difícil (3 mins), Media (4 mins), or Fácil (5 mins).
+- Select **topics** for the game (at least one required, unless Test Mode is enabled).
 - Optional: Enable **Test Mode** to use a fixed question set for testing.
+- Back button to return to the home page.
 
 ### Available Topics
 - 🌃 Astronomía
@@ -37,11 +45,23 @@ npm run build
 - 🌍 Geografía
 - 🎨 Arte
 - ✨ Folklore
+- 📚 Cultura General
 
 ### Game screen
+Accessed from either:
+- **Daily game** (`Juego de hoy`): Single-player game using `set_01.json` with medium difficulty (4 minutes)
+- **Custom game**: After setup, launches with your selected players, topics, and difficulty
+
+Features:
 - **Camera**: runs behind the ring (mobile-friendly). Top-right **📷 ⟲** flips between front/rear camera when available.
-- **Timer**: big at the top. Each player has a **single 2:00 time bank for the whole game** (paused while handing the phone).
+- **Timer**: big at the top. Each player has a **single time bank for the whole game** based on difficulty mode (paused while handing the phone).
+  - **Difícil**: 3 minutes (180 seconds)
+  - **Media**: 4 minutes (240 seconds) 
+  - **Fácil**: 5 minutes (300 seconds)
 - **Question reading**: questions are **spoken out loud** (no on-screen question text). On mobile, speech is triggered from the **Start** button to comply with browser gesture policies.
+- **Question source**: 
+  - Daily game: Uses predefined set (`set_01.json`)
+  - Custom game: Uses topic-based generated questions or test mode sets
 
 ### Controls
 - **Start**: starts/resumes the active player's turn (uses that player's remaining time).
@@ -74,18 +94,24 @@ npm run build
 
 ### Question topics
 Question files live in `src/questions/` with one file per topic:
-- `astronomia.ts`, `biologia.ts`, `musica.ts`, `deporte.ts`, `ciencia.ts`, `cine.ts`, `historia.ts`, `geografia.ts`, `arte.ts`, `folklore.ts`
+- `astronomia.ts`, `biologia.ts`, `musica.ts`, `deporte.ts`, `ciencia.ts`, `cine.ts`, `historia.ts`, `geografia.ts`, `arte.ts`, `folklore.ts`, `cultura.ts`
 
 The question bank is dynamically generated at game start based on selected topics, ensuring:
 - Each player gets unique questions (no duplicates across players)
 - Similar topic distribution per player
 
-### Legacy question sets (Test Mode)
-Sets live in:
+Note: The `cultura.ts` file provides questions for the "Cultura General" topic (mapped as `culturageneral` in the code).
+
+### Question sets
+Predefined question sets live in:
 - `src/data/sets/set_01.json` … `src/data/sets/set_06.json`
 
 Loaded via:
 - `src/data/sets.ts` using Vite `import.meta.glob` (no `resolveJsonModule` needed).
+
+**Daily Game** (`Juego de hoy`): Uses `set_01.json` for a quick single-player game with medium difficulty.
+
+**Test Mode**: In the setup screen (staging only), enables using a fixed question set instead of topic-based questions.
 
 JSON shape:
 ```json
@@ -118,15 +144,23 @@ Example host from a previous run:
 
 ## Recent Updates
 
+- **Home page**: New entry screen with beautiful UI matching the game's blue background and goat decorations
+  - **Juego de hoy**: Quick-start daily game using `set_01.json` (single-player, medium difficulty)
+  - **Crea tu proprio juego**: Navigate to custom game setup
+  - Expandable "Cómo Jugar" and "¿Y esto de dónde ha salido?" sections
+- **Game setup improvements**: 
+  - Back button to return to home page
+  - Difficulty mode selection (Difícil, Media, Fácil) with different time limits
+  - Better organized UI with clear sections
+- **Component refactoring**: 
+  - Separated HomePage and GameDetails into dedicated components
+  - Improved code organization and maintainability
 - **Emoji share feature**: Share single-player game results in Wordle-like format with a circular ring pattern (11x10 grid)
 - **Single-player mode**: Added support for 1-player games with dedicated share functionality
 - **Snapshot capture**: Automatically captures player photos when timer runs out, showing their final letter ring state
 - **End-of-game slideshow**: Beautiful animated slideshow displaying all player snapshots with scores and winner badges
 - **Video recording**: Automatic recording of the slideshow animation for easy sharing (30fps, WebM format)
 - **Enhanced UI**: Improved letter ring rendering with exact game proportions and better visual consistency
-- Refactored question files for consistency and maintainability
-- Enhanced UI components and styling
-- Improved game logic and component behavior
 
 ## Repo
 
