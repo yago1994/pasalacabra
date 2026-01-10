@@ -382,6 +382,9 @@ export default function App() {
       // Some browsers "warm up" the TTS pipeline on first utterance (volume ducking / ramp).
       // Speak a near-instant, muted utterance once so the first real question sounds consistent.
       const u = new SpeechSynthesisUtterance(".");
+      const v = getSpanishVoice(voices);
+      if (v) u.voice = v;
+      u.lang = (v?.lang || "es-ES") as string;
       u.volume = 0;
       u.rate = 10;
       u.pitch = 1;
@@ -417,6 +420,9 @@ export default function App() {
 
     try {
       const u = new SpeechSynthesisUtterance("a");
+      const v = getSpanishVoice(voices);
+      if (v) u.voice = v;
+      u.lang = (v?.lang || "es-ES") as string;
       u.volume = 0.02; // low but non-zero so the audio path engages
       u.rate = 4;
       u.pitch = 1;
@@ -1350,22 +1356,58 @@ export default function App() {
     const v = getSpanishVoice(voices);
     if (v) utterance.voice = v;
     utterance.lang = (v?.lang || "es-ES") as string;
-    utterance.rate = opts?.rate ?? 1.0;
+    const rate = opts?.rate ?? 1.0;
+    utterance.rate = rate;
     utterance.pitch = 1;
     utterance.volume = 1;
 
     let done = false;
+    let pollId: number | null = null;
+    let maxTimer: number | null = null;
+
     const finish = () => {
       if (done) return;
       done = true;
+      if (pollId) window.clearInterval(pollId);
+      if (maxTimer) window.clearTimeout(maxTimer);
       onDone();
     };
     utterance.onend = finish;
     utterance.onerror = finish;
 
     window.speechSynthesis.speak(utterance);
-    // Fallback in case onend doesn't fire (some mobile edge cases)
-    window.setTimeout(finish, 600);
+
+    // Dynamic TTS end detection (same pattern as speakCurrentQuestionThenListen):
+    // - Safari can have unreliable `onend` timing; also, we never want to "end early".
+    // - We poll `speechSynthesis.speaking` and only finish when it truly stops.
+    // - We still include a generous max timeout as a safety valve.
+    const startedAt = Date.now();
+    const words = t.split(/\s+/).filter(Boolean).length;
+    // Adjust for speech rate: at rate 0.9, TTS is ~10% slower
+    // Estimate ~200ms per word at normal rate, with buffer
+    const maxMs = Math.min(45000, Math.max(2000, words * (250 / rate)));
+
+    let speechStoppedAt: number | null = null;
+    pollId = window.setInterval(() => {
+      if (done) return;
+      const now = Date.now();
+      if (now - startedAt < 400) return; // avoid false negatives right after speak()
+      
+      if (!window.speechSynthesis.speaking) {
+        // Speech has stopped, but wait 300ms to ensure audio buffer finishes
+        if (speechStoppedAt === null) {
+          speechStoppedAt = now;
+        } else if (now - speechStoppedAt >= 300) {
+          // Speech has been stopped for at least 300ms, safe to finish
+          finish();
+        }
+      } else {
+        // Speech is still speaking, reset the stopped timer
+        speechStoppedAt = null;
+      }
+    }, 120);
+
+    maxTimer = window.setTimeout(finish, maxMs);
   }
 
   function speakCurrentQuestionThenListen() {
@@ -2448,16 +2490,9 @@ export default function App() {
     stopSpeaking();
     if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
     setFeedback("correct");
-    // Play SFX first, then speak.
-    void ensureSfxReady().then(() => {
-      playSfx("correct");
-      window.setTimeout(() => {
-        speakWithCallback("Sí", () => {
-          // no-op
-        });
-      }, 120);
-    });
-
+    
+    // Update status to correct
+    const statusAfter = { ...status, [letter]: "correct" as LetterStatus };
     setStatusByLetter((prev) => {
       const next = { ...prev };
       next[letter] = "correct";
@@ -2468,20 +2503,28 @@ export default function App() {
     setRecentlyCorrectLetter(letter);
     setTimeout(() => setRecentlyCorrectLetter(null), 1200);
 
-    // Pause so "Sí" + sound are fully perceivable before next question starts.
-    const statusAfter = { ...status, [letter]: "correct" as LetterStatus };
-    feedbackTimerRef.current = window.setTimeout(() => {
-      if (!anyUnresolved(statusAfter, letters)) {
-        endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
-        return;
-      }
-      const nextIdx = nextUnresolvedIndex(letters, statusAfter, idx);
-      if (nextIdx === -1) {
-        endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
-        return;
-      }
-      setCurrentIndex(nextIdx);
-    }, 650);
+    // Play SFX first, then speak. When speech finishes, move to next question.
+    void ensureSfxReady().then(() => {
+      playSfx("correct");
+      window.setTimeout(() => {
+        speakWithCallback("Sí", () => {
+          // Speech has finished according to polling, but add a small buffer
+          // to ensure audio buffer is fully done before moving to next question
+          if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
+          feedbackTimerRef.current = window.setTimeout(() => {
+            if (!anyUnresolved(statusAfter, letters)) {
+              endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
+              return;
+            }
+            const nextIdx = nextUnresolvedIndex(letters, statusAfter, idx);
+            if (nextIdx === -1) {
+              endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
+              return;
+            }
+            setCurrentIndex(nextIdx);
+        });
+      }, 120);
+    });
   }
 
   function markWrong() {
@@ -2531,12 +2574,10 @@ export default function App() {
       playSfx("wrong");
       window.setTimeout(() => {
         speakWithCallback(`No. La respuesta correcta es: ${correctAnswer}`, () => {
-          // After speaking, either continue or end turn
+          // Speech has finished according to polling, but add a small buffer
+          // to ensure audio buffer is fully done before moving to next question
           if (shouldContinuePlaying) {
             // Single player or last player standing: continue to next question
-            // Add a delay to ensure the correct answer audio is fully finished
-            // before moving to the next question (prevents audio from being cut off)
-            // This matches the pattern used in markCorrect() with a 650ms delay
             if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
             feedbackTimerRef.current = window.setTimeout(() => {
               if (nextIdx === -1 || !anyUnresolved(statusAfter, letters)) {
@@ -2545,14 +2586,14 @@ export default function App() {
                 setGameOverMessage("🎮 Fin del juego.");
                 endTurn("");
               } else {
-                // Continue to next question - audio should be fully finished now
-                // The effect at line 1592 will automatically read the question when currentIndex changes
+                // Continue to next question - audio buffer is fully finished now
+                // The effect at line 1610 will automatically read the question when currentIndex changes
                 setCurrentIndex(nextIdx);
                 setRevealed(false);
                 setFeedback(null);
                 setLastWrongLetter(null);
               }
-            }, 1900); // Delay to ensure audio is fully finished (matches markCorrect timing)
+            }, 300); // Small buffer to ensure audio buffer finishes (polling already waits 300ms)
           } else {
             // Multiplayer with multiple players remaining: end the turn
             if (nextIdx !== -1) setCurrentIndex(nextIdx);
