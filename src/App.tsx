@@ -2611,7 +2611,7 @@ export default function App() {
               ) : recording ? (
                 <>
                   <button className="slideshowShareBtn" onClick={shareRecording}>
-                    📤 Compartir video
+                    📤 Compartir fotos
                   </button>
                   <button
                     className="slideshowShareBtn"
@@ -2621,7 +2621,7 @@ export default function App() {
                       boxShadow: "0 6px 25px rgba(34, 197, 94, 0.5)",
                     }}
                   >
-                    💾 Descargar video
+                    💾 Descargar fotos
                   </button>
                   {session && session.players.length === 1 && playerSnapshots.length > 0 && (
                     <button
@@ -2632,7 +2632,7 @@ export default function App() {
                         boxShadow: "0 6px 25px rgba(139, 92, 246, 0.5)",
                       }}
                     >
-                      📱 Compartir resultados
+                      📱 Compartir rueda
                     </button>
                   )}
                   <div
@@ -2665,7 +2665,7 @@ export default function App() {
                         boxShadow: "0 6px 25px rgba(139, 92, 246, 0.5)",
                       }}
                     >
-                      📱 Compartir resultados
+                      📱 Compartir rueda
                     </button>
                   )}
                 </>
