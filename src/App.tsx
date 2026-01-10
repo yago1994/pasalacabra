@@ -955,7 +955,17 @@ export default function App() {
       return defaultVoice;
     }
     
-    // Safari or other browsers - use default Spanish voice
+    // Safari detection - use Monica voice (macOS system voice)
+    if (userAgent.includes("safari") && !userAgent.includes("chrome")) {
+      const safariVoice = vs.find(
+        (v) => v.voiceURI === "com.apple.voice.super-compact.es-ES.Monica"
+      );
+      if (safariVoice) return safariVoice;
+      // Fallback to default if specific voice not found
+      return defaultVoice;
+    }
+    
+    // Other browsers - use default Spanish voice
     return defaultVoice;
   }
 
@@ -2473,18 +2483,25 @@ export default function App() {
           // After speaking, either continue or end turn
           if (shouldContinuePlaying) {
             // Single player or last player standing: continue to next question
-            if (nextIdx === -1 || !anyUnresolved(statusAfter, letters)) {
-              // No more questions - game ends
-              setGameOver(true);
-              setGameOverMessage("🎮 Fin del juego.");
-              endTurn("");
-            } else {
-              // Continue to next question
-              setCurrentIndex(nextIdx);
-              setRevealed(false);
-              setFeedback(null);
-              setLastWrongLetter(null);
-            }
+            // Add a delay to ensure the correct answer audio is fully finished
+            // before moving to the next question (prevents audio from being cut off)
+            // This matches the pattern used in markCorrect() with a 650ms delay
+            if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
+            feedbackTimerRef.current = window.setTimeout(() => {
+              if (nextIdx === -1 || !anyUnresolved(statusAfter, letters)) {
+                // No more questions - game ends
+                setGameOver(true);
+                setGameOverMessage("🎮 Fin del juego.");
+                endTurn("");
+              } else {
+                // Continue to next question - audio should be fully finished now
+                // The effect at line 1592 will automatically read the question when currentIndex changes
+                setCurrentIndex(nextIdx);
+                setRevealed(false);
+                setFeedback(null);
+                setLastWrongLetter(null);
+              }
+            }, 1900); // Delay to ensure audio is fully finished (matches markCorrect timing)
           } else {
             // Multiplayer with multiple players remaining: end the turn
             if (nextIdx !== -1) setCurrentIndex(nextIdx);
@@ -3053,7 +3070,7 @@ export default function App() {
                     Y por otra, demasiadas cenas de Navidad hablando de política que podían ser mucho más entretenidas.
                     </p>
                     <p style={{ margin: 0, opacity: 0.9 }}>
-                    ¡Qué os divirtáis! Cualquier cosa, sugerencias, ideas, o si queréis contribuir al proyecto, mandad un email a info(arroba)pasalacabra.com
+                    ¡Que os divirtáis! Cualquier cosa, sugerencias, ideas, o si queréis contribuir al proyecto, mandad un email a info(arroba)pasalacabra.com
                     </p>
                   </div>
                 )}
