@@ -928,6 +928,31 @@ export default function App() {
       return esES ?? es[0] ?? vs[0] ?? null;
     })();
     
+    // Helper function to find Monica voice using multiple strategies
+    const findMonicaVoice = () => {
+      // Strategy 1: Exact voiceURI match for macOS Safari
+      const macosVoice = vs.find(
+        (v) => v.voiceURI === "com.apple.voice.super-compact.es-ES.Monica"
+      );
+      if (macosVoice) return macosVoice;
+      
+      // Strategy 2: Search for "monica" or "mónica" in voiceURI (case-insensitive)
+      const uriMatch = vs.find((v) => 
+        v.voiceURI.toLowerCase().includes("monica") || 
+        v.voiceURI.toLowerCase().includes("mónica")
+      );
+      if (uriMatch) return uriMatch;
+      
+      // Strategy 3: Search for "monica" or "mónica" in name (case-insensitive)
+      const nameMatch = vs.find((v) => 
+        v.name.toLowerCase().includes("monica") || 
+        v.name.toLowerCase().includes("mónica")
+      );
+      if (nameMatch) return nameMatch;
+      
+      return null;
+    };
+    
     // Firefox detection - use Monica voice
     if (userAgent.includes("firefox")) {
       const firefoxVoice = vs.find(
@@ -946,13 +971,11 @@ export default function App() {
       return defaultVoice;
     }
     
-    // Safari detection - use Monica voice (macOS system voice)
+    // Safari detection (macOS and iOS) - use Monica voice
     if (userAgent.includes("safari") && !userAgent.includes("chrome")) {
-      const safariVoice = vs.find(
-        (v) => v.voiceURI === "com.apple.voice.super-compact.es-ES.Monica"
-      );
-      if (safariVoice) return safariVoice;
-      // Fallback to default if specific voice not found
+      const monicaVoice = findMonicaVoice();
+      if (monicaVoice) return monicaVoice;
+      // Fallback to default if Monica not found
       return defaultVoice;
     }
     
