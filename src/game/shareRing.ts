@@ -138,12 +138,10 @@ export const PASALACABRA_LETTERS: string[] = [
    * Only works for single-player games.
    * 
    * @param statusByLetter - Record mapping each letter to its status ("correct", "wrong", "pending", "current", "passed")
-   * @param playerName - Optional player name for generating game ID
    * @returns Promise that resolves when sharing is complete, or rejects with an error
    */
   export async function shareEmojiSequence(
     statusByLetter: Record<Letter, LetterStatus>,
-    playerName?: string
   ): Promise<void> {
     // Convert LetterStatus to share format
     const statusesByLetter: Record<string, "correct" | "wrong" | "skip"> = {};
@@ -175,7 +173,7 @@ export const PASALACABRA_LETTERS: string[] = [
       statusesByLetter,
       mode: "ring",
       playerCount: 1, // Validate single-player
-    }) + `\n\nIntenta ganarme: ${gameUrl}`;
+    }) + `\n\nIntenta ganarme: `;
 
     // Share using Web Share API if available, otherwise copy to clipboard
     try {
@@ -183,10 +181,11 @@ export const PASALACABRA_LETTERS: string[] = [
         await navigator.share({
           title: "Pasala🐐",
           text: shareText,
+          url: gameUrl,
         });
       } else {
         // Fallback: copy to clipboard
-        await navigator.clipboard.writeText(shareText);
+        await navigator.clipboard.writeText(`${shareText}${gameUrl}`);
         alert("¡Resultados copiados!");
       }
     } catch (err) {

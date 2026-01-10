@@ -2008,7 +2008,7 @@ export default function App() {
     const playerName = session.players[0]?.name;
 
     // Use the refactored function from shareRing
-    await shareEmojiSequence(snapshot.statusByLetter, playerName);
+    await shareEmojiSequence(snapshot.statusByLetter);
   }
 
   // Request camera only after entering the game screen.
