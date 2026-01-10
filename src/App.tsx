@@ -1407,52 +1407,75 @@ export default function App() {
     utterance.volume = 1;
 
     let done = false;
-    let pollId: number | null = null;
+    let minDurationTimer: number | null = null;
     let maxTimer: number | null = null;
+    let speechEndDetected = false;
+
+    const startedAt = Date.now();
+    const words = t.split(/\s+/).filter(Boolean).length;
+    
+    // Calculate minimum duration based on word count
+    // Spanish TTS is typically ~3-4 words per second at normal rate
+    // Use 350ms per word as a conservative estimate, adjusted for rate
+    const minDurationMs = Math.max(800, words * (350 / rate));
+    // Max timeout as a safety valve (generous to handle long answers)
+    const maxMs = Math.min(45000, Math.max(3000, words * (500 / rate)));
 
     const finish = () => {
       if (done) return;
       done = true;
-      if (pollId) window.clearInterval(pollId);
+      if (minDurationTimer) window.clearTimeout(minDurationTimer);
       if (maxTimer) window.clearTimeout(maxTimer);
       onDone();
     };
-    utterance.onend = finish;
-    utterance.onerror = finish;
+
+    // Only finish when BOTH conditions are met:
+    // 1. Speech end was detected (onend fired or speechSynthesis.speaking is false)
+    // 2. Minimum duration has passed (to ensure audio buffer is flushed)
+    const tryFinish = () => {
+      if (done) return;
+      const elapsed = Date.now() - startedAt;
+      if (speechEndDetected && elapsed >= minDurationMs) {
+        finish();
+      }
+    };
+
+    // Mark speech as ended when onend fires
+    utterance.onend = () => {
+      speechEndDetected = true;
+      tryFinish();
+    };
+    utterance.onerror = () => {
+      speechEndDetected = true;
+      tryFinish();
+    };
 
     window.speechSynthesis.speak(utterance);
 
-    // Dynamic TTS end detection (same pattern as speakCurrentQuestionThenListen):
-    // - Safari can have unreliable `onend` timing; also, we never want to "end early".
-    // - We poll `speechSynthesis.speaking` and only finish when it truly stops.
-    // - We still include a generous max timeout as a safety valve.
-    const startedAt = Date.now();
-    const words = t.split(/\s+/).filter(Boolean).length;
-    // Adjust for speech rate: at rate 0.9, TTS is ~10% slower
-    // Estimate ~200ms per word at normal rate, with buffer
-    const maxMs = Math.min(45000, Math.max(2000, words * (250 / rate)));
-
-    let speechStoppedAt: number | null = null;
-    pollId = window.setInterval(() => {
-      if (done) return;
-      const now = Date.now();
-      if (now - startedAt < 400) return; // avoid false negatives right after speak()
-      
-      if (!window.speechSynthesis.speaking) {
-        // Speech has stopped, but wait 600ms to ensure audio buffer finishes
-        // This is longer than typical because the last word can get cut off on mobile
-        if (speechStoppedAt === null) {
-          speechStoppedAt = now;
-        } else if (now - speechStoppedAt >= 600) {
-          // Speech has been stopped for at least 600ms, safe to finish
-          finish();
-        }
-      } else {
-        // Speech is still speaking, reset the stopped timer
-        speechStoppedAt = null;
+    // Set a timer to check after minimum duration
+    // This handles cases where onend already fired before minDuration
+    minDurationTimer = window.setTimeout(() => {
+      // If speech end was already detected, finish now
+      if (speechEndDetected) {
+        finish();
+        return;
       }
-    }, 120);
+      // Otherwise, poll for speech end
+      const pollId = window.setInterval(() => {
+        if (done) {
+          window.clearInterval(pollId);
+          return;
+        }
+        if (!window.speechSynthesis.speaking) {
+          speechEndDetected = true;
+          window.clearInterval(pollId);
+          // Add a small buffer after detecting speech stopped
+          window.setTimeout(finish, 200);
+        }
+      }, 100);
+    }, minDurationMs);
 
+    // Max timeout as a safety valve
     maxTimer = window.setTimeout(finish, maxMs);
   }
 
@@ -2572,7 +2595,7 @@ export default function App() {
               return;
             }
             setCurrentIndex(nextIdx);
-          }, 300); // Buffer to ensure audio buffer finishes (polling already waits 600ms)
+          }, 200); // Small buffer after speakWithCallback's minimum duration
         });
       }, 120);
     });
@@ -2649,7 +2672,7 @@ export default function App() {
                 setFeedback(null);
                 setLastWrongLetter(null);
               }
-            }, 400); // Buffer to ensure audio buffer finishes (polling already waits 600ms)
+            }, 200); // Small buffer after speakWithCallback's minimum duration
           } else {
             // Multiplayer with multiple players remaining: end the turn
             if (nextIdx !== -1) setCurrentIndex(nextIdx);
