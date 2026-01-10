@@ -49,9 +49,8 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
   return (
     <div className="center">
       <div style={{ 
-        width: "100%", 
-        maxWidth: "420px", 
-        padding: "24px",
+        width: "min(92vw, 420px)", 
+        padding: "clamp(16px, 4vw, 24px)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -61,10 +60,10 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
       }}>
         {/* Header / Icon */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
-          <div style={{ marginBottom: "24px", marginTop: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ marginBottom: "clamp(16px, 4vw, 24px)", marginTop: "clamp(8px, 2vw, 8px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <div style={{ 
-              height: "64px", 
-              width: "64px", 
+              height: "clamp(48px, 12vw, 64px)", 
+              width: "clamp(48px, 12vw, 64px)", 
               borderRadius: "16px", 
               background: "rgba(255, 255, 255, 0.15)", 
               border: "1px solid rgba(255, 255, 255, 0.2)", 
@@ -73,14 +72,14 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
               alignItems: "center",
               justifyContent: "center"
             }}>
-              <span style={{ fontSize: "48px", transform: "scaleX(-1)" }} aria-label="Icono Pasalacabra">
+              <span style={{ fontSize: "clamp(36px, 9vw, 48px)", transform: "scaleX(-1)" }} aria-label="Icono Pasalacabra">
                 🐐
               </span>
             </div>
           </div>
 
           <h1 style={{ 
-            fontSize: "48px", 
+            fontSize: "clamp(36px, 10vw, 48px)", 
             fontWeight: 900, 
             letterSpacing: "-0.02em",
             fontFamily: "ui-serif, Georgia, Times, serif",
@@ -90,20 +89,20 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
             Pasalacabra
           </h1>
 
-          <p style={{ marginTop: "16px", fontSize: "20px", color: "rgba(255, 255, 255, 0.9)" }}>
+          <p style={{ marginTop: "clamp(12px, 3vw, 16px)", fontSize: "clamp(16px, 4vw, 20px)", color: "rgba(255, 255, 255, 0.9)" }}>
             Conoces este juego 😉. Intenta terminar la rueda diaria antes de que se acabe el tiempo.
           </p>
         </div>
 
         {/* Primary actions */}
-        <div style={{ marginTop: "40px", width: "100%", display: "flex", flexDirection: "column", gap: "12px" }}>
+        <div style={{ marginTop: "clamp(32px, 8vw, 40px)", width: "100%", display: "flex", flexDirection: "column", gap: "clamp(10px, 2.5vw, 12px)" }}>
           <button
             className="btnPrimary"
             style={{ 
               width: "100%", 
               borderRadius: "9999px", 
-              padding: "16px",
-              fontSize: "18px",
+              padding: "clamp(14px, 3.5vw, 16px)",
+              fontSize: "clamp(16px, 4vw, 18px)",
               fontWeight: 600,
               border: "none",
               cursor: "pointer",
@@ -117,7 +116,7 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
             Juego de hoy
           </button>
 
-          <div style={{ marginTop: "12px", marginBottom: "12px", textAlign: "center", fontSize: "14px", color: "rgba(255, 255, 255, 0.75)" }}>
+          <div style={{ marginTop: "clamp(10px, 2.5vw, 12px)", marginBottom: "clamp(10px, 2.5vw, 12px)", textAlign: "center", fontSize: "clamp(12px, 3vw, 14px)", color: "rgba(255, 255, 255, 0.75)" }}>
             O personaliza tu propio juego para jugar en familia o amigos o solo.
           </div>
 
@@ -128,8 +127,8 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
               background: "transparent",
               border: "2px solid rgba(255, 255, 255, 0.8)",
               color: "var(--text)",
-              padding: "16px",
-              fontSize: "18px",
+              padding: "clamp(14px, 3.5vw, 16px)",
+              fontSize: "clamp(16px, 4vw, 18px)",
               fontWeight: 600,
               cursor: "pointer",
               transition: "transform 0.1s",
@@ -144,7 +143,7 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
         </div>
 
         {/* Secondary actions */}
-        <div style={{ marginTop: "32px", width: "100%", display: "flex", flexDirection: "column", gap: "12px" }}>
+        <div style={{ marginTop: "clamp(24px, 6vw, 32px)", width: "100%", display: "flex", flexDirection: "column", gap: "clamp(10px, 2.5vw, 12px)" }}>
           <div>
             <button
               style={{ 
@@ -153,8 +152,8 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
                 background: "transparent",
                 border: "1px solid rgba(255, 255, 255, 0.3)",
                 color: "var(--text)",
-                padding: "12px",
-                fontSize: "16px",
+                padding: "clamp(10px, 2.5vw, 12px)",
+                fontSize: "clamp(14px, 3.5vw, 16px)",
                 fontWeight: 600,
                 cursor: "pointer",
                 transition: "transform 0.1s",
@@ -175,7 +174,7 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
                 style={{
                   transform: showHowToPlay ? "rotate(180deg)" : "rotate(0deg)",
                   transition: "transform 0.2s",
-                  fontSize: "12px",
+                  fontSize: "clamp(10px, 2.5vw, 12px)",
                 }}
               >
                 ▼
@@ -185,28 +184,28 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
             {showHowToPlay && (
               <div
                 style={{
-                  marginTop: 12,
-                  padding: 16,
+                  marginTop: "clamp(10px, 2.5vw, 12px)",
+                  padding: "clamp(12px, 3vw, 16px)",
                   background: "rgba(0,0,0,0.3)",
-                  borderRadius: 16,
+                  borderRadius: "clamp(12px, 3vw, 16px)",
                   textAlign: "left",
                   lineHeight: 1.6,
                 }}
               >
-                <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>
+                <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
                   🎯 Objetivo
                 </h3>
-                <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
+                <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
                   Conoces este juego 😉. Responde correctamente a las preguntas
                   de cada letra del abecedario lo más rápido que puedas. El
                   jugador con más aciertos gana. Prueba a conectar el teléfono a
                   la tele y pruébalo en familia.
                 </p>
 
-                <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>
+                <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
                   🎮 Cómo se juega
                 </h3>
-                <ul style={{ margin: "0 0 16px 0", paddingLeft: 20, opacity: 0.9 }}>
+                <ul style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", paddingLeft: "clamp(16px, 4vw, 20px)", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
                   <li>El narrador lee una pregunta en voz alta</li>
                   <li>Responde hablando cuando escuches el pitido</li>
                   <li>Si aciertas, pasas a la siguiente letra</li>
@@ -220,19 +219,19 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
                   </li>
                 </ul>
 
-                <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>
+                <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
                   ⏱️ El tiempo
                 </h3>
-                <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
+                <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
                   Cada jugador 3 minutos en total. El tiempo solo corre durante tu
                   turno. Si eres el último jugador, puedes seguir hasta que se te
                   agote el tiempo.
                 </p>
 
-                <h3 style={{ margin: "0 0 12px 0", fontSize: "1.1rem" }}>
+                <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
                   🏆 Puntuación
                 </h3>
-                <ul style={{ margin: 0, paddingLeft: 20, opacity: 0.9 }}>
+                <ul style={{ margin: 0, paddingLeft: "clamp(16px, 4vw, 20px)", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
                   <li>✓ Acierto = +1 punto</li>
                   <li>✗ Fallo = penalización en desempate</li>
                   <li>Pasalacabra = sin penalización</li>
@@ -249,8 +248,8 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
                 background: "transparent",
                 border: "1px solid rgba(255, 255, 255, 0.3)",
                 color: "var(--text)",
-                padding: "12px",
-                fontSize: "16px",
+                padding: "clamp(10px, 2.5vw, 12px)",
+                fontSize: "clamp(14px, 3.5vw, 16px)",
                 fontWeight: 600,
                 cursor: "pointer",
                 transition: "transform 0.1s",
@@ -271,7 +270,7 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
                 style={{
                   transform: showAbout ? "rotate(180deg)" : "rotate(0deg)",
                   transition: "transform 0.2s",
-                  fontSize: "12px",
+                  fontSize: "clamp(10px, 2.5vw, 12px)",
                 }}
               >
                 ▼
@@ -281,23 +280,23 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
             {showAbout && (
               <div
                 style={{
-                  marginTop: 12,
-                  padding: 16,
+                  marginTop: "clamp(10px, 2.5vw, 12px)",
+                  padding: "clamp(12px, 3vw, 16px)",
                   background: "rgba(0,0,0,0.3)",
-                  borderRadius: 16,
+                  borderRadius: "clamp(12px, 3vw, 16px)",
                   textAlign: "left",
                   lineHeight: 1.6,
                 }}
               >
-                <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
+                <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
                   Pues mira, por una parte a mi abuela le encantaba este programa
                   y no se perdía una, así que esto va por ella.
                 </p>
-                <p style={{ margin: "0 0 16px 0", opacity: 0.9 }}>
+                <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
                   Y por otra, demasiadas cenas de Navidad hablando de política
                   que podían ser mucho más entretenidas.
                 </p>
-                <p style={{ margin: 0, opacity: 0.9 }}>
+                <p style={{ margin: 0, opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
                   ¡Que os divirtáis! Cualquier cosa, sugerencias, ideas, o si
                   queréis contribuir al proyecto, mandad un email a
                   info(arroba)pasalacabra.com
@@ -308,9 +307,9 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
         </div>
 
         {/* Footer */}
-        <div style={{ marginTop: "40px", textAlign: "center" }}>
-          <div style={{ fontSize: "20px", fontWeight: 600 }}>{formatDateLongES(today)}</div>
-          <div style={{ marginTop: "4px", fontSize: "18px", color: "rgba(255, 255, 255, 0.8)" }}>No. {gameNo}</div>
+        <div style={{ marginTop: "clamp(32px, 8vw, 40px)", textAlign: "center" }}>
+          <div style={{ fontSize: "clamp(16px, 4vw, 20px)", fontWeight: 600 }}>{formatDateLongES(today)}</div>
+          <div style={{ marginTop: "clamp(3px, 1vw, 4px)", fontSize: "clamp(14px, 3.5vw, 18px)", color: "rgba(255, 255, 255, 0.8)" }}>No. {gameNo}</div>
         </div>
       </div>
     </div>
