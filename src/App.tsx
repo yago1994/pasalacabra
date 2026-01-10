@@ -1439,11 +1439,12 @@ export default function App() {
       if (now - startedAt < 400) return; // avoid false negatives right after speak()
       
       if (!window.speechSynthesis.speaking) {
-        // Speech has stopped, but wait 300ms to ensure audio buffer finishes
+        // Speech has stopped, but wait 600ms to ensure audio buffer finishes
+        // This is longer than typical because the last word can get cut off on mobile
         if (speechStoppedAt === null) {
           speechStoppedAt = now;
-        } else if (now - speechStoppedAt >= 300) {
-          // Speech has been stopped for at least 300ms, safe to finish
+        } else if (now - speechStoppedAt >= 600) {
+          // Speech has been stopped for at least 600ms, safe to finish
           finish();
         }
       } else {
@@ -2571,7 +2572,7 @@ export default function App() {
               return;
             }
             setCurrentIndex(nextIdx);
-          }, 200); // Small buffer to ensure audio buffer finishes (polling already waits 300ms)
+          }, 300); // Buffer to ensure audio buffer finishes (polling already waits 600ms)
         });
       }, 120);
     });
@@ -2648,7 +2649,7 @@ export default function App() {
                 setFeedback(null);
                 setLastWrongLetter(null);
               }
-            }, 300); // Small buffer to ensure audio buffer finishes (polling already waits 300ms)
+            }, 400); // Buffer to ensure audio buffer finishes (polling already waits 600ms)
           } else {
             // Multiplayer with multiple players remaining: end the turn
             if (nextIdx !== -1) setCurrentIndex(nextIdx);
