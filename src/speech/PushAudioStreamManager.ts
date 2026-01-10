@@ -94,15 +94,6 @@ function floatTo16BitPCM(samples: Float32Array): ArrayBuffer {
 }
 
 /**
- * Create a silence buffer of the given duration.
- */
-function createSilenceBuffer(durationMs: number, sampleRate: number): ArrayBuffer {
-  const numSamples = Math.round((durationMs / 1000) * sampleRate);
-  // 16-bit PCM = 2 bytes per sample
-  return new ArrayBuffer(numSamples * 2);
-}
-
-/**
  * Creates a PushAudioStreamManager that captures mic audio and gates it for Azure STT.
  * 
  * @param options Configuration options
@@ -291,35 +282,35 @@ export async function createPushAudioStreamManager(
 
     try {
       source.disconnect();
-    } catch {}
+    } catch { /* ignore */ }
 
     if (workletNode) {
       try {
         workletNode.disconnect();
         workletNode.port.close();
-      } catch {}
+      } catch { /* ignore */ }
     }
 
     if (scriptNode) {
       try {
         scriptNode.disconnect();
         scriptNode.onaudioprocess = null;
-      } catch {}
+      } catch { /* ignore */ }
     }
 
     try {
       audioContext.close();
-    } catch {}
+    } catch { /* ignore */ }
 
     for (const track of stream.getTracks()) {
       try {
         track.stop();
-      } catch {}
+      } catch { /* ignore */ }
     }
 
     try {
       pushStream.close();
-    } catch {}
+    } catch { /* ignore */ }
   };
 
   // Start with gate closed (silence)
