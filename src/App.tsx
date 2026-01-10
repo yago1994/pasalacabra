@@ -2931,7 +2931,7 @@ export default function App() {
               ) : (
                 <>
                   <button className="slideshowShareBtn" onClick={grabarYCompartir}>
-                    🎥 Grabar y compartir
+                    🎥 Grabar y compartir foto
                   </button>
                   {session && session.players.length === 1 && playerSnapshots.length > 0 && (
                     <button
