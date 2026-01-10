@@ -348,6 +348,8 @@ export default function App() {
 
   // Speech-to-text (Azure)// Holds a cleanup function for the Azure mic stream + meter
   const azureMicCloseRef = useRef<null | (() => void)>(null);
+  // Store the MediaStream to reuse across recognizer restarts (prevents Chrome permission prompts)
+  const azureMicStreamRef = useRef<MediaStream | null>(null);
 
   // Optional: expose current mic volume in dB for gating/debug
   const micDbRef = useRef<null | (() => number)>(null);
@@ -1000,6 +1002,20 @@ export default function App() {
     openGateRef.current = null;
     closeGateRef.current = null;
     resumeAudioContextRef.current = null;
+    
+    // Only clear the stream ref if we're fully stopping (not just replacing)
+    // When replacing, we want to keep the stream alive for reuse
+    if (reason === "user") {
+      if (azureMicStreamRef.current) {
+        for (const track of azureMicStreamRef.current.getTracks()) {
+          try {
+            track.stop();
+          } catch { /* ignore */ }
+        }
+        azureMicStreamRef.current = null;
+      }
+    }
+    
     if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
     sttAutoSubmitTimerRef.current = null;
     if (sttInterimAutoSubmitTimerRef.current) window.clearTimeout(sttInterimAutoSubmitTimerRef.current);
@@ -1060,10 +1076,14 @@ export default function App() {
 
     let r: sdk.SpeechRecognizer | null = null;
     try {
-      const bundle = await createAzureRecognizer();
+      // Reuse existing stream if available (prevents repeated getUserMedia calls)
+      const bundle = await createAzureRecognizer({
+        existingStream: azureMicStreamRef.current ?? undefined,
+      });
       r = bundle.recognizer;
 
-      
+      // Store the stream for future reuse
+      azureMicStreamRef.current = bundle.stream;
 
       // store these so your recognizing/recognized handlers can gate
       azureMicCloseRef.current?.();      // close any previous stream if it exists  

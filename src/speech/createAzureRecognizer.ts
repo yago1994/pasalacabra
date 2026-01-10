@@ -28,6 +28,8 @@ export interface CreateAzureRecognizerOptions {
   hangoverMs?: number;
   /** Enable debug logging for audio stream manager */
   debug?: boolean;
+  /** Existing MediaStream to reuse (avoids repeated getUserMedia calls) */
+  existingStream?: MediaStream;
 }
 
 /**
@@ -56,6 +58,7 @@ export async function createAzureRecognizer(
     volumeThresholdDb: options.volumeThresholdDb,
     hangoverMs: options.hangoverMs,
     debug: options.debug,
+    existingStream: options.existingStream,
   });
 
   // Create the recognizer with the push stream audio config
