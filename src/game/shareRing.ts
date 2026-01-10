@@ -138,12 +138,10 @@ export const PASALACABRA_LETTERS: string[] = [
    * Only works for single-player games.
    * 
    * @param statusByLetter - Record mapping each letter to its status ("correct", "wrong", "pending", "current", "passed")
-   * @param playerName - Optional player name for generating game ID
    * @returns Promise that resolves when sharing is complete, or rejects with an error
    */
   export async function shareEmojiSequence(
     statusByLetter: Record<Letter, LetterStatus>,
-    playerName?: string
   ): Promise<void> {
     // Convert LetterStatus to share format
     const statusesByLetter: Record<string, "correct" | "wrong" | "skip"> = {};
@@ -166,20 +164,16 @@ export const PASALACABRA_LETTERS: string[] = [
       }
     }
 
-    // Generate a simple game ID (using player name or timestamp)
-    const gameId = playerName
-      ? playerName.toLowerCase().replace(/\s+/g, "-")
-      : `game-${Date.now().toString().slice(-6)}`;
-
+    const gameUrl = "https://pasalacabra.com";
     // Build the share text
     const shareText = buildEmojiRingShare({
-      title: `Pasala🐐 #${gameId}`,
+      title: `Pasala🐐`,
       subtitle: `${correct}✅ ${wrong}❌ · ${skip}⏭`,
       letters: PASALACABRA_LETTERS,
       statusesByLetter,
       mode: "ring",
       playerCount: 1, // Validate single-player
-    });
+    }) + `\n\nIntenta ganarme: `;
 
     // Share using Web Share API if available, otherwise copy to clipboard
     try {
@@ -187,11 +181,12 @@ export const PASALACABRA_LETTERS: string[] = [
         await navigator.share({
           title: "Pasala🐐",
           text: shareText,
+          url: gameUrl,
         });
       } else {
         // Fallback: copy to clipboard
-        await navigator.clipboard.writeText(shareText);
-        alert("¡Resultados copiados al portapapeles!");
+        await navigator.clipboard.writeText(`${shareText}${gameUrl}`);
+        alert("¡Resultados copiados!");
       }
     } catch (err) {
       if ((err as Error).name !== "AbortError") {
@@ -199,7 +194,7 @@ export const PASALACABRA_LETTERS: string[] = [
         // Fallback: try copying to clipboard
         try {
           await navigator.clipboard.writeText(shareText);
-          alert("¡Resultados copiados al portapapeles!");
+          alert("¡Resultados copiados!");
         } catch (clipboardErr) {
           console.error("Failed to copy to clipboard:", clipboardErr);
           alert("Error al compartir. Por favor, copia manualmente el texto.");

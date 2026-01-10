@@ -27,6 +27,9 @@ export interface PushAudioStreamManagerOptions {
   hangoverMs?: number;
   /** Enable debug logging */
   debug?: boolean;
+  /** Existing MediaStream to reuse (avoids repeated getUserMedia calls).
+   * The stream will NOT be stopped when this manager closes. */
+  existingStream?: MediaStream;
 }
 
 export interface PushAudioStreamBundle {
@@ -106,6 +109,7 @@ export async function createPushAudioStreamManager(
     volumeThresholdDb = DEFAULT_VOLUME_THRESHOLD_DB,
     hangoverMs = DEFAULT_HANGOVER_MS,
     debug = false,
+    existingStream,
   } = options;
 
   const log = (...args: unknown[]) => {
@@ -117,6 +121,7 @@ export async function createPushAudioStreamManager(
   let currentDb = -100;
   let lastAboveThresholdAt = 0;
   let closed = false;
+  let streamOwned = false; // Track if we created this stream or it was passed in
 
   // Create Azure PushAudioInputStream
   const format = sdk.AudioStreamFormat.getWaveFormatPCM(
@@ -127,17 +132,43 @@ export async function createPushAudioStreamManager(
   const pushStream = sdk.AudioInputStream.createPushStream(format);
   const audioConfig = sdk.AudioConfig.fromStreamInput(pushStream);
 
-  // Get microphone stream
-  const stream = await navigator.mediaDevices.getUserMedia({
-    audio: {
-      echoCancellation: true,
-      noiseSuppression: true,
-      autoGainControl: true,
-    },
-    video: false,
-  });
-
-  log("Got microphone stream");
+  // Get microphone stream - reuse existing if provided and valid
+  let stream: MediaStream;
+  
+  if (existingStream) {
+    // Validate that the existing stream is still usable
+    const tracks = existingStream.getTracks();
+    const hasActiveTrack = tracks.some(track => track.readyState === "live");
+    
+    if (!hasActiveTrack) {
+      log("Existing stream has no active tracks, requesting new stream");
+      stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true,
+        },
+        video: false,
+      });
+      streamOwned = true;
+      log("Got new microphone stream (existing was inactive)");
+    } else {
+      stream = existingStream;
+      streamOwned = false;
+      log("Reusing existing microphone stream");
+    }
+  } else {
+    stream = await navigator.mediaDevices.getUserMedia({
+      audio: {
+        echoCancellation: true,
+        noiseSuppression: true,
+        autoGainControl: true,
+      },
+      video: false,
+    });
+    streamOwned = true;
+    log("Got microphone stream");
+  }
 
   // Create AudioContext
   const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
@@ -275,7 +306,7 @@ export async function createPushAudioStreamManager(
   const close = () => {
     if (closed) return;
     closed = true;
-    log("Closing PushAudioStreamManager");
+    log("Closing PushAudioStreamManager", { streamOwned });
 
     document.removeEventListener("visibilitychange", handleVisibilityChange);
     window.removeEventListener("pageshow", handlePageShow);
@@ -302,10 +333,13 @@ export async function createPushAudioStreamManager(
       audioContext.close();
     } catch { /* ignore */ }
 
-    for (const track of stream.getTracks()) {
-      try {
-        track.stop();
-      } catch { /* ignore */ }
+    // Only stop stream tracks if we created the stream (not if it was passed in)
+    if (streamOwned) {
+      for (const track of stream.getTracks()) {
+        try {
+          track.stop();
+        } catch { /* ignore */ }
+      }
     }
 
     try {

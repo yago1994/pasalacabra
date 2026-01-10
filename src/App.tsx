@@ -348,6 +348,8 @@ export default function App() {
 
   // Speech-to-text (Azure)// Holds a cleanup function for the Azure mic stream + meter
   const azureMicCloseRef = useRef<null | (() => void)>(null);
+  // Store the MediaStream to reuse across recognizer restarts (prevents Chrome permission prompts)
+  const azureMicStreamRef = useRef<MediaStream | null>(null);
 
   // Optional: expose current mic volume in dB for gating/debug
   const micDbRef = useRef<null | (() => number)>(null);
@@ -1000,6 +1002,20 @@ export default function App() {
     openGateRef.current = null;
     closeGateRef.current = null;
     resumeAudioContextRef.current = null;
+    
+    // Only clear the stream ref if we're fully stopping (not just replacing)
+    // When replacing, we want to keep the stream alive for reuse
+    if (reason === "user") {
+      if (azureMicStreamRef.current) {
+        for (const track of azureMicStreamRef.current.getTracks()) {
+          try {
+            track.stop();
+          } catch { /* ignore */ }
+        }
+        azureMicStreamRef.current = null;
+      }
+    }
+    
     if (sttAutoSubmitTimerRef.current) window.clearTimeout(sttAutoSubmitTimerRef.current);
     sttAutoSubmitTimerRef.current = null;
     if (sttInterimAutoSubmitTimerRef.current) window.clearTimeout(sttInterimAutoSubmitTimerRef.current);
@@ -1060,10 +1076,14 @@ export default function App() {
 
     let r: sdk.SpeechRecognizer | null = null;
     try {
-      const bundle = await createAzureRecognizer();
+      // Reuse existing stream if available (prevents repeated getUserMedia calls)
+      const bundle = await createAzureRecognizer({
+        existingStream: azureMicStreamRef.current ?? undefined,
+      });
       r = bundle.recognizer;
 
-      
+      // Store the stream for future reuse
+      azureMicStreamRef.current = bundle.stream;
 
       // store these so your recognizing/recognized handlers can gate
       azureMicCloseRef.current?.();      // close any previous stream if it exists  
@@ -1161,7 +1181,8 @@ export default function App() {
       if (ok) {
         sttLog("command-check(interim)", { normalizedJoined });
         sttCommandKeyRef.current = key;
-        stopListening("user");
+        // Don't stop listening yet - let handlePasalacabra decide based on single/multiplayer
+        // This preserves the stream in single-player mode (handlePasalacabra will just disarm)
         userEditedAnswerRef.current = false;
         setAnswerText("");
         sttLog("-> triggering PASALACABRA (interim)");
@@ -1235,7 +1256,8 @@ export default function App() {
       sttLog("command-check(final)", { normalizedJoined, ok });
       if (ok) {
         sttCommandKeyRef.current = key;
-        stopListening("user");
+        // Don't stop listening yet - let handlePasalacabra decide based on single/multiplayer
+        // This preserves the stream in single-player mode (handlePasalacabra will just disarm)
         // Don't keep the command text in the input.
         userEditedAnswerRef.current = false;
         setAnswerText("");
@@ -1385,51 +1407,75 @@ export default function App() {
     utterance.volume = 1;
 
     let done = false;
-    let pollId: number | null = null;
+    let minDurationTimer: number | null = null;
     let maxTimer: number | null = null;
+    let speechEndDetected = false;
+
+    const startedAt = Date.now();
+    const words = t.split(/\s+/).filter(Boolean).length;
+    
+    // Calculate minimum duration based on word count
+    // Spanish TTS is typically ~3-4 words per second at normal rate
+    // Use 350ms per word as a conservative estimate, adjusted for rate
+    const minDurationMs = Math.max(800, words * (350 / rate));
+    // Max timeout as a safety valve (generous to handle long answers)
+    const maxMs = Math.min(45000, Math.max(3000, words * (500 / rate)));
 
     const finish = () => {
       if (done) return;
       done = true;
-      if (pollId) window.clearInterval(pollId);
+      if (minDurationTimer) window.clearTimeout(minDurationTimer);
       if (maxTimer) window.clearTimeout(maxTimer);
       onDone();
     };
-    utterance.onend = finish;
-    utterance.onerror = finish;
+
+    // Only finish when BOTH conditions are met:
+    // 1. Speech end was detected (onend fired or speechSynthesis.speaking is false)
+    // 2. Minimum duration has passed (to ensure audio buffer is flushed)
+    const tryFinish = () => {
+      if (done) return;
+      const elapsed = Date.now() - startedAt;
+      if (speechEndDetected && elapsed >= minDurationMs) {
+        finish();
+      }
+    };
+
+    // Mark speech as ended when onend fires
+    utterance.onend = () => {
+      speechEndDetected = true;
+      tryFinish();
+    };
+    utterance.onerror = () => {
+      speechEndDetected = true;
+      tryFinish();
+    };
 
     window.speechSynthesis.speak(utterance);
 
-    // Dynamic TTS end detection (same pattern as speakCurrentQuestionThenListen):
-    // - Safari can have unreliable `onend` timing; also, we never want to "end early".
-    // - We poll `speechSynthesis.speaking` and only finish when it truly stops.
-    // - We still include a generous max timeout as a safety valve.
-    const startedAt = Date.now();
-    const words = t.split(/\s+/).filter(Boolean).length;
-    // Adjust for speech rate: at rate 0.9, TTS is ~10% slower
-    // Estimate ~200ms per word at normal rate, with buffer
-    const maxMs = Math.min(45000, Math.max(2000, words * (250 / rate)));
-
-    let speechStoppedAt: number | null = null;
-    pollId = window.setInterval(() => {
-      if (done) return;
-      const now = Date.now();
-      if (now - startedAt < 400) return; // avoid false negatives right after speak()
-      
-      if (!window.speechSynthesis.speaking) {
-        // Speech has stopped, but wait 300ms to ensure audio buffer finishes
-        if (speechStoppedAt === null) {
-          speechStoppedAt = now;
-        } else if (now - speechStoppedAt >= 300) {
-          // Speech has been stopped for at least 300ms, safe to finish
-          finish();
-        }
-      } else {
-        // Speech is still speaking, reset the stopped timer
-        speechStoppedAt = null;
+    // Set a timer to check after minimum duration
+    // This handles cases where onend already fired before minDuration
+    minDurationTimer = window.setTimeout(() => {
+      // If speech end was already detected, finish now
+      if (speechEndDetected) {
+        finish();
+        return;
       }
-    }, 120);
+      // Otherwise, poll for speech end
+      const pollId = window.setInterval(() => {
+        if (done) {
+          window.clearInterval(pollId);
+          return;
+        }
+        if (!window.speechSynthesis.speaking) {
+          speechEndDetected = true;
+          window.clearInterval(pollId);
+          // Add a small buffer after detecting speech stopped
+          window.setTimeout(finish, 200);
+        }
+      }, 100);
+    }, minDurationMs);
 
+    // Max timeout as a safety valve
     maxTimer = window.setTimeout(finish, maxMs);
   }
 
@@ -1983,10 +2029,9 @@ export default function App() {
     }
 
     const snapshot = playerSnapshots[0];
-    const playerName = session.players[0]?.name;
 
     // Use the refactored function from shareRing
-    await shareEmojiSequence(snapshot.statusByLetter, playerName);
+    await shareEmojiSequence(snapshot.statusByLetter);
   }
 
   // Request camera only after entering the game screen.
@@ -2530,6 +2575,11 @@ export default function App() {
     void ensureSfxReady().then(() => {
       playSfx("correct");
       window.setTimeout(() => {
+        // On mobile, always try to resume audio context before speaking (required for TTS on iOS/mobile)
+        const ctx = getAudioCtx();
+        if (ctx && ctx.state !== "running") {
+          void ctx.resume().catch(() => {});
+        }
         speakWithCallback("Sí", () => {
           // Speech has finished according to polling, but add a small buffer
           // to ensure audio buffer is fully done before moving to next question
@@ -2545,7 +2595,7 @@ export default function App() {
               return;
             }
             setCurrentIndex(nextIdx);
-          }, 200); // Small buffer to ensure audio buffer finishes (polling already waits 300ms)
+          }, 200); // Small buffer after speakWithCallback's minimum duration
         });
       }, 120);
     });
@@ -2597,6 +2647,11 @@ export default function App() {
     void ensureSfxReady().then(() => {
       playSfx("wrong");
       window.setTimeout(() => {
+        // On mobile, always try to resume audio context before speaking (required for TTS on iOS/mobile)
+        const ctx = getAudioCtx();
+        if (ctx && ctx.state !== "running") {
+          void ctx.resume().catch(() => {});
+        }
         speakWithCallback(`No. La respuesta correcta es: ${correctAnswer}`, () => {
           // Speech has finished according to polling, but add a small buffer
           // to ensure audio buffer is fully done before moving to next question
@@ -2617,7 +2672,7 @@ export default function App() {
                 setFeedback(null);
                 setLastWrongLetter(null);
               }
-            }, 300); // Small buffer to ensure audio buffer finishes (polling already waits 300ms)
+            }, 200); // Small buffer after speakWithCallback's minimum duration
           } else {
             // Multiplayer with multiple players remaining: end the turn
             if (nextIdx !== -1) setCurrentIndex(nextIdx);
@@ -2876,7 +2931,7 @@ export default function App() {
               ) : (
                 <>
                   <button className="slideshowShareBtn" onClick={grabarYCompartir}>
-                    🎥 Grabar y compartir
+                    🎥 Grabar y compartir foto
                   </button>
                   {session && session.players.length === 1 && playerSnapshots.length > 0 && (
                     <button
