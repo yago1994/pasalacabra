@@ -120,12 +120,14 @@ export default function GameDetails({
             onChange={(e) => setDifficultyMode(e.target.value as DifficultyMode)}
           >
             <option value="dificil">
-              Difícil: {isStagingMode() ? "2 secs" : "3 mins"}
+              Difícil: {isStagingMode() ? "2s" : "3 mins"}
             </option>
             <option value="medio">
-              Media: {isStagingMode() ? "15 secs" : "4 mins"}
+              Media: {isStagingMode() ? "15s" : "4 mins"}
             </option>
-            <option value="facil">Fácil: 5 mins</option>
+            <option value="facil">
+              Fácil: {isStagingMode() ? "30s" : "5 mins"}
+            </option>
           </select>
         </label>
 
