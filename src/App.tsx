@@ -2522,6 +2522,7 @@ export default function App() {
               return;
             }
             setCurrentIndex(nextIdx);
+          }, 200); // Small buffer to ensure audio buffer finishes (polling already waits 300ms)
         });
       }, 120);
     });
