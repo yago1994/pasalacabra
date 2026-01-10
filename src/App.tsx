@@ -2005,7 +2005,6 @@ export default function App() {
     }
 
     const snapshot = playerSnapshots[0];
-    const playerName = session.players[0]?.name;
 
     // Use the refactored function from shareRing
     await shareEmojiSequence(snapshot.statusByLetter);
