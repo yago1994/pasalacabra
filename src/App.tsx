@@ -211,7 +211,19 @@ function anyUnresolved(statusByLetter: Record<Letter, LetterStatus>, letters: re
 
 export default function App() {
   const DEBUG_STT = true;
-  const letters = SPANISH_LETTERS;
+  
+  // Test mode: check URL parameter for single letter testing (e.g., ?testLetter=A)
+  const testLetter = useMemo(() => {
+    const params = new URLSearchParams(window.location.search);
+    const letter = params.get("testLetter");
+    if (letter && SPANISH_LETTERS.includes(letter as Letter)) {
+      console.log(`🧪 TEST MODE: Testing with single letter "${letter}"`);
+      return letter as Letter;
+    }
+    return null;
+  }, []);
+  
+  const letters = testLetter ? [testLetter] : SPANISH_LETTERS;
   const availableSets = useMemo(() => listSets(), []);
 
   const [screen, setScreen] = useState<Screen>("home");
@@ -1833,6 +1845,51 @@ export default function App() {
     return () => clearTimeout(cleanup);
   }, [gameOver]);
 
+  // Capture snapshots for all players when game ends (if not already captured)
+  useEffect(() => {
+    if (!gameOver) return;
+    
+    const currentSession = sessionRef.current;
+    const states = playerStatesRef.current;
+    const latestStatusByLetter = statusByLetterRef.current;
+    const latestCurrentIndex = currentIndexRef.current;
+    if (!currentSession) return;
+
+    // Get list of player IDs that already have snapshots
+    const existingSnapshotIds = new Set(playerSnapshots.map(s => s.playerId));
+    
+    // Capture snapshots for all players who don't have one yet
+    for (const player of currentSession.players) {
+      if (existingSnapshotIds.has(player.id)) {
+        continue; // Already has snapshot
+      }
+      
+      const playerState = states[player.id];
+      if (!playerState) continue;
+      
+      // For single player mode, use the latest ref values to ensure we have the most up-to-date state
+      // (especially important when game ends early before state fully syncs)
+      const isSinglePlayer = currentSession.players.length === 1;
+      const finalStatusByLetter = isSinglePlayer && latestStatusByLetter 
+        ? latestStatusByLetter 
+        : playerState.statusByLetter;
+      const finalCurrentIndex = isSinglePlayer && latestCurrentIndex !== undefined
+        ? latestCurrentIndex
+        : playerState.currentIndex;
+      
+      // Small delay to stagger captures and ensure video frame stability
+      const delay = existingSnapshotIds.size * 200;
+      window.setTimeout(() => {
+        void capturePlayerSnapshot(
+          player.id,
+          player.name || `Jugador ${currentSession.players.indexOf(player) + 1}`,
+          finalStatusByLetter,
+          finalCurrentIndex
+        );
+      }, delay);
+    }
+  }, [gameOver, capturePlayerSnapshot, playerSnapshots]);
+
   // Slideshow effect when game ends with snapshots
   useEffect(() => {
     if (!gameOver || playerSnapshots.length === 0) {
@@ -2586,12 +2643,12 @@ export default function App() {
           if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
           feedbackTimerRef.current = window.setTimeout(() => {
             if (!anyUnresolved(statusAfter, letters)) {
-              endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
+              endTurn("🎉 ¡Increíble! Has acabado toda la rueda, las cabras están muy impresionadas 🐐.");
               return;
             }
             const nextIdx = nextUnresolvedIndex(letters, statusAfter, idx);
             if (nextIdx === -1) {
-              endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
+              endTurn("🎉 ¡Increíble! Has acabado toda la rueda, las cabras están muy impresionadas 🐐.");
               return;
             }
             setCurrentIndex(nextIdx);
@@ -2739,7 +2796,7 @@ export default function App() {
       // Check if there are more questions to answer
       if (!anyUnresolved(statusAfter, letters)) {
         // No more questions - end the turn
-        endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
+        endTurn("🎉 ¡Increíble! Has acabado toda la rueda, las cabras están muy impresionadas 🐐.");
         return;
       }
       
@@ -2748,7 +2805,7 @@ export default function App() {
       const nextIdx = nextUnresolvedIndex(letters, statusAfter, wrongLetterIdx);
       if (nextIdx === -1) {
         // No next question found - end the turn
-        endTurn("🎉 ¡Perfecto! Has terminado todas las letras.");
+        endTurn("🎉 ¡Increíble! Has acabado toda la rueda, las cabras están muy impresionadas 🐐.");
         return;
       }
       
