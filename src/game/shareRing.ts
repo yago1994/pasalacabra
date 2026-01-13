@@ -175,6 +175,8 @@ export const PASALACABRA_LETTERS: string[] = [
       playerCount: 1, // Validate single-player
     }) + `\n\nIntenta ganarme: `;
 
+    const shareTextTemp = `Pasala🐐 \n${correct}✅ ${wrong}❌ · ${skip}⏭ \n\nIntenta ganarme: `
+
     // Share using Web Share API if available, otherwise copy to clipboard
     try {
       if (navigator.share) {
@@ -185,7 +187,7 @@ export const PASALACABRA_LETTERS: string[] = [
         });
       } else {
         // Fallback: copy to clipboard
-        await navigator.clipboard.writeText(`${shareText}${gameUrl}`);
+        await navigator.clipboard.writeText(`${shareTextTemp}${gameUrl}`);
         alert("¡Resultados copiados!");
       }
     } catch (err) {
