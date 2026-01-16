@@ -1729,6 +1729,37 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, currentLetter, activePlayerId, activeSetId]);
 
+  // Track when lastWrongLetter was set (to know when "next question" has started)
+  const lastWrongLetterSetAtRef = useRef<number>(0);
+  
+  // Update timestamp when lastWrongLetter changes
+  useEffect(() => {
+    if (lastWrongLetter) {
+      lastWrongLetterSetAtRef.current = Date.now();
+    }
+  }, [lastWrongLetter]);
+
+  // Clear the override button once the next question has finished speaking
+  // This gives single-player mode a window to override a wrong answer
+  useEffect(() => {
+    if (!questionRead || !lastWrongLetter) return;
+    
+    // Only clear if this questionRead event happened AFTER lastWrongLetter was set
+    // AND enough time has passed (meaning this is the NEXT question finishing, not the current one)
+    // We add 2000ms because: ~200ms buffer + min speech duration of next question
+    const timeSinceWrongAnswer = Date.now() - lastWrongLetterSetAtRef.current;
+    if (timeSinceWrongAnswer < 2000) {
+      // This is still the same question that was answered wrong, ignore
+      return;
+    }
+    
+    // Next question has finished speaking, give the player 1.5s more to click the button
+    const timer = window.setTimeout(() => {
+      setLastWrongLetter(null);
+    }, 1500);
+    return () => window.clearTimeout(timer);
+  }, [questionRead, lastWrongLetter]);
+
   // Ensure mic stops when game ends, but keep it running during idle (player handoff)
   useEffect(() => {
     if (phase === "playing") return;
@@ -2765,27 +2796,13 @@ export default function App() {
     
     // Use refs to get current values (avoids stale closures)
     const status = statusByLetterRef.current;
+    const currentSession = sessionRef.current;
+    const isSinglePlayer = !currentSession || currentSession.players.length <= 1;
     
     // Get the index of the letter that was marked wrong (not the current index,
     // which may have already been moved forward in markWrong for multiplayer)
     const wrongLetterIdx = letters.indexOf(letter);
     if (wrongLetterIdx === -1) return; // Safety check
-    
-    // Stop any current speaking (e.g., "No. La respuesta correcta es: ...")
-    stopSpeaking();
-    
-    // Clear any existing feedback timer
-    if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
-    
-    // Play the correct sound, then speak "Sí"
-    void ensureSfxReady().then(() => {
-      playSfx("correct");
-      window.setTimeout(() => {
-        speakWithCallback("Sí", () => {
-          // no-op
-        });
-      }, 120);
-    });
     
     // Update status to correct
     const statusAfter = { ...status, [letter]: "correct" as LetterStatus };
@@ -2807,8 +2824,29 @@ export default function App() {
     setRevealed(false);
     setTurnMessage("");
     
+    // In single-player mode during gameplay, the next question is already being read
+    // Don't play sounds or speak to avoid interfering with the current question
+    if (isSinglePlayer && phaseRef.current === "playing") {
+      // Just update the status silently - the game continues with the current question
+      return;
+    }
+    
+    // In multiplayer mode (during "ended" phase), we need to resume the turn
+    // Stop any current speaking and clear feedback timer
+    stopSpeaking();
+    if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
+    
+    // Play the correct sound, then speak "Sí"
+    void ensureSfxReady().then(() => {
+      playSfx("correct");
+      window.setTimeout(() => {
+        speakWithCallback("Sí", () => {
+          // no-op
+        });
+      }, 120);
+    });
+    
     // Pause so "Sí" + sound are fully perceivable before next question starts.
-    // This matches the behavior in markCorrect (650ms delay)
     feedbackTimerRef.current = window.setTimeout(() => {
       // Check if there are more questions to answer
       if (!anyUnresolved(statusAfter, letters)) {
@@ -2818,7 +2856,6 @@ export default function App() {
       }
       
       // Find the next unresolved question starting from the letter that was just corrected
-      // (This matches the behavior in markCorrect where we start from the current letter)
       const nextIdx = nextUnresolvedIndex(letters, statusAfter, wrongLetterIdx);
       if (nextIdx === -1) {
         // No next question found - end the turn
@@ -2827,8 +2864,6 @@ export default function App() {
       }
       
       // Resume the turn: continue playing with the next question
-      // The effect at line 1554 will automatically read the question and start listening
-      // when currentIndex changes and phase is "playing"
       setPhase("playing");
       setCurrentIndex(nextIdx);
     }, 650);
