@@ -478,7 +478,7 @@ export default function App() {
     
     initializePendo(
       undefined, // visitorId - using anonymous
-      undefined, // accountId - using anonymous
+      isStaging ? 'Staging' : 'Production', // accountId - environment-based
       undefined, // visitorData
       {
         name: isStaging ? 'Staging' : 'Production',
