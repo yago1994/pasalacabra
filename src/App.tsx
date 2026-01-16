@@ -284,6 +284,7 @@ export default function App() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const [cameraError, setCameraError] = useState<string>("");
+  const [micPermissionDenied, setMicPermissionDenied] = useState<boolean>(false);
   const cameraFacingMode: "user" | "environment" = "user";
 
   // Video recording for sharing
@@ -1110,6 +1111,13 @@ export default function App() {
       setIsListening(false);
       sttDesiredRef.current = false;
       setSttError(String(err));
+      // Check if it's a permission denied error
+      const error = err as DOMException;
+      if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
+        setMicPermissionDenied(true);
+      } else {
+        setMicPermissionDenied(false);
+      }
       sttLog("createAzureRecognizer failed", String(err));
       return;
     }
@@ -1336,6 +1344,7 @@ export default function App() {
       });
       if (gen !== sttGenRef.current) return;
       setIsListening(true);
+      setMicPermissionDenied(false); // Clear permission denied state when listening succeeds
       sttLog("started");
 
       // Signal to the user that they can respond (once per question).
@@ -1969,8 +1978,14 @@ export default function App() {
         videoRef.current.srcObject = stream;
         await videoRef.current.play();
       }
-    } catch {
-      setCameraError("");
+    } catch (err) {
+      // Check if it's a permission denied error
+      const error = err as DOMException;
+      if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
+        setCameraError("permission_denied");
+      } else {
+        setCameraError("");
+      }
     }
   }
 
@@ -2727,7 +2742,9 @@ export default function App() {
                 setCurrentIndex(nextIdx);
                 setRevealed(false);
                 setFeedback(null);
-                setLastWrongLetter(null);
+                // In single-player mode, keep lastWrongLetter visible until next question finishes speaking
+                // This gives the player a chance to override if they realize their answer was correct
+                // The lastWrongLetter will be cleared when questionRead becomes true (via effect)
               }
             }, 200); // Small buffer after speakWithCallback's minimum duration
           } else {
@@ -3092,9 +3109,16 @@ export default function App() {
 
               <div className="controls">
               {phase === "idle" ? (
-                  <button className="btnPrimary" onClick={startTurn} disabled={timeLeft <= 0 || !isListening}>
-                    Empezar
-                  </button>
+                  <>
+                    <button className="btnPrimary" onClick={startTurn} disabled={timeLeft <= 0 || !isListening}>
+                      Empezar
+                    </button>
+                    {(micPermissionDenied || cameraError === "permission_denied") && (
+                      <div className="answerReveal" style={{ marginTop: 8, textAlign: "center" }}>
+                        ⚠️ Para poder jugar tienes que dar acceso a la cámara y micrófono de tu teléfono para responder a las preguntas. Cierra la página y vuelve a abrirla para dar acceso y volver a intentarlo.
+                      </div>
+                    )}
+                  </>
               ) : phase === "playing" ? (
                   <button 
                     className="btnPrimary" 
@@ -3152,6 +3176,17 @@ export default function App() {
                           Respuesta: <strong>{currentQA.answer}</strong>
                         </div>
                       ) : null}
+                      {/* Override button for single-player mode - stays visible until next question finishes */}
+                      {lastWrongLetter && session && session.players.length === 1 && (
+                        <button 
+                          className="btnOutline" 
+                          type="button" 
+                          onClick={overrideToCorrect}
+                          style={{ marginTop: 12 }}
+                        >
+                          Oye! La respuesta era correcta
+                        </button>
+                      )}
                     </>
                   ) : null}
                 </div>
