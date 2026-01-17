@@ -124,6 +124,29 @@ JSON shape:
 }
 ```
 
+### Daily set generation
+The daily set can be generated with OpenAI and stored in `src/data/sets/set_01.json`.
+
+Local run:
+```bash
+OPENAI_KEY=... python3 scripts/generate_daily_set.py
+```
+
+Rules enforced by the generator:
+- Exactly one valid answer (no ambiguity)
+- Answer is not contained in the question
+- Letter constraint enforced ("Empieza por" / "Contiene la")
+- Questions are drawn from 3 randomly selected topics:
+  Astronomía, Biología, Música, Deporte, Ciencia, Cine, Historia, Geografía, Arte, Folklore, Cultura
+- Mixed difficulty with at least 3 hard (university-level) questions
+- Secondary AI validation pass verifies/fixes output
+
+Workflow:
+- Run **Generate Daily Set** manually in GitHub Actions.
+- It creates a review branch named `tomorrow-YYYY-MM-DD` with the updated `set_01.json`.
+- Merging that branch into `main` triggers the deploy workflow and rebuilds the Vite app.
+Required secret: `OPENAI_KEY`.
+
 ### Engine scaffold (pure logic)
 - `src/game/engine.ts` contains types + pure helpers for future refactors:
   - `Player`, `GameSession`
