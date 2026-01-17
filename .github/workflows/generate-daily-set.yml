@@ -24,7 +24,7 @@ jobs:
 
       - name: Generate daily set with retries
         env:
-          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+          OPENAI_KEY: ${{ vars.OPENAI_KEY }}
           SET_PATH: src/data/sets/set_01.json
         run: |
           set -e
