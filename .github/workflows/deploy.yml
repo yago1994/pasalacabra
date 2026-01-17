@@ -3,6 +3,7 @@ name: Deploy (prod + staging)
 on:
   push:
     branches: [main, staging]
+  workflow_dispatch:
 
 permissions:
   contents: write

@@ -1,0 +1,61 @@
+name: Generate Daily Set
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install openai
+
+      - name: Generate daily set with retries
+        env:
+          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+          SET_PATH: src/data/sets/set_01.json
+        run: |
+          set -e
+          max_attempts=3
+          attempt=1
+          while [ $attempt -le $max_attempts ]; do
+            echo "Attempt $attempt/$max_attempts"
+            if python scripts/generate_daily_set.py; then
+              echo "Generation succeeded."
+              break
+            fi
+            if [ $attempt -lt $max_attempts ]; then
+              echo "Generation failed. Sleeping 1 hour before retry..."
+              sleep 3600
+            fi
+            attempt=$((attempt + 1))
+          done
+          if [ $attempt -gt $max_attempts ]; then
+            echo "Generation failed after $max_attempts attempts."
+            exit 1
+          fi
+
+      - name: Commit daily set to review branch
+        run: |
+          if [[ -z "$(git status --porcelain src/data/sets/set_01.json)" ]]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          BRANCH="tomorrow-$(date -u +%Y-%m-%d)"
+          git checkout -b "$BRANCH"
+          git add src/data/sets/set_01.json
+          git -c user.name="github-actions[bot]" -c user.email="github-actions[bot]@users.noreply.github.com" \
+            commit -m "chore: update daily set"
+          git push -u origin "$BRANCH"
