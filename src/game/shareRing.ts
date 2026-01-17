@@ -143,7 +143,7 @@ export const PASALACABRA_LETTERS: string[] = [
   export async function shareEmojiSequence(
     statusByLetter: Record<Letter, LetterStatus>,
   ): Promise<void> {
-    // Convert LetterStatus to share format
+    // Convert LetterStatus to share format and count stats
     const statusesByLetter: Record<string, "correct" | "wrong" | "skip"> = {};
     let correct = 0;
     let wrong = 0;
@@ -164,20 +164,38 @@ export const PASALACABRA_LETTERS: string[] = [
       }
     }
 
+    // Build the new format: letters in rows with emoji status below
+    const lines: string[] = [];
+    lines.push("Pasala🐐");
+    lines.push(`${correct}✅ ${wrong}❌ · ${skip}⏭`);
+    
+    // Group letters in rows: 8, 8, 8, 1
+    const letterRows = [
+      PASALACABRA_LETTERS.slice(0, 8),   // A-H (8 letters)
+      PASALACABRA_LETTERS.slice(8, 16),  // I, J, L, M, N, Ñ, O, P (8 letters)
+      PASALACABRA_LETTERS.slice(16, 24), // Q, R, S, T, U, V, X, Y (8 letters)
+      PASALACABRA_LETTERS.slice(24),     // Z (1 letter)
+    ];
+    
+    // Generate letter rows and emoji rows
+    for (const row of letterRows) {
+      if (row.length === 0) continue;
+      
+      // Letter row: "A B C D E F G H"
+      lines.push(row.join(" "));
+      
+      // Emoji row: "🟢🟢🔵🟢🔴🟢🟢🔵"
+      const emojiRow = row.map(letter => {
+        const status = statusesByLetter[letter] ?? "skip";
+        return statusToEmoji(status);
+      }).join("");
+      lines.push(emojiRow);
+    }
+
     const gameUrl = "https://pasalacabra.com";
-    // Build the share text
-    const shareText = buildEmojiRingShare({
-      title: `Pasala🐐`,
-      subtitle: `${correct}✅ ${wrong}❌ · ${skip}⏭`,
-      letters: PASALACABRA_LETTERS,
-      statusesByLetter,
-      mode: "ring",
-      playerCount: 1, // Validate single-player
-    }) + `\n\nIntenta ganarme: `;
-
+    const shareText = lines.join("\n") + `\n\nIntenta ganarme: ${gameUrl}`;
     // Temporary Share Text until emoji design solid
-    const shareTextTemp = `Pasala🐐 \n${correct}✅ ${wrong}❌ · ${skip}⏭ \n\nIntenta ganarme: `
-
+    // const shareTextTemp = `Pasala🐐 \n${correct}✅ ${wrong}❌ · ${skip}⏭ \n\nIntenta ganarme: `
     // Share using Web Share API if available, otherwise copy to clipboard
     try {
       if (navigator.share) {
@@ -188,7 +206,7 @@ export const PASALACABRA_LETTERS: string[] = [
         });
       } else {
         // Fallback: copy to clipboard
-        await navigator.clipboard.writeText(`${shareTextTemp}${gameUrl}`);
+        await navigator.clipboard.writeText(shareText);
         alert("¡Resultados copiados!");
       }
     } catch (err) {
