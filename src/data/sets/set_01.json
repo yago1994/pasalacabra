@@ -1,31 +1,131 @@
 {
   "id": "set_01",
-  "title": "Set 01 (prototype)",
+  "title": "Pasalacabra 2026-01-17 · No. 17",
   "questions": [
-    { "letter": "A", "question": "Empieza por A: Juego de estrategia en un tablero de 64 casillas con 16 piezas por jugador.", "answer": "Ajedrez" },
-    { "letter": "B", "question": "Empieza por B: Objeto de papelería que se usa para borrar lo escrito con lápiz.", "answer": "Borrador" },
-    { "letter": "C", "question": "Empieza por C: Cuerpo celeste que puede mostrar una cola al acercarse al Sol.", "answer": "Cometa" },
-    { "letter": "D", "question": "Empieza por D: Poliedro que tiene 12 caras pentagonales.", "answer": "Dodecaedro" },
-    { "letter": "E", "question": "Empieza por E: Proceso por el que el agua o el viento desgastan rocas y suelos.", "answer": "Erosión" },
-    { "letter": "F", "question": "Empieza por F: Proceso por el que las plantas producen materia orgánica usando luz solar.", "answer": "Fotosíntesis" },
-    { "letter": "G", "question": "Empieza por G: Gran masa de hielo que se desplaza lentamente por la gravedad.", "answer": "Glaciar" },
-    { "letter": "H", "question": "Empieza por H: Ave rapaz diurna usada históricamente en cetrería.", "answer": "Halcón" },
-    { "letter": "I", "question": "Empieza por I: Variante de un átomo del mismo elemento con distinto número de neutrones.", "answer": "Isótopo" },
-    { "letter": "J", "question": "Empieza por J: Rizoma aromático muy usado en infusiones y cocina asiática.", "answer": "Jengibre" },
-    { "letter": "L", "question": "Empieza por L: Metal alcalino cuyo símbolo químico es Li.", "answer": "Litio" },
-    { "letter": "M", "question": "Empieza por M: Conjunto de filamentos que forma la parte vegetativa de muchos hongos.", "answer": "Micelio" },
-    { "letter": "N", "question": "Empieza por N: Programa con el que se visitan páginas web.", "answer": "Navegador" },
-    { "letter": "Ñ", "question": "Empieza por Ñ: Pasta italiana en forma de bolitas, hecha comúnmente con patata.", "answer": "Ñoquis" },
-    { "letter": "O", "question": "Empieza por O: Instrumento de viento-madera de doble lengüeta típico en orquestas.", "answer": "Oboe" },
-    { "letter": "P", "question": "Empieza por P: Sistema con una masa colgante que oscila de un lado a otro.", "answer": "Péndulo" },
-    { "letter": "Q", "question": "Empieza por Q: Objeto astronómico extremadamente luminoso alimentado por un agujero negro supermasivo.", "answer": "Quásar" },
-    { "letter": "R", "question": "Empieza por R: Capa del ojo que capta la luz y la convierte en señales nerviosas.", "answer": "Retina" },
-    { "letter": "S", "question": "Empieza por S: Objeto fabricado que orbita la Tierra para comunicaciones o mediciones.", "answer": "Satélite" },
-    { "letter": "T", "question": "Empieza por T: Dispositivo que regula una calefacción o aire acondicionado según la temperatura.", "answer": "Termostato" },
-    { "letter": "U", "question": "Empieza por U: Conducto que lleva la orina desde el riñón hasta la vejiga.", "answer": "Uréter" },
-    { "letter": "V", "question": "Empieza por V: Dispositivo que abre o cierra el paso de un fluido en una tubería.", "answer": "Válvula" },
-    { "letter": "X", "question": "Contiene la X: Documento que se adjunta como complemento a un informe principal.", "answer": "Anexo" },
-    { "letter": "Y", "question": "Contiene la Y: Norma jurídica aprobada por el poder legislativo y de cumplimiento obligatorio.", "answer": "Ley" },
-    { "letter": "Z", "question": "Empieza por Z: Piedra preciosa azul del grupo del corindón.", "answer": "Zafiro" }
+    {
+      "letter": "A",
+      "question": "Empieza por A: Punto de la órbita de un satélite más alejado de la Tierra.",
+      "answer": "apogeo"
+    },
+    {
+      "letter": "B",
+      "question": "Empieza por B: Deporte de nueve jugadores por equipo, con bate y guante, popular en Estados Unidos y el Caribe.",
+      "answer": "béisbol"
+    },
+    {
+      "letter": "C",
+      "question": "Empieza por C: Unidad estructural y funcional básica de los seres vivos.",
+      "answer": "célula"
+    },
+    {
+      "letter": "D",
+      "question": "Empieza por D: Coordenada celeste análoga a la latitud en la esfera celeste.",
+      "answer": "declinación"
+    },
+    {
+      "letter": "E",
+      "question": "Empieza por E: Momento del año en que el día y la noche tienen igual duración.",
+      "answer": "equinoccio"
+    },
+    {
+      "letter": "F",
+      "question": "Empieza por F: Fuerza que se opone al movimiento relativo entre superficies en contacto.",
+      "answer": "fricción"
+    },
+    {
+      "letter": "G",
+      "question": "Empieza por G: Interacción fundamental responsable de la atracción entre masas.",
+      "answer": "gravedad"
+    },
+    {
+      "letter": "H",
+      "question": "Empieza por H: Elemento más abundante del universo.",
+      "answer": "hidrógeno"
+    },
+    {
+      "letter": "I",
+      "question": "Empieza por I: Propiedad por la que un cuerpo mantiene su estado de reposo o movimiento rectilíneo uniforme.",
+      "answer": "inercia"
+    },
+    {
+      "letter": "J",
+      "question": "Empieza por J: Prueba de atletismo consistente en lanzar un implemento largo y puntiagudo.",
+      "answer": "jabalina"
+    },
+    {
+      "letter": "L",
+      "question": "Empieza por L: Único satélite natural de la Tierra.",
+      "answer": "Luna"
+    },
+    {
+      "letter": "M",
+      "question": "Empieza por M: Carrera de fondo de 42,195 kilómetros.",
+      "answer": "maratón"
+    },
+    {
+      "letter": "N",
+      "question": "Empieza por N: Partícula subatómica sin carga presente en el núcleo atómico.",
+      "answer": "neutrón"
+    },
+    {
+      "letter": "Ñ",
+      "question": "Contiene la Ñ: Unidad de distancia usada en astronomía equivalente al trayecto que recorre la radiación electromagnética en 365 días.",
+      "answer": "año luz"
+    },
+    {
+      "letter": "O",
+      "question": "Empieza por O: Trayectoria de un cuerpo al moverse alrededor de otro bajo su atracción.",
+      "answer": "órbita"
+    },
+    {
+      "letter": "P",
+      "question": "Empieza por P: Partícula subatómica con carga positiva.",
+      "answer": "protón"
+    },
+    {
+      "letter": "Q",
+      "question": "Empieza por Q: Constituyente elemental de protones y neutrones.",
+      "answer": "quark"
+    },
+    {
+      "letter": "R",
+      "question": "Empieza por R: Teoría física que describe la gravedad como curvatura del espacio-tiempo.",
+      "answer": "relatividad general"
+    },
+    {
+      "letter": "S",
+      "question": "Empieza por S: Explosión cataclísmica al final de la vida de ciertas estrellas.",
+      "answer": "supernova"
+    },
+    {
+      "letter": "T",
+      "question": "Empieza por T: Rama de la física que estudia el calor, el trabajo y la energía.",
+      "answer": "termodinámica"
+    },
+    {
+      "letter": "U",
+      "question": "Empieza por U: Región del espectro electromagnético con longitudes de onda menores que la luz visible.",
+      "answer": "ultravioleta"
+    },
+    {
+      "letter": "V",
+      "question": "Empieza por V: Segundo planeta del Sistema Solar.",
+      "answer": "Venus"
+    },
+    {
+      "letter": "X",
+      "question": "Empieza por X: Gas noble cuyo número atómico es 54.",
+      "answer": "xenón"
+    },
+    {
+      "letter": "Y",
+      "question": "Empieza por Y: Elemento químico esencial para la síntesis de hormonas tiroideas.",
+      "answer": "yodo"
+    },
+    {
+      "letter": "Z",
+      "question": "Empieza por Z: Franja celeste por la que aparentan moverse el Sol, la Luna y los planetas.",
+      "answer": "zodíaco"
+    }
   ]
 }
