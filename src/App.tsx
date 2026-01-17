@@ -27,7 +27,7 @@ import {
 } from "./snapshotComposer";
 import type { CanvasRecording } from "./game/canvasRecorder";
 import { createCanvasRecorder, downloadRecording, shareOrDownloadRecording } from "./game/canvasRecorder";
-import { initializePendo } from "./lib/pendo";
+import { initializePendo, setPendoLocation, trackPendoEvent } from "./lib/pendo";
 import { isStagingMode } from "./env/getSpeechTokenUrl";
 import { shareEmojiSequence } from "./game/shareRing";
 
@@ -478,14 +478,55 @@ export default function App() {
     
     initializePendo(
       undefined, // visitorId - using anonymous
-      undefined, // accountId - using anonymous
+      isStaging ? 'Staging' : 'Production', // accountId - environment-based
       undefined, // visitorData
       {
         name: isStaging ? 'Staging' : 'Production',
         environment: env,
       }
     );
+    // Set initial location
+    setPendoLocation('/home');
   }, []);
+
+  // Track Pendo location when screen, game state, or game mode changes
+  useEffect(() => {
+    // Set Pendo location when screen, game state, or game mode changes
+    if (screen === "home") {
+      setPendoLocation("/home");
+    } else if (screen === "setup") {
+      setPendoLocation("/setup");
+    } else if (screen === "game") {
+      if (!session) {
+        // Session not yet initialized
+        setPendoLocation("/game/single"); // Default fallback
+        return;
+      }
+      
+      const isSinglePlayer = session.players.length === 1;
+      const gameMode = isSinglePlayer ? "single" : "multi";
+      
+      if (gameOver) {
+        // Game ended - track end state
+        setPendoLocation(`/game/${gameMode}/ended`);
+      } else {
+        // Active gameplay - single or multi-player
+        setPendoLocation(`/game/${gameMode}`);
+      }
+    }
+  }, [screen, gameOver, session]);
+
+  // Track game ended event when gameOver becomes true
+  useEffect(() => {
+    // Track game ended event when gameOver becomes true
+    if (gameOver && session) {
+      const mode = session.players.length === 1 ? "single" : "multi";
+      trackPendoEvent("Game Ended", {
+        mode: mode,
+        playerCount: session.players.length,
+      });
+    }
+  }, [gameOver, session]);
 
   // Keep latest values for async STT callbacks (avoid stale closures).
   useEffect(() => {
@@ -2504,6 +2545,14 @@ export default function App() {
   }
 
   async function startTurn() {
+    // Track turn started event
+    if (session) {
+      trackPendoEvent("Turn Started", {
+        currentPlayerIndex: session.currentPlayerIndex,
+        playerCount: session.players.length,
+      });
+    }
+    
     unlockAudioOnce();
     warmupSpeechSynthesisOnce();
     setTurnMessage("");

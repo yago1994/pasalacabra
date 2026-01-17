@@ -33,6 +33,10 @@ declare global {
       track?: (eventName: string, metadata?: Record<string, unknown>) => void;
       pageLoad?: () => void;
       updateOptions?: (options: Record<string, unknown>) => void;
+      location?: {
+        setUrl: (url: string) => void;
+        getHref?: () => string;
+      };
     };
   }
 }
@@ -132,3 +136,16 @@ export function updatePendoOptions(options: Record<string, unknown>): void {
   }
 }
 
+/**
+ * Sets the Pendo location URL for page tracking
+ * This is used in single-page applications to track logical page views
+ * 
+ * @param path - The path to set (e.g., "/home" or "/game/single")
+ */
+export function setPendoLocation(path: string): void {
+  if (typeof window !== 'undefined' && window.pendo?.location?.setUrl) {
+    // Pendo requires a full URL, not just a path
+    const fullUrl = new URL(path, window.location.origin).href;
+    window.pendo.location.setUrl(fullUrl);
+  }
+}
