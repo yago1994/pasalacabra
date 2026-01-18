@@ -193,7 +193,7 @@ export const PASALACABRA_LETTERS: string[] = [
     }
 
     const gameUrl = "https://pasalacabra.com";
-    const shareText = lines.join("\n") + `\n\nIntenta ganarme: ${gameUrl}`;
+    const shareText = lines.join("\n") + `\n\nIntenta ganarme:`;
     // Temporary Share Text until emoji design solid
     // const shareTextTemp = `Pasala🐐 \n${correct}✅ ${wrong}❌ · ${skip}⏭ \n\nIntenta ganarme: `
     // Share using Web Share API if available, otherwise copy to clipboard
