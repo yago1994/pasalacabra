@@ -1,6 +1,8 @@
 name: Generate Daily Set
 
 on:
+  schedule:
+    - cron: '0 1 * * *' # every day at 1:00a
   workflow_dispatch:
 
 permissions:
