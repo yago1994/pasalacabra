@@ -3204,13 +3204,26 @@ export default function App() {
                     )}
                   </>
               ) : phase === "playing" ? (
-                  <button 
-                    className="btnPrimary" 
-                    onClick={handlePasalacabra} 
-                    disabled={!(hasCompletedFirstRound && earlySkipAllowed) && !questionRead}
-                  >
-                    Pasalacabra
-                  </button>
+                  <>
+                    {/* Override button for single-player mode - stays visible until next question finishes */}
+                    {lastWrongLetter && session && session.players.length === 1 && (
+                      <button 
+                        className="btnOutline" 
+                        type="button" 
+                        onClick={overrideToCorrect}
+                        style={{ marginBottom: 12 }}
+                      >
+                        Oye! La respuesta era correcta
+                      </button>
+                    )}
+                    <button 
+                      className="btnPrimary" 
+                      onClick={handlePasalacabra} 
+                      disabled={!(hasCompletedFirstRound && earlySkipAllowed) && !questionRead}
+                    >
+                      Pasalacabra
+                    </button>
+                  </>
               ) : null}
 
                 <div className="revealSlot">
@@ -3260,17 +3273,6 @@ export default function App() {
                           Respuesta: <strong>{currentQA.answer}</strong>
                         </div>
                       ) : null}
-                      {/* Override button for single-player mode - stays visible until next question finishes */}
-                      {lastWrongLetter && session && session.players.length === 1 && (
-                        <button 
-                          className="btnOutline" 
-                          type="button" 
-                          onClick={overrideToCorrect}
-                          style={{ marginTop: 12 }}
-                        >
-                          Oye! La respuesta era correcta
-                        </button>
-                      )}
                     </>
                   ) : null}
                 </div>
