@@ -73,7 +73,7 @@ jobs:
             echo "PR already exists: #$existing_pr"
             exit 0
           fi
-          gh pr create \
+          pr_url=$(gh pr create \
             --base main \
             --head "$BRANCH" \
             --title "Daily set for $(date -u +%Y-%m-%d)" \
@@ -84,4 +84,7 @@ jobs:
               '' \
               '## Test plan' \
               '- [ ] Review questions for clarity and uniqueness' \
-              '- [ ] Merge to trigger deploy')"
+              '- [ ] Merge to trigger deploy')")
+          echo "Created PR: $pr_url"
+
+          gh pr merge --auto --squash "$pr_url"
