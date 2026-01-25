@@ -16,6 +16,7 @@ import type { QA as TopicQA } from "./questions/types";
 import sfxCorrectUrl from "./assets/sfx-correct.wav";
 import sfxWrongUrl from "./assets/sfx-wrong.wav";
 import sfxPasalacabraUrl from "./assets/sfx-pasalacabra.wav";
+import cabraImage from "./assets/cabra.png";
 import type { GameSession, Player, LetterStatus, DifficultyMode } from "./game/engine";
 import { preflightAzureAuth, setPhraseHints } from "./speech/speechazure";
 import { createAzureRecognizer } from "./speech/createAzureRecognizer";
@@ -285,6 +286,7 @@ export default function App() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const [cameraError, setCameraError] = useState<string>("");
+  const [hasCameraStream, setHasCameraStream] = useState<boolean>(false);
   const [micPermissionDenied, setMicPermissionDenied] = useState<boolean>(false);
   const cameraFacingMode: "user" | "environment" = "user";
 
@@ -2051,10 +2053,15 @@ export default function App() {
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
         await videoRef.current.play();
+        setHasCameraStream(true);
+      } else {
+        // Video ref not ready yet, but stream is available
+        setHasCameraStream(true);
       }
     } catch (err) {
       // Check if it's a permission denied error
       const error = err as DOMException;
+      setHasCameraStream(false);
       if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
         setCameraError("permission_denied");
       } else {
@@ -2069,6 +2076,7 @@ export default function App() {
       for (const track of stream.getTracks()) track.stop();
     }
     streamRef.current = null;
+    setHasCameraStream(false);
   }
 
   // Video recording functions
@@ -3227,7 +3235,25 @@ export default function App() {
                 muted
                 playsInline
                 autoPlay
+                style={{ display: hasCameraStream ? "block" : "none" }}
               />
+              {!hasCameraStream && (
+                <img
+                  src={cabraImage}
+                  alt="Cabra"
+                  className="cameraInRing"
+                  style={{ 
+                    objectFit: "contain", 
+                    width: "25%", 
+                    height: "25%",
+                    clipPath: "none",
+                    borderRadius: "0",
+                    transform: "translate(-50%, -50%)",
+                    position: "absolute",
+                    zIndex: 1
+                  }}
+                />
+              )}
               <LetterRing 
                 letters={letters} 
                 statusByLetter={statusByLetter}
