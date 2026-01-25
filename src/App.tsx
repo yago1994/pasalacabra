@@ -285,7 +285,6 @@ export default function App() {
   // Camera
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
-  const [cameraError, setCameraError] = useState<string>("");
   const [hasCameraStream, setHasCameraStream] = useState<boolean>(false);
   const [micPermissionDenied, setMicPermissionDenied] = useState<boolean>(false);
   const cameraFacingMode: "user" | "environment" = "user";
@@ -2040,7 +2039,6 @@ export default function App() {
   }, []);
 
   async function startCamera(facingMode: "user" | "environment" = cameraFacingMode) {
-    setCameraError("");
     try {
       // Stop any existing stream before requesting a new one (important for camera flipping)
       stopCamera();
@@ -2059,14 +2057,8 @@ export default function App() {
         setHasCameraStream(true);
       }
     } catch (err) {
-      // Check if it's a permission denied error
-      const error = err as DOMException;
+      // Camera permission denied or error - just set stream to false
       setHasCameraStream(false);
-      if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
-        setCameraError("permission_denied");
-      } else {
-        setCameraError("");
-      }
     }
   }
 
@@ -3205,7 +3197,6 @@ export default function App() {
               setTestMode={setTestMode}
               sttPreflightChecking={sttPreflightChecking}
               sttError={sttError}
-              cameraError={cameraError}
               onStart={startFromSetup}
               onBack={() => setScreen("home")}
             />
