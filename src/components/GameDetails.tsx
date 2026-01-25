@@ -261,12 +261,6 @@ export default function GameDetails({
           </div>
         )}
 
-        {cameraError && (
-          <div className="answerReveal" style={{ marginTop: 8 }}>
-            ⚠️ {cameraError}
-          </div>
-        )}
-
         {/* How to Play Drawer */}
         <div className="howToPlaySection" style={{ marginTop: 24 }}>
           <button

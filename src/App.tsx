@@ -3476,12 +3476,6 @@ export default function App() {
                   )}
                   </>
                 )}
-
-                {cameraError && (
-                  <div className="answerReveal" style={{ marginTop: 2 }}>
-                    ⚠️ {cameraError}
-                  </div>
-                )}
               </div>
             </div>
           </div>
