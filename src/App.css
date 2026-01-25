@@ -398,7 +398,8 @@ html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text);
 
 .center {
   display: grid;
-  place-items: center;
+  justify-items: center;
+  align-items: start;
   padding: 8px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -411,7 +412,7 @@ html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text);
   align-items: center;
   gap: 14px;
   overflow: visible;
-  padding-top: 40px; /* Extra space for goat emoji at top */
+  margin-top: 60px; /* Position 100px below timer label */
 }
 
 .ringWrap {
