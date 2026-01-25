@@ -1,31 +1,131 @@
 {
   "id": "set_01",
-  "title": "Set 01 (prototype)",
+  "title": "Pasalacabra 2026-01-25 · No. 25",
   "questions": [
-    { "letter": "A", "question": "Empieza por A: Juego de estrategia en un tablero de 64 casillas con 16 piezas por jugador.", "answer": "Ajedrez" },
-    { "letter": "B", "question": "Empieza por B: Objeto de papelería que se usa para borrar lo escrito con lápiz.", "answer": "Borrador" },
-    { "letter": "C", "question": "Empieza por C: Cuerpo celeste que puede mostrar una cola al acercarse al Sol.", "answer": "Cometa" },
-    { "letter": "D", "question": "Empieza por D: Poliedro que tiene 12 caras pentagonales.", "answer": "Dodecaedro" },
-    { "letter": "E", "question": "Empieza por E: Proceso por el que el agua o el viento desgastan rocas y suelos.", "answer": "Erosión" },
-    { "letter": "F", "question": "Empieza por F: Proceso por el que las plantas producen materia orgánica usando luz solar.", "answer": "Fotosíntesis" },
-    { "letter": "G", "question": "Empieza por G: Gran masa de hielo que se desplaza lentamente por la gravedad.", "answer": "Glaciar" },
-    { "letter": "H", "question": "Empieza por H: Ave rapaz diurna usada históricamente en cetrería.", "answer": "Halcón" },
-    { "letter": "I", "question": "Empieza por I: Variante de un átomo del mismo elemento con distinto número de neutrones.", "answer": "Isótopo" },
-    { "letter": "J", "question": "Empieza por J: Rizoma aromático muy usado en infusiones y cocina asiática.", "answer": "Jengibre" },
-    { "letter": "L", "question": "Empieza por L: Metal alcalino cuyo símbolo químico es Li.", "answer": "Litio" },
-    { "letter": "M", "question": "Empieza por M: Conjunto de filamentos que forma la parte vegetativa de muchos hongos.", "answer": "Micelio" },
-    { "letter": "N", "question": "Empieza por N: Programa con el que se visitan páginas web.", "answer": "Navegador" },
-    { "letter": "Ñ", "question": "Empieza por Ñ: Pasta italiana en forma de bolitas, hecha comúnmente con patata.", "answer": "Ñoquis" },
-    { "letter": "O", "question": "Empieza por O: Instrumento de viento-madera de doble lengüeta típico en orquestas.", "answer": "Oboe" },
-    { "letter": "P", "question": "Empieza por P: Sistema con una masa colgante que oscila de un lado a otro.", "answer": "Péndulo" },
-    { "letter": "Q", "question": "Empieza por Q: Objeto astronómico extremadamente luminoso alimentado por un agujero negro supermasivo.", "answer": "Quásar" },
-    { "letter": "R", "question": "Empieza por R: Capa del ojo que capta la luz y la convierte en señales nerviosas.", "answer": "Retina" },
-    { "letter": "S", "question": "Empieza por S: Objeto fabricado que orbita la Tierra para comunicaciones o mediciones.", "answer": "Satélite" },
-    { "letter": "T", "question": "Empieza por T: Dispositivo que regula una calefacción o aire acondicionado según la temperatura.", "answer": "Termostato" },
-    { "letter": "U", "question": "Empieza por U: Conducto que lleva la orina desde el riñón hasta la vejiga.", "answer": "Uréter" },
-    { "letter": "V", "question": "Empieza por V: Dispositivo que abre o cierra el paso de un fluido en una tubería.", "answer": "Válvula" },
-    { "letter": "X", "question": "Contiene la X: Documento que se adjunta como complemento a un informe principal.", "answer": "Anexo" },
-    { "letter": "Y", "question": "Contiene la Y: Norma jurídica aprobada por el poder legislativo y de cumplimiento obligatorio.", "answer": "Ley" },
-    { "letter": "Z", "question": "Empieza por Z: Piedra preciosa azul del grupo del corindón.", "answer": "Zafiro" }
+    {
+      "letter": "A",
+      "question": "Empieza por A: Baldosa cerámica vidriada típica en la decoración hispana.",
+      "answer": "azulejo"
+    },
+    {
+      "letter": "B",
+      "question": "Empieza por B: Estilo artístico europeo de los siglos XVII y XVIII, recargado y teatral.",
+      "answer": "barroco"
+    },
+    {
+      "letter": "C",
+      "question": "Empieza por C: Canción popular española de cuatro versos, frecuente en el folclore andaluz.",
+      "answer": "copla"
+    },
+    {
+      "letter": "D",
+      "question": "Empieza por D: Instrumento de lengüeta doble típico de fiestas castellanas.",
+      "answer": "dulzaina"
+    },
+    {
+      "letter": "E",
+      "question": "Empieza por E: Parte repetida de una canción popular.",
+      "answer": "estribillo"
+    },
+    {
+      "letter": "F",
+      "question": "Empieza por F: Palo del flamenco de compás vivo y origen andaluz.",
+      "answer": "fandango"
+    },
+    {
+      "letter": "G",
+      "question": "Empieza por G: Técnica pictórica monocroma que imita relieves escultóricos.",
+      "answer": "grisalla"
+    },
+    {
+      "letter": "H",
+      "question": "Empieza por H: Acción artística efímera y participativa surgida en la década de 1960.",
+      "answer": "happening"
+    },
+    {
+      "letter": "I",
+      "question": "Empieza por I: Disciplina que interpreta los significados simbólicos profundos de las imágenes.",
+      "answer": "iconología"
+    },
+    {
+      "letter": "J",
+      "question": "Empieza por J: Baile y canto tradicional de Aragón.",
+      "answer": "jota"
+    },
+    {
+      "letter": "L",
+      "question": "Empieza por L: Soporte textil tradicional para la pintura al óleo.",
+      "answer": "lienzo"
+    },
+    {
+      "letter": "M",
+      "question": "Empieza por M: Protección y financiación de artistas por parte de personas poderosas.",
+      "answer": "mecenazgo"
+    },
+    {
+      "letter": "N",
+      "question": "Empieza por N: Movimiento artístico del siglo XVIII que retomó modelos grecolatinos.",
+      "answer": "neoclasicismo"
+    },
+    {
+      "letter": "Ñ",
+      "question": "Empieza por Ñ: Compañía ambulante de dos actores del Siglo de Oro español.",
+      "answer": "ñaque"
+    },
+    {
+      "letter": "O",
+      "question": "Empieza por O: Arte de labrar objetos con metales preciosos.",
+      "answer": "orfebrería"
+    },
+    {
+      "letter": "P",
+      "question": "Empieza por P: Estilo arquitectónico renacentista español de rica decoración inspirada en orfebres.",
+      "answer": "plateresco"
+    },
+    {
+      "letter": "Q",
+      "question": "Empieza por Q: Periodo del Renacimiento italiano correspondiente al siglo XV.",
+      "answer": "Quattrocento"
+    },
+    {
+      "letter": "R",
+      "question": "Empieza por R: Estructura escultórico-pictórica situada tras el altar mayor.",
+      "answer": "retablo"
+    },
+    {
+      "letter": "S",
+      "question": "Empieza por S: Técnica pictórica de transiciones suaves sin contornos precisos asociada a Leonardo.",
+      "answer": "sfumato"
+    },
+    {
+      "letter": "T",
+      "question": "Empieza por T: Tendencia barroca caracterizada por extremos contrastes de luz y sombra.",
+      "answer": "tenebrismo"
+    },
+    {
+      "letter": "U",
+      "question": "Contiene la U: Tradición musical universitaria de capa y pandereta.",
+      "answer": "tuna"
+    },
+    {
+      "letter": "V",
+      "question": "Empieza por V: Género de bodegón barroco que alude a la fugacidad de la vida.",
+      "answer": "vanitas"
+    },
+    {
+      "letter": "X",
+      "question": "Empieza por X: Técnica de grabado en madera.",
+      "answer": "xilografía"
+    },
+    {
+      "letter": "Y",
+      "question": "Empieza por Y: Sulfato de calcio usado como material para moldes y estuco.",
+      "answer": "yeso"
+    },
+    {
+      "letter": "Z",
+      "question": "Empieza por Z: Género lírico-dramático español con partes cantadas y habladas.",
+      "answer": "zarzuela"
+    }
   ]
 }
