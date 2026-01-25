@@ -145,14 +145,15 @@ REQUISITOS:
 - La respuesta NO debe aparecer dentro de la pregunta.
 - Cada pregunta debe tener UNA única respuesta inequívoca (sin ambigüedades).
 - Respuestas cortas (ideal 1–3 palabras), con tildes correctas si aplican.
+- Respuestas de palabras en español.
 - No repitas respuestas entre letras.
 
 TEMAS (usa SOLO estos 3):
 - {topics_str}
 
 DIFICULTAD:
-- Mezcla fácil, media y difícil.
-- Debe haber al menos 3 preguntas difíciles (nivel universitario).
+- Mezcla fácil y media.
+- Debe haber maximo 3 preguntas difíciles (nivel universitario).
 
 METADATOS:
 - id: "set_01"
@@ -178,8 +179,9 @@ Tu tarea con este JSON:
 2) Verifica que la respuesta NO esté contenida en la pregunta.
 3) Verifica que la letra y el prefijo ("Empieza por"/"Contiene la") sean correctos.
 4) Verifica que todas las preguntas sean SOLO de estos temas: {topics_str}.
-5) Verifica mezcla de dificultad con AL MENOS 3 preguntas difíciles (nivel universitario).
+5) Verifica mezcla de dificultad con MAXIMO 3 preguntas difíciles (nivel universitario).
 6) Respuestas cortas (ideal 1–3 palabras), con tildes correctas.
+7) Respuestas de palabras en español.
 
 Si TODO está bien: responde exactamente con "OK" (sin comillas, sin texto extra).
 Si hay CUALQUIER problema: devuelve SOLO el JSON corregido completo (sin Markdown, sin explicación),
