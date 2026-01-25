@@ -35,6 +35,7 @@ import { shareEmojiSequence } from "./game/shareRing";
 export type PlayerSnapshot = {
   playerId: string;
   playerName: string;
+  blob: Blob;
   blobUrl: string;
   statusByLetter: Record<Letter, LetterStatus>;
   correctCount: number;
@@ -936,6 +937,7 @@ export default function App() {
       const snapshot: PlayerSnapshot = {
         playerId,
         playerName,
+        blob,
         blobUrl,
         statusByLetter: { ...currentStatusByLetter },
         correctCount,
@@ -2119,6 +2121,45 @@ export default function App() {
     );
   }
 
+  // Single player snapshot sharing - directly share the image without video recording
+  async function shareSingleSnapshot() {
+    if (playerSnapshots.length === 0) return;
+    
+    const snapshot = playerSnapshots[0];
+    const filename = `pasalacabra-${crypto.randomUUID()}.webp`;
+    const file = new File([snapshot.blob], filename, { type: "image/webp" });
+
+    if (navigator.canShare?.({ files: [file] })) {
+      try {
+        await navigator.share({
+          title: "Pasalacabra",
+          text: "¡Mira mi puntuación! Juega y comparte la tuya en https://pasalacabra.com",
+          files: [file],
+        });
+        return;
+      } catch (e) {
+        if ((e as Error).name === "AbortError") return; // User cancelled
+        console.log("Share failed, falling back to download:", e);
+      }
+    }
+
+    // Fallback: download the image
+    downloadSingleSnapshot();
+  }
+
+  function downloadSingleSnapshot() {
+    if (playerSnapshots.length === 0) return;
+    
+    const snapshot = playerSnapshots[0];
+    const url = snapshot.blobUrl;
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `pasalacabra-${crypto.randomUUID()}.webp`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
   async function grabarYCompartir() {
     if (!canvasRef.current) return;
     if (!playerSnapshots.length) return;
@@ -3041,69 +3082,73 @@ export default function App() {
               width: "100%",
               flexWrap: "wrap"
             }}>
-              {isRecording ? (
-                <div style={{ color: "white", padding: "14px 28px" }}>🔴 Grabando...</div>
-              ) : recording ? (
+              {/* Single player: share/download snapshot image directly (no video recording) */}
+              {session && session.players.length === 1 ? (
                 <>
-                  <button className="slideshowShareBtn" onClick={shareRecording}>
-                    📤 Compartir fotos
+                  <button className="slideshowShareBtn" onClick={shareSingleSnapshot}>
+                    📤 Compartir foto
                   </button>
                   <button
                     className="slideshowShareBtn"
-                    onClick={downloadVideo}
+                    onClick={downloadSingleSnapshot}
                     style={{
                       background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                       boxShadow: "0 6px 25px rgba(34, 197, 94, 0.5)",
                     }}
                   >
-                    💾 Descargar fotos
+                    💾 Descargar foto
                   </button>
-                  {session && session.players.length === 1 && playerSnapshots.length > 0 && (
-                    <button
-                      className="slideshowShareBtn"
-                      onClick={handleShareEmojiSequence}
-                      style={{
-                        background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
-                        boxShadow: "0 6px 25px rgba(139, 92, 246, 0.5)",
-                      }}
-                    >
-                      📱 Compartir rueda
-                    </button>
-                  )}
-                  <div
+                  <button
+                    className="slideshowShareBtn"
+                    onClick={handleShareEmojiSequence}
                     style={{
-                      width: "100%",
-                      textAlign: "center",
-                      marginTop: 8,
-                      fontSize: 13,
-                      color: "rgba(255,255,255,0.75)",
-                      lineHeight: 1.35,
+                      background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
+                      boxShadow: "0 6px 25px rgba(139, 92, 246, 0.5)",
                     }}
                   >
-                    Formato: <strong>{recording.ext.toUpperCase()}</strong>
-                    {" "}· {Math.round(recording.blob.size / 1024)} KB
-                    <br />
-                    En Mac, normalmente funciona mejor <strong>descargando</strong> y adjuntando el archivo (no copiar/pegar).
-                  </div>
+                    📱 Compartir rueda
+                  </button>
                 </>
               ) : (
-                <>
-                  <button className="slideshowShareBtn" onClick={grabarYCompartir}>
-                    🎥 Grabar y compartir foto
-                  </button>
-                  {session && session.players.length === 1 && playerSnapshots.length > 0 && (
+                /* Multiplayer: video recording flow */
+                isRecording ? (
+                  <div style={{ color: "white", padding: "14px 28px" }}>🔴 Grabando...</div>
+                ) : recording ? (
+                  <>
+                    <button className="slideshowShareBtn" onClick={shareRecording}>
+                      📤 Compartir fotos
+                    </button>
                     <button
                       className="slideshowShareBtn"
-                      onClick={handleShareEmojiSequence}
+                      onClick={downloadVideo}
                       style={{
-                        background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
-                        boxShadow: "0 6px 25px rgba(139, 92, 246, 0.5)",
+                        background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                        boxShadow: "0 6px 25px rgba(34, 197, 94, 0.5)",
                       }}
                     >
-                      📱 Compartir rueda
+                      💾 Descargar fotos
                     </button>
-                  )}
-                </>
+                    <div
+                      style={{
+                        width: "100%",
+                        textAlign: "center",
+                        marginTop: 8,
+                        fontSize: 13,
+                        color: "rgba(255,255,255,0.75)",
+                        lineHeight: 1.35,
+                      }}
+                    >
+                      Formato: <strong>{recording.ext.toUpperCase()}</strong>
+                      {" "}· {Math.round(recording.blob.size / 1024)} KB
+                      <br />
+                      En Mac, normalmente funciona mejor <strong>descargando</strong> y adjuntando el archivo (no copiar/pegar).
+                    </div>
+                  </>
+                ) : (
+                  <button className="slideshowShareBtn" onClick={grabarYCompartir}>
+                    🎥 Grabar y compartir fotos
+                  </button>
+                )
               )}
             </div>
           </div>
@@ -3197,9 +3242,9 @@ export default function App() {
                     <button className="btnPrimary" onClick={startTurn} disabled={timeLeft <= 0 || !isListening}>
                       Empezar
                     </button>
-                    {(micPermissionDenied || cameraError === "permission_denied") && (
+                    {micPermissionDenied && (
                       <div className="answerReveal" style={{ marginTop: 8, textAlign: "center" }}>
-                        ⚠️ Para poder jugar tienes que dar acceso a la cámara y micrófono de tu teléfono para responder a las preguntas. Cierra la página y vuelve a abrirla para dar acceso y volver a intentarlo.
+                        ⚠️ Para poder jugar tienes que dar acceso al micrófono de tu teléfono para responder a las preguntas. Cierra la página y vuelve a abrirla para dar acceso y volver a intentarlo.
                       </div>
                     )}
                   </>
@@ -3289,6 +3334,36 @@ export default function App() {
                       const { winners, allScores } = determineWinners(session, playerStates);
                       const isTie = winners.length > 1;
                       const isSinglePlayer = session.players.length === 1;
+                      
+                      // Get qaMap for single player
+                      let singlePlayerQaMap: Map<Letter, QA> = new Map();
+                      if (isSinglePlayer) {
+                        const singlePlayer = session.players[0];
+                        const playerSetId = singlePlayer.setId ?? (availableSets[0]?.id ?? "set_01");
+                        const playerSet = getSet(playerSetId) ?? (availableSets[0]?.id ? getSet(availableSets[0].id) : undefined);
+                        
+                        // Check if we have a generated bank for this player
+                        if (generatedBanks[singlePlayer.id]) {
+                          const bank = generatedBanks[singlePlayer.id];
+                          const converted = new Map<Letter, QA>();
+                          for (const [letter, q] of bank.entries()) {
+                            converted.set(letter, {
+                              letter: q.letter,
+                              question: q.question,
+                              answer: q.answer,
+                            });
+                          }
+                          singlePlayerQaMap = converted;
+                        } else if (playerSet) {
+                          singlePlayerQaMap = buildSetQuestionMap(playerSet);
+                        }
+                      }
+                      
+                      // Convert qaMap to sorted array for display
+                      const qaList = Array.from(singlePlayerQaMap.values()).sort((a, b) => 
+                        letters.indexOf(a.letter) - letters.indexOf(b.letter)
+                      );
+                      
                       return (
                         <div className="gameOverResults" style={{ marginTop: 8 }}>
                           <div className="answerReveal answerRevealBig" style={{ marginBottom: 12 }}>
@@ -3333,6 +3408,47 @@ export default function App() {
                             >
                               📸 Ver fotos
                             </button>
+                          )}
+                          
+                          {isSinglePlayer && qaList.length > 0 && (
+                            <div style={{ marginTop: 24, textAlign: "left" }}>
+                              <div className="answerReveal answerRevealBig" style={{ marginBottom: 12 }}>
+                                <strong>Juego de hoy</strong>
+                              </div>
+                              <div style={{ 
+                                maxHeight: "400px", 
+                                overflowY: "auto",
+                                padding: "12px",
+                                background: "#4f8dff",
+                                borderRadius: "12px"
+                              }}>
+                                {qaList.map((qa, index) => {
+                                  // Remove "Empieza por X:" or "Contiene X:" prefix from question
+                                  let cleanQuestion = qa.question;
+                                  const empiezaPattern = new RegExp(`^Empieza por ${qa.letter}:\\s*`, "i");
+                                  const contienePattern = new RegExp(`^Contiene ${qa.letter}:\\s*`, "i");
+                                  cleanQuestion = cleanQuestion.replace(empiezaPattern, "").replace(contienePattern, "");
+                                  
+                                  const isLast = index === qaList.length - 1;
+                                  
+                                  return (
+                                    <div 
+                                      key={qa.letter}
+                                      style={{ 
+                                        marginBottom: isLast ? 0 : 12,
+                                        paddingBottom: isLast ? 0 : 12,
+                                        borderBottom: isLast ? "none" : "1px solid rgba(255, 255, 255, 0.2)",
+                                        fontSize: "14px",
+                                        color: "var(--text)",
+                                        lineHeight: "1.5"
+                                      }}
+                                    >
+                                      <strong>{qa.letter}:</strong> {cleanQuestion} → <strong>{qa.answer}</strong>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
                           )}
                         </div>
                       );
