@@ -20,7 +20,6 @@ export interface GameDetailsProps {
   setTestMode: (mode: boolean) => void;
   sttPreflightChecking: boolean;
   sttError: string | null;
-  cameraError: string;
   onStart: () => void;
   onBack: () => void;
 }
@@ -54,7 +53,6 @@ export default function GameDetails({
   setTestMode,
   sttPreflightChecking,
   sttError,
-  cameraError,
   onStart,
   onBack,
 }: GameDetailsProps) {
@@ -258,12 +256,6 @@ export default function GameDetails({
         ) : (
           <div className="answerReveal" style={{ marginTop: 8 }}>
             Listo
-          </div>
-        )}
-
-        {cameraError && (
-          <div className="answerReveal" style={{ marginTop: 8 }}>
-            ⚠️ {cameraError}
           </div>
         )}
 

@@ -177,12 +177,32 @@ export const PASALACABRA_LETTERS: string[] = [
       PASALACABRA_LETTERS.slice(24),     // Z (1 letter)
     ];
     
+    // Custom spacing for each row (spaces after each letter, last value is leading spaces)
+    const spacingConfig = [
+      { leading: 1, spaces: [3, 2, 2, 3, 3, 2, 3] },  // Row 1: A   B  C  D   E   F  G   H
+      { leading: 2, spaces: [3, 3, 3, 2, 2, 2, 3] },  // Row 2:   I   J    L  M  N  Ñ  O   P
+      { leading: 1, spaces: [2, 3, 3, 2, 2, 3, 3] },   // Row 3:  Q  R   S   T  U  V   X   Y
+      { leading: 1, spaces: [] },                       // Row 4:  Z
+    ];
+    
     // Generate letter rows and emoji rows
-    for (const row of letterRows) {
+    for (let rowIdx = 0; rowIdx < letterRows.length; rowIdx++) {
+      const row = letterRows[rowIdx];
       if (row.length === 0) continue;
       
-      // Letter row: "A B C D E F G H"
-      lines.push(row.join(" "));
+      const config = spacingConfig[rowIdx];
+      
+      // Build letter row with custom spacing
+      let letterRow = " ".repeat(config.leading);
+      for (let i = 0; i < row.length; i++) {
+        letterRow += row[i];
+        if (i < row.length - 1) {
+          // Add spacing after this letter (except the last one)
+          const spacesAfter = config.spaces[i] ?? 1;
+          letterRow += " ".repeat(spacesAfter);
+        }
+      }
+      lines.push(letterRow);
       
       // Emoji row: "🟢🟢🔵🟢🔴🟢🟢🔵"
       const emojiRow = row.map(letter => {
@@ -193,7 +213,7 @@ export const PASALACABRA_LETTERS: string[] = [
     }
 
     const gameUrl = "https://pasalacabra.com";
-    const shareText = lines.join("\n") + `\n\nIntenta ganarme: ${gameUrl}`;
+    const shareText = lines.join("\n") + `\n\nIntenta ganarme:`;
     // Temporary Share Text until emoji design solid
     // const shareTextTemp = `Pasala🐐 \n${correct}✅ ${wrong}❌ · ${skip}⏭ \n\nIntenta ganarme: `
     // Share using Web Share API if available, otherwise copy to clipboard
