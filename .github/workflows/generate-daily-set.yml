@@ -87,4 +87,7 @@ jobs:
               '- [ ] Merge to trigger deploy')")
           echo "Created PR: $pr_url"
 
-          gh pr merge --auto --squash "$pr_url"
+          if ! gh pr merge --auto --squash "$pr_url"; then
+            echo "Auto-merge enable failed; attempting immediate merge."
+            gh pr merge --squash "$pr_url"
+          fi
