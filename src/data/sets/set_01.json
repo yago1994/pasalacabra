@@ -1,50 +1,50 @@
 {
   "id": "set_01",
-  "title": "Pasalacabra 2026-01-28 · No. 28",
+  "title": "Pasalacabra 2026-01-29 · No. 29",
   "questions": [
     {
       "letter": "A",
-      "question": "Empieza por A: Galaxia espiral más cercana a la Vía Láctea.",
+      "question": "Empieza por A: Galaxia vecina a la Vía Láctea visible a simple vista.",
       "answer": "Andrómeda"
     },
     {
       "letter": "B",
-      "question": "Empieza por B: Estrecho que separa Europa y Asia en Estambul.",
-      "answer": "Bósforo"
+      "question": "Empieza por B: Estrella supergigante roja de la constelación de Orión famosa por su brillo variable.",
+      "answer": "Betelgeuse"
     },
     {
       "letter": "C",
-      "question": "Empieza por C: Depresión circular en la superficie lunar causada por impactos.",
-      "answer": "cráter"
+      "question": "Empieza por C: Astrónomo del Renacimiento que propuso el modelo heliocéntrico.",
+      "answer": "Copérnico"
     },
     {
       "letter": "D",
-      "question": "Empieza por D: Desembocadura fluvial con múltiples brazos.",
-      "answer": "delta"
+      "question": "Empieza por D: Luna menor de Marte.",
+      "answer": "Deimos"
     },
     {
       "letter": "E",
-      "question": "Empieza por E: Mar entre Grecia y Turquía.",
-      "answer": "Egeo"
+      "question": "Empieza por E: Luna de Júpiter que alberga un océano subterráneo bajo su capa de hielo.",
+      "answer": "Europa"
     },
     {
       "letter": "F",
-      "question": "Empieza por F: Constelación austral cuyo nombre alude a un ave mítica.",
-      "answer": "Fénix"
+      "question": "Empieza por F: Luna mayor de Marte.",
+      "answer": "Fobos"
     },
     {
       "letter": "G",
-      "question": "Empieza por G: Pintor aragonés autor de Los fusilamientos del 3 de mayo.",
-      "answer": "Goya"
+      "question": "Empieza por G: Periodo de tensión entre los bloques liderados por Estados Unidos y la URSS tras la Segunda Guerra Mundial.",
+      "answer": "Guerra Fría"
     },
     {
       "letter": "H",
-      "question": "Empieza por H: Telescopio espacial lanzado en 1990 por la NASA y la ESA.",
+      "question": "Empieza por H: Telescopio espacial lanzado en 1990 que revolucionó la astronomía observacional.",
       "answer": "Hubble"
     },
     {
       "letter": "I",
-      "question": "Empieza por I: Satélite galileano con intensa actividad volcánica.",
+      "question": "Empieza por I: Luna de Júpiter famosa por su intensa actividad volcánica.",
       "answer": "Ío"
     },
     {
@@ -54,52 +54,52 @@
     },
     {
       "letter": "L",
-      "question": "Empieza por L: Tela sobre la que se pinta al óleo.",
-      "answer": "lienzo"
+      "question": "Empieza por L: Apellido de los hermanos pioneros que presentaron el cinematógrafo en 1895.",
+      "answer": "Lumière"
     },
     {
       "letter": "M",
-      "question": "Empieza por M: Protector y patrocinador de artistas y obras.",
-      "answer": "mecenas"
+      "question": "Empieza por M: Planeta más cercano al Sol.",
+      "answer": "Mercurio"
     },
     {
       "letter": "N",
-      "question": "Empieza por N: Río más largo de África.",
-      "answer": "Nilo"
+      "question": "Empieza por N: Planeta gigante azul descubierto en 1846.",
+      "answer": "Neptuno"
     },
     {
       "letter": "Ñ",
-      "question": "Empieza por Ñ: Región chilena con capital en Chillán.",
-      "answer": "Ñuble"
+      "question": "Contiene la Ñ: País europeo cuya capital es Madrid y que fue un imperio global en los siglos XVI y XVII.",
+      "answer": "España"
     },
     {
       "letter": "O",
-      "question": "Empieza por O: Constelación visible con tres estrellas alineadas en su cinturón.",
+      "question": "Empieza por O: Constelación del cazador reconocible por su cinturón de tres estrellas.",
       "answer": "Orión"
     },
     {
       "letter": "P",
-      "question": "Empieza por P: Museo madrileño famoso por Las Meninas.",
-      "answer": "Prado"
+      "question": "Empieza por P: Planeta enano descubierto en 1930 por Clyde Tombaugh.",
+      "answer": "Plutón"
     },
     {
       "letter": "Q",
-      "question": "Empieza por Q: Capital de Ecuador.",
-      "answer": "Quito"
+      "question": "Empieza por Q: Yacimiento arqueológico del desierto de Judea donde se hallaron los Rollos del Mar Muerto.",
+      "answer": "Qumrán"
     },
     {
       "letter": "R",
-      "question": "Empieza por R: Río que atraviesa Colonia y desemboca en el mar del Norte.",
-      "answer": "Rin"
+      "question": "Empieza por R: Sonda de la ESA que estudió el cometa 67P y posó el módulo Philae.",
+      "answer": "Rosetta"
     },
     {
       "letter": "S",
-      "question": "Empieza por S: Estrella más brillante del cielo nocturno.",
-      "answer": "Sirio"
+      "question": "Empieza por S: Planeta con anillos prominentes visibles desde la Tierra con telescopio.",
+      "answer": "Saturno"
     },
     {
       "letter": "T",
-      "question": "Empieza por T: Mayor satélite de Saturno, con atmósfera densa.",
+      "question": "Empieza por T: Mayor luna de Saturno, con lagos de metano en su superficie.",
       "answer": "Titán"
     },
     {
@@ -109,23 +109,23 @@
     },
     {
       "letter": "V",
-      "question": "Empieza por V: Volcán italiano que destruyó Pompeya.",
-      "answer": "Vesubio"
+      "question": "Empieza por V: Planeta que alcanza el mayor brillo en el cielo nocturno tras la Luna.",
+      "answer": "Venus"
     },
     {
       "letter": "X",
-      "question": "Empieza por X: Instrumento idiófono de láminas usado en orquesta.",
-      "answer": "xilófono"
+      "question": "Contiene la X: Capa más externa de una atmósfera planetaria.",
+      "answer": "exósfera"
     },
     {
       "letter": "Y",
-      "question": "Empieza por Y: Península mexicana entre el Golfo y el Caribe.",
-      "answer": "Yucatán"
+      "question": "Empieza por Y: Federación de repúblicas socialistas europeas que se disolvió en 1992.",
+      "answer": "Yugoslavia"
     },
     {
       "letter": "Z",
-      "question": "Empieza por Z: Capital de la comunidad de Aragón.",
-      "answer": "Zaragoza"
+      "question": "Empieza por Z: Banda de constelaciones por la que transcurre la eclíptica.",
+      "answer": "Zodíaco"
     }
   ]
 }
