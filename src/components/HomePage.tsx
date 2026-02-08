@@ -1,25 +1,24 @@
 import { useMemo, useState } from "react";
+import { getSet } from "../data/sets";
 
 /**
  * Pasalacabra home screen
  *
- * Tweak these two constants to control daily numbering.
- * If you want "No." to be smaller earlier, set LAUNCH_DATE_ISO to a later date
- * or reduce BASE_GAME_NO.
+ * The game number and date are pulled from the set_01 title
+ * (format: "Pasalacabra YYYY-MM-DD · No. N") so we can tell
+ * at a glance whether the daily set was updated.
  */
-const LAUNCH_DATE_ISO = "2026-01-01"; // YYYY-MM-DD (local)
-const BASE_GAME_NO = 1;
 
-function startOfLocalDay(d: Date) {
-  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+function parseSetTitle(title: string): { dateStr: string; gameNo: string } | null {
+  // Expected format: "Pasalacabra 2026-02-08 · No. 39"
+  const match = title.match(/(\d{4}-\d{2}-\d{2})\s*·\s*No\.\s*(\d+)/);
+  if (!match) return null;
+  return { dateStr: match[1], gameNo: match[2] };
 }
 
-function daysBetweenLocal(a: Date, b: Date) {
-  const ms = startOfLocalDay(b).getTime() - startOfLocalDay(a).getTime();
-  return Math.floor(ms / (24 * 60 * 60 * 1000));
-}
-
-function formatDateLongES(d: Date) {
+function formatDateLongES(isoDate: string): string {
+  const [year, month, day] = isoDate.split("-").map(Number);
+  const d = new Date(year, month - 1, day);
   return new Intl.DateTimeFormat("es-ES", {
     year: "numeric",
     month: "long",
@@ -35,16 +34,14 @@ export interface HomePageProps {
 }
 
 export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: HomePageProps) {
-  const today = useMemo(() => new Date(), []);
   const [showHowToPlay, setShowHowToPlay] = useState<boolean>(false);
   const [showAbout, setShowAbout] = useState<boolean>(false);
 
-  const gameNo = useMemo(() => {
-    const launch = new Date(`${LAUNCH_DATE_ISO}T00:00:00`);
-    const delta = daysBetweenLocal(launch, today);
-    // If someone opens before launch date, clamp to BASE_GAME_NO.
-    return BASE_GAME_NO + Math.max(0, delta);
-  }, [today]);
+  const setInfo = useMemo(() => {
+    const set = getSet("set_01");
+    if (!set?.title) return null;
+    return parseSetTitle(set.title);
+  }, []);
 
   return (
     <div className="center">
@@ -308,8 +305,14 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
 
         {/* Footer */}
         <div style={{ marginTop: "clamp(32px, 8vw, 40px)", textAlign: "center" }}>
-          <div style={{ fontSize: "clamp(16px, 4vw, 20px)", fontWeight: 600 }}>{formatDateLongES(today)}</div>
-          <div style={{ marginTop: "clamp(3px, 1vw, 4px)", fontSize: "clamp(14px, 3.5vw, 18px)", color: "rgba(255, 255, 255, 0.8)" }}>No. {gameNo}</div>
+          {setInfo ? (
+            <>
+              <div style={{ fontSize: "clamp(16px, 4vw, 20px)", fontWeight: 600 }}>{formatDateLongES(setInfo.dateStr)}</div>
+              <div style={{ marginTop: "clamp(3px, 1vw, 4px)", fontSize: "clamp(14px, 3.5vw, 18px)", color: "rgba(255, 255, 255, 0.8)" }}>No. {setInfo.gameNo}</div>
+            </>
+          ) : (
+            <div style={{ fontSize: "clamp(14px, 3.5vw, 18px)", color: "rgba(255, 255, 255, 0.6)" }}>Set no disponible</div>
+          )}
         </div>
       </div>
     </div>
