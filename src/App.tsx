@@ -30,7 +30,7 @@ import type { CanvasRecording } from "./game/canvasRecorder";
 import { createCanvasRecorder, downloadRecording, shareOrDownloadRecording } from "./game/canvasRecorder";
 import { initializePendo, setPendoLocation, trackPendoEvent } from "./lib/pendo";
 import { isStagingMode } from "./env/getSpeechTokenUrl";
-import { shareEmojiSequence } from "./game/shareRing";
+
 
 // Player snapshot captured when timer runs out
 export type PlayerSnapshot = {
@@ -2202,25 +2202,6 @@ export default function App() {
     }
   }
 
-  async function handleShareEmojiSequence() {
-    // Only available for single-player games
-    if (!session || session.players.length !== 1) {
-      alert("La función de compartir emoji solo está disponible para juegos de un solo jugador.");
-      return;
-    }
-
-    // Get the first (and only) player snapshot
-    if (playerSnapshots.length === 0) {
-      alert("No hay resultados para compartir.");
-      return;
-    }
-
-    const snapshot = playerSnapshots[0];
-
-    // Use the refactored function from shareRing
-    await shareEmojiSequence(snapshot.statusByLetter);
-  }
-
   // Request camera only after entering the game screen.
   // This avoids prompting for camera on the setup screen and ensures mic warmup can happen first.
   useEffect(() => {
@@ -3385,35 +3366,6 @@ export default function App() {
                       const { winners, allScores } = determineWinners(session, playerStates);
                       const isTie = winners.length > 1;
                       const isSinglePlayer = session.players.length === 1;
-                      
-                      // Get qaMap for single player
-                      let singlePlayerQaMap: Map<Letter, QA> = new Map();
-                      if (isSinglePlayer) {
-                        const singlePlayer = session.players[0];
-                        const playerSetId = singlePlayer.setId ?? (availableSets[0]?.id ?? "set_01");
-                        const playerSet = getSet(playerSetId) ?? (availableSets[0]?.id ? getSet(availableSets[0].id) : undefined);
-                        
-                        // Check if we have a generated bank for this player
-                        if (generatedBanks[singlePlayer.id]) {
-                          const bank = generatedBanks[singlePlayer.id];
-                          const converted = new Map<Letter, QA>();
-                          for (const [letter, q] of bank.entries()) {
-                            converted.set(letter, {
-                              letter: q.letter,
-                              question: q.question,
-                              answer: q.answer,
-                            });
-                          }
-                          singlePlayerQaMap = converted;
-                        } else if (playerSet) {
-                          singlePlayerQaMap = buildSetQuestionMap(playerSet);
-                        }
-                      }
-                      
-                      // Convert qaMap to sorted array for display
-                      const qaList = Array.from(singlePlayerQaMap.values()).sort((a, b) => 
-                        letters.indexOf(a.letter) - letters.indexOf(b.letter)
-                      );
                       
                       return (
                         <div className="gameOverResults" style={{ marginTop: 8 }}>
