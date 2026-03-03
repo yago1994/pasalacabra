@@ -52,13 +52,13 @@ jobs:
 
       - name: Commit daily set to review branch
         run: |
-          if [[ -z "$(git status --porcelain src/data/sets/set_01.json)" ]]; then
+          if [[ -z "$(git status --porcelain src/data/sets/set_01.json scripts/used_answers.json)" ]]; then
             echo "No changes to commit."
             exit 0
           fi
           BRANCH="tomorrow-$(date -u +%Y-%m-%d)"
           git checkout -b "$BRANCH"
-          git add src/data/sets/set_01.json
+          git add src/data/sets/set_01.json scripts/used_answers.json
           git -c user.name="github-actions[bot]" -c user.email="github-actions[bot]@users.noreply.github.com" \
             commit -m "chore: update daily set"
           git push -u origin "$BRANCH"

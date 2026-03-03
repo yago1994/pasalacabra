@@ -25,6 +25,8 @@ START_DATE = date(2026, 1, 1)
 DEFAULT_SET_PATH = os.getenv("SET_PATH", "src/data/sets/set_01.json")
 MODEL = os.getenv("OPENAI_MODEL", "gpt-5")
 MAX_PASSES = 3  # generate -> AI validate/fix -> re-validate
+DEFAULT_BANK_PATH = os.getenv("BANK_PATH", "scripts/used_answers.json")
+BANK_MAX_ENTRIES = 60
 
 
 def game_number_for_today(today_local: date) -> int:
@@ -127,9 +129,18 @@ def validate_set(obj: dict) -> None:
         enforce_answer_not_in_question(question, answer)
 
 
-def build_generation_prompt(today_local: date, game_no: int, topics: List[str]) -> str:
+def build_generation_prompt(today_local: date, game_no: int, topics: List[str], excluded_answers: set = None) -> str:
     letters_str = ", ".join(LETTERS)
     topics_str = ", ".join(topics)
+
+    excluded_section = ""
+    if excluded_answers:
+        excluded_list = ", ".join(sorted(excluded_answers))
+        excluded_section = f"""
+PALABRAS PROHIBIDAS (ya usadas en partidas anteriores, NO las uses como respuesta):
+[{excluded_list}]
+"""
+
     return f"""
 Genera un set diario de Pasalacabra en español (es-ES).
 
@@ -154,7 +165,7 @@ TEMAS (usa SOLO estos 3):
 DIFICULTAD:
 - Mezcla fácil y media.
 - Debe haber maximo 3 preguntas difíciles (nivel universitario).
-
+{excluded_section}
 METADATOS:
 - id: "set_01"
 - title: "Pasalacabra {today_local.isoformat()} · No. {game_no}"
@@ -169,8 +180,14 @@ Devuelve un objeto JSON con:
 """.strip()
 
 
-def build_ai_validator_prompt(today_local: date, game_no: int, topics: List[str], obj: dict) -> str:
+def build_ai_validator_prompt(today_local: date, game_no: int, topics: List[str], obj: dict, excluded_answers: set = None) -> str:
     topics_str = ", ".join(topics)
+
+    excluded_rule = ""
+    if excluded_answers:
+        excluded_list = ", ".join(sorted(excluded_answers))
+        excluded_rule = f"8) NINGUNA respuesta debe coincidir con estas palabras ya usadas: [{excluded_list}]\n"
+
     return f"""
 Eres un editor/validador de preguntas tipo Pasalacabra (es-ES).
 
@@ -182,7 +199,7 @@ Tu tarea con este JSON:
 5) Verifica mezcla de dificultad con MAXIMO 3 preguntas difíciles (nivel universitario).
 6) Respuestas cortas (ideal 1–3 palabras), con tildes correctas.
 7) Respuestas de palabras en español.
-
+{excluded_rule}
 Si TODO está bien: responde exactamente con "OK" (sin comillas, sin texto extra).
 Si hay CUALQUIER problema: devuelve SOLO el JSON corregido completo (sin Markdown, sin explicación),
 manteniendo:
@@ -213,15 +230,15 @@ def call_openai_text(client: OpenAI, prompt: str) -> str:
     return (resp.output_text or "").strip()
 
 
-def generate_once(client: OpenAI, today_local: date, game_no: int, topics: List[str]) -> dict:
-    prompt = build_generation_prompt(today_local, game_no, topics)
+def generate_once(client: OpenAI, today_local: date, game_no: int, topics: List[str], excluded_answers: set = None) -> dict:
+    prompt = build_generation_prompt(today_local, game_no, topics, excluded_answers)
     return call_openai_json(client, prompt)
 
 
 def ai_validate_or_fix(
-    client: OpenAI, today_local: date, game_no: int, topics: List[str], obj: dict
+    client: OpenAI, today_local: date, game_no: int, topics: List[str], obj: dict, excluded_answers: set = None
 ) -> dict:
-    prompt = build_ai_validator_prompt(today_local, game_no, topics, obj)
+    prompt = build_ai_validator_prompt(today_local, game_no, topics, obj, excluded_answers)
     out = call_openai_text(client, prompt)
     if out.strip() == "OK":
         return obj
@@ -231,6 +248,49 @@ def ai_validate_or_fix(
 def write_set(path: str, obj: dict) -> None:
     with open(path, "w", encoding="utf-8") as f:
         json.dump(obj, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+
+
+def load_answer_bank(path: str, max_entries: int = BANK_MAX_ENTRIES) -> list:
+    if not os.path.exists(path):
+        return []
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            bank = json.load(f)
+        return bank[-max_entries:]
+    except (json.JSONDecodeError, TypeError):
+        print(f"WARNING: Could not parse {path}, starting with empty bank.")
+        return []
+
+
+def get_excluded_answers(bank: list) -> set:
+    excluded = set()
+    for entry in bank:
+        for ans in entry.get("answers", []):
+            excluded.add(normalize_for_letter_check(ans).strip().lower())
+    return excluded
+
+
+def validate_no_reused_answers(obj: dict, excluded: set) -> None:
+    for q in obj["questions"]:
+        ans_key = normalize_for_letter_check(q["answer"]).strip().lower()
+        if ans_key in excluded:
+            raise ValueError(f"Reused answer from a previous set: {q['answer']}")
+
+
+def update_answer_bank(
+    bank_path: str, today: date, game_no: int, obj: dict, max_entries: int = BANK_MAX_ENTRIES
+) -> None:
+    bank = load_answer_bank(bank_path, max_entries)
+    answers = [q["answer"] for q in obj["questions"]]
+    bank.append({
+        "date": today.isoformat(),
+        "game_no": game_no,
+        "answers": answers,
+    })
+    bank = bank[-max_entries:]
+    with open(bank_path, "w", encoding="utf-8") as f:
+        json.dump(bank, f, ensure_ascii=False, indent=2)
         f.write("\n")
 
 
@@ -245,18 +305,25 @@ def main() -> None:
 
     client = OpenAI(api_key=api_key)
 
+    bank = load_answer_bank(DEFAULT_BANK_PATH)
+    excluded = get_excluded_answers(bank)
+    if excluded:
+        print(f"Loaded {len(excluded)} excluded answers from {len(bank)} previous set(s).")
+
     last_err = None
     obj = None
 
     for attempt in range(1, MAX_PASSES + 1):
         try:
             if obj is None:
-                obj = generate_once(client, today_local, game_no, topics)
+                obj = generate_once(client, today_local, game_no, topics, excluded)
 
             validate_set(obj)
+            validate_no_reused_answers(obj, excluded)
 
-            obj2 = ai_validate_or_fix(client, today_local, game_no, topics, obj)
+            obj2 = ai_validate_or_fix(client, today_local, game_no, topics, obj, excluded)
             validate_set(obj2)
+            validate_no_reused_answers(obj2, excluded)
 
             obj = obj2
             break
@@ -264,14 +331,15 @@ def main() -> None:
         except Exception as e:
             last_err = e
             print(f"[attempt {attempt}/{MAX_PASSES}] error: {e}")
-            if obj is None:
-                continue
+            obj = None
 
-    if obj is None or (last_err is not None and attempt == MAX_PASSES):
+    if obj is None:
         raise RuntimeError(f"Failed to generate a valid set after {MAX_PASSES} passes: {last_err}")
 
     write_set(DEFAULT_SET_PATH, obj)
+    update_answer_bank(DEFAULT_BANK_PATH, today_local, game_no, obj)
     print(f"Wrote {DEFAULT_SET_PATH} with title: {obj.get('title')}")
+    print(f"Updated answer bank at {DEFAULT_BANK_PATH}")
     print(f"Topics used: {', '.join(topics)}")
 
 
