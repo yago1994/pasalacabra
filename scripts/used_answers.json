@@ -29,5 +29,36 @@
       "yodo",
       "zodíaco"
     ]
+  },
+  {
+    "date": "2026-03-03",
+    "game_no": 62,
+    "answers": [
+      "Almodóvar",
+      "Berlín",
+      "Cannes",
+      "Dalí",
+      "Ebro",
+      "Frida Kahlo",
+      "Guernica",
+      "Himalaya",
+      "Islandia",
+      "Jordania",
+      "La Rioja",
+      "Machu Picchu",
+      "Navarra",
+      "Ñuñoa",
+      "Oporto",
+      "Prado",
+      "Quijote",
+      "Roma",
+      "Sevilla",
+      "Toledo",
+      "Uruguay",
+      "Vaticano",
+      "México",
+      "Yucatán",
+      "Zaragoza"
+    ]
   }
 ]
