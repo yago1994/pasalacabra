@@ -254,9 +254,13 @@ def write_set(path: str, obj: dict) -> None:
 def load_answer_bank(path: str, max_entries: int = BANK_MAX_ENTRIES) -> list:
     if not os.path.exists(path):
         return []
-    with open(path, "r", encoding="utf-8") as f:
-        bank = json.load(f)
-    return bank[-max_entries:]
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            bank = json.load(f)
+        return bank[-max_entries:]
+    except (json.JSONDecodeError, TypeError):
+        print(f"WARNING: Could not parse {path}, starting with empty bank.")
+        return []
 
 
 def get_excluded_answers(bank: list) -> set:
