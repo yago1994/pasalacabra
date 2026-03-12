@@ -308,5 +308,36 @@
       "Yacimiento",
       "Zigurat"
     ]
+  },
+  {
+    "date": "2026-03-12",
+    "game_no": 71,
+    "answers": [
+      "alegoría",
+      "ballet",
+      "capitel",
+      "diapasón",
+      "escenario",
+      "fresco",
+      "gárgola",
+      "habanera",
+      "iconografía",
+      "juglar",
+      "libreto",
+      "mural",
+      "naturaleza muerta",
+      "ñaque",
+      "orfebrería",
+      "polifonía",
+      "quinteto",
+      "retablo",
+      "sainete",
+      "tenor",
+      "utopía",
+      "villancico",
+      "exvoto",
+      "yaraví",
+      "zambomba"
+    ]
   }
 ]
