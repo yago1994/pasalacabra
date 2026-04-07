@@ -1,131 +1,131 @@
 {
   "id": "set_01",
-  "title": "Pasalacabra 2026-04-06 · No. 96",
+  "title": "Pasalacabra 2026-04-07 · No. 97",
   "questions": [
     {
       "letter": "A",
-      "question": "Empieza por A: Organismo fotosintético acuático, base de muchas cadenas tróficas.",
-      "answer": "alga"
+      "question": "Empieza por A: Disciplina precursora de la química practicada en la Antigüedad y la Edad Media.",
+      "answer": "alquimia"
     },
     {
       "letter": "B",
-      "question": "Empieza por B: Molusco con dos conchas articuladas, como las almejas.",
-      "answer": "bivalvo"
+      "question": "Empieza por B: Elemento químico halógeno de número atómico 35.",
+      "answer": "bromo"
     },
     {
       "letter": "C",
-      "question": "Empieza por C: Prolongación corta y móvil de algunas células que ayuda al desplazamiento o al movimiento de fluidos.",
-      "answer": "cilio"
+      "question": "Empieza por C: Rama de la biología que estudia las células.",
+      "answer": "citología"
     },
     {
       "letter": "D",
-      "question": "Empieza por D: Alga microscópica con frústula de sílice, clave en el fitoplancton.",
-      "answer": "diatomea"
+      "question": "Empieza por D: Máquina que convierte energía mecánica en eléctrica mediante inducción.",
+      "answer": "dínamo"
     },
     {
       "letter": "E",
-      "question": "Empieza por E: Glóbulo rojo de la sangre.",
-      "answer": "eritrocito"
+      "question": "Empieza por E: Instrumento médico usado para auscultar sonidos del cuerpo.",
+      "answer": "estetoscopio"
     },
     {
       "letter": "F",
-      "question": "Empieza por F: Proceso metabólico que obtiene energía sin oxígeno, como en la elaboración del pan.",
-      "answer": "fermentación"
+      "question": "Empieza por F: Elemento químico, el más electronegativo de la tabla periódica.",
+      "answer": "flúor"
     },
     {
       "letter": "G",
-      "question": "Empieza por G: Célula sexual haploide que participa en la fecundación.",
-      "answer": "gameto"
+      "question": "Empieza por G: Ciencia que estudia la herencia y la variación en los seres vivos.",
+      "answer": "genética"
     },
     {
       "letter": "H",
-      "question": "Empieza por H: Mantenimiento estable del medio interno de un organismo.",
-      "answer": "homeostasis"
+      "question": "Empieza por H: Forma geométrica en espiral característica de la doble cadena del ADN.",
+      "answer": "hélice"
     },
     {
       "letter": "I",
-      "question": "Empieza por I: Átomos del mismo elemento con diferente número de neutrones.",
-      "answer": "isótopos"
+      "question": "Empieza por I: Propiedad química por la que compuestos con igual fórmula molecular tienen distinta estructura.",
+      "answer": "isomería"
     },
     {
       "letter": "J",
-      "question": "Empieza por J: Planta trepadora aromática muy cultivada en jardines.",
-      "answer": "jazmín"
+      "question": "Empieza por J: Pequeña guitarra mexicana usada en son jarocho.",
+      "answer": "jarana"
     },
     {
       "letter": "L",
-      "question": "Empieza por L: Forma juvenil de muchos insectos antes de la metamorfosis.",
-      "answer": "larva"
+      "question": "Empieza por L: Elemento alcalino usado en baterías recargables.",
+      "answer": "litio"
     },
     {
       "letter": "M",
-      "question": "Empieza por M: División celular que reduce a la mitad el número de cromosomas para formar gametos.",
-      "answer": "meiosis"
+      "question": "Empieza por M: Institución donde se conservan y exhiben obras artísticas o científicas.",
+      "answer": "museo"
     },
     {
       "letter": "N",
-      "question": "Empieza por N: Gusano cilíndrico de cuerpo no segmentado, como Ascaris.",
-      "answer": "nemátodo"
+      "question": "Empieza por N: Conjunto de condiciones y funciones que ocupa una especie en un ecosistema.",
+      "answer": "nicho"
     },
     {
       "letter": "Ñ",
-      "question": "Contiene la Ñ: Órgano que filtra la sangre y forma orina.",
-      "answer": "riñón"
+      "question": "Contiene la Ñ: Pigmento de color azul obtenido de la planta índigo, usado en tintes y arte.",
+      "answer": "añíl"
     },
     {
       "letter": "O",
-      "question": "Empieza por O: Hueso plano también llamado escápula.",
-      "answer": "omóplato"
+      "question": "Empieza por O: Repetición persistente de un motivo musical en el bajo u otra voz.",
+      "answer": "ostinato"
     },
     {
       "letter": "P",
-      "question": "Empieza por P: Órgano que nutre al embrión mamífero y lo conecta con la madre.",
-      "answer": "placenta"
+      "question": "Empieza por P: Mínima unidad cuadrada de una imagen digital.",
+      "answer": "píxel"
     },
     {
       "letter": "Q",
-      "question": "Empieza por Q: Saco cerrado anormal dentro de un tejido, con contenido líquido o semisólido.",
-      "answer": "quiste"
+      "question": "Empieza por Q: Intervalo musical que abarca cinco grados entre dos notas.",
+      "answer": "quinta"
     },
     {
       "letter": "R",
-      "question": "Empieza por R: Hueso sesamoideo de la rodilla, también llamado patela.",
-      "answer": "rótula"
+      "question": "Empieza por R: Gas noble radiactivo de número atómico 86.",
+      "answer": "radón"
     },
     {
       "letter": "S",
-      "question": "Empieza por S: Líquido que transporta nutrientes en plantas vasculares.",
-      "answer": "savia"
+      "question": "Empieza por S: Sustancia disuelta en un disolvente para formar una solución.",
+      "answer": "soluto"
     },
     {
       "letter": "T",
-      "question": "Empieza por T: Extremos repetitivos de los cromosomas que protegen el ADN.",
-      "answer": "telómero"
+      "question": "Empieza por T: Proposición matemática demostrada a partir de axiomas y definiciones.",
+      "answer": "teorema"
     },
     {
       "letter": "U",
-      "question": "Empieza por U: Enzima que hidroliza la urea en amoníaco y dióxido de carbono.",
-      "answer": "ureasa"
+      "question": "Empieza por U: Onda sonora de frecuencia superior a 20 kilohercios.",
+      "answer": "ultrasonido"
     },
     {
       "letter": "V",
-      "question": "Empieza por V: Agente infeccioso acelular formado por ácido nucleico y cápside proteica, que solo se replica en células huésped.",
-      "answer": "virus"
+      "question": "Empieza por V: Magnitud con módulo, dirección y sentido, representada por una flecha.",
+      "answer": "vector"
     },
     {
       "letter": "X",
-      "question": "Contiene la X: Proceso celular por el que vesículas se fusionan con la membrana y liberan su contenido al exterior.",
-      "answer": "exocitosis"
+      "question": "Contiene la X: Propiedad visual o táctil de una superficie en artes plásticas.",
+      "answer": "textura"
     },
     {
       "letter": "Y",
-      "question": "Contiene la Y: Cánido norteamericano, famoso por su aullido y adaptabilidad.",
-      "answer": "coyote"
+      "question": "Contiene la Y: Relato tradicional que mezcla hechos históricos y elementos fantásticos.",
+      "answer": "leyenda"
     },
     {
       "letter": "Z",
-      "question": "Empieza por Z: Virus transmitido por mosquitos Aedes, asociado a microcefalia.",
-      "answer": "zika"
+      "question": "Empieza por Z: Elemento químico de símbolo Zn usado para galvanizar metales.",
+      "answer": "zinc"
     }
   ]
 }
