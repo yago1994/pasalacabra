@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-03-03",
-    "game_no": 62,
-    "answers": [
-      "Almodóvar",
-      "Berlín",
-      "Cannes",
-      "Dalí",
-      "Ebro",
-      "Frida Kahlo",
-      "Guernica",
-      "Himalaya",
-      "Islandia",
-      "Jordania",
-      "La Rioja",
-      "Machu Picchu",
-      "Navarra",
-      "Ñuñoa",
-      "Oporto",
-      "Prado",
-      "Quijote",
-      "Roma",
-      "Sevilla",
-      "Toledo",
-      "Uruguay",
-      "Vaticano",
-      "México",
-      "Yucatán",
-      "Zaragoza"
-    ]
-  },
-  {
     "date": "2026-03-04",
     "game_no": 63,
     "answers": [
@@ -1857,6 +1826,37 @@
       "bórax",
       "Yaundé",
       "Zaire"
+    ]
+  },
+  {
+    "date": "2026-05-02",
+    "game_no": 122,
+    "answers": [
+      "alirón",
+      "bandoneón",
+      "claqueta",
+      "documental",
+      "entrenador",
+      "frontón",
+      "gancho",
+      "hincha",
+      "intertítulo",
+      "jaula",
+      "latigazo",
+      "mate",
+      "nado",
+      "Ñublense",
+      "ovación",
+      "película",
+      "esquí",
+      "reparto",
+      "secuela",
+      "torneo",
+      "utilería",
+      "velocista",
+      "xilófono",
+      "payador",
+      "zambullida"
     ]
   }
 ]
