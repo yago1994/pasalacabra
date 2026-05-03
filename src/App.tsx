@@ -1722,6 +1722,8 @@ export default function App() {
     if (phase !== "playing") return;
     if (screen !== "game") return;
     if (!activePlayerId) return;
+    // Pause countdown while feedback ("Sí" / "No...") is being read aloud.
+    if (feedback !== null) return;
 
     const id = window.setInterval(() => {
       setTimeLeft((t) => {
@@ -1731,7 +1733,7 @@ export default function App() {
     }, 1000);
 
     return () => window.clearInterval(id);
-  }, [phase, screen, activePlayerId]);
+  }, [phase, screen, activePlayerId, feedback]);
 
   // Load available voices (async in many browsers)
   useEffect(() => {
