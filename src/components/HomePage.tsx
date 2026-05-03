@@ -1,30 +1,5 @@
 import { useMemo, useState } from "react";
-import { getSet } from "../data/sets";
-
-/**
- * Pasalacabra home screen
- *
- * The game number and date are pulled from the set_01 title
- * (format: "Pasalacabra YYYY-MM-DD · No. N") so we can tell
- * at a glance whether the daily set was updated.
- */
-
-function parseSetTitle(title: string): { dateStr: string; gameNo: string } | null {
-  // Expected format: "Pasalacabra 2026-02-08 · No. 39"
-  const match = title.match(/(\d{4}-\d{2}-\d{2})\s*·\s*No\.\s*(\d+)/);
-  if (!match) return null;
-  return { dateStr: match[1], gameNo: match[2] };
-}
-
-function formatDateLongES(isoDate: string): string {
-  const [year, month, day] = isoDate.split("-").map(Number);
-  const d = new Date(year, month - 1, day);
-  return new Intl.DateTimeFormat("es-ES", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }).format(d);
-}
+import { formatDateLongES, getDailyGameNo } from "../lib/dailyIssue";
 
 export interface HomePageProps {
   onPlayGroup: () => void;
@@ -37,11 +12,7 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
   const [showHowToPlay, setShowHowToPlay] = useState<boolean>(false);
   const [showAbout, setShowAbout] = useState<boolean>(false);
 
-  const setInfo = useMemo(() => {
-    const set = getSet("set_01");
-    if (!set?.title) return null;
-    return parseSetTitle(set.title);
-  }, []);
+  const gameNo = useMemo(() => getDailyGameNo(today), [today]);
 
   return (
     <div className="center">

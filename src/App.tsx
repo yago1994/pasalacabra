@@ -30,7 +30,8 @@ import type { CanvasRecording } from "./game/canvasRecorder";
 import { createCanvasRecorder, downloadRecording, shareOrDownloadRecording } from "./game/canvasRecorder";
 import { initializePendo, setPendoLocation, trackPendoEvent } from "./lib/pendo";
 import { isStagingMode } from "./env/getSpeechTokenUrl";
-
+import { shareEmojiSequence } from "./game/shareRing";
+import { formatDateLongES, getDailyGameNo } from "./lib/dailyIssue";
 
 // Player snapshot captured when timer runs out
 export type PlayerSnapshot = {
@@ -904,12 +905,17 @@ export default function App() {
       // Capture the snapshot with full game UI
       // Uses same proportions as LetterRing.tsx (800px canvas = 2x the 400px SVG)
       const canvasSize = 800;
+      const today = new Date();
       const blob = await captureSnapshotWithRing(video, {
         outWidth: canvasSize,
         outHeight: canvasSize,
         fit: "cover",
         mimeType: "image/webp",
         quality: 0.92,
+        footer: {
+          dateText: formatDateLongES(today),
+          numberText: `No. ${getDailyGameNo(today)}`,
+        },
         ring: {
           letters: [...letters],
           statusByLetter: snapshotStatus,
@@ -1723,6 +1729,8 @@ export default function App() {
     if (phase !== "playing") return;
     if (screen !== "game") return;
     if (!activePlayerId) return;
+    // Pause countdown while feedback ("Sí" / "No...") is being read aloud.
+    if (feedback !== null) return;
 
     const id = window.setInterval(() => {
       setTimeLeft((t) => {
@@ -1732,7 +1740,7 @@ export default function App() {
     }, 1000);
 
     return () => window.clearInterval(id);
-  }, [phase, screen, activePlayerId]);
+  }, [phase, screen, activePlayerId, feedback]);
 
   // Load available voices (async in many browsers)
   useEffect(() => {
@@ -2128,6 +2136,12 @@ export default function App() {
     if (playerSnapshots.length === 0) return;
     
     const snapshot = playerSnapshots[0];
+    let missingCount = 0;
+    for (const letter of letters) {
+      const status = snapshot.statusByLetter[letter];
+      if (status !== "correct" && status !== "wrong") missingCount++;
+    }
+    const shareText = `Mira mi puntuación!\n🟢 ${snapshot.correctCount} · 🔴 ${snapshot.wrongCount} · 🔵 ${missingCount}\nJuega y comparte la tuya en https://pasalacabra.com`;
     const filename = `pasalacabra-${crypto.randomUUID()}.webp`;
     const file = new File([snapshot.blob], filename, { type: "image/webp" });
 
@@ -2135,7 +2149,7 @@ export default function App() {
       try {
         await navigator.share({
           title: "Pasalacabra",
-          text: "¡Mira mi puntuación! Juega y comparte la tuya en https://pasalacabra.com",
+          text: shareText,
           files: [file],
         });
         return;

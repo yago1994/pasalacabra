@@ -47,6 +47,10 @@ export interface SnapshotOptions {
   outHeight?: number; // default: video.videoHeight
   fit?: SnapshotFit;  // default: "cover"
   ring: RingOptions;
+  footer?: {
+    dateText?: string;
+    numberText?: string;
+  };
 
   // Export
   mimeType?: "image/webp" | "image/png" | "image/jpeg";
@@ -189,12 +193,48 @@ export async function captureSnapshotWithRing(
   // 3) Draw ring overlay (letters in circles)
   drawRing(ctx, outW, outH, opts.ring);
 
-  // 4) Export
+  // 4) Draw bottom footer metadata (date and daily number).
+  drawSnapshotFooter(ctx, outW, outH, opts.footer);
+
+  // 5) Export
   const mime = opts.mimeType ?? "image/webp";
   const quality = opts.quality ?? 0.92;
 
   const blob = await canvasToBlob(canvas, mime, quality);
   return blob;
+}
+
+function drawSnapshotFooter(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  footer?: { dateText?: string; numberText?: string }
+) {
+  const dateText = footer?.dateText?.trim();
+  const numberText = footer?.numberText?.trim();
+  if (!dateText && !numberText) return;
+
+  const centerX = width / 2;
+  const bottomY = height - Math.max(22, Math.round(height * 0.028));
+  const dateY = bottomY - Math.max(30, Math.round(height * 0.038));
+
+  ctx.save();
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "rgba(255,255,255,0.95)";
+
+  if (dateText) {
+    ctx.font = `600 ${Math.max(21, Math.round(width * 0.033))}px system-ui, -apple-system, Segoe UI, Roboto`;
+    ctx.fillText(dateText, centerX, dateY);
+  }
+
+  if (numberText) {
+    ctx.font = `${Math.max(22, Math.round(width * 0.032))}px system-ui, -apple-system, Segoe UI, Roboto`;
+    ctx.fillStyle = "rgba(255,255,255,0.82)";
+    ctx.fillText(numberText, centerX, bottomY);
+  }
+
+  ctx.restore();
 }
 
 /**
