@@ -12,6 +12,7 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
   const [showHowToPlay, setShowHowToPlay] = useState<boolean>(false);
   const [showAbout, setShowAbout] = useState<boolean>(false);
 
+  const today = useMemo(() => new Date(), []);
   const gameNo = useMemo(() => getDailyGameNo(today), [today]);
 
   return (
@@ -276,14 +277,8 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
 
         {/* Footer */}
         <div style={{ marginTop: "clamp(32px, 8vw, 40px)", textAlign: "center" }}>
-          {setInfo ? (
-            <>
-              <div style={{ fontSize: "clamp(16px, 4vw, 20px)", fontWeight: 600 }}>{formatDateLongES(setInfo.dateStr)}</div>
-              <div style={{ marginTop: "clamp(3px, 1vw, 4px)", fontSize: "clamp(14px, 3.5vw, 18px)", color: "rgba(255, 255, 255, 0.8)" }}>No. {setInfo.gameNo}</div>
-            </>
-          ) : (
-            <div style={{ fontSize: "clamp(14px, 3.5vw, 18px)", color: "rgba(255, 255, 255, 0.6)" }}>Set no disponible</div>
-          )}
+          <div style={{ fontSize: "clamp(16px, 4vw, 20px)", fontWeight: 600 }}>{formatDateLongES(today)}</div>
+          <div style={{ marginTop: "clamp(3px, 1vw, 4px)", fontSize: "clamp(14px, 3.5vw, 18px)", color: "rgba(255, 255, 255, 0.8)" }}>No. {gameNo}</div>
         </div>
       </div>
     </div>
