@@ -167,7 +167,7 @@ export const PASALACABRA_LETTERS: string[] = [
     // Build the new format: letters in rows with emoji status below
     const lines: string[] = [];
     lines.push("Pasala🐐");
-    lines.push(`${correct}✅ ${wrong}❌ · ${skip}⏭`);
+    lines.push(`🟢 ${correct} · 🔴 ${wrong} · 🔵 ${skip}`);
     
     // Group letters in rows: 8, 8, 8, 1
     const letterRows = [

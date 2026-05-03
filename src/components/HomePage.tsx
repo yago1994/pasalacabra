@@ -1,31 +1,5 @@
 import { useMemo, useState } from "react";
-
-/**
- * Pasalacabra home screen
- *
- * Tweak these two constants to control daily numbering.
- * If you want "No." to be smaller earlier, set LAUNCH_DATE_ISO to a later date
- * or reduce BASE_GAME_NO.
- */
-const LAUNCH_DATE_ISO = "2026-01-01"; // YYYY-MM-DD (local)
-const BASE_GAME_NO = 1;
-
-function startOfLocalDay(d: Date) {
-  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
-}
-
-function daysBetweenLocal(a: Date, b: Date) {
-  const ms = startOfLocalDay(b).getTime() - startOfLocalDay(a).getTime();
-  return Math.floor(ms / (24 * 60 * 60 * 1000));
-}
-
-function formatDateLongES(d: Date) {
-  return new Intl.DateTimeFormat("es-ES", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }).format(d);
-}
+import { formatDateLongES, getDailyGameNo } from "../lib/dailyIssue";
 
 export interface HomePageProps {
   onPlayGroup: () => void;
@@ -39,12 +13,7 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
   const [showHowToPlay, setShowHowToPlay] = useState<boolean>(false);
   const [showAbout, setShowAbout] = useState<boolean>(false);
 
-  const gameNo = useMemo(() => {
-    const launch = new Date(`${LAUNCH_DATE_ISO}T00:00:00`);
-    const delta = daysBetweenLocal(launch, today);
-    // If someone opens before launch date, clamp to BASE_GAME_NO.
-    return BASE_GAME_NO + Math.max(0, delta);
-  }, [today]);
+  const gameNo = useMemo(() => getDailyGameNo(today), [today]);
 
   return (
     <div className="center">
