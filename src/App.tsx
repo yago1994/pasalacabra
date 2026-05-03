@@ -259,6 +259,7 @@ export default function App() {
   const [playerSnapshots, setPlayerSnapshots] = useState<PlayerSnapshot[]>([]);
   const [slideshowIndex, setSlideshowIndex] = useState<number>(0);
   const [slideshowActive, setSlideshowActive] = useState<boolean>(false);
+  const [showAnswers, setShowAnswers] = useState<boolean>(false);
 
   // Per-player saved progress
   type PlayerState = {
@@ -2019,6 +2020,7 @@ export default function App() {
   function closeSlideshow() {
     if (isRecording) void stopRecording();
     setSlideshowActive(false);
+    setShowAnswers(false);
   }
 
   // Function to replay the slideshow
@@ -2212,25 +2214,6 @@ export default function App() {
     } catch (e) {
       console.log("Share blocked/cancelled:", e);
     }
-  }
-
-  async function handleShareEmojiSequence() {
-    // Only available for single-player games
-    if (!session || session.players.length !== 1) {
-      alert("La función de compartir emoji solo está disponible para juegos de un solo jugador.");
-      return;
-    }
-
-    // Get the first (and only) player snapshot
-    if (playerSnapshots.length === 0) {
-      alert("No hay resultados para compartir.");
-      return;
-    }
-
-    const snapshot = playerSnapshots[0];
-
-    // Use the refactored function from shareRing
-    await shareEmojiSequence(snapshot.statusByLetter);
   }
 
   // Request camera only after entering the game screen.
@@ -3100,27 +3083,21 @@ export default function App() {
               {session && session.players.length === 1 ? (
                 <>
                   <button className="slideshowShareBtn" onClick={shareSingleSnapshot}>
-                    📤 Compartir foto
+                    📤 Compartir
                   </button>
                   <button
                     className="slideshowShareBtn"
-                    onClick={downloadSingleSnapshot}
+                    onClick={() => setShowAnswers(prev => !prev)}
                     style={{
-                      background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
-                      boxShadow: "0 6px 25px rgba(34, 197, 94, 0.5)",
+                      background: showAnswers
+                        ? "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)"
+                        : "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                      boxShadow: showAnswers
+                        ? "0 6px 25px rgba(245, 158, 11, 0.5)"
+                        : "0 6px 25px rgba(34, 197, 94, 0.5)",
                     }}
                   >
-                    💾 Descargar foto
-                  </button>
-                  <button
-                    className="slideshowShareBtn"
-                    onClick={handleShareEmojiSequence}
-                    style={{
-                      background: "linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)",
-                      boxShadow: "0 6px 25px rgba(139, 92, 246, 0.5)",
-                    }}
-                  >
-                    📱 Compartir rueda
+                    {showAnswers ? "🔼 Ocultar Respuestas" : "📋 Mostrar Respuestas"}
                   </button>
                 </>
               ) : (
@@ -3165,6 +3142,44 @@ export default function App() {
                 )
               )}
             </div>
+
+            {/* Answers panel - shown when "Mostrar Respuestas" is toggled */}
+            {showAnswers && session && session.players.length === 1 && playerSnapshots.length > 0 && (
+              <div style={{ marginTop: 24, textAlign: "left", width: "100%", maxWidth: 500 }}>
+                <div style={{ 
+                  maxHeight: "400px", 
+                  overflowY: "auto",
+                  padding: "12px",
+                  background: "#4f8dff",
+                  borderRadius: "12px"
+                }}>
+                  {letters.map((letter, index) => {
+                    const qa = qaMap.get(letter);
+                    if (!qa) return null;
+                    let cleanQuestion = qa.question;
+                    const empiezaPattern = new RegExp(`^Empieza por ${qa.letter}:\\s*`, "i");
+                    const contienePattern = new RegExp(`^Contiene ${qa.letter}:\\s*`, "i");
+                    cleanQuestion = cleanQuestion.replace(empiezaPattern, "").replace(contienePattern, "");
+                    const isLast = index === letters.length - 1;
+                    return (
+                      <div 
+                        key={letter}
+                        style={{ 
+                          marginBottom: isLast ? 0 : 12,
+                          paddingBottom: isLast ? 0 : 12,
+                          borderBottom: isLast ? "none" : "1px solid rgba(255, 255, 255, 0.2)",
+                          fontSize: "14px",
+                          color: "var(--text)",
+                          lineHeight: "1.5"
+                        }}
+                      >
+                        <strong>{letter}:</strong> {cleanQuestion} → <strong>{qa.answer}</strong>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         );
       })()}
@@ -3366,35 +3381,6 @@ export default function App() {
                       const isTie = winners.length > 1;
                       const isSinglePlayer = session.players.length === 1;
                       
-                      // Get qaMap for single player
-                      let singlePlayerQaMap: Map<Letter, QA> = new Map();
-                      if (isSinglePlayer) {
-                        const singlePlayer = session.players[0];
-                        const playerSetId = singlePlayer.setId ?? (availableSets[0]?.id ?? "set_01");
-                        const playerSet = getSet(playerSetId) ?? (availableSets[0]?.id ? getSet(availableSets[0].id) : undefined);
-                        
-                        // Check if we have a generated bank for this player
-                        if (generatedBanks[singlePlayer.id]) {
-                          const bank = generatedBanks[singlePlayer.id];
-                          const converted = new Map<Letter, QA>();
-                          for (const [letter, q] of bank.entries()) {
-                            converted.set(letter, {
-                              letter: q.letter,
-                              question: q.question,
-                              answer: q.answer,
-                            });
-                          }
-                          singlePlayerQaMap = converted;
-                        } else if (playerSet) {
-                          singlePlayerQaMap = buildSetQuestionMap(playerSet);
-                        }
-                      }
-                      
-                      // Convert qaMap to sorted array for display
-                      const qaList = Array.from(singlePlayerQaMap.values()).sort((a, b) => 
-                        letters.indexOf(a.letter) - letters.indexOf(b.letter)
-                      );
-                      
                       return (
                         <div className="gameOverResults" style={{ marginTop: 8 }}>
                           <div className="answerReveal answerRevealBig" style={{ marginBottom: 12 }}>
@@ -3437,50 +3423,10 @@ export default function App() {
                               onClick={replaySlideshow}
                               style={{ marginTop: 20, width: "100%" }}
                             >
-                              📸 Ver fotos
+                              📸 Resultados
                             </button>
                           )}
                           
-                          {isSinglePlayer && qaList.length > 0 && (
-                            <div style={{ marginTop: 24, textAlign: "left" }}>
-                              <div className="answerReveal answerRevealBig" style={{ marginBottom: 12 }}>
-                                <strong>Juego de hoy</strong>
-                              </div>
-                              <div style={{ 
-                                maxHeight: "400px", 
-                                overflowY: "auto",
-                                padding: "12px",
-                                background: "#4f8dff",
-                                borderRadius: "12px"
-                              }}>
-                                {qaList.map((qa, index) => {
-                                  // Remove "Empieza por X:" or "Contiene X:" prefix from question
-                                  let cleanQuestion = qa.question;
-                                  const empiezaPattern = new RegExp(`^Empieza por ${qa.letter}:\\s*`, "i");
-                                  const contienePattern = new RegExp(`^Contiene ${qa.letter}:\\s*`, "i");
-                                  cleanQuestion = cleanQuestion.replace(empiezaPattern, "").replace(contienePattern, "");
-                                  
-                                  const isLast = index === qaList.length - 1;
-                                  
-                                  return (
-                                    <div 
-                                      key={qa.letter}
-                                      style={{ 
-                                        marginBottom: isLast ? 0 : 12,
-                                        paddingBottom: isLast ? 0 : 12,
-                                        borderBottom: isLast ? "none" : "1px solid rgba(255, 255, 255, 0.2)",
-                                        fontSize: "14px",
-                                        color: "var(--text)",
-                                        lineHeight: "1.5"
-                                      }}
-                                    >
-                                      <strong>{qa.letter}:</strong> {cleanQuestion} → <strong>{qa.answer}</strong>
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            </div>
-                          )}
                         </div>
                       );
                     })()

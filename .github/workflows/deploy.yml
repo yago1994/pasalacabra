@@ -3,6 +3,9 @@ name: Deploy (prod + staging)
 on:
   push:
     branches: [main, staging]
+  workflow_run:
+    workflows: ["Generate Daily Set"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -10,6 +13,10 @@ permissions:
 
 jobs:
   deploy:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push') ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
