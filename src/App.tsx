@@ -30,7 +30,6 @@ import type { CanvasRecording } from "./game/canvasRecorder";
 import { createCanvasRecorder, downloadRecording, shareOrDownloadRecording } from "./game/canvasRecorder";
 import { initializePendo, setPendoLocation, trackPendoEvent } from "./lib/pendo";
 import { isStagingMode } from "./env/getSpeechTokenUrl";
-import { shareEmojiSequence } from "./game/shareRing";
 import { formatDateLongES, getDailyGameNo } from "./lib/dailyIssue";
 
 // Player snapshot captured when timer runs out
