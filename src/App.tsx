@@ -82,6 +82,26 @@ function computeWinnerIds(snaps: PlayerSnapshot[]): Set<string> {
   return new Set(topPlayers.filter((s) => s.wrongCount === minWrong).map((s) => s.playerId));
 }
 
+const DAILY_STORAGE_KEY = "pasalacabra_daily";
+
+type DailyStoredResult = {
+  gameNo: number;
+  completedAt: string;
+  statusByLetter: Record<Letter, LetterStatus>;
+  correctCount: number;
+  wrongCount: number;
+  snapshotBase64: string;
+};
+
+function dataURLtoBlob(dataURL: string): Blob {
+  const [header, base64] = dataURL.split(",");
+  const mime = header.match(/:(.*?);/)?.[1] ?? "image/webp";
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new Blob([bytes], { type: mime });
+}
+
 function uniqueNonEmpty(list: string[]) {
   const out: string[] = [];
   const seen = new Set<string>();
@@ -252,6 +272,7 @@ export default function App() {
   const [timeLeft, setTimeLeft] = useState<number>(TURN_SECONDS); // active player's time
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [gameOverMessage, setGameOverMessage] = useState<string>("");
+  const [isDailyGame, setIsDailyGame] = useState<boolean>(false);
   const [confettiGoats, setConfettiGoats] = useState<Array<{ id: number; left: number; delay: number }>>([]);
 
   // Player snapshots for end-of-game slideshow
@@ -1982,6 +2003,30 @@ export default function App() {
     }
   }, [gameOver, capturePlayerSnapshot, playerSnapshots]);
 
+  // Persist daily game result to localStorage once the snapshot is ready
+  useEffect(() => {
+    if (!gameOver || !isDailyGame || playerSnapshots.length === 0) return;
+    const snapshot = playerSnapshots[0];
+    const gameNo = getDailyGameNo(new Date());
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const stored: DailyStoredResult = {
+          gameNo,
+          completedAt: new Date().toISOString(),
+          statusByLetter: snapshot.statusByLetter,
+          correctCount: snapshot.correctCount,
+          wrongCount: snapshot.wrongCount,
+          snapshotBase64: reader.result as string,
+        };
+        localStorage.setItem(DAILY_STORAGE_KEY, JSON.stringify(stored));
+      } catch (err) {
+        console.warn("Failed to save daily result to localStorage:", err);
+      }
+    };
+    reader.readAsDataURL(snapshot.blob);
+  }, [gameOver, isDailyGame, playerSnapshots]);
+
   // Slideshow effect when game ends with snapshots
   useEffect(() => {
     if (!gameOver || playerSnapshots.length === 0) {
@@ -2431,6 +2476,62 @@ export default function App() {
   }, [activePlayerId, screen, statusByLetter, currentIndex, timeLeft, revealed]);
 
   async function startDailyGame() {
+    // Check if today's daily game has already been played
+    const gameNo = getDailyGameNo(new Date());
+    try {
+      const raw = localStorage.getItem(DAILY_STORAGE_KEY);
+      if (raw) {
+        const saved = JSON.parse(raw) as DailyStoredResult;
+        if (saved.gameNo === gameNo) {
+          // Today's game was already played — restore the end state
+          const players: Player[] = [{ id: "p1", name: "Jugador 1", setId: "set_01" }];
+          const dailyDifficulty: DifficultyMode = "medio";
+          const timePerPlayer = getTimeFromDifficulty(dailyDifficulty);
+          const restoredPlayerState: PlayerState = {
+            statusByLetter: saved.statusByLetter,
+            currentIndex: 0,
+            timeLeft: timePerPlayer,
+            revealed: false,
+          };
+
+          let restoredSnapshot: PlayerSnapshot | null = null;
+          try {
+            const blob = dataURLtoBlob(saved.snapshotBase64);
+            const blobUrl = URL.createObjectURL(blob);
+            restoredSnapshot = {
+              playerId: "p1",
+              playerName: "Jugador 1",
+              blob,
+              blobUrl,
+              statusByLetter: saved.statusByLetter,
+              correctCount: saved.correctCount,
+              wrongCount: saved.wrongCount,
+            };
+          } catch (err) {
+            console.warn("Failed to restore daily snapshot:", err);
+          }
+
+          setSession({ players, currentPlayerIndex: 0, difficulty: dailyDifficulty });
+          setPlayerStates({ p1: restoredPlayerState });
+          setStatusByLetter(saved.statusByLetter);
+          setCurrentIndex(0);
+          setTimeLeft(timePerPlayer);
+          setRevealed(false);
+          setPhase("ended");
+          setGameOver(true);
+          setGameOverMessage("");
+          setIsDailyGame(true);
+          setSlideshowActive(false);
+          setSlideshowIndex(0);
+          if (restoredSnapshot) setPlayerSnapshots([restoredSnapshot]);
+          setScreen("game");
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn("Failed to read daily result from localStorage:", err);
+    }
+
     unlockAudioOnce();
     // Warm up microphone permission first. On some browsers, requesting mic can temporarily
     // affect the audio session, so it before the first meaningful TTS utterance.
@@ -2439,6 +2540,7 @@ export default function App() {
     warmupSpeechSynthesisOnce();
     setGameOver(false);
     setGameOverMessage("");
+    setIsDailyGame(true);
     // Clear previous snapshots when starting a new game
     for (const snapshot of playerSnapshots) {
       URL.revokeObjectURL(snapshot.blobUrl);
@@ -2512,6 +2614,7 @@ export default function App() {
     warmupSpeechSynthesisOnce();
     setGameOver(false);
     setGameOverMessage("");
+    setIsDailyGame(false);
     // Clear previous snapshots when starting a new game
     for (const snapshot of playerSnapshots) {
       URL.revokeObjectURL(snapshot.blobUrl);
