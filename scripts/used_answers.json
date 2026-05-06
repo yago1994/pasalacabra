@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-03-07",
-    "game_no": 66,
-    "answers": [
-      "aria",
-      "bolero",
-      "Coppola",
-      "Debussy",
-      "ensayo",
-      "fado",
-      "Gaudí",
-      "Hitchcock",
-      "intermedio",
-      "jota",
-      "Louvre",
-      "Mozart",
-      "Nirvana",
-      "Ñengo Flow",
-      "ópera",
-      "Picasso",
-      "Quevedo",
-      "Rodin",
-      "soprano",
-      "triángulo",
-      "ukelele",
-      "Velázquez",
-      "exposición",
-      "Yorgos Lanthimos",
-      "zarzuela"
-    ]
-  },
-  {
     "date": "2026-03-08",
     "game_no": 67,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Saxo",
       "Yamaha",
       "Zodíaco"
+    ]
+  },
+  {
+    "date": "2026-05-06",
+    "game_no": 126,
+    "answers": [
+      "arpa",
+      "banjo",
+      "cronómetro",
+      "disco",
+      "eufonio",
+      "fútbol",
+      "gimnasia",
+      "hockey",
+      "improvisación",
+      "jabalina",
+      "lanzamiento",
+      "maratón",
+      "nutación",
+      "año luz",
+      "ocaso",
+      "púa",
+      "bloqueo",
+      "rebote",
+      "salto",
+      "tenis",
+      "unísono",
+      "voleibol",
+      "boxeo",
+      "yoga",
+      "zurdo"
     ]
   }
 ]
