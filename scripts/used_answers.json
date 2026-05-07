@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-03-08",
-    "game_no": 67,
-    "answers": [
-      "aminoácido",
-      "bacteria",
-      "clave",
-      "dopamina",
-      "enzima",
-      "flauta",
-      "glucosa",
-      "hemoglobina",
-      "insulina",
-      "jurásico",
-      "lípido",
-      "mitosis",
-      "nitrógeno",
-      "araña",
-      "oxígeno",
-      "pentagrama",
-      "queratina",
-      "ritmo",
-      "solfeo",
-      "trombón",
-      "uranio",
-      "voltio",
-      "xenón",
-      "yunque",
-      "zampoña"
-    ]
-  },
-  {
     "date": "2026-03-09",
     "game_no": 68,
     "answers": [
@@ -1857,6 +1826,37 @@
       "boxeo",
       "yoga",
       "zurdo"
+    ]
+  },
+  {
+    "date": "2026-05-07",
+    "game_no": 127,
+    "answers": [
+      "Atapuerca",
+      "Brahms",
+      "Copérnico",
+      "dorsal",
+      "Euterpe",
+      "Federer",
+      "Grammy",
+      "Hitler",
+      "Indochina",
+      "jota",
+      "Liszt",
+      "Mozart",
+      "Nadal",
+      "España",
+      "ópera",
+      "Pelé",
+      "Qin",
+      "rugby",
+      "sinfonía",
+      "tapón",
+      "ukelele",
+      "Vivaldi",
+      "México",
+      "Yugoslavia",
+      "zarzuela"
     ]
   }
 ]
