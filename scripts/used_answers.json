@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-03-15",
-    "game_no": 74,
-    "answers": [
-      "arpegio",
-      "batuta",
-      "clarinete",
-      "decorado",
-      "escenografía",
-      "fotografía",
-      "grafiti",
-      "heptasílabo",
-      "interludio",
-      "japonismo",
-      "litografía",
-      "melisma",
-      "nana",
-      "ñoqui",
-      "orquesta",
-      "percusión",
-      "quiasmo",
-      "rondalla",
-      "soneto",
-      "tablatura",
-      "urbanismo",
-      "violín",
-      "saxofón",
-      "yoruba",
-      "zapateado"
-    ]
-  },
-  {
     "date": "2026-03-16",
     "game_no": 75,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Luxemburgo",
       "Yecla",
       "Amazonas"
+    ]
+  },
+  {
+    "date": "2026-05-14",
+    "game_no": 134,
+    "answers": [
+      "Anfield",
+      "Beethoven",
+      "Cleopatra",
+      "Debussy",
+      "Eurovisión",
+      "FIFA",
+      "Guadalete",
+      "Haydn",
+      "Inquisición",
+      "Juventus",
+      "Lennon",
+      "Mahler",
+      "Numancia",
+      "Ñu",
+      "Osasuna",
+      "Peloponeso",
+      "Quipu",
+      "Rally",
+      "Solfeo",
+      "Triatlón",
+      "Urraca",
+      "Vándalos",
+      "Ajax",
+      "Ensayo",
+      "Zverev"
     ]
   }
 ]
