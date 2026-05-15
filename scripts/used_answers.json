@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-03-16",
-    "game_no": 75,
-    "answers": [
-      "atleta",
-      "branquia",
-      "Cartago",
-      "dopaje",
-      "epitelio",
-      "fémur",
-      "glucógeno",
-      "hígado",
-      "inca",
-      "jirafa",
-      "laringe",
-      "miocardio",
-      "nefrona",
-      "ñame",
-      "ovario",
-      "pentatlón",
-      "quimera",
-      "retina",
-      "sudor",
-      "tendón",
-      "útero",
-      "vikingo",
-      "boxeador",
-      "yugular",
-      "zorzal"
-    ]
-  },
-  {
     "date": "2026-03-17",
     "game_no": 76,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Ajax",
       "Ensayo",
       "Zverev"
+    ]
+  },
+  {
+    "date": "2026-05-15",
+    "game_no": 135,
+    "answers": [
+      "Alhambra",
+      "ballet",
+      "célula",
+      "delfín",
+      "enzima",
+      "flauta",
+      "Ganímedes",
+      "Hamlet",
+      "insulina",
+      "jibia",
+      "lípido",
+      "Marte",
+      "Neptuno",
+      "araña",
+      "Osa Menor",
+      "perihelio",
+      "Quijote",
+      "rana",
+      "soprano",
+      "tímpano",
+      "Urano",
+      "vanguardias",
+      "exina",
+      "yacimiento",
+      "zigurat"
     ]
   }
 ]
