@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-03-23",
-    "game_no": 82,
-    "answers": [
-      "acróbata",
-      "barítono",
-      "coreógrafo",
-      "derbi",
-      "estadio",
-      "finta",
-      "goleada",
-      "hipódromo",
-      "Ilustración",
-      "jornada",
-      "lateral",
-      "maraca",
-      "naipe",
-      "peña",
-      "olimpiada",
-      "pasodoble",
-      "quiniela",
-      "récord",
-      "serigrafía",
-      "titiritero",
-      "utillero",
-      "viñeta",
-      "extremo",
-      "yudo",
-      "zaguero"
-    ]
-  },
-  {
     "date": "2026-03-24",
     "game_no": 83,
     "answers": [
@@ -1857,6 +1826,37 @@
       "axila",
       "yema",
       "zarcillo"
+    ]
+  },
+  {
+    "date": "2026-05-22",
+    "game_no": 142,
+    "answers": [
+      "astronauta",
+      "branquia",
+      "Cartago",
+      "diploide",
+      "estrella",
+      "faringe",
+      "gigante roja",
+      "hemoglobina",
+      "iguanodonte",
+      "jirafa",
+      "Lepanto",
+      "macrófagos",
+      "Nerva",
+      "uña",
+      "ornitorrinco",
+      "púlsar",
+      "Quimbaya",
+      "Rómulo",
+      "simbiosis",
+      "tránsito",
+      "circumpolar",
+      "vacuola",
+      "Xenopus",
+      "Yersin",
+      "Zoser"
     ]
   }
 ]
