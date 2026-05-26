@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-03-27",
-    "game_no": 86,
-    "answers": [
-      "Afganistán",
-      "Budapest",
-      "Copenhague",
-      "Damasco",
-      "Europa",
-      "Fiyi",
-      "Ginebra",
-      "Hudson",
-      "Islamabad",
-      "Jamaica",
-      "Liechtenstein",
-      "Malí",
-      "Nadir",
-      "Cabo Cañaveral",
-      "Omán",
-      "Proteo",
-      "Chequia",
-      "Rabat",
-      "Sinaí",
-      "Titán",
-      "Ulán Bator",
-      "Venus",
-      "Xinjiang",
-      "Yangtsé",
-      "Zagros"
-    ]
-  },
-  {
     "date": "2026-03-28",
     "game_no": 87,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xilema",
       "yugular",
       "zoología"
+    ]
+  },
+  {
+    "date": "2026-05-26",
+    "game_no": 146,
+    "answers": [
+      "artesanía",
+      "buril",
+      "coreografía",
+      "derbi",
+      "estadio",
+      "faralaes",
+      "grabado",
+      "hipódromo",
+      "indumentaria",
+      "jaque",
+      "loza",
+      "malambo",
+      "ninot",
+      "cañí",
+      "obra",
+      "patinaje",
+      "quijada",
+      "remontada",
+      "sainete",
+      "témpera",
+      "urbanismo",
+      "varal",
+      "extremo",
+      "yudo",
+      "zancos"
     ]
   }
 ]
