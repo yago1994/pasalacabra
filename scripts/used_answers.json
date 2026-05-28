@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-03-29",
-    "game_no": 88,
-    "answers": [
-      "Aristarco",
-      "Bailén",
-      "Casablanca",
-      "Dunkerque",
-      "Eris",
-      "fascismo",
-      "Guerra Fría",
-      "Hiroshima",
-      "Ío",
-      "Jerjes",
-      "Leningrado",
-      "Mercurio",
-      "Neolítico",
-      "campaña",
-      "Olmecas",
-      "Pizarro",
-      "Qing",
-      "Renacimiento",
-      "sufragio",
-      "Tenochtitlán",
-      "Umbriel",
-      "Visigodos",
-      "exilio",
-      "yihad",
-      "Zapata"
-    ]
-  },
-  {
     "date": "2026-03-30",
     "game_no": 89,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Saxofón",
       "Yangtsé",
       "Zambia"
+    ]
+  },
+  {
+    "date": "2026-05-28",
+    "game_no": 148,
+    "answers": [
+      "actina",
+      "bíceps",
+      "Calisto",
+      "deltoides",
+      "esgrima",
+      "finta",
+      "gástrula",
+      "húmero",
+      "íleon",
+      "junco",
+      "ligamento",
+      "miosina",
+      "nervadura",
+      "reñido",
+      "observatorio",
+      "plaqueta",
+      "equino",
+      "regolito",
+      "sutura",
+      "tibia",
+      "úvula",
+      "vesícula biliar",
+      "xifoides",
+      "yeyuno",
+      "zancada"
     ]
   }
 ]
