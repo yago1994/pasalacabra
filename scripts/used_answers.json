@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-02",
-    "game_no": 92,
-    "answers": [
-      "avestruz",
-      "Benín",
-      "clorofila",
-      "dromedario",
-      "erizo",
-      "fósil",
-      "guepardo",
-      "huracán",
-      "inuit",
-      "jauría",
-      "lémur",
-      "manglar",
-      "nutria",
-      "otoño",
-      "oruga",
-      "pampa",
-      "quetzal",
-      "rinoceronte",
-      "sabana",
-      "tiburón",
-      "urticaria",
-      "vicuña",
-      "xantófila",
-      "yegua",
-      "zarigüeya"
-    ]
-  },
-  {
     "date": "2026-04-03",
     "game_no": 93,
     "answers": [
@@ -1857,6 +1826,37 @@
       "expresionismo",
       "yódel",
       "zamba"
+    ]
+  },
+  {
+    "date": "2026-06-01",
+    "game_no": 152,
+    "answers": [
+      "alegoría",
+      "bodegón",
+      "costumbrismo",
+      "dramaturgia",
+      "estética",
+      "fábula",
+      "guitarra",
+      "hidalgo",
+      "idolatría",
+      "jarcha",
+      "literatura",
+      "mitología",
+      "nihilismo",
+      "guiñol",
+      "oralidad",
+      "patrimonio",
+      "quimono",
+      "retablo",
+      "sátira",
+      "tango",
+      "uróboros",
+      "verso",
+      "xenofobia",
+      "ye",
+      "zen"
     ]
   }
 ]
