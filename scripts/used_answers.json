@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-03",
-    "game_no": 93,
-    "answers": [
-      "Austria",
-      "Bolivia",
-      "Canadá",
-      "Dinamarca",
-      "Estonia",
-      "Finlandia",
-      "Galicia",
-      "Honduras",
-      "Irán",
-      "Jaipur",
-      "Letonia",
-      "Malta",
-      "Nicaragua",
-      "Logroño",
-      "Odesa",
-      "Polonia",
-      "Qatar",
-      "Rosetta",
-      "Suecia",
-      "Tasmania",
-      "Urales",
-      "Vietnam",
-      "Oaxaca",
-      "Yibuti",
-      "Zadar"
-    ]
-  },
-  {
     "date": "2026-04-04",
     "game_no": 94,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xenofobia",
       "ye",
       "zen"
+    ]
+  },
+  {
+    "date": "2026-06-02",
+    "game_no": 153,
+    "answers": [
+      "Arquímedes",
+      "Becquerel",
+      "Clorofila",
+      "Descartes",
+      "Einstein",
+      "Fibonacci",
+      "Gutenberg",
+      "Higgs",
+      "Ibn Battuta",
+      "Jenofonte",
+      "Laplace",
+      "Mendel",
+      "Nobel",
+      "Iñaki Williams",
+      "Ohm",
+      "Planck",
+      "Quiralidad",
+      "Rutherford",
+      "Semmelweis",
+      "Tesla",
+      "URSS",
+      "Volta",
+      "xilosa",
+      "yelmo",
+      "Zonda"
     ]
   }
 ]
