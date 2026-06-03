@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-04",
-    "game_no": 94,
-    "answers": [
-      "albedo",
-      "balonmano",
-      "candombe",
-      "declinación",
-      "eslalon",
-      "firmamento",
-      "güiro",
-      "halterofilia",
-      "inclinación",
-      "jaleo",
-      "líbero",
-      "magnetar",
-      "neopreno",
-      "bañador",
-      "ocultación",
-      "penalti",
-      "querencia",
-      "relevo",
-      "solsticio",
-      "txalaparta",
-      "ultramaratón",
-      "velódromo",
-      "xistera",
-      "boya",
-      "zarabanda"
-    ]
-  },
-  {
     "date": "2026-04-05",
     "game_no": 95,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xilosa",
       "yelmo",
       "Zonda"
+    ]
+  },
+  {
+    "date": "2026-06-03",
+    "game_no": 154,
+    "answers": [
+      "atmósfera",
+      "béisbol",
+      "clima",
+      "diámetro",
+      "electrodo",
+      "fósil",
+      "glucólisis",
+      "huracán",
+      "isótopo",
+      "Jordán",
+      "laguna",
+      "meseta",
+      "niebla",
+      "montaña",
+      "océano",
+      "península",
+      "quebrada",
+      "ría",
+      "selva",
+      "trópico",
+      "uadi",
+      "valle",
+      "taxón",
+      "yarda",
+      "Zagreb"
     ]
   }
 ]
