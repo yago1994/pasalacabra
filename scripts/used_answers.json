@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-06",
-    "game_no": 96,
-    "answers": [
-      "alga",
-      "bivalvo",
-      "cilio",
-      "diatomea",
-      "eritrocito",
-      "fermentación",
-      "gameto",
-      "homeostasis",
-      "isótopos",
-      "jazmín",
-      "larva",
-      "meiosis",
-      "nemátodo",
-      "riñón",
-      "omóplato",
-      "placenta",
-      "quiste",
-      "rótula",
-      "savia",
-      "telómero",
-      "ureasa",
-      "virus",
-      "exocitosis",
-      "coyote",
-      "zika"
-    ]
-  },
-  {
     "date": "2026-04-07",
     "game_no": 97,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xantófila",
       "baya",
       "zona habitable"
+    ]
+  },
+  {
+    "date": "2026-06-05",
+    "game_no": 156,
+    "answers": [
+      "Apolo",
+      "Baco",
+      "Ceres",
+      "Dafne",
+      "Edda",
+      "Fauno",
+      "Grial",
+      "Hera",
+      "Ilíada",
+      "Jarramplas",
+      "Lares",
+      "Minerva",
+      "Nerón",
+      "españolada",
+      "Orfeo",
+      "Pandora",
+      "Quirino",
+      "Rea",
+      "Sileno",
+      "Titán",
+      "Ulises",
+      "Vulcano",
+      "mexica",
+      "yeti",
+      "Zaratustra"
     ]
   }
 ]
