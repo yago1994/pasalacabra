@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-08",
-    "game_no": 98,
-    "answers": [
-      "apogeo",
-      "bosón",
-      "cúmulo",
-      "diodo",
-      "electrón",
-      "fósforo",
-      "genoma",
-      "helio",
-      "inercia",
-      "jabón",
-      "láser",
-      "meteorito",
-      "neutrón",
-      "español",
-      "ozono",
-      "péndulo",
-      "Quirón",
-      "refracción",
-      "silicio",
-      "traslación",
-      "uretra",
-      "vacuna",
-      "xerografía",
-      "yoduro",
-      "zimógeno"
-    ]
-  },
-  {
     "date": "2026-04-09",
     "game_no": 99,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Aleixandre",
       "Yibuti",
       "Zúrich"
+    ]
+  },
+  {
+    "date": "2026-06-07",
+    "game_no": 158,
+    "answers": [
+      "Álgebra",
+      "Botánica",
+      "Cartografía",
+      "Demografía",
+      "Entomología",
+      "Filología",
+      "Geografía",
+      "Helenismo",
+      "Imhotep",
+      "Jeroglífico",
+      "Lingüística",
+      "Meteorología",
+      "Neolítico",
+      "Campiña",
+      "Oncología",
+      "Púnico",
+      "Arqueología",
+      "Renacimiento",
+      "Sociología",
+      "Termodinámica",
+      "Ugarit",
+      "Virreinato",
+      "Píxel",
+      "Mayéutica",
+      "Zinc"
     ]
   }
 ]
