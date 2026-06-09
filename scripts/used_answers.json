@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-10",
-    "game_no": 100,
-    "answers": [
-      "arteria",
-      "brújula",
-      "cromosoma",
-      "dragón",
-      "epidermis",
-      "fibrina",
-      "gen",
-      "hábitat",
-      "invertebrado",
-      "jacinto",
-      "leucocito",
-      "melanina",
-      "néctar",
-      "sueño",
-      "oreja",
-      "polen",
-      "quina",
-      "raíz",
-      "saliva",
-      "tráquea",
-      "unicelular",
-      "vitamina",
-      "exoesqueleto",
-      "yuca",
-      "zorro"
-    ]
-  },
-  {
     "date": "2026-04-11",
     "game_no": 101,
     "answers": [
@@ -1857,6 +1826,37 @@
       "axel",
       "Yeniséi",
       "Zarautz"
+    ]
+  },
+  {
+    "date": "2026-06-09",
+    "game_no": 160,
+    "answers": [
+      "Asunción",
+      "Bolivia",
+      "Canadá",
+      "Dubái",
+      "Estonia",
+      "Finlandia",
+      "Gambia",
+      "Honduras",
+      "Irán",
+      "Johannesburgo",
+      "Letonia",
+      "Marruecos",
+      "Nicaragua",
+      "Ñeembucú",
+      "Omán",
+      "Portugal",
+      "Quetzaltenango",
+      "Riad",
+      "surf",
+      "Túnez",
+      "uretra",
+      "Valencia",
+      "coxal",
+      "yegua",
+      "Zimbabue"
     ]
   }
 ]
