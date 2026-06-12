@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-13",
-    "game_no": 103,
-    "answers": [
-      "aurora",
-      "bate",
-      "carboncillo",
-      "dardo",
-      "esbozo",
-      "flautista",
-      "gibosa",
-      "horizonte",
-      "pívot",
-      "jugador",
-      "lanzador",
-      "medallero",
-      "nave",
-      "diseño",
-      "octavos",
-      "palmarés",
-      "quilla",
-      "regate",
-      "saque",
-      "tapiz",
-      "escuadra",
-      "Virgo",
-      "Praxíteles",
-      "Ymir",
-      "zapatilla"
-    ]
-  },
-  {
     "date": "2026-04-14",
     "game_no": 104,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xenartros",
       "yedra",
       "zoótropo"
+    ]
+  },
+  {
+    "date": "2026-06-12",
+    "game_no": 163,
+    "answers": [
+      "al-Ándalus",
+      "botijo",
+      "cetrería",
+      "duende",
+      "euskera",
+      "falla",
+      "gólem",
+      "Hispania",
+      "Iberoamérica",
+      "jamón",
+      "leyenda",
+      "mudéjar",
+      "nazaríes",
+      "ñoquis",
+      "Ovidio",
+      "picaresca",
+      "mezquita",
+      "romancero",
+      "saeta",
+      "tercios",
+      "universidad",
+      "visigodos",
+      "exilio",
+      "yuntero",
+      "zagal"
     ]
   }
 ]
