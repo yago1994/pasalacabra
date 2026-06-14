@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-15",
-    "game_no": 105,
-    "answers": [
-      "astro",
-      "balada",
-      "cumbia",
-      "décima",
-      "Espiga",
-      "folclore",
-      "guajira",
-      "heliopausa",
-      "instrumento",
-      "jarocho",
-      "leona",
-      "música",
-      "nota",
-      "muñeira",
-      "octava",
-      "Pléyades",
-      "quechua",
-      "rabel",
-      "satélite",
-      "tarantela",
-      "bambuco",
-      "voz",
-      "exosfera",
-      "aymara",
-      "zortziko"
-    ]
-  },
-  {
     "date": "2026-04-16",
     "game_no": 106,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Xeraco",
       "Yebes",
       "Zadar"
+    ]
+  },
+  {
+    "date": "2026-06-14",
+    "game_no": 165,
+    "answers": [
+      "Amenábar",
+      "Banderas",
+      "Cuarón",
+      "Dólmen",
+      "Eclíptica",
+      "Firmamento",
+      "Géminidas",
+      "Hubble",
+      "Interstellar",
+      "Jedi",
+      "Lorca",
+      "Memento",
+      "Neruda",
+      "Ibáñez",
+      "Ozu",
+      "Picasso",
+      "Querejeta",
+      "Rosetta",
+      "Saura",
+      "Tolkien",
+      "Umbra",
+      "Verne",
+      "Matrix",
+      "Yojimbo",
+      "Zuloaga"
     ]
   }
 ]
