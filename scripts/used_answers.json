@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-17",
-    "game_no": 107,
-    "answers": [
-      "Ankara",
-      "Bélgica",
-      "Cueca",
-      "Dublín",
-      "Eritrea",
-      "Florencia",
-      "Guatemala",
-      "Hanói",
-      "Marina",
-      "Júcar",
-      "Lima",
-      "Milán",
-      "Nueva Zelanda",
-      "Peñafiel",
-      "Ohio",
-      "Piano",
-      "Antequera",
-      "Rumanía",
-      "Salsa",
-      "Támesis",
-      "Padua",
-      "Verona",
-      "Naxos",
-      "Yuso",
-      "Zanzíbar"
-    ]
-  },
-  {
     "date": "2026-04-18",
     "game_no": 108,
     "answers": [
@@ -1857,6 +1826,37 @@
       "axé",
       "yuxtaposición",
       "zortziko"
+    ]
+  },
+  {
+    "date": "2026-06-16",
+    "game_no": 167,
+    "answers": [
+      "Alicante",
+      "Baleares",
+      "Cervantes",
+      "Denis Villeneuve",
+      "Egipto",
+      "Flandes",
+      "Gaudí",
+      "Hollywood",
+      "Israel",
+      "Juliette Binoche",
+      "Louvre",
+      "Múnich",
+      "Normandía",
+      "Borgoña",
+      "Oceanía",
+      "Pixar",
+      "Quechua",
+      "Róterdam",
+      "Suecia",
+      "Tailandia",
+      "Cuzco",
+      "Venecia",
+      "Xacobeo",
+      "Paraguay",
+      "Zeta"
     ]
   }
 ]
