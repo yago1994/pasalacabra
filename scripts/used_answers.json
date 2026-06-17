@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-18",
-    "game_no": 108,
-    "answers": [
-      "Ajedrez",
-      "Berlanga",
-      "Constantino",
-      "Disney",
-      "Eurocopa",
-      "Filmoteca",
-      "Guardiola",
-      "Habsburgo",
-      "Iñárritu",
-      "Juno",
-      "Lo imposible",
-      "Maradona",
-      "Nolan",
-      "Señales",
-      "Orson Welles",
-      "Piragüismo",
-      "Quo Vadis",
-      "Rocky",
-      "Sumo",
-      "Torrente",
-      "Universal",
-      "Villarreal",
-      "Astérix",
-      "Murray",
-      "Zemeckis"
-    ]
-  },
-  {
     "date": "2026-04-19",
     "game_no": 109,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Xacobeo",
       "Paraguay",
       "Zeta"
+    ]
+  },
+  {
+    "date": "2026-06-17",
+    "game_no": 168,
+    "answers": [
+      "Amadeus",
+      "Barricada",
+      "Casablanca",
+      "Despacito",
+      "El Cid",
+      "Fito Páez",
+      "Guerra Fría",
+      "Holocausto",
+      "Imperio inca",
+      "Joan Manuel Serrat",
+      "La Bamba",
+      "Metrópolis",
+      "Nino Bravo",
+      "Doña Bárbara",
+      "Oasis",
+      "Pavarotti",
+      "Quinto Regimiento",
+      "Ravel",
+      "Shakira",
+      "Templarios",
+      "Unión Soviética",
+      "Vangelis",
+      "Taxi",
+      "Yoko Ono",
+      "Zorba el griego"
     ]
   }
 ]
