@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-19",
-    "game_no": 109,
-    "answers": [
-      "Altamira",
-      "Bretaña",
-      "Cartagena",
-      "Donostia",
-      "Etruria",
-      "Frisia",
-      "Guadalajara",
-      "Hércules",
-      "Iruña",
-      "Jaca",
-      "Lacio",
-      "Menorca",
-      "Nicea",
-      "Año Nuevo",
-      "Oruro",
-      "Praga",
-      "Quibdó",
-      "Rías Baixas",
-      "Segóbriga",
-      "Teruel",
-      "Uppsala",
-      "Valladolid",
-      "Taxco",
-      "Yesería",
-      "Zacatecas"
-    ]
-  },
-  {
     "date": "2026-04-20",
     "game_no": 110,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Taxi",
       "Yoko Ono",
       "Zorba el griego"
+    ]
+  },
+  {
+    "date": "2026-06-18",
+    "game_no": 169,
+    "answers": [
+      "absolutismo",
+      "Buster Keaton",
+      "celacanto",
+      "dinastía",
+      "endosimbiosis",
+      "feudalismo",
+      "gameto",
+      "Hammurabi",
+      "iconoclasta",
+      "James Cameron",
+      "levadura",
+      "mercantilismo",
+      "necrosis",
+      "riñón",
+      "ósmosis",
+      "procariota",
+      "arqueólogo",
+      "romanticismo",
+      "savia",
+      "telómero",
+      "sufragio universal",
+      "vacuna",
+      "extinción",
+      "Yersinia pestis",
+      "zoonosis"
     ]
   }
 ]
