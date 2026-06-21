@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-22",
-    "game_no": 112,
-    "answers": [
-      "actor",
-      "batería",
-      "comedia",
-      "dirección",
-      "estreno",
-      "festival",
-      "guion",
-      "héroe",
-      "ídolo",
-      "montaje",
-      "lucha",
-      "melodía",
-      "nominación",
-      "señal",
-      "olímpico",
-      "podio",
-      "taquilla",
-      "rap",
-      "silbato",
-      "taquillazo",
-      "uniforme",
-      "villano",
-      "extra",
-      "apoyo",
-      "zumba"
-    ]
-  },
-  {
     "date": "2026-04-23",
     "game_no": 113,
     "answers": [
@@ -1857,6 +1826,37 @@
       "anexión",
       "yesería",
       "Zoroastro"
+    ]
+  },
+  {
+    "date": "2026-06-21",
+    "game_no": 172,
+    "answers": [
+      "Andes",
+      "Bósforo",
+      "Cerdeña",
+      "Dubhe",
+      "Eslovenia",
+      "Fobos",
+      "Ganges",
+      "Halley",
+      "Ío",
+      "Juno",
+      "Lima",
+      "Miranda",
+      "Nassau",
+      "Peñafiel",
+      "Ofiuco",
+      "Praga",
+      "Quirón",
+      "Rusia",
+      "Sídney",
+      "Tetuán",
+      "Uppsala",
+      "Virgo",
+      "exósfera",
+      "Yakutsk",
+      "Zújar"
     ]
   }
 ]
