@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-23",
-    "game_no": 113,
-    "answers": [
-      "apoptosis",
-      "biopsia",
-      "córnea",
-      "domótica",
-      "estambre",
-      "flagelo",
-      "grafeno",
-      "holograma",
-      "ictiología",
-      "jeringa",
-      "luminiscencia",
-      "magma",
-      "nucleótido",
-      "cañamazo",
-      "oncogén",
-      "pipeta",
-      "quinolona",
-      "rumiante",
-      "sarcómero",
-      "taxonomía",
-      "ubiquitina",
-      "vertebrado",
-      "xantina",
-      "rayos gamma",
-      "zoóspora"
-    ]
-  },
-  {
     "date": "2026-04-24",
     "game_no": 114,
     "answers": [
@@ -1857,6 +1826,37 @@
       "exósfera",
       "Yakutsk",
       "Zújar"
+    ]
+  },
+  {
+    "date": "2026-06-22",
+    "game_no": 173,
+    "answers": [
+      "ánodo",
+      "barión",
+      "cúmulo",
+      "diodo",
+      "electrón",
+      "fisión",
+      "geología",
+      "helio",
+      "inercia",
+      "juramento hipocrático",
+      "láser",
+      "microbiología",
+      "neón",
+      "ñusta",
+      "ohmio",
+      "protón",
+      "quiróptero",
+      "refracción",
+      "supernova",
+      "telescopio",
+      "universo",
+      "Vía Láctea",
+      "xerografía",
+      "yoduro",
+      "zelote"
     ]
   }
 ]
