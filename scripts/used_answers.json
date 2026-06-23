@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-24",
-    "game_no": 114,
-    "answers": [
-      "antena",
-      "bronquio",
-      "caries",
-      "dentina",
-      "espora",
-      "fotosíntesis",
-      "golf",
-      "hioides",
-      "intestino",
-      "jaguar",
-      "linfa",
-      "músculo",
-      "narina",
-      "ñandubay",
-      "oxitocina",
-      "pepsina",
-      "queloide",
-      "rodilla",
-      "semilla",
-      "tálamo",
-      "uñero",
-      "vello",
-      "xerófilo",
-      "kayak",
-      "zángano"
-    ]
-  },
-  {
     "date": "2026-04-25",
     "game_no": 115,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xerografía",
       "yoduro",
       "zelote"
+    ]
+  },
+  {
+    "date": "2026-06-23",
+    "game_no": 174,
+    "answers": [
+      "astrolabio",
+      "brújula",
+      "cinéfilo",
+      "desierto",
+      "estuario",
+      "fiordo",
+      "géiser",
+      "hobbit",
+      "infrarrojo",
+      "Jerusalén",
+      "litoral",
+      "monzón",
+      "nitrato",
+      "sueño MOR",
+      "ozono",
+      "plano secuencia",
+      "químico",
+      "relieve",
+      "sierra",
+      "tornado",
+      "ultrasonidos",
+      "vestuario",
+      "xenomorfo",
+      "Yorgos Lanthimos",
+      "zooplancton"
     ]
   }
 ]
