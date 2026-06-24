@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-25",
-    "game_no": 115,
-    "answers": [
-      "arquero",
-      "Bécquer",
-      "califato",
-      "Delibes",
-      "El Escorial",
-      "friso",
-      "guerrilla",
-      "humanismo",
-      "Isabel II",
-      "Jano",
-      "Lutero",
-      "mestizaje",
-      "Nazca",
-      "añada",
-      "otomanos",
-      "pádel",
-      "quórum",
-      "Reconquista",
-      "Siglo de Oro",
-      "tragedia",
-      "ucronía",
-      "volea",
-      "excomunión",
-      "Pelayo",
-      "zaguán"
-    ]
-  },
-  {
     "date": "2026-04-26",
     "game_no": 116,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xenomorfo",
       "Yorgos Lanthimos",
       "zooplancton"
+    ]
+  },
+  {
+    "date": "2026-06-24",
+    "game_no": 175,
+    "answers": [
+      "albedo",
+      "barítono",
+      "clarinete",
+      "dibujo",
+      "espectro",
+      "fenotipo",
+      "guion",
+      "haiku",
+      "isóbara",
+      "jácara",
+      "luminiscencia",
+      "museo",
+      "naíf",
+      "enseñanza",
+      "oratoria",
+      "pincel",
+      "quirófano",
+      "retrato",
+      "soneto",
+      "tinta",
+      "urología",
+      "vector",
+      "axón",
+      "yoyó",
+      "zoólogo"
     ]
   }
 ]
