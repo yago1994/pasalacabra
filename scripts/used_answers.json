@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-27",
-    "game_no": 117,
-    "answers": [
-      "Aristóteles",
-      "Boabdil",
-      "Calígula",
-      "Drácula",
-      "Esperpento",
-      "Fénix",
-      "Guggenheim",
-      "Hades",
-      "Ítaca",
-      "Juana de Arco",
-      "latín",
-      "Medea",
-      "Necrópolis",
-      "Bolaño",
-      "Otelo",
-      "Parménides",
-      "Quintiliano",
-      "Rocinante",
-      "Safo",
-      "Tito Livio",
-      "Urartu",
-      "Vercingétorix",
-      "Xenakis",
-      "Yuri Gagarin",
-      "Zelig"
-    ]
-  },
-  {
     "date": "2026-04-28",
     "game_no": 118,
     "answers": [
@@ -1857,6 +1826,37 @@
       "taxonomía",
       "yuca",
       "zueco"
+    ]
+  },
+  {
+    "date": "2026-06-26",
+    "game_no": 177,
+    "answers": [
+      "aurora boreal",
+      "biatlón",
+      "candombe",
+      "declinación",
+      "encierro",
+      "fulguración",
+      "gambeta",
+      "heliósfera",
+      "piragüismo",
+      "conjunción",
+      "líbero",
+      "motocross",
+      "penalti",
+      "montañismo",
+      "ocultación",
+      "pádel",
+      "raqueta",
+      "romería",
+      "sumo",
+      "trompo",
+      "ultras",
+      "vela",
+      "boxeador",
+      "kayak",
+      "zurdazo"
     ]
   }
 ]
