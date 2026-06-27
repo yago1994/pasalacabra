@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-28",
-    "game_no": 118,
-    "answers": [
-      "Arecibo",
-      "Borneo",
-      "Cefeo",
-      "Deimos",
-      "Encélado",
-      "Fomalhaut",
-      "Gobi",
-      "Hale-Bopp",
-      "Izar",
-      "Java",
-      "Laos",
-      "Mizar",
-      "Nápoles",
-      "Miño",
-      "Oslo",
-      "Perseo",
-      "Quilmes",
-      "Roraima",
-      "Sirio",
-      "Tíbet",
-      "Ushuaia",
-      "Vega",
-      "Xochicalco",
-      "Yosemite",
-      "Zulia"
-    ]
-  },
-  {
     "date": "2026-04-29",
     "game_no": 119,
     "answers": [
@@ -1857,6 +1826,37 @@
       "boxeador",
       "kayak",
       "zurdazo"
+    ]
+  },
+  {
+    "date": "2026-06-27",
+    "game_no": 178,
+    "answers": [
+      "aikido",
+      "bongó",
+      "cueca",
+      "diana",
+      "epopeya",
+      "falsete",
+      "guaraní",
+      "himno",
+      "íbero",
+      "jinete",
+      "letra",
+      "marimba",
+      "novela",
+      "ñoño",
+      "oda",
+      "poesía",
+      "quintilla",
+      "rima",
+      "sevillanas",
+      "torero",
+      "ultramaratón",
+      "voltereta",
+      "dobles mixtos",
+      "yute",
+      "zapateado"
     ]
   }
 ]
