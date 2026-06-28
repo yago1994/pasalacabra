@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-29",
-    "game_no": 119,
-    "answers": [
-      "anémona",
-      "bruja",
-      "cicuta",
-      "druida",
-      "encina",
-      "flora",
-      "gnomo",
-      "hidra",
-      "impala",
-      "jabalí",
-      "lince ibérico",
-      "meiga",
-      "nereida",
-      "cañaveral",
-      "orca",
-      "papiro",
-      "quirópteros",
-      "ranúnculo",
-      "sirena",
-      "tarántula",
-      "usanza",
-      "vasija",
-      "xenotrasplante",
-      "yurta",
-      "zahorí"
-    ]
-  },
-  {
     "date": "2026-04-30",
     "game_no": 120,
     "answers": [
@@ -1857,6 +1826,37 @@
       "dobles mixtos",
       "yute",
       "zapateado"
+    ]
+  },
+  {
+    "date": "2026-06-28",
+    "game_no": 179,
+    "answers": [
+      "aparato de Golgi",
+      "biopsia",
+      "citoplasma",
+      "difracción",
+      "electrólisis",
+      "fotosíntesis",
+      "gónada",
+      "histología",
+      "inmunoglobulina",
+      "jardín botánico",
+      "leucemia",
+      "micelio",
+      "nematodo",
+      "muñón",
+      "osteoblasto",
+      "placenta",
+      "quimioluminiscencia",
+      "radiotelescopio",
+      "sarcómero",
+      "telófase",
+      "ubiquitina",
+      "vitamina",
+      "xenobiótico",
+      "yodación",
+      "zimógeno"
     ]
   }
 ]
