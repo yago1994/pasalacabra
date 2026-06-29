@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-04-30",
-    "game_no": 120,
-    "answers": [
-      "Atacama",
-      "Brasil",
-      "Canarias",
-      "Durero",
-      "Esparta",
-      "Física",
-      "Gibraltar",
-      "Huesca",
-      "India",
-      "Jena",
-      "Lituania",
-      "Málaga",
-      "Niza",
-      "A Coruña",
-      "orogénesis",
-      "París",
-      "quid",
-      "Ruhr",
-      "Sudáfrica",
-      "Turquía",
-      "Ulm",
-      "Vizcaya",
-      "óxido",
-      "maya",
-      "zafiro"
-    ]
-  },
-  {
     "date": "2026-05-01",
     "game_no": 121,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xenobiótico",
       "yodación",
       "zimógeno"
+    ]
+  },
+  {
+    "date": "2026-06-29",
+    "game_no": 180,
+    "answers": [
+      "Alatriste",
+      "Berlanga",
+      "Camela",
+      "Drexler",
+      "Estopa",
+      "Fito",
+      "Ghibli",
+      "Héroes del Silencio",
+      "Ismael Serrano",
+      "Janis Joplin",
+      "Leiva",
+      "Mecano",
+      "Nach",
+      "El Sueño de Morfeo",
+      "Obús",
+      "Pimpinela",
+      "Quentin",
+      "Raphael",
+      "Sabina",
+      "Triana",
+      "Umbral",
+      "Vetusta Morla",
+      "Xuxa",
+      "Yerma",
+      "Zappa"
     ]
   }
 ]
