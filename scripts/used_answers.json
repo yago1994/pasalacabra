@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-01",
-    "game_no": 121,
-    "answers": [
-      "Aral",
-      "Badajoz",
-      "Cuenca",
-      "dolomita",
-      "Everest",
-      "Formosa",
-      "Gales",
-      "Hawái",
-      "Intocable",
-      "jadeíta",
-      "Lavoisier",
-      "meandro",
-      "Níger",
-      "Peñalara",
-      "Osorno",
-      "Psicosis",
-      "bosque",
-      "Ruanda",
-      "sodio",
-      "taiga",
-      "úrea",
-      "Vigo",
-      "bórax",
-      "Yaundé",
-      "Zaire"
-    ]
-  },
-  {
     "date": "2026-05-02",
     "game_no": 122,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Xuxa",
       "Yerma",
       "Zappa"
+    ]
+  },
+  {
+    "date": "2026-06-30",
+    "game_no": 181,
+    "answers": [
+      "astronomía",
+      "brujería",
+      "cinematografía",
+      "dragón",
+      "erupción",
+      "física",
+      "genética",
+      "hada",
+      "iluminación",
+      "jeringuilla",
+      "lente",
+      "mito",
+      "narrativa",
+      "señal",
+      "oscilación",
+      "plasma",
+      "taquión",
+      "ritual",
+      "sonido",
+      "trilogía",
+      "tabú",
+      "virus",
+      "oxidación",
+      "rayos gamma",
+      "zombi"
     ]
   }
 ]
