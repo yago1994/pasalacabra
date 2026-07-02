@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-03",
-    "game_no": 123,
-    "answers": [
-      "Aldebarán",
-      "Betelgeuse",
-      "Cretácico",
-      "Darwin",
-      "Eucariota",
-      "fotósfera",
-      "Galeno",
-      "hibernación",
-      "interfase",
-      "Jenner",
-      "Lamarck",
-      "metabolismo",
-      "nebulosa",
-      "Marañón",
-      "Oparin",
-      "Pasteur",
-      "arqueas",
-      "reptiles",
-      "sonda",
-      "transcripción",
-      "urodelos",
-      "Venera",
-      "auxina",
-      "yodo",
-      "zigoteno"
-    ]
-  },
-  {
     "date": "2026-05-04",
     "game_no": 124,
     "answers": [
@@ -1857,6 +1826,37 @@
       "extraterrestre",
       "maya",
       "zénit"
+    ]
+  },
+  {
+    "date": "2026-07-02",
+    "game_no": 183,
+    "answers": [
+      "alebrije",
+      "bruja",
+      "calaca",
+      "druida",
+      "encina",
+      "fantasma",
+      "gnomo",
+      "hechicero",
+      "imprenta",
+      "jabalí",
+      "lombriz",
+      "megalito",
+      "náyade",
+      "sueño",
+      "olmo",
+      "polen",
+      "quinina",
+      "roble",
+      "salmón",
+      "tarántula",
+      "umbela",
+      "viñedo",
+      "xilófono",
+      "yacaré",
+      "zarzamora"
     ]
   }
 ]
