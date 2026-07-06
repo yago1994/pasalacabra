@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-07",
-    "game_no": 127,
-    "answers": [
-      "Atapuerca",
-      "Brahms",
-      "Copérnico",
-      "dorsal",
-      "Euterpe",
-      "Federer",
-      "Grammy",
-      "Hitler",
-      "Indochina",
-      "jota",
-      "Liszt",
-      "Mozart",
-      "Nadal",
-      "España",
-      "ópera",
-      "Pelé",
-      "Qin",
-      "rugby",
-      "sinfonía",
-      "tapón",
-      "ukelele",
-      "Vivaldi",
-      "México",
-      "Yugoslavia",
-      "zarzuela"
-    ]
-  },
-  {
     "date": "2026-05-08",
     "game_no": 128,
     "answers": [
@@ -1857,6 +1826,37 @@
       "exergía",
       "yodo",
       "zoroastrismo"
+    ]
+  },
+  {
+    "date": "2026-07-06",
+    "game_no": 187,
+    "answers": [
+      "asteroide",
+      "batuta",
+      "cromatismo",
+      "dintel",
+      "esbozo",
+      "fa",
+      "galaxia",
+      "horizonte",
+      "ilustrador",
+      "jazz",
+      "lapislázuli",
+      "metrónomo",
+      "nebulosa",
+      "paño",
+      "orto",
+      "pastel",
+      "quena",
+      "rallentando",
+      "solsticio",
+      "tempo",
+      "ultravioleta",
+      "Venus",
+      "textura",
+      "mayor",
+      "zodíaco"
     ]
   }
 ]
