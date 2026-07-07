@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-08",
-    "game_no": 128,
-    "answers": [
-      "Arrecife",
-      "Bilbao",
-      "Cáceres",
-      "Dénia",
-      "Ebro",
-      "Fado",
-      "Gijón",
-      "Haro",
-      "Irún",
-      "Jalón",
-      "Laredo",
-      "Milonga",
-      "Nilo",
-      "Ñuble",
-      "Obertura",
-      "Plasencia",
-      "Quito",
-      "Roma",
-      "Sevilla",
-      "Tarifa",
-      "Utrera",
-      "Vitoria-Gasteiz",
-      "Axarquía",
-      "Yucatán",
-      "Zaragoza"
-    ]
-  },
-  {
     "date": "2026-05-09",
     "game_no": 129,
     "answers": [
@@ -1857,6 +1826,37 @@
       "textura",
       "mayor",
       "zodíaco"
+    ]
+  },
+  {
+    "date": "2026-07-07",
+    "game_no": 188,
+    "answers": [
+      "Altamira",
+      "Babel",
+      "Colón",
+      "Dama de Elche",
+      "El Greco",
+      "franquismo",
+      "Góngora",
+      "Helena",
+      "Isabel I",
+      "judaísmo",
+      "Lituania",
+      "mecenazgo",
+      "neorrealismo",
+      "España",
+      "Olimpo",
+      "prerrománico",
+      "Querella de las Investiduras",
+      "Rodrigo",
+      "Sorolla",
+      "tragedia",
+      "Urartu",
+      "Velázquez",
+      "México",
+      "Yugoslavia",
+      "zarzuela"
     ]
   }
 ]
