@@ -1,0 +1,161 @@
+{
+  "id": "set-2026-07-11-smoketest",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "TEST CLUE for letter A (smoke test entry)",
+      "answer": "avocado"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "TEST CLUE for letter B (smoke test entry)",
+      "answer": "brazil"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "TEST CLUE for letter C (smoke test entry)",
+      "answer": "camel"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "TEST CLUE for letter D (smoke test entry)",
+      "answer": "dolphin"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "TEST CLUE for letter E (smoke test entry)",
+      "answer": "elephant"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "TEST CLUE for letter F (smoke test entry)",
+      "answer": "flamingo"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "TEST CLUE for letter G (smoke test entry)",
+      "answer": "giraffe"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "TEST CLUE for letter H (smoke test entry)",
+      "answer": "hippo"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "TEST CLUE for letter I (smoke test entry)",
+      "answer": "igloo"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "TEST CLUE for letter J (smoke test entry)",
+      "answer": "jaguar"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "TEST CLUE for letter K (smoke test entry)",
+      "answer": "kangaroo"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "TEST CLUE for letter L (smoke test entry)",
+      "answer": "lava"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "TEST CLUE for letter M (smoke test entry)",
+      "answer": "mongoose"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "TEST CLUE for letter N (smoke test entry)",
+      "answer": "nutmeg"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "TEST CLUE for letter O (smoke test entry)",
+      "answer": "octopus"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "TEST CLUE for letter P (smoke test entry)",
+      "answer": "penguin"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "TEST CLUE for letter Q (smoke test entry)",
+      "answer": "quokka"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "TEST CLUE for letter R (smoke test entry)",
+      "answer": "raccoon"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "TEST CLUE for letter S (smoke test entry)",
+      "answer": "squid"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "TEST CLUE for letter T (smoke test entry)",
+      "answer": "toucan"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "TEST CLUE for letter U (smoke test entry)",
+      "answer": "urchin"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "TEST CLUE for letter V (smoke test entry)",
+      "answer": "volcano"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "TEST CLUE for letter W (smoke test entry)",
+      "answer": "walrus"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Brass-bodied woodwind instrument played in jazz bands",
+      "answer": "saxophone"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "TEST CLUE for letter Y (smoke test entry)",
+      "answer": "yak"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "TEST CLUE for letter Z (smoke test entry)",
+      "answer": "zebra"
+    }
+  ]
+}
