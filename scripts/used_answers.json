@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-12",
-    "game_no": 132,
-    "answers": [
-      "Almería",
-      "Berlín",
-      "Córcega",
-      "Doha",
-      "Ecuador",
-      "Faro",
-      "Gotemburgo",
-      "habanera",
-      "Islandia",
-      "Jordania",
-      "Londres",
-      "Marsella",
-      "Navarra",
-      "Ñuñoa",
-      "Oporto",
-      "Pekín",
-      "quinteto",
-      "Río de Janeiro",
-      "Sarajevo",
-      "Teherán",
-      "Ucrania",
-      "Varsovia",
-      "Xiamen",
-      "Yukón",
-      "Zamora"
-    ]
-  },
-  {
     "date": "2026-05-13",
     "game_no": 133,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Éxito",
       "Yma Sumac",
       "Zamacueca"
+    ]
+  },
+  {
+    "date": "2026-07-11",
+    "game_no": 192,
+    "answers": [
+      "atonalismo",
+      "bachata",
+      "clavicordio",
+      "Deimos",
+      "Euterpe",
+      "fado",
+      "goliardo",
+      "hemiolia",
+      "Ícaro",
+      "Jasón",
+      "lied",
+      "Mira",
+      "Nilo",
+      "ñora",
+      "Odisea",
+      "plectro",
+      "Quenya",
+      "rotación",
+      "síncopa",
+      "traslación",
+      "Saturno",
+      "verismo",
+      "Xenakis",
+      "Reyes Magos",
+      "zarabanda"
     ]
   }
 ]
