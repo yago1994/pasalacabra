@@ -29,5 +29,36 @@
       "Yak",
       "Zebra"
     ]
+  },
+  {
+    "date": "2026-07-13",
+    "answers": [
+      "Austen",
+      "Baklava",
+      "Chaucer",
+      "Dante",
+      "Elizabeth I",
+      "Falafel",
+      "Gutenberg",
+      "Hemingway",
+      "Iliad",
+      "Joan of Arc",
+      "Kafka",
+      "Lincoln",
+      "Macbeth",
+      "Napoleon",
+      "Orwell",
+      "Poe",
+      "Quiche",
+      "Renaissance",
+      "Sushi",
+      "Tolstoy",
+      "Ulysses",
+      "Voltaire",
+      "Woolf",
+      "Xerxes",
+      "Yeats",
+      "Zola"
+    ]
   }
 ]
