@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-13",
-    "game_no": 133,
-    "answers": [
-      "Aragón",
-      "Bolonia",
-      "Cannes",
-      "Duna",
-      "Etiopía",
-      "Funchal",
-      "Georgia",
-      "Himalaya",
-      "Iquique",
-      "Júpiter",
-      "Lusaka",
-      "Mónaco",
-      "Nigeria",
-      "Cariñena",
-      "Orión",
-      "Pegaso",
-      "Quindío",
-      "Rigel",
-      "Samoa",
-      "Tanzania",
-      "Uagadugú",
-      "Valparaíso",
-      "Luxemburgo",
-      "Yecla",
-      "Amazonas"
-    ]
-  },
-  {
     "date": "2026-05-14",
     "game_no": 134,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Xenakis",
       "Reyes Magos",
       "zarabanda"
+    ]
+  },
+  {
+    "date": "2026-07-12",
+    "game_no": 193,
+    "answers": [
+      "Atenas",
+      "Brasil",
+      "Cretácico",
+      "Dorsal oceánica",
+      "Ebro",
+      "Filipinas",
+      "Gibraltar",
+      "Hidrósfera",
+      "Islandia",
+      "Jutlandia",
+      "Líbano",
+      "Moldavia",
+      "Navarra",
+      "Ñandú",
+      "Oporto",
+      "Potosí",
+      "Quito",
+      "Rin",
+      "Siria",
+      "Tirana",
+      "Ural",
+      "Valladolid",
+      "experimento",
+      "Yucatán",
+      "Zaragoza"
     ]
   }
 ]
