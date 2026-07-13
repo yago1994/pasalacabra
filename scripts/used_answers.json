@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-14",
-    "game_no": 134,
-    "answers": [
-      "Anfield",
-      "Beethoven",
-      "Cleopatra",
-      "Debussy",
-      "Eurovisión",
-      "FIFA",
-      "Guadalete",
-      "Haydn",
-      "Inquisición",
-      "Juventus",
-      "Lennon",
-      "Mahler",
-      "Numancia",
-      "Ñu",
-      "Osasuna",
-      "Peloponeso",
-      "Quipu",
-      "Rally",
-      "Solfeo",
-      "Triatlón",
-      "Urraca",
-      "Vándalos",
-      "Ajax",
-      "Ensayo",
-      "Zverev"
-    ]
-  },
-  {
     "date": "2026-05-15",
     "game_no": 135,
     "answers": [
@@ -1857,6 +1826,37 @@
       "experimento",
       "Yucatán",
       "Zaragoza"
+    ]
+  },
+  {
+    "date": "2026-07-13",
+    "game_no": 194,
+    "answers": [
+      "anticuerpo",
+      "boxeo",
+      "cerebelo",
+      "digestión",
+      "eritrocito",
+      "fútbol",
+      "glicina",
+      "hioides",
+      "isómero",
+      "jabalina",
+      "linfocito",
+      "melanina",
+      "nitrógeno",
+      "ñandubay",
+      "osteocito",
+      "paleontología",
+      "quimioterapia",
+      "rótula",
+      "sodio",
+      "tenis",
+      "uranio",
+      "vellosidad",
+      "xantina",
+      "yunque",
+      "zona pelúcida"
     ]
   }
 ]
