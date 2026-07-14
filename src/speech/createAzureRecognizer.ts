@@ -30,6 +30,8 @@ export interface CreateAzureRecognizerOptions {
   debug?: boolean;
   /** Existing MediaStream to reuse (avoids repeated getUserMedia calls) */
   existingStream?: MediaStream;
+  /** Speech recognition language (BCP-47), e.g. "es-ES" / "en-US". Default: "es-ES". */
+  language?: string;
 }
 
 /**
@@ -51,7 +53,7 @@ export async function createAzureRecognizer(
   const { token, region } = await getAzureAuth(false);
 
   const speechConfig = sdk.SpeechConfig.fromAuthorizationToken(token, region);
-  speechConfig.speechRecognitionLanguage = "es-ES";
+  speechConfig.speechRecognitionLanguage = options.language ?? "es-ES";
 
   // Create the push audio stream manager with gating
   const audioBundle: PushAudioStreamBundle = await createPushAudioStreamManager({

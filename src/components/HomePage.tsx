@@ -1,5 +1,8 @@
 import { useMemo, useState } from "react";
-import { formatDateLongES, getDailyGameNo } from "../lib/dailyIssue";
+import { getDailyGameNo } from "../lib/dailyIssue";
+import { getConfig } from "../locale/config";
+
+const config = getConfig();
 
 export interface HomePageProps {
   onPlayGroup: () => void;
@@ -14,6 +17,7 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
 
   const today = useMemo(() => new Date(), []);
   const gameNo = useMemo(() => getDailyGameNo(today), [today]);
+  const isSpanish = config.locale === "es";
 
   return (
     <div className="center">
@@ -59,7 +63,7 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
           </h1>
 
           <p style={{ marginTop: "clamp(12px, 3vw, 16px)", fontSize: "clamp(16px, 4vw, 20px)", color: "rgba(255, 255, 255, 0.9)" }}>
-            Conoces este juego 😉. Intenta terminar la rueda diaria antes de que se acabe el tiempo.
+            {config.strings.tagline}
           </p>
         </div>
 
@@ -82,33 +86,38 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
             onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
             onClick={onPlay}
           >
-            Juego de hoy
+            {config.strings.playToday}
           </button>
 
-          <div style={{ marginTop: "clamp(10px, 2.5vw, 12px)", marginBottom: "clamp(10px, 2.5vw, 12px)", textAlign: "center", fontSize: "clamp(12px, 3vw, 14px)", color: "rgba(255, 255, 255, 0.75)" }}>
-            O personaliza tu propio juego para jugar en familia o amigos o solo.
-          </div>
+          {/* Custom / multiplayer game is Spanish-only content; hidden in English v1. */}
+          {isSpanish && (
+            <>
+              <div style={{ marginTop: "clamp(10px, 2.5vw, 12px)", marginBottom: "clamp(10px, 2.5vw, 12px)", textAlign: "center", fontSize: "clamp(12px, 3vw, 14px)", color: "rgba(255, 255, 255, 0.75)" }}>
+                {config.strings.createGameHint}
+              </div>
 
-          <button
-            style={{ 
-              width: "100%", 
-              borderRadius: "9999px", 
-              background: "transparent",
-              border: "2px solid rgba(255, 255, 255, 0.8)",
-              color: "var(--text)",
-              padding: "clamp(14px, 3.5vw, 16px)",
-              fontSize: "clamp(16px, 4vw, 18px)",
-              fontWeight: 600,
-              cursor: "pointer",
-              transition: "transform 0.1s",
-            }}
-            onMouseDown={(e) => e.currentTarget.style.transform = "scale(0.99)"}
-            onMouseUp={(e) => e.currentTarget.style.transform = "scale(1)"}
-            onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
-            onClick={onPlayGroup}
-          >
-            Crea tu proprio juego
-          </button>
+              <button
+                style={{
+                  width: "100%",
+                  borderRadius: "9999px",
+                  background: "transparent",
+                  border: "2px solid rgba(255, 255, 255, 0.8)",
+                  color: "var(--text)",
+                  padding: "clamp(14px, 3.5vw, 16px)",
+                  fontSize: "clamp(16px, 4vw, 18px)",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  transition: "transform 0.1s",
+                }}
+                onMouseDown={(e) => e.currentTarget.style.transform = "scale(0.99)"}
+                onMouseUp={(e) => e.currentTarget.style.transform = "scale(1)"}
+                onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+                onClick={onPlayGroup}
+              >
+                {config.strings.createGame}
+              </button>
+            </>
+          )}
         </div>
 
         {/* Secondary actions */}
@@ -138,7 +147,7 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
                 if (onHowToPlay) onHowToPlay();
               }}
             >
-              <span>📖  Cómo Jugar</span>
+              <span>{config.strings.howToPlayLabel}</span>
               <span
                 style={{
                   transform: showHowToPlay ? "rotate(180deg)" : "rotate(0deg)",
@@ -161,50 +170,98 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
                   lineHeight: 1.6,
                 }}
               >
-                <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
-                  🎯 Objetivo
-                </h3>
-                <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
-                  Conoces este juego 😉. Responde correctamente a las preguntas
-                  de cada letra del abecedario lo más rápido que puedas. El
-                  jugador con más aciertos gana. Prueba a conectar el teléfono a
-                  la tele y pruébalo en familia.
-                </p>
+                {isSpanish ? (
+                  <>
+                    <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
+                      🎯 Objetivo
+                    </h3>
+                    <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
+                      Conoces este juego 😉. Responde correctamente a las preguntas
+                      de cada letra del abecedario lo más rápido que puedas. El
+                      jugador con más aciertos gana. Prueba a conectar el teléfono a
+                      la tele y pruébalo en familia.
+                    </p>
 
-                <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
-                  🎮 Cómo se juega
-                </h3>
-                <ul style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", paddingLeft: "clamp(16px, 4vw, 20px)", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
-                  <li>El narrador lee una pregunta en voz alta</li>
-                  <li>Responde hablando cuando escuches el pitido</li>
-                  <li>Si aciertas, pasas a la siguiente letra</li>
-                  <li>Si fallas, termina tu turno</li>
-                  <li>
-                    Di <strong>"Pasalacabra"</strong> para saltar la pregunta
-                  </li>
-                  <li>
-                    Si te equivocas, puedes usar el botón de "Oye! La respuesta
-                    era correcta" para corregir tu respuesta
-                  </li>
-                </ul>
+                    <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
+                      🎮 Cómo se juega
+                    </h3>
+                    <ul style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", paddingLeft: "clamp(16px, 4vw, 20px)", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
+                      <li>El narrador lee una pregunta en voz alta</li>
+                      <li>Responde hablando cuando escuches el pitido</li>
+                      <li>Si aciertas, pasas a la siguiente letra</li>
+                      <li>Si fallas, termina tu turno</li>
+                      <li>
+                        Di <strong>"Pasalacabra"</strong> para saltar la pregunta
+                      </li>
+                      <li>
+                        Si te equivocas, puedes usar el botón de "Oye! La respuesta
+                        era correcta" para corregir tu respuesta
+                      </li>
+                    </ul>
 
-                <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
-                  ⏱️ El tiempo
-                </h3>
-                <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
-                  Cada jugador 3 minutos en total. El tiempo solo corre durante tu
-                  turno. Si eres el último jugador, puedes seguir hasta que se te
-                  agote el tiempo.
-                </p>
+                    <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
+                      ⏱️ El tiempo
+                    </h3>
+                    <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
+                      Cada jugador 3 minutos en total. El tiempo solo corre durante tu
+                      turno. Si eres el último jugador, puedes seguir hasta que se te
+                      agote el tiempo.
+                    </p>
 
-                <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
-                  🏆 Puntuación
-                </h3>
-                <ul style={{ margin: 0, paddingLeft: "clamp(16px, 4vw, 20px)", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
-                  <li>✓ Acierto = +1 punto</li>
-                  <li>✗ Fallo = penalización en desempate</li>
-                  <li>Pasalacabra = sin penalización</li>
-                </ul>
+                    <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
+                      🏆 Puntuación
+                    </h3>
+                    <ul style={{ margin: 0, paddingLeft: "clamp(16px, 4vw, 20px)", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
+                      <li>✓ Acierto = +1 punto</li>
+                      <li>✗ Fallo = penalización en desempate</li>
+                      <li>Pasalacabra = sin penalización</li>
+                    </ul>
+                  </>
+                ) : (
+                  <>
+                    <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
+                      🎯 Goal
+                    </h3>
+                    <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
+                      You know this game 😉. Answer the clue for each letter of the
+                      alphabet as fast as you can before the timer runs out.
+                    </p>
+
+                    <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
+                      🎮 How to play
+                    </h3>
+                    <ul style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", paddingLeft: "clamp(16px, 4vw, 20px)", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
+                      <li>The narrator reads a clue out loud</li>
+                      <li>Answer by speaking when you hear the beep</li>
+                      <li>If you're right, you move to the next letter</li>
+                      <li>If you're wrong, the answer is revealed</li>
+                      <li>
+                        Say <strong>"pass"</strong> to skip a question
+                      </li>
+                      <li>
+                        If the recognizer got it wrong, use the "Hey! That was
+                        correct" button to fix your answer
+                      </li>
+                    </ul>
+
+                    <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
+                      ⏱️ Time
+                    </h3>
+                    <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
+                      You have a few minutes total. Try to finish the whole wheel
+                      before time runs out.
+                    </p>
+
+                    <h3 style={{ margin: "0 0 clamp(10px, 2.5vw, 12px) 0", fontSize: "clamp(1rem, 2.5vw, 1.1rem)" }}>
+                      🏆 Score
+                    </h3>
+                    <ul style={{ margin: 0, paddingLeft: "clamp(16px, 4vw, 20px)", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
+                      <li>✓ Correct = +1 point</li>
+                      <li>✗ Wrong = tiebreaker penalty</li>
+                      <li>Pass = no penalty</li>
+                    </ul>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -234,7 +291,7 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
                 if (onAbout) onAbout();
               }}
             >
-              <span>❓ ¿Y esto de dónde ha salido?</span>
+              <span>{config.strings.aboutLabel}</span>
               <span
                 style={{
                   transform: showAbout ? "rotate(180deg)" : "rotate(0deg)",
@@ -257,19 +314,34 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
                   lineHeight: 1.6,
                 }}
               >
-                <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
-                  Pues mira, por una parte a mi abuela le encantaba este programa
-                  y no se perdía una, así que esto va por ella.
-                </p>
-                <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
-                  Y por otra, demasiadas cenas de Navidad hablando de política
-                  que podían ser mucho más entretenidas.
-                </p>
-                <p style={{ margin: 0, opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
-                  ¡Que os divirtáis! Cualquier cosa, sugerencias, ideas, o si
-                  queréis contribuir al proyecto, mandad un email a
-                  info(arroba)pasalacabra.com
-                </p>
+                {isSpanish ? (
+                  <>
+                    <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
+                      Pues mira, por una parte a mi abuela le encantaba este programa
+                      y no se perdía una, así que esto va por ella.
+                    </p>
+                    <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
+                      Y por otra, demasiadas cenas de Navidad hablando de política
+                      que podían ser mucho más entretenidas.
+                    </p>
+                    <p style={{ margin: 0, opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
+                      ¡Que os divirtáis! Cualquier cosa, sugerencias, ideas, o si
+                      queréis contribuir al proyecto, mandad un email a
+                      info(arroba)pasalacabra.com
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p style={{ margin: "0 0 clamp(12px, 3vw, 16px) 0", opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
+                      A daily word-wheel game: one clue per letter of the alphabet,
+                      answered out loud against the clock.
+                    </p>
+                    <p style={{ margin: 0, opacity: 0.9, fontSize: "clamp(14px, 3.5vw, 16px)" }}>
+                      Have fun! For suggestions, ideas, or to contribute to the
+                      project, email info(at)pasalacabra.com
+                    </p>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -277,9 +349,10 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
 
         {/* Footer */}
         <div style={{ marginTop: "clamp(32px, 8vw, 40px)", textAlign: "center" }}>
-          <div style={{ fontSize: "clamp(16px, 4vw, 20px)", fontWeight: 600 }}>{formatDateLongES(today)}</div>
+          <div style={{ fontSize: "clamp(16px, 4vw, 20px)", fontWeight: 600 }}>{config.formatDateLong(today)}</div>
           <div style={{ marginTop: "clamp(3px, 1vw, 4px)", fontSize: "clamp(14px, 3.5vw, 18px)", color: "rgba(255, 255, 255, 0.8)" }}>No. {gameNo}</div>
         </div>
+
       </div>
     </div>
   );

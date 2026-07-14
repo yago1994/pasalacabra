@@ -4,9 +4,9 @@ import LetterRing from "./components/LetterRing";
 import GameDetails, { type SetupPlayer } from "./components/GameDetails";
 import HomePage from "./components/HomePage";
 import {
-  SPANISH_LETTERS,
   type Letter,
   type QA,
+  type SetDefinition,
   buildQuestionMap as buildSetQuestionMap,
   getSet,
   listSets,
@@ -30,7 +30,11 @@ import type { CanvasRecording } from "./game/canvasRecorder";
 import { createCanvasRecorder, downloadRecording, shareOrDownloadRecording } from "./game/canvasRecorder";
 import { initializePendo, setPendoLocation, trackPendoEvent } from "./lib/pendo";
 import { isStagingMode } from "./env/getSpeechTokenUrl";
-import { formatDateLongES, getDailyGameNo } from "./lib/dailyIssue";
+import { getDailyGameNo } from "./lib/dailyIssue";
+import { getConfig } from "./locale/config";
+
+// Active locale configuration (selected once from ?lang=... at module load).
+const config = getConfig();
 
 // Player snapshot captured when timer runs out
 export type PlayerSnapshot = {
@@ -57,22 +61,6 @@ function getTimeFromDifficulty(difficulty: DifficultyMode): number {
   }
 }
 
-function removeDiacritics(s: string) {
-  // `NFD` splits letters+diacritics into separate codepoints.
-  // Then we remove the combining diacritic marks.
-  return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-}
-
-function normalizeForCompare(raw: string) {
-  const s = removeDiacritics(raw)
-    .toLowerCase()
-    .replace(/[¡!¿?.,;:()[\]{}"“”'’`]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-
-  // Strip common Spanish leading articles / contractions (helps with STT).
-  return s.replace(/^(el|la|los|las|un|una|unos|unas|al|del)\s+/i, "").trim();
-}
 
 function computeWinnerIds(snaps: PlayerSnapshot[]): Set<string> {
   if (!snaps.length) return new Set();
@@ -82,7 +70,7 @@ function computeWinnerIds(snaps: PlayerSnapshot[]): Set<string> {
   return new Set(topPlayers.filter((s) => s.wrongCount === minWrong).map((s) => s.playerId));
 }
 
-const DAILY_STORAGE_KEY = "pasalacabra_daily";
+const DAILY_STORAGE_KEY = config.dailyStorageKey;
 
 type DailyStoredResult = {
   gameNo: number;
@@ -100,106 +88,6 @@ function dataURLtoBlob(dataURL: string): Blob {
   const bytes = new Uint8Array(binary.length);
   for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
   return new Blob([bytes], { type: mime });
-}
-
-function uniqueNonEmpty(list: string[]) {
-  const out: string[] = [];
-  const seen = new Set<string>();
-  for (const v of list) {
-    const t = v.trim();
-    if (!t) continue;
-    const k = t.toLowerCase();
-    if (seen.has(k)) continue;
-    seen.add(k);
-    out.push(t);
-  }
-  return out;
-}
-
-function buildPhraseHintsForAnswer(answer: string) {
-  // Phrase hints for recognition bias (answer + common variants/confusions).
-  // Keep this list small; big lists can hurt latency/quality.
-  const a = answer.trim();
-  const aNoDiacritics = removeDiacritics(a);
-  const aNtildeToN = a.replace(/[ñÑ]/g, (m) => (m === "Ñ" ? "N" : "n"));
-  const aNoDiacriticsNtildeToN = removeDiacritics(aNtildeToN);
-
-  const lower = a.toLowerCase();
-  const pluralS = lower.endsWith("s") ? a.slice(0, -1) : `${a}s`;
-  const pluralEs = lower.endsWith("s") ? a : `${a}es`;
-
-  return uniqueNonEmpty([
-    a,
-    aNoDiacritics,
-    aNtildeToN,
-    aNoDiacriticsNtildeToN,
-    pluralS,
-    removeDiacritics(pluralS),
-    pluralEs,
-    removeDiacritics(pluralEs),
-    `el ${a}`,
-    `la ${a}`,
-  ]).slice(0, 10);
-}
-
-function isAnswerCorrect(spoken: string, expected: string) {
-  const s = normalizeForCompare(spoken);
-  const e = normalizeForCompare(expected);
-  if (!s || !e) return false;
-  if (s === e) return true;
-
-  // If the spoken text contains the expected answer (like "pasalacabra" detection),
-  // mark it as correct. This handles cases like "Es ADN" or "La respuesta es ADN".
-  if (s.includes(e)) return true;
-
-  function levenshteinRatio(a: string, b: string) {
-    if (a === b) return 1;
-    const n = a.length;
-    const m = b.length;
-    if (n === 0 || m === 0) return 0;
-    const maxLen = Math.max(n, m);
-
-    // DP with two rows to keep it small.
-    let prev = new Array<number>(m + 1);
-    let cur = new Array<number>(m + 1);
-    for (let j = 0; j <= m; j++) prev[j] = j;
-    for (let i = 1; i <= n; i++) {
-      cur[0] = i;
-      const ca = a.charCodeAt(i - 1);
-      for (let j = 1; j <= m; j++) {
-        const cost = ca === b.charCodeAt(j - 1) ? 0 : 1;
-        const del = prev[j] + 1;
-        const ins = cur[j - 1] + 1;
-        const sub = prev[j - 1] + cost;
-        cur[j] = Math.min(del, ins, sub);
-      }
-      const tmp = prev;
-      prev = cur;
-      cur = tmp;
-    }
-    const dist = prev[m];
-    return 1 - dist / maxLen;
-  }
-
-  // Common STT confusion in Spanish: ñ → n.
-  const sN = s.replace(/ñ/g, "n");
-  const eN = e.replace(/ñ/g, "n");
-  if (sN === eN) return true;
-
-  // Very small plural/singular tolerance for short one-word answers.
-  if (s === `${e}s` || e === `${s}s`) return true;
-  if (s === `${e}es` || e === `${s}es`) return true;
-
-  // Fuzzy match for single-word answers (helps with minor phoneme confusions like d→k):
-  // e.g. "delfin" vs "kelfin" should be accepted.
-  const sOneWord = !/\s/.test(sN);
-  const eOneWord = !/\s/.test(eN);
-  if (sOneWord && eOneWord && sN.length >= 4 && eN.length >= 4) {
-    const ratio = levenshteinRatio(sN, eN);
-    if (ratio >= 0.6) return true;
-  }
-
-  return false;
 }
 
 function formatTime(totalSeconds: number) {
@@ -238,14 +126,14 @@ export default function App() {
   const testLetter = useMemo(() => {
     const params = new URLSearchParams(window.location.search);
     const letter = params.get("testLetter");
-    if (letter && SPANISH_LETTERS.includes(letter as Letter)) {
+    if (letter && config.letters.includes(letter)) {
       console.log(`🧪 TEST MODE: Testing with single letter "${letter}"`);
       return letter as Letter;
     }
     return null;
   }, []);
-  
-  const letters = testLetter ? [testLetter] : SPANISH_LETTERS;
+
+  const letters = testLetter ? [testLetter] : config.letters;
   const availableSets = useMemo(() => listSets(), []);
 
   const [screen, setScreen] = useState<Screen>("home");
@@ -273,6 +161,9 @@ export default function App() {
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [gameOverMessage, setGameOverMessage] = useState<string>("");
   const [isDailyGame, setIsDailyGame] = useState<boolean>(false);
+  // The daily question set (Spanish: bundled set_01; English: fetched from the remote feed).
+  // Preferred by `qaMap` when a daily game is active.
+  const [dailySet, setDailySet] = useState<SetDefinition | null>(null);
   const [confettiGoats, setConfettiGoats] = useState<Array<{ id: number; left: number; delay: number }>>([]);
 
   // Player snapshots for end-of-game slideshow
@@ -374,7 +265,7 @@ export default function App() {
   const activeSetIdRef = useRef<string>("");
   const currentLetterRef = useRef<Letter>(letters[0]);
   const currentIndexRef = useRef<number>(0);
-  const currentQARef = useRef<{ question: string; answer: string }>({ question: "", answer: "" });
+  const currentQARef = useRef<QA>({ letter: letters[0], question: "", answer: "" });
   const statusByLetterRef = useRef<Record<Letter, LetterStatus>>({} as Record<Letter, LetterStatus>);
   const sessionRef = useRef<GameSession | null>(null);
   const playerStatesRef = useRef<Record<string, PlayerState>>({});
@@ -423,7 +314,7 @@ export default function App() {
       const u = new SpeechSynthesisUtterance(".");
       const v = getSpanishVoice(voices);
       if (v) u.voice = v;
-      u.lang = (v?.lang || "es-ES") as string;
+      u.lang = (v?.lang || config.ttsLang) as string;
       u.volume = 0;
       u.rate = 10;
       u.pitch = 1;
@@ -461,7 +352,7 @@ export default function App() {
       const u = new SpeechSynthesisUtterance("a");
       const v = getSpanishVoice(voices);
       if (v) u.voice = v;
-      u.lang = (v?.lang || "es-ES") as string;
+      u.lang = (v?.lang || config.ttsLang) as string;
       u.volume = 0.02; // low but non-zero so the audio path engages
       u.rate = 4;
       u.pitch = 1;
@@ -477,18 +368,11 @@ export default function App() {
     }
   }
 
+  // Wake command ("pasalacabra"/"pasapalabra"/"pasa"/"cabra" in ES, "pass" in EN).
+  // Locale-specific detection lives in the config; normalizedJoined is kept for logging.
   function shouldTriggerPasalacabra(text: string) {
-    const normalizedWords = normalizeForCompare(text);
-    const normalizedJoined = normalizedWords.replace(/\s+/g, "");
-    if (!normalizedJoined) return { ok: false as const, normalizedJoined };
-    const hasExact =
-      normalizedJoined.includes("pasalacabra") || normalizedJoined.includes("pasapalabra");
-    const tokens = normalizedWords.split(/\s+/g).filter(Boolean);
-    // Match whole words to avoid false positives like "pasado" matching "pasa".
-    const hasPasaWord = tokens.includes("pasa");
-    const hasCabraWord = tokens.includes("cabra");
-    // Treat "pasa" as a valid command by itself (user intent: "pasa la cabra").
-    return { ok: hasExact || hasPasaWord || hasCabraWord, normalizedJoined };
+    const normalizedJoined = config.normalizeForCompare(text).replace(/\s+/g, "");
+    return { ok: config.isWakeCommand(text), normalizedJoined };
   }
 
   // Initialize Pendo analytics
@@ -779,6 +663,8 @@ export default function App() {
   
   // Use generated bank if available (dynamic mode), otherwise use set-based questions (test mode)
   const qaMap = useMemo(() => {
+    // Daily game: use the loaded daily set (ES bundled set_01, EN remote feed).
+    if (isDailyGame && dailySet) return buildSetQuestionMap(dailySet);
     // Check if we have a generated bank for this player
     if (activePlayerId && generatedBanks[activePlayerId]) {
       // Convert TopicQA to QA format
@@ -796,7 +682,7 @@ export default function App() {
     // Fallback to set-based questions (test mode)
     return activeSet ? buildSetQuestionMap(activeSet) : new Map<Letter, QA>();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSetId, activePlayerId, generatedBanks]);
+  }, [activeSetId, activePlayerId, generatedBanks, isDailyGame, dailySet]);
 
   const currentLetter: Letter = letters[currentIndex];
   const currentQA = qaMap.get(currentLetter) ?? {
@@ -824,7 +710,7 @@ export default function App() {
     if (!p) return "";
     const n = idx + 1;
     const name = p.name?.trim();
-    return name || `Jugador ${n}`;
+    return name || `${config.strings.playerName} ${n}`;
   }, [session]);
 
   const nextPlayerButtonLabel = useMemo(() => {
@@ -933,7 +819,7 @@ export default function App() {
         mimeType: "image/webp",
         quality: 0.92,
         footer: {
-          dateText: formatDateLongES(today),
+          dateText: config.formatDateLong(today),
           numberText: `No. ${getDailyGameNo(today)}`,
         },
         ring: {
@@ -1004,69 +890,8 @@ export default function App() {
   }
 
   function getSpanishVoice(vs: SpeechSynthesisVoice[]) {
-    if (vs.length === 0) return null;
-    
-    const userAgent = navigator.userAgent.toLowerCase();
-    const defaultVoice = (() => {
-      // Prefer Spanish voices; fall back gracefully.
-      const es = vs.filter((v) => v.lang?.toLowerCase().startsWith("es"));
-      const esES = es.find((v) => v.lang?.toLowerCase() === "es-es");
-      return esES ?? es[0] ?? vs[0] ?? null;
-    })();
-    
-    // Helper function to find Monica voice using multiple strategies
-    const findMonicaVoice = () => {
-      // Strategy 1: Exact voiceURI match for macOS Safari
-      const macosVoice = vs.find(
-        (v) => v.voiceURI === "com.apple.voice.super-compact.es-ES.Monica"
-      );
-      if (macosVoice) return macosVoice;
-      
-      // Strategy 2: Search for "monica" or "mónica" in voiceURI (case-insensitive)
-      const uriMatch = vs.find((v) => 
-        v.voiceURI.toLowerCase().includes("monica") || 
-        v.voiceURI.toLowerCase().includes("mónica")
-      );
-      if (uriMatch) return uriMatch;
-      
-      // Strategy 3: Search for "monica" or "mónica" in name (case-insensitive)
-      const nameMatch = vs.find((v) => 
-        v.name.toLowerCase().includes("monica") || 
-        v.name.toLowerCase().includes("mónica")
-      );
-      if (nameMatch) return nameMatch;
-      
-      return null;
-    };
-    
-    // Firefox detection - use Monica voice
-    if (userAgent.includes("firefox")) {
-      const firefoxVoice = vs.find(
-        (v) => v.voiceURI === "urn:moz-tts:osx:com.apple.voice.compact.es-ES.Monica"
-      );
-      if (firefoxVoice) return firefoxVoice;
-      // Fallback to default if specific voice not found
-      return defaultVoice;
-    }
-    
-    // Chrome detection - use Mónica voice
-    if (userAgent.includes("chrome") && !userAgent.includes("edg")) {
-      const chromeVoice = vs.find((v) => v.voiceURI === "Mónica");
-      if (chromeVoice) return chromeVoice;
-      // Fallback to default if specific voice not found
-      return defaultVoice;
-    }
-    
-    // Safari detection (macOS and iOS) - use Monica voice
-    if (userAgent.includes("safari") && !userAgent.includes("chrome")) {
-      const monicaVoice = findMonicaVoice();
-      if (monicaVoice) return monicaVoice;
-      // Fallback to default if Monica not found
-      return defaultVoice;
-    }
-    
-    // Other browsers - use default Spanish voice
-    return defaultVoice;
+    // Locale-specific voice selection (Spanish prefers Mónica; English prefers en-US).
+    return config.pickVoice(vs);
   }
 
 
@@ -1163,6 +988,7 @@ export default function App() {
       // Reuse existing stream if available (prevents repeated getUserMedia calls)
       const bundle = await createAzureRecognizer({
         existingStream: azureMicStreamRef.current ?? undefined,
+        language: config.sttLang,
       });
       r = bundle.recognizer;
 
@@ -1341,9 +1167,7 @@ export default function App() {
       if (phaseRef.current !== "playing") return;
       const key = `${activePlayerIdRef.current ?? "noplayer"}:${activeSetIdRef.current}:${currentLetterRef.current}:${currentIndexRef.current}`;
       if (sttCommandKeyRef.current === key) return;
-      const normalizedWords = normalizeForCompare(finalText);
-      const normalizedJoined = normalizedWords.replace(/\s+/g, "");
-      const { ok } = shouldTriggerPasalacabra(finalText);
+      const { ok, normalizedJoined } = shouldTriggerPasalacabra(finalText);
       sttLog("command-check(final)", { normalizedJoined, ok });
       if (ok) {
         sttCommandKeyRef.current = key;
@@ -1492,7 +1316,7 @@ export default function App() {
     const utterance = new SpeechSynthesisUtterance(t);
     const v = getSpanishVoice(voices);
     if (v) utterance.voice = v;
-    utterance.lang = (v?.lang || "es-ES") as string;
+    utterance.lang = (v?.lang || config.ttsLang) as string;
     const rate = opts?.rate ?? 1.0;
     utterance.rate = rate;
     utterance.pitch = 1;
@@ -1598,7 +1422,7 @@ export default function App() {
 
     // Use ref to get current QA (avoids stale closures when called from setTimeout)
     const qa = currentQARef.current;
-    const hints = [...buildPhraseHintsForAnswer(qa.answer), "pasalacabra", "pasapalabra", "pasa", "cabra"];
+    const hints = config.buildHints(qa);
 
     // Ensure mic is running BEFORE TTS starts.
     // If already running, this just updates the phrase hints.
@@ -1629,11 +1453,10 @@ export default function App() {
       const QUESTION_RATE = 0.9;
       const INTRO_TO_BODY_PAUSE_MS = 500;
 
-      // Split "Con la X:" / "Empieza por X:" / "Contiene la X:" so the prefix is read at normal speed,
-      // and the actual clue is read at the configured question speed.
-      const m = t.match(/^(Con\s+la|Empieza\s+por|Contiene\s+la)\s+([A-ZÑ])\s*:\s*(.+)$/i);
-      const intro = m ? `${m[1]} ${m[2].toUpperCase()}.` : "";
-      const body = (m ? m[3] : t).trim();
+      // Split the question into a normal-speed intro (letter prefix) and the clue body,
+      // which is read at the configured question speed. The ES clue has the prefix baked
+      // into the string; the EN clue is plain and the prefix comes from `mode`.
+      const { intro, body } = config.splitQuestionForTts(qa);
 
       const finishAll = () => {
         if (ttsSeq !== ttsSeqRef.current) return;
@@ -1664,7 +1487,7 @@ export default function App() {
         const utterance = new SpeechSynthesisUtterance(chunk);
         const v = getSpanishVoice(voices);
         if (v) utterance.voice = v;
-        utterance.lang = (v?.lang || "es-ES") as string;
+        utterance.lang = (v?.lang || config.ttsLang) as string;
         utterance.rate = rate;
         utterance.pitch = 1;
         utterance.volume = 1;
@@ -1891,7 +1714,7 @@ export default function App() {
           window.setTimeout(() => {
             void capturePlayerSnapshot(
               currentPlayerId,
-              player.name || `Jugador ${currentSession.currentPlayerIndex + 1}`,
+              player.name || `${config.strings.playerName} ${currentSession.currentPlayerIndex + 1}`,
               statusByLetterRef.current,
               snapshotCurrentIndex
             );
@@ -1899,12 +1722,12 @@ export default function App() {
         }
       }
       
-      // Stop the turn immediately by changing phase, then speak "Tiempoooo!"
+      // Stop the turn immediately by changing phase, then announce that time is up.
       setPhase("idle");
-      
-      // Small delay to ensure speech cancellation completes before speaking "Tiempoooo!"
+
+      // Small delay to ensure speech cancellation completes before the announcement.
       window.setTimeout(() => {
-        speakWithCallback("Tieeeeeeeempoo!", () => {
+        speakWithCallback(config.strings.ttsTimeUp, () => {
           // Use refs to get current values (avoids stale closures)
           const sess = sessionRef.current;
           const states = playerStatesRef.current;
@@ -1915,7 +1738,7 @@ export default function App() {
             if (idxWithTime === -1) {
               // No players left with time - game ends
               setGameOver(true);
-              setGameOverMessage("⏱️ Tiempo. Fin del juego.");
+              setGameOverMessage(config.strings.timeUp);
               endTurn("");
               return;
             }
@@ -1927,7 +1750,7 @@ export default function App() {
 
           // Single player: game ends when their time is over.
           setGameOver(true);
-          setGameOverMessage("⏱️ Tiempo. Fin del juego.");
+          setGameOverMessage(config.strings.timeUp);
           endTurn("");
         });
       }, 50);
@@ -1995,7 +1818,7 @@ export default function App() {
       window.setTimeout(() => {
         void capturePlayerSnapshot(
           player.id,
-          player.name || `Jugador ${currentSession.players.indexOf(player) + 1}`,
+          player.name || `${config.strings.playerName} ${currentSession.players.indexOf(player) + 1}`,
           finalStatusByLetter,
           finalCurrentIndex
         );
@@ -2185,7 +2008,7 @@ export default function App() {
       const status = snapshot.statusByLetter[letter];
       if (status !== "correct" && status !== "wrong") missingCount++;
     }
-    const shareText = `Mira mi puntuación!\n🟢 ${snapshot.correctCount} · 🔴 ${snapshot.wrongCount} · 🔵 ${missingCount}\nJuega y comparte la tuya en https://pasalacabra.com`;
+    const shareText = config.shareCaption(snapshot.correctCount, snapshot.wrongCount, missingCount);
     const filename = `pasalacabra-${crypto.randomUUID()}.webp`;
     const file = new File([snapshot.blob], filename, { type: "image/webp" });
 
@@ -2476,6 +2299,18 @@ export default function App() {
   }, [activePlayerId, screen, statusByLetter, currentIndex, timeLeft, revealed]);
 
   async function startDailyGame() {
+    // Load today's daily set (ES: bundled set_01; EN: fetched from the remote feed).
+    // Needed both for gameplay and for the end-of-game answers panel.
+    let loadedSet: SetDefinition | null = null;
+    try {
+      loadedSet = await config.loadDailySet(new Date());
+      setDailySet(loadedSet);
+    } catch (err) {
+      console.warn("Failed to load daily set:", err);
+    }
+
+    const dailyPlayerName = `${config.strings.playerName} 1`;
+
     // Check if today's daily game has already been played
     const gameNo = getDailyGameNo(new Date());
     try {
@@ -2484,7 +2319,7 @@ export default function App() {
         const saved = JSON.parse(raw) as DailyStoredResult;
         if (saved.gameNo === gameNo) {
           // Today's game was already played — restore the end state
-          const players: Player[] = [{ id: "p1", name: "Jugador 1", setId: "set_01" }];
+          const players: Player[] = [{ id: "p1", name: dailyPlayerName, setId: "set_01" }];
           const dailyDifficulty: DifficultyMode = "medio";
           const timePerPlayer = getTimeFromDifficulty(dailyDifficulty);
           const restoredPlayerState: PlayerState = {
@@ -2500,7 +2335,7 @@ export default function App() {
             const blobUrl = URL.createObjectURL(blob);
             restoredSnapshot = {
               playerId: "p1",
-              playerName: "Jugador 1",
+              playerName: dailyPlayerName,
               blob,
               blobUrl,
               statusByLetter: saved.statusByLetter,
@@ -2532,6 +2367,12 @@ export default function App() {
       console.warn("Failed to read daily result from localStorage:", err);
     }
 
+    // Can't play a fresh daily game without questions.
+    if (!loadedSet) {
+      setGameOverMessage(config.strings.dailyLoadError);
+      return;
+    }
+
     unlockAudioOnce();
     // Warm up microphone permission first. On some browsers, requesting mic can temporarily
     // affect the audio session, so it before the first meaningful TTS utterance.
@@ -2548,12 +2389,13 @@ export default function App() {
     setPlayerSnapshots([]);
     setSlideshowActive(false);
     setSlideshowIndex(0);
-    
-    // Create a single player using set_01 for daily game
-    const players: Player[] = [{ 
-      id: "p1", 
-      name: "Jugador 1", 
-      setId: "set_01" 
+
+    // Single player for the daily game. The questions come from `dailySet` via qaMap
+    // (the setId is only a player identifier now, not the source of questions).
+    const players: Player[] = [{
+      id: "p1",
+      name: dailyPlayerName,
+      setId: "set_01"
     }];
 
     // Don't set generatedBanks - the game will use the set file directly via setId
@@ -2589,8 +2431,8 @@ export default function App() {
       }
 
       // Start the recognizer early (before first TTS) to avoid audio ducking.
-      // Use generic hints; they'll be updated when the first question starts.
-      const genericHints = ["pasalacabra", "pasapalabra", "pasa", "cabra"];
+      // Use generic (wake-word-only) hints; they'll be updated when the first question starts.
+      const genericHints = config.buildHints({ answer: "" });
       sttArmedRef.current = false; // Don't process results yet
       ensureListeningForQuestion(genericHints);
     };
@@ -2675,8 +2517,8 @@ export default function App() {
       }
 
       // Start the recognizer early (before first TTS) to avoid audio ducking.
-      // Use generic hints; they'll be updated when the first question starts.
-      const genericHints = ["pasalacabra", "pasapalabra", "pasa", "cabra"];
+      // Use generic (wake-word-only) hints; they'll be updated when the first question starts.
+      const genericHints = config.buildHints({ answer: "" });
       sttArmedRef.current = false; // Don't process results yet
       ensureListeningForQuestion(genericHints);
     };
@@ -2760,7 +2602,7 @@ export default function App() {
     const idxWithTime = currentSession ? findNextPlayerIndexWithTimeLeft(currentSession, states) : -1;
     if (idxWithTime === -1) {
       setGameOver(true);
-      setGameOverMessage("Fin del juego.");
+      setGameOverMessage(config.strings.gameOverPlain);
       endTurn("");
       return;
     }
@@ -2872,18 +2714,18 @@ export default function App() {
         if (ctx && ctx.state !== "running") {
           void ctx.resume().catch(() => {});
         }
-        speakWithCallback("Sí", () => {
+        speakWithCallback(config.strings.ttsYes, () => {
           // Speech has finished according to polling, but add a small buffer
           // to ensure audio buffer is fully done before moving to next question
           if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
           feedbackTimerRef.current = window.setTimeout(() => {
             if (!anyUnresolved(statusAfter, letters)) {
-              endTurn("🎉 ¡Increíble! Has acabado toda la rueda, las cabras están muy impresionadas 🐐.");
+              endTurn(config.strings.finishedWheel);
               return;
             }
             const nextIdx = nextUnresolvedIndex(letters, statusAfter, idx);
             if (nextIdx === -1) {
-              endTurn("🎉 ¡Increíble! Has acabado toda la rueda, las cabras están muy impresionadas 🐐.");
+              endTurn(config.strings.finishedWheel);
               return;
             }
             setCurrentIndex(nextIdx);
@@ -2944,7 +2786,7 @@ export default function App() {
         if (ctx && ctx.state !== "running") {
           void ctx.resume().catch(() => {});
         }
-        speakWithCallback(`No. La respuesta correcta es: ${correctAnswer}`, () => {
+        speakWithCallback(`${config.strings.ttsCorrectAnswerPrefix}${correctAnswer}`, () => {
           // Speech has finished according to polling, but add a small buffer
           // to ensure audio buffer is fully done before moving to next question
           if (shouldContinuePlaying) {
@@ -2954,7 +2796,7 @@ export default function App() {
               if (nextIdx === -1 || !anyUnresolved(statusAfter, letters)) {
                 // No more questions - game ends
                 setGameOver(true);
-                setGameOverMessage("🎮 Fin del juego.");
+                setGameOverMessage(config.strings.gameOver);
                 endTurn("");
               } else {
                 // Continue to next question - audio buffer is fully finished now
@@ -3029,7 +2871,7 @@ export default function App() {
     void ensureSfxReady().then(() => {
       playSfx("correct");
       window.setTimeout(() => {
-        speakWithCallback("Sí", () => {
+        speakWithCallback(config.strings.ttsYes, () => {
           // no-op
         });
       }, 120);
@@ -3040,7 +2882,7 @@ export default function App() {
       // Check if there are more questions to answer
       if (!anyUnresolved(statusAfter, letters)) {
         // No more questions - end the turn
-        endTurn("🎉 ¡Increíble! Has acabado toda la rueda, las cabras están muy impresionadas 🐐.");
+        endTurn(config.strings.finishedWheel);
         return;
       }
       
@@ -3048,7 +2890,7 @@ export default function App() {
       const nextIdx = nextUnresolvedIndex(letters, statusAfter, wrongLetterIdx);
       if (nextIdx === -1) {
         // No next question found - end the turn
-        endTurn("🎉 ¡Increíble! Has acabado toda la rueda, las cabras están muy impresionadas 🐐.");
+        endTurn(config.strings.finishedWheel);
         return;
       }
       
@@ -3063,11 +2905,12 @@ export default function App() {
     const spoken = (spokenOverride ?? answerText).trim();
     if (!spoken) return;
 
-    // Use ref to get the CURRENT answer (avoids stale closure when recognizer persists across questions)
-    const expectedAnswer = currentQARef.current.answer;
-    
+    // Use ref to get the CURRENT QA (avoids stale closure when recognizer persists across questions).
+    // Matching is locale-aware and accepts alternate answers (`alt`) from the English feed.
+    const qa = currentQARef.current;
+
     // markCorrect/markWrong will handle disarming the mic
-    if (isAnswerCorrect(spoken, expectedAnswer)) {
+    if (config.isAnswerCorrect(spoken, qa)) {
       markCorrect();
     } else {
       markWrong();
@@ -3185,7 +3028,7 @@ export default function App() {
               {session && session.players.length === 1 ? (
                 <>
                   <button className="slideshowShareBtn" onClick={shareSingleSnapshot}>
-                    📤 Compartir
+                    {config.strings.shareButton}
                   </button>
                   <button
                     className="slideshowShareBtn"
@@ -3199,7 +3042,7 @@ export default function App() {
                         : "0 6px 25px rgba(34, 197, 94, 0.5)",
                     }}
                   >
-                    {showAnswers ? "🔼 Ocultar Respuestas" : "📋 Mostrar Respuestas"}
+                    {showAnswers ? config.strings.hideAnswers : config.strings.showAnswers}
                   </button>
                 </>
               ) : (
@@ -3258,10 +3101,7 @@ export default function App() {
                   {letters.map((letter, index) => {
                     const qa = qaMap.get(letter);
                     if (!qa) return null;
-                    let cleanQuestion = qa.question;
-                    const empiezaPattern = new RegExp(`^Empieza por ${qa.letter}:\\s*`, "i");
-                    const contienePattern = new RegExp(`^Contiene ${qa.letter}:\\s*`, "i");
-                    cleanQuestion = cleanQuestion.replace(empiezaPattern, "").replace(contienePattern, "");
+                    const cleanQuestion = config.displayQuestion(qa);
                     const isLast = index === letters.length - 1;
                     return (
                       <div 
@@ -3388,11 +3228,11 @@ export default function App() {
               {phase === "idle" ? (
                   <>
                     <button className="btnPrimary" onClick={startTurn} disabled={timeLeft <= 0 || !isListening}>
-                      Empezar
+                      {config.strings.startButton}
                     </button>
                     {micPermissionDenied && (
                       <div className="answerReveal" style={{ marginTop: 8, textAlign: "center" }}>
-                        ⚠️ Para poder jugar tienes que dar acceso al micrófono de tu teléfono para responder a las preguntas. Cierra la página y vuelve a abrirla para dar acceso y volver a intentarlo.
+                        {config.strings.micPermissionDenied}
                       </div>
                     )}
                   </>
@@ -3406,15 +3246,15 @@ export default function App() {
                         onClick={overrideToCorrect}
                         style={{ marginBottom: 12 }}
                       >
-                        Oye! La respuesta era correcta
+                        {config.strings.overrideCorrect}
                       </button>
                     )}
                     <button 
                       className="btnPrimary" 
-                      onClick={handlePasalacabra} 
+                      onClick={handlePasalacabra}
                       disabled={!(hasCompletedFirstRound && earlySkipAllowed) && !questionRead}
                     >
-                      Pasalacabra
+                      {config.strings.pasalacabraButton}
                     </button>
                   </>
               ) : null}
@@ -3428,9 +3268,9 @@ export default function App() {
                         placeholder={
                           sttSupported
                             ? isListening && questionRead
-                              ? "Escuchando…"
+                              ? config.strings.listening
                               : ""
-                            : "Tu navegador no soporta reconocimiento de voz: prueba a usar otro buscador"
+                            : config.strings.sttUnsupportedPlaceholder
                         }
                         readOnly={sttSupported}
                         onChange={
@@ -3453,17 +3293,17 @@ export default function App() {
                       />
                       {sttError ? (
                         <div className="answerReveal" style={{ marginTop: 6 }}>
-                          Aviso: {sttError}
+                          {config.strings.noticePrefix}{sttError}
                         </div>
                       ) : null}
                       {!sttError ? (
                         <div className="answerReveal" style={{ marginTop: 6 }}>
-                          {sttSupported ? (isListening && questionRead ? "Escuchando…" : "Micrófono listo") : "Intenta jugar con otro navegador"}
+                          {sttSupported ? (isListening && questionRead ? config.strings.listening : config.strings.micReady) : config.strings.sttUnsupportedShort}
                         </div>
                       ) : null}
                       {feedback === "wrong" || revealed ? (
                         <div className="answerReveal answerRevealBig" style={{ marginTop: 8 }}>
-                          Respuesta: <strong>{currentQA.answer}</strong>
+                          {config.strings.answerLabel}<strong>{currentQA.answer}</strong>
                         </div>
                       ) : null}
                     </>
@@ -3486,7 +3326,7 @@ export default function App() {
                       return (
                         <div className="gameOverResults" style={{ marginTop: 8 }}>
                           <div className="answerReveal answerRevealBig" style={{ marginBottom: 12 }}>
-                            <strong>🎮 Fin del juego!</strong>
+                            <strong>{config.strings.gameOverBanner}</strong>
                           </div>
                           
                           {!isSinglePlayer && (
@@ -3525,7 +3365,7 @@ export default function App() {
                               onClick={replaySlideshow}
                               style={{ marginTop: 20, width: "100%" }}
                             >
-                              📸 Resultados
+                              {config.strings.resultsButton}
                             </button>
                           )}
                           
@@ -3534,7 +3374,7 @@ export default function App() {
                     })()
                   ) : gameOver ? (
                     <div className="answerReveal answerRevealBig" style={{ marginTop: 2 }}>
-                      <strong>{gameOverMessage || "Fin del juego."}</strong>
+                      <strong>{gameOverMessage || config.strings.gameOverPlain}</strong>
                     </div>
                   ) : (
                     <>
@@ -3548,7 +3388,7 @@ export default function App() {
                           onClick={overrideToCorrect}
                           style={{ marginTop: 12 }}
                         >
-                          Oye! La respuesta era correcta
+                          {config.strings.overrideCorrect}
                         </button>
                       )}
                     </>
