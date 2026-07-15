@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-16",
-    "game_no": 136,
-    "answers": [
-      "alvéolo",
-      "bioma",
-      "ciclismo",
-      "decatlón",
-      "epidemia",
-      "fémur",
-      "glucógeno",
-      "hígado",
-      "ictus",
-      "Justiniano",
-      "lisina",
-      "menisco",
-      "nefrona",
-      "ñame",
-      "ovario",
-      "púgil",
-      "queratina",
-      "retina",
-      "serotonina",
-      "tendón",
-      "útero",
-      "vikingos",
-      "oxígeno",
-      "Yugurta",
-      "zar"
-    ]
-  },
-  {
     "date": "2026-05-17",
     "game_no": 137,
     "answers": [
@@ -1857,6 +1826,37 @@
       "sexo",
       "yesca",
       "zonación"
+    ]
+  },
+  {
+    "date": "2026-07-15",
+    "game_no": 196,
+    "answers": [
+      "Anaximandro",
+      "Bizancio",
+      "Copérnico",
+      "Diderot",
+      "Eratóstenes",
+      "Fidias",
+      "Gupta",
+      "Han",
+      "Inca",
+      "Julio César",
+      "Lidia",
+      "Mozart",
+      "Neptuno",
+      "añoranza",
+      "Otomano",
+      "Pericles",
+      "Quipu",
+      "Ramsés II",
+      "Sefarad",
+      "Taj Mahal",
+      "Urano",
+      "Voltaire",
+      "Luxor",
+      "yacimiento",
+      "Zigurat"
     ]
   }
 ]
