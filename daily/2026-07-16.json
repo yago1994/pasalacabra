@@ -1,0 +1,167 @@
+{
+  "id": "set-2026-07-16",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Greek deity associated with music and the Sun, also namesake of NASA Moon missions",
+      "answer": "Apollo"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Seventeenth-century European art style known for dramatic contrast and ornament",
+      "answer": "Baroque"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Officially recognized pattern of stars forming a named area of the sky",
+      "answer": "Constellation"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Spanish Surrealist painter of The Persistence of Memory",
+      "answer": "Dali",
+      "alt": [
+        "Dalí"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Stand used by a painter to support a canvas",
+      "answer": "Easel"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Wall-painting technique using pigment on wet plaster",
+      "answer": "Fresco"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Spanish court painter who created The Third of May 1808",
+      "answer": "Goya"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Space telescope launched in 1990 that revolutionized deep-sky imaging",
+      "answer": "Hubble"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "19th-century art movement featuring visible brushstrokes and light effects",
+      "answer": "Impressionism"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Largest planet in the Solar System",
+      "answer": "Jupiter"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Austrian symbolist painter of The Kiss",
+      "answer": "Klimt"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Paris museum that houses the Mona Lisa",
+      "answer": "Louvre"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Artwork made by assembling small pieces of colored glass or stone",
+      "answer": "Mosaic"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Cloud of gas and dust in space where stars may form",
+      "answer": "Nebula"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Hypothetical distant reservoir of icy bodies surrounding the Solar System",
+      "answer": "Oort Cloud"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Common name of the current North Star",
+      "answer": "Polaris"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Extremely luminous active galactic nucleus powered by a supermassive black hole",
+      "answer": "Quasar"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "French sculptor of The Thinker",
+      "answer": "Rodin"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Stellar explosion marking the death of a massive star",
+      "answer": "Supernova"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Instrument that makes distant celestial objects appear closer",
+      "answer": "Telescope"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Constellation that contains the Big Dipper asterism",
+      "answer": "Ursa Major"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Dutch Post-Impressionist who painted The Starry Night",
+      "answer": "Van Gogh",
+      "alt": [
+        "Vincent van Gogh"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Pop artist known for Campbell's Soup Cans",
+      "answer": "Warhol"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Planet that orbits a star outside the Solar System",
+      "answer": "exoplanet"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Major ethnolinguistic group of West Africa noted for Ife bronzes",
+      "answer": "Yoruba"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Band of constellations along the ecliptic used in astrology",
+      "answer": "Zodiac"
+    }
+  ]
+}
