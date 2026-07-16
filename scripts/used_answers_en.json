@@ -153,5 +153,36 @@
       "Yoruba",
       "Zodiac"
     ]
+  },
+  {
+    "date": "2026-07-17",
+    "answers": [
+      "aria",
+      "baguette",
+      "cello",
+      "dumpling",
+      "etude",
+      "fugue",
+      "gospel",
+      "harpsichord",
+      "icing",
+      "jazz",
+      "kimchi",
+      "lute",
+      "miso",
+      "nutmeg",
+      "oratorio",
+      "pesto",
+      "quartet",
+      "risotto",
+      "sonata",
+      "timpani",
+      "ukulele",
+      "viola",
+      "waltz",
+      "xylophone",
+      "yogurt",
+      "zither"
+    ]
   }
 ]
