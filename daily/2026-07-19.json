@@ -1,0 +1,173 @@
+{
+  "id": "set-2026-07-19",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Bright orange giant that marks the eye of Taurus.",
+      "answer": "Aldebaran"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Famous red supergiant forming the shoulder of Orion.",
+      "answer": "Betelgeuse"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Earthy, warm spice made from the dried seeds of a parsley-family plant, common in chili powder and curry.",
+      "answer": "Cumin"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Umami-rich Japanese broth made from kombu and katsuobushi.",
+      "answer": "Dashi"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Twice-yearly moment when day and night are nearly equal worldwide.",
+      "answer": "Equinox"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Dynamic marking indicating to play loudly.",
+      "answer": "Forte"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Largest moon in the solar system, orbiting Jupiter.",
+      "answer": "Ganymede"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Middle Eastern spread of mashed chickpeas, tahini, lemon, and garlic.",
+      "answer": "Hummus",
+      "alt": [
+        "Houmous"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Volcanically active Galilean moon of Jupiter.",
+      "answer": "Io"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Medium-heat chili pepper commonly used in salsas and poppers.",
+      "answer": "Jalapeño",
+      "alt": [
+        "Jalapeno"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Region of icy bodies and dwarf planets beyond Neptune's orbit.",
+      "answer": "Kuiper Belt"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Instruction to play notes smoothly and connected.",
+      "answer": "Legato"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Smallest and innermost planet of the solar system.",
+      "answer": "Mercury"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Expressive piano piece evocative of night, notably by Chopin.",
+      "answer": "Nocturne"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Interval spanning eight diatonic scale degrees.",
+      "answer": "Octave"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Rapidly spinning neutron star that emits regular radio bursts.",
+      "answer": "Pulsar"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "British term for an eighth-note value.",
+      "answer": "Quaver"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Blue supergiant that marks Orion's left foot.",
+      "answer": "Rigel"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Costly spice of crimson crocus stigmas that turns dishes golden.",
+      "answer": "Saffron"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Speed at which a piece of music is performed.",
+      "answer": "Tempo"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Darkest central part of a shadow during an eclipse.",
+      "answer": "Umbra"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Bright star in Lyra once used to calibrate the magnitude scale.",
+      "answer": "Vega"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Grid-patterned breakfast cake typically served with syrup.",
+      "answer": "Waffle"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Common thickener produced by bacterial fermentation, used in gluten-free baking.",
+      "answer": "Xanthan gum",
+      "alt": [
+        "Xanthan"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Fragrant East Asian citrus used in ponzu, dressings, and marmalade.",
+      "answer": "Yuzu"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Levantine herb blend featuring thyme, sesame seeds, and sumac.",
+      "answer": "Za'atar",
+      "alt": [
+        "Zaatar"
+      ]
+    }
+  ]
+}
