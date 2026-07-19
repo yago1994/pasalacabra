@@ -1,0 +1,167 @@
+{
+  "id": "set-2026-07-20",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Creamy green fruit often mashed for guacamole.",
+      "answer": "avocado"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Closest living relative of humans alongside chimpanzees, smaller and more peaceful ape.",
+      "answer": "bonobo"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "World’s largest rodent native to South America.",
+      "answer": "capybara"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Wild dog native to Australia.",
+      "answer": "dingo"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Young soybeans served in pods as a Japanese appetizer.",
+      "answer": "edamame"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Crumbly Greek cheese made from sheep’s milk.",
+      "answer": "feta",
+      "alt": [
+        "feta cheese"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Opaque water-based paint favored for matte illustrations.",
+      "answer": "gouache"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Drawing technique using parallel lines for shading.",
+      "answer": "hatching"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Wild goat of the Alps with long curved horns.",
+      "answer": "ibex"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Crisp, mildly sweet root vegetable common in Mexican salads.",
+      "answer": "jicama"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Marsupial that feeds mainly on eucalyptus leaves.",
+      "answer": "koala"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Andean camelid with long neck and banana-shaped ears used as a pack animal.",
+      "answer": "llama"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Soft, mild Italian cheese often used on pizza.",
+      "answer": "mozzarella"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Arctic whale nicknamed the unicorn of the sea.",
+      "answer": "narwhal"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Japanese art of paper folding.",
+      "answer": "origami"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Art medium of powdered pigment sticks used for soft, blendable color.",
+      "answer": "pastel"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Smiling marsupial native to Rottnest Island.",
+      "answer": "quokka"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Pasta squares stuffed with cheese or meat.",
+      "answer": "ravioli"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Painting genre depicting arranged inanimate objects.",
+      "answer": "still life",
+      "alt": [
+        "still-life"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Forest-dwelling herbivore with a short prehensile snout found in the Americas and Asia.",
+      "answer": "tapir"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Thick Japanese wheat noodles often served in broth.",
+      "answer": "udon"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Scavenging bird with a bald head adapted for hygiene.",
+      "answer": "vulture"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Pungent green paste traditionally served with sushi, made from Japanese horseradish.",
+      "answer": "wasabi"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Bobcat’s tuft-eared wild cat cousin found across the Northern Hemisphere.",
+      "answer": "lynx"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Starchy tuber often confused with sweet potatoes in the U.S.",
+      "answer": "yam"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Tube-shaped pasta often baked with sauce and cheese.",
+      "answer": "ziti"
+    }
+  ]
+}
