@@ -1,0 +1,188 @@
+{
+  "id": "set-2026-07-22",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "South American mountain range stretching along the western edge.",
+      "answer": "Andes"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Indonesian island known for Hindu temples and rice terraces.",
+      "answer": "Bali"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Latin American dish of raw fish cured in citrus.",
+      "answer": "Ceviche"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Capital of Ireland on the River Liffey.",
+      "answer": "Dublin"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Scottish capital famous for an annual Fringe festival.",
+      "answer": "Edinburgh"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Melancholic Portuguese music genre often featuring guitar.",
+      "answer": "Fado"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Sacred Indian river that flows past Varanasi to the Bay of Bengal.",
+      "answer": "Ganges",
+      "alt": [
+        "Ganga"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Capital of Vietnam known for Hoan Kiem Lake and the Old Quarter.",
+      "answer": "Hanoi"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "City straddling two continents across the Bosphorus.",
+      "answer": "Istanbul"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "West African rice dish known for a tomato base and regional rivalry.",
+      "answer": "Jollof",
+      "alt": [
+        "jollof rice"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Historic Japanese city famous for shrines, geisha districts, and autumn colors.",
+      "answer": "Kyoto",
+      "alt": [
+        "Kyōto"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Capital of Peru on the Pacific coast.",
+      "answer": "Lima"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Incan citadel in the Andes above the Urubamba River.",
+      "answer": "Machu Picchu",
+      "alt": [
+        "machupicchu"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "River flowing through Egypt and Sudan to the Mediterranean.",
+      "answer": "Nile"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Japanese city known for street food like takoyaki and a busy aquarium.",
+      "answer": "Osaka",
+      "alt": [
+        "Ōsaka"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Czech capital nicknamed the City of a Hundred Spires.",
+      "answer": "Prague",
+      "alt": [
+        "Praha"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Gulf nation whose capital is Doha.",
+      "answer": "Qatar"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Italian capital home to the Colosseum.",
+      "answer": "Rome",
+      "alt": [
+        "Roma"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Capital of South Korea known for palaces and K-pop.",
+      "answer": "Seoul"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Marble mausoleum in Agra built by Shah Jahan.",
+      "answer": "Taj Mahal",
+      "alt": [
+        "tajmahal"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "South American country between Brazil and Argentina with capital Montevideo.",
+      "answer": "Uruguay"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Austrian capital famed for coffeehouses and classical music heritage.",
+      "answer": "Vienna"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Capital city of New Zealand at the southern tip of the North Island.",
+      "answer": "Wellington"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Country forming the southern neighbor of the United States.",
+      "answer": "Mexico",
+      "alt": [
+        "México"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Longest river in Asia flowing past Chongqing and Shanghai.",
+      "answer": "Yangtze"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Landlocked southern African country whose capital is Lusaka.",
+      "answer": "Zambia"
+    }
+  ]
+}
