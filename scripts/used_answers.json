@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-22",
-    "game_no": 142,
-    "answers": [
-      "astronauta",
-      "branquia",
-      "Cartago",
-      "diploide",
-      "estrella",
-      "faringe",
-      "gigante roja",
-      "hemoglobina",
-      "iguanodonte",
-      "jirafa",
-      "Lepanto",
-      "macrófagos",
-      "Nerva",
-      "uña",
-      "ornitorrinco",
-      "púlsar",
-      "Quimbaya",
-      "Rómulo",
-      "simbiosis",
-      "tránsito",
-      "circumpolar",
-      "vacuola",
-      "Xenopus",
-      "Yersin",
-      "Zoser"
-    ]
-  },
-  {
     "date": "2026-05-23",
     "game_no": 143,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xenón",
       "Yemen",
       "Zaire"
+    ]
+  },
+  {
+    "date": "2026-07-21",
+    "game_no": 202,
+    "answers": [
+      "alga",
+      "barroco",
+      "cartílago",
+      "decatlón",
+      "epitelio",
+      "fresco",
+      "gaita",
+      "hoja",
+      "impala",
+      "juglar",
+      "larva",
+      "mitosis",
+      "nervio",
+      "araña",
+      "ovario",
+      "pigmento",
+      "esquí",
+      "románico",
+      "sinapsis",
+      "tendón",
+      "uracilo",
+      "violín",
+      "exoesqueleto",
+      "yema",
+      "zarcillo"
     ]
   }
 ]
