@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-25",
-    "game_no": 145,
-    "answers": [
-      "anfiteatro",
-      "biografía",
-      "cartelera",
-      "director",
-      "esternón",
-      "fóvea",
-      "glucagón",
-      "hiena",
-      "iris",
-      "jurado",
-      "lóbulo",
-      "melanocito",
-      "nectario",
-      "piñata",
-      "ornitología",
-      "proteína",
-      "quiosco",
-      "rizoide",
-      "seda",
-      "tronco",
-      "uva",
-      "valva",
-      "xilema",
-      "yugular",
-      "zoología"
-    ]
-  },
-  {
     "date": "2026-05-26",
     "game_no": 146,
     "answers": [
@@ -1857,6 +1826,37 @@
       "axila",
       "yak",
       "zampoña"
+    ]
+  },
+  {
+    "date": "2026-07-24",
+    "game_no": 205,
+    "answers": [
+      "Avatar",
+      "Bollywood",
+      "Cannes",
+      "Disney",
+      "Ennio Morricone",
+      "Fotograma",
+      "Gershwin",
+      "Habanera",
+      "Impresionismo",
+      "John Williams",
+      "Libreto",
+      "Murillo",
+      "Neoclasicismo",
+      "Tañido",
+      "Obertura",
+      "Piano",
+      "Quinteto",
+      "Rodin",
+      "Sinfonía",
+      "Trompa",
+      "Uffizi",
+      "Vértigo",
+      "Exlibris",
+      "Yentl",
+      "Zeffirelli"
     ]
   }
 ]
