@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-26",
-    "game_no": 146,
-    "answers": [
-      "artesanía",
-      "buril",
-      "coreografía",
-      "derbi",
-      "estadio",
-      "faralaes",
-      "grabado",
-      "hipódromo",
-      "indumentaria",
-      "jaque",
-      "loza",
-      "malambo",
-      "ninot",
-      "cañí",
-      "obra",
-      "patinaje",
-      "quijada",
-      "remontada",
-      "sainete",
-      "témpera",
-      "urbanismo",
-      "varal",
-      "extremo",
-      "yudo",
-      "zancos"
-    ]
-  },
-  {
     "date": "2026-05-27",
     "game_no": 147,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Exlibris",
       "Yentl",
       "Zeffirelli"
+    ]
+  },
+  {
+    "date": "2026-07-25",
+    "game_no": 206,
+    "answers": [
+      "anillo",
+      "bosón",
+      "constelación",
+      "dínamo",
+      "exoplaneta",
+      "fagot",
+      "gravedad",
+      "hercio",
+      "intensidad",
+      "jansky",
+      "luminosidad",
+      "Marte",
+      "newton",
+      "año luz",
+      "onda",
+      "púlsar",
+      "quásar",
+      "réquiem",
+      "solista",
+      "tenor",
+      "unísono",
+      "violonchelo",
+      "expansión",
+      "ley de Boyle",
+      "zumbido"
     ]
   }
 ]
