@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-27",
-    "game_no": 147,
-    "answers": [
-      "Anatolia",
-      "Báltico",
-      "Cádiz",
-      "Delta",
-      "Equinoccio",
-      "Feromona",
-      "Granada",
-      "Hidrógeno",
-      "Intervalo",
-      "Jamaica",
-      "Laponia",
-      "Mitocondria",
-      "Nadir",
-      "Cañón",
-      "Órbita",
-      "Piamonte",
-      "Quimiotaxis",
-      "Resonancia",
-      "Sílice",
-      "Trémolo",
-      "Ulster",
-      "Volcán",
-      "Saxofón",
-      "Yangtsé",
-      "Zambia"
-    ]
-  },
-  {
     "date": "2026-05-28",
     "game_no": 148,
     "answers": [
@@ -1857,6 +1826,37 @@
       "expansión",
       "ley de Boyle",
       "zumbido"
+    ]
+  },
+  {
+    "date": "2026-07-26",
+    "game_no": 207,
+    "answers": [
+      "Aníbal",
+      "Burundi",
+      "Colombia",
+      "Doha",
+      "Estambul",
+      "Faro",
+      "Gales",
+      "Haití",
+      "Itálica",
+      "Java",
+      "Libia",
+      "Malí",
+      "Nigeria",
+      "Peñalara",
+      "Orán",
+      "Pekín",
+      "Qin",
+      "Ruanda",
+      "Seúl",
+      "Tasmania",
+      "Ucrania",
+      "Varsovia",
+      "Texcoco",
+      "Yazd",
+      "Zama"
     ]
   }
 ]
