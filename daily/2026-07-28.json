@@ -1,0 +1,183 @@
+{
+  "id": "set-2026-07-28",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Collection of songs released as a single record.",
+      "answer": "album"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Software used to access and view websites.",
+      "answer": "browser"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Program that translates source code to machine code.",
+      "answer": "compiler"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Percussion instrument with a membrane you strike.",
+      "answer": "drum"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Common wired networking technology for local area networks.",
+      "answer": "ethernet"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Network security system that monitors and controls traffic based on rules.",
+      "answer": "firewall"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Approximate measure of one billion bytes of storage.",
+      "answer": "gigabyte",
+      "alt": [
+        "GB"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Computer component that stores data on spinning magnetic platters.",
+      "answer": "hard drive",
+      "alt": [
+        "hard disk"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Home printer type that sprays liquid onto paper.",
+      "answer": "inkjet",
+      "alt": [
+        "inkjet printer"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Handheld controller that pivots to send directional input.",
+      "answer": "joystick"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Panel of keys used to input text on a computer.",
+      "answer": "keyboard"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Espresso with steamed milk, known for artful foam.",
+      "answer": "latte"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Device that converts sound into an electrical signal.",
+      "answer": "microphone"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "System of writing down pitches and rhythms on a staff.",
+      "answer": "notation"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Large ensemble of strings, woodwinds, brass, and percussion.",
+      "answer": "orchestra"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Episodic audio program distributed over the internet.",
+      "answer": "podcast"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Square matrix barcode readable by smartphones for quick links.",
+      "answer": "QR code",
+      "alt": [
+        "QR"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Short repeated musical phrase often forming the basis of a song's hook.",
+      "answer": "riff"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Mobile device combining a cellular radio with a powerful computer.",
+      "answer": "smartphone"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Device used by DJs to spin vinyl records.",
+      "answer": "turntable"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Standard that assigns code points to characters; encodings like UTF-8 and UTF-16 implement it.",
+      "answer": "Unicode"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Computer-generated immersive environment experienced via headset.",
+      "answer": "virtual reality",
+      "alt": [
+        "VR"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Camera used to capture video for computers and streaming.",
+      "answer": "webcam"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Smallest addressable unit of a digital image.",
+      "answer": "pixel"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Singing style featuring rapid shifts between chest and head registers.",
+      "answer": "yodeling",
+      "alt": [
+        "yodelling"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Compressed archive format commonly used on PCs.",
+      "answer": "zip file",
+      "alt": [
+        "zip archive",
+        "zip"
+      ]
+    }
+  ]
+}
