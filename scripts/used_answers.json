@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-28",
-    "game_no": 148,
-    "answers": [
-      "actina",
-      "bíceps",
-      "Calisto",
-      "deltoides",
-      "esgrima",
-      "finta",
-      "gástrula",
-      "húmero",
-      "íleon",
-      "junco",
-      "ligamento",
-      "miosina",
-      "nervadura",
-      "reñido",
-      "observatorio",
-      "plaqueta",
-      "equino",
-      "regolito",
-      "sutura",
-      "tibia",
-      "úvula",
-      "vesícula biliar",
-      "xifoides",
-      "yeyuno",
-      "zancada"
-    ]
-  },
-  {
     "date": "2026-05-29",
     "game_no": 149,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Texcoco",
       "Yazd",
       "Zama"
+    ]
+  },
+  {
+    "date": "2026-07-27",
+    "game_no": 208,
+    "answers": [
+      "atrezo",
+      "busto",
+      "camerino",
+      "director",
+      "escenografía",
+      "figurín",
+      "grabado",
+      "hilorama",
+      "intertítulo",
+      "jarrón",
+      "litografía",
+      "maquillaje",
+      "nazareno",
+      "ñandutí",
+      "orfebrería",
+      "paleta",
+      "querubín",
+      "rodaje",
+      "serigrafía",
+      "tapiz",
+      "trucaje",
+      "viñeta",
+      "expresividad",
+      "yokai",
+      "zambra"
     ]
   }
 ]
