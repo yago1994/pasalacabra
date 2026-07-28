@@ -1,0 +1,174 @@
+{
+  "id": "set-2026-07-29",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Step-by-step procedure for solving a computational problem.",
+      "answer": "algorithm"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "German design school that emphasized functional simplicity and influenced modernism.",
+      "answer": "Bauhaus"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Technique using strong contrasts between light and dark in painting.",
+      "answer": "chiaroscuro"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Fictional society characterized by oppression and misery, often in speculative novels.",
+      "answer": "dystopia"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Digital publication readable on electronic devices.",
+      "answer": "ebook",
+      "alt": [
+        "e-book",
+        "eBook"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Low-level software embedded in hardware devices.",
+      "answer": "firmware"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Distributed version control system created by Linus Torvalds.",
+      "answer": "Git",
+      "alt": [
+        "git"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Clickable reference that leads to another document or location on the web.",
+      "answer": "hyperlink"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Unique numeric identifier assigned to published books.",
+      "answer": "ISBN",
+      "alt": [
+        "isbn"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Open-source interactive notebook platform whose name merges Julia, Python, and R.",
+      "answer": "Jupyter"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Adjusting space between characters in typesetting.",
+      "answer": "kerning"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Text of an opera or other extended vocal work.",
+      "answer": "libretto"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Large artwork painted or applied directly on a wall or ceiling.",
+      "answer": "mural"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Prose fiction longer than a short story but shorter than a novel.",
+      "answer": "novella"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Machine instruction field that specifies the operation to perform.",
+      "answer": "opcode"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Manuscript page reused after earlier text was scraped or washed off.",
+      "answer": "palimpsest"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Early modern book format formed by folding a full sheet twice.",
+      "answer": "quarto"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Ornate 18th-century art style characterized by curves, pastel colors, and decorative detail.",
+      "answer": "rococo"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Fourteen-line poetic form with a set rhyme scheme.",
+      "answer": "sonnet"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Art and technique of arranging type to make written language legible and appealing.",
+      "answer": "typography"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Address that specifies the location of a web resource.",
+      "answer": "URL",
+      "alt": [
+        "url"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Type of image that uses mathematical paths rather than pixels.",
+      "answer": "vector"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Collaborative website where pages can be directly edited by users.",
+      "answer": "wiki"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Dry photocopying process invented by Chester Carlson.",
+      "answer": "xerography"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Skull held by Hamlet during the graveyard scene.",
+      "answer": "Yorick"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Self-published, small-circulation booklet often made by artists and writers.",
+      "answer": "zine"
+    }
+  ]
+}
