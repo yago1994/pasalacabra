@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-05-29",
-    "game_no": 149,
-    "answers": [
-      "Andrómeda",
-      "Babilonia",
-      "Caronte",
-      "Delfos",
-      "Europa",
-      "Freya",
-      "Géminis",
-      "Hégira",
-      "Ishtar",
-      "Judea",
-      "Lascaux",
-      "Machu Picchu",
-      "Nefertiti",
-      "Cañari",
-      "Olmeca",
-      "Palenque",
-      "Quetzalcóatl",
-      "Ragnarök",
-      "Sagitario",
-      "Tenochtitlán",
-      "Uruk",
-      "Vesta",
-      "Xibalbá",
-      "Yamato",
-      "Zeus"
-    ]
-  },
-  {
     "date": "2026-05-30",
     "game_no": 150,
     "answers": [
@@ -1857,6 +1826,37 @@
       "expresividad",
       "yokai",
       "zambra"
+    ]
+  },
+  {
+    "date": "2026-07-28",
+    "game_no": 209,
+    "answers": [
+      "arquitectura",
+      "baraja",
+      "coreografía",
+      "danza",
+      "estadio",
+      "festival",
+      "galería",
+      "hockey",
+      "ilustración",
+      "jurado",
+      "lectura",
+      "mural",
+      "nave",
+      "peña",
+      "octavos",
+      "pintura",
+      "quiosco",
+      "rondalla",
+      "sainete",
+      "torneo",
+      "utopía",
+      "videoclip",
+      "expresión",
+      "yincana",
+      "zaguán"
     ]
   }
 ]
