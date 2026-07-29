@@ -1,0 +1,173 @@
+{
+  "id": "set-2026-07-30",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Immune protein that specifically binds an antigen to help neutralize it.",
+      "answer": "antibody"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Tissue sample examined under a microscope for diagnosis.",
+      "answer": "biopsy"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Test used to distinguish humans from automated bots on a website.",
+      "answer": "captcha",
+      "alt": [
+        "CAPTCHA"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Electronic component that permits current flow primarily in a single direction.",
+      "answer": "diode"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Outer layer of skin that provides a protective barrier.",
+      "answer": "epidermis"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Technology that transmits data as pulses of light through strands of glass.",
+      "answer": "fiber optics",
+      "alt": [
+        "fibre optics"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Complete set of genetic instructions in an organism.",
+      "answer": "genome"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Chemical messenger secreted by endocrine glands and carried by the bloodstream.",
+      "answer": "hormone"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Colored ring in the eye that controls pupil size.",
+      "answer": "iris"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Middle section of the small intestine between the duodenum and ileum.",
+      "answer": "jejunum"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Core of an operating system that manages hardware and processes.",
+      "answer": "kernel"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Enzyme that digests lactose in the small intestine.",
+      "answer": "lactase"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Malicious software designed to disrupt, damage, or gain unauthorized access.",
+      "answer": "malware"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Basic unit of nucleic acids composed of a sugar, a phosphate group, and a nitrogenous base.",
+      "answer": "nucleotide"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Organ that produces eggs in animals and houses ovules in flowering plants.",
+      "answer": "ovary"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Fraudulent attempt to obtain sensitive information via deceptive emails or messages.",
+      "answer": "phishing"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Bitter compound from cinchona bark once used to treat malaria and found in tonic water.",
+      "answer": "quinine"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Nucleic acid that acts as messenger, adapter, or catalytic molecule in cells.",
+      "answer": "RNA",
+      "alt": [
+        "ribonucleic acid"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Junction where a nerve signal passes from one neuron to another.",
+      "answer": "synapse"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Soybean curd used as a protein-rich ingredient in many dishes.",
+      "answer": "tofu"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Muscular organ in mammals where an embryo and fetus develop.",
+      "answer": "uterus"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Fingerlike projection lining the small intestine that increases absorptive surface area.",
+      "answer": "villus",
+      "alt": [
+        "villi"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Cereal grain commonly milled into flour for breads and pastas.",
+      "answer": "wheat"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Loss of electrons during a reaction, often releasing energy in cellular respiration.",
+      "answer": "oxidation"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese stir-fried noodles typically cooked with cabbage, pork, and a tangy sauce.",
+      "answer": "yakisoba"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Single cell formed by the fusion of two gametes at fertilization.",
+      "answer": "zygote"
+    }
+  ]
+}
