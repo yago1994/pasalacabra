@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-06-02",
-    "game_no": 153,
-    "answers": [
-      "Arquímedes",
-      "Becquerel",
-      "Clorofila",
-      "Descartes",
-      "Einstein",
-      "Fibonacci",
-      "Gutenberg",
-      "Higgs",
-      "Ibn Battuta",
-      "Jenofonte",
-      "Laplace",
-      "Mendel",
-      "Nobel",
-      "Iñaki Williams",
-      "Ohm",
-      "Planck",
-      "Quiralidad",
-      "Rutherford",
-      "Semmelweis",
-      "Tesla",
-      "URSS",
-      "Volta",
-      "xilosa",
-      "yelmo",
-      "Zonda"
-    ]
-  },
-  {
     "date": "2026-06-03",
     "game_no": 154,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Exorcista",
       "Yamaha",
       "Zenda"
+    ]
+  },
+  {
+    "date": "2026-08-01",
+    "game_no": 213,
+    "answers": [
+      "Andrómeda",
+      "Báltico",
+      "Cáucaso",
+      "Duna",
+      "Estalactita",
+      "Fumarola",
+      "Glaciar",
+      "Hidrógeno",
+      "Índico",
+      "Jónico",
+      "Laponia",
+      "Meandro",
+      "Namibia",
+      "cañón",
+      "Órbita",
+      "Permafrost",
+      "Quetzal",
+      "Rávena",
+      "Sima",
+      "Taiga",
+      "pluviómetro",
+      "Vesubio",
+      "Xochimilco",
+      "playa",
+      "Zócalo"
     ]
   }
 ]
