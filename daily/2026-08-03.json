@@ -1,0 +1,161 @@
+{
+  "id": "set-2026-08-03",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Building block of proteins.",
+      "answer": "amino acid"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Green cruciferous vegetable with tree-like florets.",
+      "answer": "broccoli"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Major class of biomolecules that include sugars, starches, and fiber.",
+      "answer": "carbohydrate"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Sheet-like muscle that separates the chest cavity from the abdomen and aids breathing.",
+      "answer": "diaphragm"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Predominant estrogen in premenopausal women, produced mainly by the ovaries.",
+      "answer": "estradiol"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Monosaccharide known as fruit sugar.",
+      "answer": "fructose"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Organ that stores and concentrates bile.",
+      "answer": "gallbladder"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Regulation of internal balance such as body temperature and pH.",
+      "answer": "homeostasis"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Variant of a chemical element that differs in neutron number.",
+      "answer": "isotope"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Fruit spread made from strained juice and set with pectin.",
+      "answer": "jelly"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Organ that filters blood to remove waste and regulate fluid balance.",
+      "answer": "kidney"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Milk sugar that many adults have difficulty digesting.",
+      "answer": "lactose"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Warm-blooded vertebrate that produces milk to feed its young.",
+      "answer": "mammal"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Smooth-skinned stone fruit closely related to peaches.",
+      "answer": "nectarine"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Hormone nicknamed the love hormone, involved in bonding and labor.",
+      "answer": "oxytocin"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Polymer of amino acids essential for structure and function of cells.",
+      "answer": "protein"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Physics term for a discrete packet, such as of energy.",
+      "answer": "quantum"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Five-carbon sugar found in RNA.",
+      "answer": "ribose"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Disaccharide known as table sugar, composed of glucose and fructose.",
+      "answer": "sucrose"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Windpipe connecting larynx to the lungs.",
+      "answer": "trachea"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Primary nitrogenous waste product excreted in urine by humans.",
+      "answer": "urea"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Membrane-bound storage and pressure-maintaining compartment in plant cells.",
+      "answer": "vacuole"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Molecule whose solid form is less dense than its liquid, formula H2O.",
+      "answer": "water"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Reference line on a coordinate graph used to locate points.",
+      "answer": "axis"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Chemical element with atomic number 39 used in LEDs and phosphors.",
+      "answer": "yttrium"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Branch of biology that deals with animals.",
+      "answer": "zoology"
+    }
+  ]
+}
