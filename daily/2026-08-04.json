@@ -1,0 +1,170 @@
+{
+  "id": "set-2026-08-04",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "The Eagle constellation that contains the star Altair.",
+      "answer": "Aquila"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "The world's third-largest island shared by Indonesia, Malaysia, and Brunei.",
+      "answer": "Borneo"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Largest enclosed inland body of water, bordered by Russia, Iran, and three other countries.",
+      "answer": "Caspian Sea"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Ten-event track and field combined discipline scored using tables.",
+      "answer": "Decathlon"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "River that flows through Dresden and Hamburg into the North Sea.",
+      "answer": "Elbe"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Nordic country of thousands of lakes; capital Helsinki.",
+      "answer": "Finland"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Southeastern European country with the Peloponnese and many Aegean islands; capital Athens.",
+      "answer": "Greece"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Landlocked Central European country with Lake Balaton; capital Budapest.",
+      "answer": "Hungary"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Puck-based team sport played on skates in a rink.",
+      "answer": "Ice hockey",
+      "alt": [
+        "hockey"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Southeast Asian capital formerly named Batavia.",
+      "answer": "Jakarta"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Second-highest mountain on Earth, in the Karakoram.",
+      "answer": "K2",
+      "alt": [
+        "Mount Godwin-Austen"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Small northern constellation depicted as a lyre.",
+      "answer": "Lyra"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Our home galaxy containing the Solar System.",
+      "answer": "Milky Way"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Seven-a-side ball sport popular in Commonwealth countries, derived from early basketball rules.",
+      "answer": "Netball"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Sultanate on the southeastern Arabian Peninsula; capital Muscat.",
+      "answer": "Oman"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Sparsely populated region at the southern end of South America shared by Argentina and Chile.",
+      "answer": "Patagonia"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Largest Canadian province by area; its capital shares the province's name.",
+      "answer": "Quebec"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Bright bluish-white star known as Alpha Leonis.",
+      "answer": "Regulus"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Track and field event where athletes heave a heavy sphere from the shoulder.",
+      "answer": "Shot put"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Endurance sport combining swimming, cycling, and running in sequence.",
+      "answer": "Triathlon"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Capital city of Mongolia.",
+      "answer": "Ulaanbaatar",
+      "alt": [
+        "Ulan Bator"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Independent city-state enclaved within Rome; smallest state by area and population.",
+      "answer": "Vatican City"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Desert valley in southern Jordan famed for red sandstone formations, also called the Valley of the Moon.",
+      "answer": "Wadi Rum"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Small European Grand Duchy bordered by Belgium, Germany, and France; capital shares its name.",
+      "answer": "Luxembourg"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "U.S. national park in California known for El Capitan and a namesake waterfall.",
+      "answer": "Yosemite"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Landlocked country in southern Africa with capital Harare and Victoria Falls on its border.",
+      "answer": "Zimbabwe"
+    }
+  ]
+}
