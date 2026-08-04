@@ -1,0 +1,171 @@
+{
+  "id": "set-2026-08-05",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Capital of Greece known as the birthplace of democracy.",
+      "answer": "Athens"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Old English epic hero who defeats the monster Grendel.",
+      "answer": "Beowulf"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Long, narrow South American nation with the Atacama Desert.",
+      "answer": "Chile"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Scandinavian country whose capital is Copenhagen.",
+      "answer": "Denmark"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "In Greek myth, nymph and wife of Orpheus whom he tried to rescue from the underworld.",
+      "answer": "Eurydice"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "European country with Paris as its capital.",
+      "answer": "France"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "British territory at the southern tip of the Iberian Peninsula.",
+      "answer": "Gibraltar"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Greek god who rules the underworld.",
+      "answer": "Hades"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Figure who flew too close to the sun with waxen wings in Greek myth.",
+      "answer": "Icarus"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Ancient city near the Jordan River, among the oldest continuously inhabited.",
+      "answer": "Jericho"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Capital city of Ukraine.",
+      "answer": "Kyiv",
+      "alt": [
+        "Kiev"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Five-line humorous verse form with an AABBA rhyme scheme.",
+      "answer": "Limerick"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Realm in The Lord of the Rings where Sauron resides.",
+      "answer": "Mordor"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Fantasy land entered through a wardrobe in novels by C. S. Lewis.",
+      "answer": "Narnia"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Epic poem about a hero's long voyage home after the Trojan War.",
+      "answer": "Odyssey"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "South American country home to Cusco and the Sacred Valley.",
+      "answer": "Peru"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Feathered serpent deity of Mesoamerican mythology.",
+      "answer": "Quetzalcoatl"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Capital of Saudi Arabia on the Arabian Peninsula.",
+      "answer": "Riyadh"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "River that flows through Paris to the English Channel.",
+      "answer": "Seine"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Historic Malian city on the edge of the Sahara famed for medieval manuscripts.",
+      "answer": "Timbuktu",
+      "alt": [
+        "Tombouctou",
+        "Timbuctoo"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Range that forms part of the traditional boundary between Europe and Asia.",
+      "answer": "Ural Mountains",
+      "alt": [
+        "Urals"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Norse hall where fallen warriors dwell with Odin.",
+      "answer": "Valhalla"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Fictional continent where most of A Song of Ice and Fire takes place.",
+      "answer": "Westeros"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Egyptian Mediterranean port once famed for a lighthouse and a great library.",
+      "answer": "Alexandria"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Historic county in northern England that includes the Dales and the city of Leeds.",
+      "answer": "Yorkshire"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Chief deity in Greek mythology, wielder of the thunderbolt.",
+      "answer": "Zeus"
+    }
+  ]
+}
