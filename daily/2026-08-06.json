@@ -1,0 +1,168 @@
+{
+  "id": "set-2026-08-06",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Zodiac constellation known as the Water Bearer.",
+      "answer": "Aquarius"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Swimming stroke performed while lying on the back.",
+      "answer": "Backstroke"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Icy body that forms a glowing coma and tail near the Sun.",
+      "answer": "Comet"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Constellation winding around the north celestial pole named for a dragon.",
+      "answer": "Draco"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Thrust-only fencing weapon where the entire body is valid target.",
+      "answer": "Epee"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Unopposed shot worth one point in basketball.",
+      "answer": "Free throw"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Massive system of stars, gas, dust, and dark matter bound by gravity.",
+      "answer": "Galaxy"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Shakespeare tragedy featuring the Prince of Denmark.",
+      "answer": "Hamlet"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "One of nine regulation segments of a baseball game.",
+      "answer": "Inning"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Professional rider in horse racing.",
+      "answer": "Jockey"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Martial art known for striking techniques and kata forms.",
+      "answer": "Karate"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Track and field event measuring the distance of a single horizontal leap.",
+      "answer": "Long jump"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Streak of light caused by space debris burning in Earth's atmosphere.",
+      "answer": "Meteor"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Point directly below an observer in the celestial sphere.",
+      "answer": "Nadir"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Path of a body as it revolves around another in space.",
+      "answer": "Orbit"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Open star cluster also known as the Seven Sisters.",
+      "answer": "Pleiades"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Primary passer in an American football offense.",
+      "answer": "Quarterback"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Official who enforces rules in soccer.",
+      "answer": "Referee"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Zodiac constellation represented by an archer.",
+      "answer": "Sagittarius"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Zodiac constellation represented by a bull.",
+      "answer": "Taurus"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "All of space, time, matter, and energy as a whole.",
+      "answer": "Universe"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Gymnastics apparatus event using a springboard and table.",
+      "answer": "Vault"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Compact stellar remnant composed of electron-degenerate matter.",
+      "answer": "White dwarf"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Constellation also known as the Southern Cross.",
+      "answer": "Crux"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "MLB team with 27 World Series titles.",
+      "answer": "Yankees",
+      "alt": [
+        "New York Yankees",
+        "NY Yankees"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "French playmaker who scored twice in the 1998 World Cup Final.",
+      "answer": "Zidane",
+      "alt": [
+        "Zinedine Zidane"
+      ]
+    }
+  ]
+}
