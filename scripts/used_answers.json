@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-06-08",
-    "game_no": 159,
-    "answers": [
-      "Aneto",
-      "Bidasoa",
-      "Carnaval",
-      "Danubio",
-      "Estepa",
-      "Fallas",
-      "Guadalquivir",
-      "Halterofilia",
-      "Ibiza",
-      "Jaipur",
-      "Logroño",
-      "Mapuche",
-      "Nerja",
-      "Peñarol",
-      "Ordesa",
-      "Pelota vasca",
-      "Quintana Roo",
-      "Rabat",
-      "Sáhara",
-      "Tajo",
-      "Uluru",
-      "Venezuela",
-      "axel",
-      "Yeniséi",
-      "Zarautz"
-    ]
-  },
-  {
     "date": "2026-06-09",
     "game_no": 160,
     "answers": [
@@ -1857,6 +1826,37 @@
       "exvoto",
       "yudo",
       "zancos"
+    ]
+  },
+  {
+    "date": "2026-08-07",
+    "game_no": 219,
+    "answers": [
+      "Argelia",
+      "Borneo",
+      "Córcega",
+      "Dinamarca",
+      "Eritrea",
+      "Francia",
+      "Grecia",
+      "Hungría",
+      "Italia",
+      "Jamaica",
+      "Laos",
+      "Madagascar",
+      "Noruega",
+      "Doñana",
+      "Oaxaca",
+      "Perú",
+      "Querétaro",
+      "Rinoceronte",
+      "Salamandra",
+      "Tíbet",
+      "Ulán Bator",
+      "Viena",
+      "Naxos",
+      "Yibuti",
+      "Zúrich"
     ]
   }
 ]
