@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-06-10",
-    "game_no": 161,
-    "answers": [
-      "acordeón",
-      "baloncesto",
-      "coro",
-      "delantero",
-      "escorzo",
-      "frontenis",
-      "galope",
-      "herradura",
-      "inuit",
-      "jaleo",
-      "lateral",
-      "martillo",
-      "natación",
-      "bañador",
-      "orquesta",
-      "pentagrama",
-      "quiniela",
-      "rondó",
-      "sable",
-      "tatami",
-      "urdimbre",
-      "velódromo",
-      "exposición",
-      "yola",
-      "zaguero"
-    ]
-  },
-  {
     "date": "2026-06-11",
     "game_no": 162,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Axarquía",
       "Yeste",
       "Zarautz"
+    ]
+  },
+  {
+    "date": "2026-08-09",
+    "game_no": 221,
+    "answers": [
+      "Aída",
+      "Bécquer",
+      "Coppola",
+      "Dylan",
+      "Eminem",
+      "Farruquito",
+      "Godard",
+      "Hepburn",
+      "Ionesco",
+      "Jarmusch",
+      "Lang",
+      "Miyazaki",
+      "Nyman",
+      "piñata",
+      "Ortega",
+      "Paz",
+      "Quevedo",
+      "Rosalía",
+      "Spielberg",
+      "Tarkovski",
+      "Unamuno",
+      "Visconti",
+      "Xoel",
+      "Yelmo",
+      "Zola"
     ]
   }
 ]
