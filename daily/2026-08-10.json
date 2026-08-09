@@ -1,0 +1,161 @@
+{
+  "id": "set-2026-08-10",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Natural light display near Earth’s poles caused by charged particles interacting with the atmosphere",
+      "answer": "aurora"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Prominent asterism in Ursa Major used for navigation",
+      "answer": "Big Dipper"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Dwarf planet in the asteroid belt discovered by Giuseppe Piazzi in 1801",
+      "answer": "Ceres"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Change in wavelength of starlight due to relative motion of source and observer",
+      "answer": "Doppler shift"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Event when one celestial body passes into the shadow of another",
+      "answer": "eclipse"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Kingdom of life that includes molds, yeasts, and mushrooms",
+      "answer": "fungi"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Zodiac constellation represented by twins",
+      "answer": "Gemini"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Seasonal state of inactivity and lowered metabolism in some mammals",
+      "answer": "hibernation"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Marine reptile of the Mesozoic era that resembled a dolphin",
+      "answer": "ichthyosaur"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Stinging marine invertebrate with a bell and trailing tentacles",
+      "answer": "jellyfish"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Ornamental carp commonly kept in Japanese ponds",
+      "answer": "koi"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Big cat with a rosette-patterned coat found in Africa and Asia",
+      "answer": "leopard"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Type of cell division that produces gametes with half the usual chromosome number",
+      "answer": "meiosis"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Sudden brightening of a star due to a thermonuclear outburst on a white dwarf in a binary system",
+      "answer": "nova"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Aquatic mammal known for using stones to crack shellfish",
+      "answer": "otter"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Powdery plant material that contains the male gametes",
+      "answer": "pollen"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Collective name for the Haudenosaunee confederacy of northeastern North America",
+      "answer": "Iroquois"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Light-sensitive layer lining the back of the eye",
+      "answer": "retina"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Pollen-producing structure of a flower",
+      "answer": "stamen"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Microscopic “water bear” famed for surviving extreme conditions",
+      "answer": "tardigrade"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "RNA base that complements adenine",
+      "answer": "uracil"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Zodiac constellation associated with a maiden",
+      "answer": "Virgo"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Term for the Moon when its illuminated portion is increasing",
+      "answer": "waxing"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Gas transported by hemoglobin in red blood cells",
+      "answer": "oxygen"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "High German–derived language traditionally written in Hebrew script and used by Ashkenazi Jews",
+      "answer": "Yiddish"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Princess title character in Nintendo’s long-running fantasy game series",
+      "answer": "Zelda"
+    }
+  ]
+}
