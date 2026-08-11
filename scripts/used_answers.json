@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-06-12",
-    "game_no": 163,
-    "answers": [
-      "al-Ándalus",
-      "botijo",
-      "cetrería",
-      "duende",
-      "euskera",
-      "falla",
-      "gólem",
-      "Hispania",
-      "Iberoamérica",
-      "jamón",
-      "leyenda",
-      "mudéjar",
-      "nazaríes",
-      "ñoquis",
-      "Ovidio",
-      "picaresca",
-      "mezquita",
-      "romancero",
-      "saeta",
-      "tercios",
-      "universidad",
-      "visigodos",
-      "exilio",
-      "yuntero",
-      "zagal"
-    ]
-  },
-  {
     "date": "2026-06-13",
     "game_no": 164,
     "answers": [
@@ -1857,6 +1826,37 @@
       "taxón",
       "Guayaquil",
       "Zimbabue"
+    ]
+  },
+  {
+    "date": "2026-08-11",
+    "game_no": 223,
+    "answers": [
+      "Alemania",
+      "Barcelona",
+      "Córdoba",
+      "Dubái",
+      "Estonia",
+      "Futurismo",
+      "Guillermo del Toro",
+      "Helsinki",
+      "Indonesia",
+      "Jeroglífico",
+      "Luanda",
+      "Madrid",
+      "Navajo",
+      "Ñapa",
+      "Omán",
+      "Portugal",
+      "Quino",
+      "Renacimiento",
+      "Sicilia",
+      "Túnez",
+      "Utrera",
+      "Valencia",
+      "Luxemburgo",
+      "Yoruba",
+      "Zumaia"
     ]
   }
 ]
