@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-06-14",
-    "game_no": 165,
-    "answers": [
-      "Amenábar",
-      "Banderas",
-      "Cuarón",
-      "Dólmen",
-      "Eclíptica",
-      "Firmamento",
-      "Géminidas",
-      "Hubble",
-      "Interstellar",
-      "Jedi",
-      "Lorca",
-      "Memento",
-      "Neruda",
-      "Ibáñez",
-      "Ozu",
-      "Picasso",
-      "Querejeta",
-      "Rosetta",
-      "Saura",
-      "Tolkien",
-      "Umbra",
-      "Verne",
-      "Matrix",
-      "Yojimbo",
-      "Zuloaga"
-    ]
-  },
-  {
     "date": "2026-06-15",
     "game_no": 166,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xilófago",
       "yegua",
       "zángano"
+    ]
+  },
+  {
+    "date": "2026-08-13",
+    "game_no": 225,
+    "answers": [
+      "abedul",
+      "bahía",
+      "corola",
+      "domo",
+      "ébano",
+      "fauna",
+      "golfo",
+      "humedal",
+      "isla",
+      "jungla",
+      "lince",
+      "mangle",
+      "niebla",
+      "peñón",
+      "orquídea",
+      "pupa",
+      "quinua",
+      "raquis",
+      "seda",
+      "talud",
+      "uva",
+      "valle",
+      "mixotrofía",
+      "arroyo",
+      "Zipaquirá"
     ]
   }
 ]
