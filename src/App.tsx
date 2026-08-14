@@ -31,6 +31,8 @@ import { createCanvasRecorder, downloadRecording, shareOrDownloadRecording } fro
 import { initializePendo, setPendoLocation, trackPendoEvent } from "./lib/pendo";
 import { isStagingMode } from "./env/getSpeechTokenUrl";
 import { formatDateLongES, getDailyGameNo } from "./lib/dailyIssue";
+import PermissionNotice, { type PermissionNoticeMode } from "./components/PermissionNotice";
+import { getMediaPermissionState, isAndroid } from "./platform/androidPermissions";
 
 // Player snapshot captured when timer runs out
 export type PlayerSnapshot = {
@@ -311,6 +313,14 @@ export default function App() {
   const [micPermissionDenied, setMicPermissionDenied] = useState<boolean>(false);
   const cameraFacingMode: "user" | "environment" = "user";
 
+  // Android-only permission coaching (see src/platform/androidPermissions.ts).
+  const [permissionNotice, setPermissionNotice] = useState<PermissionNoticeMode | null>(null);
+  const [micErrorName, setMicErrorName] = useState<string>("");
+  // Show the "why we need the mic" primer at most once per session.
+  const permissionPrimerShownRef = useRef<boolean>(false);
+  // The start flow to re-enter once the user acknowledges the notice.
+  const pendingStartRef = useRef<null | (() => void)>(null);
+
   // Video recording for sharing
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const recorderRef = useRef<ReturnType<typeof createCanvasRecorder> | null>(null);
@@ -398,6 +408,46 @@ export default function App() {
   function sttLog(...args: unknown[]) {
     if (!DEBUG_STT) return;
     console.log("[stt]", ...args);
+  }
+
+  /**
+   * Android-only: coach the user through the microphone permission before we
+   * touch getUserMedia.
+   *
+   * On Chrome for Android a denial is permanent — the prompt never comes back,
+   * `getUserMedia` rejects instantly, the recognizer never starts and "Empezar"
+   * stays disabled forever. So we explain up front why the mic is needed, and if
+   * it is already blocked we show recovery steps instead of walking into a dead
+   * game. iOS Safari re-asks on the next load and has no Permissions API, so
+   * `isAndroid()` plus a "unknown" state both keep that platform on its existing
+   * path.
+   *
+   * @param retry the start flow to re-enter once the user acknowledges.
+   * @returns true if the caller should stop and let the notice drive the flow.
+   */
+  async function coachAndroidMicPermission(retry: () => void): Promise<boolean> {
+    if (!isAndroid()) return false;
+
+    const state = await getMediaPermissionState("microphone");
+
+    if (state === "denied") {
+      pendingStartRef.current = retry;
+      setMicPermissionDenied(true);
+      setPermissionNotice("blocked");
+      sttLog("android mic permission blocked");
+      return true;
+    }
+
+    // Already granted, or the browser won't tell us: behave exactly as before.
+    if (state === "granted" || state === "unknown") return false;
+
+    // state === "prompt": explain before the browser's own dialog appears.
+    if (permissionPrimerShownRef.current) return false;
+    permissionPrimerShownRef.current = true;
+    pendingStartRef.current = retry;
+    setPermissionNotice("explain");
+    sttLog("android mic primer shown");
+    return true;
   }
 
   async function warmupMicrophoneOnce() {
@@ -1184,6 +1234,9 @@ export default function App() {
       setSttError(String(err));
       // Check if it's a permission denied error
       const error = err as DOMException;
+      // Keep the raw name around: on Android it distinguishes a permanent block
+      // (NotAllowedError) from device contention (NotReadableError/AbortError).
+      setMicErrorName(error?.name ?? "");
       if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
         setMicPermissionDenied(true);
       } else {
@@ -2533,6 +2586,13 @@ export default function App() {
     }
 
     unlockAudioOnce();
+
+    // Android only: explain the mic permission (or how to unblock it) before we
+    // ask. Returns true when a notice is showing; "Continuar" re-enters here.
+    // `isAndroid()` short-circuits first so non-Android keeps a byte-identical,
+    // await-free path from here into warmupMicrophoneOnce().
+    if (isAndroid() && (await coachAndroidMicPermission(() => void startDailyGame()))) return;
+
     // Warm up microphone permission first. On some browsers, requesting mic can temporarily
     // affect the audio session, so it before the first meaningful TTS utterance.
     await warmupMicrophoneOnce();
@@ -2607,6 +2667,13 @@ export default function App() {
     setTopicSelectionError("");
     
     unlockAudioOnce();
+
+    // Android only: explain the mic permission (or how to unblock it) before we
+    // ask. Returns true when a notice is showing; "Continuar" re-enters here.
+    // `isAndroid()` short-circuits first so non-Android keeps a byte-identical,
+    // await-free path from here into warmupMicrophoneOnce().
+    if (isAndroid() && (await coachAndroidMicPermission(() => void startFromSetup()))) return;
+
     // Warm up microphone permission first. On some browsers, requesting mic can temporarily
     // affect the audio session, so we do it before the first meaningful TTS utterance.
     await warmupMicrophoneOnce();
@@ -3286,6 +3353,26 @@ export default function App() {
         );
       })()}
 
+      {/* Android-only microphone permission coaching */}
+      {permissionNotice ? (
+        <PermissionNotice
+          mode={permissionNotice}
+          errorName={micErrorName}
+          onContinue={() => {
+            const retry = pendingStartRef.current;
+            pendingStartRef.current = null;
+            setPermissionNotice(null);
+            // Re-enter the start flow from this tap, so the browser's own prompt
+            // still happens inside a user gesture.
+            retry?.();
+          }}
+          onCancel={() => {
+            pendingStartRef.current = null;
+            setPermissionNotice(null);
+          }}
+        />
+      ) : null}
+
       {screen === "home" ? (
         <HomePage 
           onPlayGroup={() => setScreen("setup")}
@@ -3392,7 +3479,26 @@ export default function App() {
                     </button>
                     {micPermissionDenied && (
                       <div className="answerReveal" style={{ marginTop: 8, textAlign: "center" }}>
-                        ⚠️ Para poder jugar tienes que dar acceso al micrófono de tu teléfono para responder a las preguntas. Cierra la página y vuelve a abrirla para dar acceso y volver a intentarlo.
+                        {isAndroid() ? (
+                          <>
+                            {/* On Android a denial is permanent, so "reload the page"
+                                (correct on iOS) would be useless advice here. */}
+                            ⚠️ Necesitamos el micrófono para oír tus respuestas y tu navegador lo
+                            tiene bloqueado. Recargar la página no lo arregla en Android.
+                            <div style={{ marginTop: 8 }}>
+                              <button
+                                className="btnGhost"
+                                onClick={() => setPermissionNotice("blocked")}
+                              >
+                                Ver cómo desbloquearlo
+                              </button>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            ⚠️ Para poder jugar tienes que dar acceso al micrófono de tu teléfono para responder a las preguntas. Cierra la página y vuelve a abrirla para dar acceso y volver a intentarlo.
+                          </>
+                        )}
                       </div>
                     )}
                   </>
