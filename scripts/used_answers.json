@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-06-15",
-    "game_no": 166,
-    "answers": [
-      "aria",
-      "bulería",
-      "cantautor",
-      "danzón",
-      "escultura",
-      "folclore",
-      "glissando",
-      "horror vacui",
-      "isa",
-      "jarana",
-      "laúd",
-      "murga",
-      "nocturno",
-      "muñeira",
-      "oboe",
-      "pandereta",
-      "quejío",
-      "rabel",
-      "salterio",
-      "tambor",
-      "percusión",
-      "vals",
-      "axé",
-      "yuxtaposición",
-      "zortziko"
-    ]
-  },
-  {
     "date": "2026-06-16",
     "game_no": 167,
     "answers": [
@@ -1857,6 +1826,37 @@
       "mixotrofía",
       "arroyo",
       "Zipaquirá"
+    ]
+  },
+  {
+    "date": "2026-08-14",
+    "game_no": 226,
+    "answers": [
+      "apicultura",
+      "bivalvo",
+      "celtíbero",
+      "domesticación",
+      "etología",
+      "fermentación",
+      "guerrilla",
+      "herejía",
+      "ilota",
+      "jenízaro",
+      "lanza",
+      "mestizaje",
+      "neolítico",
+      "campaña",
+      "ocelote",
+      "plebiscito",
+      "quórum",
+      "resistencia",
+      "sátrapa",
+      "tótem",
+      "urna",
+      "visigodo",
+      "exilio",
+      "leyenda",
+      "zar"
     ]
   }
 ]
