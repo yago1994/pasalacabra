@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-06-16",
-    "game_no": 167,
-    "answers": [
-      "Alicante",
-      "Baleares",
-      "Cervantes",
-      "Denis Villeneuve",
-      "Egipto",
-      "Flandes",
-      "Gaudí",
-      "Hollywood",
-      "Israel",
-      "Juliette Binoche",
-      "Louvre",
-      "Múnich",
-      "Normandía",
-      "Borgoña",
-      "Oceanía",
-      "Pixar",
-      "Quechua",
-      "Róterdam",
-      "Suecia",
-      "Tailandia",
-      "Cuzco",
-      "Venecia",
-      "Xacobeo",
-      "Paraguay",
-      "Zeta"
-    ]
-  },
-  {
     "date": "2026-06-17",
     "game_no": 168,
     "answers": [
@@ -1857,6 +1826,37 @@
       "exilio",
       "leyenda",
       "zar"
+    ]
+  },
+  {
+    "date": "2026-08-15",
+    "game_no": 227,
+    "answers": [
+      "Apolo",
+      "Baloncesto",
+      "cénit",
+      "Dogma 95",
+      "elipse",
+      "Fórmula 1",
+      "gol",
+      "Hiparco",
+      "Innsbruck",
+      "Juegos Olímpicos",
+      "Luna",
+      "Mercurio",
+      "natación",
+      "año sideral",
+      "observatorio",
+      "portero",
+      "quidditch",
+      "regata",
+      "Sol",
+      "tránsito",
+      "UEFA",
+      "Viggo Mortensen",
+      "excentricidad",
+      "Yas Marina",
+      "Zidane"
     ]
   }
 ]
