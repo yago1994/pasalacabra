@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-06-18",
-    "game_no": 169,
-    "answers": [
-      "absolutismo",
-      "Buster Keaton",
-      "celacanto",
-      "dinastía",
-      "endosimbiosis",
-      "feudalismo",
-      "gameto",
-      "Hammurabi",
-      "iconoclasta",
-      "James Cameron",
-      "levadura",
-      "mercantilismo",
-      "necrosis",
-      "riñón",
-      "ósmosis",
-      "procariota",
-      "arqueólogo",
-      "romanticismo",
-      "savia",
-      "telómero",
-      "sufragio universal",
-      "vacuna",
-      "extinción",
-      "Yersinia pestis",
-      "zoonosis"
-    ]
-  },
-  {
     "date": "2026-06-19",
     "game_no": 170,
     "answers": [
@@ -1857,6 +1826,37 @@
       "óxido",
       "yakuza",
       "zinc"
+    ]
+  },
+  {
+    "date": "2026-08-17",
+    "game_no": 229,
+    "answers": [
+      "Al-Ándalus",
+      "Bailén",
+      "cantiga",
+      "dulzaina",
+      "Egipto",
+      "folía",
+      "Guerra Fría",
+      "Hispania",
+      "ídolo",
+      "Jericó",
+      "latín",
+      "mazurca",
+      "nazarí",
+      "ñáñigo",
+      "orisha",
+      "polonesa",
+      "quijada",
+      "Reconquista",
+      "sefardí",
+      "tonada",
+      "Ugarit",
+      "vihuela",
+      "mexica",
+      "Yuste",
+      "zapatismo"
     ]
   }
 ]
