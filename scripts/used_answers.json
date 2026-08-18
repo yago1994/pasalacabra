@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-06-19",
-    "game_no": 170,
-    "answers": [
-      "ajedrez",
-      "billar",
-      "copla",
-      "duque",
-      "Edad Media",
-      "Felipe II",
-      "grecorromana",
-      "Habsburgo",
-      "Imperio romano",
-      "judería",
-      "linaje",
-      "mozárabe",
-      "Navas de Tolosa",
-      "doña",
-      "Orden de Santiago",
-      "portería",
-      "quinta columna",
-      "regicidio",
-      "saqueo",
-      "tregua",
-      "Urraca I",
-      "vasallaje",
-      "flexión",
-      "yugo",
-      "zoco"
-    ]
-  },
-  {
     "date": "2026-06-20",
     "game_no": 171,
     "answers": [
@@ -1857,6 +1826,37 @@
       "mexica",
       "Yuste",
       "zapatismo"
+    ]
+  },
+  {
+    "date": "2026-08-18",
+    "game_no": 230,
+    "answers": [
+      "Armenia",
+      "Beethoven",
+      "Cobalto",
+      "Danubio",
+      "Europa",
+      "Frigio",
+      "Gamelán",
+      "Huracán",
+      "Irán",
+      "Jaca",
+      "Léman",
+      "Magnesio",
+      "Nimboestrato",
+      "Ñacunday",
+      "Osa Mayor",
+      "Polinesia",
+      "Qatar",
+      "Renio",
+      "Senegal",
+      "Trompeta",
+      "Usumacinta",
+      "Volga",
+      "Xi'an",
+      "Yangtsé",
+      "Zagreb"
     ]
   }
 ]
