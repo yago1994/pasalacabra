@@ -1,0 +1,191 @@
+{
+  "id": "set-2026-08-20",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "French city on the Rhone known for a Roman amphitheater and an 1888–1889 stay by a famous post‑Impressionist.",
+      "answer": "Arles"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Swiss city on the Rhine that hosts a major contemporary art fair.",
+      "answer": "Basel",
+      "alt": [
+        "Basle"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Olympic winter sport where teams slide stones toward a target while sweeping the ice.",
+      "answer": "Curling"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Capital of Senegal on the western tip of the African mainland.",
+      "answer": "Dakar"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Norwegian painter of The Scream.",
+      "answer": "Edvard Munch"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Italian city on the Arno and capital of Tuscany.",
+      "answer": "Florence",
+      "alt": [
+        "Firenze"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Modern art museum in New York designed by Frank Lloyd Wright with a distinctive spiral ramp.",
+      "answer": "Guggenheim",
+      "alt": [
+        "Guggenheim Museum"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Traditional Irish field sport played with a flat wooden stick and a small leather ball.",
+      "answer": "Hurling"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Austrian city that hosted the Winter Olympics in 1964 and 1976.",
+      "answer": "Innsbruck"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Basque court sport using a curved basket to hurl a ball against a wall.",
+      "answer": "Jai alai",
+      "alt": [
+        "jai-alai"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Flat‑woven rug tradition from Anatolia and the Caucasus known for geometric motifs.",
+      "answer": "Kilim"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Prehistoric cave complex in southwestern France famed for Paleolithic animal paintings discovered in 1940.",
+      "answer": "Lascaux"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "French Impressionist who painted the Water Lilies series at Giverny.",
+      "answer": "Monet"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Region of northwestern France noted for World War II landing beaches and Camembert.",
+      "answer": "Normandy"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Scandinavian capital situated at the head of a namesake fjord.",
+      "answer": "Oslo"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Madrid museum housing masterpieces by Velazquez, Goya, and El Greco.",
+      "answer": "Prado",
+      "alt": [
+        "Prado Museum"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Sufi devotional vocal music of South Asia featuring powerful choruses and harmonium.",
+      "answer": "Qawwali",
+      "alt": [
+        "Qawali"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "French Impressionist painter of Dance at Le Moulin de la Galette.",
+      "answer": "Renoir",
+      "alt": [
+        "Pierre-Auguste Renoir"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Unfinished basilica in Barcelona designed by Antoni Gaudi.",
+      "answer": "Sagrada Familia",
+      "alt": [
+        "Sagrada Família"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Major London museum of contemporary art housed in a former power station.",
+      "answer": "Tate Modern"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Florence gallery renowned for Botticelli’s Birth of Venus and Primavera.",
+      "answer": "Uffizi",
+      "alt": [
+        "Uffizi Gallery"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Spanish Mediterranean port city famous for the City of Arts and Sciences complex.",
+      "answer": "Valencia"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Iconic London stadium that hosts England’s home football matches.",
+      "answer": "Wembley",
+      "alt": [
+        "Wembley Stadium"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "1960s avant‑garde art movement associated with George Maciunas and event scores.",
+      "answer": "Fluxus"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese port city south of Tokyo, known for its Minato Mirai waterfront.",
+      "answer": "Yokohama"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Capital of Spain’s Aragon region located on the Ebro River.",
+      "answer": "Zaragoza"
+    }
+  ]
+}
