@@ -1,0 +1,179 @@
+{
+  "id": "set-2026-08-22",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Greek mathematician who shouted 'Eureka' and formulated the law of the lever",
+      "answer": "Archimedes"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "British pioneer who designed the Analytical Engine, a precursor to general-purpose computing",
+      "answer": "Babbage"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Substance that increases reaction rate without itself being consumed",
+      "answer": "Catalyst"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Fruit fly genus widely used as a genetic model organism",
+      "answer": "Drosophila"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Physicist who introduced special relativity in 1905",
+      "answer": "Einstein"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Italian mathematician whose famous sequence begins 1, 1, 2, 3",
+      "answer": "Fibonacci"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Single sheet of carbon atoms arranged in a hexagonal lattice",
+      "answer": "Graphene"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Particle associated with a field that endows other particles with mass",
+      "answer": "Higgs boson"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Soft silvery element number 49 used in touchscreens and solders",
+      "answer": "Indium"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Interlocking picture puzzle made from cut pieces",
+      "answer": "Jigsaw",
+      "alt": [
+        "jigsaw puzzle"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Noble gas with atomic number 36 used in certain lamps",
+      "answer": "Krypton"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Element that is the lightest metal, used in many rechargeable batteries",
+      "answer": "Lithium"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "System of dots and dashes developed for telegraphy",
+      "answer": "Morse code"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "International awards established by the Swedish inventor of dynamite in his will",
+      "answer": "Nobel Prize"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "SI unit of electrical resistance with symbol Ω",
+      "answer": "Ohm"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Greek thinker whose name titles a theorem about right triangles",
+      "answer": "Pythagoras"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Common English keyboard layout named for its first six letters",
+      "answer": "QWERTY",
+      "alt": [
+        "qwerty keyboard"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "3D combination puzzle invented by a Hungarian architect",
+      "answer": "Rubik's Cube",
+      "alt": [
+        "Rubiks Cube"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Material with conductivity between a conductor and an insulator, foundational to microchips",
+      "answer": "Semiconductor"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Display that responds to finger contact",
+      "answer": "Touchscreen",
+      "alt": [
+        "touch screen"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Linux distribution named after a Southern African philosophy of humanity",
+      "answer": "Ubuntu"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Encrypted tunnel used to secure internet traffic on public networks",
+      "answer": "VPN",
+      "alt": [
+        "virtual private network"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Hypothetical tunnel connecting distant regions of spacetime",
+      "answer": "Wormhole"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Rules that define the structure of valid code in a programming language",
+      "answer": "Syntax"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Early web portal co-founded by Jerry Yang",
+      "answer": "Yahoo"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Electronic component used to create a stable reference voltage via controlled reverse breakdown",
+      "answer": "Zener diode",
+      "alt": [
+        "zener"
+      ]
+    }
+  ]
+}
