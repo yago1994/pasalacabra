@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-06-23",
-    "game_no": 174,
-    "answers": [
-      "astrolabio",
-      "brújula",
-      "cinéfilo",
-      "desierto",
-      "estuario",
-      "fiordo",
-      "géiser",
-      "hobbit",
-      "infrarrojo",
-      "Jerusalén",
-      "litoral",
-      "monzón",
-      "nitrato",
-      "sueño MOR",
-      "ozono",
-      "plano secuencia",
-      "químico",
-      "relieve",
-      "sierra",
-      "tornado",
-      "ultrasonidos",
-      "vestuario",
-      "xenomorfo",
-      "Yorgos Lanthimos",
-      "zooplancton"
-    ]
-  },
-  {
     "date": "2026-06-24",
     "game_no": 175,
     "answers": [
@@ -1857,6 +1826,37 @@
       "exposición",
       "yoga",
       "zamba"
+    ]
+  },
+  {
+    "date": "2026-08-22",
+    "game_no": 234,
+    "answers": [
+      "antera",
+      "briófito",
+      "clorofila",
+      "desoxirribosa",
+      "epidermis",
+      "fagocito",
+      "guanina",
+      "hepatocito",
+      "interfase",
+      "jasmonato",
+      "lisosoma",
+      "meiosis",
+      "neuroglía",
+      "añil",
+      "oncogén",
+      "protón",
+      "quinasa",
+      "ribosa",
+      "savia",
+      "tilacoide",
+      "urocultivo",
+      "vitelo",
+      "excitón",
+      "Yersinia",
+      "zooxantela"
     ]
   }
 ]
