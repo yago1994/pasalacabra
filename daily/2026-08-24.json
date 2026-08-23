@@ -1,0 +1,207 @@
+{
+  "id": "set-2026-08-24",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Small red bean used in East Asian desserts",
+      "answer": "Adzuki",
+      "alt": [
+        "Azuki"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Cracked wheat grain used in tabbouleh",
+      "answer": "Bulgur",
+      "alt": [
+        "Bulgur wheat",
+        "Burghul"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Author of Don Quixote",
+      "answer": "Cervantes",
+      "alt": [
+        "Miguel de Cervantes"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Surname of the French author of The Three Musketeers",
+      "answer": "Dumas",
+      "alt": [
+        "Alexandre Dumas"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Saturn moon with geysers feeding the E ring",
+      "answer": "Enceladus"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "American author of The Sound and the Fury",
+      "answer": "Faulkner",
+      "alt": [
+        "William Faulkner"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Clarified butter used in Indian cooking",
+      "answer": "Ghee"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Constellation containing the globular cluster M13",
+      "answer": "Hercules"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Narrator who opens Moby-Dick with 'Call me ____'",
+      "answer": "Ishmael"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Irish author of Ulysses",
+      "answer": "Joyce",
+      "alt": [
+        "James Joyce"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Poet of 'Ode to a Nightingale'",
+      "answer": "Keats",
+      "alt": [
+        "John Keats"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Tragic monarch who divides his realm among his daughters in a Shakespeare play",
+      "answer": "Lear",
+      "alt": [
+        "King Lear"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Victorian novel by George Eliot set in a provincial town",
+      "answer": "Middlemarch"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Russian-American author of Lolita",
+      "answer": "Nabokov",
+      "alt": [
+        "Vladimir Nabokov"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Traditional Chinese tea known for partially oxidized leaves",
+      "answer": "Oolong"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Green nut often used to flavor baklava and gelato",
+      "answer": "Pistachio"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "When a planet appears 90 degrees from the Sun in Earth's sky",
+      "answer": "Quadrature"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Lettuce variety central to Caesar salad",
+      "answer": "Romaine",
+      "alt": [
+        "Cos",
+        "Cos lettuce"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Reclusive author of The Catcher in the Rye",
+      "answer": "Salinger",
+      "alt": [
+        "J. D. Salinger",
+        "JD Salinger"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Largest moon of Saturn",
+      "answer": "Titan"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Purple yam used in Filipino desserts",
+      "answer": "Ube"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Author of Slaughterhouse-Five",
+      "answer": "Vonnegut",
+      "alt": [
+        "Kurt Vonnegut"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Humorist who created Bertie Wooster and Jeeves",
+      "answer": "Wodehouse",
+      "alt": [
+        "P. G. Wodehouse",
+        "PG Wodehouse"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Pleasure-dome locale in Coleridge's Kubla Khan",
+      "answer": "Xanadu"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Tofu skin used in Japanese and Chinese cooking",
+      "answer": "Yuba"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Russian author of the dystopian novel We",
+      "answer": "Zamyatin",
+      "alt": [
+        "Yevgeny Zamyatin"
+      ]
+    }
+  ]
+}
