@@ -1,0 +1,188 @@
+{
+  "id": "set-2026-08-25",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Southernmost continent largely covered by ice.",
+      "answer": "Antarctica"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Hindi-language film industry based in Mumbai.",
+      "answer": "Bollywood"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Puffy, cotton-like cloud type forming at low altitudes.",
+      "answer": "Cumulus"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Landform at a river's mouth formed from sediment deposition.",
+      "answer": "Delta"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Tidal mouth of a river where freshwater meets the sea.",
+      "answer": "Estuary"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "2013 Disney animated film featuring sisters Anna and Elsa.",
+      "answer": "Frozen"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Large cold arid region spanning parts of Mongolia and China.",
+      "answer": "Gobi Desert",
+      "alt": [
+        "Gobi"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Tropical cyclone with sustained winds of at least 74 mph in the Atlantic or eastern Pacific.",
+      "answer": "Hurricane"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "2014 Christopher Nolan space epic starring Matthew McConaughey.",
+      "answer": "Interstellar"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "City considered holy to Judaism, Christianity, and Islam.",
+      "answer": "Jerusalem"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Historic Polish city on the Vistula River known for Wawel Castle.",
+      "answer": "Krakow",
+      "alt": [
+        "Cracow"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Molten rock that emerges onto Earth's surface during an eruption.",
+      "answer": "Lava"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Molten rock beneath Earth's surface.",
+      "answer": "Magma"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Famous cataract straddling the US–Canada border between New York and Ontario.",
+      "answer": "Niagara Falls"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Hawaiian island home to Honolulu and Waikiki.",
+      "answer": "Oahu",
+      "alt": [
+        "O'ahu"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Supercontinent that existed during the late Paleozoic and early Mesozoic eras.",
+      "answer": "Pangaea",
+      "alt": [
+        "Pangea"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Old name for the element with symbol Hg.",
+      "answer": "Quicksilver"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Capital of Iceland on Faxafloi Bay.",
+      "answer": "Reykjavik",
+      "alt": [
+        "Reykjavík"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Instrument that records ground motion during earthquakes.",
+      "answer": "Seismograph",
+      "alt": [
+        "Seismometer"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Treeless biome with permafrost found at high latitudes.",
+      "answer": "Tundra"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Massive sandstone monolith in Australia's Northern Territory.",
+      "answer": "Uluru",
+      "alt": [
+        "Ayers Rock"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "South American country with Angel Falls and Lake Maracaibo.",
+      "answer": "Venezuela"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Prevailing mid-latitude winds that blow toward the east.",
+      "answer": "Westerlies",
+      "alt": [
+        "Prevailing westerlies"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Type of cable with a central conductor and outer shield separated by insulation, used for RF signals.",
+      "answer": "Coaxial",
+      "alt": [
+        "Coax"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Capital of Canada's Northwest Territories, on Great Slave Lake.",
+      "answer": "Yellowknife"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Swiss Alps resort town at the foot of the Matterhorn.",
+      "answer": "Zermatt"
+    }
+  ]
+}
