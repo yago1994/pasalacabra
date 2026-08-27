@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-06-28",
-    "game_no": 179,
-    "answers": [
-      "aparato de Golgi",
-      "biopsia",
-      "citoplasma",
-      "difracción",
-      "electrólisis",
-      "fotosíntesis",
-      "gónada",
-      "histología",
-      "inmunoglobulina",
-      "jardín botánico",
-      "leucemia",
-      "micelio",
-      "nematodo",
-      "muñón",
-      "osteoblasto",
-      "placenta",
-      "quimioluminiscencia",
-      "radiotelescopio",
-      "sarcómero",
-      "telófase",
-      "ubiquitina",
-      "vitamina",
-      "xenobiótico",
-      "yodación",
-      "zimógeno"
-    ]
-  },
-  {
     "date": "2026-06-29",
     "game_no": 180,
     "answers": [
@@ -1857,6 +1826,37 @@
       "auxina",
       "coyote",
       "zumaque"
+    ]
+  },
+  {
+    "date": "2026-08-27",
+    "game_no": 239,
+    "answers": [
+      "aurora",
+      "bioluminiscencia",
+      "corona",
+      "declinación",
+      "equinoccio",
+      "filme",
+      "guion",
+      "halo",
+      "infrarrojo",
+      "mejillón",
+      "leucocito",
+      "melanocito",
+      "nutria",
+      "año tropical",
+      "operador de cámara",
+      "plató",
+      "quiste",
+      "reparto",
+      "supernova",
+      "telescopio",
+      "umbra",
+      "vestuario",
+      "exósfera",
+      "yerba mate",
+      "zootecnia"
     ]
   }
 ]
