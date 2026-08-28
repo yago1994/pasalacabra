@@ -1,0 +1,170 @@
+{
+  "id": "set-2026-08-29",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Pollen-producing part of a flower's stamen.",
+      "answer": "anther"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Data transfer capacity of a network connection, typically measured in bits per second.",
+      "answer": "bandwidth"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "All cell contents excluding the nucleus; includes cytosol and organelles.",
+      "answer": "cytoplasm"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "The first beat of a measure, emphasized by a conductor's downward motion.",
+      "answer": "downbeat"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Thin membrane that vibrates in response to sound waves at the end of the ear canal.",
+      "answer": "eardrum",
+      "alt": [
+        "tympanic membrane"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Small pit in the retina responsible for the sharpest vision.",
+      "answer": "fovea"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Nucleobase that pairs with cytosine in DNA.",
+      "answer": "guanine"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Brain region that links the nervous and endocrine systems by controlling the pituitary.",
+      "answer": "hypothalamus"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Cell cycle stage encompassing G1, S, and G2 phases before mitosis.",
+      "answer": "interphase"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Variation in network delay that can cause choppy audio on VoIP calls.",
+      "answer": "jitter"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Enzyme that transfers phosphate groups to substrates, often activating proteins.",
+      "answer": "kinase"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Class of hydrophobic biomolecules including fats and sterols.",
+      "answer": "lipid"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Mass of threadlike hyphae that forms the main body of a fungus.",
+      "answer": "mycelium"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "External opening of the nasal cavity used for breathing and smell.",
+      "answer": "nostril",
+      "alt": [
+        "naris"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Genetic unit in bacteria in which multiple genes are transcribed from a single promoter.",
+      "answer": "operon"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Gland that produces digestive enzymes and hormones such as insulin and glucagon.",
+      "answer": "pancreas"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Data structure in which elements are processed in first-in, first-out order.",
+      "answer": "queue"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Electronic component that limits current flow, specified by its resistance in ohms.",
+      "answer": "resistor"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Highest standard female singing voice type.",
+      "answer": "soprano"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Flat pointing device on a laptop that senses finger movement.",
+      "answer": "touchpad",
+      "alt": [
+        "trackpad"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Tube that carries urine from the bladder to the outside of the body.",
+      "answer": "urethra"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Analog phonograph record format prized by collectors and DJs.",
+      "answer": "vinyl"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Organ in mammals where an embryo develops during pregnancy.",
+      "answer": "womb"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Small extension at the lower end of the sternum in humans.",
+      "answer": "xiphoid process"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Mosquito-borne viral disease named for the jaundice it can cause.",
+      "answer": "yellow fever"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Low-power wireless mesh networking standard used for smart home devices.",
+      "answer": "Zigbee"
+    }
+  ]
+}
