@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-06-29",
-    "game_no": 180,
-    "answers": [
-      "Alatriste",
-      "Berlanga",
-      "Camela",
-      "Drexler",
-      "Estopa",
-      "Fito",
-      "Ghibli",
-      "Héroes del Silencio",
-      "Ismael Serrano",
-      "Janis Joplin",
-      "Leiva",
-      "Mecano",
-      "Nach",
-      "El Sueño de Morfeo",
-      "Obús",
-      "Pimpinela",
-      "Quentin",
-      "Raphael",
-      "Sabina",
-      "Triana",
-      "Umbral",
-      "Vetusta Morla",
-      "Xuxa",
-      "Yerma",
-      "Zappa"
-    ]
-  },
-  {
     "date": "2026-06-30",
     "game_no": 181,
     "answers": [
@@ -1857,6 +1826,37 @@
       "exósfera",
       "yerba mate",
       "zootecnia"
+    ]
+  },
+  {
+    "date": "2026-08-28",
+    "game_no": 240,
+    "answers": [
+      "astrolabio",
+      "botarga",
+      "capitel",
+      "dórico",
+      "eclíptica",
+      "fuste",
+      "güiro",
+      "heráldica",
+      "Ixchel",
+      "Jano",
+      "Lares",
+      "Medusa",
+      "naos",
+      "ñusta",
+      "ocaso",
+      "pinacoteca",
+      "Quimbaya",
+      "rosetón",
+      "sinopia",
+      "tríptico",
+      "uncial",
+      "vidriera",
+      "Xipe Tótec",
+      "Yemayá",
+      "Zeus"
     ]
   }
 ]
