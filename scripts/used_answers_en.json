@@ -1517,5 +1517,36 @@
       "yellow fever",
       "Zigbee"
     ]
+  },
+  {
+    "date": "2026-08-30",
+    "answers": [
+      "anode",
+      "biathlon",
+      "checksum",
+      "deadlift",
+      "elbow",
+      "forehand",
+      "gyroscope",
+      "heatsink",
+      "isomer",
+      "jab",
+      "kayak",
+      "lever",
+      "mouse",
+      "net",
+      "oscilloscope",
+      "pipette",
+      "qualifier",
+      "relay",
+      "soldering",
+      "torque",
+      "upload",
+      "volley",
+      "wetsuit",
+      "exabyte",
+      "yips",
+      "zipline"
+    ]
   }
 ]
