@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-01",
-    "game_no": 182,
-    "answers": [
-      "acrópolis",
-      "butaca",
-      "caligrafía",
-      "decorado",
-      "encuadre",
-      "fusión",
-      "género",
-      "hemisferio",
-      "interpretación",
-      "joviano",
-      "largometraje",
-      "melodrama",
-      "nominación",
-      "español",
-      "oráculo",
-      "preestreno",
-      "quintaesencia",
-      "racord",
-      "satélite",
-      "taquilla",
-      "ucronía",
-      "vampiro",
-      "extraterrestre",
-      "maya",
-      "zénit"
-    ]
-  },
-  {
     "date": "2026-07-02",
     "game_no": 183,
     "answers": [
@@ -1857,6 +1826,37 @@
       "axón",
       "yedra",
       "zancudo"
+    ]
+  },
+  {
+    "date": "2026-08-30",
+    "game_no": 242,
+    "answers": [
+      "Almería",
+      "Badajoz",
+      "Cartagena",
+      "Donostia",
+      "Eslovenia",
+      "Fallas",
+      "Gijón",
+      "Hollywood",
+      "India",
+      "Jerez",
+      "León",
+      "Mallorca",
+      "Nazaré",
+      "ñoquis",
+      "Oñati",
+      "Palencia",
+      "Queso",
+      "Ronda",
+      "Soria",
+      "Tarragona",
+      "Urueña",
+      "Vitoria",
+      "Xacobeo",
+      "Yoyes",
+      "Zelanda"
     ]
   }
 ]
