@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-03",
-    "game_no": 184,
-    "answers": [
-      "arpegio",
-      "batería",
-      "cajón",
-      "doblaje",
-      "escena",
-      "flautín",
-      "góspel",
-      "Holi",
-      "indie",
-      "jingle",
-      "leitmotiv",
-      "maraca",
-      "nota",
-      "Niña Pastori",
-      "ostinato",
-      "palmas",
-      "requinto",
-      "ritmo",
-      "ska",
-      "trovador",
-      "cumbia",
-      "vibrato",
-      "extradiegética",
-      "Yupanqui",
-      "zanfona"
-    ]
-  },
-  {
     "date": "2026-07-04",
     "game_no": 185,
     "answers": [
@@ -1857,6 +1826,37 @@
       "extinción",
       "Yamuna",
       "zooplancton"
+    ]
+  },
+  {
+    "date": "2026-09-01",
+    "game_no": 244,
+    "answers": [
+      "ajolote",
+      "búho",
+      "cráter",
+      "druida",
+      "erizo",
+      "feto",
+      "genoma",
+      "hipocampo",
+      "ictericia",
+      "jabalí",
+      "lagarto",
+      "murciélago",
+      "nécora",
+      "champiñón",
+      "oruga",
+      "placenta",
+      "queloide",
+      "rana",
+      "simbionte",
+      "telómero",
+      "universo",
+      "vitamina",
+      "xoloitzcuintle",
+      "yuca",
+      "zarzamora"
     ]
   }
 ]
