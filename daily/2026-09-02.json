@@ -1,0 +1,170 @@
+{
+  "id": "set-2026-09-02",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "2012 Best Picture about a CIA rescue in Iran.",
+      "answer": "Argo"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Composer of Hungarian Dances and A German Requiem.",
+      "answer": "Brahms"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Orchestral single-reed woodwind typically pitched in B-flat or A.",
+      "answer": "Clarinet"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Sci-fi epic directed by Denis Villeneuve, based on Frank Herbert's novel.",
+      "answer": "Dune"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Rap artist nicknamed Slim Shady who released The Marshall Mathers LP.",
+      "answer": "Eminem"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Rock band founded by Dave Grohl after Nirvana's breakup.",
+      "answer": "Foo Fighters"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Composer of Rhapsody in Blue and An American in Paris.",
+      "answer": "Gershwin",
+      "alt": [
+        "George Gershwin"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Composer of the orchestral suite The Planets.",
+      "answer": "Holst"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "American modernist composer of The Unanswered Question.",
+      "answer": "Ives"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Singer-songwriter who wrote Both Sides Now and Blue.",
+      "answer": "Joni Mitchell"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Director of 2001: A Space Odyssey and The Shining.",
+      "answer": "Kubrick"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "French siblings who held one of the first public film screenings in 1895.",
+      "answer": "Lumière brothers",
+      "alt": [
+        "Lumiere brothers"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Composer of Symphony No. 8 often called the 'Symphony of a Thousand'.",
+      "answer": "Mahler"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Grunge band that released Nevermind and In Utero.",
+      "answer": "Nirvana"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Britpop band of brothers behind Wonderwall.",
+      "answer": "Oasis"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "1994 crime film told out of chronological order, starring Travolta and Jackson.",
+      "answer": "Pulp Fiction"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Legendary producer who co-produced Michael Jackson's Thriller.",
+      "answer": "Quincy Jones"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "English band behind the albums OK Computer and Kid A.",
+      "answer": "Radiohead"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Dark region on the solar photosphere caused by magnetic activity.",
+      "answer": "Sunspot"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Pop singer whose albums include 1989 and Folklore.",
+      "answer": "Taylor Swift"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Hollywood studio whose globe logo appears before Jurassic Park.",
+      "answer": "Universal Pictures",
+      "alt": [
+        "Universal Studios"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Italian composer of Aida and La Traviata.",
+      "answer": "Verdi"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "American rock band known for the Blue Album and 'Buddy Holly'.",
+      "answer": "Weezer"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Animation studio behind Toy Story and Inside Out.",
+      "answer": "Pixar"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese company known for pianos and synthesizers.",
+      "answer": "Yamaha"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Experimental rock guitarist and composer who led the Mothers of Invention.",
+      "answer": "Zappa"
+    }
+  ]
+}
