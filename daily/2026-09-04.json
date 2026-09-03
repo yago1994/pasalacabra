@@ -1,0 +1,161 @@
+{
+  "id": "set-2026-09-04",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Technique of playing the notes of a chord sequentially rather than simultaneously.",
+      "answer": "arpeggio"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Stick used by a conductor to direct an ensemble.",
+      "answer": "baton"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Microscopic hairlike structures on cells that move fluid or the cell itself.",
+      "answer": "cilia"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Variation in loudness indicated by markings such as p, mp, and f.",
+      "answer": "dynamics"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Additional performance given at the end of a concert in response to strong applause.",
+      "answer": "encore"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Brain lobe behind the forehead involved in planning, decision-making, and voluntary movement.",
+      "answer": "frontal lobe"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Continuous slide between two pitches on an instrument or voice.",
+      "answer": "glissando"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Simultaneous combination of notes producing chords.",
+      "answer": "harmony"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Distance in pitch between two tones.",
+      "answer": "interval"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Short, catchy tune used in advertising.",
+      "answer": "jingle"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Set of sharps or flats placed after the clef that fixes the tonal center for a piece.",
+      "answer": "key signature"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Person who writes the words for songs.",
+      "answer": "lyricist"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Main tune in a piece of music.",
+      "answer": "melody"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Bodywide network of specialized cells and tissues that transmits electrical signals.",
+      "answer": "nervous system"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Large keyboard instrument with air-driven pipes, common in churches.",
+      "answer": "organ"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Board or surface on which a painter arranges and mixes colors.",
+      "answer": "palette"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "In 4/4 time, which duration counts as one beat in American notation?",
+      "answer": "quarter note"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Pattern of durations and accents in music.",
+      "answer": "rhythm"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Smallest bone in the human body, located in the middle ear.",
+      "answer": "stapes"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Work of art consisting of three panels, often hinged for use as an altarpiece.",
+      "answer": "triptych"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Preliminary monochrome layer on a canvas used to establish values before final colors.",
+      "answer": "underpainting"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Section of a song that delivers narrative content and alternates with the chorus.",
+      "answer": "verse"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "In 4/4 time, which duration counts as four beats in American notation?",
+      "answer": "whole note"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Long projection of a neuron that carries nerve impulses away from the cell body.",
+      "answer": "axon"
+    },
+    {
+      "letter": "Y",
+      "mode": "contains",
+      "question": "The simplest amino acid, with a single hydrogen as its side chain.",
+      "answer": "glycine"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Describes diseases that can pass from animals to humans.",
+      "answer": "zoonotic"
+    }
+  ]
+}
