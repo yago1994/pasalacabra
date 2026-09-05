@@ -1,0 +1,176 @@
+{
+  "id": "set-2026-09-06",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Largest river by discharge in South America.",
+      "answer": "Amazon River",
+      "alt": [
+        "Amazon"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Cold War barrier that fell in 1989 dividing a German city.",
+      "answer": "Berlin Wall"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Series of medieval campaigns from Western Europe to the Levant.",
+      "answer": "Crusades"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Naturalist who wrote On the Origin of Species.",
+      "answer": "Darwin"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Imaginary line at 0 degrees latitude circling Earth.",
+      "answer": "Equator"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Preserved remains or traces of ancient life in rock.",
+      "answer": "Fossil"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "World’s largest coral system off Australia’s northeast coast.",
+      "answer": "Great Barrier Reef"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Babylonian king famous for an early law code.",
+      "answer": "Hammurabi"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "River flowing through Tibet, India, and Pakistan that lends its name to a Bronze Age civilization.",
+      "answer": "Indus River",
+      "alt": [
+        "Indus"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Island nation whose largest city is Tokyo.",
+      "answer": "Japan"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Fortified complex in Moscow that serves as the Russian president’s residence.",
+      "answer": "Kremlin"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Angular distance north or south measured from the Equator.",
+      "answer": "Latitude"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Explorer who led the first circumnavigation of the globe.",
+      "answer": "Magellan"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Extinct human relative known from fossils in Europe and western Asia.",
+      "answer": "Neanderthal"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "State centered in Anatolia that spanned Southeast Europe, Western Asia, and North Africa until 1922.",
+      "answer": "Ottoman Empire"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Roman city buried by the eruption of Vesuvius in 79 CE, famed for its plaster casts of victims.",
+      "answer": "Pompeii"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Indigenous language family of the Andes once linked with the Inca.",
+      "answer": "Quechua"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "River famously crossed by Julius Caesar in 49 BCE.",
+      "answer": "Rubicon"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Artificial waterway linking the Mediterranean and Red Seas.",
+      "answer": "Suez Canal"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "One of the two great rivers of Mesopotamia flowing through Iraq.",
+      "answer": "Tigris River",
+      "alt": [
+        "Tigris"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Eastern European country with a Black Sea coastline and capital Kyiv.",
+      "answer": "Ukraine"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Longest river in Europe flowing into the Caspian Sea.",
+      "answer": "Volga River",
+      "alt": [
+        "Volga"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "1972 burglary and cover-up that led to a U.S. president’s resignation.",
+      "answer": "Watergate"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "German federal state with capital Dresden.",
+      "answer": "Saxony"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Mexican landform separating the Gulf of Mexico from the Caribbean Sea.",
+      "answer": "Yucatán Peninsula",
+      "alt": [
+        "Yucatan Peninsula"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "River that feeds Victoria Falls on the border of Zambia and Zimbabwe.",
+      "answer": "Zambezi River"
+    }
+  ]
+}
