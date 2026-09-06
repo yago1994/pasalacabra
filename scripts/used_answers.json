@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-08",
-    "game_no": 189,
-    "answers": [
-      "anemia",
-      "biología",
-      "cerebro",
-      "densidad",
-      "ecosistema",
-      "fotosfera",
-      "giroscopio",
-      "historia",
-      "ionosfera",
-      "jade",
-      "litio",
-      "meteorito",
-      "neutrón",
-      "cáñamo",
-      "ópera",
-      "Plutón",
-      "qubit",
-      "raíz",
-      "sismógrafo",
-      "titanio",
-      "úrea",
-      "válvula",
-      "xenolito",
-      "yodoformo",
-      "zafiro"
-    ]
-  },
-  {
     "date": "2026-07-09",
     "game_no": 190,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Xochicalco",
       "York",
       "Zacatecas"
+    ]
+  },
+  {
+    "date": "2026-09-06",
+    "game_no": 249,
+    "answers": [
+      "albedo",
+      "balompié",
+      "Constantino",
+      "diáspora",
+      "Escipión",
+      "Flecha Valona",
+      "galaxia",
+      "Hammurabi",
+      "Iniesta",
+      "Jerjes",
+      "Lepanto",
+      "Maracanazo",
+      "nebulosa",
+      "España",
+      "Osa Menor",
+      "perihelio",
+      "Queronea",
+      "Roncesvalles",
+      "solsticio",
+      "Trafalgar",
+      "Uclés",
+      "Virgo",
+      "Xhaka",
+      "Yalta",
+      "zodíaco"
     ]
   }
 ]
