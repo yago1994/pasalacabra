@@ -1,0 +1,189 @@
+{
+  "id": "set-2026-09-07",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Measure of how much sunlight a surface reflects, used in planetary science.",
+      "answer": "Albedo"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Strait separating European and Asian Turkey, linking the Black Sea to the Sea of Marmara.",
+      "answer": "Bosphorus",
+      "alt": [
+        "Bosporus"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Mountain range between the Black and Caspian seas, home to Mount Elbrus.",
+      "answer": "Caucasus"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "River that flows through Kyiv and empties into the Black Sea.",
+      "answer": "Dnieper",
+      "alt": [
+        "Dnipro"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Major Spanish river that passes through Zaragoza before reaching the Mediterranean.",
+      "answer": "Ebro"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Early 20th-century art movement led by Matisse that used bold, nonnaturalistic color.",
+      "answer": "Fauvism"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "ESA space observatory creating a precise 3D map of over a billion stars.",
+      "answer": "Gaia"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Japanese artist of The Great Wave off Kanagawa.",
+      "answer": "Hokusai",
+      "alt": [
+        "Katsushika Hokusai"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Sea between Greece and southern Italy.",
+      "answer": "Ionian Sea"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Peninsula forming mainland Denmark between the North Sea and the Baltic.",
+      "answer": "Jutland",
+      "alt": [
+        "Jylland"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Vast ancient temple complex at Thebes famed for its Great Hypostyle Hall.",
+      "answer": "Karnak"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Longest river in France, flowing past Orléans and Tours.",
+      "answer": "Loire"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Small moon of Saturn with a giant impact crater named Herschel.",
+      "answer": "Mimas"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Coastal desert of Namibia known for towering dunes along the Atlantic.",
+      "answer": "Namib Desert",
+      "alt": [
+        "Namib"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "U-shaped water body formed when a river meander is cut off.",
+      "answer": "Oxbow lake",
+      "alt": [
+        "oxbow"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Northern constellation featuring the Great Square asterism.",
+      "answer": "Pegasus"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Four-lobed ornamental shape common in Gothic tracery.",
+      "answer": "Quatrefoil"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Major European river flowing through Basel, Strasbourg, and Cologne.",
+      "answer": "Rhine",
+      "alt": [
+        "Rhein"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Large Indonesian island west of Java and south of the Malay Peninsula.",
+      "answer": "Sumatra"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "River that flows through London before entering the North Sea.",
+      "answer": "Thames"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Indian city of lakes in Rajasthan, famous for the City Palace on Lake Pichola.",
+      "answer": "Udaipur"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Longest river in Poland, running to the Baltic via Gdańsk.",
+      "answer": "Vistula",
+      "alt": [
+        "Wisla",
+        "Wisła"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Dry desert valley or streambed that temporarily fills with water after rain.",
+      "answer": "Wadi"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Ancient Greek sculptor credited with Aphrodite of Knidos.",
+      "answer": "Praxiteles"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese contemporary artist renowned for polka dots and Infinity Rooms.",
+      "answer": "Yayoi Kusama"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Mountain range running along western Iran and into northern Iraq.",
+      "answer": "Zagros Mountains",
+      "alt": [
+        "Zagros"
+      ]
+    }
+  ]
+}
