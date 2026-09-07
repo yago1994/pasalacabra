@@ -1,0 +1,161 @@
+{
+  "id": "set-2026-09-08",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Chain of islands such as Indonesia or the Philippines.",
+      "answer": "archipelago"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Instrument that measures atmospheric pressure.",
+      "answer": "barometer"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "High, wispy type of cloud.",
+      "answer": "cirrus"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Belt of low winds near the equator known to sailors.",
+      "answer": "doldrums"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Sudden shaking of the ground due to tectonic movement.",
+      "answer": "earthquake"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Flat land along a river that is periodically inundated.",
+      "answer": "floodplain"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Hot spring that intermittently erupts columns of water and steam.",
+      "answer": "geyser"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Apparent line where the sky meets Earth's surface.",
+      "answer": "horizon"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Narrow strip of land connecting two larger land areas.",
+      "answer": "isthmus"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Structure built to stabilize a channel at a harbor entrance.",
+      "answer": "jetty"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Landscape of sinkholes and caves formed by dissolving limestone.",
+      "answer": "karst"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Shallow coastal water body separated from the ocean by a barrier.",
+      "answer": "lagoon"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Sinuous bend in a river channel.",
+      "answer": "meander"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Polyatomic anion with formula NO3 minus, common in fertilizers.",
+      "answer": "nitrate"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Facility equipped with telescopes for astronomical research.",
+      "answer": "observatory"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Landform surrounded by water on three sides.",
+      "answer": "peninsula"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Isolation to prevent the spread of disease.",
+      "answer": "quarantine"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Ridge of rock, sand, or coral just below the sea's surface.",
+      "answer": "reef"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Atmospheric layer above the troposphere containing the ozone layer.",
+      "answer": "stratosphere"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Persistent easterly winds in the tropics that aided sailing ships.",
+      "answer": "trade winds"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Ocean process where deep, nutrient-rich water rises to the surface.",
+      "answer": "upwelling"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Low area between hills or mountains, often with a river running through.",
+      "answer": "valley"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Process that breaks down rocks at Earth's surface by physical or chemical means.",
+      "answer": "weathering"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Compound formed when an element combines with oxygen.",
+      "answer": "oxide"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Streamlined ridge carved by wind erosion in deserts.",
+      "answer": "yardang"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Pre-film animation device that creates the illusion of motion using slits and spinning images.",
+      "answer": "zoetrope"
+    }
+  ]
+}
