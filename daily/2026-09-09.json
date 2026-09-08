@@ -1,0 +1,176 @@
+{
+  "id": "set-2026-09-09",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Greek storyteller credited with moral tales featuring talking animals.",
+      "answer": "Aesop"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Iceni queen who led a revolt against Roman rule in Britain.",
+      "answer": "Boudica",
+      "alt": [
+        "Boadicea"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Three-headed hound that guards the entrance to the underworld in Greek myth.",
+      "answer": "Cerberus"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Victorian novelist who wrote Great Expectations and Oliver Twist.",
+      "answer": "Dickens"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Melancholy donkey in A. A. Milne's stories.",
+      "answer": "Eeyore"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "American author of The Great Gatsby.",
+      "answer": "Fitzgerald",
+      "alt": [
+        "F. Scott Fitzgerald"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Wizard mentor to Frodo in The Lord of the Rings.",
+      "answer": "Gandalf"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Egyptian pharaoh who commissioned the terraced temple Djeser-Djeseru at Deir el-Bahri.",
+      "answer": "Hatshepsut",
+      "alt": [
+        "Hatchepsut"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Scheming ensign and primary antagonist in Shakespeare's tragedy set in Venice.",
+      "answer": "Iago"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Nonsense poem in Through the Looking-Glass by Lewis Carroll.",
+      "answer": "Jabberwocky"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Author of The Jungle Book and the poem If—.",
+      "answer": "Kipling"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Arthurian knight famed for his affair with Queen Guinevere.",
+      "answer": "Lancelot"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Extinct Ice Age relative of elephants with long curved tusks.",
+      "answer": "Mammoth"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Roman emperor during the Great Fire of Rome in 64 CE.",
+      "answer": "Nero"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Ancient Egyptian god of the afterlife and husband of Isis.",
+      "answer": "Osiris"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Faithful wife of Odysseus who wove by day and unraveled by night.",
+      "answer": "Penelope"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Member of the Religious Society of Friends founded by George Fox.",
+      "answer": "Quaker"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Mystic who gained influence over Russia's last imperial family.",
+      "answer": "Rasputin",
+      "alt": [
+        "Grigori Rasputin"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Thracian gladiator who led a major slave uprising against Rome.",
+      "answer": "Spartacus"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Boy pharaoh whose intact tomb was discovered by Howard Carter in 1922.",
+      "answer": "Tutankhamun",
+      "alt": [
+        "Tutankhamen"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Muckraking novelist who exposed Chicago meatpacking in The Jungle.",
+      "answer": "Upton Sinclair"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Chooser of the slain in Norse mythology who serves Odin.",
+      "answer": "Valkyrie"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Playwright of The Importance of Being Earnest.",
+      "answer": "Wilde"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Title character of a French comic set in a Gaulish village.",
+      "answer": "Asterix"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Immense world tree linking realms in Norse mythology.",
+      "answer": "Yggdrasil"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Ming dynasty admiral who led seven treasure voyages across the Indian Ocean.",
+      "answer": "Zheng He"
+    }
+  ]
+}
