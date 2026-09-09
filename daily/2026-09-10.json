@@ -1,0 +1,185 @@
+{
+  "id": "set-2026-09-10",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Tragedy by Sophocles about a woman who buries her brother against the king's decree.",
+      "answer": "Antigone"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Fortress stormed in Paris on July 14, 1789.",
+      "answer": "Bastille"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Frame narrative of pilgrims swapping stories on their way to a shrine, written in Middle English.",
+      "answer": "Canterbury Tales"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Great survey of England ordered by William the Conqueror in 1086.",
+      "answer": "Domesday Book",
+      "alt": [
+        "Doomsday Book"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "British monarch whose reign spanned from 1952 to 2022.",
+      "answer": "Elizabeth II"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Founder of modern nursing who served during the Crimean War.",
+      "answer": "Florence Nightingale"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "German collectors who published Kinder- und Hausmärchen, including Hansel and Gretel.",
+      "answer": "Grimm Brothers",
+      "alt": [
+        "Gebrüder Grimm"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Mythic beauty whose abduction sparked the Trojan War.",
+      "answer": "Helen of Troy"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Historical novel by Walter Scott set after the Third Crusade, centered on a disinherited Saxon knight.",
+      "answer": "Ivanhoe"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Protagonist of Victor Hugo's Les Misérables, pursued by Inspector Javert.",
+      "answer": "Jean Valjean"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Mongol ruler who founded China's Yuan dynasty and met Marco Polo.",
+      "answer": "Kublai Khan"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Sir Thomas Malory's compilation of Arthurian legends.",
+      "answer": "Le Morte d'Arthur",
+      "alt": [
+        "Le Morte Darthur"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Florentine thinker who wrote The Prince.",
+      "answer": "Machiavelli"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Medieval German epic recounting Siegfried and the fall of the Burgundians.",
+      "answer": "Nibelungenlied"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Tragedy by Sophocles in which a king unknowingly kills his father and marries his mother.",
+      "answer": "Oedipus Rex",
+      "alt": [
+        "Oedipus Tyrannus"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Series of three wars between Rome and Carthage in the 3rd–2nd centuries BCE.",
+      "answer": "Punic Wars"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "China's final imperial dynasty, ruling from 1644 to 1912.",
+      "answer": "Qing dynasty",
+      "alt": [
+        "Qing"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Tormented protagonist of Dostoevsky's Crime and Punishment.",
+      "answer": "Raskolnikov",
+      "alt": [
+        "Rodion Raskolnikov"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "1692 prosecutions in colonial Massachusetts that led to executions and imprisonments.",
+      "answer": "Salem witch trials"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Comedy by Molière about a hypocritical impostor in a pious household.",
+      "answer": "Tartuffe"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Abolitionist novel by Harriet Beecher Stowe published in 1852.",
+      "answer": "Uncle Tom's Cabin"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Novel by Thackeray featuring the social climber Becky Sharp.",
+      "answer": "Vanity Fair"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Novel by Tolstoy chronicling Russian society during Napoleon's invasion.",
+      "answer": "War and Peace",
+      "alt": [
+        "War & Peace"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Ancient Greek historian who led the Ten Thousand and wrote Anabasis.",
+      "answer": "Xenophon"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese historical era named for a ruling clan, roughly 3rd to 8th centuries CE.",
+      "answer": "Yamato period",
+      "alt": [
+        "Yamato"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "First-century Jewish political movement that resisted Roman rule.",
+      "answer": "Zealots"
+    }
+  ]
+}

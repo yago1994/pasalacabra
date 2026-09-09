@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-11",
-    "answers": [
-      "Alien",
-      "Beatles",
-      "Cheetah",
-      "Duck",
-      "Echidna",
-      "Flute",
-      "Gorilla",
-      "Hitchcock",
-      "Inside Out",
-      "Jaws",
-      "Kiwi",
-      "Lion",
-      "Madonna",
-      "Neil Young",
-      "Octopus",
-      "Parrot",
-      "Queen",
-      "Rhinoceros",
-      "Star Wars",
-      "Trombone",
-      "U2",
-      "Vivaldi",
-      "Walrus",
-      "Fox",
-      "Yak",
-      "Zebra"
-    ]
-  },
-  {
     "date": "2026-07-13",
     "answers": [
       "Austen",
@@ -1857,6 +1826,37 @@
       "Asterix",
       "Yggdrasil",
       "Zheng He"
+    ]
+  },
+  {
+    "date": "2026-09-10",
+    "answers": [
+      "Antigone",
+      "Bastille",
+      "Canterbury Tales",
+      "Domesday Book",
+      "Elizabeth II",
+      "Florence Nightingale",
+      "Grimm Brothers",
+      "Helen of Troy",
+      "Ivanhoe",
+      "Jean Valjean",
+      "Kublai Khan",
+      "Le Morte d'Arthur",
+      "Machiavelli",
+      "Nibelungenlied",
+      "Oedipus Rex",
+      "Punic Wars",
+      "Qing dynasty",
+      "Raskolnikov",
+      "Salem witch trials",
+      "Tartuffe",
+      "Uncle Tom's Cabin",
+      "Vanity Fair",
+      "War and Peace",
+      "Xenophon",
+      "Yamato period",
+      "Zealots"
     ]
   }
 ]
