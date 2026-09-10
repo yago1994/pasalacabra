@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-12",
-    "game_no": 193,
-    "answers": [
-      "Atenas",
-      "Brasil",
-      "Cretácico",
-      "Dorsal oceánica",
-      "Ebro",
-      "Filipinas",
-      "Gibraltar",
-      "Hidrósfera",
-      "Islandia",
-      "Jutlandia",
-      "Líbano",
-      "Moldavia",
-      "Navarra",
-      "Ñandú",
-      "Oporto",
-      "Potosí",
-      "Quito",
-      "Rin",
-      "Siria",
-      "Tirana",
-      "Ural",
-      "Valladolid",
-      "experimento",
-      "Yucatán",
-      "Zaragoza"
-    ]
-  },
-  {
     "date": "2026-07-13",
     "game_no": 194,
     "answers": [
@@ -1857,6 +1826,37 @@
       "mixolidio",
       "payador",
       "zortziko"
+    ]
+  },
+  {
+    "date": "2026-09-10",
+    "game_no": 253,
+    "answers": [
+      "ameba",
+      "brujo",
+      "cisne",
+      "darwinismo",
+      "endemia",
+      "flagelo",
+      "glándula",
+      "hiena",
+      "ictiología",
+      "jaguar",
+      "lignina",
+      "mamut",
+      "náyade",
+      "ñora",
+      "olivo",
+      "páncreas",
+      "Quetzalcóatl",
+      "raíz",
+      "sirena",
+      "tiburón",
+      "urraca",
+      "vesícula biliar",
+      "saxífraga",
+      "yacuruna",
+      "zanahoria"
     ]
   }
 ]
