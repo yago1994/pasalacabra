@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-13",
-    "answers": [
-      "Austen",
-      "Baklava",
-      "Chaucer",
-      "Dante",
-      "Elizabeth I",
-      "Falafel",
-      "Gutenberg",
-      "Hemingway",
-      "Iliad",
-      "Joan of Arc",
-      "Kafka",
-      "Lincoln",
-      "Macbeth",
-      "Napoleon",
-      "Orwell",
-      "Poe",
-      "Quiche",
-      "Renaissance",
-      "Sushi",
-      "Tolstoy",
-      "Ulysses",
-      "Voltaire",
-      "Woolf",
-      "Xerxes",
-      "Yeats",
-      "Zola"
-    ]
-  },
-  {
     "date": "2026-07-14",
     "answers": [
       "ATP",
@@ -1857,6 +1826,37 @@
       "Xenophon",
       "Yamato period",
       "Zealots"
+    ]
+  },
+  {
+    "date": "2026-09-11",
+    "answers": [
+      "aperture",
+      "benzene",
+      "canvas",
+      "diffusion",
+      "embryo",
+      "fractal",
+      "graphite",
+      "hematite",
+      "insect",
+      "Jurassic",
+      "kilogram",
+      "lipase",
+      "melanin",
+      "neurotransmitter",
+      "ovule",
+      "phloem",
+      "quenching",
+      "rumen",
+      "stethoscope",
+      "titration",
+      "umbel",
+      "viscosity",
+      "wisteria",
+      "matrix",
+      "yew",
+      "zirconium"
     ]
   }
 ]
