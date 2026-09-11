@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-14",
-    "answers": [
-      "ATP",
-      "bacteria",
-      "chlorophyll",
-      "dopamine",
-      "enzyme",
-      "fermentation",
-      "glucose",
-      "hemoglobin",
-      "insulin",
-      "joule",
-      "keratin",
-      "lysosome",
-      "mitosis",
-      "neuron",
-      "omelet",
-      "photosynthesis",
-      "quinoa",
-      "ribosome",
-      "starch",
-      "thyroid",
-      "ubiquitin",
-      "vaccine",
-      "whey",
-      "xylem",
-      "yolk",
-      "zucchini"
-    ]
-  },
-  {
     "date": "2026-07-15",
     "answers": [
       "ampere",
@@ -1857,6 +1826,37 @@
       "matrix",
       "yew",
       "zirconium"
+    ]
+  },
+  {
+    "date": "2026-09-12",
+    "answers": [
+      "adenine",
+      "bacteriophage",
+      "Coma Berenices",
+      "Deimos",
+      "echinoderm",
+      "Fornax",
+      "gills",
+      "heliopause",
+      "Iliad",
+      "jansky",
+      "Krebs cycle",
+      "Local Group",
+      "Macbeth",
+      "nematode",
+      "Oberon",
+      "Polyphemus",
+      "Quercus",
+      "Roche limit",
+      "spleen",
+      "tendon",
+      "Ulysses",
+      "vertebra",
+      "Watership Down",
+      "auxin",
+      "Yersinia",
+      "Zola"
     ]
   }
 ]
