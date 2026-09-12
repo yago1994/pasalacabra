@@ -1,0 +1,164 @@
+{
+  "id": "set-2026-09-13",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Protein that forms microfilaments in muscle contraction.",
+      "answer": "actin"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Sport where points are scored with a three-pointer beyond an arc.",
+      "answer": "basketball"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Drawing medium made of carbonized wood, prized for rich blacks.",
+      "answer": "charcoal"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Neurotransmitter associated with reward signaling in the brain.",
+      "answer": "dopamine"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Biological catalyst made of protein or RNA.",
+      "answer": "enzyme"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Swimming stroke swum on the front using a flutter kick.",
+      "answer": "front crawl",
+      "alt": [
+        "freestyle"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Taxonomic rank above species and below family.",
+      "answer": "genus"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Gymnastics skill where the body is inverted and balanced on the palms.",
+      "answer": "handstand"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Pancreatic hormone that lowers blood glucose.",
+      "answer": "insulin"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Shirt worn by athletes that displays their team and number.",
+      "answer": "jersey"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Motor protein that walks along microtubules carrying cellular cargo.",
+      "answer": "kinesin"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Defensive specialist in volleyball who wears a contrasting jersey.",
+      "answer": "libero"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Soccer position linking defense and attack, often controlling possession.",
+      "answer": "midfielder"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Nerve cell that transmits electrical and chemical signals.",
+      "answer": "neuron"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Rule violation in soccer when an attacker is beyond the second-last defender as the ball is played.",
+      "answer": "offside"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Process by which plants convert light energy into chemical energy.",
+      "answer": "photosynthesis"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Method or skill used to create artworks.",
+      "answer": "technique"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Cellular machine that assembles proteins from mRNA.",
+      "answer": "ribosome"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Three-dimensional artwork carved, modeled, or assembled.",
+      "answer": "sculpture"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Painting medium made by mixing pigments with egg yolk.",
+      "answer": "tempera"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Hoofed mammal, such as a deer, antelope, or horse.",
+      "answer": "ungulate"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Biological preparation that stimulates protective immunity.",
+      "answer": "vaccine"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Textile art of interlacing warp and weft on a loom.",
+      "answer": "weaving"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Plant tissue that transports water and minerals from roots.",
+      "answer": "xylem"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Nutrient-rich portion of a bird egg that feeds the embryo.",
+      "answer": "yolk"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Striped equine native to Africa.",
+      "answer": "zebra"
+    }
+  ]
+}

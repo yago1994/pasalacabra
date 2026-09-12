@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-15",
-    "answers": [
-      "ampere",
-      "byte",
-      "chloroplast",
-      "DNA",
-      "El Nino",
-      "fjord",
-      "GPS",
-      "Himalayas",
-      "ion",
-      "Java",
-      "Krakatoa",
-      "lithosphere",
-      "Mars",
-      "neutron",
-      "ozone",
-      "Pacific",
-      "quartz",
-      "rotation",
-      "silicon",
-      "tornado",
-      "USB",
-      "volt",
-      "watt",
-      "exosphere",
-      "Yellowstone",
-      "zenith"
-    ]
-  },
-  {
     "date": "2026-07-16",
     "answers": [
       "Apollo",
@@ -1857,6 +1826,37 @@
       "auxin",
       "Yersinia",
       "Zola"
+    ]
+  },
+  {
+    "date": "2026-09-13",
+    "answers": [
+      "actin",
+      "basketball",
+      "charcoal",
+      "dopamine",
+      "enzyme",
+      "front crawl",
+      "genus",
+      "handstand",
+      "insulin",
+      "jersey",
+      "kinesin",
+      "libero",
+      "midfielder",
+      "neuron",
+      "offside",
+      "photosynthesis",
+      "technique",
+      "ribosome",
+      "sculpture",
+      "tempera",
+      "ungulate",
+      "vaccine",
+      "weaving",
+      "xylem",
+      "yolk",
+      "zebra"
     ]
   }
 ]
