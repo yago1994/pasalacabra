@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-16",
-    "answers": [
-      "Apollo",
-      "Baroque",
-      "Constellation",
-      "Dali",
-      "Easel",
-      "Fresco",
-      "Goya",
-      "Hubble",
-      "Impressionism",
-      "Jupiter",
-      "Klimt",
-      "Louvre",
-      "Mosaic",
-      "Nebula",
-      "Oort Cloud",
-      "Polaris",
-      "Quasar",
-      "Rodin",
-      "Supernova",
-      "Telescope",
-      "Ursa Major",
-      "Van Gogh",
-      "Warhol",
-      "exoplanet",
-      "Yoruba",
-      "Zodiac"
-    ]
-  },
-  {
     "date": "2026-07-17",
     "answers": [
       "aria",
@@ -1857,6 +1826,37 @@
       "xylem",
       "yolk",
       "zebra"
+    ]
+  },
+  {
+    "date": "2026-09-14",
+    "answers": [
+      "ampere",
+      "Bacteria",
+      "chlorophyll",
+      "dryad",
+      "Euglena",
+      "fairy",
+      "glucose",
+      "hemoglobin",
+      "isopod",
+      "joule",
+      "keratin",
+      "lysosome",
+      "mitosis",
+      "natural selection",
+      "octopus",
+      "polymer",
+      "quartz",
+      "refraction",
+      "silicon",
+      "telomere",
+      "urine",
+      "vitamin",
+      "walrus",
+      "Xenopus",
+      "yaws",
+      "zymogen"
     ]
   }
 ]
