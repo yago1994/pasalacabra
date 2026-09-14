@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-16",
-    "game_no": 197,
-    "answers": [
-      "árbitro",
-      "bombo",
-      "célula",
-      "dorsal",
-      "enzima",
-      "flautista",
-      "goleada",
-      "hábitat",
-      "insulina",
-      "jengibre",
-      "lepidóptero",
-      "miocardio",
-      "nefrona",
-      "ñame",
-      "organista",
-      "pentatónica",
-      "queratina",
-      "retina",
-      "serotonina",
-      "tríceps",
-      "útero",
-      "vértebra",
-      "xerófito",
-      "yogur",
-      "zambullida"
-    ]
-  },
-  {
     "date": "2026-07-17",
     "game_no": 198,
     "answers": [
@@ -1857,6 +1826,37 @@
       "México",
       "yambú",
       "zoco"
+    ]
+  },
+  {
+    "date": "2026-09-14",
+    "game_no": 257,
+    "answers": [
+      "Albacete",
+      "Benín",
+      "Chernóbil",
+      "dinosaurio",
+      "Etna",
+      "Finlandia",
+      "Guernica",
+      "hibernación",
+      "Islandia",
+      "Jujuy",
+      "Lima",
+      "monzón",
+      "Nairobi",
+      "ñandú",
+      "Oruro",
+      "Paraná",
+      "Arequipa",
+      "Riad",
+      "Samoa",
+      "Tonga",
+      "Uluru",
+      "Valladolid",
+      "taxonomía",
+      "Yamal",
+      "zonda"
     ]
   }
 ]
