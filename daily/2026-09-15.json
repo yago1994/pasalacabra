@@ -1,0 +1,180 @@
+{
+  "id": "set-2026-09-15",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Edible tree nut blended into milk alternatives and frangipane.",
+      "answer": "almond"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Chewy ring-shaped bread boiled before baking, often topped with sesame or poppy seeds.",
+      "answer": "bagel",
+      "alt": [
+        "beigel"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Fastest land animal capable of short bursts over 60 miles per hour.",
+      "answer": "cheetah"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Waterfowl with broad bill whose meat is a classic pairing with orange sauce.",
+      "answer": "duck"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Slender, snake-like fish often served as unagi in Japanese cuisine.",
+      "answer": "eel"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Indoor five-a-side variant of soccer played on a hard court without walls.",
+      "answer": "futsal"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Largest living primate native to Central African forests.",
+      "answer": "gorilla"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Domesticated hoofed animal widely used for riding and equestrian sports.",
+      "answer": "horse"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Popular frozen dessert commonly served in cones or sundaes.",
+      "answer": "ice cream",
+      "alt": [
+        "ice-cream"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Huge tropical fruit with spiky rind; unripe segments used as a meat substitute.",
+      "answer": "jackfruit"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Brown fuzzy fruit with bright green interior and tiny black seeds.",
+      "answer": "kiwifruit",
+      "alt": [
+        "kiwi"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Small lens-shaped legume common in Middle Eastern and Indian stews.",
+      "answer": "lentil"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Tropical stone fruit with sweet orange flesh, popular in lassi.",
+      "answer": "mango"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Songbird famed for powerful nocturnal singing in Europe and Asia.",
+      "answer": "nightingale"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Citrus fruit known for its juice and seedless navel variety.",
+      "answer": "orange"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Flightless seabird of the Southern Hemisphere that slides on its belly.",
+      "answer": "penguin"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Small Andean seed cooked like a grain and prized for high protein.",
+      "answer": "quinoa"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Crisp root vegetable with a peppery bite, often sliced into salads.",
+      "answer": "radish"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Global team sport played primarily with the feet using a round ball, with 11 players per side.",
+      "answer": "soccer",
+      "alt": [
+        "football",
+        "association football"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Large ocean fish commonly canned in oil or water.",
+      "answer": "tuna"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Jamaican citrus hybrid with a wrinkled rind and tangy-sweet segments.",
+      "answer": "ugli fruit",
+      "alt": [
+        "ugli"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Flavoring from cured orchid pods, essential in many desserts.",
+      "answer": "vanilla"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Large striped melon with juicy red flesh and scattered black seeds.",
+      "answer": "watermelon"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Small wild canid with a bushy tail and a reputation for cunning.",
+      "answer": "fox"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Long-haired bovine domesticated on the Tibetan Plateau.",
+      "answer": "yak"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Green summer squash often grilled or spiralized into noodles.",
+      "answer": "zucchini",
+      "alt": [
+        "courgette"
+      ]
+    }
+  ]
+}
