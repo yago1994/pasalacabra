@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-17",
-    "game_no": 198,
-    "answers": [
-      "Aldebarán",
-      "Betelgeuse",
-      "Casiopea",
-      "Delos",
-      "Esquilo",
-      "Fomalhaut",
-      "Guadalajara",
-      "Hércules",
-      "Ítaca",
-      "Júpiter",
-      "Libra",
-      "Mizar",
-      "Nápoles",
-      "Ñuble",
-      "Orión",
-      "Pléyades",
-      "Quijote",
-      "Roma",
-      "Sirio",
-      "Tebas",
-      "Umbriel",
-      "Vega",
-      "Xilografía",
-      "Yosemite",
-      "Zamora"
-    ]
-  },
-  {
     "date": "2026-07-18",
     "game_no": 199,
     "answers": [
@@ -1857,6 +1826,37 @@
       "taxonomía",
       "Yamal",
       "zonda"
+    ]
+  },
+  {
+    "date": "2026-09-15",
+    "game_no": 258,
+    "answers": [
+      "Alhambra",
+      "Balonmano",
+      "Cortés",
+      "Disco",
+      "Escorial",
+      "Falla",
+      "Góngora",
+      "Hoplita",
+      "Inca",
+      "Juana I",
+      "Lorca",
+      "Maratón",
+      "Nadal",
+      "Ñame",
+      "Odisea",
+      "Pelayo",
+      "Quipu",
+      "Ramadán",
+      "Sorolla",
+      "Taekwondo",
+      "UNESCO",
+      "Verdi",
+      "boxeo",
+      "yate",
+      "zulú"
     ]
   }
 ]
