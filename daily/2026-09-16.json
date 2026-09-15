@@ -1,0 +1,194 @@
+{
+  "id": "set-2026-09-16",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Surname of the English novelist who wrote Pride and Prejudice.",
+      "answer": "Austen",
+      "alt": [
+        "Jane Austen"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "1982 sci-fi film about replicants directed by Ridley Scott.",
+      "answer": "Blade Runner"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Plant cell organelle where photosynthesis occurs.",
+      "answer": "Chloroplast"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Name of the first mammal cloned from an adult somatic cell, a Finn Dorset sheep.",
+      "answer": "Dolly"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Class of female sex hormones, including estradiol, produced mainly by the ovaries.",
+      "answer": "Estrogen",
+      "alt": [
+        "oestrogen"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "1999 film in which an insomniac narrator forms an underground boxing group.",
+      "answer": "Fight Club"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Ring-obsessed creature who calls the One Ring 'my precious' in The Lord of the Rings.",
+      "answer": "Gollum",
+      "alt": [
+        "Smeagol"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Director nicknamed the 'Master of Suspense,' known for Psycho and Vertigo.",
+      "answer": "Hitchcock",
+      "alt": [
+        "Alfred Hitchcock"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "The body's ability to resist disease through innate and adaptive responses.",
+      "answer": "Immunity"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "1975 thriller directed by Steven Spielberg about a great white shark terrorizing a beach town.",
+      "answer": "Jaws"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Author of The Trial and The Metamorphosis, born in Prague.",
+      "answer": "Kafka",
+      "alt": [
+        "Franz Kafka"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "1862 novel by Victor Hugo featuring Jean Valjean and Inspector Javert.",
+      "answer": "Les Miserables",
+      "alt": [
+        "Les Misérables",
+        "Les Mis"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Mammal group in which the young complete development in a pouch, as in kangaroos.",
+      "answer": "Marsupial"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "2014 thriller starring Jake Gyllenhaal as a freelance crime videographer in Los Angeles.",
+      "answer": "Nightcrawler"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "1954 drama starring Marlon Brando as a dockworker who says, 'I coulda been a contender'.",
+      "answer": "On the Waterfront"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Wooden puppet created by Geppetto who longs to become a real boy.",
+      "answer": "Pinocchio"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Sticky biofilm on teeth that can lead to cavities if not removed.",
+      "answer": "plaque",
+      "alt": [
+        "dental plaque"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "1950 Akira Kurosawa film famous for conflicting eyewitness accounts of the same event.",
+      "answer": "Rashomon"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Animated fantasy by Hayao Miyazaki about a girl working at a bathhouse for spirits.",
+      "answer": "Spirited Away"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "1984 sci-fi film featuring a cyborg assassin sent back in time to kill Sarah Connor.",
+      "answer": "The Terminator",
+      "alt": [
+        "Terminator"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "American author of A Wizard of Earthsea and The Left Hand of Darkness.",
+      "answer": "Ursula Le Guin",
+      "alt": [
+        "Ursula K. Le Guin"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Enlightenment writer whose satirical novella Candide critiques philosophical optimism.",
+      "answer": "Voltaire"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Stinging insect in the order Hymenoptera, often mistaken for a bee but lacking its hairy body.",
+      "answer": "Wasp"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Extraterrestrial creature hunted by Ellen Ripley in a 1979 sci-fi horror film.",
+      "answer": "Xenomorph"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Irish poet who wrote The Second Coming and won the 1923 Nobel Prize in Literature.",
+      "answer": "Yeats",
+      "alt": [
+        "W. B. Yeats",
+        "WB Yeats",
+        "W.B. Yeats"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "2007 David Fincher film about the hunt for a San Francisco serial killer.",
+      "answer": "Zodiac"
+    }
+  ]
+}
