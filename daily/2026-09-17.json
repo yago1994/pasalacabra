@@ -1,0 +1,170 @@
+{
+  "id": "set-2026-09-17",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Shrinking saline lake between Kazakhstan and Uzbekistan.",
+      "answer": "Aral Sea"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Capital of Azerbaijan on the Caspian Sea.",
+      "answer": "Baku"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "South African city at the foot of Table Mountain.",
+      "answer": "Cape Town"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Molecule that carries genetic instructions in most organisms.",
+      "answer": "DNA",
+      "alt": [
+        "deoxyribonucleic acid"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Landlocked country in the Horn of Africa with capital Addis Ababa.",
+      "answer": "Ethiopia"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Long, narrow sea inlet carved by glaciers.",
+      "answer": "Fjord"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Ancient southern supercontinent paired with Laurasia in the Paleozoic.",
+      "answer": "Gondwana"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Mountain range separating the Indian subcontinent from the Tibetan Plateau.",
+      "answer": "Himalayas"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Atmospheric layer that reflects radio waves, ionized by solar radiation.",
+      "answer": "Ionosphere"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Largest planet in the Solar System.",
+      "answer": "Jupiter"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Capital of Afghanistan.",
+      "answer": "Kabul"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Rigid outer layer of Earth made of crust and uppermost mantle.",
+      "answer": "Lithosphere"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Fourth planet from the Sun.",
+      "answer": "Mars"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Capital city of Kenya.",
+      "answer": "Nairobi"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Movement of water across a semipermeable membrane toward higher solute concentration.",
+      "answer": "Osmosis"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Positively charged particle found in an atomic nucleus.",
+      "answer": "Proton"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Extremely luminous active galactic nucleus powered by a supermassive black hole.",
+      "answer": "Quasar"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Large thick-skinned herbivore with one or two keratin horns, native to Africa and Asia.",
+      "answer": "Rhinoceros",
+      "alt": [
+        "rhino"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Fish with a horse-like head whose males brood embryos in a ventral pouch.",
+      "answer": "Seahorse"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Violently rotating column of air extending from a thunderstorm to the ground.",
+      "answer": "Tornado"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Heavy radioactive metal with atomic number 92.",
+      "answer": "Uranium"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Pacific island nation whose capital is Port Vila.",
+      "answer": "Vanuatu"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "SI unit of power equal to one joule per second.",
+      "answer": "Watt"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Collective term for the sepals of a flower.",
+      "answer": "Calyx"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "U.S. national park famous for the geyser Old Faithful.",
+      "answer": "Yellowstone",
+      "alt": [
+        "Yellowstone National Park"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Metal element used to galvanize steel, atomic number 30.",
+      "answer": "Zinc"
+    }
+  ]
+}

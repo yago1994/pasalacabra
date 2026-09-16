@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-19",
-    "answers": [
-      "Aldebaran",
-      "Betelgeuse",
-      "Cumin",
-      "Dashi",
-      "Equinox",
-      "Forte",
-      "Ganymede",
-      "Hummus",
-      "Io",
-      "Jalapeño",
-      "Kuiper Belt",
-      "Legato",
-      "Mercury",
-      "Nocturne",
-      "Octave",
-      "Pulsar",
-      "Quaver",
-      "Rigel",
-      "Saffron",
-      "Tempo",
-      "Umbra",
-      "Vega",
-      "Waffle",
-      "Xanthan gum",
-      "Yuzu",
-      "Za'atar"
-    ]
-  },
-  {
     "date": "2026-07-20",
     "answers": [
       "avocado",
@@ -1857,6 +1826,37 @@
       "Xenomorph",
       "Yeats",
       "Zodiac"
+    ]
+  },
+  {
+    "date": "2026-09-17",
+    "answers": [
+      "Aral Sea",
+      "Baku",
+      "Cape Town",
+      "DNA",
+      "Ethiopia",
+      "Fjord",
+      "Gondwana",
+      "Himalayas",
+      "Ionosphere",
+      "Jupiter",
+      "Kabul",
+      "Lithosphere",
+      "Mars",
+      "Nairobi",
+      "Osmosis",
+      "Proton",
+      "Quasar",
+      "Rhinoceros",
+      "Seahorse",
+      "Tornado",
+      "Uranium",
+      "Vanuatu",
+      "Watt",
+      "Calyx",
+      "Yellowstone",
+      "Zinc"
     ]
   }
 ]
