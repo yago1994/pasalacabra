@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-18",
-    "game_no": 199,
-    "answers": [
-      "atletismo",
-      "bailaora",
-      "clímax",
-      "documental",
-      "Entroido",
-      "Fellini",
-      "giallo",
-      "hípica",
-      "ikurriña",
-      "judo",
-      "localización",
-      "montaje",
-      "natación artística",
-      "muñeco",
-      "Óscar",
-      "productor",
-      "claqueta",
-      "revés",
-      "saga",
-      "travelling",
-      "utilería",
-      "voleibol",
-      "Xavi",
-      "Yoda",
-      "zumba"
-    ]
-  },
-  {
     "date": "2026-07-19",
     "game_no": 200,
     "answers": [
@@ -1857,6 +1826,37 @@
       "boxeo",
       "yate",
       "zulú"
+    ]
+  },
+  {
+    "date": "2026-09-16",
+    "game_no": 259,
+    "answers": [
+      "Andorra",
+      "Bucarest",
+      "Canarias",
+      "Dubrovnik",
+      "Euskadi",
+      "Finisterre",
+      "Guggenheim",
+      "haiku",
+      "Iruña",
+      "Jarramplas",
+      "Lello",
+      "mudéjar",
+      "Nápoles",
+      "ñoño",
+      "oasis",
+      "Palladio",
+      "Quijote",
+      "realismo",
+      "Sahel",
+      "Taj Mahal",
+      "Uxmal",
+      "Vaticano",
+      "xilografía",
+      "yurta",
+      "Zuloaga"
     ]
   }
 ]
