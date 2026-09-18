@@ -1,0 +1,161 @@
+{
+  "id": "set-2026-09-19",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Sea separating Italy from Slovenia and Croatia.",
+      "answer": "Adriatic Sea"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Central European capital on the Danube known for its Chain Bridge and thermal baths.",
+      "answer": "Budapest"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Sport of the Tour de France.",
+      "answer": "Cycling"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Capital of Qatar on the Persian Gulf.",
+      "answer": "Doha"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Three-legged stand that holds a painting surface during work.",
+      "answer": "Easel"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Wall-painting technique using pigments on wet plaster.",
+      "answer": "Fresco"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Spanish painter of The Third of May 1808 and the Black Paintings.",
+      "answer": "Goya"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Nordic capital on the Gulf of Finland.",
+      "answer": "Helsinki"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Art movement that captured fleeting light with quick brushstrokes in late-19th-century France.",
+      "answer": "Impressionism"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Largest city in South Africa nicknamed Jo'burg.",
+      "answer": "Johannesburg"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Russian-born pioneer of abstract art who painted Composition VII.",
+      "answer": "Kandinsky"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Paris museum housed in a former palace with a glass pyramid entrance.",
+      "answer": "Louvre"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Capital of Spain located on the Manzanares River.",
+      "answer": "Madrid"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "European country famous for tulips, windmills, and canals.",
+      "answer": "Netherlands"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Capital of Canada located in Ontario across from Gatineau, Quebec.",
+      "answer": "Ottawa"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Team sport played on horseback using long-handled mallets.",
+      "answer": "Polo"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Middle Eastern country with capital Baghdad.",
+      "answer": "Iraq"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "East African nation known as the Land of a Thousand Hills.",
+      "answer": "Rwanda"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Olympic sport of riding ocean waves.",
+      "answer": "Surfing"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Largest city in Canada on the northwestern shore of Lake Ontario.",
+      "answer": "Toronto"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "U.S. state home to Arches, Zion, and Bryce Canyon national parks.",
+      "answer": "Utah"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Dutch painter who created Starry Night and Sunflowers.",
+      "answer": "Van Gogh"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Olympic combat sport with Greco-Roman and freestyle disciplines.",
+      "answer": "Wrestling"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "English county with Chelmsford as its county town.",
+      "answer": "Essex"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Canadian territory bordering Alaska with capital Whitehorse.",
+      "answer": "Yukon"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Architect of the London Aquatics Centre and Guangzhou Opera House.",
+      "answer": "Zaha Hadid"
+    }
+  ]
+}
