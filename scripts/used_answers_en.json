@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-22",
-    "answers": [
-      "Andes",
-      "Bali",
-      "Ceviche",
-      "Dublin",
-      "Edinburgh",
-      "Fado",
-      "Ganges",
-      "Hanoi",
-      "Istanbul",
-      "Jollof",
-      "Kyoto",
-      "Lima",
-      "Machu Picchu",
-      "Nile",
-      "Osaka",
-      "Prague",
-      "Qatar",
-      "Rome",
-      "Seoul",
-      "Taj Mahal",
-      "Uruguay",
-      "Vienna",
-      "Wellington",
-      "Mexico",
-      "Yangtze",
-      "Zambia"
-    ]
-  },
-  {
     "date": "2026-07-23",
     "answers": [
       "Ankara",
@@ -1857,6 +1826,37 @@
       "Essex",
       "Yukon",
       "Zaha Hadid"
+    ]
+  },
+  {
+    "date": "2026-09-20",
+    "answers": [
+      "amplitude",
+      "bassoon",
+      "crescendo",
+      "decibel",
+      "equinox",
+      "fermata",
+      "guitar",
+      "hydrogen",
+      "iron",
+      "jazz",
+      "kazoo",
+      "lyre",
+      "metronome",
+      "nylon",
+      "overture",
+      "Pandora",
+      "baroque",
+      "resonance",
+      "sulfur",
+      "theremin",
+      "umbra",
+      "viola",
+      "waltz",
+      "xylophone",
+      "yurei",
+      "zither"
     ]
   }
 ]
