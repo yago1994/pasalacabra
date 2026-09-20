@@ -1,0 +1,170 @@
+{
+  "id": "set-2026-08-01",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "2001 French romantic comedy about a shy waitress in Montmartre directed by Jean-Pierre Jeunet.",
+      "answer": "Amelie"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Meat-based ragù from Bologna traditionally served with tagliatelle.",
+      "answer": "Bolognese"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Fairy-tale heroine who loses a glass slipper at a royal ball.",
+      "answer": "Cinderella"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "French city lending its name to a tangy mustard style.",
+      "answer": "Dijon"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "British dessert of crushed meringue, strawberries, and whipped cream.",
+      "answer": "Eton mess"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Italian flatbread dimpled with olive oil and herbs.",
+      "answer": "Focaccia"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Japanese animation studio behind Spirited Away and My Neighbor Totoro.",
+      "answer": "Ghibli"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Rich butter-and-egg-yolk sauce often served on eggs Benedict.",
+      "answer": "Hollandaise"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Literary discussion group at Oxford that included C. S. Lewis and J. R. R. Tolkien.",
+      "answer": "Inklings"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Shakespearean heroine who is a Capulet in a tragic romance set in Verona.",
+      "answer": "Juliet"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Mild, creamy South Asian curry often thickened with yogurt or ground nuts.",
+      "answer": "Korma"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "1955 Nabokov novel narrated by Humbert Humbert.",
+      "answer": "Lolita"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Herman Melville novel about Captain Ahab’s obsessive hunt for a white whale.",
+      "answer": "Moby-Dick",
+      "alt": [
+        "Moby Dick"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Cinematic style of crime dramas marked by stark lighting, fatalism, and hardboiled dialogue.",
+      "answer": "Noir"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Ear-shaped pasta traditionally associated with the Apulia region.",
+      "answer": "Orecchiette"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Hard Italian cheese aged in wheels and commonly grated over pasta.",
+      "answer": "Parmesan",
+      "alt": [
+        "Parmigiano-Reggiano"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Broomstick sport played at Hogwarts in the Harry Potter series.",
+      "answer": "Quidditch"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "2007 Pixar film about a Parisian rat who becomes a chef.",
+      "answer": "Ratatouille"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Bread with a tangy flavor made using a wild-yeast starter.",
+      "answer": "Sourdough"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Long, ribbon-like pasta from Emilia-Romagna often paired with ragù.",
+      "answer": "Tagliatelle"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Pixar adventure in which a widower’s house is lifted by thousands of balloons.",
+      "answer": "Up"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "1958 thriller set in San Francisco directed by Alfred Hitchcock.",
+      "answer": "Vertigo"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "1847 novel by Emily Brontë about the tumultuous bond between Catherine Earnshaw and Heathcliff.",
+      "answer": "Wuthering Heights"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Brined salmon traditionally served on a bagel with cream cheese.",
+      "answer": "lox"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "1961 Akira Kurosawa film starring Toshiro Mifune as a crafty ronin.",
+      "answer": "Yojimbo"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "2016 Disney animated film about a rookie rabbit cop in a mammal metropolis.",
+      "answer": "Zootopia",
+      "alt": [
+        "Zootropolis"
+      ]
+    }
+  ]
+}

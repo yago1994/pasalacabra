@@ -1,0 +1,191 @@
+{
+  "id": "set-2026-07-15",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "SI base unit for electric current.",
+      "answer": "ampere",
+      "alt": [
+        "amp"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Data size symbol 'B' in KB and MB stands for this 8-bit unit.",
+      "answer": "byte"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Plant cell organelle where photosynthesis occurs.",
+      "answer": "chloroplast"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Molecule that carries genetic instructions in most organisms.",
+      "answer": "DNA",
+      "alt": [
+        "deoxyribonucleic acid"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Periodic warming of Pacific waters that disrupts global weather patterns.",
+      "answer": "El Nino",
+      "alt": [
+        "El Niño"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Long, narrow sea inlet between steep cliffs, common in Norway.",
+      "answer": "fjord"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "U.S. satellite-based navigation system used to determine position worldwide.",
+      "answer": "GPS",
+      "alt": [
+        "Global Positioning System"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Mount Everest belongs to which major Asian mountain range?",
+      "answer": "Himalayas",
+      "alt": [
+        "Himalaya"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Atom or molecule with a net electric charge.",
+      "answer": "ion"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Programming language introduced by Sun Microsystems, famous for write once, run anywhere.",
+      "answer": "Java"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Indonesian volcano whose 1883 eruption was among the most powerful in recorded history.",
+      "answer": "Krakatoa",
+      "alt": [
+        "Krakatau"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Outer rigid layer of Earth consisting of crust and upper mantle.",
+      "answer": "lithosphere"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Planet known as the Red Planet.",
+      "answer": "Mars"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Electrically neutral particle found in an atomic nucleus.",
+      "answer": "neutron"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Triatomic form of oxygen that absorbs harmful UV radiation.",
+      "answer": "ozone"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Largest and deepest ocean on Earth.",
+      "answer": "Pacific",
+      "alt": [
+        "Pacific Ocean"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Hard mineral composed of silicon dioxide, common in sand.",
+      "answer": "quartz"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Daily cycle of light and dark on Earth is caused by this planetary motion.",
+      "answer": "rotation"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Element used as the base material in most computer chips.",
+      "answer": "silicon"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Violently rotating column of air that extends from a thunderstorm to the ground.",
+      "answer": "tornado",
+      "alt": [
+        "twister"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Common computer interface for data transfer and device charging.",
+      "answer": "USB",
+      "alt": [
+        "Universal Serial Bus"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "SI unit of electric potential difference.",
+      "answer": "volt",
+      "alt": [
+        "V"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "SI unit of power.",
+      "answer": "watt"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Outermost layer of Earth's atmosphere.",
+      "answer": "exosphere"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "U.S. national park famous for geysers like Old Faithful.",
+      "answer": "Yellowstone"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Point in the sky directly above an observer.",
+      "answer": "zenith"
+    }
+  ]
+}

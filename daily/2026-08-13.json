@@ -1,0 +1,161 @@
+{
+  "id": "set-2026-08-13",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Edible spring vegetable with tender spear-like shoots often grilled or steamed.",
+      "answer": "asparagus"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Bat-and-ball sport on a diamond with nine players and overhand pitching from a raised mound.",
+      "answer": "baseball"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Orange root vegetable rich in beta-carotene.",
+      "answer": "carrot"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Short bar with fixed or adjustable plates, typically used in pairs for strength training.",
+      "answer": "dumbbell"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Bitter pale leaf used in salads and braises, often sold as tight torpedo-shaped heads.",
+      "answer": "endive"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Motor racing series featuring open-wheel cars competing in Grands Prix.",
+      "answer": "Formula One"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Sport where players aim to sink a ball into holes using clubs across 18 fairways.",
+      "answer": "golf"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Track event where athletes sprint while leaping over barriers.",
+      "answer": "hurdles"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Sport involving gliding on blades across frozen surfaces; includes figure and speed disciplines.",
+      "answer": "ice skating"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Dried, seasoned meat snack often made from beef.",
+      "answer": "jerky"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Paddlesport where you sit facing forward and use a double-bladed paddle.",
+      "answer": "kayaking"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Fibrous tissue connecting bone to bone at a joint.",
+      "answer": "ligament"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Individual quick bread baked in cups, often blueberry or bran.",
+      "answer": "muffin"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Element with symbol Ni, commonly used in stainless steel.",
+      "answer": "nickel"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Hot breakfast made by simmering rolled or steel-cut grains in water or milk.",
+      "answer": "oatmeal"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Legume often turned into butter and a common allergen.",
+      "answer": "peanut"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Sea animal whose sliced rings are fried as calamari.",
+      "answer": "squid"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Endurance sport where teams propel shells backward using oars.",
+      "answer": "rowing"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Anadromous fish often baked or smoked, rich in omega-3s.",
+      "answer": "salmon"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Machine with rotating blades that extracts energy from fluid flow, as in wind power.",
+      "answer": "turbine"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Imaging technique that uses high-frequency sound waves to visualize internal organs.",
+      "answer": "ultrasound"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Sour liquid produced by acetic acid fermentation, used in pickling.",
+      "answer": "vinegar"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Water sport combining a board with a sail, steered by shifting body weight.",
+      "answer": "windsurfing"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Athlete who competes in a ring using gloves under Queensberry rules.",
+      "answer": "boxer"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Starchy tuber also called cassava, used to make tapioca.",
+      "answer": "yuca"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "In chemistry, the term for a molecule bearing both positive and negative charges but overall neutral.",
+      "answer": "zwitterion"
+    }
+  ]
+}

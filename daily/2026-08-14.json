@@ -1,0 +1,164 @@
+{
+  "id": "set-2026-08-14",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Large South American constrictor known for its aquatic habits.",
+      "answer": "anaconda"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Burrowing mustelid with black-and-white facial stripes.",
+      "answer": "badger"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Flightless rainforest bird from Australia and New Guinea with a casque.",
+      "answer": "cassowary"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Small nocturnal rodent famed for long hibernation in folklore and tales.",
+      "answer": "dormouse"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Biological sonar used by bats and toothed whales.",
+      "answer": "echolocation"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Nuclear process where a heavy nucleus splits, releasing energy.",
+      "answer": "fission"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Climbing lizard with adhesive toe pads, often vocal at night.",
+      "answer": "gecko"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Many-headed serpent of Greek myth slain by Heracles.",
+      "answer": "hydra"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Graceful African antelope with lyre-shaped horns in males.",
+      "answer": "impala"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Wild canid of Africa and Asia known for scavenging and eerie calls.",
+      "answer": "jackal"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Australian kingfisher whose laughter-like call echoes through bushland.",
+      "answer": "kookaburra"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Jawless fish with a toothed, funnel-like sucking mouth.",
+      "answer": "lamprey"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Snake-hunting carnivore often shown facing cobras.",
+      "answer": "mongoose"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Control center of a eukaryotic cell that houses chromosomes.",
+      "answer": "nucleus"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Spotted wild cat of the Americas that ranges into South Texas, with a sleek coat and ringed tail.",
+      "answer": "ocelot"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Egg-laying mammal with a duck-like bill found in Australia.",
+      "answer": "platypus"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Extinct South African equid with stripes only on the front half.",
+      "answer": "quagga"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Fast-running desert cuckoo known for outpacing lizards and snakes.",
+      "answer": "roadrunner"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Spotted African wild cat with oversized ears and long legs for leaping on prey.",
+      "answer": "serval"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Flat parasitic worm that absorbs nutrients through its skin in a host's gut.",
+      "answer": "tapeworm"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Tropical bird with a namesake crest and inflatable throat wattle.",
+      "answer": "umbrellabird"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Small burrowing rodent often mistaken for a mouse.",
+      "answer": "vole"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Slender predator able to follow prey into tight burrows.",
+      "answer": "weasel"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Ancient hairless dog breed sacred to the Aztecs.",
+      "answer": "xoloitzcuintli",
+      "alt": [
+        "xolo"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Aggressive social wasp often mistaken for a bee at picnics.",
+      "answer": "yellowjacket"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "African striped polecat that defends itself with a skunk-like spray.",
+      "answer": "zorilla"
+    }
+  ]
+}

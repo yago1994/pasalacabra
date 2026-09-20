@@ -1,0 +1,177 @@
+{
+  "id": "set-2026-09-05",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Realm of the Aesir gods in Norse mythology.",
+      "answer": "Asgard"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Author of Dracula.",
+      "answer": "Bram Stoker"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "DNA base that pairs with guanine.",
+      "answer": "Cytosine"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Heavy isotope of hydrogen with one proton and one neutron.",
+      "answer": "Deuterium",
+      "alt": [
+        "heavy hydrogen"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Legendary sword of King Arthur.",
+      "answer": "Excalibur"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Scientist who creates a creature in Mary Shelley's novel.",
+      "answer": "Frankenstein",
+      "alt": [
+        "Victor Frankenstein"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Animated being molded from clay in Jewish tradition.",
+      "answer": "Golem"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Ancient Greek poet traditionally credited with two epics about the Trojan War and its aftermath.",
+      "answer": "Homer"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Meter of five unstressed-stressed pairs in a line of verse.",
+      "answer": "Iambic pentameter",
+      "alt": [
+        "iambic pentametre"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Scientist whose split personality unleashes Hyde.",
+      "answer": "Jekyll",
+      "alt": [
+        "Dr Jekyll",
+        "Doctor Jekyll"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Fox spirit in Japanese folklore often depicted with multiple tails.",
+      "answer": "Kitsune"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Irish fairy known for guarding pots of gold.",
+      "answer": "Leprechaun"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Figure of speech that states one thing is another without like or as.",
+      "answer": "Metaphor"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Synthetic chemical element with atomic number 102.",
+      "answer": "Nobelium"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "One-eyed chief god in Norse mythology.",
+      "answer": "Odin"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Drifting aquatic organisms that cannot swim against currents.",
+      "answer": "Plankton"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Hunchbacked bell ringer of Notre-Dame in Victor Hugo's novel.",
+      "answer": "Quasimodo"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Prophesied end of the world in Norse mythology.",
+      "answer": "Ragnarok"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Detective created by Arthur Conan Doyle.",
+      "answer": "Sherlock Holmes",
+      "alt": [
+        "Holmes"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "DNA base that pairs with adenine.",
+      "answer": "Thymine"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Legendary father of King Arthur.",
+      "answer": "Uther Pendragon"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Roman god of fire and metalworking.",
+      "answer": "Vulcan"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Thoreau's reflection on simple living by a pond.",
+      "answer": "Walden"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "General term for a combination of substances where components retain their properties.",
+      "answer": "Mixture"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Primordial giant whose body becomes the world in Norse myth.",
+      "answer": "Ymir"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Mineral used in U-Pb dating to determine the age of igneous rocks.",
+      "answer": "Zircon"
+    }
+  ]
+}

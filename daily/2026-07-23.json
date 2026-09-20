@@ -1,0 +1,174 @@
+{
+  "id": "set-2026-07-23",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Capital city of Turkey.",
+      "answer": "Ankara"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Soft French cow's-milk cheese from Ile-de-France with a bloomy white rind.",
+      "answer": "Brie"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Capital of Egypt.",
+      "answer": "Cairo"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Spiky Southeast Asian fruit known for a strong odor.",
+      "answer": "Durian"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "South American country named for the equator.",
+      "answer": "Ecuador"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Andalusian art form combining guitar, song, and dance.",
+      "answer": "Flamenco"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Dutch cheese from South Holland, often sold in flat wheels with a mild, caramel-like flavor.",
+      "answer": "Gouda"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Large triangular string instrument with pedals, plucked in orchestras.",
+      "answer": "Harp"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Nordic island nation with capital Reykjavik.",
+      "answer": "Iceland"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Middle Eastern country with capital Amman.",
+      "answer": "Jordan"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "East African country famous for safaris on the Maasai Mara.",
+      "answer": "Kenya"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Capital of Portugal.",
+      "answer": "Lisbon",
+      "alt": [
+        "Lisboa"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Composer of The Magic Flute.",
+      "answer": "Mozart",
+      "alt": [
+        "Wolfgang Amadeus Mozart",
+        "W. A. Mozart"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Scandinavian country known for deep fjords and capital Oslo.",
+      "answer": "Norway"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Mediterranean fruit pressed for oil.",
+      "answer": "Olive"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Keyboard instrument whose strings are struck by hammers.",
+      "answer": "Piano"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Capital city of the country named for the equator.",
+      "answer": "Quito"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Music genre from Jamaica popularized by Bob Marley.",
+      "answer": "Reggae"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Largest island in the Mediterranean Sea.",
+      "answer": "Sicily",
+      "alt": [
+        "Sicilia"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Largest and lowest-pitched brass instrument in an orchestra.",
+      "answer": "Tuba"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "East African country with capital Kampala.",
+      "answer": "Uganda"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "U.S. state famous for maple syrup and the Green Mountains.",
+      "answer": "Vermont"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Country that is part of the United Kingdom with capital Cardiff.",
+      "answer": "Wales"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "English city home to the Bodleian Library and the dreaming spires.",
+      "answer": "Oxford"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Capital city of Armenia.",
+      "answer": "Yerevan",
+      "alt": [
+        "Erevan"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Capital of Croatia.",
+      "answer": "Zagreb"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "id": "set-2026-07-17",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Solo vocal piece in an opera.",
+      "answer": "aria"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Long, thin French bread with a crisp crust.",
+      "answer": "baguette"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Member of the violin family held between the knees.",
+      "answer": "cello",
+      "alt": [
+        "violoncello"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Small ball or pocket of dough, often filled, cooked by boiling, steaming, or frying.",
+      "answer": "dumpling"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Instrumental study piece designed to develop technique.",
+      "answer": "etude"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Contrapuntal composition in which a subject is introduced and then imitated by other voices.",
+      "answer": "fugue"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Christian music genre rooted in African American church traditions.",
+      "answer": "gospel"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Keyboard instrument that plucks strings and was widely used before the piano.",
+      "answer": "harpsichord"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Thin sugary glaze that hardens on cookies and pastries.",
+      "answer": "icing"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "American music genre characterized by swing, blue notes, and improvisation.",
+      "answer": "jazz"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Spicy fermented Korean cabbage side dish.",
+      "answer": "kimchi"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Plucked string instrument with a rounded back common in Renaissance music.",
+      "answer": "lute"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Traditional Japanese soybean paste used to flavor soup.",
+      "answer": "miso"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Aromatic spice grated from the seed of Myristica fragrans.",
+      "answer": "nutmeg"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Large-scale sacred work for choir and orchestra performed without staging.",
+      "answer": "oratorio"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Italian sauce of basil, pine nuts, garlic, Parmesan, and olive oil.",
+      "answer": "pesto"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Ensemble or composition for four musicians.",
+      "answer": "quartet"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Creamy Italian rice dish cooked slowly with broth.",
+      "answer": "risotto"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Work for solo instrument, often in several movements, from the Classical tradition.",
+      "answer": "sonata"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Orchestral kettledrums tuned to specific pitches.",
+      "answer": "timpani"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Small four-stringed instrument associated with Hawaii.",
+      "answer": "ukulele",
+      "alt": [
+        "uke"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Alto member of the violin family, tuned a fifth below the violin.",
+      "answer": "viola"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Ballroom dance in triple meter that originated in Vienna.",
+      "answer": "waltz"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Percussion instrument with tuned wooden bars struck with mallets.",
+      "answer": "xylophone"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Fermented milk product thickened by bacterial cultures.",
+      "answer": "yogurt",
+      "alt": [
+        "yoghurt"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Stringed instrument with many strings stretched across a flat soundboard, plucked or strummed.",
+      "answer": "zither"
+    }
+  ]
+}

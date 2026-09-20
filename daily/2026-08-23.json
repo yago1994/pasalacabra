@@ -1,0 +1,161 @@
+{
+  "id": "set-2026-08-23",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Symbolic narrative that conveys abstract ideas through characters and events.",
+      "answer": "allegory"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Narrative song form traditionally telling a story in simple stanzas.",
+      "answer": "ballad"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Vocal composition with instruments, often in multiple movements, common in Baroque church services.",
+      "answer": "cantata"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Two-paneled artwork joined by a hinge, often used as an altarpiece.",
+      "answer": "diptych"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Long narrative poem celebrating heroic deeds.",
+      "answer": "epic"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Lively Spanish partner dance in triple time.",
+      "answer": "fandango"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Spray-painted inscriptions or images on public surfaces, often illicit.",
+      "answer": "graffiti"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Custom-fitted high-end fashion made by leading Paris design houses.",
+      "answer": "haute couture"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Study of subject matter and symbolism in artworks.",
+      "answer": "iconography"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Traditional Irish step dance in compound meter.",
+      "answer": "jig"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Traditional Japanese robe with wide sleeves and an obi sash.",
+      "answer": "kimono"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Art genre depicting natural scenery such as mountains or fields.",
+      "answer": "landscape"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Elegant 18th-century dance in triple meter, often in classical suites.",
+      "answer": "minuet"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "18th-century movement reviving Greco-Roman ideals in art and architecture.",
+      "answer": "neoclassicism"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Prolonged enthusiastic applause given by an audience.",
+      "answer": "ovation"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Five-note scale common in folk melodies and blues.",
+      "answer": "pentatonic"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Stanza of four lines with a specific rhyme scheme.",
+      "answer": "quatrain"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Expressive rhythmic freedom achieved by subtly speeding up and slowing down.",
+      "answer": "rubato"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Plucked Indian instrument prominent in Hindustani classical music.",
+      "answer": "sitar"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Woven textile art that creates images with colored threads.",
+      "answer": "tapestry"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Term for multiple voices or instruments sounding the same pitch together.",
+      "answer": "unison"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Slight, rapid variation in pitch used to enrich sustained notes.",
+      "answer": "vibrato"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Relief print made by carving a design into a plank and inking the surface.",
+      "answer": "woodcut"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Ancient Greek musical mode used in jazz and folk, featuring a lowered seventh degree.",
+      "answer": "Mixolydian"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Lightweight Japanese summer robe typically worn at festivals.",
+      "answer": "yukata"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Spirit or defining mood of a particular period of history.",
+      "answer": "zeitgeist"
+    }
+  ]
+}

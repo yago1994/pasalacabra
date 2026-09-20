@@ -1,0 +1,203 @@
+{
+  "id": "set-2026-08-28",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "1415 battle of the Hundred Years' War won by Henry V's longbowmen.",
+      "answer": "Agincourt",
+      "alt": [
+        "Battle of Agincourt"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Ancient Mesopotamian city associated with the Hanging Gardens.",
+      "answer": "Babylon"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Mountain range curving through Slovakia, Poland, Ukraine, and Romania.",
+      "answer": "Carpathians",
+      "alt": [
+        "Carpathian Mountains"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Strait linking the Aegean Sea to the Sea of Marmara, site of a 1915 campaign.",
+      "answer": "Dardanelles",
+      "alt": [
+        "Dardanelles Strait"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Former name of Japan’s capital during the Tokugawa shogunate.",
+      "answer": "Edo"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Historic Moroccan city renowned for its walled medina and leather tanneries.",
+      "answer": "Fez",
+      "alt": [
+        "Fes"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "West African nation that gained independence under Kwame Nkrumah in 1957.",
+      "answer": "Ghana"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "1066 battle in which William of Normandy defeated Harold II.",
+      "answer": "Hastings",
+      "alt": [
+        "Battle of Hastings"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Pre-Columbian empire centered on Cusco and ruled by a Sapa.",
+      "answer": "Inca",
+      "alt": [
+        "Inca Empire"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "1607 site of the first permanent English settlement in North America.",
+      "answer": "Jamestown"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Desert spanning much of Botswana and parts of Namibia and South Africa.",
+      "answer": "Kalahari",
+      "alt": [
+        "Kalahari Desert"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "British ocean liner sunk by a German U-boat in 1915.",
+      "answer": "Lusitania"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Ancient region between the Tigris and Euphrates, home to Sumer and Akkad.",
+      "answer": "Mesopotamia"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Japanese city devastated by the second atomic bombing on 9 August 1945.",
+      "answer": "Nagasaki"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Normandy landing beach where U.S. forces suffered the heaviest D-Day casualties.",
+      "answer": "Omaha Beach",
+      "alt": [
+        "Omaha"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Historical German state that led 19th-century unification under Otto von Bismarck.",
+      "answer": "Prussia"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Chinese dynasty whose First Emperor unified the realm and standardized script.",
+      "answer": "Qin dynasty",
+      "alt": [
+        "Qin"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Inscribed stele in three scripts that unlocked the reading of Egyptian hieroglyphs.",
+      "answer": "Rosetta Stone"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Silk Road metropolis in Uzbekistan famed for the Registan.",
+      "answer": "Samarkand",
+      "alt": [
+        "Samarqand"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Greek pass where Leonidas and his Spartans resisted the Persians in 480 BCE.",
+      "answer": "Thermopylae",
+      "alt": [
+        "Thermopylai"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Sumerian city-state linked to the hero of the Epic of Gilgamesh.",
+      "answer": "Uruk"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Chilean Pacific port that was the country's chief harbor before the Panama Canal.",
+      "answer": "Valparaiso",
+      "alt": [
+        "Valparaíso"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "1815 battle that ended Napoleon’s rule during the Hundred Days.",
+      "answer": "Waterloo",
+      "alt": [
+        "Battle of Waterloo"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Chinese city in Shaanxi that houses the Terracotta Army.",
+      "answer": "Xi'an",
+      "alt": [
+        "Xian"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Historic walled city in northern England known for its Minster on the River Ouse.",
+      "answer": "York"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Ancient Persian religion venerating Ahura Mazda and emphasizing dualism.",
+      "answer": "Zoroastrianism"
+    }
+  ]
+}

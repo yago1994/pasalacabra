@@ -1,0 +1,174 @@
+{
+  "id": "set-2026-08-21",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Domain of single-celled prokaryotes distinct from bacteria, often thriving in extreme environments.",
+      "answer": "archaea"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Region of spacetime where gravity is so strong that not even light can escape.",
+      "answer": "black hole"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Art of decorative handwriting, especially using brush or pen.",
+      "answer": "calligraphy"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Invisible mass inferred from galaxy rotation curves and gravitational lensing.",
+      "answer": "dark matter"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Organism whose cells contain a membrane-bound nucleus.",
+      "answer": "eukaryote"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Apparent contradiction between estimates of many extraterrestrial civilizations and the lack of observed evidence.",
+      "answer": "Fermi paradox"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Atmospheric warming mechanism caused when gases like carbon dioxide trap outgoing infrared radiation.",
+      "answer": "greenhouse effect"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Astrobiology term, commonly abbreviated HZ, for the stellar region where a planet could sustain liquid water.",
+      "answer": "habitable zone"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Property of matter that resists changes in motion.",
+      "answer": "inertia"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Fast, narrow air current in the upper atmosphere that influences weather patterns.",
+      "answer": "jet stream",
+      "alt": [
+        "jet-stream"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Energy of an object due to its motion.",
+      "answer": "kinetic energy",
+      "alt": [
+        "KE"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Total energy output of a star per unit time.",
+      "answer": "luminosity"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Space rock that survives passage through the atmosphere and lands on Earth.",
+      "answer": "meteorite"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "One billionth of a meter, commonly used to measure wavelengths of light.",
+      "answer": "nanometer",
+      "alt": [
+        "nanometre"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Specialized structure within a eukaryotic cell that performs a specific function.",
+      "answer": "organelle"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Apparent shift in position of a nearby star against distant background due to Earth's orbit.",
+      "answer": "parallax"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Basic unit of quantum information that can exist in superposition.",
+      "answer": "qubit"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Increase in wavelength of light from a receding object due to cosmic expansion or motion.",
+      "answer": "redshift"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Stream of charged particles flowing outward from the Sun.",
+      "answer": "solar wind"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Regular rise and fall of ocean levels caused mainly by the Moon's gravity.",
+      "answer": "tide"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Tube that carries urine from the kidney to the bladder.",
+      "answer": "ureter"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Small membrane-bound sac within a cell used for transport or storage.",
+      "answer": "vesicle"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Distance between successive peaks of a wave.",
+      "answer": "wavelength"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "High-energy electromagnetic radiation used in medical imaging and crystallography.",
+      "answer": "X-ray",
+      "alt": [
+        "X ray",
+        "Xray"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Portable round tent traditionally used by nomads of Central Asia.",
+      "answer": "yurt"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Microporous aluminosilicate mineral used as a catalyst and desiccant.",
+      "answer": "zeolite"
+    }
+  ]
+}

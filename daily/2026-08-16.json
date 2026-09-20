@@ -1,0 +1,175 @@
+{
+  "id": "set-2026-08-16",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Tiny air sacs in the lungs where gas exchange occurs.",
+      "answer": "alveoli",
+      "alt": [
+        "alveolus"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Composer of the Brandenburg Concertos.",
+      "answer": "Bach"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Brain region that coordinates balance and fine motor control.",
+      "answer": "cerebellum"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "French composer of Clair de Lune.",
+      "answer": "Debussy"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Flap of tissue that prevents food from entering the trachea during swallowing.",
+      "answer": "epiglottis"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Guitar maker famous for the Stratocaster.",
+      "answer": "Fender"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Cell organelle that modifies, sorts, and packages proteins.",
+      "answer": "Golgi apparatus",
+      "alt": [
+        "Golgi complex",
+        "Golgi body"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Brain structure crucial for forming new long-term memories.",
+      "answer": "hippocampus"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Third portion of the small intestine.",
+      "answer": "ileum"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Adjective describing gas giant planets like Jupiter and Saturn.",
+      "answer": "Jovian"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Japanese string instrument with movable bridges, played by plucking.",
+      "answer": "koto"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "White blood cell involved in immune defense.",
+      "answer": "leukocyte",
+      "alt": [
+        "leucocyte"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Motor protein that interacts with actin to drive muscle contraction.",
+      "answer": "myosin"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Flexible rod in chordate embryos that supports the body axis.",
+      "answer": "notochord"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Double-reed woodwind known for its penetrating, nasal tone.",
+      "answer": "oboe"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Point in a planet’s orbit when it is closest to the Sun.",
+      "answer": "perihelion"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Bacterial communication that regulates gene expression based on population density.",
+      "answer": "quorum sensing"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Composer of Boléro.",
+      "answer": "Ravel"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Neurotransmitter often linked to mood regulation and sleep.",
+      "answer": "serotonin"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Muscle regulatory protein measured as a key marker after a heart attack.",
+      "answer": "troponin"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Seventh planet from the Sun, discovered by William Herschel in 1781.",
+      "answer": "Uranus"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Heart chamber that pumps blood into arteries.",
+      "answer": "ventricle"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Instrument family that includes clarinet, flute, and oboe.",
+      "answer": "woodwind"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Closest known star to the Sun.",
+      "answer": "Proxima Centauri"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Cellist known for founding the Silk Road Ensemble.",
+      "answer": "Yo-Yo Ma",
+      "alt": [
+        "Yo Yo Ma",
+        "Yoyo Ma"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Disease that can be transmitted from animals to humans.",
+      "answer": "zoonosis"
+    }
+  ]
+}

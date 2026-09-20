@@ -1,0 +1,176 @@
+{
+  "id": "set-2026-09-01",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Brightest star in the constellation Aquila",
+      "answer": "Altair"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Arboreal Southeast Asian mammal that smells like popcorn, also called the bearcat",
+      "answer": "Binturong",
+      "alt": [
+        "bearcat"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "1941 Orson Welles film famous for the sled nicknamed Rosebud",
+      "answer": "Citizen Kane"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Marine mammal cousin of the manatee found in Indo-Pacific seagrass meadows",
+      "answer": "Dugong"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Dwarf planet beyond Neptune discovered in 2005 that stirred the Pluto debate",
+      "answer": "Eris"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Coen brothers crime film set amid snowy Minnesota and North Dakota",
+      "answer": "Fargo"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Long-armed ape known for brachiating through Southeast Asian forests",
+      "answer": "Gibbon"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "2011 Scorsese adventure about an orphan in a Paris train station",
+      "answer": "Hugo"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "2008 superhero film that launched the Marvel Cinematic Universe",
+      "answer": "Iron Man"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Desert rodent with long hind legs that hops like a tiny kangaroo",
+      "answer": "Jerboa"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Rainforest mammal with a prehensile tail, also called the honey bear",
+      "answer": "Kinkajou"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "2016 musical about aspiring performers in Los Angeles",
+      "answer": "La La Land"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "2016 drama that won Best Picture after the mistaken announcement",
+      "answer": "Moonlight"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "1922 silent horror film featuring a vampire legally distinct from Dracula",
+      "answer": "Nosferatu"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Fish-eating raptor often seen hovering over lakes and rivers",
+      "answer": "Osprey"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "2019 South Korean film that won Best Picture at the Oscars",
+      "answer": "Parasite"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Gadget chief in the James Bond films",
+      "answer": "Q"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "1987 sci-fi action film about a cybernetic law enforcer in Detroit",
+      "answer": "RoboCop",
+      "alt": [
+        "Robocop"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Brightest star in Earth's night sky, also called the Dog Star",
+      "answer": "Sirius",
+      "alt": [
+        "Dog Star"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "1995 Pixar feature, the first full-length computer-animated film",
+      "answer": "Toy Story"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "1992 Western that won Best Picture, directed by Clint Eastwood",
+      "answer": "Unforgiven"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Wild camelid of the Andes prized for its fine wool",
+      "answer": "Vicuña",
+      "alt": [
+        "vicuna"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "2014 film about a jazz drummer and his ruthless instructor",
+      "answer": "Whiplash"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "1999 sci-fi film where Neo learns the truth about reality",
+      "answer": "The Matrix",
+      "alt": [
+        "Matrix"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Green Jedi mentor known for inverted syntax in a galaxy far, far away",
+      "answer": "Yoda"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Masked swashbuckler who carves a Z to mark his victories",
+      "answer": "Zorro"
+    }
+  ]
+}

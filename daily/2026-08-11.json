@@ -1,0 +1,184 @@
+{
+  "id": "set-2026-08-11",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Peppery salad green also known as rocket.",
+      "answer": "arugula"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Rich French bread with a tender, buttery crumb.",
+      "answer": "brioche"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Roman pasta made with eggs, pecorino, and cured pork.",
+      "answer": "carbonara"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Indian lentil stew often served with rice.",
+      "answer": "dal",
+      "alt": [
+        "daal",
+        "dahl",
+        "dhal"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Dutch cheese traditionally coated in red wax.",
+      "answer": "edam"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Italian egg dish baked in a skillet, similar to a crustless quiche.",
+      "answer": "frittata"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Paprika-spiced Hungarian stew.",
+      "answer": "goulash",
+      "alt": [
+        "gulyas"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "North African chili paste often served with couscous.",
+      "answer": "harissa"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Norwegian playwright of A Doll's House.",
+      "answer": "Ibsen"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Charlotte Brontë novel about a governess and a secret at Thornfield Hall.",
+      "answer": "Jane Eyre"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Classical Japanese theater known for elaborate makeup and stylized movement.",
+      "answer": "kabuki"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Long, narrow, flat pasta whose name means little tongues.",
+      "answer": "linguine",
+      "alt": [
+        "linguini"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Chewy Japanese rice cake often filled with sweet bean paste or ice cream.",
+      "answer": "mochi"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Chocolate-hazelnut spread created in Italy.",
+      "answer": "Nutella"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Green pods that can thicken gumbo.",
+      "answer": "okra"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Polish dumplings often stuffed with potato and cheese.",
+      "answer": "pierogi",
+      "alt": [
+        "perogi",
+        "perogy",
+        "pirogi",
+        "pierogies"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Hard-shelled clam native to the Atlantic coast of North America.",
+      "answer": "quahog"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Soft Italian cheese commonly used in lasagna and cannoli.",
+      "answer": "ricotta"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Bright red chili sauce named for a Thai coastal town.",
+      "answer": "sriracha"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Indonesian fermented soybean cake with a firm, nutty texture.",
+      "answer": "tempeh"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Russian fur hat with ear flaps that tie under the chin.",
+      "answer": "ushanka"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Oil-and-vinegar salad dressing often emulsified with mustard.",
+      "answer": "vinaigrette"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Spirit distilled from grain and aged in wooden barrels.",
+      "answer": "whiskey",
+      "alt": [
+        "whisky"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Alphabetical list at the back of a book with page references.",
+      "answer": "index"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Fish known as hamachi in sushi bars.",
+      "answer": "yellowtail"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Italian dessert custard whipped from egg yolks, sugar, and sweet wine over gentle heat.",
+      "answer": "zabaglione",
+      "alt": [
+        "zabaione"
+      ]
+    }
+  ]
+}

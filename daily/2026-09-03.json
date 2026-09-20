@@ -1,0 +1,173 @@
+{
+  "id": "set-2026-09-03",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Termite-eating hyena relative native to southern and eastern Africa.",
+      "answer": "aardwolf"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Large, torpedo-shaped predatory fish with prominent teeth found in tropical seas.",
+      "answer": "barracuda"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Small New World monkey known for a dark cap of fur and notable intelligence.",
+      "answer": "capuchin"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Asiatic wild canine that hunts in packs and is known for whistling calls.",
+      "answer": "dhole"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Supernatural being from Germanic myth, often portrayed as an immortal archer in modern fantasy.",
+      "answer": "elf"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Roman woodland spirit with goat legs and human torso, counterpart to the Greek satyr.",
+      "answer": "faun"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Venomous beaded lizard native to the deserts of the southwestern United States and northwestern Mexico.",
+      "answer": "gila monster"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Small nocturnal rodent with expandable cheek pouches, common as a child’s pet.",
+      "answer": "hamster"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Powerful fire spirit from Middle Eastern folklore, a type of jinn.",
+      "answer": "ifrit",
+      "alt": [
+        "efreet"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Supernatural beings of smokeless fire in Islamic tradition, sometimes bound in lamps in later tales.",
+      "answer": "jinn",
+      "alt": [
+        "djinn"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Critically endangered, flightless parrot from New Zealand that is nocturnal and moss-green.",
+      "answer": "kakapo",
+      "alt": [
+        "kākāpō"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Clawed marine crustacean prized as seafood and known for its blue blood.",
+      "answer": "lobster"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Largest member of the deer family, recognized by a bull’s broad palmate antlers.",
+      "answer": "moose"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Cephalopod with a multi-chambered spiral shell that uses jet propulsion.",
+      "answer": "nautilus"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Marsupial of the Americas that can feign death as a defense strategy.",
+      "answer": "opossum"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Large cat of the Americas also called mountain lion or cougar.",
+      "answer": "puma"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Insect whose females often transmit diseases like malaria and dengue.",
+      "answer": "mosquito"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Herbivorous mammal with long ears and a characteristic hopping gait; leaves round pellets.",
+      "answer": "rabbit"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Amphibian with a lizardlike body that often regenerates lost limbs.",
+      "answer": "salamander"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Land-dwelling reptile with a domed shell and slow, deliberate movement.",
+      "answer": "tortoise"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Water spirit in European folklore said to lack a soul until marrying a human.",
+      "answer": "undine"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Small porpoise found only in the northern Gulf of California and on the brink of extinction.",
+      "answer": "vaquita"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Large African antelope also called a gnu, known for massive Serengeti migrations.",
+      "answer": "wildebeest"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Open-source operating system kernel created by Linus Torvalds in 1991.",
+      "answer": "Linux"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Supernatural creatures of Japanese folklore, including beings like kappa and tengu.",
+      "answer": "yokai",
+      "alt": [
+        "yōkai"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Hybrid equine produced by crossing a zebra with a horse.",
+      "answer": "zorse"
+    }
+  ]
+}

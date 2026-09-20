@@ -1,0 +1,177 @@
+{
+  "id": "set-2026-07-26",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Small salty fish used on pizzas and in Caesar dressing",
+      "answer": "anchovy",
+      "alt": [
+        "anchovies"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Racquet sport where players hit a shuttlecock over a high net",
+      "answer": "badminton"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Pastry tubes filled with sweet ricotta cream, often topped with pistachios",
+      "answer": "cannoli",
+      "alt": [
+        "cannolo"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Pub game where players throw small missiles at a circular board",
+      "answer": "darts"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Strong Italian coffee served in small shots",
+      "answer": "espresso",
+      "alt": [
+        "expresso"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Olympic sport using foils, épées, or sabres",
+      "answer": "fencing"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Soft Italian dumplings typically made from potato",
+      "answer": "gnocchi"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Traditional Scottish dish of minced offal mixed with oats and spices",
+      "answer": "haggis"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Spongy Ethiopian flatbread used to scoop stews",
+      "answer": "injera"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Olympic Japanese martial art focused on throws and pins",
+      "answer": "judo"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Sing-along entertainment using instrumental tracks and a screen of lyrics",
+      "answer": "karaoke"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Team sport using sticks with mesh heads to catch, carry, and pass a ball",
+      "answer": "lacrosse"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Tequila cocktail with lime juice and orange liqueur, often served with salt",
+      "answer": "margarita"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Tortilla chips topped with melted cheese, often with jalapeños and salsa",
+      "answer": "nachos"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Herb traditionally sprinkled dried over Greek salads and pizza sauce",
+      "answer": "oregano"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Canadian dish of fries covered with cheese curds and gravy",
+      "answer": "poutine"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Container that holds arrows in archery",
+      "answer": "quiver"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Indoor sport invented in the US where players hit a hollow rubber ball off walls with strung rackets",
+      "answer": "racquetball",
+      "alt": [
+        "racketball"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Cue sport played on a large table using 15 red balls and six colors",
+      "answer": "snooker"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Korean martial art emphasizing high, fast kicks",
+      "answer": "taekwondo",
+      "alt": [
+        "tae kwon do",
+        "taekwon-do"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Official in baseball or cricket who makes on-field rulings",
+      "answer": "umpire"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Team sport where sides rally a ball over a high net without catching",
+      "answer": "volleyball"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Round-bottomed pan used for Chinese stir-frying",
+      "answer": "wok"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Ballroom dance named for an animal and part of the NATO alphabet",
+      "answer": "foxtrot"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Midwinter festival historically linked to Germanic and Christmas traditions",
+      "answer": "yule"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Machine that resurfaces ice rinks between hockey periods",
+      "answer": "zamboni"
+    }
+  ]
+}

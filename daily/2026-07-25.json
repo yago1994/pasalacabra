@@ -1,0 +1,168 @@
+{
+  "id": "set-2026-07-25",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Primary artery carrying blood from the left ventricle to the body.",
+      "answer": "aorta"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Largest country in South America by area and population.",
+      "answer": "brazil"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Bat-and-ball sport popular in India, England, and Australia.",
+      "answer": "cricket"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "River that flows through Vienna, Budapest, and Belgrade.",
+      "answer": "danube"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Highest mountain above sea level on Earth.",
+      "answer": "everest"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Longest bone of the human body, located in the thigh.",
+      "answer": "femur"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "World's largest island that is not a continent.",
+      "answer": "greenland"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Capital city of Cuba.",
+      "answer": "havana"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Large herbivorous lizard often kept as a pet.",
+      "answer": "iguana"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Track-and-field event where athletes throw a spear-like implement.",
+      "answer": "javelin"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Africa's highest peak, a stratovolcano in Tanzania.",
+      "answer": "kilimanjaro"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Largest of North America's Great Lakes by surface area.",
+      "answer": "lake superior"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Footrace of 42.195 kilometers.",
+      "answer": "marathon"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "South Asian country whose capital is Kathmandu.",
+      "answer": "nepal"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Great ape native to the rainforests of Borneo and Sumatra.",
+      "answer": "orangutan",
+      "alt": [
+        "orang-utan",
+        "orang utan"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Bone commonly known as the kneecap.",
+      "answer": "patella"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Resplendent bird that is the national symbol of Guatemala.",
+      "answer": "quetzal"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Football code featuring tries, conversions, and scrums.",
+      "answer": "rugby"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Vast desert stretching across North Africa.",
+      "answer": "sahara"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Racket sport played on a rectangular court, singles or doubles.",
+      "answer": "tennis"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Forearm bone aligned with the little finger.",
+      "answer": "ulna"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Geologic opening that can erupt lava, ash, and gases.",
+      "answer": "volcano"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Prestigious grass-court tennis tournament held in London.",
+      "answer": "wimbledon"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Neotenic salamander native to Mexico, especially the canals of Xochimilco.",
+      "answer": "axolotl",
+      "alt": [
+        "ambystoma mexicanum"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Country at the southern tip of the Arabian Peninsula.",
+      "answer": "yemen"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Tanzanian archipelago in the Indian Ocean known for the spice trade.",
+      "answer": "zanzibar"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "id": "set-2026-08-18",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Branch of biology that studies body structure, often via dissection.",
+      "answer": "anatomy"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Alloy of copper and tin widely used in sculpture.",
+      "answer": "bronze"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Ancient wedge-shaped writing system of Mesopotamia.",
+      "answer": "cuneiform"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Single-celled algae with silica shells common in marine plankton.",
+      "answer": "diatom"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Glassy coating fused to metal or pottery in decorative art.",
+      "answer": "enamel"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Smaller of the two bones in the lower leg.",
+      "answer": "fibula"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Grotesque stone figure that channels rainwater off a building.",
+      "answer": "gargoyle"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Pictorial writing system of ancient Egypt.",
+      "answer": "hieroglyphs",
+      "alt": [
+        "hieroglyphics"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Type of rock formed by the solidification of magma or lava.",
+      "answer": "igneous"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Green ornamental stone long prized in East Asian carving.",
+      "answer": "jade"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Wedge-shaped central stone that locks an arch in place.",
+      "answer": "keystone"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Relief printmaking technique that carves a design into a sheet of linoleum.",
+      "answer": "linocut"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "16th-century art style after the High Renaissance, noted for elongated, elegant figures.",
+      "answer": "Mannerism"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Prehistoric period marked by agriculture and polished stone tools.",
+      "answer": "Neolithic"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Volcanic glass commonly used for prehistoric blades and later decorative objects.",
+      "answer": "obsidian"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Transparent optical element that disperses white light into a spectrum.",
+      "answer": "prism"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Musical ensemble consisting of five performers.",
+      "answer": "quintet",
+      "alt": [
+        "quintette"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Japanese pottery tradition known for rapid firing and crackled glazes.",
+      "answer": "Raku"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Vatican site famed for Michelangelo’s ceiling frescoes.",
+      "answer": "Sistine Chapel"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Pattern of shapes that covers a plane without gaps or overlaps.",
+      "answer": "tessellation",
+      "alt": [
+        "tiling"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Natural brown earth pigment, darker than sienna, sold as raw or burnt.",
+      "answer": "umber"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Painting genre meditating on mortality, often featuring skulls, clocks, and wilting flowers.",
+      "answer": "vanitas"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Japanese aesthetic that embraces imperfection, weathering, and transience.",
+      "answer": "wabi-sabi",
+      "alt": [
+        "wabi sabi"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Fear or hatred of people perceived as outsiders or foreigners.",
+      "answer": "xenophobia"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese organized crime syndicate.",
+      "answer": "yakuza"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Intricate mosaic tilework of glazed terracotta characteristic of Moroccan architecture.",
+      "answer": "zellige",
+      "alt": [
+        "zellij"
+      ]
+    }
+  ]
+}

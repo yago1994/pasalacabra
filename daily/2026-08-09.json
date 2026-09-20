@@ -1,0 +1,201 @@
+{
+  "id": "set-2026-08-09",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Dessert famously cited in the idiom 'as American as ___ pie'.",
+      "answer": "apple pie"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Classical dance form featuring pointe work and tutus.",
+      "answer": "ballet"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Buttery French crescent pastry.",
+      "answer": "croissant"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Sweet fruit from the palm often stuffed with almonds in Middle Eastern cuisine.",
+      "answer": "date",
+      "alt": [
+        "dates"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Scoring area on an American football field.",
+      "answer": "end zone",
+      "alt": [
+        "endzone"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Aromatic bulb vegetable with an anise flavor.",
+      "answer": "fennel"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Mexican dip of mashed avocado, lime, and salt.",
+      "answer": "guacamole",
+      "alt": [
+        "guac"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Indoor team sport where players throw a ball to score in a netted goal.",
+      "answer": "handball",
+      "alt": [
+        "team handball"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Hoppy beer style developed in England and popular in craft brewing.",
+      "answer": "IPA",
+      "alt": [
+        "india pale ale"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Stacking game where players remove wooden blocks without toppling the tower.",
+      "answer": "Jenga"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Contact team sport prominent in South Asia where raiders tag defenders while holding a breath.",
+      "answer": "kabaddi"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Mild allium with flat leaves often used in potato soup.",
+      "answer": "leek"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "French almond sandwich cookie with ganache or buttercream filling.",
+      "answer": "macaron",
+      "alt": [
+        "macarons"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Chewy confection of sugar or honey with nuts such as almonds or pistachios.",
+      "answer": "nougat"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Bivalve often served raw on the half shell with mignonette.",
+      "answer": "oyster",
+      "alt": [
+        "oysters"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Paddle sport combining elements of tennis and ping-pong, played on a small court with a perforated ball.",
+      "answer": "pickleball"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Drummer and bandleader of The Roots who won an Oscar for Best Documentary in 2022.",
+      "answer": "Questlove",
+      "alt": [
+        "Ahmir Thompson"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "13th-century Persian poet renowned for mystical verse.",
+      "answer": "Rumi",
+      "alt": [
+        "Jalal ad-Din Rumi",
+        "Jalaluddin Rumi"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Japanese wrestling where the goal is to force an opponent out of a ring.",
+      "answer": "sumo"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Flatbread of maize or wheat central to Mexican cuisine.",
+      "answer": "tortilla",
+      "alt": [
+        "tortillas"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Team sport played with a flying disc emphasizing Spirit of the Game.",
+      "answer": "ultimate",
+      "alt": [
+        "ultimate frisbee"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Savory Australian spread made from brewer’s yeast extract.",
+      "answer": "Vegemite"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Olympic sport featuring the snatch and the clean and jerk.",
+      "answer": "weightlifting",
+      "alt": [
+        "olympic weightlifting"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Gloved combat sport with weight classes like featherweight and heavyweight.",
+      "answer": "boxing"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Physical practice from India emphasizing poses and breath control.",
+      "answer": "yoga"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "School of Buddhism in Japan that emphasizes seated meditation.",
+      "answer": "Zen",
+      "alt": [
+        "Zen Buddhism"
+      ]
+    }
+  ]
+}

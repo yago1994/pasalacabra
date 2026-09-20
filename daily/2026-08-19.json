@@ -1,0 +1,161 @@
+{
+  "id": "set-2026-08-19",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Armor-plated mammal native to the Americas with bony plates called osteoderms.",
+      "answer": "armadillo"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Dam-building rodent known for its broad, flat tail.",
+      "answer": "beaver"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "1942 romance set in Morocco starring Humphrey Bogart and Ingrid Bergman.",
+      "answer": "Casablanca"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Extinct flightless bird from Mauritius, last seen in the 17th century.",
+      "answer": "dodo"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Negatively charged subatomic particle orbiting an atomic nucleus.",
+      "answer": "electron"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Bird of prey famed for high-speed dives called stoops.",
+      "answer": "falcon"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Small tropical aquarium fish also called a millionfish.",
+      "answer": "guppy"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Long-legged wading bird often seen hunting fish in wetlands.",
+      "answer": "heron"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "2010 sci-fi heist film about shared dreaming, directed by Christopher Nolan.",
+      "answer": "Inception"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "1993 dinosaur thriller directed by Steven Spielberg.",
+      "answer": "Jurassic Park"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Small falcon known for hovering while hunting.",
+      "answer": "kestrel"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Composite organism formed by a fungus and photosynthetic partner, often crusting rocks.",
+      "answer": "lichen"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Social mongoose of the Kalahari that stands upright to scan for predators.",
+      "answer": "meerkat"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Nearly massless neutral particle produced in nuclear reactions, rarely interacting with matter.",
+      "answer": "neutrino"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Black-and-white oceanic dolphin known as a killer whale.",
+      "answer": "orca"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Freshwater fish of South America with sharp, interlocking teeth.",
+      "answer": "piranha"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Spotted carnivorous marsupial native to Australia and New Guinea.",
+      "answer": "quoll"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "System that uses radio waves to detect the range and speed of objects.",
+      "answer": "radar"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Tree-dwelling mammal known for extremely slow movement.",
+      "answer": "sloth"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Tropical bird with an oversized, colorful bill.",
+      "answer": "toucan"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Electromagnetic radiation with wavelengths shorter than visible violet.",
+      "answer": "ultraviolet"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Small, swift theropod dinosaur popularized by Jurassic Park.",
+      "answer": "velociraptor"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Apex canine that hunts in packs; the gray species is Canis lupus.",
+      "answer": "wolf"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "In physics, the rate of flow of a field through a given surface.",
+      "answer": "flux"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "European bunting whose song is remembered as 'little-bit-of-bread-and-no-cheese'.",
+      "answer": "yellowhammer"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Mosquito-borne virus linked to birth defects in the 2015–16 outbreak.",
+      "answer": "Zika"
+    }
+  ]
+}

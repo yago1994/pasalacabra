@@ -1,0 +1,178 @@
+{
+  "id": "set-2026-08-31",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Molecule that triggers an immune response",
+      "answer": "antigen"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Large ecological region defined by climate and dominant vegetation",
+      "answer": "biome"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Herb whose seeds spice Indian pickles and whose leaves are called by another name in Mexican cooking",
+      "answer": "coriander",
+      "alt": [
+        "cilantro"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Miniature three-dimensional scene displayed in a museum case",
+      "answer": "diorama"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Animal that regulates body temperature primarily through external heat sources",
+      "answer": "ectotherm"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Decorative horizontal band of sculpture or painting on a wall or building",
+      "answer": "frieze"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Primary storage form of glucose in animal cells",
+      "answer": "glycogen"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Natural environment where a species lives and grows",
+      "answer": "habitat"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Religious image venerated in Eastern Orthodox tradition",
+      "answer": "icon"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Fragrant flowering plant often used to scent green tea",
+      "answer": "jasmine"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Small crustaceans that form the bulk of many whales' diet",
+      "answer": "krill"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Fluid that circulates through vessels of the immune system",
+      "answer": "lymph"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Invertebrate group that includes snails, clams, and cuttlefish",
+      "answer": "mollusk",
+      "alt": [
+        "mollusc"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Sugary fluid produced by flowers to attract pollinators",
+      "answer": "nectar"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Family of flowering plants known for intricate, bilaterally symmetrical blooms",
+      "answer": "Orchidaceae",
+      "alt": [
+        "orchid family",
+        "orchids"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Order of mammals that includes humans, apes, and lemurs",
+      "answer": "primate"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Feather used historically as a writing instrument",
+      "answer": "quill"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Melodic framework used for improvisation in Indian classical music",
+      "answer": "raga",
+      "alt": [
+        "raag",
+        "raaga"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Traditional draped garment worn by many women in South Asia",
+      "answer": "sari",
+      "alt": [
+        "saree"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Small nocturnal primate with enormous eyes native to Southeast Asia",
+      "answer": "tarsier"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Spiny echinoderm closely related to sand dollars",
+      "answer": "urchin"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Monarch butterfly mimic distinguished by a black line across the hindwing",
+      "answer": "viceroy"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Beetle with a long snout that bores into grains and plants",
+      "answer": "weevil"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Category of chromosomes that determine biological sex in many animals",
+      "answer": "sex chromosomes"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Aromatic plant Achillea millefolium valued in folk medicine and as a hardy ornamental",
+      "answer": "yarrow"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Bright annual garden flower named after German botanist Johann Zinn",
+      "answer": "zinnia"
+    }
+  ]
+}

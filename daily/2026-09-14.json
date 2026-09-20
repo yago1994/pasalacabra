@@ -1,0 +1,164 @@
+{
+  "id": "set-2026-09-14",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "SI unit of electric current.",
+      "answer": "ampere"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Domain of prokaryotic microorganisms distinct from Archaea.",
+      "answer": "Bacteria"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Green pigment in plants that absorbs light for photosynthesis.",
+      "answer": "chlorophyll"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Tree nymph in Greek mythology.",
+      "answer": "dryad"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Single-celled flagellate that can both photosynthesize and ingest food.",
+      "answer": "Euglena"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Small mythical being often depicted with wings and magic.",
+      "answer": "fairy"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Monosaccharide that serves as a primary energy source for many cells.",
+      "answer": "glucose"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Oxygen-carrying protein in red blood cells.",
+      "answer": "hemoglobin",
+      "alt": [
+        "haemoglobin"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Type of crustacean that includes woodlice and pill bugs.",
+      "answer": "isopod"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "SI unit of energy.",
+      "answer": "joule"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Fibrous protein forming hair, nails, horns, and feathers.",
+      "answer": "keratin"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Organelle containing digestive enzymes that break down waste in animal cells.",
+      "answer": "lysosome"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Cell division that produces two genetically identical daughter cells.",
+      "answer": "mitosis"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Evolutionary mechanism by which heritable traits increase in frequency due to differential reproductive success.",
+      "answer": "natural selection"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Cephalopod known for eight arms, suction cups, and notable intelligence.",
+      "answer": "octopus"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Large molecule composed of repeating subunits called monomers.",
+      "answer": "polymer"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Common mineral of silicon dioxide valued for its piezoelectric properties.",
+      "answer": "quartz"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Bending of light as it passes between media with different optical densities.",
+      "answer": "refraction"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Element widely used in semiconductors with atomic number 14.",
+      "answer": "silicon"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Protective DNA–protein cap at the end of a chromosome.",
+      "answer": "telomere"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Liquid waste excreted by the kidneys.",
+      "answer": "urine"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Organic micronutrient required by the body in small amounts for normal metabolism.",
+      "answer": "vitamin"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Arctic pinniped known for long tusks and whiskers.",
+      "answer": "walrus"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Genus of African clawed frogs widely used as a model organism.",
+      "answer": "Xenopus"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Tropical infectious disease caused by Treponema pallidum pertenue.",
+      "answer": "yaws"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Inactive enzyme precursor that becomes active after proteolytic cleavage.",
+      "answer": "zymogen"
+    }
+  ]
+}

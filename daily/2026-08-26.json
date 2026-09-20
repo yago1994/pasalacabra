@@ -1,0 +1,190 @@
+{
+  "id": "set-2026-08-26",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Liverpool FC's home stadium.",
+      "answer": "Anfield"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Prussian statesman who unified Germany in 1871.",
+      "answer": "Bismarck"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "French city that hosts the Palme d'Or competition.",
+      "answer": "Cannes"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "2017 Christopher Nolan film depicting the 1940 Allied evacuation.",
+      "answer": "Dunkirk"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Supreme Allied Commander in Europe during World War II who became the 34th U.S. president.",
+      "answer": "Eisenhower"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Global governing body for association football.",
+      "answer": "FIFA"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "2000 film that won Best Picture, featuring a Roman general seeking revenge.",
+      "answer": "Gladiator"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Carthaginian commander who crossed the Alps with war elephants.",
+      "answer": "Hannibal"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Pacific island whose 1945 battle was memorialized by a famous flag-raising photograph.",
+      "answer": "Iwo Jima"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "American sprinter who won four gold medals at the 1936 Berlin Olympics.",
+      "answer": "Jesse Owens"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Actor who played Neo in The Matrix.",
+      "answer": "Keanu Reeves",
+      "alt": [
+        "Keanu"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "NBA star nicknamed 'King James' and four-time MVP.",
+      "answer": "LeBron James",
+      "alt": [
+        "Lebron James",
+        "LeBron"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Argentine footballer famed for the 'Hand of God' goal in 1986.",
+      "answer": "Maradona"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "U.S. president who resigned in 1974.",
+      "answer": "Nixon"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "International multi-sport event held every four years with summer and winter editions.",
+      "answer": "Olympics",
+      "alt": [
+        "Olympic Games"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Brazilian football icon nicknamed 'O Rei'.",
+      "answer": "Pele",
+      "alt": [
+        "Pelé"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Director of Pulp Fiction and Kill Bill.",
+      "answer": "Quentin Tarantino",
+      "alt": [
+        "Quentin"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "1976 sports drama that won Best Picture, centered on a Philadelphia boxer.",
+      "answer": "Rocky"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "American women's tennis great with 23 Grand Slam singles titles.",
+      "answer": "Serena Williams",
+      "alt": [
+        "Serena"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "1997 James Cameron epic that tied the record with 11 Oscars.",
+      "answer": "Titanic"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "European soccer's governing body that runs the Champions League.",
+      "answer": "UEFA"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "British monarch whose 1837-1901 reign lends its name to an era.",
+      "answer": "Victoria"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Siblings who achieved the first powered airplane flight in 1903.",
+      "answer": "Wright brothers",
+      "alt": [
+        "Wright Bros"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Spain's 2010 World Cup-winning midfield leader who later coached Barcelona.",
+      "answer": "Xavi",
+      "alt": [
+        "Xavi Hernandez",
+        "Xavi Hernández"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "1945 conference where Roosevelt, Churchill, and Stalin planned postwar Europe.",
+      "answer": "Yalta",
+      "alt": [
+        "Yalta Conference"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "1964 war film about the Battle of Rorke's Drift, starring Michael Caine.",
+      "answer": "Zulu"
+    }
+  ]
+}

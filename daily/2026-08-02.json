@@ -1,0 +1,204 @@
+{
+  "id": "set-2026-08-02",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Mesoamerican empire that built Tenochtitlan.",
+      "answer": "Aztec",
+      "alt": [
+        "Aztecs",
+        "Aztec Empire"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Herb central to pesto sauce.",
+      "answer": "Basil"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Main structural polysaccharide in plant cell walls.",
+      "answer": "Cellulose"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Allied invasion of Normandy on June 6, 1944.",
+      "answer": "D-Day",
+      "alt": [
+        "D Day"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "American inventor who ran the Menlo Park lab and patented the practical light bulb.",
+      "answer": "Edison",
+      "alt": [
+        "Thomas Edison"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Temperature scale with 32 degrees as water’s freezing point.",
+      "answer": "Fahrenheit"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Italian astronomer tried by the Inquisition for supporting heliocentrism.",
+      "answer": "Galileo",
+      "alt": [
+        "Galileo Galilei"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Noble gas that is the second most abundant element in the universe.",
+      "answer": "Helium"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Trace element added to table salt to prevent goiter.",
+      "answer": "Iodine"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Conifer whose berries flavor gin.",
+      "answer": "Juniper",
+      "alt": [
+        "juniper berry",
+        "juniper berries"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Tomato-based condiment commonly paired with fries.",
+      "answer": "Ketchup",
+      "alt": [
+        "catsup"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Swedish naturalist who formalized binomial nomenclature.",
+      "answer": "Linnaeus",
+      "alt": [
+        "Carl Linnaeus",
+        "Carolus Linnaeus"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Monk who discovered basic laws of heredity using pea plants.",
+      "answer": "Mendel",
+      "alt": [
+        "Gregor Mendel"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Gas that makes up about 78 percent of Earth's atmosphere.",
+      "answer": "Nitrogen"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Physicist who directed the Manhattan Project.",
+      "answer": "Oppenheimer",
+      "alt": [
+        "J. Robert Oppenheimer"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "First antibiotic discovered by Alexander Fleming.",
+      "answer": "Penicillin"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Inca record-keeping system using knotted cords.",
+      "answer": "Quipu"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Alkaline earth metal isolated by Marie and Pierre Curie.",
+      "answer": "Radium"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Seed used on burger buns and ground into tahini.",
+      "answer": "Sesame"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Codebreaker at Bletchley Park who proposed a test for machine intelligence.",
+      "answer": "Turing",
+      "alt": [
+        "Alan Turing"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Ideal commonwealth described by Thomas More in 1516.",
+      "answer": "Utopia"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Italian volcano that buried Pompeii in 79 CE.",
+      "answer": "Vesuvius",
+      "alt": [
+        "Mount Vesuvius",
+        "Mt Vesuvius"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Biologist who co-discovered the DNA double helix with Crick.",
+      "answer": "Watson",
+      "alt": [
+        "James Watson"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Rock fragment enclosed within an igneous body.",
+      "answer": "Xenolith"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Mongol-led Chinese dynasty that preceded the Ming.",
+      "answer": "Yuan",
+      "alt": [
+        "Yuan dynasty"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Rigid airship pioneered in early aviation by a German count.",
+      "answer": "Zeppelin"
+    }
+  ]
+}

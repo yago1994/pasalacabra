@@ -1,0 +1,176 @@
+{
+  "id": "set-2026-07-24",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Garlic mayonnaise from Provence.",
+      "answer": "aioli",
+      "alt": [
+        "aïoli"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Compartmentalized Japanese lunch box meal.",
+      "answer": "bento"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Spanish fried-dough pastry dusted with cinnamon sugar.",
+      "answer": "churro",
+      "alt": [
+        "churros"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Long white Japanese radish often pickled.",
+      "answer": "daikon"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Oblong French pastry filled with cream and topped with chocolate glaze.",
+      "answer": "eclair",
+      "alt": [
+        "éclair"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Swiss dish of melted cheese served with bread for dipping.",
+      "answer": "fondue"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Traditional Indonesian percussion orchestra from Java and Bali.",
+      "answer": "gamelan"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Japanese poetic form traditionally about nature with a 5-7-5 syllable pattern.",
+      "answer": "haiku"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Japanese art of flower arranging.",
+      "answer": "ikebana"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Coin-operated machine that plays selected songs in diners and bars.",
+      "answer": "jukebox"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Japanese breaded, deep-fried cutlet, often served with curry or shredded cabbage.",
+      "answer": "katsu"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Baked Italian dish of layered pasta, sauce, and cheese.",
+      "answer": "lasagna",
+      "alt": [
+        "lasagne"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Japanese comics typically published in black and white.",
+      "answer": "manga"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Edible seaweed sheets used to wrap rice rolls.",
+      "answer": "nori"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Dramatic stage genre with little or no spoken dialogue, combining orchestral music and singing, often in multiple acts.",
+      "answer": "opera"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Vietnamese soup featuring rice noodles and aromatic broth.",
+      "answer": "pho",
+      "alt": [
+        "phở"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "High-collared, form-fitting traditional Chinese women’s dress.",
+      "answer": "qipao"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Cooked mixture of fat and flour used to thicken sauces and stews.",
+      "answer": "roux"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Thinly sliced raw seafood served without rice.",
+      "answer": "sashimi"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Small Spanish bar snacks served with drinks.",
+      "answer": "tapas"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Savory taste associated with glutamates in foods like broth and mushrooms.",
+      "answer": "umami"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Dutch painter of Girl with a Pearl Earring.",
+      "answer": "vermeer"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Japanese beef known for dense marbling and buttery texture.",
+      "answer": "wagyu"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Mythical bird said to be reborn from its own ashes.",
+      "answer": "phoenix"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese style of grilling bite-size meats at the table.",
+      "answer": "yakiniku"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Stepped temple tower characteristic of ancient Mesopotamia.",
+      "answer": "ziggurat"
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "id": "set-2026-08-17",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Greek goddess of love and beauty.",
+      "answer": "Aphrodite"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Surname of the sisters Charlotte, Emily, and Anne, famed English novelists.",
+      "answer": "Brontë",
+      "alt": [
+        "Bronte"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Early 20th-century art movement pioneered by Picasso and Braque.",
+      "answer": "Cubism"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "French fashion house founded by Christian in 1946.",
+      "answer": "Dior"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Dutch graphic artist known for impossible constructions.",
+      "answer": "Escher"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Mexican painter known for self-portraits and bold symbolism.",
+      "answer": "Frida Kahlo",
+      "alt": [
+        "Frida"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Medieval architectural style marked by pointed arches and flying buttresses.",
+      "answer": "Gothic"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "20th-century flowering of African American arts centered in New York.",
+      "answer": "Harlem Renaissance"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Neoclassical French painter of La Grande Odalisque.",
+      "answer": "Ingres"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Ancient Indian religion advocating nonviolence and asceticism.",
+      "answer": "Jainism"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Vibrant woven Ghanaian cloth traditionally associated with royalty.",
+      "answer": "Kente"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Spanish poet and playwright of Blood Wedding.",
+      "answer": "Lorca"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Leonardo da Vinci portrait famed for its enigmatic smile.",
+      "answer": "Mona Lisa"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Collective term for medieval Scandinavian culture and mythology.",
+      "answer": "Norse"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Roman poet who wrote Metamorphoses.",
+      "answer": "Ovid"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Spanish artist who co-founded Cubism.",
+      "answer": "Picasso",
+      "alt": [
+        "Pablo Picasso"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Term for the 1400s in Italian art history.",
+      "answer": "Quattrocento"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Dutch master of The Night Watch.",
+      "answer": "Rembrandt"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Art movement associated with dream imagery and automatism.",
+      "answer": "Surrealism"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Author of The Lord of the Rings.",
+      "answer": "Tolkien"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Japanese genre of woodblock prints depicting the floating world.",
+      "answer": "Ukiyo-e",
+      "alt": [
+        "Ukiyoe"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Spanish court painter of Las Meninas.",
+      "answer": "Velázquez",
+      "alt": [
+        "Velazquez"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "American poet who wrote Leaves of Grass.",
+      "answer": "Whitman",
+      "alt": [
+        "Walt Whitman"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "20th-century movement emphasizing subjective emotion and distortion.",
+      "answer": "Expressionism"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese aesthetic ideal suggesting a profound, mysterious sense of beauty.",
+      "answer": "Yūgen",
+      "alt": [
+        "Yugen"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Spanish form of musical theater blending spoken dialogue and song.",
+      "answer": "Zarzuela"
+    }
+  ]
+}

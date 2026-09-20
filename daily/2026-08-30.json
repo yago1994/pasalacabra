@@ -1,0 +1,171 @@
+{
+  "id": "set-2026-08-30",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Positive electrode in an electrolytic cell.",
+      "answer": "anode"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Winter sport combining cross-country skiing and rifle shooting.",
+      "answer": "biathlon"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Error-detecting value computed as a modular sum over a data block.",
+      "answer": "checksum"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Powerlifting move lifting a barbell from floor to hips.",
+      "answer": "deadlift"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Joint between the upper arm and forearm bones.",
+      "answer": "elbow"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Tennis stroke hit with the palm-facing swing on the dominant side.",
+      "answer": "forehand"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Device that maintains orientation using angular momentum.",
+      "answer": "gyroscope"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Passive component that dissipates thermal energy from electronics.",
+      "answer": "heatsink",
+      "alt": [
+        "heat sink"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Molecule having the same formula as another but a different arrangement.",
+      "answer": "isomer"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Straight, quick punch used in boxing to set up combinations.",
+      "answer": "jab"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Narrow watercraft propelled with a double-bladed paddle.",
+      "answer": "kayak"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Simple machine consisting of a rigid bar that pivots on a fulcrum.",
+      "answer": "lever"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Pointing device moved across a surface to control a computer cursor.",
+      "answer": "mouse"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Barrier stretched across the middle of a tennis court.",
+      "answer": "net"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Instrument that displays electrical signals as waveforms.",
+      "answer": "oscilloscope"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Laboratory tool used to measure and transfer small liquid volumes.",
+      "answer": "pipette"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Player who advances from preliminary rounds into a tournament’s main draw.",
+      "answer": "qualifier"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Track event in which teammates run sequential legs and pass a baton.",
+      "answer": "relay"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Process of joining metals using a melted filler below 450°C without melting the base metals.",
+      "answer": "soldering"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Rotational equivalent of force measured in newton-meters.",
+      "answer": "torque"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Action of transferring files from a local device to a remote server.",
+      "answer": "upload"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Tennis shot struck before the ball bounces.",
+      "answer": "volley"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Neoprene garment worn by surfers and divers to retain body heat.",
+      "answer": "wetsuit",
+      "alt": [
+        "wet suit"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Data size unit equal to 10^18 bytes.",
+      "answer": "exabyte"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Sudden loss of fine motor control seen in golfers or dart players.",
+      "answer": "yips"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Aerial ride where a person glides along a suspended cable using a pulley.",
+      "answer": "zipline",
+      "alt": [
+        "zip line",
+        "zip-line"
+      ]
+    }
+  ]
+}

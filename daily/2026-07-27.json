@@ -1,0 +1,167 @@
+{
+  "id": "set-2026-07-27",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Nocturnal African mammal with rabbitlike ears and a piglike snout that digs for termites with a long, sticky tongue.",
+      "answer": "aardvark"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "North American bovine with a massive shoulder hump; includes plains and wood subspecies.",
+      "answer": "bison"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "North American canid famed for its yipping calls and urban adaptability, nicknamed the song dog.",
+      "answer": "coyote"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Intelligent marine mammal with a beaklike snout that uses echolocation and rides bow waves.",
+      "answer": "dolphin"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Large flightless Australian bird, second only to the ostrich in height.",
+      "answer": "emu"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Slender domesticated mustelid historically used for rabbit hunting.",
+      "answer": "ferret"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Tallest land animal, with a long purple tongue and skin-covered ossicones.",
+      "answer": "giraffe"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Savanna scavenger and predator known for whooping laughs and matriarchal clans.",
+      "answer": "hyena",
+      "alt": [
+        "hyaena"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Mischievous small creature from European folklore, often blamed for pranks.",
+      "answer": "imp"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Spotted big cat of the Americas with a crushing bite that can pierce turtle shells.",
+      "answer": "jaguar"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Large African antelope with corkscrew horns; greater and lesser species exist.",
+      "answer": "kudu"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Primates endemic to Madagascar; includes ring-tailed species and sifakas.",
+      "answer": "lemur"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Gentle herbivorous marine mammal popularly nicknamed the sea cow.",
+      "answer": "manatee"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Amphibian with a lizardlike body; its juvenile land stage is called an eft.",
+      "answer": "newt"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Forest-dwelling relative of the giraffe with zebra-like leg stripes.",
+      "answer": "okapi"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Bamboo-eating black-and-white bear native to China.",
+      "answer": "panda"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Fragrant yellow fruit used for jams and Spanish membrillo.",
+      "answer": "quince"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Nocturnal North American mammal with a black facial mask and ringed tail, notorious for raiding trash cans.",
+      "answer": "raccoon"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Mythic riddle-poser with a lion’s body and a human head.",
+      "answer": "sphinx"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Largest of the big cats, known for bold vertical stripes.",
+      "answer": "tiger"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Short-tailed Amazonian monkey noted for its bald, bright red face.",
+      "answer": "uakari",
+      "alt": [
+        "uacari"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Term for a female fox.",
+      "answer": "vixen"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Stocky Australian marsupial that produces cube-shaped droppings.",
+      "answer": "wombat"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Domesticated bovine traditionally used as a draft animal.",
+      "answer": "ox"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Ape-like snow creature of Himalayan folklore, also called the Abominable Snowman.",
+      "answer": "yeti"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Humped cattle breed domesticated in South Asia, suited to tropical heat.",
+      "answer": "zebu"
+    }
+  ]
+}

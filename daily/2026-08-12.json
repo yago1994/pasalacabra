@@ -1,0 +1,182 @@
+{
+  "id": "set-2026-08-12",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Photosynthetic organisms that can be unicellular or multicellular and live in aquatic habitats",
+      "answer": "algae"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Air passages that branch from the trachea into the lungs",
+      "answer": "bronchi"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Transparent front part of the eye that covers the iris and pupil",
+      "answer": "cornea"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Branched projection of a neuron that receives signals",
+      "answer": "dendrite"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Apparent yearly path of the Sun across the celestial sphere",
+      "answer": "ecliptic"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Whip-like cellular structure used for locomotion in many bacteria and sperm",
+      "answer": "flagellum",
+      "alt": [
+        "flagella"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Reproductive cell that fuses during fertilization",
+      "answer": "gamete"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Upper arm bone between the shoulder and elbow",
+      "answer": "humerus"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Animal lacking a backbone",
+      "answer": "invertebrate"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Major neck vessel returning blood from the head to the heart",
+      "answer": "jugular vein",
+      "alt": [
+        "jugular"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Chromosome set of a cell displayed as an ordered image",
+      "answer": "karyotype"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Voice box located between the pharynx and trachea",
+      "answer": "larynx"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Organelle known as the powerhouse of the cell",
+      "answer": "mitochondrion",
+      "alt": [
+        "mitochondria"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Functional filtering unit of the kidney",
+      "answer": "nephron"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Zodiacal constellation symbolized by the serpent-bearer",
+      "answer": "Ophiuchus"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Opening in the iris that regulates light entry to the eye",
+      "answer": "pupil"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Four-part muscle group at the front of the thigh",
+      "answer": "quadriceps",
+      "alt": [
+        "quads"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Sculptural technique where forms project from a flat background",
+      "answer": "relief"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Opaque white outer layer of the eyeball",
+      "answer": "sclera"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Larger of the two lower leg bones, commonly called the shinbone",
+      "answer": "tibia"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Small fleshy projection hanging from the soft palate",
+      "answer": "uvula"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Tenth cranial nerve that extends from the brainstem to many organs",
+      "answer": "vagus nerve",
+      "alt": [
+        "vagus"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Painting medium using pigments suspended in a transparent aqueous binder",
+      "answer": "watercolor",
+      "alt": [
+        "watercolour"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "External supportive covering of arthropods such as insects and crustaceans",
+      "answer": "exoskeleton",
+      "alt": [
+        "exoskeletons"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Sex-determining chromosome typically present in human males",
+      "answer": "Y chromosome"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Small drifting animals in aquatic environments, contrasted with phytoplankton",
+      "answer": "zooplankton"
+    }
+  ]
+}

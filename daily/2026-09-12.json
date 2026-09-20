@@ -1,0 +1,164 @@
+{
+  "id": "set-2026-09-12",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "One of the four nucleotide bases in DNA that pairs with thymine.",
+      "answer": "adenine"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Virus that infects bacteria.",
+      "answer": "bacteriophage"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Northern constellation named for the hair of a queen.",
+      "answer": "Coma Berenices"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "One of Mars' two small moons, named for dread.",
+      "answer": "Deimos"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Member of a marine phylum that includes sea urchins and starfish.",
+      "answer": "echinoderm"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Southern constellation whose Latin name means furnace.",
+      "answer": "Fornax"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Respiratory organ used by many fish and some amphibians.",
+      "answer": "gills",
+      "alt": [
+        "gill"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Boundary where the solar wind is halted by the interstellar medium.",
+      "answer": "heliopause"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Epic poem recounting the wrath of Achilles during the Trojan War.",
+      "answer": "Iliad"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Unit of spectral flux density used in radio astronomy.",
+      "answer": "jansky"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Biochemical cycle in cellular respiration named after Hans that generates NADH in mitochondria.",
+      "answer": "Krebs cycle"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Galaxy collection that includes the Milky Way and Andromeda.",
+      "answer": "Local Group"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Shakespeare tragedy featuring the prophecy of three witches.",
+      "answer": "Macbeth"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Roundworm belonging to a phylum of unsegmented worms.",
+      "answer": "nematode"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Large moon of Uranus named after a Shakespearean king of the fairies.",
+      "answer": "Oberon"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Cyclops blinded by Odysseus in Homer's epic.",
+      "answer": "Polyphemus"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Genus that includes oak trees.",
+      "answer": "Quercus"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Minimum orbital distance within which a body is torn apart by tidal forces.",
+      "answer": "Roche limit"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Organ that filters blood and recycles old red blood cells.",
+      "answer": "spleen"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Fibrous tissue connecting muscle to bone.",
+      "answer": "tendon"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Modernist novel set in Dublin that parallels the Odyssey.",
+      "answer": "Ulysses"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Single bone of the spine.",
+      "answer": "vertebra"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "1972 novel about a band of rabbits seeking a new home.",
+      "answer": "Watership Down"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Plant hormone that promotes cell elongation and phototropism.",
+      "answer": "auxin"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Bacterial genus that includes the plague-causing species pestis.",
+      "answer": "Yersinia"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Author of Germinal and Nana, leading figure of French naturalism.",
+      "answer": "Zola"
+    }
+  ]
+}

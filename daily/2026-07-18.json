@@ -1,0 +1,175 @@
+{
+  "id": "set-2026-07-18",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Rocky minor planet, mostly orbiting between Mars and Jupiter.",
+      "answer": "asteroid"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Numeral system that uses only two symbols, 0 and 1.",
+      "answer": "binary"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Electronic component that stores energy in an electric field.",
+      "answer": "capacitor"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Mythical reptilian creature often depicted hoarding treasure and breathing fire.",
+      "answer": "dragon"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Thermodynamic measure of disorder or randomness in a system.",
+      "answer": "entropy"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Force that opposes motion between surfaces in contact.",
+      "answer": "friction"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Attractive force between masses that gives weight to objects.",
+      "answer": "gravity"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "SI unit of frequency equal to one cycle per second.",
+      "answer": "hertz",
+      "alt": [
+        "Hz"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Global network of networks that communicates using the TCP/IP protocol suite.",
+      "answer": "internet"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Common compressed image format standardized by the Joint Photographic Experts Group.",
+      "answer": "JPEG",
+      "alt": [
+        "jpg"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "SI base unit for thermodynamic temperature.",
+      "answer": "kelvin",
+      "alt": [
+        "K"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Device that emits coherent, monochromatic light via stimulated emission.",
+      "answer": "laser"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Device that modulates and demodulates signals to connect to a network provider.",
+      "answer": "modem"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Nature spirit from Greek mythology, often associated with forests, rivers, or mountains.",
+      "answer": "nymph"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Net movement of solvent through a semipermeable membrane toward higher solute concentration.",
+      "answer": "osmosis"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Quantum of electromagnetic radiation, carrying energy proportional to frequency.",
+      "answer": "photon"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Fundamental constituent of matter that comes in flavors such as up, down, and strange.",
+      "answer": "quark"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Networking device that forwards data packets between different networks.",
+      "answer": "router"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Either time of year when the Sun reaches its maximum northern or southern declination.",
+      "answer": "solstice"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Semiconductor device used to amplify or switch electronic signals.",
+      "answer": "transistor"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Radioactive element with atomic number 92 used as nuclear reactor fuel.",
+      "answer": "uranium"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Microscopic infectious agent that replicates only inside living cells.",
+      "answer": "virus"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Wireless networking technology based on IEEE 802.11 standards.",
+      "answer": "Wi-Fi",
+      "alt": [
+        "wifi",
+        "wi fi",
+        "wi-fi"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Noble gas used in high-intensity lamps and some ion thrusters.",
+      "answer": "xenon"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Single-celled fungus used to ferment sugars in baking and brewing.",
+      "answer": "yeast"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Metal essential for enzyme function and immunity, atomic number 30.",
+      "answer": "zinc"
+    }
+  ]
+}

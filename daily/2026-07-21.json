@@ -1,0 +1,197 @@
+{
+  "id": "set-2026-07-21",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Cornmeal cake from Colombia and Venezuela, often split and filled",
+      "answer": "arepa"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Eastern European beet soup often served with sour cream",
+      "answer": "borscht",
+      "alt": [
+        "borsch",
+        "borshch"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Spiced dish and sauce central to Indian cuisine and popular in the UK",
+      "answer": "curry"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Ring-shaped fried pastry often glazed or sugared",
+      "answer": "donut",
+      "alt": [
+        "doughnut"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Latin American stuffed pastry that is baked or fried",
+      "answer": "empanada"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Tex-Mex dish of grilled strips served with tortillas and toppings",
+      "answer": "fajita",
+      "alt": [
+        "fajitas"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Chilled Spanish tomato soup from Andalusia",
+      "answer": "gazpacho"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Dense sweet made from sesame paste and sugar, popular in the Middle East",
+      "answer": "halva",
+      "alt": [
+        "halvah",
+        "halwa"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "South Indian steamed cakes made from fermented rice and lentil batter",
+      "answer": "idli",
+      "alt": [
+        "idly"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Cajun and Creole rice dish with meat or seafood and vegetables",
+      "answer": "jambalaya"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Skewered and grilled meat dish common in Middle Eastern cuisine",
+      "answer": "kebab",
+      "alt": [
+        "kabob",
+        "kebap"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Spicy Southeast Asian coconut noodle soup found in Malaysia and Singapore",
+      "answer": "laksa"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Sweet almond paste used to make candies and to cover cakes",
+      "answer": "marzipan"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Leavened flatbread baked in a tandoor, served with Indian curries",
+      "answer": "naan",
+      "alt": [
+        "nan"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Japanese rice ball often wrapped in nori and filled with tuna or pickled plum",
+      "answer": "onigiri",
+      "alt": [
+        "omusubi"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Spanish rice dish from Valencia cooked in a wide pan with saffron",
+      "answer": "paella"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Griddled tortilla folded around melted cheese, sometimes with meat or vegetables",
+      "answer": "quesadilla"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Japanese wheat noodle soup with broth and toppings like chashu and nori",
+      "answer": "ramen"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Triangular fried pastry with spiced potato or meat filling, common in South Asia",
+      "answer": "samosa"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Coffee-flavored Italian dessert with mascarpone, ladyfingers, and cocoa",
+      "answer": "tiramisu"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "East African stiff maize porridge served as a staple with stews",
+      "answer": "ugali"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Fiery Goan curry flavored with vinegar and spices",
+      "answer": "vindaloo"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Chinese dumpling filled with pork or shrimp, often served in soup",
+      "answer": "wonton",
+      "alt": [
+        "won ton"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Common abbreviation for the December 25 holiday derived from the Greek letter chi",
+      "answer": "Xmas",
+      "alt": [
+        "x-mas"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese skewered chicken grilled over charcoal and seasoned with tare or salt",
+      "answer": "yakitori"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Italian carnival fritter dusted with sugar, sometimes filled with pastry cream",
+      "answer": "zeppole",
+      "alt": [
+        "zeppola"
+      ]
+    }
+  ]
+}

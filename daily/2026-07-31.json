@@ -1,0 +1,184 @@
+{
+  "id": "set-2026-07-31",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Nearest large spiral galaxy to the Milky Way.",
+      "answer": "Andromeda",
+      "alt": [
+        "Andromeda Galaxy"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Capital of Romania located on the Dâmbovița River.",
+      "answer": "Bucharest",
+      "alt": [
+        "Bucuresti",
+        "București"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Second-brightest star in the night sky, in the constellation Carina.",
+      "answer": "Canopus"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Bright star marking the tail of Cygnus and a vertex of the Summer Triangle.",
+      "answer": "Deneb"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Smallest Galilean moon, noted for its cracked icy surface and likely subsurface ocean.",
+      "answer": "Europa"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Pacific island nation whose capital is Suva.",
+      "answer": "Fiji"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Surname of the title millionaire in a novel by F. Scott Fitzgerald.",
+      "answer": "Gatsby"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Small, barefoot folk created by J. R. R. Tolkien, also called halflings.",
+      "answer": "Hobbit"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Island nation west of Great Britain with capital Dublin.",
+      "answer": "Ireland"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "NASA spacecraft that entered polar orbit of Jupiter in 2016.",
+      "answer": "Juno",
+      "alt": [
+        "Juno spacecraft",
+        "Juno probe"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Space telescope that found thousands of planetary candidates via the transit method.",
+      "answer": "Kepler",
+      "alt": [
+        "Kepler Space Telescope"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Constellation representing the scales in the zodiac.",
+      "answer": "Libra"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Italian city famed for its Gothic cathedral and fashion industry.",
+      "answer": "Milan",
+      "alt": [
+        "Milano"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Eighth planet from the Sun, notable for supersonic winds.",
+      "answer": "Neptune"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Prominent hunter constellation featuring the Belt of three stars.",
+      "answer": "Orion"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Dwarf planet reclassified in 2006 and visited by New Horizons in 2015.",
+      "answer": "Pluto"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Surname of the deluded knight-errant created by Miguel de Cervantes.",
+      "answer": "Quixote"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Moon of Saturn named for a Titaness, second-largest in that system.",
+      "answer": "Rhea"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Gas giant distinguished by its extensive ring system.",
+      "answer": "Saturn"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Largest moon of Neptune, with nitrogen geysers and a retrograde orbit.",
+      "answer": "Triton"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Constellation that contains Polaris, also called the Little Bear.",
+      "answer": "Ursa Minor"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Planet often called Earth's twin due to similar size.",
+      "answer": "Venus"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Capital and largest city of Poland on the Vistula River.",
+      "answer": "Warsaw",
+      "alt": [
+        "Warszawa"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Egyptian city opposite the Valley of the Kings, renowned for the Karnak temple complex.",
+      "answer": "Luxor"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Largest city of Myanmar, formerly known as Rangoon.",
+      "answer": "Yangon"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Largest city in Switzerland, a major financial center on the Limmat River.",
+      "answer": "Zurich",
+      "alt": [
+        "Zürich"
+      ]
+    }
+  ]
+}

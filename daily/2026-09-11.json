@@ -1,0 +1,170 @@
+{
+  "id": "set-2026-09-11",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "In optics, the opening that regulates light passing through a camera lens or microscope objective.",
+      "answer": "aperture"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "A simple aromatic hydrocarbon with molecular formula C6H6, foundational in organic chemistry.",
+      "answer": "benzene"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "The heavy woven fabric traditionally used as a painting surface, often stretched over a frame.",
+      "answer": "canvas"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Spontaneous net movement of particles from a region of higher concentration to a region of lower concentration.",
+      "answer": "diffusion"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Early developmental stage of an animal or plant following fertilization.",
+      "answer": "embryo"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "A self-similar geometric pattern that shows structure at multiple scales.",
+      "answer": "fractal"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Crystalline form of carbon commonly used in pencils and as a lubricant.",
+      "answer": "graphite"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Reddish iron oxide mineral that is a major ore of iron.",
+      "answer": "hematite",
+      "alt": [
+        "haematite"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Arthropod class characterized by a three-part body, six legs, and usually wings.",
+      "answer": "insect"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "The middle period of the Mesozoic Era, between the Triassic and Cretaceous.",
+      "answer": "Jurassic"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "The SI base unit of mass, equal to about 2.205 pounds.",
+      "answer": "kilogram",
+      "alt": [
+        "kilogramme"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Enzyme that catalyzes the hydrolysis of triglycerides into fatty acids and glycerol.",
+      "answer": "lipase"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Biological pigment responsible for most human skin, hair, and eye color.",
+      "answer": "melanin"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Chemical messenger released by neurons to carry signals across the gap between nerve cells.",
+      "answer": "neurotransmitter"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "In seed plants, the structure that develops into a seed after fertilization.",
+      "answer": "ovule"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Vascular plant tissue that transports sugars and other organic products from leaves.",
+      "answer": "phloem"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Metallurgical process of rapidly cooling a heated material to alter its microstructure and hardness.",
+      "answer": "quenching"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "First chamber of the ruminant stomach where microbial fermentation of plant matter occurs.",
+      "answer": "rumen"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Medical instrument used for listening to internal body sounds, such as heart and lungs.",
+      "answer": "stethoscope"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Analytical technique in which a solution of known concentration is used to determine the concentration of an unknown.",
+      "answer": "titration"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Type of inflorescence in which multiple flower stalks arise from a single point, as in members of the carrot family.",
+      "answer": "umbel"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "A fluid’s resistance to flow, often measured in pascal-seconds.",
+      "answer": "viscosity"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Climbing woody vine known for drooping clusters of purple flowers, common in gardens.",
+      "answer": "wisteria",
+      "alt": [
+        "wistaria"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "In printmaking, the block or plate from which an impression is taken.",
+      "answer": "matrix"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Conifer whose bark and needles are a natural source of the anticancer drug paclitaxel.",
+      "answer": "yew"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Chemical element with symbol Zr, used in nuclear reactor cladding due to low neutron absorption.",
+      "answer": "zirconium"
+    }
+  ]
+}

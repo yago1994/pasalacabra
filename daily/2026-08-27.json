@@ -1,0 +1,170 @@
+{
+  "id": "set-2026-08-27",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Two-handled ancient Greek or Roman storage jar",
+      "answer": "amphora"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Dark, fine-grained volcanic rock rich in iron and magnesium",
+      "answer": "basalt"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Sculpted female figure serving as a column in classical architecture",
+      "answer": "caryatid"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Early photographic process that used a silvered copper plate",
+      "answer": "daguerreotype"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Ancient Italian civilization that predated Roman dominance",
+      "answer": "Etruscan"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Delicate ornamental metalwork made with fine wires",
+      "answer": "filigree"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "1937 anti-war mural depicting the bombing of a Basque town",
+      "answer": "Guernica"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Period of Greek-influenced culture after Alexander the Great",
+      "answer": "Hellenistic"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Natural blue dye historically obtained from certain plants",
+      "answer": "indigo"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Prehistoric Japanese culture known for cord-marked pottery",
+      "answer": "Jomon",
+      "alt": [
+        "Jōmon"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Fine white clay used to make porcelain",
+      "answer": "kaolin"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Sedimentary rock mainly composed of calcium carbonate",
+      "answer": "limestone"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Renaissance polyphonic song, typically unaccompanied",
+      "answer": "madrigal"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Iridescent inner-shell material also called mother-of-pearl",
+      "answer": "nacre"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Egg-shaped wind instrument with finger holes",
+      "answer": "ocarina"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Word or phrase that reads the same backward and forward",
+      "answer": "palindrome"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Art of rolling and shaping strips of paper into decorative designs",
+      "answer": "quilling"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Medieval architectural style with rounded arches and thick walls",
+      "answer": "Romanesque"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Trace element used in photocells and glassmaking",
+      "answer": "selenium"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Extinct marine arthropod common in Paleozoic fossils",
+      "answer": "trilobite"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Deep blue pigment historically made from lapis lazuli",
+      "answer": "ultramarine"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Bright red pigment traditionally made from cinnabar",
+      "answer": "vermilion",
+      "alt": [
+        "vermillion"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Crosswise threads in weaving that run over and under the warp",
+      "answer": "weft",
+      "alt": [
+        "woof"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Study of flags and their symbolism",
+      "answer": "vexillology"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Spun fiber used for knitting and weaving",
+      "answer": "yarn"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Decorative sleeve or holder for a handleless coffee cup, traditional in the Middle East",
+      "answer": "zarf"
+    }
+  ]
+}

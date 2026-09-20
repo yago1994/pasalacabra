@@ -1,0 +1,165 @@
+{
+  "id": "set-2026-08-07",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Domesticated South American camelid prized for its soft fiber.",
+      "answer": "alpaca"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Wireless standard named after a Viking king; its logo combines two runes.",
+      "answer": "Bluetooth"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Legendary creature said to attack livestock and drink their blood in Latin America.",
+      "answer": "chupacabra"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Camel species with a single hump, common in North Africa and the Middle East.",
+      "answer": "dromedary"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Process that transforms readable data into ciphertext to protect confidentiality.",
+      "answer": "encryption"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Pink wading bird that filters shrimp and algae with a specialized bill.",
+      "answer": "flamingo"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Mythical hybrid with a lion's body and an eagle's head and wings.",
+      "answer": "griffin",
+      "alt": [
+        "gryphon",
+        "griffon"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Small spiny mammal that curls into a ball when threatened.",
+      "answer": "hedgehog"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Long-billed wading bird revered in ancient Egypt.",
+      "answer": "ibis"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "North American tall-tale animal described as a rabbit with antlers.",
+      "answer": "jackalope"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Colossal sea monster from Scandinavian legend said to capsize ships.",
+      "answer": "kraken"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Arctic rodent famed for dramatic population cycles.",
+      "answer": "lemming"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Passive RFID implant used to identify lost pets.",
+      "answer": "microchip"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Termite-eating marsupial with a striped back, native to Western Australia.",
+      "answer": "numbat"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Largest living bird, a fast-running native of African savannas.",
+      "answer": "ostrich"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Scaly mammal that rolls into a tight ball when threatened.",
+      "answer": "pangolin"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Small ground-dwelling game bird farmed worldwide for speckled eggs.",
+      "answer": "quail"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "All-black corvid with a wedge-shaped tail and deep croak found across the Northern Hemisphere.",
+      "answer": "raven"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Ape-like giant of North American folklore said to inhabit dense forests.",
+      "answer": "sasquatch"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Large hairy spider whose urticating hairs can irritate predators.",
+      "answer": "tarantula"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Legendary horse-like creature bearing a single spiraled horn.",
+      "answer": "unicorn"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Venomous snake with long hinged fangs for injecting hemotoxins.",
+      "answer": "viper"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Person cursed to transform into a wolf, especially under a full moon.",
+      "answer": "werewolf"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "African bird that perches on large mammals to eat ticks and other parasites.",
+      "answer": "oxpecker"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Australian freshwater crayfish commonly found in farm dams and billabongs.",
+      "answer": "yabby"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "European freshwater fish also known as pike-perch.",
+      "answer": "zander"
+    }
+  ]
+}

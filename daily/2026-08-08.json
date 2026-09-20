@@ -1,0 +1,203 @@
+{
+  "id": "set-2026-08-08",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Epic poem by Virgil about the founding myth of Rome.",
+      "answer": "Aeneid",
+      "alt": [
+        "The Aeneid"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Composer of the Ninth Symphony 'Choral'.",
+      "answer": "Beethoven",
+      "alt": [
+        "Ludwig van Beethoven"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Ancient North African city Rome razed in 146 BCE.",
+      "answer": "Carthage"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Fourteenth-century collection of 100 tales set during the Black Death.",
+      "answer": "Decameron"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Nickname of Beethoven’s Third Symphony.",
+      "answer": "Eroica"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Tragic play by Goethe about a scholar who makes a pact with the devil.",
+      "answer": "Faust"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Device used for executions during the French Revolution.",
+      "answer": "Guillotine"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Greek historian called the 'Father of History'.",
+      "answer": "Herodotus"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "First cantica of The Divine Comedy.",
+      "answer": "Inferno"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Roman dictator assassinated on the Ides of March, 44 BCE.",
+      "answer": "Julius Caesar",
+      "alt": [
+        "Gaius Julius Caesar"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Eastern European Jewish musical tradition featuring clarinet and violin.",
+      "answer": "Klezmer"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "1651 political treatise by Thomas Hobbes advocating a strong sovereign.",
+      "answer": "Leviathan"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "1215 charter limiting the power of the English king.",
+      "answer": "Magna Carta",
+      "alt": [
+        "Magna Charta"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Post–World War II military tribunals for Nazi leaders.",
+      "answer": "Nuremberg Trials",
+      "alt": [
+        "Nuremberg Trial",
+        "Nürnberg Trials",
+        "Nurnberg Trials"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Shakespeare tragedy about a Moorish general and jealousy.",
+      "answer": "Othello"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Conflict between Athens and Sparta from 431 to 404 BCE.",
+      "answer": "Peloponnesian War"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Islam’s central sacred text.",
+      "answer": "Quran",
+      "alt": [
+        "Koran",
+        "Qur'an"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Verdi opera featuring the aria 'La donna è mobile'.",
+      "answer": "Rigoletto"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Ancient Greek woman poet from Lesbos famed for lyric poetry.",
+      "answer": "Sappho"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Composer of The Nutcracker and Swan Lake.",
+      "answer": "Tchaikovsky",
+      "alt": [
+        "Pyotr Ilyich Tchaikovsky",
+        "Tschaikowsky",
+        "Chaikovsky",
+        "Tchaikovski"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "First hereditary Islamic dynasty, based in Damascus.",
+      "answer": "Umayyad Caliphate",
+      "alt": [
+        "Umayyad Dynasty"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Scandinavian seafarers who raided and traded from the late 8th to 11th centuries.",
+      "answer": "Vikings",
+      "alt": [
+        "Norsemen"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Composer of the Ring cycle.",
+      "answer": "Wagner",
+      "alt": [
+        "Richard Wagner"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Woodwind instrument invented in the 1840s by a Belgian maker, common in big band music.",
+      "answer": "saxophone",
+      "alt": [
+        "sax"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Balkan state formed after World War I that broke up in the 1990s.",
+      "answer": "Yugoslavia"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Prophet of ancient Persia who founded a dualistic faith centered on Ahura Mazda.",
+      "answer": "Zoroaster",
+      "alt": [
+        "Zarathustra"
+      ]
+    }
+  ]
+}

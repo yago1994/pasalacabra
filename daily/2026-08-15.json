@@ -1,0 +1,179 @@
+{
+  "id": "set-2026-08-15",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Fast-drying artist's paint with pigment in a water-based synthetic polymer emulsion.",
+      "answer": "acrylic",
+      "alt": [
+        "acrylic paint"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Painter of The Birth of Venus and Primavera.",
+      "answer": "Botticelli",
+      "alt": [
+        "Sandro Botticelli"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Tool used by sculptors to cut stone, wood, or metal.",
+      "answer": "chisel"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Avant-garde art movement born in Zurich during World War I that embraced absurdity.",
+      "answer": "Dada",
+      "alt": [
+        "Dadaism"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Printmaking method where acid bites lines into a metal plate before inking and pressing.",
+      "answer": "etching"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Bright star in Piscis Austrinus notable for a circumstellar dust disk imaged directly.",
+      "answer": "Fomalhaut"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Traditional white primer applied to canvases and panels before painting.",
+      "answer": "gesso"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Nut that flavors gianduja and praline, often paired with chocolate.",
+      "answer": "hazelnut"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Painting technique that lays on thick textured strokes, often with a palette knife.",
+      "answer": "impasto"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Small moon of Saturn named for a two-faced Roman god.",
+      "answer": "Janus"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "High-temperature oven used to fire pottery and porcelain.",
+      "answer": "kiln"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Planographic printmaking method using a greasy drawing on limestone or metal to attract ink.",
+      "answer": "lithography"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Foamy dessert component made by whipping egg whites with sugar.",
+      "answer": "meringue"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Hand-pressed vinegared rice topped with a slice of fish or other ingredient in Japanese cuisine.",
+      "answer": "nigiri"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "When a superior planet appears opposite the Sun in the sky, rising at sunset.",
+      "answer": "opposition"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Technique that forms images from tiny dots of pure color, developed by Seurat and Signac.",
+      "answer": "Pointillism"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Oval dumpling shaped with spoons, classic in French cuisine.",
+      "answer": "quenelle"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Small heatproof dish used for individual soufflés or crème brûlée.",
+      "answer": "ramekin"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Leonardo’s soft-edge technique blending tones to create smoky transitions.",
+      "answer": "sfumato"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Illusionistic painting style that tricks the eye into perceiving painted objects as real.",
+      "answer": "trompe-l'oeil",
+      "alt": [
+        "trompe l'oeil"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Dark Uranian moon named after a melancholic sprite in Pope’s poem.",
+      "answer": "Umbriel"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "One of the five French mother sauces, made by thickening light stock with a blond roux.",
+      "answer": "velouté",
+      "alt": [
+        "veloute"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Wire kitchen utensil used to beat eggs, aerate batters, or emulsify dressings.",
+      "answer": "whisk"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Gelatin-rich cut from cattle popular for long-simmered stews and soups.",
+      "answer": "oxtail",
+      "alt": [
+        "ox tail"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Sweet probiotic milk drink from Japan sold in small plastic bottles.",
+      "answer": "Yakult"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Finely grated colored outer peel of citrus fruit used for flavoring.",
+      "answer": "zest"
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "id": "set-2026-09-20",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Maximum displacement of a wave or oscillation from its equilibrium position.",
+      "answer": "amplitude"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Large double-reed woodwind in the bass register with a long folded tube.",
+      "answer": "bassoon"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Gradual increase in loudness in music.",
+      "answer": "crescendo"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Logarithmic unit used to measure sound intensity.",
+      "answer": "decibel"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Date when day and night are nearly equal in length.",
+      "answer": "equinox"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Notation symbol indicating a note should be held longer than its value.",
+      "answer": "fermata"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Fretted string instrument common in rock and folk, typically with six strings.",
+      "answer": "guitar"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Lightest chemical element, atomic number 1.",
+      "answer": "hydrogen"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Metal element with chemical symbol Fe.",
+      "answer": "iron"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "American music genre characterized by swing, blue notes, and improvisation.",
+      "answer": "jazz"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Buzzing membrane instrument that amplifies a player’s humming.",
+      "answer": "kazoo"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Ancient string instrument associated with Apollo and Orpheus.",
+      "answer": "lyre"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Device that produces steady clicks to mark musical tempo.",
+      "answer": "metronome"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Synthetic polymer developed in the 1930s, used in stockings and rope.",
+      "answer": "nylon"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Introductory orchestral piece that opens an opera or suite.",
+      "answer": "overture"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Mythic woman who opened a box releasing evils into the world.",
+      "answer": "Pandora"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "European art and music style of the 17th–early 18th centuries noted for ornamentation and contrast.",
+      "answer": "baroque"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Phenomenon where a system vibrates strongly at its natural frequency.",
+      "answer": "resonance"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Nonmetal chemical element with symbol S, commonly a bright yellow solid.",
+      "answer": "sulfur",
+      "alt": [
+        "sulphur"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Early electronic instrument played without touch, using two antennas.",
+      "answer": "theremin"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Darkest part of a shadow where the light source is completely blocked.",
+      "answer": "umbra"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Alto-range bowed string instrument slightly larger than a violin.",
+      "answer": "viola"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Dance and musical form in triple meter, famously associated with Johann Strauss II.",
+      "answer": "waltz"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Percussion instrument with wooden bars arranged like a keyboard.",
+      "answer": "xylophone"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Ghosts of Japanese folklore depicted with white burial kimono and long black hair.",
+      "answer": "yurei",
+      "alt": [
+        "yūrei"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Box-shaped string instrument played by strumming or plucking, common in Alpine folk music.",
+      "answer": "zither"
+    }
+  ]
+}
