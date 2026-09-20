@@ -56,6 +56,14 @@ type Screen = "home" | "setup" | "game" | "profile" | "archive";
 
 const TURN_SECONDS =180; // Default fallback (will be replaced by difficulty-based time)
 
+// Phrase hints used while no question is on screen (warm-up and between turns).
+const GENERIC_STT_HINTS = ["pasalacabra", "pasapalabra", "pasa", "cabra"];
+
+// Automatic recovery attempts the idle watchdog makes before offering a manual
+// "reactivate the mic" button.
+const MIC_RECOVERY_ATTEMPTS = 3;
+const MIC_RECOVERY_INTERVAL_MS = 2500;
+
 function getTimeFromDifficulty(difficulty: DifficultyMode): number {
   const isStaging = isStagingMode();
   switch (difficulty) {
@@ -452,7 +460,21 @@ export default function App() {
   const sttArmedAtRef = useRef<number>(0); // Timestamp when mic was armed - used to ignore stale results
   const sttPostFlushRef = useRef<boolean>(false); // True when arming after a barrier restart/flush
   const sttBellPendingRef = useRef<boolean>(false); // True when we should play chime on first non-empty partial
+  // Set when a recognizer restart had to be skipped because the page was hidden
+  // (backgrounded tab / locked phone). The visibility handler picks it up.
+  const sttRestartWhenVisibleRef = useRef<boolean>(false);
+  const hiddenSinceRef = useRef<number>(0);
+  // How many automatic recovery attempts the idle watchdog has spent since the
+  // mic went quiet; past the budget we offer a manual retry instead.
+  const micRecoveryAttemptsRef = useRef<number>(0);
+  // True when the mic is still not ready after the automatic attempts.
+  const [micStalled, setMicStalled] = useState<boolean>(false);
+  // Always the latest recoverMicrophoneIfNeeded (the listeners below mount once).
+  const recoverMicRef = useRef<
+    (why: string, opts?: { force?: boolean; resetBudget?: boolean }) => void
+  >(() => {});
   const phaseRef = useRef<GamePhase>("idle");
+  const screenRef = useRef<Screen>("home");
   const activePlayerIdRef = useRef<string | null>(null);
   const activeSetIdRef = useRef<string>("");
   const currentLetterRef = useRef<Letter>(letters[0]);
@@ -679,6 +701,10 @@ export default function App() {
   useEffect(() => {
     phaseRef.current = phase;
   }, [phase]);
+
+  useEffect(() => {
+    screenRef.current = screen;
+  }, [screen]);
 
   // Sound effects (Web Audio, preloaded + pre-decoded for low latency)
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -1301,8 +1327,20 @@ export default function App() {
       closeGateRef.current = bundle.closeGate;
       resumeAudioContextRef.current = bundle.resume;
     } catch (err) {
-      setSttSupported(false);
       setIsListening(false);
+      // Only our own generation's leftovers: a newer start may already own the ref.
+      if (gen === sttGenRef.current) recognitionRef.current = null;
+      // A hidden page (locked phone, backgrounded tab) makes getUserMedia and the
+      // Azure token fetch fail in ways that look permanent but are not: the mic is
+      // simply not handed out to a page nobody is looking at. Keep the mic
+      // "desired" and let the visibility handler rebuild it, instead of latching
+      // an error that leaves "Empezar" disabled until the tab is closed.
+      if (document.visibilityState === "hidden") {
+        sttRestartWhenVisibleRef.current = true;
+        sttLog("createAzureRecognizer failed while hidden; retrying when visible", String(err));
+        return;
+      }
+      setSttSupported(false);
       sttDesiredRef.current = false;
       setSttError(String(err));
       // Check if it's a permission denied error
@@ -1500,16 +1538,39 @@ export default function App() {
 
     const scheduleRestart = (why: string) => {
       setIsListening(false);
-      sttLog("restart-check", { why, desired: sttDesiredRef.current, phase: phaseRef.current });
+      // This recognizer is done for. Drop the ref so ensureListeningForQuestion()
+      // and the recovery paths know there is nothing running to reuse — a stale
+      // value here is what used to keep "Empezar" disabled forever.
+      if (recognitionRef.current === r) recognitionRef.current = null;
+      sttLog("restart-check", {
+        why,
+        desired: sttDesiredRef.current,
+        phase: phaseRef.current,
+        screen: screenRef.current,
+      });
       if (!sttDesiredRef.current) return;
-      if (phaseRef.current !== "playing") return;
+      // "idle" counts too: that is the game screen waiting for "Empezar", and the
+      // button stays disabled until the mic is listening again.
+      if (!micShouldBeLive()) return;
+      if (document.visibilityState === "hidden") {
+        // Restarting behind a locked screen only burns attempts — the mic and the
+        // token fetch are unavailable while hidden. Wait for the page to return.
+        sttRestartWhenVisibleRef.current = true;
+        sttLog("restart deferred until visible", { why });
+        return;
+      }
       if (sttRestartTimerRef.current) window.clearTimeout(sttRestartTimerRef.current);
       sttRestartCountRef.current += 1;
       sttLog("restart-scheduled", { count: sttRestartCountRef.current, why });
-      if (sttRestartCountRef.current > 10) return; // safety guard
+      if (sttRestartCountRef.current > 10) {
+        // Out of automatic attempts. A visibility change or the user's manual
+        // retry can still bring the mic back without a reload.
+        sttRestartWhenVisibleRef.current = true;
+        return;
+      }
       sttRestartTimerRef.current = window.setTimeout(() => {
         sttLog("restarting now");
-        void startListeningWithHints(sttLastHintsRef.current);
+        ensureListeningForQuestion(sttLastHintsRef.current);
       }, 250);
     };
 
@@ -1542,6 +1603,11 @@ export default function App() {
       if (gen !== sttGenRef.current) return;
       setIsListening(true);
       setMicPermissionDenied(false); // Clear permission denied state when listening succeeds
+      // Note: the restart budget is deliberately NOT reset here. Azure resolves
+      // the start before the socket is up, so a recognizer that is cancelled
+      // immediately still reports "started" — resetting here would turn an
+      // unreachable service into an endless restart loop.
+      sttRestartWhenVisibleRef.current = false;
       sttLog("started");
 
       // Signal to the user that they can respond (once per question).
@@ -1555,14 +1621,24 @@ export default function App() {
     } catch (err) {
       if (gen !== sttGenRef.current) return;
       setIsListening(false);
-      sttDesiredRef.current = false; // don't thrash if start failed
-      setSttError(String(err));
-      sttLog("startContinuousRecognitionAsync failed", String(err));
+      // Never leave a closed recognizer in the ref: ensureListeningForQuestion()
+      // reads it to decide whether the mic is already running.
+      if (recognitionRef.current === r) recognitionRef.current = null;
       try {
         r.close();
       } catch {
         // ignore
       }
+      if (document.visibilityState === "hidden") {
+        // Same as above: starting recognition on a hidden page is expected to
+        // fail, so keep wanting the mic and retry when the page comes back.
+        sttRestartWhenVisibleRef.current = true;
+        sttLog("startContinuousRecognitionAsync failed while hidden", String(err));
+        return;
+      }
+      sttDesiredRef.current = false; // don't thrash if start failed
+      setSttError(String(err));
+      sttLog("startContinuousRecognitionAsync failed", String(err));
     }
   }
 
@@ -1602,6 +1678,74 @@ export default function App() {
       sttStartPromiseRef.current = null;
     });
   }
+
+  /**
+   * True while the game screen needs a live recognizer.
+   *
+   * "idle" counts as much as "playing": the game screen sits in idle waiting for
+   * "Empezar", and that button is disabled until the mic reports ready.
+   */
+  function micShouldBeLive(): boolean {
+    if (screenRef.current !== "game") return false;
+    return phaseRef.current === "playing" || phaseRef.current === "idle";
+  }
+
+  /**
+   * Rebuild the recognizer when it died while we still needed it.
+   *
+   * Backgrounding the page — locking the phone, switching tabs — kills the Azure
+   * socket and releases the mic track. Recovery used to be skipped whenever the
+   * game was not mid-question, so coming back to an idle game screen left
+   * `isListening` false, "Empezar" permanently disabled, and closing the tab as
+   * the only way out.
+   *
+   * Safe to call repeatedly: it no-ops when a recognizer is running or starting.
+   * With `force` it replaces even a recognizer that still looks alive (used when
+   * returning from a long background, where the socket is usually dead but Azure
+   * has not told us yet). `resetBudget` refills the automatic restart allowance:
+   * only for callers that mean "conditions just changed" (the page came back, the
+   * user asked), never for the watchdog, which would otherwise keep a hopeless
+   * reconnect loop alive forever.
+   */
+  function recoverMicrophoneIfNeeded(
+    why: string,
+    opts?: { force?: boolean; resetBudget?: boolean }
+  ) {
+    if (!micShouldBeLive()) {
+      sttRestartWhenVisibleRef.current = false;
+      return;
+    }
+    if (document.visibilityState === "hidden") {
+      sttRestartWhenVisibleRef.current = true;
+      return;
+    }
+    sttRestartWhenVisibleRef.current = false;
+    if (sttStartPromiseRef.current) return; // a start is already in flight
+    if (recognitionRef.current && !opts?.force) return;
+
+    sttLog("recovering microphone", { why, force: Boolean(opts?.force), phase: phaseRef.current });
+    if (sttRestartTimerRef.current) {
+      window.clearTimeout(sttRestartTimerRef.current);
+      sttRestartTimerRef.current = null;
+    }
+    if (opts?.resetBudget !== false) sttRestartCountRef.current = 0;
+    if (recognitionRef.current) stopListening("replace");
+    const hints = sttLastHintsRef.current.length > 0 ? sttLastHintsRef.current : GENERIC_STT_HINTS;
+    ensureListeningForQuestion(hints);
+  }
+
+  // Called from the "Reactivar micrófono" button: a user gesture, which is the
+  // best moment to ask for the mic again on iOS/Safari.
+  function retryMicrophone() {
+    unlockAudioOnce();
+    setSttError("");
+    setMicStalled(false);
+    micRecoveryAttemptsRef.current = 0;
+    recoverMicrophoneIfNeeded("user-retry", { force: true });
+  }
+
+  // Keep the recovery entry point fresh for the listeners registered once below.
+  recoverMicRef.current = recoverMicrophoneIfNeeded;
 
   function speakWithCallback(text: string, onDone: () => void, opts?: { rate?: number }) {
     if (!("speechSynthesis" in window)) {
@@ -1904,16 +2048,77 @@ export default function App() {
   // Mobile hardening: resume AudioContext when page becomes visible
   // This handles iOS/Safari suspending audio when the page is backgrounded
   useEffect(() => {
+    const handleReturn = (why: string) => {
+      sttLog("Page visible, resuming AudioContext", { why });
+      resumeAudioContextRef.current?.();
+
+      const hiddenFor = hiddenSinceRef.current ? Date.now() - hiddenSinceRef.current : 0;
+      hiddenSinceRef.current = 0;
+
+      // Coming back from a locked phone normally leaves the recognizer dead: the
+      // socket timed out and the OS took the mic back, but Azure may not have
+      // told us yet. While waiting for "Empezar" we can rebuild it outright;
+      // mid-question we only step in once it has actually stopped, so we never
+      // cut an answer short.
+      const force =
+        sttRestartWhenVisibleRef.current || (phaseRef.current === "idle" && hiddenFor > 3000);
+      recoverMicRef.current(why, { force });
+    };
+
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
-        sttLog("Page visible, resuming AudioContext");
-        resumeAudioContextRef.current?.();
+        handleReturn("visibilitychange");
+        return;
       }
+      hiddenSinceRef.current = Date.now();
+    };
+
+    // Safari on iOS restores from the back-forward cache without a visibility change.
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) handleReturn("pageshow");
     };
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("pageshow", handlePageShow);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("pageshow", handlePageShow);
+    };
   }, []);
+
+  // Safety net for a mic that dies while the game waits for "Empezar".
+  //
+  // The recognizer can stop without any visibility change (socket drop, another
+  // app grabbing the mic), and the button is disabled until it is back, so poll
+  // for a few seconds and then offer the manual retry rather than stranding the
+  // player on a dead screen.
+  useEffect(() => {
+    if (screen !== "game" || phase !== "idle") return;
+    if (micPermissionDenied) return;
+    if (isListening) {
+      // Only call the mic healthy once it has held on for a moment: a recognizer
+      // that is cancelled right after connecting flips `isListening` true for a
+      // few hundred ms without ever being usable.
+      const settle = window.setTimeout(() => {
+        micRecoveryAttemptsRef.current = 0;
+        setMicStalled(false);
+      }, 3000);
+      return () => window.clearTimeout(settle);
+    }
+
+    const id = window.setInterval(() => {
+      if (document.visibilityState !== "visible") return;
+      if (recognitionRef.current || sttStartPromiseRef.current) return;
+      if (micRecoveryAttemptsRef.current >= MIC_RECOVERY_ATTEMPTS) {
+        setMicStalled(true);
+        return;
+      }
+      micRecoveryAttemptsRef.current += 1;
+      recoverMicRef.current("idle-watchdog", { resetBudget: false });
+    }, MIC_RECOVERY_INTERVAL_MS);
+
+    return () => window.clearInterval(id);
+  }, [screen, phase, isListening, micPermissionDenied]);
 
   // Auto-read the question when the current letter changes during play
   useEffect(() => {
@@ -2738,6 +2943,9 @@ export default function App() {
       setPhase("idle");
       setTurnMessage("");
       setFeedback(null);
+      // Fresh game: the mic recovery budget starts over.
+      micRecoveryAttemptsRef.current = 0;
+      setMicStalled(false);
 
       const first = players[0];
       if (first) {
@@ -2752,7 +2960,7 @@ export default function App() {
 
       // Start the recognizer early (before first TTS) to avoid audio ducking.
       // Use generic hints; they'll be updated when the first question starts.
-      const genericHints = ["pasalacabra", "pasapalabra", "pasa", "cabra"];
+      const genericHints = GENERIC_STT_HINTS;
       sttArmedRef.current = false; // Don't process results yet
       ensureListeningForQuestion(genericHints);
     };
@@ -2831,6 +3039,9 @@ export default function App() {
       setPhase("idle");
       setTurnMessage("");
       setFeedback(null);
+      // Fresh game: the mic recovery budget starts over.
+      micRecoveryAttemptsRef.current = 0;
+      setMicStalled(false);
 
       const first = players[0];
       if (first) {
@@ -2845,7 +3056,7 @@ export default function App() {
 
       // Start the recognizer early (before first TTS) to avoid audio ducking.
       // Use generic hints; they'll be updated when the first question starts.
-      const genericHints = ["pasalacabra", "pasapalabra", "pasa", "cabra"];
+      const genericHints = GENERIC_STT_HINTS;
       sttArmedRef.current = false; // Don't process results yet
       ensureListeningForQuestion(genericHints);
     };
@@ -2944,7 +3155,7 @@ export default function App() {
     setPhase("idle");
     
     // Ensure mic stays running during idle for quick start
-    const genericHints = ["pasalacabra", "pasapalabra", "pasa", "cabra"];
+    const genericHints = GENERIC_STT_HINTS;
     ensureListeningForQuestion(genericHints);
   }
 
@@ -3715,6 +3926,25 @@ export default function App() {
                           <>
                             ⚠️ Para poder jugar tienes que dar acceso al micrófono de tu teléfono para responder a las preguntas. Cierra la página y vuelve a abrirla para dar acceso y volver a intentarlo.
                           </>
+                        )}
+                      </div>
+                    )}
+                    {/* "Empezar" needs a live mic. Say so while it comes up, and
+                        offer a way back if it does not (typically after the phone
+                        has been locked) instead of leaving a dead button. */}
+                    {!micPermissionDenied && !isListening && (
+                      <div className="answerReveal" style={{ marginTop: 8, textAlign: "center" }}>
+                        {micStalled ? (
+                          <>
+                            El micrófono se ha quedado dormido (suele pasar al bloquear el móvil).
+                            <div style={{ marginTop: 8 }}>
+                              <button className="btnGhost" onClick={retryMicrophone}>
+                                Reactivar micrófono
+                              </button>
+                            </div>
+                          </>
+                        ) : (
+                          <>Preparando micrófono…</>
                         )}
                       </div>
                     )}
