@@ -2,6 +2,8 @@
 // - Types for question sets
 // - Loader for JSON sets under src/data/sets/*.json (via Vite import.meta.glob)
 
+import type { Topic } from "../questions/types";
+
 export const SPANISH_LETTERS = [
   "A",
   "B",
@@ -36,6 +38,11 @@ export type QA = {
   letter: Letter;
   question: string;
   answer: string;
+  /**
+   * Which topic the question came from. Optional because the sets generated
+   * before the daily generator started emitting it have no topic.
+   */
+  topic?: Topic;
 };
 
 export type SetDefinition = {

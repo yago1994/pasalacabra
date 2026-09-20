@@ -19,6 +19,22 @@ TOPICS = [
     "Historia", "Geografía", "Arte", "Folklore", "Cultura",
 ]
 
+# The slug written into each question, matching the Topic union in
+# src/questions/types.ts. The app groups stats by these, so they must not drift.
+TOPIC_SLUGS = {
+    "Astronomía": "astronomia",
+    "Biología": "biologia",
+    "Música": "musica",
+    "Deporte": "deporte",
+    "Ciencia": "ciencia",
+    "Cine": "cine",
+    "Historia": "historia",
+    "Geografía": "geografia",
+    "Arte": "arte",
+    "Folklore": "folklore",
+    "Cultura": "culturageneral",
+}
+
 # Choose when "No. 1" starts (set this to your launch day)
 START_DATE = date(2026, 1, 1)
 
@@ -61,6 +77,37 @@ def normalize_for_contains_check(s: str) -> str:
     return s
 
 
+def slug_for_topic(value: str) -> str:
+    """Map whatever the model wrote ("Cine", "cine", "Cultura General") to a slug."""
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError("Missing topic")
+    key = re.sub(r"[^a-z]", "", strip_accents(value).lower())
+    for display, slug in TOPIC_SLUGS.items():
+        if key == re.sub(r"[^a-z]", "", strip_accents(display).lower()) or key == slug:
+            return slug
+    # "Cultura General" and friends: fall back to a prefix match on the slug.
+    # Long keys only, so a stray letter cannot be read as a whole topic.
+    if len(key) >= 4:
+        for slug in TOPIC_SLUGS.values():
+            if key.startswith(slug) or slug.startswith(key):
+                return slug
+    raise ValueError(f"Unknown topic: {value}")
+
+
+def normalize_topics(obj: dict, topics: List[str]) -> None:
+    """Rewrite every question's topic to its slug, in place."""
+    allowed = {TOPIC_SLUGS[t] for t in topics}
+    for q in obj.get("questions", []):
+        if not isinstance(q, dict):
+            raise ValueError("Each question entry must be an object")
+        slug = slug_for_topic(q.get("topic"))
+        if slug not in allowed:
+            raise ValueError(
+                f"Topic '{slug}' is not one of today's topics ({', '.join(sorted(allowed))})"
+            )
+        q["topic"] = slug
+
+
 def enforce_letter_constraint(letter: str, question: str, answer: str) -> None:
     q = question.strip()
     a = answer.strip()
@@ -94,7 +141,7 @@ def enforce_answer_not_in_question(question: str, answer: str) -> None:
         raise ValueError("Answer must not be contained in the question.")
 
 
-def validate_set(obj: dict) -> None:
+def validate_set(obj: dict, topics: List[str]) -> None:
     if obj.get("id") != "set_01":
         raise ValueError("Expected id 'set_01'")
 
@@ -120,6 +167,10 @@ def validate_set(obj: dict) -> None:
         if not isinstance(question, str) or not isinstance(answer, str) or not isinstance(letter, str):
             raise ValueError("Each entry must have string letter/question/answer")
 
+        topic = q.get("topic")
+        if topic not in {TOPIC_SLUGS[t] for t in topics}:
+            raise ValueError(f"Entry {letter} has a missing or off-list topic: {topic}")
+
         ans_key = normalize_for_letter_check(answer).strip().lower()
         if ans_key in seen_answers:
             raise ValueError(f"Duplicate answer detected: {answer}")
@@ -132,6 +183,9 @@ def validate_set(obj: dict) -> None:
 def build_generation_prompt(today_local: date, game_no: int, topics: List[str], excluded_answers: set = None) -> str:
     letters_str = ", ".join(LETTERS)
     topics_str = ", ".join(topics)
+    # The model writes the slug directly, so the file is ready for the app.
+    topics_with_slugs = "\n".join(f'- {t} → "{TOPIC_SLUGS[t]}"' for t in topics)
+    slugs_str = ", ".join(f'"{TOPIC_SLUGS[t]}"' for t in topics)
 
     excluded_section = ""
     if excluded_answers:
@@ -149,7 +203,7 @@ REQUISITOS:
 - Debe haber exactamente {len(LETTERS)} preguntas, una por letra.
 - Letras exactas y en este orden: [{letters_str}]
 - Formato EXACTO por entrada:
-  {{ "letter": "A", "question": "Empieza por A: ...", "answer": "..." }}
+  {{ "letter": "A", "topic": "cine", "question": "Empieza por A: ...", "answer": "..." }}
 - Usa solo estos prefijos:
   - "Empieza por X:"  (y la respuesta DEBE empezar por X)
   - "Contiene la X:"  (y la respuesta DEBE contener X)
@@ -159,8 +213,14 @@ REQUISITOS:
 - Respuestas de palabras en español.
 - No repitas respuestas entre letras.
 
-TEMAS (usa SOLO estos 3):
-- {topics_str}
+TEMAS (usa SOLO estos 3, con su etiqueta exacta):
+{topics_with_slugs}
+
+CAMPO "topic":
+- Cada entrada DEBE llevar "topic" con una de estas etiquetas exactas: {slugs_str}
+- La etiqueta debe ser el tema real de esa pregunta, no un tema al azar.
+- Si una pregunta encaja en dos temas, elige el más específico.
+- Reparte las preguntas entre los 3 temas de forma razonablemente equilibrada.
 
 DIFICULTAD:
 - Mezcla fácil y media.
@@ -182,6 +242,7 @@ Devuelve un objeto JSON con:
 
 def build_ai_validator_prompt(today_local: date, game_no: int, topics: List[str], obj: dict, excluded_answers: set = None) -> str:
     topics_str = ", ".join(topics)
+    slugs_str = ", ".join(f'"{TOPIC_SLUGS[t]}"' for t in topics)
 
     excluded_rule = ""
     if excluded_answers:
@@ -196,6 +257,9 @@ Tu tarea con este JSON:
 2) Verifica que la respuesta NO esté contenida en la pregunta.
 3) Verifica que la letra y el prefijo ("Empieza por"/"Contiene la") sean correctos.
 4) Verifica que todas las preguntas sean SOLO de estos temas: {topics_str}.
+4b) Verifica que CADA entrada lleve "topic" con una de estas etiquetas: {slugs_str},
+   y que la etiqueta corresponda de verdad al tema de esa pregunta. Corrige la
+   etiqueta si está mal puesta.
 5) Verifica mezcla de dificultad con MAXIMO 3 preguntas difíciles (nivel universitario).
 6) Respuestas cortas (ideal 1–3 palabras), con tildes correctas.
 7) Respuestas de palabras en español.
@@ -207,6 +271,7 @@ manteniendo:
 - title = "Pasalacabra {today_local.isoformat()} · No. {game_no}"
 - mismas letras y orden exacto: {LETTERS}
 - mismas reglas de letras/prefijos
+- el campo "topic" en TODAS las entradas, con una de: {slugs_str}
 - temas SOLO dentro de: {topics_str}
 
 JSON a revisar:
@@ -318,11 +383,13 @@ def main() -> None:
             if obj is None:
                 obj = generate_once(client, today_local, game_no, topics, excluded)
 
-            validate_set(obj)
+            normalize_topics(obj, topics)
+            validate_set(obj, topics)
             validate_no_reused_answers(obj, excluded)
 
             obj2 = ai_validate_or_fix(client, today_local, game_no, topics, obj, excluded)
-            validate_set(obj2)
+            normalize_topics(obj2, topics)
+            validate_set(obj2, topics)
             validate_no_reused_answers(obj2, excluded)
 
             obj = obj2

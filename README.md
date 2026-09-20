@@ -136,6 +136,10 @@ Rules enforced by the generator:
 - Exactly one valid answer (no ambiguity)
 - Answer is not contained in the question
 - Letter constraint enforced ("Empieza por" / "Contiene la")
+- Every question carries a `topic` slug (`cine`, `historia`, `culturageneral`…),
+  matching the `Topic` union in `src/questions/types.ts`. The generator forces it
+  to be one of the day's 3 topics and the AI validation pass re-checks that the
+  label actually matches the question.
 - Questions are drawn from 3 randomly selected topics:
   Astronomía, Biología, Música, Deporte, Ciencia, Cine, Historia, Geografía, Arte, Folklore, Cultura
 - Mixed difficulty with at least 3 hard (university-level) questions
@@ -151,6 +155,61 @@ Required secret: `OPENAI_KEY`.
 - `src/game/engine.ts` contains types + pure helpers for future refactors:
   - `Player`, `GameSession`
   - `PlayerState` (progress tracking)
+
+## Accounts, stats and subscriptions
+
+Optional: with no Supabase env vars the app behaves exactly as before — results
+live in `localStorage` and the sign-in entry points hide themselves.
+
+### Setup
+Full walkthrough — project, schema, Google + magic-link sign-in, redirect URLs,
+env vars, verification and troubleshooting: **[`supabase/SETUP.md`](supabase/SETUP.md)**.
+
+The short version: create a project, run [`supabase/schema.sql`](supabase/schema.sql)
+in the SQL editor, enable the Google and Email providers, add the redirect URLs,
+then put `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in `.env.local`
+locally and in the repository *variables* for deploys. The anon key is meant to
+be public; row-level security is what protects the data.
+
+### What gets stored
+One row per rosco played (`game_results`): the rosco number, the per-letter
+outcome, counts, the difficulty and how long it took. `attempt` is 1 for the
+first play of a rosco and grows on replays; **stats only ever count attempt 1**,
+so replaying an old rosco cannot inflate an average.
+
+Everything the screens show (media de aciertos, distribución, porcentaje por
+letra, marcas personales) is derived in the client from those rows —
+`src/stats/aggregate.ts`. There are no aggregate tables to keep in sync.
+
+Games played while signed out are kept on the device and pushed into the
+account the first time someone signs in (`pushLocalResults`), which is what the
+sign-in sheet promises.
+
+Not stored yet: per-topic results. Daily sets started carrying a `topic` on each
+question (see the generator above), so from the first set generated after that
+change the game can tally aciertos by topic — it needs a `topics` column on
+`game_results`, the tally at game over, and a "Por tema" block on the profile.
+Older sets have no topic, so that breakdown only ever covers roscos from then on.
+
+### Screens
+- `StatsSheet` — after the daily rosco, and from "Tus estadísticas" on the home page.
+- `ProfilePage` — the rosco painted by how often each letter is answered right.
+- `ArchivePage` — past roscos, with the paywall.
+- `SignInSheet` — the account gate.
+
+### Subscriptions (stubbed)
+`$3.99/month` gates playing past roscos; today's rosco is always free.
+Stripe is **not** wired yet: `profiles.is_subscriber` is the only gate, and the
+browser cannot write it (the `UPDATE` grant covers `display_name` only). On
+staging/local (`VITE_ALLOW_SUB_STUB=true`) the paywall button calls
+`set_subscription_stub()` so the flow can be tested end to end. Replace both
+with a Stripe webhook writing `is_subscriber`, then drop that function.
+
+### Not done yet
+Past roscos are listed but not playable: only today's set ships in the build.
+The older sets live in the git history of `src/data/sets/set_01.json` (113
+versions so far) and need restoring into dated set files before the archive's
+"Jugar" does anything.
 
 ## Audio on mobile (important)
 

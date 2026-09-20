@@ -25,6 +25,17 @@ export async function fetchSpeechToken(): Promise<{ token: string; region: strin
     throw new Error(`Speech token failed: ${res.status} ${text}`);
   }
 
+  // A misconfigured URL can answer 200 with an HTML page (a dev server serving
+  // index.html, a login wall, a CDN error page). Parsing that as JSON fails
+  // with an opaque syntax error, so check what came back first.
+  const contentType = res.headers.get("content-type") ?? "";
+  if (!contentType.includes("json")) {
+    const preview = (await res.text().catch(() => "")).slice(0, 80);
+    throw new Error(
+      `Speech token endpoint returned ${contentType || "an unknown type"} instead of JSON: ${preview}`
+    );
+  }
+
   return await res.json();
 }
 
