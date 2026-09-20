@@ -18,6 +18,21 @@ export function formatDateLongES(d: Date) {
   }).format(d);
 }
 
+export function formatDateShortES(d: Date) {
+  return new Intl.DateTimeFormat("es-ES", { day: "numeric", month: "short" }).format(d);
+}
+
+export function formatWeekdayShortES(d: Date) {
+  return new Intl.DateTimeFormat("es-ES", { weekday: "short" }).format(d).replace(".", "");
+}
+
+/** The day a given game number belongs to — the inverse of getDailyGameNo. */
+export function dateForDailyGameNo(gameNo: number) {
+  const launch = new Date(`${LAUNCH_DATE_ISO}T00:00:00`);
+  launch.setDate(launch.getDate() + (gameNo - BASE_GAME_NO));
+  return launch;
+}
+
 export function getDailyGameNo(today: Date) {
   const launch = new Date(`${LAUNCH_DATE_ISO}T00:00:00`);
   const delta = daysBetweenLocal(launch, today);

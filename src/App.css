@@ -826,3 +826,75 @@ button:disabled {
     font-size: 18px;
   }
 }
+/* ========== Permission notice (Android only) ========== */
+.permissionNotice {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(20px + env(safe-area-inset-top)) 20px
+           calc(20px + env(safe-area-inset-bottom));
+  overflow-y: auto;
+}
+
+.permissionCard {
+  width: min(92vw, 460px);
+  background: var(--panel);
+  border-radius: 18px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  text-align: left;
+}
+
+.permissionEmoji {
+  font-size: 40px;
+  line-height: 1;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.permissionTitle {
+  font-size: 20px;
+  font-weight: 900;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.permissionBody {
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0 0 12px;
+}
+
+.permissionWarn {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.permissionSteps {
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 0 12px;
+  padding-left: 22px;
+}
+
+.permissionSteps li {
+  margin-bottom: 6px;
+}
+
+.permissionActions {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.permissionDebug {
+  margin: 12px 0 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}

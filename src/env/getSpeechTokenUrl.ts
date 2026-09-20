@@ -27,12 +27,15 @@ export function getSpeechTokenUrl() {
   // - For prod builds: set to prod worker URL (vars.VITE_SPEECH_TOKEN_URL)
   // So we always use VITE_SPEECH_TOKEN_URL as it's already set correctly for the environment
   const tokenUrl = import.meta.env.VITE_SPEECH_TOKEN_URL as string | undefined;
-  
-  // For local development, use staging worker URL as fallback
+
   if (!tokenUrl) {
+    // Localhost used to fall through here returning undefined, which made
+    // fetch() request the page itself and blow up much later as
+    // "JSON.parse: unexpected character" — say what is actually wrong instead.
     if (isLocalDevHost()) {
-      // Use staging URL for local development (you can change this to prod if preferred)
-      return import.meta.env.VITE_SPEECH_TOKEN_URL;
+      throw new Error(
+        "Falta VITE_SPEECH_TOKEN_URL: añádelo a .env.local (usa la URL del worker de staging) y reinicia `npm run dev`."
+      );
     }
     const env = import.meta.env.VITE_DEFAULT_ENV || "unknown";
     throw new Error(`Missing VITE_SPEECH_TOKEN_URL (env: ${env})`);

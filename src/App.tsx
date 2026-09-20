@@ -31,6 +31,14 @@ import { createCanvasRecorder, downloadRecording, shareOrDownloadRecording } fro
 import { initializePendo, setPendoLocation, trackPendoEvent } from "./lib/pendo";
 import { isStagingMode } from "./env/getSpeechTokenUrl";
 import { formatDateLongES, getDailyGameNo } from "./lib/dailyIssue";
+import PermissionNotice, { type PermissionNoticeMode } from "./components/PermissionNotice";
+import { getMediaPermissionState, isAndroid } from "./platform/androidPermissions";
+import { useAccount } from "./account/context";
+import { computeStats } from "./stats/aggregate";
+import StatsSheet from "./components/StatsSheet";
+import ProfilePage from "./components/ProfilePage";
+import ArchivePage from "./components/ArchivePage";
+import SignInSheet from "./components/SignInSheet";
 
 // Player snapshot captured when timer runs out
 export type PlayerSnapshot = {
@@ -44,7 +52,7 @@ export type PlayerSnapshot = {
 };
 
 type GamePhase = "idle" | "playing" | "ended";
-type Screen = "home" | "setup" | "game";
+type Screen = "home" | "setup" | "game" | "profile" | "archive";
 
 const TURN_SECONDS =180; // Default fallback (will be replaced by difficulty-based time)
 
@@ -55,6 +63,26 @@ function getTimeFromDifficulty(difficulty: DifficultyMode): number {
     case "medio": return isStaging ? 15 : 240; // 15 seconds in staging, 4 minutes in prod
     case "facil": return isStaging ? 30 : 300; // 5 minutes
   }
+}
+
+/** Tally a finished game for the history: aciertos, fallos, pasadas, sin llegar. */
+function countLetterStatuses(
+  statusByLetter: Record<Letter, LetterStatus>,
+  letters: readonly Letter[]
+) {
+  let correct = 0;
+  let wrong = 0;
+  let passed = 0;
+  let unanswered = 0;
+  for (const letter of letters) {
+    switch (statusByLetter[letter]) {
+      case "correct": correct++; break;
+      case "wrong": wrong++; break;
+      case "passed": passed++; break;
+      default: unanswered++; break;
+    }
+  }
+  return { correct, wrong, passed, unanswered };
 }
 
 function removeDiacritics(s: string) {
@@ -275,6 +303,53 @@ export default function App() {
   const [isDailyGame, setIsDailyGame] = useState<boolean>(false);
   const [confettiGoats, setConfettiGoats] = useState<Array<{ id: number; left: number; delay: number }>>([]);
 
+  // Account + stats. Works signed out too: results then live on the device.
+  const account = useAccount();
+  const { recordResult } = account;
+  // Game numbers already written to the history this session, so restoring a
+  // finished game (or a re-render) never stores the same game twice.
+  const recordedGamesRef = useRef<Set<number>>(new Set());
+  // Stats surfaces: the post-game sheet and the sign-in sheet are overlays,
+  // the profile and the archive are screens of their own.
+  const [statsOpen, setStatsOpen] = useState<boolean>(false);
+  const [signInOpen, setSignInOpen] = useState<boolean>(false);
+
+  const todayGameNo = useMemo(() => getDailyGameNo(new Date()), []);
+  const stats = useMemo(() => computeStats(account.results), [account.results]);
+  const todayResult = useMemo(
+    () => account.results.find((r) => r.gameNo === todayGameNo && r.attempt === 1) ?? null,
+    [account.results, todayGameNo]
+  );
+  // Only today's game ships in the build for now: the older sets live in git
+  // history and get restored in a later pass.
+  const playableGames = useMemo(() => [todayGameNo], [todayGameNo]);
+  const [subscribeNotice, setSubscribeNotice] = useState<string | null>(null);
+
+  const openStats = useCallback(() => {
+    setSignInOpen(false);
+    setStatsOpen(true);
+  }, []);
+
+  // Only today's game can be started for now. The archive keeps the older
+  // rows visible (and locked) so the shape of the feature is already there.
+  // Not memoised on purpose: startDailyGame is redefined every render, and a
+  // memoised copy would keep calling a stale one.
+  function handlePlayGame(gameNo: number) {
+    if (gameNo !== todayGameNo) return;
+    setStatsOpen(false);
+    setScreen("home");
+    void startDailyGame();
+  }
+
+  const handleSubscribe = useCallback(async () => {
+    if (account.canStubSubscription) {
+      await account.grantStubSubscription(true);
+      setSubscribeNotice(null);
+      return;
+    }
+    setSubscribeNotice("El pago todavía no está enchufado — llega con Stripe en la siguiente entrega.");
+  }, [account]);
+
   // Player snapshots for end-of-game slideshow
   const [playerSnapshots, setPlayerSnapshots] = useState<PlayerSnapshot[]>([]);
   const [slideshowIndex, setSlideshowIndex] = useState<number>(0);
@@ -310,6 +385,14 @@ export default function App() {
   const [hasCameraStream, setHasCameraStream] = useState<boolean>(false);
   const [micPermissionDenied, setMicPermissionDenied] = useState<boolean>(false);
   const cameraFacingMode: "user" | "environment" = "user";
+
+  // Android-only permission coaching (see src/platform/androidPermissions.ts).
+  const [permissionNotice, setPermissionNotice] = useState<PermissionNoticeMode | null>(null);
+  const [micErrorName, setMicErrorName] = useState<string>("");
+  // Show the "why we need the mic" primer at most once per session.
+  const permissionPrimerShownRef = useRef<boolean>(false);
+  // The start flow to re-enter once the user acknowledges the notice.
+  const pendingStartRef = useRef<null | (() => void)>(null);
 
   // Video recording for sharing
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -398,6 +481,46 @@ export default function App() {
   function sttLog(...args: unknown[]) {
     if (!DEBUG_STT) return;
     console.log("[stt]", ...args);
+  }
+
+  /**
+   * Android-only: coach the user through the microphone permission before we
+   * touch getUserMedia.
+   *
+   * On Chrome for Android a denial is permanent — the prompt never comes back,
+   * `getUserMedia` rejects instantly, the recognizer never starts and "Empezar"
+   * stays disabled forever. So we explain up front why the mic is needed, and if
+   * it is already blocked we show recovery steps instead of walking into a dead
+   * game. iOS Safari re-asks on the next load and has no Permissions API, so
+   * `isAndroid()` plus a "unknown" state both keep that platform on its existing
+   * path.
+   *
+   * @param retry the start flow to re-enter once the user acknowledges.
+   * @returns true if the caller should stop and let the notice drive the flow.
+   */
+  async function coachAndroidMicPermission(retry: () => void): Promise<boolean> {
+    if (!isAndroid()) return false;
+
+    const state = await getMediaPermissionState("microphone");
+
+    if (state === "denied") {
+      pendingStartRef.current = retry;
+      setMicPermissionDenied(true);
+      setPermissionNotice("blocked");
+      sttLog("android mic permission blocked");
+      return true;
+    }
+
+    // Already granted, or the browser won't tell us: behave exactly as before.
+    if (state === "granted" || state === "unknown") return false;
+
+    // state === "prompt": explain before the browser's own dialog appears.
+    if (permissionPrimerShownRef.current) return false;
+    permissionPrimerShownRef.current = true;
+    pendingStartRef.current = retry;
+    setPermissionNotice("explain");
+    sttLog("android mic primer shown");
+    return true;
   }
 
   async function warmupMicrophoneOnce() {
@@ -1184,6 +1307,9 @@ export default function App() {
       setSttError(String(err));
       // Check if it's a permission denied error
       const error = err as DOMException;
+      // Keep the raw name around: on Android it distinguishes a permanent block
+      // (NotAllowedError) from device contention (NotReadableError/AbortError).
+      setMicErrorName(error?.name ?? "");
       if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
         setMicPermissionDenied(true);
       } else {
@@ -2027,6 +2153,33 @@ export default function App() {
     reader.readAsDataURL(snapshot.blob);
   }, [gameOver, isDailyGame, playerSnapshots]);
 
+  // Write the finished game to the history (the account when signed in, this
+  // device otherwise). Independent of the snapshot above: the stats should not
+  // depend on the camera having produced a photo.
+  useEffect(() => {
+    if (!gameOver || !isDailyGame) return;
+    const gameNo = getDailyGameNo(new Date());
+    if (recordedGamesRef.current.has(gameNo)) return;
+    recordedGamesRef.current.add(gameNo);
+
+    const difficulty = session?.difficulty ?? "medio";
+    const timeBank = getTimeFromDifficulty(difficulty);
+    const counts = countLetterStatuses(statusByLetter, letters);
+
+    void recordResult({
+      gameNo,
+      playedAt: new Date().toISOString(),
+      setId: "set_01",
+      difficulty,
+      correctCount: counts.correct,
+      wrongCount: counts.wrong,
+      passedCount: counts.passed,
+      unansweredCount: counts.unanswered,
+      secondsUsed: Math.max(0, Math.round(timeBank - timeLeft)),
+      letters: statusByLetter,
+    });
+  }, [gameOver, isDailyGame, session, statusByLetter, letters, timeLeft, recordResult]);
+
   // Slideshow effect when game ends with snapshots
   useEffect(() => {
     if (!gameOver || playerSnapshots.length === 0) {
@@ -2483,7 +2636,9 @@ export default function App() {
       if (raw) {
         const saved = JSON.parse(raw) as DailyStoredResult;
         if (saved.gameNo === gameNo) {
-          // Today's game was already played — restore the end state
+          // Today's game was already played — restore the end state.
+          // It is already in the history, so don't let the recorder fire again.
+          recordedGamesRef.current.add(gameNo);
           const players: Player[] = [{ id: "p1", name: "Jugador 1", setId: "set_01" }];
           const dailyDifficulty: DifficultyMode = "medio";
           const timePerPlayer = getTimeFromDifficulty(dailyDifficulty);
@@ -2533,6 +2688,13 @@ export default function App() {
     }
 
     unlockAudioOnce();
+
+    // Android only: explain the mic permission (or how to unblock it) before we
+    // ask. Returns true when a notice is showing; "Continuar" re-enters here.
+    // `isAndroid()` short-circuits first so non-Android keeps a byte-identical,
+    // await-free path from here into warmupMicrophoneOnce().
+    if (isAndroid() && (await coachAndroidMicPermission(() => void startDailyGame()))) return;
+
     // Warm up microphone permission first. On some browsers, requesting mic can temporarily
     // affect the audio session, so it before the first meaningful TTS utterance.
     await warmupMicrophoneOnce();
@@ -2607,6 +2769,13 @@ export default function App() {
     setTopicSelectionError("");
     
     unlockAudioOnce();
+
+    // Android only: explain the mic permission (or how to unblock it) before we
+    // ask. Returns true when a notice is showing; "Continuar" re-enters here.
+    // `isAndroid()` short-circuits first so non-Android keeps a byte-identical,
+    // await-free path from here into warmupMicrophoneOnce().
+    if (isAndroid() && (await coachAndroidMicPermission(() => void startFromSetup()))) return;
+
     // Warm up microphone permission first. On some browsers, requesting mic can temporarily
     // affect the audio session, so we do it before the first meaningful TTS utterance.
     await warmupMicrophoneOnce();
@@ -3150,10 +3319,12 @@ export default function App() {
                       }}
                     />
                     <div className="slideshowCaption">
-                      {isWinner && (
+                      {playerSnapshots.length > 1 && isWinner && (
                         <div className="slideshowWinnerBadge">🏆 ¡Ganador!</div>
                       )}
-                      <div className="slideshowPlayerName">{snapshot.playerName}</div>
+                      {playerSnapshots.length > 1 ? (
+                        <div className="slideshowPlayerName">{snapshot.playerName}</div>
+                      ) : null}
                       <div className="slideshowScore">
                         <span className="slideshowCorrect">✓ {snapshot.correctCount}</span>
                         <span className="slideshowWrong">✗ {snapshot.wrongCount}</span>
@@ -3162,14 +3333,16 @@ export default function App() {
                   </div>
                 );
               })}
-              <div className="slideshowProgress">
-                {playerSnapshots.map((_, idx) => (
-                  <div
-                    key={idx}
-                    className={`slideshowDot ${idx === slideshowIndex ? "slideshowDotActive" : ""} ${idx < slideshowIndex ? "slideshowDotPast" : ""}`}
-                  />
-                ))}
-              </div>
+              {playerSnapshots.length > 1 ? (
+                <div className="slideshowProgress">
+                  {playerSnapshots.map((_, idx) => (
+                    <div
+                      key={idx}
+                      className={`slideshowDot ${idx === slideshowIndex ? "slideshowDotActive" : ""} ${idx < slideshowIndex ? "slideshowDotPast" : ""}`}
+                    />
+                  ))}
+                </div>
+              ) : null}
             </div>
             
             {/* Share and Download buttons - below slideshow content */}
@@ -3200,6 +3373,19 @@ export default function App() {
                     }}
                   >
                     {showAnswers ? "🔼 Ocultar Respuestas" : "📋 Mostrar Respuestas"}
+                  </button>
+                  <button
+                    className="slideshowShareBtn"
+                    onClick={() => {
+                      closeSlideshow();
+                      openStats();
+                    }}
+                    style={{
+                      background: "linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)",
+                      boxShadow: "0 6px 25px rgba(99, 102, 241, 0.5)",
+                    }}
+                  >
+                    Tus Estadísticas
                   </button>
                 </>
               ) : (
@@ -3286,10 +3472,82 @@ export default function App() {
         );
       })()}
 
+      {/* Android-only microphone permission coaching */}
+      {permissionNotice ? (
+        <PermissionNotice
+          mode={permissionNotice}
+          errorName={micErrorName}
+          onContinue={() => {
+            const retry = pendingStartRef.current;
+            pendingStartRef.current = null;
+            setPermissionNotice(null);
+            // Re-enter the start flow from this tap, so the browser's own prompt
+            // still happens inside a user gesture.
+            retry?.();
+          }}
+          onCancel={() => {
+            pendingStartRef.current = null;
+            setPermissionNotice(null);
+          }}
+        />
+      ) : null}
+
+      {signInOpen ? (
+        <div className="center" style={{ position: "absolute", inset: 0, zIndex: 50, background: "var(--letter-default)", paddingTop: 16 }}>
+          <div className="backgroundDecoration" aria-hidden="true">
+            <span className="goat goat1">🐐</span>
+            <span className="goat goat3">🐐</span>
+            <span className="goat goat5">🐐</span>
+            <span className="goat goat7">🐐</span>
+          </div>
+          <SignInSheet
+            localGameCount={account.signedIn ? 0 : account.results.length}
+            onSignInWithGoogle={account.signInWithGoogle}
+            onSignInWithApple={account.signInWithApple}
+            onSignInWithEmail={account.signInWithEmail}
+            onSkip={() => setSignInOpen(false)}
+          />
+        </div>
+      ) : null}
+
+      {statsOpen ? (
+        <div className="center" style={{ position: "absolute", inset: 0, zIndex: 45, background: "var(--letter-default)", paddingTop: 16 }}>
+          <div className="backgroundDecoration" aria-hidden="true">
+            <span className="goat goat1">🐐</span>
+            <span className="goat goat3">🐐</span>
+            <span className="goat goat5">🐐</span>
+            <span className="goat goat7">🐐</span>
+          </div>
+          <StatsSheet
+            result={todayResult}
+            stats={stats}
+            gameNo={todayGameNo}
+            dateLabel={formatDateLongES(new Date())}
+            signedIn={account.signedIn}
+            accountsEnabled={account.accountsEnabled}
+            justSignedOut={account.justSignedOut}
+            onClose={() => setStatsOpen(false)}
+            onOpenProfile={() => {
+              setStatsOpen(false);
+              setScreen("profile");
+            }}
+            onOpenArchive={() => {
+              setStatsOpen(false);
+              setScreen("archive");
+            }}
+            onSignIn={() => {
+              setStatsOpen(false);
+              setSignInOpen(true);
+            }}
+          />
+        </div>
+      ) : null}
+
       {screen === "home" ? (
         <HomePage 
           onPlayGroup={() => setScreen("setup")}
           onPlay={startDailyGame}
+          onOpenStats={openStats}
           onHowToPlay={() => {
             // TODO: Show how to play modal/drawer
             console.log("Como Jugar");
@@ -3299,12 +3557,58 @@ export default function App() {
             console.log("About");
           }}
         />
+      ) : screen === "profile" ? (
+        <div className="center">
+          <ProfilePage
+            displayName={account.displayName}
+            email={account.email}
+            memberSince={
+              account.profile?.createdAt
+                ? new Intl.DateTimeFormat("es-ES", { month: "long", year: "numeric" }).format(new Date(account.profile.createdAt))
+                : null
+            }
+            stats={stats}
+            loading={account.resultsLoading}
+            isSubscriber={account.isSubscriber}
+            signedIn={account.signedIn}
+            accountsEnabled={account.accountsEnabled}
+            migratedCount={account.justMigrated}
+            justSignedOut={account.justSignedOut}
+            onBack={() => setScreen("home")}
+            onOpenArchive={() => setScreen("archive")}
+            onSignIn={() => setSignInOpen(true)}
+            onSignOut={async () => {
+              await account.signOut();
+              setScreen("home");
+            }}
+          />
+        </div>
+      ) : screen === "archive" ? (
+        <div className="center">
+          <ArchivePage
+            todayGameNo={todayGameNo}
+            results={account.results}
+            signedIn={account.signedIn}
+            accountsEnabled={account.accountsEnabled}
+            isSubscriber={account.isSubscriber}
+            playableGames={playableGames}
+            notice={subscribeNotice}
+            onBack={() => setScreen(account.signedIn ? "profile" : "home")}
+            onPlayGame={handlePlayGame}
+            onSubscribe={() => void handleSubscribe()}
+            onSignIn={() => setSignInOpen(true)}
+          />
+        </div>
       ) : (
         <div className="overlay">
           <div className="topBar">
             {screen === "game" ? (
               <>
-                <div className="playerTag">{currentPlayerLabel}</div>
+                {session && session.players.length > 1 ? (
+                  <div className="playerTag">{currentPlayerLabel}</div>
+                ) : (
+                  <div />
+                )}
                 <div className="timerBig">{formatTime(timeLeft)}</div>
               </>
             ) : (
@@ -3392,7 +3696,26 @@ export default function App() {
                     </button>
                     {micPermissionDenied && (
                       <div className="answerReveal" style={{ marginTop: 8, textAlign: "center" }}>
-                        ⚠️ Para poder jugar tienes que dar acceso al micrófono de tu teléfono para responder a las preguntas. Cierra la página y vuelve a abrirla para dar acceso y volver a intentarlo.
+                        {isAndroid() ? (
+                          <>
+                            {/* On Android a denial is permanent, so "reload the page"
+                                (correct on iOS) would be useless advice here. */}
+                            ⚠️ Necesitamos el micrófono para oír tus respuestas y tu navegador lo
+                            tiene bloqueado. Recargar la página no lo arregla en Android.
+                            <div style={{ marginTop: 8 }}>
+                              <button
+                                className="btnGhost"
+                                onClick={() => setPermissionNotice("blocked")}
+                              >
+                                Ver cómo desbloquearlo
+                              </button>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            ⚠️ Para poder jugar tienes que dar acceso al micrófono de tu teléfono para responder a las preguntas. Cierra la página y vuelve a abrirla para dar acceso y volver a intentarlo.
+                          </>
+                        )}
                       </div>
                     )}
                   </>
@@ -3485,50 +3808,63 @@ export default function App() {
                       
                       return (
                         <div className="gameOverResults" style={{ marginTop: 8 }}>
-                          <div className="answerReveal answerRevealBig" style={{ marginBottom: 12 }}>
-                            <strong>🎮 Fin del juego!</strong>
-                          </div>
-                          
-                          {!isSinglePlayer && (
-                            <div className="winnerAnnouncement" style={{ marginBottom: 16 }}>
-                              {isTie ? (
-                                <div className="answerReveal answerRevealBig">
-                                  🏆 ¡Empate! Ganadores: {winners.map(w => w.player.name).join(" y ")}
-                                </div>
-                              ) : (
-                                <div className="answerReveal answerRevealBig">
-                                  🏆 ¡Ganador: {winners[0].player.name}!
-                                </div>
-                              )}
-                            </div>
-                          )}
-                          
-                          <div className="scoresTable" style={{ textAlign: "left" }}>
-                            {allScores.map((s, i) => (
-                              <div 
-                                key={s.player.id} 
-                                className="answerReveal" 
-                                style={{ 
-                                  marginBottom: 4,
-                                  fontWeight: winners.some(w => w.player.id === s.player.id) ? "bold" : "normal"
-                                }}
-                              >
-                                {i + 1}. {s.player.name}: {s.correct} ✓ / {s.wrong} ✗
+                          {!isSinglePlayer ? (
+                            <>
+                              <div className="answerReveal answerRevealBig" style={{ marginBottom: 12 }}>
+                                <strong>🎮 Fin del juego!</strong>
                               </div>
-                            ))}
-                          </div>
-                          
+
+                              <div className="winnerAnnouncement" style={{ marginBottom: 16 }}>
+                                {isTie ? (
+                                  <div className="answerReveal answerRevealBig">
+                                    🏆 ¡Empate! Ganadores: {winners.map(w => w.player.name).join(" y ")}
+                                  </div>
+                                ) : (
+                                  <div className="answerReveal answerRevealBig">
+                                    🏆 ¡Ganador: {winners[0].player.name}!
+                                  </div>
+                                )}
+                              </div>
+
+                              <div className="scoresTable" style={{ textAlign: "left" }}>
+                                {allScores.map((s, i) => (
+                                  <div
+                                    key={s.player.id}
+                                    className="answerReveal"
+                                    style={{
+                                      marginBottom: 4,
+                                      fontWeight: winners.some(w => w.player.id === s.player.id) ? "bold" : "normal"
+                                    }}
+                                  >
+                                    {i + 1}. {s.player.name}: {s.correct} ✓ / {s.wrong} ✗
+                                  </div>
+                                ))}
+                              </div>
+                            </>
+                          ) : null}
+
                           {playerSnapshots.length > 0 && (
-                            <button 
-                              className="btnOutline" 
-                              type="button" 
+                            <button
+                              className="btnOutline"
+                              type="button"
                               onClick={replaySlideshow}
-                              style={{ marginTop: 20, width: "100%" }}
+                              style={{ marginTop: isSinglePlayer ? 8 : 20, width: "100%" }}
                             >
                               📸 Resultados
                             </button>
                           )}
-                          
+
+                          {isDailyGame && (
+                            <button
+                              className="btnPrimary"
+                              type="button"
+                              onClick={openStats}
+                              style={{ marginTop: 12, width: "100%", borderRadius: 9999, padding: 14, fontWeight: 600, border: "none", cursor: "pointer" }}
+                            >
+                              Tus estadísticas
+                            </button>
+                          )}
+
                         </div>
                       );
                     })()

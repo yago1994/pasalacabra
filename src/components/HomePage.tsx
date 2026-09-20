@@ -4,11 +4,13 @@ import { formatDateLongES, getDailyGameNo } from "../lib/dailyIssue";
 export interface HomePageProps {
   onPlayGroup: () => void;
   onPlay?: () => void;
+  /** Opens the stats sheet (works signed out: the device keeps its own games). */
+  onOpenStats?: () => void;
   onHowToPlay?: () => void;
   onAbout?: () => void;
 }
 
-export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: HomePageProps) {
+export default function HomePage({ onPlayGroup, onPlay, onOpenStats, onHowToPlay, onAbout }: HomePageProps) {
   const [showHowToPlay, setShowHowToPlay] = useState<boolean>(false);
   const [showAbout, setShowAbout] = useState<boolean>(false);
 
@@ -113,6 +115,33 @@ export default function HomePage({ onPlayGroup, onPlay, onHowToPlay, onAbout }: 
 
         {/* Secondary actions */}
         <div style={{ marginTop: "clamp(24px, 6vw, 32px)", width: "100%", display: "flex", flexDirection: "column", gap: "clamp(10px, 2.5vw, 12px)" }}>
+          {onOpenStats ? (
+            <button
+              type="button"
+              style={{
+                width: "100%",
+                borderRadius: "9999px",
+                background: "transparent",
+                border: "1px solid rgba(255, 255, 255, 0.3)",
+                color: "var(--text)",
+                padding: "clamp(10px, 2.5vw, 12px)",
+                fontSize: "clamp(14px, 3.5vw, 16px)",
+                fontWeight: 600,
+                cursor: "pointer",
+                transition: "transform 0.1s",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+              onMouseDown={(e) => e.currentTarget.style.transform = "scale(0.99)"}
+              onMouseUp={(e) => e.currentTarget.style.transform = "scale(1)"}
+              onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+              onClick={onOpenStats}
+            >
+              <span>Tus estadísticas</span>
+              <span aria-hidden>→</span>
+            </button>
+          ) : null}
           <div>
             <button
               style={{ 

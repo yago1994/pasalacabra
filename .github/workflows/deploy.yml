@@ -35,6 +35,13 @@ jobs:
           VITE_BASE_PATH: ${{ github.ref_name == 'staging' && '/staging/' || '/' }}
           VITE_SPEECH_TOKEN_URL: ${{ github.ref_name == 'staging' && vars.VITE_SPEECH_STAGING_TOKEN_URL || vars.VITE_SPEECH_TOKEN_URL }}
           VITE_DEFAULT_ENV: ${{ github.ref_name == 'staging' && 'staging' || 'prod' }}
+          # Accounts + stats. Both are safe to expose: the anon key only works
+          # through row-level security. Leave them unset and the app runs
+          # exactly as it did before accounts existed.
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
+          # Dev-only switch that grants a subscription without paying. Staging only.
+          VITE_ALLOW_SUB_STUB: ${{ github.ref_name == 'staging' && 'true' || 'false' }}
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
