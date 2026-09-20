@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-22",
-    "game_no": 203,
-    "answers": [
-      "átomo",
-      "bacteria",
-      "compás",
-      "diapasón",
-      "estratósfera",
-      "faringe",
-      "glucosa",
-      "homeostasis",
-      "invernadero",
-      "julio",
-      "lisina",
-      "molécula",
-      "neurona",
-      "Leño",
-      "oxígeno",
-      "partenogénesis",
-      "química",
-      "rasgueo",
-      "solfeo",
-      "termómetro",
-      "eucalipto",
-      "voltio",
-      "toxina",
-      "yeso",
-      "zorzal"
-    ]
-  },
-  {
     "date": "2026-07-23",
     "game_no": 204,
     "answers": [
@@ -1857,6 +1826,37 @@
       "flexión",
       "yin",
       "zaguero"
+    ]
+  },
+  {
+    "date": "2026-09-20",
+    "game_no": 263,
+    "answers": [
+      "asterismo",
+      "Betelgeuse",
+      "claqueta",
+      "diégesis",
+      "estereoscopia",
+      "firmamento",
+      "gaita",
+      "horizonte",
+      "inframundo",
+      "juglar",
+      "lente anamórfica",
+      "montaje",
+      "nudo",
+      "ñoñería",
+      "Óscar",
+      "plano secuencia",
+      "equilibrio",
+      "raccord",
+      "satélite",
+      "tráiler",
+      "utilería",
+      "verosimilitud",
+      "extradiegético",
+      "Yggdrasil",
+      "zombi"
     ]
   }
 ]
