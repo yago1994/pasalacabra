@@ -26,6 +26,8 @@ type Props = {
   accountsEnabled: boolean;
   /** Games just pulled off this device into the account, for the welcome line. */
   migratedCount: number;
+  /** True right after signing out, so an empty profile can explain itself. */
+  justSignedOut: boolean;
   onBack: () => void;
   onOpenArchive: () => void;
   onSignIn: () => void;
@@ -49,6 +51,7 @@ export default function ProfilePage({
   signedIn,
   accountsEnabled,
   migratedCount,
+  justSignedOut,
   onBack,
   onOpenArchive,
   onSignIn,
@@ -65,7 +68,7 @@ export default function ProfilePage({
         fg: step.fg,
         title:
           stat && stat.pct !== null
-            ? `${letter} · ${stat.pct}% de aciertos (${stat.seen} roscos)`
+            ? `${letter} · ${stat.pct}% de aciertos (${stat.seen} juegos)`
             : `${letter} · sin datos todavía`,
       };
     });
@@ -113,11 +116,11 @@ export default function ProfilePage({
               whiteSpace: "nowrap",
             }}
           >
-            {signedIn ? displayName ?? "Tu perfil" : "Tus roscos"}
+            {signedIn ? displayName ?? "Tu perfil" : "Tus juegos"}
           </div>
           <div style={{ fontSize: 13, color: statsTheme.muted }}>
-            {stats.played} {stats.played === 1 ? "rosco" : "roscos"}
-            {signedIn && memberSince ? ` · desde ${memberSince}` : signedIn ? "" : " · solo en este móvil"}
+            {stats.played} {stats.played === 1 ? "juego" : "juegos"}
+            {signedIn && memberSince ? ` · desde ${memberSince}` : signedIn ? "" : " · solo en este dispositivo"}
           </div>
           {/* Which account this is — the thing you check before signing out. */}
           {signedIn && email ? (
@@ -136,7 +139,7 @@ export default function ProfilePage({
         </div>
       </div>
 
-      {migratedCount > 0 ? (
+      {migratedCount > 0 || (justSignedOut && !signedIn) ? (
         <div
           style={{
             padding: "12px 16px",
@@ -148,17 +151,19 @@ export default function ProfilePage({
           }}
           role="status"
         >
-          {migratedCount === 1
-            ? "He añadido la partida que tenías en este móvil."
-            : `He añadido las ${migratedCount} partidas que tenías en este móvil.`}
+          {migratedCount > 0
+            ? migratedCount === 1
+              ? "Se ha añadido el juego guardado en este dispositivo."
+              : `Se han añadido los ${migratedCount} juegos guardados en este dispositivo.`
+            : "Has cerrado sesión. Tus juegos siguen guardados en tu cuenta: vuelve a iniciar sesión para verlos."}
         </div>
       ) : null}
 
       <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          <h2 style={sectionTitleStyle}>Tu rosco de siempre</h2>
+          <h2 style={sectionTitleStyle}>Tus letras de siempre</h2>
           <p style={{ margin: 0, fontSize: 14, lineHeight: 1.5, color: statsTheme.muted }}>
-            Cuanto más blanca la letra, más veces la has acertado.
+            Cuanto más blanca la letra, mayor es tu porcentaje de aciertos.
           </p>
         </div>
 
@@ -215,8 +220,8 @@ export default function ProfilePage({
         ) : (
           <p style={{ margin: 0, fontSize: 14, lineHeight: 1.5, color: statsTheme.muted, textAlign: "center" }}>
             {loading
-              ? "Cargando tus roscos…"
-              : "Juega unos cuantos roscos y aquí saldrán tu mejor letra y tu bestia negra."}
+              ? "Cargando tus juegos…"
+              : "Juega unos cuantos juegos más y aquí saldrán tu mejor letra y tu bestia negra."}
           </p>
         )}
       </div>
@@ -224,19 +229,19 @@ export default function ProfilePage({
       <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
         <h2 style={sectionTitleStyle}>Marcas personales</h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 10 }}>
-          <Tile value={String(stats.perfectCount)} label="roscos completos" />
-          <Tile value={`${stats.bestScore}/25`} label="tu mejor rosco" />
-          <Tile value={formatDuration(stats.fastestSeconds)} label="rosco completo más rápido" />
+          <Tile value={String(stats.perfectCount)} label="juegos completos" />
+          <Tile value={`${stats.bestScore}/25`} label="tu mejor juego" />
+          <Tile value={formatDuration(stats.fastestSeconds)} label="juego completo más rápido" />
         </div>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "center" }}>
         <button type="button" onClick={onOpenArchive} style={{ ...ghostPillStyle, width: "100%" }}>
-          Ver roscos anteriores
+          Ver el archivo
         </button>
         {isSubscriber ? (
           <div style={{ fontSize: 13, textAlign: "center", color: statsTheme.muted }}>
-            Suscripción activa · puedes jugar cualquier rosco anterior
+            Suscripción activa · tienes acceso a todo el archivo
           </div>
         ) : null}
         {signedIn ? (
@@ -253,7 +258,7 @@ export default function ProfilePage({
           </button>
         ) : accountsEnabled ? (
           <button type="button" onClick={onSignIn} style={{ ...primaryPillStyle, width: "100%" }}>
-            Guardar mis roscos
+            Guardar mis estadísticas
           </button>
         ) : null}
       </div>

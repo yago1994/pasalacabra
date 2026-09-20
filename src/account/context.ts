@@ -12,16 +12,19 @@ export type AccountValue = {
   email: string | null;
   displayName: string | null;
   profile: Profile | null;
-  /** Every rosco this person has played: from the cloud when signed in, from this device otherwise. */
+  /** Every game this person has played: from the cloud when signed in, from this device otherwise. */
   results: GameResult[];
   resultsLoading: boolean;
   isSubscriber: boolean;
   /** How many device games were just pulled into the account (for the welcome line). */
   justMigrated: number;
+  /** True right after signing out: the games are in the account, not gone. */
+  justSignedOut: boolean;
   /** True when the dev subscription switch is available (staging / local builds). */
   canStubSubscription: boolean;
   recordResult: (result: NewGameResult) => Promise<void>;
   signInWithGoogle: () => Promise<{ error: string | null }>;
+  signInWithApple: () => Promise<{ error: string | null }>;
   signInWithEmail: (email: string) => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
   grantStubSubscription: (active: boolean) => Promise<void>;

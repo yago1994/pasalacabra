@@ -12,6 +12,18 @@ function nextAttempt(results: GameResult[], gameNo: number): number {
   return played.length === 0 ? 1 : Math.max(...played.map((r) => r.attempt)) + 1;
 }
 
+/**
+ * Cloud rows plus anything still waiting on the device, newest first. A game
+ * whose upload failed has to appear in the stats straight away — otherwise the
+ * player watches it vanish and has no reason to trust the account at all.
+ */
+function mergeResults(cloud: GameResult[], pending: GameResult[]): GameResult[] {
+  const seen = new Set(cloud.map((r) => `${r.gameNo}:${r.attempt}`));
+  const extras = pending.filter((r) => !seen.has(`${r.gameNo}:${r.attempt}`));
+  if (extras.length === 0) return cloud;
+  return [...cloud, ...extras].sort((a, b) => b.gameNo - a.gameNo || b.attempt - a.attempt);
+}
+
 export default function AccountProvider({ children }: { children: ReactNode }) {
   const supabase = useMemo(() => getSupabase(), []);
   const accountsEnabled = isSupabaseConfigured();
@@ -26,6 +38,9 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState<boolean>(accountsEnabled);
   const [resultsLoading, setResultsLoading] = useState<boolean>(false);
   const [justMigrated, setJustMigrated] = useState<number>(0);
+  // Set when the player signs out, so the empty profile can explain itself
+  // instead of looking like the account lost everything.
+  const [justSignedOut, setJustSignedOut] = useState<boolean>(false);
 
   // Session: restore on load, then follow sign-in / sign-out / token refresh.
   useEffect(() => {
@@ -57,6 +72,9 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
 
     (async () => {
       setResultsLoading(true);
+      setJustSignedOut(false);
+      // Also the retry for games whose upload failed while signed in: they were
+      // parked on the device and go up on the next sign-in or app open.
       const migrated = await pushLocalResults(user.id);
       if (cancelled) return;
       if (migrated > 0) {
@@ -80,15 +98,23 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
   }, [supabase, user]);
 
   const profile = user ? cloudProfile : null;
-  const results = user ? cloudResults : deviceResults;
+  const results = useMemo(
+    () => (user ? mergeResults(cloudResults, deviceResults) : deviceResults),
+    [user, cloudResults, deviceResults]
+  );
 
   const recordResult = useCallback(
     async (draft: NewGameResult) => {
       const result: GameResult = { ...draft, attempt: nextAttempt(results, draft.gameNo) };
       if (user) {
         const saved = await saveResult(user.id, result);
-        if (saved) setCloudResults((prev) => [saved, ...prev]);
-        return;
+        if (saved) {
+          setCloudResults((prev) => [saved, ...prev]);
+          return;
+        }
+        // Offline, or Supabase said no: park it on the device rather than lose
+        // the game. The sign-in effect pushes it up next time the app opens.
+        console.warn("Saving to the account failed; keeping the game on this device.");
       }
       setDeviceResults(saveLocalResult(result));
     },
@@ -99,6 +125,15 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
     if (!supabase) return { error: "Las cuentas no están configuradas." };
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
+      options: { redirectTo: getAuthRedirectUrl() },
+    });
+    return { error: error?.message ?? null };
+  }, [supabase]);
+
+  const signInWithApple = useCallback(async () => {
+    if (!supabase) return { error: "Las cuentas no están configuradas." };
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "apple",
       options: { redirectTo: getAuthRedirectUrl() },
     });
     return { error: error?.message ?? null };
@@ -123,6 +158,7 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
     setCloudProfile(null);
     setCloudResults([]);
     setJustMigrated(0);
+    setJustSignedOut(true);
     setDeviceResults(listLocalResults());
   }, [supabase]);
 
@@ -153,11 +189,13 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
       resultsLoading,
       isSubscriber: profile?.isSubscriber ?? false,
       justMigrated,
+      justSignedOut,
       // The stub only exists off production so nobody can hand themselves a
       // subscription on pasalacabra.com before Stripe is wired.
       canStubSubscription: Boolean(user) && (isStagingMode() || import.meta.env.VITE_ALLOW_SUB_STUB === "true"),
       recordResult,
       signInWithGoogle,
+      signInWithApple,
       signInWithEmail,
       signOut,
       grantStubSubscription,
@@ -170,8 +208,10 @@ export default function AccountProvider({ children }: { children: ReactNode }) {
       results,
       resultsLoading,
       justMigrated,
+      justSignedOut,
       recordResult,
       signInWithGoogle,
+      signInWithApple,
       signInWithEmail,
       signOut,
       grantStubSubscription,

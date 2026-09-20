@@ -5,7 +5,7 @@ import { clearLocalResults, listLocalResults } from "./localResults";
 import type { GameResult, LettersMap, Profile } from "./types";
 import type { DifficultyMode } from "../game/engine";
 
-/** Postgres unique-violation: this rosco+attempt is already stored. */
+/** Postgres unique-violation: this game+attempt is already stored. */
 const UNIQUE_VIOLATION = "23505";
 
 type GameResultRow = {
@@ -95,8 +95,8 @@ export async function fetchResults(userId: string): Promise<GameResult[]> {
 }
 
 /**
- * Store one played rosco. If that attempt number is taken (two devices, same
- * rosco) we walk the attempt up rather than losing the game.
+ * Store one played game. If that attempt number is taken (two devices, same
+ * game) we walk the attempt up rather than losing the game.
  */
 export async function saveResult(userId: string, result: GameResult): Promise<GameResult | null> {
   const supabase = getSupabase();

@@ -20,12 +20,12 @@ type Props = {
   signedIn: boolean;
   accountsEnabled: boolean;
   isSubscriber: boolean;
-  /** Roscos whose question set exists in the build. Today's always does. */
-  playableRoscos: number[];
-  /** How many roscos back the list goes. */
+  /** Games whose question set exists in the build. Today's always does. */
+  playableGames: number[];
+  /** How many games back the list goes. */
   windowSize?: number;
   onBack: () => void;
-  onPlayRosco: (gameNo: number) => void;
+  onPlayGame: (gameNo: number) => void;
   onSubscribe: () => void;
   onSignIn: () => void;
   /** Shown under the paywall card, e.g. while Stripe is not wired yet. */
@@ -38,10 +38,10 @@ export default function ArchivePage({
   signedIn,
   accountsEnabled,
   isSubscriber,
-  playableRoscos,
+  playableGames,
   windowSize = 30,
   onBack,
-  onPlayRosco,
+  onPlayGame,
   onSubscribe,
   onSignIn,
   notice,
@@ -54,7 +54,7 @@ export default function ArchivePage({
     return map;
   }, [results]);
 
-  const playable = useMemo(() => new Set(playableRoscos), [playableRoscos]);
+  const playable = useMemo(() => new Set(playableGames), [playableGames]);
 
   const rows = useMemo(() => {
     const oldest = Math.max(1, todayGameNo - windowSize + 1);
@@ -69,11 +69,11 @@ export default function ArchivePage({
         <button type="button" aria-label="Volver" onClick={onBack} style={iconButtonStyle}>
           ←
         </button>
-        <h1 style={sectionTitleStyle}>Roscos anteriores</h1>
+        <h1 style={sectionTitleStyle}>Archivo</h1>
       </div>
 
       <p style={{ margin: 0, fontSize: 15, lineHeight: 1.5, color: statsTheme.muted }}>
-        Aquí están todos los roscos. Juega el que te perdiste o repite uno a ver si esta vez sí.
+        Juega los días que te perdiste o repite uno que ya hayas jugado.
       </p>
 
       {!isSubscriber ? (
@@ -89,10 +89,10 @@ export default function ArchivePage({
           }}
         >
           <div style={{ fontFamily: statsTheme.serif, fontSize: 20, fontWeight: 700 }}>
-            Los roscos de otros días son de pago
+            El archivo es para suscriptores
           </div>
           <div style={{ fontSize: 14, lineHeight: 1.5, color: statsTheme.muted }}>
-            El rosco de hoy es gratis siempre. Por {SUBSCRIPTION_PRICE_LABEL} puedes jugar cualquiera de los anteriores.
+            El juego de hoy es gratis siempre. Con la suscripción puedes jugar cualquier juego anterior.
           </div>
           {accountsEnabled ? (
             <button
@@ -100,7 +100,7 @@ export default function ArchivePage({
               onClick={signedIn ? onSubscribe : onSignIn}
               style={{ ...primaryPillStyle, width: "100%" }}
             >
-              {signedIn ? `Suscribirme · ${SUBSCRIPTION_PRICE_LABEL}` : "Entrar para suscribirme"}
+              {signedIn ? `Suscribirme por ${SUBSCRIPTION_PRICE_LABEL}` : "Inicia sesión para suscribirte"}
             </button>
           ) : (
             <div style={{ fontSize: 13, color: statsTheme.muted }}>
@@ -129,11 +129,11 @@ export default function ArchivePage({
           if (result) {
             note = `${result.correctCount}/25 aciertos`;
           } else if (isToday) {
-            note = "Sin jugar todavía";
+            note = "Sin jugar";
           } else {
-            note = "Te lo perdiste";
+            note = "Sin jugar";
           }
-          if (!locked && !available) note = `${note} · todavía no disponible`;
+          if (!locked && !available) note = `${note} · aún no disponible`;
 
           return (
             <div
@@ -171,7 +171,7 @@ export default function ArchivePage({
 
               <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: 3, minWidth: 0 }}>
                 <div style={{ fontSize: 16, fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                  {isToday ? "Rosco de hoy" : `Rosco n.º ${gameNo}`}
+                  {isToday ? "Juego de hoy" : `Juego n.º ${gameNo}`}
                 </div>
                 <div
                   style={{
@@ -191,7 +191,7 @@ export default function ArchivePage({
               {locked ? (
                 <button
                   type="button"
-                  aria-label={`Desbloquear el rosco n.º ${gameNo}`}
+                  aria-label={`Desbloquear el juego n.º ${gameNo}`}
                   onClick={signedIn ? onSubscribe : onSignIn}
                   style={{
                     ...iconButtonStyle,
@@ -204,7 +204,7 @@ export default function ArchivePage({
               ) : available ? (
                 <button
                   type="button"
-                  onClick={() => onPlayRosco(gameNo)}
+                  onClick={() => onPlayGame(gameNo)}
                   style={{
                     ...(isToday ? primaryPillStyle : quietPillStyle),
                     minHeight: 44,

@@ -172,10 +172,10 @@ locally and in the repository *variables* for deploys. The anon key is meant to
 be public; row-level security is what protects the data.
 
 ### What gets stored
-One row per rosco played (`game_results`): the rosco number, the per-letter
+One row per game played (`game_results`): the game number, the per-letter
 outcome, counts, the difficulty and how long it took. `attempt` is 1 for the
-first play of a rosco and grows on replays; **stats only ever count attempt 1**,
-so replaying an old rosco cannot inflate an average.
+first play of a game and grows on replays; **stats only ever count attempt 1**,
+so replaying an old game cannot inflate an average.
 
 Everything the screens show (media de aciertos, distribución, porcentaje por
 letra, marcas personales) is derived in the client from those rows —
@@ -189,16 +189,16 @@ Not stored yet: per-topic results. Daily sets started carrying a `topic` on each
 question (see the generator above), so from the first set generated after that
 change the game can tally aciertos by topic — it needs a `topics` column on
 `game_results`, the tally at game over, and a "Por tema" block on the profile.
-Older sets have no topic, so that breakdown only ever covers roscos from then on.
+Older sets have no topic, so that breakdown only ever covers games from then on.
 
 ### Screens
-- `StatsSheet` — after the daily rosco, and from "Tus estadísticas" on the home page.
-- `ProfilePage` — the rosco painted by how often each letter is answered right.
-- `ArchivePage` — past roscos, with the paywall.
+- `StatsSheet` — after the daily game, and from "Tus estadísticas" on the home page.
+- `ProfilePage` — the game painted by how often each letter is answered right.
+- `ArchivePage` — past games, with the paywall.
 - `SignInSheet` — the account gate.
 
 ### Subscriptions (stubbed)
-`$3.99/month` gates playing past roscos; today's rosco is always free.
+`$3.99/month` gates playing past games; today's game is always free.
 Stripe is **not** wired yet: `profiles.is_subscriber` is the only gate, and the
 browser cannot write it (the `UPDATE` grant covers `display_name` only). On
 staging/local (`VITE_ALLOW_SUB_STUB=true`) the paywall button calls
@@ -206,7 +206,7 @@ staging/local (`VITE_ALLOW_SUB_STUB=true`) the paywall button calls
 with a Stripe webhook writing `is_subscriber`, then drop that function.
 
 ### Not done yet
-Past roscos are listed but not playable: only today's set ships in the build.
+Past games are listed but not playable: only today's set ships in the build.
 The older sets live in the git history of `src/data/sets/set_01.json` (113
 versions so far) and need restoring into dated set files before the archive's
 "Jugar" does anything.

@@ -19,7 +19,7 @@ type Props = {
 };
 
 /**
- * The rosco as a stats mark: same geometry as the game's LetterRing, but the
+ * The letter ring as a stats mark: same geometry as the game's LetterRing, but the
  * bubbles are coloured by whatever the caller is measuring.
  */
 export default function StatsRing({ nodes, size = 240, nodeSize = 22, children, ariaLabel }: Props) {

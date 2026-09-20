@@ -1,13 +1,13 @@
 import type { Letter } from "../data/sets";
 import type { DifficultyMode, LetterStatus } from "../game/engine";
 
-/** What happened to each letter of a rosco. Missing letter = never reached. */
+/** What happened to each letter of a game. Missing letter = never reached. */
 export type LettersMap = Partial<Record<Letter, LetterStatus>>;
 
-/** One rosco played, in app-facing shape (camelCase, ISO dates). */
+/** One game played, in app-facing shape (camelCase, ISO dates). */
 export type GameResult = {
   gameNo: number;
-  /** 1 = the first time this user played this rosco. Only attempt 1 counts for stats. */
+  /** 1 = the first time this user played this game. Only attempt 1 counts for stats. */
   attempt: number;
   playedAt: string;
   setId: string;
@@ -30,4 +30,4 @@ export type Profile = {
   subscriptionPeriodEnd: string | null;
 };
 
-export const ROSCO_LETTER_COUNT = 25;
+export const LETTERS_PER_GAME = 25;

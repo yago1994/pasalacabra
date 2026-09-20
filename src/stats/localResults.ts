@@ -79,7 +79,7 @@ export function listLocalResults(): GameResult[] {
   return migrateLegacyDaily(sortByGameNo(readRaw()));
 }
 
-/** Next attempt number for a rosco on this device (1 when never played). */
+/** Next attempt number for a game on this device (1 when never played). */
 export function nextLocalAttempt(gameNo: number): number {
   const played = listLocalResults().filter((r) => r.gameNo === gameNo);
   return played.length === 0 ? 1 : Math.max(...played.map((r) => r.attempt)) + 1;

@@ -5,11 +5,12 @@ type Props = {
   /** Games sitting on this device that will be pulled into the account. */
   localGameCount: number;
   onSignInWithGoogle: () => Promise<{ error: string | null }>;
+  onSignInWithApple: () => Promise<{ error: string | null }>;
   onSignInWithEmail: (email: string) => Promise<{ error: string | null }>;
   onSkip: () => void;
 };
 
-export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSignInWithEmail, onSkip }: Props) {
+export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSignInWithApple, onSignInWithEmail, onSkip }: Props) {
   const [showEmail, setShowEmail] = useState(false);
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "working" | "sent">("idle");
@@ -23,7 +24,16 @@ export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSign
       setError(signInError);
       setStatus("idle");
     }
-    // On success the browser leaves for Google, so there is nothing to reset.
+  }
+
+  async function handleApple() {
+    setError(null);
+    setStatus("working");
+    const { error: signInError } = await onSignInWithApple();
+    if (signInError) {
+      setError(signInError);
+      setStatus("idle");
+    }
   }
 
   async function handleEmail(event: FormEvent) {
@@ -58,17 +68,17 @@ export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSign
           <span style={{ transform: "scaleX(-1)" }} aria-hidden>🐐</span>
         </div>
         <h1 style={{ margin: 0, fontFamily: statsTheme.serif, fontSize: 30, fontWeight: 700, letterSpacing: "-0.01em" }}>
-          ¿Te guardo los roscos?
+          Guarda tus estadísticas
         </h1>
         <p style={{ margin: 0, fontSize: 16, lineHeight: 1.5, color: statsTheme.muted }}>
-          Tus partidas están solo en este móvil. Con una cuenta te las guardo todas.
+          Crea una cuenta gratis para conservar tus juegos y tus estadísticas en todos tus dispositivos.
         </p>
       </div>
 
       <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 12 }}>
-        <Benefit text="Tus roscos te siguen, aunque cambies de móvil" />
-        <Benefit text="El mapa de tus letras: cuáles se te dan y cuáles no" />
-        <Benefit text="Puedes volver a los roscos de otros días" />
+        <Benefit text="Tus estadísticas, en todos tus dispositivos" />
+        <Benefit text="Tu porcentaje de aciertos letra a letra" />
+        <Benefit text="Acceso al archivo de juegos anteriores" />
       </ul>
 
       {status === "sent" ? (
@@ -82,7 +92,7 @@ export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSign
             lineHeight: 1.5,
           }}
         >
-          Te he mandado un enlace a <strong>{email}</strong>. Ábrelo en este móvil y listo.
+          Te hemos enviado un enlace a <strong>{email}</strong>. Ábrelo en este dispositivo para iniciar sesión.
         </div>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -92,13 +102,22 @@ export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSign
             disabled={status === "working"}
             style={{ ...primaryPillStyle, opacity: status === "working" ? 0.7 : 1 }}
           >
-            Entrar con Google
+            Iniciar sesión con Google
+          </button>
+
+          <button
+            type="button"
+            onClick={handleApple}
+            disabled={status === "working"}
+            style={{ ...primaryPillStyle, opacity: status === "working" ? 0.7 : 1, background: "#000", color: "#fff" }}
+          >
+            Iniciar sesión con Apple
           </button>
 
           {showEmail ? (
             <form onSubmit={handleEmail} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <label htmlFor="signin-email" style={{ fontSize: 12, color: statsTheme.muted }}>
-                Tu correo
+                Correo electrónico
               </label>
               <input
                 id="signin-email"
@@ -123,7 +142,7 @@ export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSign
                 disabled={status === "working"}
                 style={ghostPillStyle}
               >
-                {status === "working" ? "Enviando…" : "Mandarme el enlace"}
+                {status === "working" ? "Enviando…" : "Enviar enlace"}
               </button>
             </form>
           ) : (
@@ -132,7 +151,7 @@ export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSign
               onClick={() => setShowEmail(true)}
               style={ghostPillStyle}
             >
-              Entrar con el correo
+              Continuar con el correo
             </button>
           )}
         </div>
@@ -148,9 +167,9 @@ export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSign
         {localGameCount > 0 ? (
           <p style={{ margin: 0, fontSize: 13, lineHeight: 1.45, textAlign: "center", color: statsTheme.muted }}>
             {localGameCount === 1 ? (
-              <>La <strong style={{ color: statsTheme.text }}>partida</strong> de este móvil se te añade al entrar.</>
+              <>Al iniciar sesión se añadirá el <strong style={{ color: statsTheme.text }}>juego</strong> guardado en este dispositivo.</>
             ) : (
-              <>Las <strong style={{ color: statsTheme.text }}>{localGameCount} partidas</strong> de este móvil se te añaden al entrar.</>
+              <>Al iniciar sesión se añadirán los <strong style={{ color: statsTheme.text }}>{localGameCount} juegos</strong> guardados en este dispositivo.</>
             )}
           </p>
         ) : null}

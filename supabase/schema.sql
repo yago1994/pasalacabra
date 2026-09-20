@@ -40,10 +40,10 @@ revoke update on public.profiles from anon, authenticated;
 grant update (display_name) on public.profiles to authenticated;
 
 -- ---------------------------------------------------------------------------
--- game_results: one row per rosco played.
+-- game_results: one row per game played.
 --
--- `attempt` is 1 for the first time a user plays a given rosco and grows on
--- replays. Stats only ever count attempt = 1 so that replaying an old rosco
+-- `attempt` is 1 for the first time a user plays a given game and grows on
+-- replays. Stats only ever count attempt = 1 so that replaying an old game
 -- cannot inflate your averages.
 -- ---------------------------------------------------------------------------
 create table if not exists public.game_results (

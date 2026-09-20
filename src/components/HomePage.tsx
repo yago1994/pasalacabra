@@ -4,7 +4,7 @@ import { formatDateLongES, getDailyGameNo } from "../lib/dailyIssue";
 export interface HomePageProps {
   onPlayGroup: () => void;
   onPlay?: () => void;
-  /** Opens the stats sheet (works signed out: the device keeps its own roscos). */
+  /** Opens the stats sheet (works signed out: the device keeps its own games). */
   onOpenStats?: () => void;
   onHowToPlay?: () => void;
   onAbout?: () => void;

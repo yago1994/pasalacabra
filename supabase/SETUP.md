@@ -46,7 +46,7 @@ data. It creates:
 | Object | What it is |
 |---|---|
 | `public.profiles` | One row per user: display name, subscription flags. |
-| `public.game_results` | One row per rosco played. |
+| `public.game_results` | One row per game played. |
 | `handle_new_user()` + trigger | Makes the profile row on sign-up. |
 | `set_subscription_stub()` | Temporary, dev-only subscription switch. |
 | RLS policies | Each user can read and write only their own rows. |
@@ -190,26 +190,26 @@ Push to `staging` (or re-run the deploy workflow) to pick them up.
 npm run dev
 ```
 
-1. **Sign in.** Home → "Tus estadísticas" → "Entrar" → Google. You should come
+1. **Sign in.** Home → "Tus estadísticas" → "Guardarlas →" → "Iniciar sesión con Google". You should come
    back to `localhost:5173` already signed in. In the dashboard, **Table
    Editor → profiles** now has your row, with `display_name` filled from your
    Google name.
-2. **Migration.** If you had played roscos on that browser before signing in,
-   the profile shows "He añadido las N partidas que tenías en este móvil" and
+2. **Migration.** If you had played games on that browser before signing in,
+   the profile shows "Se han añadido los N juegos guardados en este dispositivo" and
    `game_results` has those rows.
-3. **A new game.** Play the daily rosco to the end (needs
+3. **A new game.** Play the daily game to the end (needs
    `VITE_SPEECH_TOKEN_URL`, mic and camera permission — easier on staging than
    locally). A row appears in `game_results` with `attempt = 1`, the per-letter
    `letters` object, and `seconds_used`.
 4. **Isolation.** Sign in as a second account and confirm it sees none of the
-   first one's roscos. This is the test that actually proves RLS works.
+   first one's games. This is the test that actually proves RLS works.
 
 ---
 
 ## 8. Give yourself a subscription (while Stripe is stubbed)
 
 On staging or local (`VITE_ALLOW_SUB_STUB=true`), the "Suscribirme" button in
-"Roscos anteriores" calls `set_subscription_stub()` and flips your own flag.
+"Archivo" calls `set_subscription_stub()` and flips your own flag.
 
 On production, do it by hand:
 
@@ -277,7 +277,7 @@ policies exist on `game_results` (step 2).
 **Results stop saving after a while** — The free tier pauses a project after a
 week of inactivity. Resume it from the dashboard. Note that when saving fails
 the game itself is unaffected: the write is fire-and-forget by design, so a
-rosco is never blocked by the network.
+game is never blocked by the network.
 
 **A player's games vanished after signing in on a second device** — They should
 not: the device list is only pushed once and then cleared, and duplicates are

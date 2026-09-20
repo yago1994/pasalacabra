@@ -1,8 +1,8 @@
-// Turns a list of played roscos into the numbers the stats screens show.
+// Turns a list of played games into the numbers the stats screens show.
 // Everything is derived in the client: a few hundred rows is nothing, and it
 // keeps the database to two plain tables.
 import { SPANISH_LETTERS, type Letter } from "../data/sets";
-import { ROSCO_LETTER_COUNT, type GameResult } from "./types";
+import { LETTERS_PER_GAME, type GameResult } from "./types";
 
 export type DistributionBucket = {
   label: string;
@@ -13,7 +13,7 @@ export type DistributionBucket = {
 
 export type LetterStat = {
   letter: Letter;
-  /** How many roscos where this letter was answered one way or the other. */
+  /** How many games where this letter was answered one way or the other. */
   seen: number;
   correct: number;
   /** null until the letter has been seen at least once. */
@@ -50,7 +50,7 @@ export function bucketIndexFor(correctCount: number): number {
   return index === -1 ? 0 : index;
 }
 
-/** Only first attempts count, so replaying an old rosco can't inflate stats. */
+/** Only first attempts count, so replaying an old game can't inflate stats. */
 export function firstAttempts(results: GameResult[]): GameResult[] {
   return results.filter((r) => r.attempt === 1);
 }
@@ -69,11 +69,11 @@ export function computeStats(results: GameResult[]): Stats {
 
   for (const game of games) {
     totalCorrect += game.correctCount;
-    if (game.correctCount === ROSCO_LETTER_COUNT) perfectCount++;
+    if (game.correctCount === LETTERS_PER_GAME) perfectCount++;
     if (game.correctCount > bestScore) bestScore = game.correctCount;
     if (
       game.secondsUsed != null &&
-      game.correctCount === ROSCO_LETTER_COUNT &&
+      game.correctCount === LETTERS_PER_GAME &&
       (fastestSeconds === null || game.secondsUsed < fastestSeconds)
     ) {
       fastestSeconds = game.secondsUsed;
@@ -108,7 +108,7 @@ export function computeStats(results: GameResult[]): Stats {
   return {
     played,
     averageCorrect: played === 0 ? 0 : totalCorrect / played,
-    averagePct: played === 0 ? 0 : Math.round((totalCorrect / (played * ROSCO_LETTER_COUNT)) * 100),
+    averagePct: played === 0 ? 0 : Math.round((totalCorrect / (played * LETTERS_PER_GAME)) * 100),
     perfectCount,
     bestScore,
     fastestSeconds,

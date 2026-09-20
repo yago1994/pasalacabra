@@ -66,7 +66,7 @@ function getTimeFromDifficulty(difficulty: DifficultyMode): number {
   }
 }
 
-/** Tally a finished rosco for the history: aciertos, fallos, pasadas, sin llegar. */
+/** Tally a finished game for the history: aciertos, fallos, pasadas, sin llegar. */
 function countLetterStatuses(
   statusByLetter: Record<Letter, LetterStatus>,
   letters: readonly Letter[]
@@ -307,9 +307,9 @@ export default function App() {
   // Account + stats. Works signed out too: results then live on the device.
   const account = useAccount();
   const { recordResult } = account;
-  // Rosco numbers already written to the history this session, so restoring a
-  // finished game (or a re-render) never stores the same rosco twice.
-  const recordedRoscosRef = useRef<Set<number>>(new Set());
+  // Game numbers already written to the history this session, so restoring a
+  // finished game (or a re-render) never stores the same game twice.
+  const recordedGamesRef = useRef<Set<number>>(new Set());
   // Stats surfaces: the post-game sheet and the sign-in sheet are overlays,
   // the profile and the archive are screens of their own.
   const [statsOpen, setStatsOpen] = useState<boolean>(false);
@@ -321,9 +321,9 @@ export default function App() {
     () => account.results.find((r) => r.gameNo === todayGameNo && r.attempt === 1) ?? null,
     [account.results, todayGameNo]
   );
-  // Only today's rosco ships in the build for now: the older sets live in git
+  // Only today's game ships in the build for now: the older sets live in git
   // history and get restored in a later pass.
-  const playableRoscos = useMemo(() => [todayGameNo], [todayGameNo]);
+  const playableGames = useMemo(() => [todayGameNo], [todayGameNo]);
   const [subscribeNotice, setSubscribeNotice] = useState<string | null>(null);
 
   const openStats = useCallback(() => {
@@ -331,11 +331,11 @@ export default function App() {
     setStatsOpen(true);
   }, []);
 
-  // Only today's rosco can be started for now. The archive keeps the older
+  // Only today's game can be started for now. The archive keeps the older
   // rows visible (and locked) so the shape of the feature is already there.
   // Not memoised on purpose: startDailyGame is redefined every render, and a
   // memoised copy would keep calling a stale one.
-  function handlePlayRosco(gameNo: number) {
+  function handlePlayGame(gameNo: number) {
     if (gameNo !== todayGameNo) return;
     setStatsOpen(false);
     setScreen("home");
@@ -372,7 +372,7 @@ export default function App() {
     return initial;
   });
 
-  // Share the rosco just played; falls back to the live board when the day's
+  // Share the game just played; falls back to the live board when the day's
   // result has not been written yet.
   const handleShareStats = useCallback(() => {
     const shared = (todayResult?.letters ?? statusByLetter) as Record<Letter, LetterStatus>;
@@ -2161,14 +2161,14 @@ export default function App() {
     reader.readAsDataURL(snapshot.blob);
   }, [gameOver, isDailyGame, playerSnapshots]);
 
-  // Write the finished rosco to the history (the account when signed in, this
+  // Write the finished game to the history (the account when signed in, this
   // device otherwise). Independent of the snapshot above: the stats should not
   // depend on the camera having produced a photo.
   useEffect(() => {
     if (!gameOver || !isDailyGame) return;
     const gameNo = getDailyGameNo(new Date());
-    if (recordedRoscosRef.current.has(gameNo)) return;
-    recordedRoscosRef.current.add(gameNo);
+    if (recordedGamesRef.current.has(gameNo)) return;
+    recordedGamesRef.current.add(gameNo);
 
     const difficulty = session?.difficulty ?? "medio";
     const timeBank = getTimeFromDifficulty(difficulty);
@@ -2646,7 +2646,7 @@ export default function App() {
         if (saved.gameNo === gameNo) {
           // Today's game was already played — restore the end state.
           // It is already in the history, so don't let the recorder fire again.
-          recordedRoscosRef.current.add(gameNo);
+          recordedGamesRef.current.add(gameNo);
           const players: Player[] = [{ id: "p1", name: "Jugador 1", setId: "set_01" }];
           const dailyDifficulty: DifficultyMode = "medio";
           const timePerPlayer = getTimeFromDifficulty(dailyDifficulty);
@@ -3494,6 +3494,7 @@ export default function App() {
           <SignInSheet
             localGameCount={account.signedIn ? 0 : account.results.length}
             onSignInWithGoogle={account.signInWithGoogle}
+            onSignInWithApple={account.signInWithApple}
             onSignInWithEmail={account.signInWithEmail}
             onSkip={() => setSignInOpen(false)}
           />
@@ -3515,6 +3516,7 @@ export default function App() {
             dateLabel={formatDateLongES(new Date())}
             signedIn={account.signedIn}
             accountsEnabled={account.accountsEnabled}
+            justSignedOut={account.justSignedOut}
             onClose={() => setStatsOpen(false)}
             onOpenProfile={() => {
               setStatsOpen(false);
@@ -3563,6 +3565,7 @@ export default function App() {
             signedIn={account.signedIn}
             accountsEnabled={account.accountsEnabled}
             migratedCount={account.justMigrated}
+            justSignedOut={account.justSignedOut}
             onBack={() => setScreen("home")}
             onOpenArchive={() => setScreen("archive")}
             onSignIn={() => setSignInOpen(true)}
@@ -3580,10 +3583,10 @@ export default function App() {
             signedIn={account.signedIn}
             accountsEnabled={account.accountsEnabled}
             isSubscriber={account.isSubscriber}
-            playableRoscos={playableRoscos}
+            playableGames={playableGames}
             notice={subscribeNotice}
             onBack={() => setScreen(account.signedIn ? "profile" : "home")}
-            onPlayRosco={handlePlayRosco}
+            onPlayGame={handlePlayGame}
             onSubscribe={() => void handleSubscribe()}
             onSignIn={() => setSignInOpen(true)}
           />

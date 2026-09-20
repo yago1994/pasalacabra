@@ -14,13 +14,15 @@ import {
 } from "./statsTheme";
 
 type Props = {
-  /** The rosco just played (or today's, when reopened). Null = nothing played yet. */
+  /** The game just played (or today's, when reopened). Null = nothing played yet. */
   result: GameResult | null;
   stats: Stats;
   gameNo: number;
   dateLabel: string;
   signedIn: boolean;
   accountsEnabled: boolean;
+  /** True right after signing out: the games are in the account, not gone. */
+  justSignedOut: boolean;
   onClose: () => void;
   onOpenProfile: () => void;
   onOpenArchive: () => void;
@@ -57,6 +59,7 @@ export default function StatsSheet({
   dateLabel,
   signedIn,
   accountsEnabled,
+  justSignedOut,
   onClose,
   onOpenProfile,
   onOpenArchive,
@@ -90,7 +93,7 @@ export default function StatsSheet({
           ✕
         </button>
         <div style={{ textAlign: "center" }}>
-          <div style={{ fontFamily: statsTheme.serif, fontSize: 20, fontWeight: 700 }}>Rosco n.º {gameNo}</div>
+          <div style={{ fontFamily: statsTheme.serif, fontSize: 20, fontWeight: 700 }}>Juego n.º {gameNo}</div>
           <div style={{ fontSize: 12, color: statsTheme.muted, marginTop: 2 }}>{dateLabel}</div>
         </div>
         <button
@@ -119,7 +122,7 @@ export default function StatsSheet({
             nodes={ringNodes}
             size={250}
             nodeSize={26}
-            ariaLabel={`Rosco de hoy: ${result.correctCount} aciertos de 25`}
+            ariaLabel={`Juego de hoy: ${result.correctCount} aciertos de 25`}
           >
             <div style={{ fontFamily: statsTheme.serif, fontSize: 60, fontWeight: 700, lineHeight: 1 }}>
               {result.correctCount}
@@ -131,8 +134,8 @@ export default function StatsSheet({
           </StatsRing>
 
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
-            <Chip glyph="✓" tint={statsTheme.correct} label={`${result.correctCount} bien`} />
-            <Chip glyph="✗" tint={statsTheme.wrong} label={`${result.wrongCount} mal`} />
+            <Chip glyph="✓" tint={statsTheme.correct} label={`${result.correctCount} aciertos`} />
+            <Chip glyph="✗" tint={statsTheme.wrong} label={`${result.wrongCount} fallos`} />
             <Chip
               glyph="↻"
               tint={statsTheme.unresolved}
@@ -142,21 +145,21 @@ export default function StatsSheet({
         </div>
       ) : (
         <p style={{ margin: 0, textAlign: "center", color: statsTheme.muted, fontSize: 16, lineHeight: 1.5 }}>
-          Todavía no has jugado el rosco de hoy.
+          Todavía no has jugado el juego de hoy.
         </p>
       )}
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 10 }}>
-        <Tile value={String(stats.played)} label={<>roscos<br />jugados</>} />
+        <Tile value={String(stats.played)} label={<>juegos<br />jugados</>} />
         <Tile value={`${stats.averagePct}%`} label={<>media de<br />aciertos</>} />
-        <Tile value={String(stats.perfectCount)} label={<>roscos<br />completos</>} />
+        <Tile value={String(stats.perfectCount)} label={<>juegos<br />completos</>} />
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
-          <h2 style={sectionTitleStyle}>Aciertos por rosco</h2>
+          <h2 style={sectionTitleStyle}>Aciertos por juego</h2>
           <span style={{ fontSize: 13, color: statsTheme.muted }}>
-            {stats.played} {stats.played === 1 ? "partida" : "partidas"}
+            {stats.played} {stats.played === 1 ? "juego" : "juegos"}
           </span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -228,8 +231,14 @@ export default function StatsSheet({
             lineHeight: 1.4,
           }}
         >
-          <span>Estos roscos están solo en este móvil.</span>
-          <strong style={{ whiteSpace: "nowrap" }}>Guardarlos →</strong>
+          <span>
+            {justSignedOut
+              ? "Tus juegos siguen guardados en tu cuenta."
+              : "Tus estadísticas solo están en este dispositivo."}
+          </span>
+          <strong style={{ whiteSpace: "nowrap" }}>
+            {justSignedOut ? "Iniciar sesión →" : "Guardarlas →"}
+          </strong>
         </button>
       ) : null}
 
@@ -243,10 +252,10 @@ export default function StatsSheet({
           Compartir
         </button>
         <button type="button" onClick={onOpenArchive} style={{ ...ghostPillStyle, width: "100%" }}>
-          Roscos anteriores
+          Archivo de juegos
         </button>
         <div style={{ textAlign: "center", fontSize: 13, color: statsTheme.muted }}>
-          Siguiente rosco en{" "}
+          Siguiente juego en{" "}
           <strong style={{ fontVariantNumeric: "tabular-nums", color: statsTheme.text }}>{countdown}</strong>
         </div>
       </div>
