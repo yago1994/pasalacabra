@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { SPANISH_LETTERS } from "../data/sets";
+import { dateForDailyGameNo, formatDateShortES } from "../lib/dailyIssue";
 import { formatDuration, type Stats } from "../stats/aggregate";
 import StatsRing, { type RingNode } from "./StatsRing";
 import {
@@ -161,7 +162,7 @@ export default function ProfilePage({
 
       <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          <h2 style={sectionTitleStyle}>Tus letras de siempre</h2>
+          <h2 style={sectionTitleStyle}>Tu distribución de aciertos</h2>
           <p style={{ margin: 0, fontSize: 14, lineHeight: 1.5, color: statsTheme.muted }}>
             Cuanto más blanca la letra, mayor es tu porcentaje de aciertos.
           </p>
@@ -213,7 +214,7 @@ export default function ProfilePage({
             />
             <LetterCard
               letter={stats.worstLetter.letter}
-              caption="Tu bestia negra"
+              caption="Tu criptonita"
               value={`${stats.worstLetter.pct}% acertadas`}
             />
           </div>
@@ -221,23 +222,31 @@ export default function ProfilePage({
           <p style={{ margin: 0, fontSize: 14, lineHeight: 1.5, color: statsTheme.muted, textAlign: "center" }}>
             {loading
               ? "Cargando tus juegos…"
-              : "Juega unos cuantos juegos más y aquí saldrán tu mejor letra y tu bestia negra."}
+              : "Juega unos cuantos juegos más y aquí verás tu mejor letra y tu criptonita."}
           </p>
         )}
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-        <h2 style={sectionTitleStyle}>Marcas personales</h2>
+        <h2 style={sectionTitleStyle}>Estadísticas personales</h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 10 }}>
           <Tile value={String(stats.perfectCount)} label="juegos completos" />
-          <Tile value={`${stats.bestScore}/25`} label="tu mejor juego" />
+          <Tile
+            value={`${stats.bestScore}/25`}
+            label="tu mejor juego"
+            detail={
+              stats.bestScoreGameNo != null
+                ? formatDateShortES(dateForDailyGameNo(stats.bestScoreGameNo))
+                : undefined
+            }
+          />
           <Tile value={formatDuration(stats.fastestSeconds)} label="juego completo más rápido" />
         </div>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "center" }}>
         <button type="button" onClick={onOpenArchive} style={{ ...ghostPillStyle, width: "100%" }}>
-          Ver el archivo
+          Archivo de juegos
         </button>
         {isSubscriber ? (
           <div style={{ fontSize: 13, textAlign: "center", color: statsTheme.muted }}>
@@ -316,11 +325,14 @@ function LetterCard({
   );
 }
 
-function Tile({ value, label }: { value: string; label: string }) {
+function Tile({ value, label, detail }: { value: string; label: string; detail?: string }) {
   return (
     <div style={tileStyle}>
       <div style={{ fontFamily: statsTheme.serif, fontSize: 28, fontWeight: 700, lineHeight: 1 }}>{value}</div>
       <div style={{ fontSize: 11, lineHeight: 1.35, textAlign: "center", color: statsTheme.muted }}>{label}</div>
+      {detail ? (
+        <div style={{ fontSize: 11, lineHeight: 1.3, textAlign: "center", color: statsTheme.muted }}>{detail}</div>
+      ) : null}
     </div>
   );
 }

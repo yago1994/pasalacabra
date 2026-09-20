@@ -26,6 +26,8 @@ export type Stats = {
   averagePct: number;
   perfectCount: number;
   bestScore: number;
+  /** Daily game number of the best score; newest wins on a tie. */
+  bestScoreGameNo: number | null;
   fastestSeconds: number | null;
   distribution: DistributionBucket[];
   letters: LetterStat[];
@@ -65,12 +67,20 @@ export function computeStats(results: GameResult[]): Stats {
   let totalCorrect = 0;
   let perfectCount = 0;
   let bestScore = 0;
+  let bestScoreGameNo: number | null = null;
   let fastestSeconds: number | null = null;
 
   for (const game of games) {
     totalCorrect += game.correctCount;
     if (game.correctCount === LETTERS_PER_GAME) perfectCount++;
-    if (game.correctCount > bestScore) bestScore = game.correctCount;
+    if (
+      game.correctCount > bestScore ||
+      (game.correctCount === bestScore &&
+        (bestScoreGameNo === null || game.gameNo > bestScoreGameNo))
+    ) {
+      bestScore = game.correctCount;
+      bestScoreGameNo = game.gameNo;
+    }
     if (
       game.secondsUsed != null &&
       game.correctCount === LETTERS_PER_GAME &&
@@ -111,6 +121,7 @@ export function computeStats(results: GameResult[]): Stats {
     averagePct: played === 0 ? 0 : Math.round((totalCorrect / (played * LETTERS_PER_GAME)) * 100),
     perfectCount,
     bestScore,
+    bestScoreGameNo,
     fastestSeconds,
     distribution,
     letters,

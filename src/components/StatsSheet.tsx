@@ -7,7 +7,6 @@ import {
   ghostPillStyle,
   iconButtonStyle,
   panelStyle,
-  primaryPillStyle,
   sectionTitleStyle,
   statsTheme,
   tileStyle,
@@ -27,7 +26,6 @@ type Props = {
   onOpenProfile: () => void;
   onOpenArchive: () => void;
   onSignIn: () => void;
-  onShare: () => void;
 };
 
 function msUntilTomorrow(now: Date): number {
@@ -64,7 +62,6 @@ export default function StatsSheet({
   onOpenProfile,
   onOpenArchive,
   onSignIn,
-  onShare,
 }: Props) {
   const countdown = useCountdown();
 
@@ -243,14 +240,6 @@ export default function StatsSheet({
       ) : null}
 
       <div style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "center" }}>
-        <button
-          type="button"
-          onClick={onShare}
-          disabled={!result}
-          style={{ ...primaryPillStyle, width: "100%", opacity: result ? 1 : 0.55 }}
-        >
-          Compartir
-        </button>
         <button type="button" onClick={onOpenArchive} style={{ ...ghostPillStyle, width: "100%" }}>
           Archivo de juegos
         </button>

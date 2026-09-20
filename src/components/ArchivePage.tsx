@@ -170,18 +170,10 @@ export default function ArchivePage({
               </div>
 
               <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: 3, minWidth: 0 }}>
-                <div style={{ fontSize: 16, fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                <div style={{ fontSize: 16, fontWeight: 700, lineHeight: 1.25 }}>
                   {isToday ? "Juego de hoy" : `Juego n.º ${gameNo}`}
                 </div>
-                <div
-                  style={{
-                    fontSize: 13,
-                    color: statsTheme.muted,
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
+                <div style={{ fontSize: 13, lineHeight: 1.35, color: statsTheme.muted }}>
                   {formatDateShortES(date)} · {note}
                 </div>
               </div>

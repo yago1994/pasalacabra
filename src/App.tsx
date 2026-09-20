@@ -39,7 +39,6 @@ import StatsSheet from "./components/StatsSheet";
 import ProfilePage from "./components/ProfilePage";
 import ArchivePage from "./components/ArchivePage";
 import SignInSheet from "./components/SignInSheet";
-import { shareEmojiSequence } from "./game/shareRing";
 
 // Player snapshot captured when timer runs out
 export type PlayerSnapshot = {
@@ -371,13 +370,6 @@ export default function App() {
     for (const l of letters) initial[l] = "pending";
     return initial;
   });
-
-  // Share the game just played; falls back to the live board when the day's
-  // result has not been written yet.
-  const handleShareStats = useCallback(() => {
-    const shared = (todayResult?.letters ?? statusByLetter) as Record<Letter, LetterStatus>;
-    void shareEmojiSequence(shared);
-  }, [todayResult, statusByLetter]);
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [revealed, setRevealed] = useState<boolean>(false);
@@ -3530,7 +3522,6 @@ export default function App() {
               setStatsOpen(false);
               setSignInOpen(true);
             }}
-            onShare={handleShareStats}
           />
         </div>
       ) : null}
