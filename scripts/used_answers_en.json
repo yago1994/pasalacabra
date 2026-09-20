@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-23",
-    "answers": [
-      "Ankara",
-      "Brie",
-      "Cairo",
-      "Durian",
-      "Ecuador",
-      "Flamenco",
-      "Gouda",
-      "Harp",
-      "Iceland",
-      "Jordan",
-      "Kenya",
-      "Lisbon",
-      "Mozart",
-      "Norway",
-      "Olive",
-      "Piano",
-      "Quito",
-      "Reggae",
-      "Sicily",
-      "Tuba",
-      "Uganda",
-      "Vermont",
-      "Wales",
-      "Oxford",
-      "Yerevan",
-      "Zagreb"
-    ]
-  },
-  {
     "date": "2026-07-24",
     "answers": [
       "aioli",
@@ -1857,6 +1826,37 @@
       "xylophone",
       "yurei",
       "zither"
+    ]
+  },
+  {
+    "date": "2026-09-21",
+    "answers": [
+      "Angkor Wat",
+      "Bering Strait",
+      "Canberra",
+      "Delphi",
+      "Easter Island",
+      "Fertile Crescent",
+      "Ganges",
+      "Hadrian's Wall",
+      "Istanbul",
+      "Jamaica",
+      "Kigali",
+      "Ljubljana",
+      "Machu Picchu",
+      "Nile",
+      "Okavango Delta",
+      "Pamplona",
+      "Qatar",
+      "Rome",
+      "Seoul",
+      "Taj Mahal",
+      "Uruguay",
+      "Vienna",
+      "Wellington",
+      "Xhosa",
+      "Yangtze",
+      "Zion National Park"
     ]
   }
 ]

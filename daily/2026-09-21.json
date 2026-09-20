@@ -1,0 +1,176 @@
+{
+  "id": "set-2026-09-21",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Cambodian temple complex near Siem Reap",
+      "answer": "Angkor Wat"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Narrow sea passage separating Alaska and Russia",
+      "answer": "Bering Strait"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Capital city of Australia",
+      "answer": "Canberra"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Ancient Greek sanctuary of Apollo on Mount Parnassus famous for its oracle",
+      "answer": "Delphi"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Remote Pacific island famous for giant stone moai statues",
+      "answer": "Easter Island"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Historic Middle Eastern arc where agriculture first flourished",
+      "answer": "Fertile Crescent"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Sacred river flowing through northern India and Bangladesh",
+      "answer": "Ganges",
+      "alt": [
+        "Ganga"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Roman defensive barrier across northern England",
+      "answer": "Hadrian's Wall"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Turkish city that straddles the Bosporus",
+      "answer": "Istanbul"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Caribbean island nation with capital Kingston",
+      "answer": "Jamaica"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Capital of Rwanda",
+      "answer": "Kigali"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Capital city of Slovenia",
+      "answer": "Ljubljana"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Inca citadel perched above the Sacred Valley in Peru",
+      "answer": "Machu Picchu"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Longest river in Africa, flowing to the Mediterranean",
+      "answer": "Nile"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Inland delta that floods Botswana each year",
+      "answer": "Okavango Delta",
+      "alt": [
+        "Okavango"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Spanish city famous for the Running of the Bulls festival",
+      "answer": "Pamplona"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Gulf nation with capital Doha",
+      "answer": "Qatar"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Capital city built on seven hills and home to the Colosseum",
+      "answer": "Rome",
+      "alt": [
+        "Roma"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Capital of South Korea",
+      "answer": "Seoul"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "White marble mausoleum in Agra built by Shah Jahan",
+      "answer": "Taj Mahal"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "South American country between Brazil and Argentina with capital Montevideo",
+      "answer": "Uruguay"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Austrian capital famed for its coffeehouses and the Ringstrasse",
+      "answer": "Vienna"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Capital city at the southern tip of New Zealand’s North Island",
+      "answer": "Wellington"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Nelson Mandela’s mother tongue, a Bantu language of South Africa",
+      "answer": "Xhosa"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Longest river in Asia flowing past Chongqing and Nanjing",
+      "answer": "Yangtze",
+      "alt": [
+        "Yangtze River"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Utah national park famous for Angels Landing",
+      "answer": "Zion National Park",
+      "alt": [
+        "Zion"
+      ]
+    }
+  ]
+}
