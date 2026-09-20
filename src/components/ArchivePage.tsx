@@ -123,7 +123,7 @@ export default function ArchivePage({
           const locked = !isToday && !isSubscriber;
           const available = playable.has(gameNo);
 
-          const ctaLabel = result ? "Repetir" : "Jugar";
+          const ctaLabel = result ? "Ver" : "Jugar";
           let note: string;
 
           if (result) {

@@ -233,9 +233,7 @@ export default function StatsSheet({
               ? "Tus juegos siguen guardados en tu cuenta."
               : "Tus estadísticas solo están en este dispositivo."}
           </span>
-          <strong style={{ whiteSpace: "nowrap" }}>
-            {justSignedOut ? "Iniciar sesión →" : "Guardarlas →"}
-          </strong>
+          <strong style={{ whiteSpace: "nowrap" }}>Inicia sesión →</strong>
         </button>
       ) : null}
 

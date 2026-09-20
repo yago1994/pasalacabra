@@ -3319,10 +3319,12 @@ export default function App() {
                       }}
                     />
                     <div className="slideshowCaption">
-                      {isWinner && (
+                      {playerSnapshots.length > 1 && isWinner && (
                         <div className="slideshowWinnerBadge">🏆 ¡Ganador!</div>
                       )}
-                      <div className="slideshowPlayerName">{snapshot.playerName}</div>
+                      {playerSnapshots.length > 1 ? (
+                        <div className="slideshowPlayerName">{snapshot.playerName}</div>
+                      ) : null}
                       <div className="slideshowScore">
                         <span className="slideshowCorrect">✓ {snapshot.correctCount}</span>
                         <span className="slideshowWrong">✗ {snapshot.wrongCount}</span>
@@ -3331,14 +3333,16 @@ export default function App() {
                   </div>
                 );
               })}
-              <div className="slideshowProgress">
-                {playerSnapshots.map((_, idx) => (
-                  <div
-                    key={idx}
-                    className={`slideshowDot ${idx === slideshowIndex ? "slideshowDotActive" : ""} ${idx < slideshowIndex ? "slideshowDotPast" : ""}`}
-                  />
-                ))}
-              </div>
+              {playerSnapshots.length > 1 ? (
+                <div className="slideshowProgress">
+                  {playerSnapshots.map((_, idx) => (
+                    <div
+                      key={idx}
+                      className={`slideshowDot ${idx === slideshowIndex ? "slideshowDotActive" : ""} ${idx < slideshowIndex ? "slideshowDotPast" : ""}`}
+                    />
+                  ))}
+                </div>
+              ) : null}
             </div>
             
             {/* Share and Download buttons - below slideshow content */}
@@ -3369,6 +3373,19 @@ export default function App() {
                     }}
                   >
                     {showAnswers ? "🔼 Ocultar Respuestas" : "📋 Mostrar Respuestas"}
+                  </button>
+                  <button
+                    className="slideshowShareBtn"
+                    onClick={() => {
+                      closeSlideshow();
+                      openStats();
+                    }}
+                    style={{
+                      background: "linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)",
+                      boxShadow: "0 6px 25px rgba(99, 102, 241, 0.5)",
+                    }}
+                  >
+                    Tus Estadísticas
                   </button>
                 </>
               ) : (
@@ -3587,7 +3604,11 @@ export default function App() {
           <div className="topBar">
             {screen === "game" ? (
               <>
-                <div className="playerTag">{currentPlayerLabel}</div>
+                {session && session.players.length > 1 ? (
+                  <div className="playerTag">{currentPlayerLabel}</div>
+                ) : (
+                  <div />
+                )}
                 <div className="timerBig">{formatTime(timeLeft)}</div>
               </>
             ) : (
@@ -3787,45 +3808,47 @@ export default function App() {
                       
                       return (
                         <div className="gameOverResults" style={{ marginTop: 8 }}>
-                          <div className="answerReveal answerRevealBig" style={{ marginBottom: 12 }}>
-                            <strong>🎮 Fin del juego!</strong>
-                          </div>
-                          
-                          {!isSinglePlayer && (
-                            <div className="winnerAnnouncement" style={{ marginBottom: 16 }}>
-                              {isTie ? (
-                                <div className="answerReveal answerRevealBig">
-                                  🏆 ¡Empate! Ganadores: {winners.map(w => w.player.name).join(" y ")}
-                                </div>
-                              ) : (
-                                <div className="answerReveal answerRevealBig">
-                                  🏆 ¡Ganador: {winners[0].player.name}!
-                                </div>
-                              )}
-                            </div>
-                          )}
-                          
-                          <div className="scoresTable" style={{ textAlign: "left" }}>
-                            {allScores.map((s, i) => (
-                              <div 
-                                key={s.player.id} 
-                                className="answerReveal" 
-                                style={{ 
-                                  marginBottom: 4,
-                                  fontWeight: winners.some(w => w.player.id === s.player.id) ? "bold" : "normal"
-                                }}
-                              >
-                                {i + 1}. {s.player.name}: {s.correct} ✓ / {s.wrong} ✗
+                          {!isSinglePlayer ? (
+                            <>
+                              <div className="answerReveal answerRevealBig" style={{ marginBottom: 12 }}>
+                                <strong>🎮 Fin del juego!</strong>
                               </div>
-                            ))}
-                          </div>
-                          
+
+                              <div className="winnerAnnouncement" style={{ marginBottom: 16 }}>
+                                {isTie ? (
+                                  <div className="answerReveal answerRevealBig">
+                                    🏆 ¡Empate! Ganadores: {winners.map(w => w.player.name).join(" y ")}
+                                  </div>
+                                ) : (
+                                  <div className="answerReveal answerRevealBig">
+                                    🏆 ¡Ganador: {winners[0].player.name}!
+                                  </div>
+                                )}
+                              </div>
+
+                              <div className="scoresTable" style={{ textAlign: "left" }}>
+                                {allScores.map((s, i) => (
+                                  <div
+                                    key={s.player.id}
+                                    className="answerReveal"
+                                    style={{
+                                      marginBottom: 4,
+                                      fontWeight: winners.some(w => w.player.id === s.player.id) ? "bold" : "normal"
+                                    }}
+                                  >
+                                    {i + 1}. {s.player.name}: {s.correct} ✓ / {s.wrong} ✗
+                                  </div>
+                                ))}
+                              </div>
+                            </>
+                          ) : null}
+
                           {playerSnapshots.length > 0 && (
-                            <button 
-                              className="btnOutline" 
-                              type="button" 
+                            <button
+                              className="btnOutline"
+                              type="button"
                               onClick={replaySlideshow}
-                              style={{ marginTop: 20, width: "100%" }}
+                              style={{ marginTop: isSinglePlayer ? 8 : 20, width: "100%" }}
                             >
                               📸 Resultados
                             </button>
@@ -3841,7 +3864,7 @@ export default function App() {
                               Tus estadísticas
                             </button>
                           )}
-                          
+
                         </div>
                       );
                     })()
