@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-24",
-    "answers": [
-      "aioli",
-      "bento",
-      "churro",
-      "daikon",
-      "eclair",
-      "fondue",
-      "gamelan",
-      "haiku",
-      "ikebana",
-      "jukebox",
-      "katsu",
-      "lasagna",
-      "manga",
-      "nori",
-      "opera",
-      "pho",
-      "qipao",
-      "roux",
-      "sashimi",
-      "tapas",
-      "umami",
-      "vermeer",
-      "wagyu",
-      "phoenix",
-      "yakiniku",
-      "ziggurat"
-    ]
-  },
-  {
     "date": "2026-07-25",
     "answers": [
       "aorta",
@@ -1857,6 +1826,37 @@
       "Xhosa",
       "Yangtze",
       "Zion National Park"
+    ]
+  },
+  {
+    "date": "2026-09-22",
+    "answers": [
+      "Anansi",
+      "Banshee",
+      "Cicada",
+      "Druid",
+      "Echidna",
+      "Fossa",
+      "Gouache",
+      "Harp",
+      "Ichor",
+      "Jorogumo",
+      "Kirin",
+      "Lich",
+      "Mandrake",
+      "Naiad",
+      "Oil paint",
+      "Papyrus",
+      "Quokka",
+      "Roc",
+      "Selkie",
+      "Tarot",
+      "Underworld",
+      "Vampire",
+      "Wyvern",
+      "Xerophyte",
+      "Yuki-onna",
+      "Zebrafish"
     ]
   }
 ]

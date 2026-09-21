@@ -1,0 +1,172 @@
+{
+  "id": "set-2026-09-22",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "West African trickster figure often depicted as a spider.",
+      "answer": "Anansi"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Irish spirit whose wailing foretells death.",
+      "answer": "Banshee"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Insect known for multi-year underground life cycle and loud courtship songs.",
+      "answer": "Cicada"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Priest of ancient Celtic religions, often linked with oak groves.",
+      "answer": "Druid"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Spiny egg-laying mammal of Australia.",
+      "answer": "Echidna"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Cat-like carnivore native to Madagascar with semi-retractable claws.",
+      "answer": "Fossa"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Opaque watercolor paint favored for its matte finish.",
+      "answer": "Gouache"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Triangular string instrument whose strings are plucked with the fingers.",
+      "answer": "Harp"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Mythic fluid said to flow in the veins of Greek gods.",
+      "answer": "Ichor"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Japanese yokai that transforms from spider into a seductive woman.",
+      "answer": "Jorogumo",
+      "alt": [
+        "Jorōgumo"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "East Asian mythical hooved chimera often seen as an omen of serenity.",
+      "answer": "Kirin"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Undead sorcerer who sustains life through a phylactery in fantasy lore.",
+      "answer": "Lich"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Folkloric plant root said to scream when pulled from the earth.",
+      "answer": "Mandrake"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Water nymph from Greek mythology associated with springs and rivers.",
+      "answer": "Naiad"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Slow-drying pigment bound with linseed or walnut binder used by many painters.",
+      "answer": "Oil paint",
+      "alt": [
+        "Oil paints",
+        "Oil color"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Ancient writing material made from a Nile plant's pith.",
+      "answer": "Papyrus"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Smiling marsupial from Rottnest Island often seen in selfies.",
+      "answer": "Quokka"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Giant bird of Arabian tales said to carry off elephants.",
+      "answer": "Roc"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Seal-folk of Scottish lore who shed their skins to become human.",
+      "answer": "Selkie"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Deck used for divination featuring Major and Minor Arcana.",
+      "answer": "Tarot"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Realm of the dead in many mythologies, such as Hades or Hel.",
+      "answer": "Underworld"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Undead being that feeds on blood and shuns sunlight.",
+      "answer": "Vampire"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Dragon variant with two legs and a barbed tail.",
+      "answer": "Wyvern"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Plant adapted to drought through features like thick cuticles and reduced leaves.",
+      "answer": "Xerophyte"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese snow spirit who appears as a pale woman in blizzards.",
+      "answer": "Yuki-onna",
+      "alt": [
+        "Yuki Onna",
+        "Yūki-onna"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Model organism in genetics known for transparent embryos and rapid development.",
+      "answer": "Zebrafish"
+    }
+  ]
+}
