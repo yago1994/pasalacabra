@@ -1,131 +1,156 @@
 {
   "id": "set_01",
-  "title": "Pasalacabra 2026-09-20 · No. 263",
+  "title": "Pasalacabra 2026-09-21 · No. 264",
   "questions": [
     {
       "letter": "A",
-      "question": "Empieza por A: Conjunto de estrellas que forma un dibujo reconocible pero que no es una constelación oficial.",
-      "answer": "asterismo"
+      "topic": "folklore",
+      "question": "Empieza por A: Regalo o paga tradicional ofrecido en fechas navideñas por costumbre.",
+      "answer": "aguinaldo"
     },
     {
       "letter": "B",
-      "question": "Empieza por B: Supergigante roja destacada en la constelación de Orión, visible a simple vista.",
-      "answer": "Betelgeuse"
+      "topic": "folklore",
+      "question": "Empieza por B: Personaje femenino de tradición popular asociado a hechicería y conjuros.",
+      "answer": "bruja"
     },
     {
       "letter": "C",
-      "question": "Empieza por C: Tabla con bisagra usada para sincronizar imagen y sonido al iniciar una toma de rodaje.",
-      "answer": "claqueta"
+      "topic": "folklore",
+      "question": "Empieza por C: Instrumento andino pequeño de cuerda, similar a una guitarra.",
+      "answer": "charango"
     },
     {
       "letter": "D",
-      "question": "Empieza por D: Relato interno del universo de una película o narración, opuesto a lo extradiegético.",
-      "answer": "diégesis"
+      "topic": "arte",
+      "question": "Empieza por D: Obra artística formada por dos paneles unidos que se pliegan.",
+      "answer": "díptico"
     },
     {
       "letter": "E",
-      "question": "Empieza por E: Técnica de visión 3D en cine basada en la percepción binocular.",
-      "answer": "estereoscopia"
+      "topic": "arte",
+      "question": "Empieza por E: Técnica pictórica que utiliza cera caliente como aglutinante.",
+      "answer": "encáustica"
     },
     {
       "letter": "F",
-      "question": "Empieza por F: Extensión aparente del cielo donde se ven las estrellas.",
-      "answer": "firmamento"
+      "topic": "folklore",
+      "question": "Empieza por F: Celebración popular con atracciones, casetas y carruseles.",
+      "answer": "feria"
     },
     {
       "letter": "G",
-      "question": "Empieza por G: Instrumento de viento ligado al folklore celta y atlántico, típico en regiones del noroeste de España.",
-      "answer": "gaita"
+      "topic": "arte",
+      "question": "Empieza por G: Arquitecto modernista catalán autor de la Sagrada Familia.",
+      "answer": "Gaudí"
     },
     {
       "letter": "H",
-      "question": "Empieza por H: Línea aparente que separa cielo y tierra, usada en tomas panorámicas.",
-      "answer": "horizonte"
+      "topic": "culturageneral",
+      "question": "Empieza por H: Miembro de la baja nobleza castellana en la Edad Media.",
+      "answer": "hidalgo"
     },
     {
       "letter": "I",
-      "question": "Empieza por I: Reino de los muertos en muchos mitos y tradiciones populares.",
-      "answer": "inframundo"
+      "topic": "culturageneral",
+      "question": "Empieza por I: Libro impreso anterior al año 1501.",
+      "answer": "incunable"
     },
     {
       "letter": "J",
-      "question": "Empieza por J: Artista medieval que transmitía historias y cantares de tradición popular.",
-      "answer": "juglar"
+      "topic": "culturageneral",
+      "question": "Empieza por J: Barrio histórico donde residían comunidades sefardíes en ciudades ibéricas.",
+      "answer": "judería"
     },
     {
       "letter": "L",
-      "question": "Empieza por L: Óptica usada en cine para comprimir horizontalmente la imagen y luego descomprimirla en proyección.",
-      "answer": "lente anamórfica"
+      "topic": "arte",
+      "question": "Empieza por L: Soporte textil tradicional sobre el que se pinta.",
+      "answer": "lienzo"
     },
     {
       "letter": "M",
-      "question": "Empieza por M: Proceso de seleccionar y ordenar planos en posproducción cinematográfica.",
-      "answer": "montaje"
+      "topic": "folklore",
+      "question": "Empieza por M: En Galicia, mujer a la que se atribuyen poderes mágicos.",
+      "answer": "meiga"
     },
     {
       "letter": "N",
-      "question": "Empieza por N: Parte central de la estructura clásica del guion entre planteamiento y desenlace.",
-      "answer": "nudo"
+      "topic": "culturageneral",
+      "question": "Empieza por N: Persona que sobrevive a un hundimiento en el mar.",
+      "answer": "náufrago"
     },
     {
       "letter": "Ñ",
-      "question": "Empieza por Ñ: Exceso de sentimentalismo cursi criticado a veces en películas.",
-      "answer": "ñoñería"
+      "topic": "culturageneral",
+      "question": "Contiene la Ñ: Conjunto de ovejas que pastan y se desplazan juntas.",
+      "answer": "rebaño"
     },
     {
       "letter": "O",
-      "question": "Empieza por O: Premio de la Academia de Hollywood a logros cinematográficos.",
-      "answer": "Óscar"
+      "topic": "arte",
+      "question": "Empieza por O: Monumento en forma de aguja alta y esbelta, tallado en piedra.",
+      "answer": "obelisco"
     },
     {
       "letter": "P",
-      "question": "Empieza por P: Toma prolongada sin cortes que cubre una acción completa.",
-      "answer": "plano secuencia"
+      "topic": "folklore",
+      "question": "Empieza por P: Prenda de abrigo tradicional andina, sin mangas y con abertura central.",
+      "answer": "poncho"
     },
     {
       "letter": "Q",
-      "question": "Contiene la Q: Principio compositivo que busca armonía de pesos visuales en el encuadre.",
-      "answer": "equilibrio"
+      "topic": "culturageneral",
+      "question": "Empieza por Q: Período de quince días.",
+      "answer": "quincena"
     },
     {
       "letter": "R",
-      "question": "Empieza por R: Continuidad entre planos que mantiene coherencia espacial y temporal.",
-      "answer": "raccord"
+      "topic": "folklore",
+      "question": "Empieza por R: Dicho popular breve que encierra una enseñanza.",
+      "answer": "refrán"
     },
     {
       "letter": "S",
-      "question": "Empieza por S: Cuerpo celeste que orbita un planeta.",
-      "answer": "satélite"
+      "topic": "culturageneral",
+      "question": "Empieza por S: Fase de contracción del corazón durante el latido.",
+      "answer": "sístole"
     },
     {
       "letter": "T",
-      "question": "Empieza por T: Avance publicitario de una película con fragmentos seleccionados.",
-      "answer": "tráiler"
+      "topic": "arte",
+      "question": "Empieza por T: Edificio sagrado destinado al culto.",
+      "answer": "templo"
     },
     {
       "letter": "U",
-      "question": "Empieza por U: Conjunto de objetos usados en escena como accesorios en cine o teatro.",
-      "answer": "utilería"
+      "topic": "folklore",
+      "question": "Empieza por U: Criatura mítica representada como caballo con un cuerno en la frente.",
+      "answer": "unicornio"
     },
     {
       "letter": "V",
-      "question": "Empieza por V: Cualidad por la que una historia resulta creíble dentro de sus propias reglas.",
-      "answer": "verosimilitud"
+      "topic": "folklore",
+      "question": "Empieza por V: Fiesta popular al aire libre con música y baile, típica de barrios y pueblos.",
+      "answer": "verbena"
     },
     {
       "letter": "X",
-      "question": "Contiene la X: Sonido o música que no pertenece al mundo de la historia y solo oye el espectador.",
-      "answer": "extradiegético"
+      "topic": "culturageneral",
+      "question": "Contiene la X: Vehículo de transporte público individual que se toma en la calle.",
+      "answer": "taxi"
     },
     {
       "letter": "Y",
-      "question": "Empieza por Y: Árbol cósmico de la mitología nórdica que conecta los nueve mundos.",
-      "answer": "Yggdrasil"
+      "topic": "culturageneral",
+      "question": "Empieza por Y: Parte amarilla y central del huevo.",
+      "answer": "yema"
     },
     {
       "letter": "Z",
-      "question": "Empieza por Z: Muerto viviente típico del cine de terror y algunos relatos populares haitianos.",
-      "answer": "zombi"
+      "topic": "arte",
+      "question": "Empieza por Z: Templo mesopotámico de terrazas escalonadas.",
+      "answer": "zigurat"
     }
   ]
 }
