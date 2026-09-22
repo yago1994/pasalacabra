@@ -1,0 +1,182 @@
+{
+  "id": "set-2026-09-23",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Best Picture 1984 biopic of Mozart.",
+      "answer": "Amadeus"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Mexican dish of a flour tortilla wrapped around fillings.",
+      "answer": "Burrito"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Silent-era comic who directed The Gold Rush and Modern Times.",
+      "answer": "Chaplin",
+      "alt": [
+        "Charlie Chaplin"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Small dough parcel boiled, steamed, or fried, found in many cuisines.",
+      "answer": "Dumpling"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Mexican dish of rolled tortillas baked with sauce and cheese.",
+      "answer": "Enchilada"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Deep-fried balls or patties made from ground chickpeas or fava beans.",
+      "answer": "Falafel",
+      "alt": [
+        "Felafel"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Indian independence leader assassinated in 1948.",
+      "answer": "Gandhi"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Middle Eastern dip made from pureed chickpeas, tahini, lemon, and garlic.",
+      "answer": "Hummus",
+      "alt": [
+        "Houmous",
+        "Hommos"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Crunchy salad green named for a floating mass.",
+      "answer": "Iceberg lettuce"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Louisiana rice dish featuring meat or seafood with Creole spices.",
+      "answer": "Jambalaya"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Skewered and grilled meat dish common in Middle Eastern cuisines.",
+      "answer": "Kebab",
+      "alt": [
+        "Kabob",
+        "Kabab",
+        "Kebap"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Layered pasta baked with ragù, béchamel, and cheese.",
+      "answer": "Lasagna",
+      "alt": [
+        "Lasagne"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Fermented soybean paste used in Japanese soup.",
+      "answer": "Miso"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "French emperor who met defeat at Waterloo.",
+      "answer": "Napoleon"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Iconic sandwich cookie introduced by Nabisco in 1912.",
+      "answer": "Oreo"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Puffed corn snack associated with movie theaters.",
+      "answer": "Popcorn"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Savory French tart filled with eggs and cream, often Lorraine-style.",
+      "answer": "Quiche"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Japanese noodle soup with alkaline wheat noodles; styles include shoyu and tonkotsu.",
+      "answer": "Ramen"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Long, thin Italian pasta often served with tomato sauce and meatballs.",
+      "answer": "Spaghetti"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Italian dessert of coffee-soaked ladyfingers layered with mascarpone.",
+      "answer": "Tiramisu"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Thick Japanese wheat noodles often served in hot broth.",
+      "answer": "Udon"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Spicy Goan curry traditionally marinated with vinegar and garlic.",
+      "answer": "Vindaloo"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Breakfast grid-patterned cake cooked in an iron.",
+      "answer": "Waffle"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Persian king who led the invasion of Greece in 480 BCE.",
+      "answer": "Xerxes"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Fermented dairy product used in parfaits and tzatziki.",
+      "answer": "Yogurt",
+      "alt": [
+        "Yoghurt"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Stepped temple tower of ancient Mesopotamia.",
+      "answer": "Ziggurat"
+    }
+  ]
+}

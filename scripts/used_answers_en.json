@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-25",
-    "answers": [
-      "aorta",
-      "brazil",
-      "cricket",
-      "danube",
-      "everest",
-      "femur",
-      "greenland",
-      "havana",
-      "iguana",
-      "javelin",
-      "kilimanjaro",
-      "lake superior",
-      "marathon",
-      "nepal",
-      "orangutan",
-      "patella",
-      "quetzal",
-      "rugby",
-      "sahara",
-      "tennis",
-      "ulna",
-      "volcano",
-      "wimbledon",
-      "axolotl",
-      "yemen",
-      "zanzibar"
-    ]
-  },
-  {
     "date": "2026-07-26",
     "answers": [
       "anchovy",
@@ -1857,6 +1826,37 @@
       "Xerophyte",
       "Yuki-onna",
       "Zebrafish"
+    ]
+  },
+  {
+    "date": "2026-09-23",
+    "answers": [
+      "Amadeus",
+      "Burrito",
+      "Chaplin",
+      "Dumpling",
+      "Enchilada",
+      "Falafel",
+      "Gandhi",
+      "Hummus",
+      "Iceberg lettuce",
+      "Jambalaya",
+      "Kebab",
+      "Lasagna",
+      "Miso",
+      "Napoleon",
+      "Oreo",
+      "Popcorn",
+      "Quiche",
+      "Ramen",
+      "Spaghetti",
+      "Tiramisu",
+      "Udon",
+      "Vindaloo",
+      "Waffle",
+      "Xerxes",
+      "Yogurt",
+      "Ziggurat"
     ]
   }
 ]
