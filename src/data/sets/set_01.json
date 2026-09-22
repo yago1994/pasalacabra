@@ -1,156 +1,156 @@
 {
   "id": "set_01",
-  "title": "Pasalacabra 2026-09-21 · No. 264",
+  "title": "Pasalacabra 2026-09-22 · No. 265",
   "questions": [
     {
       "letter": "A",
-      "topic": "folklore",
-      "question": "Empieza por A: Regalo o paga tradicional ofrecido en fechas navideñas por costumbre.",
-      "answer": "aguinaldo"
+      "topic": "ciencia",
+      "question": "Empieza por A: Unidad del Sistema Internacional para la intensidad de corriente eléctrica.",
+      "answer": "amperio"
     },
     {
       "letter": "B",
-      "topic": "folklore",
-      "question": "Empieza por B: Personaje femenino de tradición popular asociado a hechicería y conjuros.",
-      "answer": "bruja"
+      "topic": "ciencia",
+      "question": "Empieza por B: Instrumento que indica el norte mediante una aguja imantada.",
+      "answer": "brújula"
     },
     {
       "letter": "C",
-      "topic": "folklore",
-      "question": "Empieza por C: Instrumento andino pequeño de cuerda, similar a una guitarra.",
-      "answer": "charango"
+      "topic": "cine",
+      "question": "Empieza por C: Plano con la cámara orientada desde abajo hacia arriba.",
+      "answer": "contrapicado"
     },
     {
       "letter": "D",
-      "topic": "arte",
-      "question": "Empieza por D: Obra artística formada por dos paneles unidos que se pliegan.",
-      "answer": "díptico"
+      "topic": "ciencia",
+      "question": "Empieza por D: Rama de la mecánica que estudia el movimiento y las fuerzas que lo producen.",
+      "answer": "dinámica"
     },
     {
       "letter": "E",
-      "topic": "arte",
-      "question": "Empieza por E: Técnica pictórica que utiliza cera caliente como aglutinante.",
-      "answer": "encáustica"
+      "topic": "cine",
+      "question": "Empieza por E: Composición de los elementos dentro de los límites del plano.",
+      "answer": "encuadre"
     },
     {
       "letter": "F",
-      "topic": "folklore",
-      "question": "Empieza por F: Celebración popular con atracciones, casetas y carruseles.",
-      "answer": "feria"
+      "topic": "cine",
+      "question": "Empieza por F: Intérprete que aparece en pantalla sin diálogo y sin papel principal.",
+      "answer": "figurante"
     },
     {
       "letter": "G",
-      "topic": "arte",
-      "question": "Empieza por G: Arquitecto modernista catalán autor de la Sagrada Familia.",
-      "answer": "Gaudí"
+      "topic": "biologia",
+      "question": "Empieza por G: Célula sexual haploide producida por las gónadas.",
+      "answer": "gameto"
     },
     {
       "letter": "H",
-      "topic": "culturageneral",
-      "question": "Empieza por H: Miembro de la baja nobleza castellana en la Edad Media.",
-      "answer": "hidalgo"
+      "topic": "biologia",
+      "question": "Empieza por H: Proteína de la sangre que transporta oxígeno desde los pulmones a los tejidos.",
+      "answer": "hemoglobina"
     },
     {
       "letter": "I",
-      "topic": "culturageneral",
-      "question": "Empieza por I: Libro impreso anterior al año 1501.",
-      "answer": "incunable"
+      "topic": "biologia",
+      "question": "Empieza por I: Conjunto de defensas del organismo frente a patógenos.",
+      "answer": "inmunidad"
     },
     {
       "letter": "J",
-      "topic": "culturageneral",
-      "question": "Empieza por J: Barrio histórico donde residían comunidades sefardíes en ciudades ibéricas.",
-      "answer": "judería"
+      "topic": "ciencia",
+      "question": "Empieza por J: Unidad del Sistema Internacional para la energía, trabajo y calor.",
+      "answer": "julio"
     },
     {
       "letter": "L",
-      "topic": "arte",
-      "question": "Empieza por L: Soporte textil tradicional sobre el que se pinta.",
-      "answer": "lienzo"
+      "topic": "cine",
+      "question": "Empieza por L: Lugar real elegido para rodar una escena fuera del plató.",
+      "answer": "localización"
     },
     {
       "letter": "M",
-      "topic": "folklore",
-      "question": "Empieza por M: En Galicia, mujer a la que se atribuyen poderes mágicos.",
-      "answer": "meiga"
+      "topic": "cine",
+      "question": "Empieza por M: Modelo a escala usado para representar objetos o escenarios en efectos especiales.",
+      "answer": "maqueta"
     },
     {
       "letter": "N",
-      "topic": "culturageneral",
-      "question": "Empieza por N: Persona que sobrevive a un hundimiento en el mar.",
-      "answer": "náufrago"
+      "topic": "ciencia",
+      "question": "Empieza por N: Partícula subatómica sin carga eléctrica presente en el núcleo atómico.",
+      "answer": "neutrón"
     },
     {
       "letter": "Ñ",
-      "topic": "culturageneral",
-      "question": "Contiene la Ñ: Conjunto de ovejas que pastan y se desplazan juntas.",
-      "answer": "rebaño"
+      "topic": "cine",
+      "question": "Empieza por Ñ: Término coloquial para algo de pésima calidad, aplicable a una película malísima.",
+      "answer": "ñiquiñaque"
     },
     {
       "letter": "O",
-      "topic": "arte",
-      "question": "Empieza por O: Monumento en forma de aguja alta y esbelta, tallado en piedra.",
-      "answer": "obelisco"
+      "topic": "ciencia",
+      "question": "Empieza por O: Unidad del Sistema Internacional para la resistencia eléctrica.",
+      "answer": "ohmio"
     },
     {
       "letter": "P",
-      "topic": "folklore",
-      "question": "Empieza por P: Prenda de abrigo tradicional andina, sin mangas y con abertura central.",
-      "answer": "poncho"
+      "topic": "biologia",
+      "question": "Empieza por P: Orgánulo celular involucrado en la beta-oxidación de ácidos grasos y la detoxificación de peróxido de hidrógeno.",
+      "answer": "peroxisoma"
     },
     {
       "letter": "Q",
-      "topic": "culturageneral",
-      "question": "Empieza por Q: Período de quince días.",
-      "answer": "quincena"
+      "topic": "ciencia",
+      "question": "Empieza por Q: Ciencia que estudia la composición, estructura y transformaciones de la materia.",
+      "answer": "química"
     },
     {
       "letter": "R",
-      "topic": "folklore",
-      "question": "Empieza por R: Dicho popular breve que encierra una enseñanza.",
-      "answer": "refrán"
+      "topic": "cine",
+      "question": "Empieza por R: Técnica de animación que traza sobre filmaciones reales para obtener movimiento natural.",
+      "answer": "rotoscopia"
     },
     {
       "letter": "S",
-      "topic": "culturageneral",
-      "question": "Empieza por S: Fase de contracción del corazón durante el latido.",
-      "answer": "sístole"
+      "topic": "ciencia",
+      "question": "Empieza por S: Paso directo del estado sólido al gaseoso sin pasar por el líquido.",
+      "answer": "sublimación"
     },
     {
       "letter": "T",
-      "topic": "arte",
-      "question": "Empieza por T: Edificio sagrado destinado al culto.",
-      "answer": "templo"
+      "topic": "biologia",
+      "question": "Empieza por T: Sustancia producida por ciertos organismos que provoca efectos nocivos en otros.",
+      "answer": "toxina"
     },
     {
       "letter": "U",
-      "topic": "folklore",
-      "question": "Empieza por U: Criatura mítica representada como caballo con un cuerno en la frente.",
-      "answer": "unicornio"
+      "topic": "cine",
+      "question": "Empieza por U: Relato audiovisual que imagina una historia alternativa si un hecho del pasado cambiara.",
+      "answer": "ucronía"
     },
     {
       "letter": "V",
-      "topic": "folklore",
-      "question": "Empieza por V: Fiesta popular al aire libre con música y baile, típica de barrios y pueblos.",
-      "answer": "verbena"
+      "topic": "ciencia",
+      "question": "Empieza por V: Magnitud que expresa cambio de posición por unidad de tiempo con dirección y sentido.",
+      "answer": "velocidad"
     },
     {
       "letter": "X",
-      "topic": "culturageneral",
-      "question": "Contiene la X: Vehículo de transporte público individual que se toma en la calle.",
-      "answer": "taxi"
+      "topic": "biologia",
+      "question": "Contiene la X: Cubierta externa rígida que protege y da soporte al cuerpo de muchos artrópodos.",
+      "answer": "exoesqueleto"
     },
     {
       "letter": "Y",
-      "topic": "culturageneral",
-      "question": "Empieza por Y: Parte amarilla y central del huevo.",
-      "answer": "yema"
+      "topic": "biologia",
+      "question": "Empieza por Y: Huesecillo del oído medio también llamado incus.",
+      "answer": "yunque"
     },
     {
       "letter": "Z",
-      "topic": "arte",
-      "question": "Empieza por Z: Templo mesopotámico de terrazas escalonadas.",
-      "answer": "zigurat"
+      "topic": "biologia",
+      "question": "Empieza por Z: Órgano filiforme con el que trepan muchas plantas, como la vid.",
+      "answer": "zarcillo"
     }
   ]
 }
