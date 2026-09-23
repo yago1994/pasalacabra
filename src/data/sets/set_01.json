@@ -1,156 +1,156 @@
 {
   "id": "set_01",
-  "title": "Pasalacabra 2026-09-22 · No. 265",
+  "title": "Pasalacabra 2026-09-23 · No. 266",
   "questions": [
     {
       "letter": "A",
-      "topic": "ciencia",
-      "question": "Empieza por A: Unidad del Sistema Internacional para la intensidad de corriente eléctrica.",
-      "answer": "amperio"
+      "topic": "folklore",
+      "question": "Empieza por A: Baile tradicional vasco interpretado como saludo u homenaje, a menudo por un dantzari con txapela.",
+      "answer": "aurresku"
     },
     {
       "letter": "B",
-      "topic": "ciencia",
-      "question": "Empieza por B: Instrumento que indica el norte mediante una aguja imantada.",
-      "answer": "brújula"
+      "topic": "biologia",
+      "question": "Empieza por B: Microorganismo procariota, unicelular, presente en suelos y aguas.",
+      "answer": "bacteria"
     },
     {
       "letter": "C",
-      "topic": "cine",
-      "question": "Empieza por C: Plano con la cámara orientada desde abajo hacia arriba.",
-      "answer": "contrapicado"
+      "topic": "folklore",
+      "question": "Empieza por C: Fiesta popular previa a la Cuaresma, con disfraces y desfiles.",
+      "answer": "carnaval"
     },
     {
       "letter": "D",
-      "topic": "ciencia",
-      "question": "Empieza por D: Rama de la mecánica que estudia el movimiento y las fuerzas que lo producen.",
-      "answer": "dinámica"
+      "topic": "folklore",
+      "question": "Empieza por D: Danza altiplánica con máscaras y trajes que representan la lucha entre el bien y el mal.",
+      "answer": "diablada"
     },
     {
       "letter": "E",
-      "topic": "cine",
-      "question": "Empieza por E: Composición de los elementos dentro de los límites del plano.",
-      "answer": "encuadre"
+      "topic": "biologia",
+      "question": "Empieza por E: Glóbulo rojo encargado de transportar oxígeno en vertebrados.",
+      "answer": "eritrocito"
     },
     {
       "letter": "F",
-      "topic": "cine",
-      "question": "Empieza por F: Intérprete que aparece en pantalla sin diálogo y sin papel principal.",
-      "answer": "figurante"
+      "topic": "folklore",
+      "question": "Empieza por F: Palo del flamenco de ritmo vivo, frecuente en Andalucía y Murcia.",
+      "answer": "fandango"
     },
     {
       "letter": "G",
-      "topic": "biologia",
-      "question": "Empieza por G: Célula sexual haploide producida por las gónadas.",
-      "answer": "gameto"
+      "topic": "geografia",
+      "question": "Empieza por G: Río ibérico que recorre España y Portugal y sirve de frontera en varios tramos.",
+      "answer": "Guadiana"
     },
     {
       "letter": "H",
-      "topic": "biologia",
-      "question": "Empieza por H: Proteína de la sangre que transporta oxígeno desde los pulmones a los tejidos.",
-      "answer": "hemoglobina"
+      "topic": "folklore",
+      "question": "Empieza por H: Canción y baile de compás lento originado en Cuba en el siglo XIX.",
+      "answer": "habanera"
     },
     {
       "letter": "I",
-      "topic": "biologia",
-      "question": "Empieza por I: Conjunto de defensas del organismo frente a patógenos.",
-      "answer": "inmunidad"
+      "topic": "geografia",
+      "question": "Empieza por I: Isla y país europeo situado al oeste de Gran Bretaña, con capital en Dublín.",
+      "answer": "Irlanda"
     },
     {
       "letter": "J",
-      "topic": "ciencia",
-      "question": "Empieza por J: Unidad del Sistema Internacional para la energía, trabajo y calor.",
-      "answer": "julio"
+      "topic": "geografia",
+      "question": "Empieza por J: Provincia andaluza con capital homónima, referente mundial en aceite de oliva.",
+      "answer": "Jaén"
     },
     {
       "letter": "L",
-      "topic": "cine",
-      "question": "Empieza por L: Lugar real elegido para rodar una escena fuera del plató.",
-      "answer": "localización"
+      "topic": "biologia",
+      "question": "Empieza por L: Anélido terrestre que airea el suelo al excavar galerías.",
+      "answer": "lombriz"
     },
     {
       "letter": "M",
-      "topic": "cine",
-      "question": "Empieza por M: Modelo a escala usado para representar objetos o escenarios en efectos especiales.",
-      "answer": "maqueta"
+      "topic": "biologia",
+      "question": "Empieza por M: Ecosistema costero dominado por árboles tolerantes a la sal y raíces aéreas.",
+      "answer": "manglar"
     },
     {
       "letter": "N",
-      "topic": "ciencia",
-      "question": "Empieza por N: Partícula subatómica sin carga eléctrica presente en el núcleo atómico.",
-      "answer": "neutrón"
+      "topic": "biologia",
+      "question": "Empieza por N: Célula del sistema nervioso especializada en transmitir impulsos eléctricos.",
+      "answer": "neurona"
     },
     {
       "letter": "Ñ",
-      "topic": "cine",
-      "question": "Empieza por Ñ: Término coloquial para algo de pésima calidad, aplicable a una película malísima.",
-      "answer": "ñiquiñaque"
+      "topic": "biologia",
+      "question": "Contiene la Ñ: Arácnido de ocho patas que teje seda en su red.",
+      "answer": "araña"
     },
     {
       "letter": "O",
-      "topic": "ciencia",
-      "question": "Empieza por O: Unidad del Sistema Internacional para la resistencia eléctrica.",
-      "answer": "ohmio"
+      "topic": "biologia",
+      "question": "Empieza por O: Estructura del pistilo donde se forman los óvulos.",
+      "answer": "ovario"
     },
     {
       "letter": "P",
-      "topic": "biologia",
-      "question": "Empieza por P: Orgánulo celular involucrado en la beta-oxidación de ácidos grasos y la detoxificación de peróxido de hidrógeno.",
-      "answer": "peroxisoma"
+      "topic": "folklore",
+      "question": "Empieza por P: Danza tradicional en la que los participantes golpean bastones al compás, común en Castilla y León.",
+      "answer": "paloteo"
     },
     {
       "letter": "Q",
-      "topic": "ciencia",
-      "question": "Empieza por Q: Ciencia que estudia la composición, estructura y transformaciones de la materia.",
-      "answer": "química"
+      "topic": "geografia",
+      "question": "Empieza por Q: Provincia canadiense mayoritariamente francófona con capital homónima.",
+      "answer": "Quebec"
     },
     {
       "letter": "R",
-      "topic": "cine",
-      "question": "Empieza por R: Técnica de animación que traza sobre filmaciones reales para obtener movimiento natural.",
-      "answer": "rotoscopia"
+      "topic": "folklore",
+      "question": "Empieza por R: Instrumento de cuerda frotada, de una a tres cuerdas, típico de la música tradicional cántabra.",
+      "answer": "rabel"
     },
     {
       "letter": "S",
-      "topic": "ciencia",
-      "question": "Empieza por S: Paso directo del estado sólido al gaseoso sin pasar por el líquido.",
-      "answer": "sublimación"
+      "topic": "geografia",
+      "question": "Empieza por S: Ciudad australiana reconocible por su icónica ópera junto a la bahía.",
+      "answer": "Sídney"
     },
     {
       "letter": "T",
-      "topic": "biologia",
-      "question": "Empieza por T: Sustancia producida por ciertos organismos que provoca efectos nocivos en otros.",
-      "answer": "toxina"
+      "topic": "folklore",
+      "question": "Empieza por T: Agrupación estudiantil que interpreta música tradicional con bandurrias y panderetas.",
+      "answer": "tuna"
     },
     {
       "letter": "U",
-      "topic": "cine",
-      "question": "Empieza por U: Relato audiovisual que imagina una historia alternativa si un hecho del pasado cambiara.",
-      "answer": "ucronía"
+      "topic": "geografia",
+      "question": "Empieza por U: País sudamericano situado entre Brasil y Argentina, con capital en Montevideo.",
+      "answer": "Uruguay"
     },
     {
       "letter": "V",
-      "topic": "ciencia",
-      "question": "Empieza por V: Magnitud que expresa cambio de posición por unidad de tiempo con dirección y sentido.",
-      "answer": "velocidad"
+      "topic": "geografia",
+      "question": "Empieza por V: Río más largo de Polonia, que desemboca en el mar Báltico.",
+      "answer": "Vístula"
     },
     {
       "letter": "X",
       "topic": "biologia",
-      "question": "Contiene la X: Cubierta externa rígida que protege y da soporte al cuerpo de muchos artrópodos.",
-      "answer": "exoesqueleto"
+      "question": "Empieza por X: Planta adaptada a ambientes secos, con hojas reducidas o suculentas.",
+      "answer": "xerófito"
     },
     {
       "letter": "Y",
-      "topic": "biologia",
-      "question": "Empieza por Y: Huesecillo del oído medio también llamado incus.",
-      "answer": "yunque"
+      "topic": "geografia",
+      "question": "Empieza por Y: País de la península arábiga con capital en Saná.",
+      "answer": "Yemen"
     },
     {
       "letter": "Z",
       "topic": "biologia",
-      "question": "Empieza por Z: Órgano filiforme con el que trepan muchas plantas, como la vid.",
-      "answer": "zarcillo"
+      "question": "Empieza por Z: Marsupial americano conocido por aparentar muerte como mecanismo defensivo.",
+      "answer": "zarigüeya"
     }
   ]
 }
