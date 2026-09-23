@@ -1,0 +1,168 @@
+{
+  "id": "set-2026-09-24",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Rhetorical device of repeating a word at the start of successive clauses.",
+      "answer": "anaphora"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Novel genre centered on a young protagonist’s coming of age.",
+      "answer": "bildungsroman"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Pair of successive rhyming lines in poetry.",
+      "answer": "couplet"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Poetic foot of one stressed syllable followed by two unstressed.",
+      "answer": "dactyl"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Term for a species native to and restricted to a particular geographic area.",
+      "answer": "endemic"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "In European witchcraft lore, an animal spirit companion believed to assist in magic.",
+      "answer": "familiar"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Genetic makeup of an organism as distinct from its observable traits.",
+      "answer": "genotype"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Japanese poetic form of three lines totaling 17 syllables.",
+      "answer": "haiku"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Poetic foot of an unstressed syllable followed by a stressed syllable.",
+      "answer": "iamb"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Fearsome creature slain in Lewis Carroll’s famous nonsense poem.",
+      "answer": "Jabberwock"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Old Norse poetic compound, such as whale-road, used as a metaphor.",
+      "answer": "kenning"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Recurring theme associated with a person, idea, or situation in a work.",
+      "answer": "leitmotif",
+      "alt": [
+        "leitmotiv"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Smallest unit of a chemical compound composed of bonded atoms.",
+      "answer": "molecule"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Newly coined word or expression.",
+      "answer": "neologism"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Demon or ogre figure from Japanese folklore, often depicted with horns and a club.",
+      "answer": "oni"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Fourth state of matter consisting of ionized gas.",
+      "answer": "plasma"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Mathematical statement asserting the equality of two expressions.",
+      "answer": "equation"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Pattern of end sounds in a poem, often noted with letters.",
+      "answer": "rhyme scheme"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Phase change where a solid turns directly into gas.",
+      "answer": "sublimation"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Poetic foot of a stressed syllable followed by an unstressed.",
+      "answer": "trochee"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Term in folklore for beings like vampires or zombies that are no longer alive yet not at rest.",
+      "answer": "undead"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Nineteen-line poetic form with two refrains and two repeating rhymes.",
+      "answer": "villanelle"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Ghostly light seen over marshes, said to mislead travelers.",
+      "answer": "will-o'-the-wisp",
+      "alt": [
+        "will-o-the-wisp",
+        "will o' the wisp"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Noble gas with atomic number 54 used in lamps and anesthesia.",
+      "answer": "xenon"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Hindu god of death and judge of the afterlife.",
+      "answer": "Yama"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Figure of speech where a word governs two others in different senses, as in caught a train and a cold.",
+      "answer": "zeugma"
+    }
+  ]
+}

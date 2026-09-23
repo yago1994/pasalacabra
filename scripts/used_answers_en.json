@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-26",
-    "answers": [
-      "anchovy",
-      "badminton",
-      "cannoli",
-      "darts",
-      "espresso",
-      "fencing",
-      "gnocchi",
-      "haggis",
-      "injera",
-      "judo",
-      "karaoke",
-      "lacrosse",
-      "margarita",
-      "nachos",
-      "oregano",
-      "poutine",
-      "quiver",
-      "racquetball",
-      "snooker",
-      "taekwondo",
-      "umpire",
-      "volleyball",
-      "wok",
-      "foxtrot",
-      "yule",
-      "zamboni"
-    ]
-  },
-  {
     "date": "2026-07-27",
     "answers": [
       "aardvark",
@@ -1857,6 +1826,37 @@
       "Xerxes",
       "Yogurt",
       "Ziggurat"
+    ]
+  },
+  {
+    "date": "2026-09-24",
+    "answers": [
+      "anaphora",
+      "bildungsroman",
+      "couplet",
+      "dactyl",
+      "endemic",
+      "familiar",
+      "genotype",
+      "haiku",
+      "iamb",
+      "Jabberwock",
+      "kenning",
+      "leitmotif",
+      "molecule",
+      "neologism",
+      "oni",
+      "plasma",
+      "equation",
+      "rhyme scheme",
+      "sublimation",
+      "trochee",
+      "undead",
+      "villanelle",
+      "will-o'-the-wisp",
+      "xenon",
+      "Yama",
+      "zeugma"
     ]
   }
 ]
