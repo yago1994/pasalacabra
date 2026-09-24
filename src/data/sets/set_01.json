@@ -1,156 +1,156 @@
 {
   "id": "set_01",
-  "title": "Pasalacabra 2026-09-23 · No. 266",
+  "title": "Pasalacabra 2026-09-24 · No. 267",
   "questions": [
     {
       "letter": "A",
-      "topic": "folklore",
-      "question": "Empieza por A: Baile tradicional vasco interpretado como saludo u homenaje, a menudo por un dantzari con txapela.",
-      "answer": "aurresku"
+      "topic": "geografia",
+      "question": "Empieza por A: Capital de Turquía.",
+      "answer": "Ankara"
     },
     {
       "letter": "B",
-      "topic": "biologia",
-      "question": "Empieza por B: Microorganismo procariota, unicelular, presente en suelos y aguas.",
-      "answer": "bacteria"
+      "topic": "deporte",
+      "question": "Empieza por B: Prueba olímpica que combina esquí de fondo y tiro con rifle.",
+      "answer": "biatlón"
     },
     {
       "letter": "C",
-      "topic": "folklore",
-      "question": "Empieza por C: Fiesta popular previa a la Cuaresma, con disfraces y desfiles.",
-      "answer": "carnaval"
+      "topic": "geografia",
+      "question": "Empieza por C: Isla italiana del Mediterráneo con capital en Cagliari.",
+      "answer": "Cerdeña"
     },
     {
       "letter": "D",
-      "topic": "folklore",
-      "question": "Empieza por D: Danza altiplánica con máscaras y trajes que representan la lucha entre el bien y el mal.",
-      "answer": "diablada"
+      "topic": "historia",
+      "question": "Empieza por D: Rey aqueménida que invadió Grecia en el 490 a. C.",
+      "answer": "Darío I"
     },
     {
       "letter": "E",
-      "topic": "biologia",
-      "question": "Empieza por E: Glóbulo rojo encargado de transportar oxígeno en vertebrados.",
-      "answer": "eritrocito"
+      "topic": "geografia",
+      "question": "Empieza por E: País sudamericano cuya capital es Quito.",
+      "answer": "Ecuador"
     },
     {
       "letter": "F",
-      "topic": "folklore",
-      "question": "Empieza por F: Palo del flamenco de ritmo vivo, frecuente en Andalucía y Murcia.",
-      "answer": "fandango"
+      "topic": "deporte",
+      "question": "Empieza por F: Piloto español bicampeón del mundo de Fórmula 1 en 2005 y 2006.",
+      "answer": "Fernando Alonso"
     },
     {
       "letter": "G",
-      "topic": "geografia",
-      "question": "Empieza por G: Río ibérico que recorre España y Portugal y sirve de frontera en varios tramos.",
-      "answer": "Guadiana"
+      "topic": "historia",
+      "question": "Empieza por G: Duque normando que venció en Hastings en 1066.",
+      "answer": "Guillermo I"
     },
     {
       "letter": "H",
-      "topic": "folklore",
-      "question": "Empieza por H: Canción y baile de compás lento originado en Cuba en el siglo XIX.",
-      "answer": "habanera"
+      "topic": "geografia",
+      "question": "Empieza por H: Provincia aragonesa cuya capital homónima está a los pies de los Pirineos.",
+      "answer": "Huesca"
     },
     {
       "letter": "I",
-      "topic": "geografia",
-      "question": "Empieza por I: Isla y país europeo situado al oeste de Gran Bretaña, con capital en Dublín.",
-      "answer": "Irlanda"
+      "topic": "historia",
+      "question": "Empieza por I: Reina de Castilla apodada la Católica.",
+      "answer": "Isabel I"
     },
     {
       "letter": "J",
-      "topic": "geografia",
-      "question": "Empieza por J: Provincia andaluza con capital homónima, referente mundial en aceite de oliva.",
-      "answer": "Jaén"
+      "topic": "deporte",
+      "question": "Empieza por J: Deportista que compite montando a caballo en salto o doma.",
+      "answer": "jinete"
     },
     {
       "letter": "L",
-      "topic": "biologia",
-      "question": "Empieza por L: Anélido terrestre que airea el suelo al excavar galerías.",
-      "answer": "lombriz"
+      "topic": "deporte",
+      "question": "Empieza por L: Prueba de atletismo que consiste en impulsar una bola metálica.",
+      "answer": "lanzamiento de peso"
     },
     {
       "letter": "M",
-      "topic": "biologia",
-      "question": "Empieza por M: Ecosistema costero dominado por árboles tolerantes a la sal y raíces aéreas.",
-      "answer": "manglar"
+      "topic": "deporte",
+      "question": "Empieza por M: Circuito italiano de velocidad situado en la Toscana.",
+      "answer": "Mugello"
     },
     {
       "letter": "N",
-      "topic": "biologia",
-      "question": "Empieza por N: Célula del sistema nervioso especializada en transmitir impulsos eléctricos.",
-      "answer": "neurona"
+      "topic": "geografia",
+      "question": "Empieza por N: Capital de Níger.",
+      "answer": "Niamey"
     },
     {
       "letter": "Ñ",
-      "topic": "biologia",
-      "question": "Contiene la Ñ: Arácnido de ocho patas que teje seda en su red.",
-      "answer": "araña"
+      "topic": "geografia",
+      "question": "Empieza por Ñ: Comuna de Santiago de Chile donde se ubica el Estadio Nacional.",
+      "answer": "Ñuñoa"
     },
     {
       "letter": "O",
-      "topic": "biologia",
-      "question": "Empieza por O: Estructura del pistilo donde se forman los óvulos.",
-      "answer": "ovario"
+      "topic": "geografia",
+      "question": "Empieza por O: Capital de Noruega.",
+      "answer": "Oslo"
     },
     {
       "letter": "P",
-      "topic": "folklore",
-      "question": "Empieza por P: Danza tradicional en la que los participantes golpean bastones al compás, común en Castilla y León.",
-      "answer": "paloteo"
+      "topic": "deporte",
+      "question": "Empieza por P: Deporte olímpico de canoa y kayak en aguas tranquilas o eslalon.",
+      "answer": "piragüismo"
     },
     {
       "letter": "Q",
-      "topic": "geografia",
-      "question": "Empieza por Q: Provincia canadiense mayoritariamente francófona con capital homónima.",
-      "answer": "Quebec"
+      "topic": "historia",
+      "question": "Contiene la Q: Soldado de los siglos XVI y XVII armado con mosquete.",
+      "answer": "mosquetero"
     },
     {
       "letter": "R",
-      "topic": "folklore",
-      "question": "Empieza por R: Instrumento de cuerda frotada, de una a tres cuerdas, típico de la música tradicional cántabra.",
-      "answer": "rabel"
+      "topic": "deporte",
+      "question": "Empieza por R: Deporte de equipo con balón ovalado y melés.",
+      "answer": "rugby"
     },
     {
       "letter": "S",
-      "topic": "geografia",
-      "question": "Empieza por S: Ciudad australiana reconocible por su icónica ópera junto a la bahía.",
-      "answer": "Sídney"
+      "topic": "deporte",
+      "question": "Empieza por S: Arma utilizada en una de las tres modalidades de esgrima.",
+      "answer": "sable"
     },
     {
       "letter": "T",
-      "topic": "folklore",
-      "question": "Empieza por T: Agrupación estudiantil que interpreta música tradicional con bandurrias y panderetas.",
-      "answer": "tuna"
+      "topic": "historia",
+      "question": "Empieza por T: Emperador romano nacido en Itálica, conocido por la mayor expansión del Imperio.",
+      "answer": "Trajano"
     },
     {
       "letter": "U",
       "topic": "geografia",
-      "question": "Empieza por U: País sudamericano situado entre Brasil y Argentina, con capital en Montevideo.",
-      "answer": "Uruguay"
+      "question": "Empieza por U: País africano con capital en Kampala y orillas en el lago Victoria.",
+      "answer": "Uganda"
     },
     {
       "letter": "V",
       "topic": "geografia",
-      "question": "Empieza por V: Río más largo de Polonia, que desemboca en el mar Báltico.",
-      "answer": "Vístula"
+      "question": "Empieza por V: Gran puerto ruso del Pacífico cercano a Corea del Norte.",
+      "answer": "Vladivostok"
     },
     {
       "letter": "X",
-      "topic": "biologia",
-      "question": "Empieza por X: Planta adaptada a ambientes secos, con hojas reducidas o suculentas.",
-      "answer": "xerófito"
+      "topic": "geografia",
+      "question": "Empieza por X: Ciudad portuaria china de la provincia de Fujian.",
+      "answer": "Xiamen"
     },
     {
       "letter": "Y",
-      "topic": "geografia",
-      "question": "Empieza por Y: País de la península arábiga con capital en Saná.",
-      "answer": "Yemen"
+      "topic": "historia",
+      "question": "Empieza por Y: Dinastía imperial japonesa considerada la más antigua en ejercicio.",
+      "answer": "Yamato"
     },
     {
       "letter": "Z",
-      "topic": "biologia",
-      "question": "Empieza por Z: Marsupial americano conocido por aparentar muerte como mecanismo defensivo.",
-      "answer": "zarigüeya"
+      "topic": "geografia",
+      "question": "Empieza por Z: Isla principal del archipiélago tanzano también llamada Unguja.",
+      "answer": "Zanzíbar"
     }
   ]
 }
