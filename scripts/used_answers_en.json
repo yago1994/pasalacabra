@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-27",
-    "answers": [
-      "aardvark",
-      "bison",
-      "coyote",
-      "dolphin",
-      "emu",
-      "ferret",
-      "giraffe",
-      "hyena",
-      "imp",
-      "jaguar",
-      "kudu",
-      "lemur",
-      "manatee",
-      "newt",
-      "okapi",
-      "panda",
-      "quince",
-      "raccoon",
-      "sphinx",
-      "tiger",
-      "uakari",
-      "vixen",
-      "wombat",
-      "ox",
-      "yeti",
-      "zebu"
-    ]
-  },
-  {
     "date": "2026-07-28",
     "answers": [
       "album",
@@ -1857,6 +1826,37 @@
       "xenon",
       "Yama",
       "zeugma"
+    ]
+  },
+  {
+    "date": "2026-09-25",
+    "answers": [
+      "anchovy",
+      "banjo",
+      "cheddar",
+      "dachshund",
+      "espresso",
+      "fiddle",
+      "gazelle",
+      "horseradish",
+      "iguana",
+      "jicama",
+      "kale",
+      "lychee",
+      "marimba",
+      "nutmeg",
+      "oregano",
+      "paella",
+      "quartet",
+      "rattlesnake",
+      "sardine",
+      "trumpet",
+      "ukulele",
+      "vulture",
+      "walnut",
+      "lynx",
+      "yakitori",
+      "ziti"
     ]
   }
 ]
