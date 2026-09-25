@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-28",
-    "answers": [
-      "album",
-      "browser",
-      "compiler",
-      "drum",
-      "ethernet",
-      "firewall",
-      "gigabyte",
-      "hard drive",
-      "inkjet",
-      "joystick",
-      "keyboard",
-      "latte",
-      "microphone",
-      "notation",
-      "orchestra",
-      "podcast",
-      "QR code",
-      "riff",
-      "smartphone",
-      "turntable",
-      "Unicode",
-      "virtual reality",
-      "webcam",
-      "pixel",
-      "yodeling",
-      "zip file"
-    ]
-  },
-  {
     "date": "2026-07-29",
     "answers": [
       "algorithm",
@@ -1857,6 +1826,37 @@
       "lynx",
       "yakitori",
       "ziti"
+    ]
+  },
+  {
+    "date": "2026-09-26",
+    "answers": [
+      "Android",
+      "Borges",
+      "CSS",
+      "Docker",
+      "Emoji",
+      "Firefox",
+      "Gutenberg",
+      "Hemingway",
+      "Instagram",
+      "JavaScript",
+      "Kubernetes",
+      "LinkedIn",
+      "Modem",
+      "Nintendo",
+      "Opera",
+      "Python",
+      "Quine",
+      "Renaissance",
+      "SQL",
+      "Transistor",
+      "Uber",
+      "Vivaldi",
+      "Wi-Fi",
+      "AJAX",
+      "YouTube",
+      "Zettabyte"
     ]
   }
 ]

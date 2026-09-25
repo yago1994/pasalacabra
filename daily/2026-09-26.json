@@ -1,0 +1,195 @@
+{
+  "id": "set-2026-09-26",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Google’s mobile operating system that powers most non-Apple smartphones.",
+      "answer": "Android"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Argentine author of The Garden of Forking Paths.",
+      "answer": "Borges",
+      "alt": [
+        "Jorge Luis Borges"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Web language that styles HTML pages.",
+      "answer": "CSS",
+      "alt": [
+        "Cascading Style Sheets"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Platform founded by Solomon Hykes that popularized software containers.",
+      "answer": "Docker"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Small pictographs used in digital messages.",
+      "answer": "Emoji",
+      "alt": [
+        "Emojis"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Open-source web browser developed by Mozilla.",
+      "answer": "Firefox"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Inventor of the European movable-type printing press.",
+      "answer": "Gutenberg",
+      "alt": [
+        "Johannes Gutenberg"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Author of The Old Man and the Sea.",
+      "answer": "Hemingway",
+      "alt": [
+        "Ernest Hemingway"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Photo-sharing app acquired by Facebook in 2012.",
+      "answer": "Instagram"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Programming language that powers most interactive behavior on web pages.",
+      "answer": "JavaScript",
+      "alt": [
+        "JS"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Container orchestration system originally open-sourced by Google.",
+      "answer": "Kubernetes",
+      "alt": [
+        "K8s"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Professional networking site acquired by Microsoft in 2016.",
+      "answer": "LinkedIn"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Device that modulates and demodulates to provide internet access.",
+      "answer": "Modem"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Japanese company behind the Switch console and the Mario franchise.",
+      "answer": "Nintendo"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Stage art form featuring arias and recitatives, typically sung throughout.",
+      "answer": "Opera"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Popular programming language named after a British comedy group.",
+      "answer": "Python"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Program that outputs its own source code when run.",
+      "answer": "Quine"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "European cultural rebirth spanning roughly the 14th to 17th centuries.",
+      "answer": "Renaissance"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Language for querying relational databases.",
+      "answer": "SQL",
+      "alt": [
+        "Structured Query Language"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Semiconductor device that amplifies or switches electronic signals.",
+      "answer": "Transistor"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Ride-hailing app whose name also means over in German.",
+      "answer": "Uber"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Composer of The Four Seasons.",
+      "answer": "Vivaldi",
+      "alt": [
+        "Antonio Vivaldi"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Wireless networking standard also known as 802.11.",
+      "answer": "Wi-Fi",
+      "alt": [
+        "WiFi",
+        "Wifi"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Technique named for asynchronous JavaScript and XML that updates web pages without reloading.",
+      "answer": "AJAX",
+      "alt": [
+        "Ajax"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Video-sharing platform founded in 2005 and later acquired by Google.",
+      "answer": "YouTube"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Data unit equal to one sextillion bytes.",
+      "answer": "Zettabyte"
+    }
+  ]
+}
