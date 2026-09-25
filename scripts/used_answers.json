@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-27",
-    "game_no": 208,
-    "answers": [
-      "atrezo",
-      "busto",
-      "camerino",
-      "director",
-      "escenografía",
-      "figurín",
-      "grabado",
-      "hilorama",
-      "intertítulo",
-      "jarrón",
-      "litografía",
-      "maquillaje",
-      "nazareno",
-      "ñandutí",
-      "orfebrería",
-      "paleta",
-      "querubín",
-      "rodaje",
-      "serigrafía",
-      "tapiz",
-      "trucaje",
-      "viñeta",
-      "expresividad",
-      "yokai",
-      "zambra"
-    ]
-  },
-  {
     "date": "2026-07-28",
     "game_no": 209,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Xiamen",
       "Yamato",
       "Zanzíbar"
+    ]
+  },
+  {
+    "date": "2026-09-25",
+    "game_no": 268,
+    "answers": [
+      "altruismo",
+      "bicicleta",
+      "cabezudo",
+      "diptongo",
+      "empate",
+      "flamenco",
+      "gladiador",
+      "hipódromo",
+      "iguana",
+      "judo",
+      "Lotería de Navidad",
+      "mantilla",
+      "Nochebuena",
+      "albañil",
+      "origami",
+      "penalti",
+      "quimera",
+      "romancero",
+      "senderismo",
+      "torero",
+      "ultramaratón",
+      "voleibol",
+      "xenón",
+      "yak",
+      "zumo"
     ]
   }
 ]
