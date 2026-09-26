@@ -1,0 +1,180 @@
+{
+  "id": "set-2026-09-27",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Captain who obsessively hunts the white whale in Melville's novel.",
+      "answer": "Ahab"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Medieval continuation of the Eastern Roman Empire centered on Constantinople.",
+      "answer": "Byzantine Empire",
+      "alt": [
+        "Byzantium"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Capital of Egypt.",
+      "answer": "Cairo"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Capital of Ireland.",
+      "answer": "Dublin"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Tudor monarch who saw off the Spanish Armada in 1588.",
+      "answer": "Elizabeth I",
+      "alt": [
+        "Elizabeth the First"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "South Atlantic archipelago that was the focus of a 1982 war between the UK and Argentina.",
+      "answer": "Falkland Islands"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Andalusian city famed for the Alhambra palace.",
+      "answer": "Granada"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Capital of Cuba.",
+      "answer": "Havana"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Nordic island country famous for geysers and volcanism.",
+      "answer": "Iceland"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Middle Eastern kingdom with capital Amman.",
+      "answer": "Jordan"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "East African country famous for the Great Rift Valley and Maasai Mara.",
+      "answer": "Kenya"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Capital of Peru.",
+      "answer": "Lima"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "World empire founded by Genghis Khan in the 13th century.",
+      "answer": "Mongol Empire",
+      "alt": [
+        "Mongolian Empire"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Scandinavian country with capital Oslo.",
+      "answer": "Norway"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "English university city famed for its 'dreaming spires'.",
+      "answer": "Oxford"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Capital of France.",
+      "answer": "Paris"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Capital city high in the Andes and the closest national capital to the equator.",
+      "answer": "Quito"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Greek island once home to a giant bronze statue counted among the Seven Wonders.",
+      "answer": "Rhodes"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Largest hot desert on Earth.",
+      "answer": "Sahara",
+      "alt": [
+        "Sahara Desert"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Capital of Japan.",
+      "answer": "Tokyo"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Country made up of England, Scotland, Wales, and Northern Ireland.",
+      "answer": "United Kingdom",
+      "alt": [
+        "UK",
+        "U.K."
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Grand palace near Paris famed for the Hall of Mirrors and royal gardens.",
+      "answer": "Versailles"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Capital of the United States.",
+      "answer": "Washington, D.C.",
+      "alt": [
+        "Washington DC"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Country whose flag features an eagle holding a snake on a cactus.",
+      "answer": "Mexico"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Country at the southern end of the Arabian Peninsula.",
+      "answer": "Yemen"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Indian Ocean archipelago that is a semi-autonomous region of Tanzania.",
+      "answer": "Zanzibar"
+    }
+  ]
+}
