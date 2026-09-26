@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-28",
-    "game_no": 209,
-    "answers": [
-      "arquitectura",
-      "baraja",
-      "coreografía",
-      "danza",
-      "estadio",
-      "festival",
-      "galería",
-      "hockey",
-      "ilustración",
-      "jurado",
-      "lectura",
-      "mural",
-      "nave",
-      "peña",
-      "octavos",
-      "pintura",
-      "quiosco",
-      "rondalla",
-      "sainete",
-      "torneo",
-      "utopía",
-      "videoclip",
-      "expresión",
-      "yincana",
-      "zaguán"
-    ]
-  },
-  {
     "date": "2026-07-29",
     "game_no": 210,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xenón",
       "yak",
       "zumo"
+    ]
+  },
+  {
+    "date": "2026-09-26",
+    "game_no": 269,
+    "answers": [
+      "antagonista",
+      "banda sonora",
+      "caloría",
+      "densidad",
+      "epopeya",
+      "fotograma",
+      "gravedad",
+      "hornacina",
+      "invertebrado",
+      "jamón",
+      "lisina",
+      "melodrama",
+      "nanómetro",
+      "ñandutí",
+      "orbital",
+      "palomitas",
+      "quesadilla",
+      "rodaje",
+      "sinapsis",
+      "trama",
+      "umami",
+      "villano",
+      "exoplaneta",
+      "yeso",
+      "zapato"
     ]
   }
 ]

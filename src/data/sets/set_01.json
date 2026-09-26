@@ -1,156 +1,156 @@
 {
   "id": "set_01",
-  "title": "Pasalacabra 2026-09-25 · No. 268",
+  "title": "Pasalacabra 2026-09-26 · No. 269",
   "questions": [
     {
       "letter": "A",
-      "topic": "culturageneral",
-      "question": "Empieza por A: Virtud que consiste en ayudar a los demás de forma desinteresada.",
-      "answer": "altruismo"
+      "topic": "cine",
+      "question": "Empieza por A: Personaje que se opone al protagonista en una película.",
+      "answer": "antagonista"
     },
     {
       "letter": "B",
-      "topic": "deporte",
-      "question": "Empieza por B: Vehículo de dos ruedas sin motor usado en ciclismo.",
-      "answer": "bicicleta"
+      "topic": "cine",
+      "question": "Empieza por B: Conjunto de músicas y sonidos compuestos o seleccionados para acompañar una película.",
+      "answer": "banda sonora"
     },
     {
       "letter": "C",
-      "topic": "folklore",
-      "question": "Empieza por C: Muñeco de fiesta popular con gran cabeza que acompaña a los gigantes.",
-      "answer": "cabezudo"
+      "topic": "ciencia",
+      "question": "Empieza por C: Unidad de energía que mide la cantidad de calor.",
+      "answer": "caloría"
     },
     {
       "letter": "D",
-      "topic": "culturageneral",
-      "question": "Empieza por D: Unión de dos vocales en una misma sílaba.",
-      "answer": "diptongo"
+      "topic": "ciencia",
+      "question": "Empieza por D: Magnitud que relaciona la masa de un cuerpo con su volumen.",
+      "answer": "densidad"
     },
     {
       "letter": "E",
-      "topic": "deporte",
-      "question": "Empieza por E: Resultado en el que ninguno de los dos equipos vence.",
-      "answer": "empate"
+      "topic": "culturageneral",
+      "question": "Empieza por E: Poema narrativo extenso que relata hazañas heroicas.",
+      "answer": "epopeya"
     },
     {
       "letter": "F",
-      "topic": "folklore",
-      "question": "Empieza por F: Cante y baile andaluz declarado Patrimonio Cultural Inmaterial.",
-      "answer": "flamenco"
+      "topic": "cine",
+      "question": "Empieza por F: Cada una de las imágenes fijas que componen una película.",
+      "answer": "fotograma"
     },
     {
       "letter": "G",
-      "topic": "culturageneral",
-      "question": "Empieza por G: Luchador armado que combatía en espectáculos romanos.",
-      "answer": "gladiador"
+      "topic": "ciencia",
+      "question": "Empieza por G: Fuerza de atracción que ejerce la masa sobre los cuerpos.",
+      "answer": "gravedad"
     },
     {
       "letter": "H",
-      "topic": "deporte",
-      "question": "Empieza por H: Pista o recinto para carreras de caballos.",
-      "answer": "hipódromo"
+      "topic": "culturageneral",
+      "question": "Empieza por H: Hueco con arco en un muro para colocar una imagen o escultura en iglesias.",
+      "answer": "hornacina"
     },
     {
       "letter": "I",
-      "topic": "culturageneral",
-      "question": "Empieza por I: Reptil arborícola de América tropical con cresta dorsal y larga cola.",
-      "answer": "iguana"
+      "topic": "ciencia",
+      "question": "Empieza por I: Animal que carece de columna vertebral.",
+      "answer": "invertebrado"
     },
     {
       "letter": "J",
-      "topic": "deporte",
-      "question": "Empieza por J: Arte marcial y deporte olímpico de origen japonés basado en proyecciones y controles.",
-      "answer": "judo"
+      "topic": "culturageneral",
+      "question": "Empieza por J: Producto curado obtenido de la salazón y secado de la pierna del cerdo.",
+      "answer": "jamón"
     },
     {
       "letter": "L",
-      "topic": "folklore",
-      "question": "Empieza por L: Sorteo navideño español celebrado el 22 de diciembre.",
-      "answer": "Lotería de Navidad"
+      "topic": "ciencia",
+      "question": "Empieza por L: Aminoácido esencial cuyo código de tres letras es Lys.",
+      "answer": "lisina"
     },
     {
       "letter": "M",
-      "topic": "folklore",
-      "question": "Empieza por M: Prenda de encaje que cubre la cabeza y hombros, típica en ceremonias y fiestas españolas.",
-      "answer": "mantilla"
+      "topic": "cine",
+      "question": "Empieza por M: Género cinematográfico caracterizado por el énfasis en emociones intensas y conflictos sentimentales.",
+      "answer": "melodrama"
     },
     {
       "letter": "N",
-      "topic": "folklore",
-      "question": "Empieza por N: Festividad cristiana celebrada la víspera de Navidad.",
-      "answer": "Nochebuena"
+      "topic": "ciencia",
+      "question": "Empieza por N: Unidad de longitud equivalente a una milmillonésima parte de un metro.",
+      "answer": "nanómetro"
     },
     {
       "letter": "Ñ",
       "topic": "culturageneral",
-      "question": "Contiene la Ñ: Profesional que construye muros y viviendas con ladrillo y argamasa.",
-      "answer": "albañil"
+      "question": "Empieza por Ñ: Encaje tradicional paraguayo confeccionado con aguja y hilos, de patrones radiales.",
+      "answer": "ñandutí"
     },
     {
       "letter": "O",
-      "topic": "folklore",
-      "question": "Empieza por O: Arte tradicional japonés de plegado de papel.",
-      "answer": "origami"
+      "topic": "ciencia",
+      "question": "Empieza por O: Región de probabilidad en torno al núcleo donde es más probable encontrar un electrón.",
+      "answer": "orbital"
     },
     {
       "letter": "P",
-      "topic": "deporte",
-      "question": "Empieza por P: Lanzamiento desde los once metros para dirimir una falta dentro del área.",
-      "answer": "penalti"
+      "topic": "cine",
+      "question": "Empieza por P: Granos de maíz inflados que se comen habitualmente en el cine.",
+      "answer": "palomitas"
     },
     {
       "letter": "Q",
       "topic": "culturageneral",
-      "question": "Empieza por Q: Monstruo mitológico con cabeza de león, cuerpo de cabra y cola de serpiente.",
-      "answer": "quimera"
+      "question": "Empieza por Q: Tortilla mexicana rellena, tradicionalmente de queso.",
+      "answer": "quesadilla"
     },
     {
       "letter": "R",
-      "topic": "folklore",
-      "question": "Empieza por R: Colección de antiguas baladas narrativas en lengua castellana.",
-      "answer": "romancero"
+      "topic": "cine",
+      "question": "Empieza por R: Proceso de filmación de una película.",
+      "answer": "rodaje"
     },
     {
       "letter": "S",
-      "topic": "deporte",
-      "question": "Empieza por S: Actividad física que consiste en caminar por rutas naturales señalizadas.",
-      "answer": "senderismo"
+      "topic": "ciencia",
+      "question": "Empieza por S: Conexión funcional entre dos neuronas.",
+      "answer": "sinapsis"
     },
     {
       "letter": "T",
-      "topic": "folklore",
-      "question": "Empieza por T: Persona que lidia toros en la plaza.",
-      "answer": "torero"
+      "topic": "cine",
+      "question": "Empieza por T: Conjunto de acontecimientos que estructuran la historia de una película.",
+      "answer": "trama"
     },
     {
       "letter": "U",
-      "topic": "deporte",
-      "question": "Empieza por U: Carrera pedestre de distancia superior a 42 km.",
-      "answer": "ultramaratón"
+      "topic": "culturageneral",
+      "question": "Empieza por U: Sabor básico asociado a caldos, quesos curados y glutamato.",
+      "answer": "umami"
     },
     {
       "letter": "V",
-      "topic": "deporte",
-      "question": "Empieza por V: Deporte en el que dos equipos separados por una red golpean un balón con las manos.",
-      "answer": "voleibol"
+      "topic": "cine",
+      "question": "Empieza por V: Personaje malvado u opositor principal en un relato audiovisual.",
+      "answer": "villano"
     },
     {
       "letter": "X",
-      "topic": "culturageneral",
-      "question": "Empieza por X: Gas noble utilizado en lámparas de destello y faros de automóvil.",
-      "answer": "xenón"
+      "topic": "ciencia",
+      "question": "Contiene la X: Planeta que orbita una estrella distinta del Sol.",
+      "answer": "exoplaneta"
     },
     {
       "letter": "Y",
       "topic": "culturageneral",
-      "question": "Empieza por Y: Bóvido de gran tamaño originario del Tíbet, domesticado para carga.",
-      "answer": "yak"
+      "question": "Empieza por Y: Sulfato de calcio hidratado usado en escayola y moldes.",
+      "answer": "yeso"
     },
     {
       "letter": "Z",
       "topic": "culturageneral",
-      "question": "Empieza por Z: Líquido extraído de frutas al exprimirlas.",
-      "answer": "zumo"
+      "question": "Empieza por Z: Calzado que cubre el pie parcialmente y se ata o ajusta.",
+      "answer": "zapato"
     }
   ]
 }
