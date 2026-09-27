@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-07-30",
-    "answers": [
-      "antibody",
-      "biopsy",
-      "captcha",
-      "diode",
-      "epidermis",
-      "fiber optics",
-      "genome",
-      "hormone",
-      "iris",
-      "jejunum",
-      "kernel",
-      "lactase",
-      "malware",
-      "nucleotide",
-      "ovary",
-      "phishing",
-      "quinine",
-      "RNA",
-      "synapse",
-      "tofu",
-      "uterus",
-      "villus",
-      "wheat",
-      "oxidation",
-      "yakisoba",
-      "zygote"
-    ]
-  },
-  {
     "date": "2026-07-31",
     "answers": [
       "Andromeda",
@@ -1857,6 +1826,37 @@
       "Mexico",
       "Yemen",
       "Zanzibar"
+    ]
+  },
+  {
+    "date": "2026-09-28",
+    "answers": [
+      "Arancini",
+      "Brie",
+      "Cannoli",
+      "Die Hard",
+      "Eclair",
+      "Fondue",
+      "Gnocchi",
+      "Halloween",
+      "Idli",
+      "Jalapeno",
+      "Kimchi",
+      "Lamington",
+      "Moussaka",
+      "Nori",
+      "Omelette",
+      "Pesto",
+      "Quesadilla",
+      "Ravioli",
+      "Sashimi",
+      "Tarte Tatin",
+      "Ugali",
+      "Vermeer",
+      "Wasabi",
+      "The Exorcist",
+      "Yuzu",
+      "Zeppole"
     ]
   }
 ]
