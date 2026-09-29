@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-01",
-    "answers": [
-      "Amelie",
-      "Bolognese",
-      "Cinderella",
-      "Dijon",
-      "Eton mess",
-      "Focaccia",
-      "Ghibli",
-      "Hollandaise",
-      "Inklings",
-      "Juliet",
-      "Korma",
-      "Lolita",
-      "Moby-Dick",
-      "Noir",
-      "Orecchiette",
-      "Parmesan",
-      "Quidditch",
-      "Ratatouille",
-      "Sourdough",
-      "Tagliatelle",
-      "Up",
-      "Vertigo",
-      "Wuthering Heights",
-      "lox",
-      "Yojimbo",
-      "Zootopia"
-    ]
-  },
-  {
     "date": "2026-08-02",
     "answers": [
       "Aztec",
@@ -1857,6 +1826,37 @@
       "Phoenix",
       "Yoruba",
       "Zumba"
+    ]
+  },
+  {
+    "date": "2026-09-30",
+    "answers": [
+      "avocado",
+      "baklava",
+      "civet",
+      "dingo",
+      "emu",
+      "feta",
+      "giraffe",
+      "haggis",
+      "ikebana",
+      "jollof",
+      "koala",
+      "lemur",
+      "marmalade",
+      "narwhal",
+      "onigiri",
+      "poutine",
+      "queso",
+      "raccoon",
+      "sushi",
+      "tapir",
+      "umami",
+      "venison",
+      "wonton",
+      "ox",
+      "yule",
+      "za'atar"
     ]
   }
 ]
