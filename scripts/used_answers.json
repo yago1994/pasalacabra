@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-01",
-    "game_no": 213,
-    "answers": [
-      "Andrómeda",
-      "Báltico",
-      "Cáucaso",
-      "Duna",
-      "Estalactita",
-      "Fumarola",
-      "Glaciar",
-      "Hidrógeno",
-      "Índico",
-      "Jónico",
-      "Laponia",
-      "Meandro",
-      "Namibia",
-      "cañón",
-      "Órbita",
-      "Permafrost",
-      "Quetzal",
-      "Rávena",
-      "Sima",
-      "Taiga",
-      "pluviómetro",
-      "Vesubio",
-      "Xochimilco",
-      "playa",
-      "Zócalo"
-    ]
-  },
-  {
     "date": "2026-08-02",
     "game_no": 214,
     "answers": [
@@ -1857,6 +1826,37 @@
       "extraterrestre",
       "Yorgos Lanthimos",
       "zamacueca"
+    ]
+  },
+  {
+    "date": "2026-09-30",
+    "game_no": 273,
+    "answers": [
+      "alpaca",
+      "bemol",
+      "clavícula",
+      "Dublín",
+      "escala",
+      "faringe",
+      "góspel",
+      "Himalaya",
+      "Ítaca",
+      "Jordania",
+      "legato",
+      "melanina",
+      "nefrona",
+      "Ñuble",
+      "obertura",
+      "Polonia",
+      "quinteto",
+      "retina",
+      "sonata",
+      "tónica",
+      "uracilo",
+      "Vanuatu",
+      "xilema",
+      "Yakarta",
+      "Azerbaiyán"
     ]
   }
 ]
