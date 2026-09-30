@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-02",
-    "answers": [
-      "Aztec",
-      "Basil",
-      "Cellulose",
-      "D-Day",
-      "Edison",
-      "Fahrenheit",
-      "Galileo",
-      "Helium",
-      "Iodine",
-      "Juniper",
-      "Ketchup",
-      "Linnaeus",
-      "Mendel",
-      "Nitrogen",
-      "Oppenheimer",
-      "Penicillin",
-      "Quipu",
-      "Radium",
-      "Sesame",
-      "Turing",
-      "Utopia",
-      "Vesuvius",
-      "Watson",
-      "Xenolith",
-      "Yuan",
-      "Zeppelin"
-    ]
-  },
-  {
     "date": "2026-08-03",
     "answers": [
       "amino acid",
@@ -1857,6 +1826,37 @@
       "ox",
       "yule",
       "za'atar"
+    ]
+  },
+  {
+    "date": "2026-10-01",
+    "answers": [
+      "Ada Lovelace",
+      "BASIC",
+      "cassette",
+      "DOS",
+      "Enigma",
+      "Fortran",
+      "Git",
+      "headphones",
+      "iPod",
+      "jukebox",
+      "Kraftwerk",
+      "lute",
+      "MIDI",
+      "Napster",
+      "oscillator",
+      "podcast",
+      "quicksort",
+      "router",
+      "synthesizer",
+      "tempo",
+      "USB",
+      "vocoder",
+      "Walkman",
+      "Unix",
+      "Y2K",
+      "Zoom"
     ]
   }
 ]
