@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-03",
-    "answers": [
-      "amino acid",
-      "broccoli",
-      "carbohydrate",
-      "diaphragm",
-      "estradiol",
-      "fructose",
-      "gallbladder",
-      "homeostasis",
-      "isotope",
-      "jelly",
-      "kidney",
-      "lactose",
-      "mammal",
-      "nectarine",
-      "oxytocin",
-      "protein",
-      "quantum",
-      "ribose",
-      "sucrose",
-      "trachea",
-      "urea",
-      "vacuole",
-      "water",
-      "axis",
-      "yttrium",
-      "zoology"
-    ]
-  },
-  {
     "date": "2026-08-04",
     "answers": [
       "Aquila",
@@ -1857,6 +1826,37 @@
       "Unix",
       "Y2K",
       "Zoom"
+    ]
+  },
+  {
+    "date": "2026-10-02",
+    "answers": [
+      "Andromeda",
+      "Brass",
+      "Conductor",
+      "Dwarf planet",
+      "Entropy",
+      "Frequency",
+      "Ganymede",
+      "Helium",
+      "Infrared",
+      "Juno",
+      "Kepler",
+      "Laser",
+      "Mercury",
+      "Nebula",
+      "Oort cloud",
+      "Pulsar",
+      "Equalizer",
+      "Rondo",
+      "Satellite",
+      "Telescope",
+      "Neptune",
+      "Venus",
+      "White noise",
+      "Exoplanet",
+      "Ytterbium",
+      "Zenith"
     ]
   }
 ]
