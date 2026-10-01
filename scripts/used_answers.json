@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-02",
-    "game_no": 214,
-    "answers": [
-      "alegoría",
-      "bodegón",
-      "cameo",
-      "dramaturgo",
-      "estreno",
-      "flauta",
-      "gótico",
-      "hip hop",
-      "interludio",
-      "japonismo",
-      "Laocoonte",
-      "marioneta",
-      "narrador",
-      "ñaque",
-      "Otelo",
-      "película",
-      "quinqui",
-      "refilmación",
-      "sátira",
-      "toma",
-      "ultraísmo",
-      "vanguardia",
-      "expresionismo",
-      "yidis",
-      "zoom"
-    ]
-  },
-  {
     "date": "2026-08-03",
     "game_no": 215,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xilema",
       "Yakarta",
       "Azerbaiyán"
+    ]
+  },
+  {
+    "date": "2026-10-01",
+    "game_no": 274,
+    "answers": [
+      "acuarela",
+      "bólido",
+      "cometa",
+      "dadaísmo",
+      "extra",
+      "fresco",
+      "Galileo",
+      "Hitchcock",
+      "impresionismo",
+      "James Bond",
+      "lente gravitacional",
+      "meteoro",
+      "neorrealismo",
+      "año luz",
+      "óleo",
+      "Plutón",
+      "querubín",
+      "Rashomon",
+      "surrealismo",
+      "travelling",
+      "Úrsidas",
+      "veladura",
+      "Xavier Dolan",
+      "Yojimbo",
+      "Zorba el griego"
     ]
   }
 ]
