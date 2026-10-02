@@ -1,156 +1,156 @@
 {
   "id": "set_01",
-  "title": "Pasalacabra 2026-10-01 · No. 274",
+  "title": "Pasalacabra 2026-10-02 · No. 275",
   "questions": [
     {
       "letter": "A",
-      "topic": "arte",
-      "question": "Empieza por A: Técnica pictórica que usa pigmentos diluidos en agua sobre papel.",
-      "answer": "acuarela"
+      "topic": "ciencia",
+      "question": "Empieza por A: Magnitud física que mide la variación de la velocidad por unidad de tiempo.",
+      "answer": "aceleración"
     },
     {
       "letter": "B",
-      "topic": "astronomia",
-      "question": "Empieza por B: Meteoro extremadamente brillante que puede dejar estela visible y fragmentarse.",
-      "answer": "bólido"
+      "topic": "biologia",
+      "question": "Empieza por B: Pigmento biliar de color verde derivado de la degradación del hemo.",
+      "answer": "biliverdina"
     },
     {
       "letter": "C",
-      "topic": "astronomia",
-      "question": "Empieza por C: Cuerpo helado que desarrolla coma y cola al acercarse al Sol.",
-      "answer": "cometa"
+      "topic": "cine",
+      "question": "Empieza por C: Aparición breve de una persona famosa en una película.",
+      "answer": "cameo"
     },
     {
       "letter": "D",
-      "topic": "arte",
-      "question": "Empieza por D: Movimiento artístico de vanguardia, cuyo nombre termina en -ísmo, surgido en Zúrich durante la Primera Guerra Mundial.",
-      "answer": "dadaísmo"
+      "topic": "ciencia",
+      "question": "Empieza por D: Teoría que propone el desplazamiento de los continentes sobre la litosfera.",
+      "answer": "deriva continental"
     },
     {
       "letter": "E",
-      "topic": "cine",
-      "question": "Empieza por E: Figurante sin diálogo que aparece en segundo plano en una película.",
-      "answer": "extra"
+      "topic": "biologia",
+      "question": "Empieza por E: Proceso celular que expulsa al exterior el contenido de vesículas.",
+      "answer": "exocitosis"
     },
     {
       "letter": "F",
-      "topic": "arte",
-      "question": "Empieza por F: Pintura mural realizada sobre enlucido húmedo para fijar los pigmentos.",
-      "answer": "fresco"
+      "topic": "ciencia",
+      "question": "Empieza por F: Interacción capaz de modificar el estado de movimiento de un cuerpo.",
+      "answer": "fuerza"
     },
     {
       "letter": "G",
-      "topic": "astronomia",
-      "question": "Empieza por G: Astrónomo italiano que defendió el modelo heliocéntrico y perfeccionó el telescopio.",
-      "answer": "Galileo"
+      "topic": "biologia",
+      "question": "Empieza por G: Polisacárido de reserva formado por unidades de glucosa en animales.",
+      "answer": "glucógeno"
     },
     {
       "letter": "H",
-      "topic": "cine",
-      "question": "Empieza por H: Director británico apodado el Maestro del Suspense.",
-      "answer": "Hitchcock"
+      "topic": "ciencia",
+      "question": "Empieza por H: Unidad del SI que mide la frecuencia.",
+      "answer": "hercio"
     },
     {
       "letter": "I",
-      "topic": "arte",
-      "question": "Empieza por I: Movimiento pictórico del siglo XIX que privilegia la luz y la pincelada suelta.",
-      "answer": "impresionismo"
+      "topic": "biologia",
+      "question": "Empieza por I: Parte del ojo que regula el diámetro de la pupila y da color.",
+      "answer": "iris"
     },
     {
       "letter": "J",
       "topic": "cine",
-      "question": "Empieza por J: Agente secreto 007 de una saga cinematográfica británica.",
-      "answer": "James Bond"
+      "question": "Empieza por J: Género cinematográfico japonés ambientado en épocas de samuráis.",
+      "answer": "jidaigeki"
     },
     {
       "letter": "L",
-      "topic": "astronomia",
-      "question": "Empieza por L: Efecto en el que una gran masa curva la luz de objetos de fondo, como si fuera una óptica cósmica.",
-      "answer": "lente gravitacional"
+      "topic": "ciencia",
+      "question": "Empieza por L: Distancia entre dos crestas sucesivas de una onda.",
+      "answer": "longitud de onda"
     },
     {
       "letter": "M",
-      "topic": "astronomia",
-      "question": "Empieza por M: Rastro luminoso producido cuando una partícula del espacio entra y se desintegra en la atmósfera.",
-      "answer": "meteoro"
+      "topic": "ciencia",
+      "question": "Empieza por M: Rama de la física que estudia el movimiento y las fuerzas.",
+      "answer": "mecánica"
     },
     {
       "letter": "N",
       "topic": "cine",
-      "question": "Empieza por N: Corriente cinematográfica italiana de posguerra centrada en historias cotidianas y rodaje en exteriores.",
-      "answer": "neorrealismo"
+      "question": "Empieza por N: Clásico del cine mudo alemán de 1922 dirigido por F. W. Murnau.",
+      "answer": "Nosferatu"
     },
     {
       "letter": "Ñ",
-      "topic": "astronomia",
-      "question": "Contiene la Ñ: Unidad de distancia usada en astronomía equivalente al recorrido de la radiación visible en 365 días.",
-      "answer": "año luz"
+      "topic": "cine",
+      "question": "Contiene la Ñ: Thriller de ciencia ficción de 2002 dirigido por M. Night Shyamalan.",
+      "answer": "Señales"
     },
     {
       "letter": "O",
-      "topic": "arte",
-      "question": "Empieza por O: Técnica pictórica que usa pigmentos mezclados con aceites secantes.",
-      "answer": "óleo"
+      "topic": "cine",
+      "question": "Empieza por O: Director de Ciudadano Kane.",
+      "answer": "Orson Welles"
     },
     {
       "letter": "P",
-      "topic": "astronomia",
-      "question": "Empieza por P: Cuerpo clasificado como planeta enano del cinturón de Kuiper, descubierto en 1930.",
-      "answer": "Plutón"
+      "topic": "cine",
+      "question": "Empieza por P: Película cuya historia se sitúa cronológicamente antes de la obra original.",
+      "answer": "precuela"
     },
     {
       "letter": "Q",
-      "topic": "arte",
-      "question": "Empieza por Q: Figura angelical representada como niño alado en el arte cristiano.",
-      "answer": "querubín"
+      "topic": "biologia",
+      "question": "Empieza por Q: Proteína estructural principal de cabello y uñas.",
+      "answer": "queratina"
     },
     {
       "letter": "R",
       "topic": "cine",
-      "question": "Empieza por R: Película de Kurosawa célebre por narrar un mismo suceso desde varias perspectivas.",
-      "answer": "Rashomon"
+      "question": "Empieza por R: Cineasta británico responsable de Blade Runner y Gladiator.",
+      "answer": "Ridley Scott"
     },
     {
       "letter": "S",
-      "topic": "arte",
-      "question": "Empieza por S: Movimiento artístico que explora lo onírico y el subconsciente, asociado a Dalí y Breton.",
-      "answer": "surrealismo"
+      "topic": "biologia",
+      "question": "Empieza por S: Neurotransmisor relacionado con el estado de ánimo y el sueño.",
+      "answer": "serotonina"
     },
     {
       "letter": "T",
-      "topic": "cine",
-      "question": "Empieza por T: Desplazamiento de la cámara sobre rieles o estabilizadores.",
-      "answer": "travelling"
+      "topic": "ciencia",
+      "question": "Empieza por T: Instrumento utilizado para medir la temperatura.",
+      "answer": "termómetro"
     },
     {
       "letter": "U",
-      "topic": "astronomia",
-      "question": "Empieza por U: Lluvia de meteoros que radia en diciembre cerca de la Osa Menor.",
-      "answer": "Úrsidas"
+      "topic": "biologia",
+      "question": "Empieza por U: Órgano del aparato reproductor femenino donde se implanta el embrión.",
+      "answer": "útero"
     },
     {
       "letter": "V",
-      "topic": "arte",
-      "question": "Empieza por V: Recurso pictórico de capas finas y transparentes para modular el color.",
-      "answer": "veladura"
+      "topic": "cine",
+      "question": "Empieza por V: Película de Alfred Hitchcock de 1958 protagonizada por James Stewart y Kim Novak.",
+      "answer": "Vértigo"
     },
     {
       "letter": "X",
-      "topic": "cine",
-      "question": "Empieza por X: Director canadiense de Mommy y Laurence Anyways.",
-      "answer": "Xavier Dolan"
+      "topic": "biologia",
+      "question": "Contiene la X: Región del cuerpo entre el cuello y el abdomen en vertebrados.",
+      "answer": "tórax"
     },
     {
       "letter": "Y",
-      "topic": "cine",
-      "question": "Empieza por Y: Película de Akira Kurosawa en la que un ronin enfrenta a dos clanes rivales.",
-      "answer": "Yojimbo"
+      "topic": "ciencia",
+      "question": "Contiene la Y: Estudio controlado con participantes humanos para evaluar la eficacia de un tratamiento.",
+      "answer": "ensayo clínico"
     },
     {
       "letter": "Z",
-      "topic": "cine",
-      "question": "Empieza por Z: Película de 1964 protagonizada por Anthony Quinn, basada en una novela de Kazantzakis.",
-      "answer": "Zorba el griego"
+      "topic": "biologia",
+      "question": "Empieza por Z: Ave paseriforme de canto melodioso frecuente en Europa y el Magreb.",
+      "answer": "zorzal"
     }
   ]
 }
