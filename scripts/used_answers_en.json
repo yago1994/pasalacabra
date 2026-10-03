@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-05",
-    "answers": [
-      "Athens",
-      "Beowulf",
-      "Chile",
-      "Denmark",
-      "Eurydice",
-      "France",
-      "Gibraltar",
-      "Hades",
-      "Icarus",
-      "Jericho",
-      "Kyiv",
-      "Limerick",
-      "Mordor",
-      "Narnia",
-      "Odyssey",
-      "Peru",
-      "Quetzalcoatl",
-      "Riyadh",
-      "Seine",
-      "Timbuktu",
-      "Ural Mountains",
-      "Valhalla",
-      "Westeros",
-      "Alexandria",
-      "Yorkshire",
-      "Zeus"
-    ]
-  },
-  {
     "date": "2026-08-06",
     "answers": [
       "Aquarius",
@@ -1857,6 +1826,37 @@
       "Axiom",
       "Yeti",
       "Zemeckis"
+    ]
+  },
+  {
+    "date": "2026-10-04",
+    "answers": [
+      "agar",
+      "bunsen burner",
+      "cellulose",
+      "dashi",
+      "emulsion",
+      "fermentation",
+      "gelato",
+      "henna",
+      "icing",
+      "jaggery",
+      "ketchup",
+      "lycopene",
+      "mural",
+      "niacin",
+      "oxidation",
+      "pastel",
+      "quinine",
+      "roux",
+      "synapse",
+      "tahini",
+      "urea",
+      "villi",
+      "whey",
+      "oxytocin",
+      "yam",
+      "zoology"
     ]
   }
 ]
