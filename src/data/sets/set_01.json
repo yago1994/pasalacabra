@@ -1,156 +1,156 @@
 {
   "id": "set_01",
-  "title": "Pasalacabra 2026-10-02 · No. 275",
+  "title": "Pasalacabra 2026-10-03 · No. 276",
   "questions": [
     {
       "letter": "A",
-      "topic": "ciencia",
-      "question": "Empieza por A: Magnitud física que mide la variación de la velocidad por unidad de tiempo.",
-      "answer": "aceleración"
+      "topic": "musica",
+      "question": "Empieza por A: Conjunto de reglas que rigen la combinación de acordes.",
+      "answer": "armonía"
     },
     {
       "letter": "B",
-      "topic": "biologia",
-      "question": "Empieza por B: Pigmento biliar de color verde derivado de la degradación del hemo.",
-      "answer": "biliverdina"
+      "topic": "arte",
+      "question": "Empieza por B: Estilo artístico europeo de los siglos XVII y XVIII, caracterizado por la exuberancia y el movimiento.",
+      "answer": "barroco"
     },
     {
       "letter": "C",
-      "topic": "cine",
-      "question": "Empieza por C: Aparición breve de una persona famosa en una película.",
-      "answer": "cameo"
+      "topic": "musica",
+      "question": "Empieza por C: Unidad métrica que organiza los pulsos en una obra musical.",
+      "answer": "compás"
     },
     {
       "letter": "D",
       "topic": "ciencia",
-      "question": "Empieza por D: Teoría que propone el desplazamiento de los continentes sobre la litosfera.",
-      "answer": "deriva continental"
+      "question": "Empieza por D: Desviación de las ondas al encontrarse con un obstáculo o una rendija.",
+      "answer": "difracción"
     },
     {
       "letter": "E",
-      "topic": "biologia",
-      "question": "Empieza por E: Proceso celular que expulsa al exterior el contenido de vesículas.",
-      "answer": "exocitosis"
+      "topic": "ciencia",
+      "question": "Empieza por E: Ciencia que estudia las relaciones de los seres vivos con su entorno.",
+      "answer": "ecología"
     },
     {
       "letter": "F",
-      "topic": "ciencia",
-      "question": "Empieza por F: Interacción capaz de modificar el estado de movimiento de un cuerpo.",
-      "answer": "fuerza"
+      "topic": "musica",
+      "question": "Empieza por F: Pequeña flauta aguda utilizada en bandas y orquestas.",
+      "answer": "flautín"
     },
     {
       "letter": "G",
-      "topic": "biologia",
-      "question": "Empieza por G: Polisacárido de reserva formado por unidades de glucosa en animales.",
-      "answer": "glucógeno"
+      "topic": "arte",
+      "question": "Empieza por G: Técnica artística que imprime imágenes talladas sobre una plancha.",
+      "answer": "grabado"
     },
     {
       "letter": "H",
       "topic": "ciencia",
-      "question": "Empieza por H: Unidad del SI que mide la frecuencia.",
-      "answer": "hercio"
+      "question": "Empieza por H: Lugar donde vive una especie y reúne las condiciones para su supervivencia.",
+      "answer": "hábitat"
     },
     {
       "letter": "I",
-      "topic": "biologia",
-      "question": "Empieza por I: Parte del ojo que regula el diámetro de la pupila y da color.",
-      "answer": "iris"
+      "topic": "ciencia",
+      "question": "Empieza por I: Variante de un elemento químico con igual número de protones y distinto número de neutrones.",
+      "answer": "isótopo"
     },
     {
       "letter": "J",
-      "topic": "cine",
-      "question": "Empieza por J: Género cinematográfico japonés ambientado en épocas de samuráis.",
-      "answer": "jidaigeki"
+      "topic": "musica",
+      "question": "Empieza por J: Canción y baile popular del barroco español de carácter picaresco.",
+      "answer": "jácara"
     },
     {
       "letter": "L",
       "topic": "ciencia",
-      "question": "Empieza por L: Distancia entre dos crestas sucesivas de una onda.",
-      "answer": "longitud de onda"
+      "question": "Empieza por L: Molécula orgánica hidrofóbica que forma parte de las membranas celulares.",
+      "answer": "lípido"
     },
     {
       "letter": "M",
-      "topic": "ciencia",
-      "question": "Empieza por M: Rama de la física que estudia el movimiento y las fuerzas.",
-      "answer": "mecánica"
+      "topic": "musica",
+      "question": "Empieza por M: Sucesión organizada de alturas que forma una línea musical reconocible.",
+      "answer": "melodía"
     },
     {
       "letter": "N",
-      "topic": "cine",
-      "question": "Empieza por N: Clásico del cine mudo alemán de 1922 dirigido por F. W. Murnau.",
-      "answer": "Nosferatu"
+      "topic": "musica",
+      "question": "Empieza por N: Símbolo gráfico que representa una altura y duración del sonido.",
+      "answer": "nota"
     },
     {
       "letter": "Ñ",
-      "topic": "cine",
-      "question": "Contiene la Ñ: Thriller de ciencia ficción de 2002 dirigido por M. Night Shyamalan.",
-      "answer": "Señales"
+      "topic": "ciencia",
+      "question": "Contiene la Ñ: Accidente geográfico de paredes escarpadas excavado por un río.",
+      "answer": "cañón"
     },
     {
       "letter": "O",
-      "topic": "cine",
-      "question": "Empieza por O: Director de Ciudadano Kane.",
-      "answer": "Orson Welles"
+      "topic": "ciencia",
+      "question": "Empieza por O: Elemento químico esencial para la respiración celular, símbolo O.",
+      "answer": "oxígeno"
     },
     {
       "letter": "P",
-      "topic": "cine",
-      "question": "Empieza por P: Película cuya historia se sitúa cronológicamente antes de la obra original.",
-      "answer": "precuela"
+      "topic": "arte",
+      "question": "Empieza por P: Género pictórico que representa entornos naturales como montes o ríos.",
+      "answer": "paisaje"
     },
     {
       "letter": "Q",
-      "topic": "biologia",
-      "question": "Empieza por Q: Proteína estructural principal de cabello y uñas.",
-      "answer": "queratina"
+      "topic": "arte",
+      "question": "Empieza por Q: Sombrilla pequeña para protegerse del sol, típica en retratos dieciochescos.",
+      "answer": "quitasol"
     },
     {
       "letter": "R",
-      "topic": "cine",
-      "question": "Empieza por R: Cineasta británico responsable de Blade Runner y Gladiator.",
-      "answer": "Ridley Scott"
+      "topic": "arte",
+      "question": "Empieza por R: Técnica escultórica donde las figuras sobresalen de un plano.",
+      "answer": "relieve"
     },
     {
       "letter": "S",
-      "topic": "biologia",
-      "question": "Empieza por S: Neurotransmisor relacionado con el estado de ánimo y el sueño.",
-      "answer": "serotonina"
+      "topic": "musica",
+      "question": "Empieza por S: Desplazamiento del acento rítmico que crea tensión al anticipar o retrasar los tiempos fuertes.",
+      "answer": "síncopa"
     },
     {
       "letter": "T",
-      "topic": "ciencia",
-      "question": "Empieza por T: Instrumento utilizado para medir la temperatura.",
-      "answer": "termómetro"
+      "topic": "musica",
+      "question": "Empieza por T: Velocidad a la que se ejecuta una pieza musical.",
+      "answer": "tempo"
     },
     {
       "letter": "U",
-      "topic": "biologia",
-      "question": "Empieza por U: Órgano del aparato reproductor femenino donde se implanta el embrión.",
-      "answer": "útero"
+      "topic": "ciencia",
+      "question": "Empieza por U: Principal producto nitrogenado de excreción en humanos.",
+      "answer": "urea"
     },
     {
       "letter": "V",
-      "topic": "cine",
-      "question": "Empieza por V: Película de Alfred Hitchcock de 1958 protagonizada por James Stewart y Kim Novak.",
-      "answer": "Vértigo"
+      "topic": "arte",
+      "question": "Empieza por V: Género pictórico que usa objetos simbólicos para aludir a la fugacidad de la vida.",
+      "answer": "vanitas"
     },
     {
       "letter": "X",
-      "topic": "biologia",
-      "question": "Contiene la X: Región del cuerpo entre el cuello y el abdomen en vertebrados.",
-      "answer": "tórax"
+      "topic": "arte",
+      "question": "Contiene la X: Sensación táctil o visual de la superficie en una obra pictórica.",
+      "answer": "textura"
     },
     {
       "letter": "Y",
-      "topic": "ciencia",
-      "question": "Contiene la Y: Estudio controlado con participantes humanos para evaluar la eficacia de un tratamiento.",
-      "answer": "ensayo clínico"
+      "topic": "arte",
+      "question": "Contiene la Y: Texto breve en prosa que expone la opinión del autor sobre un tema.",
+      "answer": "ensayo"
     },
     {
       "letter": "Z",
-      "topic": "biologia",
-      "question": "Empieza por Z: Ave paseriforme de canto melodioso frecuente en Europa y el Magreb.",
-      "answer": "zorzal"
+      "topic": "arte",
+      "question": "Empieza por Z: Banda inferior de un muro que sirve de remate y protección.",
+      "answer": "zócalo"
     }
   ]
 }
