@@ -1,0 +1,200 @@
+{
+  "id": "set-2026-10-05",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Rocky minor body orbiting the Sun, mostly found between Mars and Jupiter.",
+      "answer": "asteroid"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Unit of digital information equal to eight bits.",
+      "answer": "byte"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "One of the 88 IAU-defined regions of the sky with a traditional name.",
+      "answer": "constellation"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Pilotless aerial vehicle commonly used for filming and surveying.",
+      "answer": "drone"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Wired networking standard for local area connections using frames and MAC addresses.",
+      "answer": "ethernet"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Monstrous wolf prophesied to slay Odin at Ragnarok in Norse myth.",
+      "answer": "fenrir",
+      "alt": [
+        "fenris"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Equatorial circular orbit where a satellite remains fixed over one longitude.",
+      "answer": "geostationary orbit",
+      "alt": [
+        "GEO"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Application-layer web protocol that by default uses TCP port 80.",
+      "answer": "HTTP",
+      "alt": [
+        "Hypertext Transfer Protocol"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Internet addressing standard using 128-bit addresses.",
+      "answer": "IPv6",
+      "alt": [
+        "Internet Protocol version 6"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Lightweight data format using key–value pairs, commonly used in web APIs.",
+      "answer": "JSON",
+      "alt": [
+        "JavaScript Object Notation"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Primary input device with keys used to type characters into a computer.",
+      "answer": "keyboard"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Delay between sending a request and receiving a response in a network.",
+      "answer": "latency",
+      "alt": [
+        "lag"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Small rocky or metallic object in space that becomes a meteor if it enters Earth's atmosphere.",
+      "answer": "meteoroid"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Two-input logic gate that outputs false only when both inputs are true.",
+      "answer": "NAND"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Authorization standard that lets apps access user data on another service without sharing passwords.",
+      "answer": "OAuth",
+      "alt": [
+        "OAuth 2.0"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Fraudulent attempt to obtain sensitive information by pretending to be a trustworthy entity online.",
+      "answer": "phishing"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Knotted cord recording system used by the Inca for accounting and communication.",
+      "answer": "quipu"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "CPU design philosophy emphasizing a small, optimized set of simple instructions.",
+      "answer": "RISC",
+      "alt": [
+        "Reduced Instruction Set Computing"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Cataclysmic stellar explosion marking the death of a massive star or a white dwarf in a binary.",
+      "answer": "supernova"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Type of malware that disguises itself as legitimate software to gain access.",
+      "answer": "trojan",
+      "alt": [
+        "trojan horse"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Standard that assigns code points to characters to support writing systems worldwide.",
+      "answer": "Unicode"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Technique that creates simulated computing environments so multiple OSs can run on one machine.",
+      "answer": "virtualization",
+      "alt": [
+        "virtualisation"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Protocol enabling full‑duplex communication between browser and server over a single TCP connection.",
+      "answer": "WebSocket",
+      "alt": [
+        "web socket"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Intermediary server that forwards client requests to other servers.",
+      "answer": "proxy",
+      "alt": [
+        "proxy server"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Human-readable data serialization format often used for configuration files.",
+      "answer": "YAML",
+      "alt": [
+        "YAML Ain't Markup Language"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Common lossless archive format using DEFLATE compression.",
+      "answer": "ZIP"
+    }
+  ]
+}
