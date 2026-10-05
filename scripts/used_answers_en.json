@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-07",
-    "answers": [
-      "alpaca",
-      "Bluetooth",
-      "chupacabra",
-      "dromedary",
-      "encryption",
-      "flamingo",
-      "griffin",
-      "hedgehog",
-      "ibis",
-      "jackalope",
-      "kraken",
-      "lemming",
-      "microchip",
-      "numbat",
-      "ostrich",
-      "pangolin",
-      "quail",
-      "raven",
-      "sasquatch",
-      "tarantula",
-      "unicorn",
-      "viper",
-      "werewolf",
-      "oxpecker",
-      "yabby",
-      "zander"
-    ]
-  },
-  {
     "date": "2026-08-08",
     "answers": [
       "Aeneid",
@@ -1857,6 +1826,37 @@
       "proxy",
       "YAML",
       "ZIP"
+    ]
+  },
+  {
+    "date": "2026-10-06",
+    "answers": [
+      "Apollo",
+      "Bauhaus",
+      "Copernicus",
+      "Dalai Lama",
+      "Edison",
+      "Fahrenheit",
+      "Galileo",
+      "Hagia Sophia",
+      "Icarus",
+      "Juneteenth",
+      "Kant",
+      "Linnaeus",
+      "Mendeleev",
+      "Nefertiti",
+      "Odyssey",
+      "Parthenon",
+      "Quetzalcoatl",
+      "Rutherford",
+      "Sumer",
+      "Taiga",
+      "Ur",
+      "Vesuvius",
+      "Wuthering Heights",
+      "pixel",
+      "Yale",
+      "Zeus"
     ]
   }
 ]
