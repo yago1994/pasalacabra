@@ -1,156 +1,156 @@
 {
   "id": "set_01",
-  "title": "Pasalacabra 2026-10-06 · No. 279",
+  "title": "Pasalacabra 2026-10-07 · No. 280",
   "questions": [
     {
       "letter": "A",
-      "topic": "astronomia",
-      "question": "Empieza por A: Punto de la órbita de un planeta en que está más lejos del Sol.",
-      "answer": "afelio"
+      "topic": "folklore",
+      "question": "Empieza por A: Reunión nocturna de brujería según la tradición popular vasco-navarra.",
+      "answer": "Aquelarre"
     },
     {
       "letter": "B",
-      "topic": "ciencia",
-      "question": "Empieza por B: Partícula elemental de espín entero en el modelo estándar.",
-      "answer": "bosón"
+      "topic": "folklore",
+      "question": "Empieza por B: Arco musical con calabaza resonadora que marca el ritmo de la capoeira.",
+      "answer": "Berimbau"
     },
     {
       "letter": "C",
-      "topic": "astronomia",
-      "question": "Empieza por C: Conjunto de estrellas oficialmente definido por la UAI que forma un patrón en el cielo.",
-      "answer": "constelación"
+      "topic": "ciencia",
+      "question": "Empieza por C: Ión con carga eléctrica positiva.",
+      "answer": "Catión"
     },
     {
       "letter": "D",
-      "topic": "ciencia",
-      "question": "Empieza por D: Máquina que convierte energía mecánica en electricidad continua mediante inducción.",
-      "answer": "dínamo"
+      "topic": "geografia",
+      "question": "Empieza por D: Depresión cerrada del relieve kárstico originada por disolución.",
+      "answer": "Dolina"
     },
     {
       "letter": "E",
       "topic": "ciencia",
-      "question": "Empieza por E: Sustancia que en disolución o fundida conduce la corriente eléctrica.",
-      "answer": "electrolito"
+      "question": "Empieza por E: Órgano floral masculino formado por filamento y antera.",
+      "answer": "Estambre"
     },
     {
       "letter": "F",
-      "topic": "astronomia",
-      "question": "Empieza por F: Estrella brillante de Piscis Austrinus famosa por su disco de escombros.",
-      "answer": "Fomalhaut"
+      "topic": "geografia",
+      "question": "Empieza por F: Estado insular de Oceanía cuya capital es Suva.",
+      "answer": "Fiyi"
     },
     {
       "letter": "G",
-      "topic": "ciencia",
-      "question": "Empieza por G: Bosón portador de la interacción fuerte en cromodinámica cuántica.",
-      "answer": "gluón"
+      "topic": "folklore",
+      "question": "Empieza por G: Jinete y campesino tradicional de la pampa rioplatense.",
+      "answer": "Gaucho"
     },
     {
       "letter": "H",
-      "topic": "astronomia",
-      "question": "Empieza por H: Constelación donde se encuentra el gran cúmulo globular M13.",
-      "answer": "Hércules"
+      "topic": "ciencia",
+      "question": "Empieza por H: Proposición susceptible de verificación que explica provisionalmente un fenómeno.",
+      "answer": "Hipótesis"
     },
     {
       "letter": "I",
-      "topic": "folklore",
-      "question": "Empieza por I: Deidad solar venerada en culturas andinas.",
-      "answer": "Inti"
+      "topic": "ciencia",
+      "question": "Empieza por I: Interrupción brusca del riego cerebral que provoca un déficit neurológico agudo.",
+      "answer": "Ictus"
     },
     {
       "letter": "J",
-      "topic": "astronomia",
-      "question": "Empieza por J: Sonda de la NASA lanzada en 2011 para orbitar Júpiter y estudiar su interior.",
-      "answer": "Juno"
+      "topic": "geografia",
+      "question": "Empieza por J: País caribeño cuya capital es Kingston.",
+      "answer": "Jamaica"
     },
     {
       "letter": "L",
       "topic": "ciencia",
-      "question": "Empieza por L: Capa rígida terrestre formada por la corteza y la parte superior del manto.",
-      "answer": "litósfera"
+      "question": "Empieza por L: Porción diferenciada de un órgano, como en el cerebro o el pulmón.",
+      "answer": "Lóbulo"
     },
     {
       "letter": "M",
-      "topic": "astronomia",
-      "question": "Empieza por M: Escala logarítmica que mide el brillo aparente o absoluto de los astros.",
-      "answer": "magnitud"
+      "topic": "ciencia",
+      "question": "Empieza por M: Conjunto de hifas que constituye el cuerpo vegetativo de un hongo.",
+      "answer": "Micelio"
     },
     {
       "letter": "N",
-      "topic": "ciencia",
-      "question": "Empieza por N: Unidad de fuerza del Sistema Internacional equivalente a kg·m/s².",
-      "answer": "newton"
+      "topic": "geografia",
+      "question": "Empieza por N: País más poblado de África, con capital Abuya.",
+      "answer": "Nigeria"
     },
     {
       "letter": "Ñ",
-      "topic": "folklore",
-      "question": "Contiene la Ñ: Juego popular que consiste en trepar por un palo engrasado para alcanzar un premio.",
-      "answer": "cucaña"
+      "topic": "geografia",
+      "question": "Contiene la Ñ: Parque nacional andaluz célebre por sus marismas y el lince ibérico.",
+      "answer": "Doñana"
     },
     {
       "letter": "O",
-      "topic": "astronomia",
-      "question": "Empieza por O: Evento en el que un cuerpo celeste tapa a otro visto desde la Tierra.",
-      "answer": "ocultación"
+      "topic": "folklore",
+      "question": "Empieza por O: Altar doméstico del Día de Muertos con fotos, flores y comida.",
+      "answer": "Ofrenda"
     },
     {
       "letter": "P",
-      "topic": "ciencia",
-      "question": "Empieza por P: Compuesto químico caracterizado por un enlace oxígeno-oxígeno.",
-      "answer": "peróxido"
+      "topic": "folklore",
+      "question": "Empieza por P: Instrumento de marco con sonajas que se agita o golpea con la mano.",
+      "answer": "Pandereta"
     },
     {
       "letter": "Q",
       "topic": "folklore",
-      "question": "Empieza por Q: Figuritas tradicionales guatemaltecas a las que se confían preocupaciones antes de dormir.",
-      "answer": "quitapenas"
+      "question": "Empieza por Q: Ritual gallego en el que se prende aguardiente mientras se recita un conjuro.",
+      "answer": "Queimada"
     },
     {
       "letter": "R",
-      "topic": "astronomia",
-      "question": "Empieza por R: Punto del cielo del que parecen proceder las lluvias de meteoros.",
-      "answer": "radiante"
+      "topic": "geografia",
+      "question": "Empieza por R: País africano de la región de los Grandes Lagos cuya capital es Kigali.",
+      "answer": "Ruanda"
     },
     {
       "letter": "S",
       "topic": "ciencia",
-      "question": "Empieza por S: Instrumento que registra los movimientos del suelo durante un terremoto.",
-      "answer": "sismógrafo"
+      "question": "Empieza por S: Sustancia que se disuelve en un medio para formar una disolución.",
+      "answer": "Soluto"
     },
     {
       "letter": "T",
-      "topic": "astronomia",
-      "question": "Empieza por T: Principal satélite de Neptuno, famoso por sus géiseres de nitrógeno.",
-      "answer": "Tritón"
+      "topic": "folklore",
+      "question": "Empieza por T: Instrumento de cuerda aguda, pariente de la guitarra, típico de Colombia.",
+      "answer": "Tiple"
     },
     {
       "letter": "U",
       "topic": "ciencia",
-      "question": "Empieza por U: Ondas mecánicas de más de 20 kHz usadas en diagnóstico y limpieza.",
-      "answer": "ultrasonidos"
+      "question": "Empieza por U: Pequeña prolongación carnosa que cuelga del borde posterior del paladar blando.",
+      "answer": "Úvula"
     },
     {
       "letter": "V",
-      "topic": "folklore",
-      "question": "Empieza por V: Religión de origen afrocaribeño conocida por sus rituales y muñecos.",
-      "answer": "vudú"
+      "topic": "geografia",
+      "question": "Empieza por V: Capital europea atravesada por el Danubio, célebre por su Ópera Estatal.",
+      "answer": "Viena"
     },
     {
       "letter": "X",
-      "topic": "ciencia",
-      "question": "Empieza por X: Fragmento de roca incorporado a un magma procedente de otra litología.",
-      "answer": "xenolito"
+      "topic": "geografia",
+      "question": "Empieza por X: Capital del estado mexicano de Veracruz, también llamada Jalapa.",
+      "answer": "Xalapa"
     },
     {
       "letter": "Y",
-      "topic": "folklore",
-      "question": "Empieza por Y: Criatura legendaria del Himalaya, también llamada abominable hombre de las nieves.",
-      "answer": "yeti"
+      "topic": "geografia",
+      "question": "Empieza por Y: Capital de Camerún.",
+      "answer": "Yaundé"
     },
     {
       "letter": "Z",
       "topic": "folklore",
-      "question": "Empieza por Z: Persona a la que se atribuye encontrar agua subterránea con varillas.",
-      "answer": "zahorí"
+      "question": "Empieza por Z: Cante y baile gitano originario del Albaicín granadino.",
+      "answer": "Zambra"
     }
   ]
 }
