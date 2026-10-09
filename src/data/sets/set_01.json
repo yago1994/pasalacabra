@@ -1,156 +1,156 @@
 {
   "id": "set_01",
-  "title": "Pasalacabra 2026-10-08 · No. 281",
+  "title": "Pasalacabra 2026-10-09 · No. 282",
   "questions": [
     {
       "letter": "A",
-      "topic": "culturageneral",
-      "question": "Empieza por A: Vaso sanguíneo principal que sale del corazón.",
-      "answer": "aorta"
+      "topic": "geografia",
+      "question": "Empieza por A: Pico más alto de los Pirineos.",
+      "answer": "Aneto"
     },
     {
       "letter": "B",
-      "topic": "musica",
-      "question": "Empieza por B: Instrumento grave de la familia de la guitarra.",
-      "answer": "bajo"
+      "topic": "geografia",
+      "question": "Empieza por B: Mar del norte de Polonia y al oeste de Rusia.",
+      "answer": "Báltico"
     },
     {
       "letter": "C",
-      "topic": "culturageneral",
-      "question": "Empieza por C: Arte de preparar y combinar alimentos.",
-      "answer": "cocina"
+      "topic": "astronomia",
+      "question": "Empieza por C: Estrella variable usada como patrón para medir distancias extragalácticas.",
+      "answer": "cefeida"
     },
     {
       "letter": "D",
-      "topic": "geografia",
-      "question": "Empieza por D: País caribeño cuya capital es Roseau.",
-      "answer": "Dominica"
+      "topic": "cine",
+      "question": "Empieza por D: Transición en la que una imagen se desvanece mientras surge la siguiente.",
+      "answer": "disolvencia"
     },
     {
       "letter": "E",
-      "topic": "musica",
-      "question": "Empieza por E: Parte de una canción que se repite tras cada estrofa.",
-      "answer": "estribillo"
+      "topic": "astronomia",
+      "question": "Empieza por E: Estrella pequeña y fría de la secuencia principal.",
+      "answer": "enana roja"
     },
     {
       "letter": "F",
-      "topic": "culturageneral",
-      "question": "Empieza por F: Breve relato con moraleja, a menudo protagonizado por animales.",
-      "answer": "fábula"
+      "topic": "cine",
+      "question": "Empieza por F: Accesorio óptico que modifica la luz que entra en la cámara.",
+      "answer": "filtro"
     },
     {
       "letter": "G",
-      "topic": "musica",
-      "question": "Empieza por G: Instrumento de cuerda de seis cuerdas usado en numerosos géneros.",
-      "answer": "guitarra"
+      "topic": "astronomia",
+      "question": "Empieza por G: Fase estelar en la que una estrella se expande tras agotar el hidrógeno del núcleo.",
+      "answer": "gigante roja"
     },
     {
       "letter": "H",
-      "topic": "geografia",
-      "question": "Empieza por H: País caribeño que comparte la isla La Española con República Dominicana.",
-      "answer": "Haití"
+      "topic": "astronomia",
+      "question": "Empieza por H: Explosión estelar aún más energética que una supernova.",
+      "answer": "hipernova"
     },
     {
       "letter": "I",
-      "topic": "geografia",
-      "question": "Empieza por I: País europeo cuya capital es Roma.",
-      "answer": "Italia"
+      "topic": "cine",
+      "question": "Empieza por I: Conjunto de luces dispuesto para modelar la escena en un rodaje.",
+      "answer": "iluminación"
     },
     {
       "letter": "J",
       "topic": "geografia",
-      "question": "Empieza por J: Estado mexicano cuya capital es Guadalajara.",
-      "answer": "Jalisco"
+      "question": "Empieza por J: Capital situada en la confluencia del Nilo Blanco y el Nilo Azul.",
+      "answer": "Jartum"
     },
     {
       "letter": "L",
-      "topic": "musica",
-      "question": "Empieza por L: Artesano que fabrica o repara instrumentos de cuerda (grafía adaptada al español).",
-      "answer": "lutier"
+      "topic": "cine",
+      "question": "Empieza por L: Elemento óptico de la cámara que enfoca la imagen sobre el sensor.",
+      "answer": "lente"
     },
     {
       "letter": "M",
-      "topic": "musica",
-      "question": "Empieza por M: Aparato que marca el pulso para estudiar el tempo.",
-      "answer": "metrónomo"
+      "topic": "astronomia",
+      "question": "Empieza por M: Fragmento de roca espacial que alcanza la superficie terrestre.",
+      "answer": "meteorito"
     },
     {
       "letter": "N",
-      "topic": "geografia",
-      "question": "Empieza por N: País europeo cuya capital es Oslo.",
-      "answer": "Noruega"
+      "topic": "cine",
+      "question": "Empieza por N: Soporte inflamable de película usado en la primera mitad del siglo XX.",
+      "answer": "nitrato"
     },
     {
       "letter": "Ñ",
-      "topic": "culturageneral",
-      "question": "Contiene la Ñ: Metal usado en latas y soldaduras, símbolo Sn.",
-      "answer": "estaño"
+      "topic": "geografia",
+      "question": "Contiene la Ñ: Roca elevada y escarpada aislada, habitual en litorales.",
+      "answer": "peñasco"
     },
     {
       "letter": "O",
-      "topic": "culturageneral",
-      "question": "Empieza por O: Trayectoria que describe un cuerpo al girar alrededor de otro por gravedad.",
-      "answer": "órbita"
+      "topic": "geografia",
+      "question": "Empieza por O: Gran río sudamericano que forma un extenso delta en Venezuela.",
+      "answer": "Orinoco"
     },
     {
       "letter": "P",
-      "topic": "musica",
-      "question": "Empieza por P: Instrumento de teclado de cuerdas percutidas mediante martillos.",
-      "answer": "piano"
+      "topic": "astronomia",
+      "question": "Empieza por P: Estrella de neutrones que emite radiación periódica en haces.",
+      "answer": "púlsar"
     },
     {
       "letter": "Q",
-      "topic": "culturageneral",
-      "question": "Empieza por Q: Puesto pequeño donde se venden periódicos u otros artículos en la calle.",
-      "answer": "quiosco"
+      "topic": "cine",
+      "question": "Empieza por Q: Prenda tradicional japonesa usada como vestuario en rodajes orientales.",
+      "answer": "quimono"
     },
     {
       "letter": "R",
-      "topic": "geografia",
-      "question": "Empieza por R: Capital de Marruecos.",
-      "answer": "Rabat"
+      "topic": "astronomia",
+      "question": "Empieza por R: Radiación electromagnética con longitud de onda menor que el ultravioleta y mayor que la de los gamma.",
+      "answer": "rayos X"
     },
     {
       "letter": "S",
-      "topic": "musica",
-      "question": "Empieza por S: Lectura y entonación de notas durante el aprendizaje musical.",
-      "answer": "solfeo"
+      "topic": "cine",
+      "question": "Empieza por S: Conjunto de diálogos, ambientes y efectos que se crean para una película.",
+      "answer": "sonido"
     },
     {
       "letter": "T",
-      "topic": "geografia",
-      "question": "Empieza por T: Río que atraviesa Londres.",
-      "answer": "Támesis"
+      "topic": "astronomia",
+      "question": "Empieza por T: Línea que separa la zona diurna de la nocturna en un astro.",
+      "answer": "terminador"
     },
     {
       "letter": "U",
       "topic": "geografia",
-      "question": "Empieza por U: Organización política y económica formada por varios países europeos.",
-      "answer": "Unión Europea"
+      "question": "Empieza por U: Cordillera que separa Europa de Asia.",
+      "answer": "Urales"
     },
     {
       "letter": "V",
-      "topic": "musica",
-      "question": "Empieza por V: Instrumento de cuerda algo mayor que el violín y de timbre más grave.",
-      "answer": "viola"
+      "topic": "geografia",
+      "question": "Empieza por V: Ciudad portuaria situada en la ría del mismo nombre, en Pontevedra.",
+      "answer": "Vigo"
     },
     {
       "letter": "X",
-      "topic": "geografia",
-      "question": "Contiene la X: Comunidad autónoma española con capital en Mérida.",
-      "answer": "Extremadura"
+      "topic": "cine",
+      "question": "Contiene la X: Lugares fuera del plató donde se rueda una película.",
+      "answer": "exteriores"
     },
     {
       "letter": "Y",
-      "topic": "culturageneral",
-      "question": "Empieza por Y: Arco de madera que se coloca a dos bueyes para unirlos al arado.",
-      "answer": "yugo"
+      "topic": "astronomia",
+      "question": "Empieza por Y: Localidad española que alberga el mayor radiotelescopio del país.",
+      "answer": "Yebes"
     },
     {
       "letter": "Z",
-      "topic": "musica",
-      "question": "Empieza por Z: Instrumento de fricción típico de Navidad en España.",
-      "answer": "zambomba"
+      "topic": "geografia",
+      "question": "Empieza por Z: Estado venezolano cuya capital es Maracaibo.",
+      "answer": "Zulia"
     }
   ]
 }
