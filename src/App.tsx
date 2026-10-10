@@ -3685,6 +3685,9 @@ export default function App() {
                 statusByLetter={statusByLetter}
                 recentlyCorrect={recentlyCorrectLetter}
                 currentIndex={currentIndex}
+                phase={phase}
+                gameOver={gameOver}
+                getAudioCtx={getAudioCtx}
               />
             </div>
 

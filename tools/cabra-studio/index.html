@@ -1,0 +1,311 @@
+<meta charset="utf-8">
+<title>Cabra Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a workbench. Left = the game screen with the goat and the game controls that drive it;
+   right = composer, then Library / JSON / Rig & format tabs. */
+:root {
+  --bg: #EDF0F6;
+  --surface: #FFFFFF;
+  --surface-2: #E2E7F1;
+  --ink: #182033;
+  --muted: #586276;
+  --line: #CBD3E2;
+  --accent: #2F6FE4;
+  --accent-wash: #DCE7FD;
+  --tan: #B9772F;
+  --tan-wash: #F6E7D3;
+  --ok: #1F8F57;
+  --ok-wash: #D8F1E4;
+  --bad: #C9353A;
+  --bad-wash: #FBE0E0;
+  --stage: #0B0F1A;
+  --font-display: "Baloo 2", ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D111B; --surface: #151B29; --surface-2: #1C2435; --ink: #E4E9F3; --muted: #97A1B6;
+    --line: #2A3349; --accent: #7EA6FF; --accent-wash: #1E2B4A; --tan: #E2A764; --tan-wash: #3A2A18;
+    --ok: #5FD39A; --ok-wash: #173426; --bad: #FF7B7F; --bad-wash: #3A1A1D; --stage: #070A12;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D111B; --surface: #151B29; --surface-2: #1C2435; --ink: #E4E9F3; --muted: #97A1B6;
+  --line: #2A3349; --accent: #7EA6FF; --accent-wash: #1E2B4A; --tan: #E2A764; --tan-wash: #3A2A18;
+  --ok: #5FD39A; --ok-wash: #173426; --bad: #FF7B7F; --bad-wash: #3A1A1D; --stage: #070A12;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--bg); color: var(--ink); }
+body { font-family: var(--font-body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1260px; margin: 0 auto; padding-inline: 20px; padding-block: 18px 40px; display: grid; gap: 18px; }
+@media (max-width: 500px) { .wrap { padding-inline: 16px; } }
+header.top { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.mark { width: 52px; height: 52px; flex: none; }
+.top h1 { font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1; margin: 0; letter-spacing: -0.01em; }
+.top p { margin: 4px 0 0; color: var(--muted); font-size: 14px; max-width: 70ch; }
+.top .spacer { flex: 1 1 auto; }
+.grid { display: grid; grid-template-columns: minmax(300px, 440px) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 920px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+
+.stage-col { display: grid; gap: 12px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); }
+@media (max-width: 920px) { .stage-col { position: static; } }
+.phone { width: min(100%, max(280px, calc((100dvh - 330px) * 0.72))); margin: 0 auto; border-radius: 40px; padding: 8px; background: #05070D; box-shadow: 0 18px 40px -18px rgba(5, 7, 13, .6); }
+.phone svg { display: block; width: 100%; height: auto; border-radius: 33px; background: var(--stage); touch-action: manipulation; }
+.readout { text-align: center; min-height: 44px; }
+.readout h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; margin: 0; line-height: 1.2; }
+.readout p { margin: 0; color: var(--muted); font-size: 13.5px; text-wrap: balance; }
+.panel-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; display: grid; gap: 10px; }
+.row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.grow { flex: 1 1 auto; min-width: 0; }
+.label { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+.time { font-family: var(--font-mono); font-size: 12.5px; font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 2px; background: var(--surface-2); }
+.seg button { border: 0; background: transparent; color: var(--muted); font: 700 13px var(--font-body); padding: 4px 11px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.14); }
+.btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 10px; padding: 7px 13px; font: 700 14px var(--font-body); cursor: pointer; white-space: nowrap; }
+.btn:hover:not(:disabled) { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.btn.ok { background: var(--ok-wash); border-color: transparent; color: var(--ok); }
+.btn.bad { background: var(--bad-wash); border-color: transparent; color: var(--bad); }
+.btn.goat { background: var(--tan-wash); border-color: transparent; color: var(--tan); }
+.btn.small { padding: 4px 10px; font-size: 13px; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.game-btns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.game-btns .btn { padding: 9px 6px; }
+.play { width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--accent); color: var(--surface); display: grid; place-items: center; cursor: pointer; flex: none; }
+.play svg { width: 16px; height: 16px; }
+input[type=range] { accent-color: var(--accent); width: 100%; }
+select, input[type=text], textarea { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 7px 10px; }
+textarea { width: 100%; resize: vertical; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.check { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; color: var(--muted); cursor: pointer; }
+.check input { accent-color: var(--accent); }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+.log { font-family: var(--font-mono); font-size: 12px; color: var(--muted); min-height: 18px; overflow-wrap: anywhere; }
+
+.panel { display: grid; gap: 16px; min-width: 0; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.card h3 { font-family: var(--font-display); font-weight: 800; font-size: 19px; margin: 0; line-height: 1.2; }
+.card .sub { margin: -6px 0 0; color: var(--muted); font-size: 13.5px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); border-radius: 999px; padding: 4px 11px; font: 13px var(--font-body); cursor: pointer; text-align: left; }
+.chip:hover { border-color: var(--accent); }
+.status { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--muted); min-height: 22px; }
+.pill { font: 700 11px var(--font-body); letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; background: var(--surface-2); color: var(--muted); flex: none; }
+.pill.busy { background: var(--tan-wash); color: var(--tan); }
+.pill.ok { background: var(--ok-wash); color: var(--ok); }
+.pill.warn { background: var(--bad-wash); color: var(--bad); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--tan); animation: pulse 1s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .25; } }
+.warnings { margin: 0; padding: 8px 12px 8px 28px; background: var(--bad-wash); color: var(--bad); border-radius: 10px; font-size: 13px; }
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin: -4px -16px 0; padding: 0 12px; overflow-x: auto; }
+.tabs button { border: 0; background: none; font: 700 14px var(--font-body); color: var(--muted); padding: 8px 10px 10px; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--tan); }
+.lib { display: grid; gap: 6px; }
+.lib-group { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; margin-top: 8px; }
+.scene-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px; align-items: center; padding: 8px 11px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); cursor: pointer; text-align: left; font: inherit; color: inherit; width: 100%; }
+.scene-row:hover { border-color: var(--accent); }
+.scene-row[aria-current="true"] { border-color: var(--tan); box-shadow: 0 0 0 1px var(--tan) inset; }
+.scene-row .nm { font-weight: 700; }
+.scene-row .ds { color: var(--muted); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.scene-row .meta { font-family: var(--font-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; gap: 8px; align-items: center; }
+.slot { font: 700 11px var(--font-body); padding: 1px 7px; border-radius: 999px; background: var(--accent-wash); color: var(--accent); }
+.empty { padding: 10px 12px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); font-size: 13.5px; }
+.code { font-family: var(--font-mono); font-size: 12.5px; line-height: 1.55; }
+pre.spec { margin: 0; white-space: pre-wrap; word-break: break-word; background: var(--surface-2); border-radius: 10px; padding: 12px; max-height: 62vh; overflow: auto; }
+.save-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.save-row input { flex: 1 1 180px; min-width: 0; }
+@media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <svg class="mark" id="markSvg" viewBox="-30 -54 64 62" aria-hidden="true"></svg>
+    <div>
+      <h1>Cabra Studio</h1>
+      <p>Play a round of Pasalacabra and watch the goat react, scrub through any of its scenes, or describe a new one for Claude to choreograph.</p>
+    </div>
+    <span class="spacer"></span>
+    <div class="row">
+      <div class="seg" role="group" aria-label="Bubble language" id="langSeg">
+        <button data-lang="es" aria-pressed="true">ES</button>
+        <button data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="btn small" id="soundBtn" aria-pressed="false">Sound off</button>
+    </div>
+  </header>
+
+  <div class="grid">
+    <section class="stage-col" aria-label="Preview">
+      <div class="phone">
+        <svg id="stage" viewBox="-45 -125 490 690" role="img" aria-label="The Pasalacabra ring with the goat on the current letter">
+          <defs>
+            <radialGradient id="cam" cx="45%" cy="38%" r="70%">
+              <stop offset="0" stop-color="#5B4A42"/>
+              <stop offset=".55" stop-color="#2C2A35"/>
+              <stop offset="1" stop-color="#12141E"/>
+            </radialGradient>
+            <radialGradient id="glow" cx="50%" cy="40%" r="60%">
+              <stop offset="0" stop-color="#1A2547"/>
+              <stop offset="1" stop-color="#0B0F1A"/>
+            </radialGradient>
+          </defs>
+          <rect x="-45" y="-125" width="490" height="690" fill="url(#glow)"/>
+          <text id="timer" x="200" y="-62" text-anchor="middle" fill="#fff" font-size="54" font-weight="900" font-family="system-ui, sans-serif" style="font-variant-numeric: tabular-nums">4:00</text>
+          <circle cx="200" cy="200" r="152" fill="url(#cam)"/>
+          <g id="ringBack"></g>
+          <g id="letters"></g>
+          <g id="ringFront"></g>
+          <g id="fakeControls" pointer-events="none">
+            <rect x="80" y="452" width="240" height="40" rx="20" fill="#fff" opacity=".12"/>
+            <text x="200" y="477" text-anchor="middle" fill="#fff" opacity=".55" font-size="15" font-weight="800" font-family="system-ui, sans-serif">Pasalacabra</text>
+            <rect x="80" y="502" width="114" height="36" rx="18" fill="#fff" opacity=".08"/>
+            <rect x="206" y="502" width="114" height="36" rx="18" fill="#fff" opacity=".08"/>
+          </g>
+        </svg>
+      </div>
+      <div class="readout" aria-live="polite">
+        <h2 id="nowName">—</h2>
+        <p id="nowDesc"></p>
+      </div>
+
+      <div class="panel-box">
+        <div class="row">
+          <div class="seg" role="group" aria-label="Mode" id="modeSeg">
+            <button data-mode="game" aria-pressed="true">Play the game</button>
+            <button data-mode="scene" aria-pressed="false">Scene player</button>
+          </div>
+        </div>
+
+        <div id="gamePane" class="panel" style="gap:10px">
+          <div class="game-btns">
+            <button class="btn primary" id="gStart">Empezar</button>
+            <button class="btn ok" id="gCorrect">✓ Correct</button>
+            <button class="btn bad" id="gWrong">✗ Wrong</button>
+            <button class="btn goat" id="gPasa">Pasalacabra</button>
+            <button class="btn" id="gEnd">End turn</button>
+            <button class="btn" id="gNew">New game</button>
+          </div>
+          <div class="row">
+            <button class="btn small" id="gAlmost">Fill all but one ✓</button>
+            <label class="check"><input type="checkbox" id="gMulti"> Multiplayer (✗ ends the turn)</label>
+          </div>
+          <p class="note">Tap a letter on the ring to send the goat there (1 apart hops, 2–4 climbs a mountain, 5+ leaps). Tap the goat to poke it. Timings match the app: ✓ moves on after “Sí”, ✗ after the spoken answer.</p>
+          <div class="log" id="gLog"></div>
+        </div>
+
+        <div id="scenePane" class="panel" hidden style="gap:10px">
+          <div class="row">
+            <button class="play" id="playBtn" aria-label="Pause"></button>
+            <input type="range" id="scrub" class="grow" min="0" max="2" step="0.01" value="0" aria-label="Scene time" style="flex-basis:140px">
+            <span class="time" id="timeLbl">0.00 / 2.00 s</span>
+          </div>
+          <div class="row">
+            <span class="label">Letters apart</span>
+            <input type="range" id="dist" class="grow" min="0" max="12" step="1" value="0" aria-label="Letters between start and end" style="flex-basis:120px">
+            <span class="time" id="distVal">0</span>
+          </div>
+          <div class="row">
+            <div class="seg" role="group" aria-label="Playback speed" id="speedSeg">
+              <button data-speed="0.25" aria-pressed="false">¼×</button>
+              <button data-speed="0.5" aria-pressed="false">½×</button>
+              <button data-speed="1" aria-pressed="true">1×</button>
+            </div>
+            <label class="check"><input type="checkbox" id="repeat" checked> Repeat</label>
+            <label class="check">Start at
+              <select id="startLetter" aria-label="Start letter"></select>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="card" id="composer">
+        <h3>Describe a scene</h3>
+        <p class="sub">Claude choreographs the goat, its props and particles. Ask for something new, or revise the scene in the player.</p>
+        <textarea id="prompt" rows="4" placeholder="On a correct answer the goat juggles three letters with its horns, then bows"></textarea>
+        <div class="chips" id="chips"></div>
+        <div class="row">
+          <div class="seg" role="group" aria-label="Mode" id="genModeSeg">
+            <button data-mode="new" aria-pressed="true">New scene</button>
+            <button data-mode="revise" aria-pressed="false">Revise current</button>
+          </div>
+          <select id="tier" aria-label="Model">
+            <option value="quick">Fast</option>
+            <option value="default" selected>Balanced</option>
+            <option value="complex">Best (slower)</option>
+          </select>
+          <span class="grow"></span>
+          <button class="btn" id="stopBtn" hidden>Stop</button>
+          <button class="btn primary" id="genBtn" disabled>Generate</button>
+        </div>
+        <div class="status" id="genStatus" aria-live="polite"><span class="pill">Ready</span><span>Balanced usually takes 20–60 seconds.</span></div>
+        <p class="note" id="noClaude" hidden>Generation is off here because this page can’t reach Claude. You can still play the game, scrub every scene and edit scenes in the JSON tab.</p>
+      </div>
+
+      <div class="card">
+        <div class="tabs" role="tablist">
+          <button role="tab" aria-selected="true" data-tab="lib">Library</button>
+          <button role="tab" aria-selected="false" data-tab="json">JSON</button>
+          <button role="tab" aria-selected="false" data-tab="spec">Rig &amp; format</button>
+        </div>
+
+        <div data-pane="lib" class="panel" style="gap:14px">
+          <div class="lib" id="saveBox" hidden>
+            <span class="label">Save the scene in the player</span>
+            <div class="save-row">
+              <input type="text" id="saveName" placeholder="Scene name" aria-label="Scene name">
+              <button class="btn primary" id="saveBtn">Save</button>
+            </div>
+            <span class="note" id="saveNote"></span>
+          </div>
+          <div class="lib">
+            <span class="label">Saved</span>
+            <div class="lib" id="savedList"><div class="empty">Saving needs the shared library, which isn’t available in this view.</div></div>
+          </div>
+          <div class="lib">
+            <span class="label">Drafts from this visit</span>
+            <div class="lib" id="draftList"><div class="empty">Scenes you generate appear here until you save them.</div></div>
+          </div>
+          <div class="lib">
+            <span class="label">In the game</span>
+            <div class="lib" id="appList"></div>
+          </div>
+        </div>
+
+        <div data-pane="json" class="panel" hidden style="gap:10px">
+          <textarea id="jsonBox" class="code" rows="22" spellcheck="false" aria-label="Scene JSON"></textarea>
+          <div class="row">
+            <button class="btn primary" id="applyBtn">Apply changes</button>
+            <button class="btn" id="copyBtn">Copy JSON</button>
+            <button class="btn" id="dlBtn" hidden>Download .json</button>
+            <span class="note" id="jsonNote"></span>
+          </div>
+          <div class="row">
+            <span class="label">Try it in the game as</span>
+            <select id="slotSel" aria-label="Game moment to use this scene for"></select>
+            <button class="btn small" id="slotBtn">Use</button>
+            <span class="note" id="slotNote"></span>
+          </div>
+          <ul class="warnings" id="warnList" hidden></ul>
+        </div>
+
+        <div data-pane="spec" class="panel" hidden style="gap:10px">
+          <p class="note">The exact brief Claude receives with every request. It is generated from the same code the game runs.</p>
+          <pre class="spec code" id="specText"></pre>
+          <div class="row"><button class="btn" id="copySpecBtn">Copy spec</button></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script type="module" src="./studio.ts"></script>
