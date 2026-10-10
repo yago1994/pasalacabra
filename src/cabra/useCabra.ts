@@ -37,7 +37,7 @@ export function useCabra({ backRef, frontRef, inputs, getAudioCtx, lang = "es" }
     motion?.addEventListener?.("change", onMotion);
     director.onSound = (name, opts) => {
       const ctx = audioRef.current?.();
-      if (ctx && ctx.state === "running") playSound(ctx, name, opts, langRef.current, 0.45);
+      if (ctx && ctx.state === "running") playSound(ctx, name, opts);
     };
     const onPoke = (e: Event) => {
       e.stopPropagation();

@@ -20,11 +20,10 @@ adding scenes, or wiring it to new game events.
 | `src/cabra/stage.ts` | Draws frames: goat, props, particle pool, two layers (under / over the letters) |
 | `src/cabra/scenes.ts` | **The scene library** (source of truth) and `SLOTS` (which scenes play for which moment) |
 | `src/cabra/director.ts` | State machine: game changes → queued actions, cross-fades, idle moments, sound gating |
-| `src/cabra/sounds.ts` | Procedural WebAudio bleats ("beee"/"baa") and effects; no audio files |
+| `src/cabra/sounds.ts` | Plays audio files by cue name (`SOUND_FILES`); unmapped cues are silent |
 | `src/cabra/spec.ts` | The brief Claude gets in the studio (generated from the real defaults) |
 | `src/cabra/useCabra.ts` | React hook: owns director + stage, runs the rAF loop outside React |
-| `src/cabra/still.ts`, `CabraIcon.tsx` | The goat as a still picture in named poses: icons, background goats, the share snapshot |
-| `src/cabra/party.ts`, `CabraParty.tsx` | End-of-game goat party: goats gallop, hop and flip across the screen over rising mountains |
+| `src/cabra/still.ts`, `CabraIcon.tsx` | The goat as a still picture in named poses: icons, background goats, end-of-game confetti, the share snapshot |
 | `src/components/LetterRing.tsx` | Mounts the two goat layers around the letters |
 | `tools/cabra-studio/` | Studio page (`index.html`, `studio.ts`), `build.mjs`, and a dev contact sheet |
 
@@ -78,9 +77,14 @@ Inputs from `LetterRing`: `n`, current `index`, per-letter `statuses`, `phase`, 
   values the evaluator uses for anything a scene doesn't animate (`Ctx.outfit`).
 - **Last 10 seconds** of a turn (`timeLeft` from the game): the rest loop becomes `antsy`
   (rapid hops, sweat, eyes on the clock) and idle moments stop.
-- Tap the goat → `poke` / `giggle`, with cowbell clanks (always audible: it's the player's own tap).
+- Tap the goat → `poke` / `giggle`, with a `cowbell` cue (always audible: it's the player's own tap).
+  Until there's a cowbell recording, `cowbell` maps to the game's bleat.
 - Any bubble saying `{baa}` ("¡Beee!") plays the game's real Pasalacabra bleat as it pops,
   except on the Pasalacabra hop, where the game already plays it.
+- **Sound files:** `sounds.ts` maps cue names to audio files in `SOUND_FILES`. Right now only
+  `pasalacabra` (the game's bleat) and `cowbell` (placeholder: also the bleat) have files; the other
+  cue names in scenes (munch, ding, whoosh…) are silent until a file is mapped. The same file never
+  starts twice within 0.5 s.
 - **Sound:** the game reads questions aloud and listens for answers, so moves and idle
   moments are silent, and while a turn is playing only ✓ / ✗ / Pasalacabra scenes may make
   sound. The app's own goat SFX still plays on Pasalacabra; the goat adds a whoosh. Sounds use
@@ -93,7 +97,7 @@ Inputs from `LetterRing`: `n`, current `index`, per-letter `statuses`, `phase`, 
   floating background goats (each in its own pose), the 🐐 in the end-of-ring message, and the
   goat in the share snapshot (rasterised once; falls back to the emoji if the browser would
   taint the canvas). Plain-text shares ("Pasala🐐") keep the emoji.
-- The end-of-game falling goats are replaced by `CabraParty`.
+- The end-of-game falling confetti goats are still pictures of the new goat in a few poses.
 
 ## Workflows
 

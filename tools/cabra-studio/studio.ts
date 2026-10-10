@@ -13,7 +13,6 @@ import { SPEC } from "../../src/cabra/spec";
 import { playSound } from "../../src/cabra/sounds";
 import { CabraStage, WORDS } from "../../src/cabra/stage";
 import { buildGoat, el, renderGoat } from "../../src/cabra/rig";
-import { GoatParty } from "../../src/cabra/party";
 
 declare global {
   interface Window {
@@ -37,7 +36,7 @@ let audio: AudioContext | null = null;
 let soundOn = false;
 function sound(name: string, opts: { pitch?: number; gain?: number } = {}) {
   if (!soundOn || !audio) return;
-  playSound(audio, name, opts, lang);
+  playSound(audio, name, opts);
 }
 $("soundBtn").onclick = () => {
   soundOn = !soundOn;
@@ -48,7 +47,7 @@ $("soundBtn").onclick = () => {
   void audio?.resume();
   $("soundBtn").textContent = soundOn ? "Sound on" : "Sound off";
   $("soundBtn").setAttribute("aria-pressed", String(soundOn));
-  if (soundOn) sound("beh", { pitch: 1.1 });
+  if (soundOn) sound("pasalacabra");
 };
 function syncLang() {
   document.querySelectorAll<HTMLButtonElement>("#langSeg button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
@@ -210,15 +209,6 @@ $("gLast10").onclick = () => {
   sim.timeLeft = Math.min(sim.timeLeft, 12);
   ensurePlaying();
   push();
-};
-$("gParty").onclick = () => {
-  const ov = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  ov.setAttribute("aria-hidden", "true");
-  ov.style.cssText = "position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:50";
-  document.body.appendChild(ov);
-  const party = new GoatParty(ov);
-  party.start(() => ov.remove());
-  setTimeout(() => party.end(), 7000);
 };
 $("gAlmost").onclick = () => {
   if (sim.gameOver) return;

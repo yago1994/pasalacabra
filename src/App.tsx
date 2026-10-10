@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import LetterRing from "./components/LetterRing";
 import CabraIcon from "./cabra/CabraIcon";
-import CabraParty from "./cabra/CabraParty";
+import { stillDataUrl } from "./cabra/still";
 import GameDetails, { type SetupPlayer } from "./components/GameDetails";
 import HomePage from "./components/HomePage";
 import {
@@ -304,7 +304,7 @@ export default function App() {
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [gameOverMessage, setGameOverMessage] = useState<string>("");
   const [isDailyGame, setIsDailyGame] = useState<boolean>(false);
-  const [goatParty, setGoatParty] = useState(false);
+  const [confettiGoats, setConfettiGoats] = useState<Array<{ id: number; left: number; delay: number; pose: string }>>([]);
 
   // Account + stats. Works signed out too: results then live on the device.
   const account = useAccount();
@@ -2091,14 +2091,28 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft, phase, capturePlayerSnapshot]);
 
-  // Goat party when the game ends: goats gallop, hop and flip across the screen.
+  // Confetti goats when game ends
   useEffect(() => {
     if (!gameOver) {
-      setGoatParty(false);
+      setConfettiGoats([]);
       return;
     }
-    setGoatParty(true);
-    const cleanup = setTimeout(() => setGoatParty(false), 12000);
+
+    // Create 100 confetti goats with random positions, poses and delays spread over 10 seconds
+    const poses = ["happy", "jump", "flip", "rear", "headbutt", "cool"];
+    const goats = Array.from({ length: 100 }, (_, i) => ({
+      id: Date.now() + i,
+      left: Math.random() * 100, // Random horizontal position (0-100%)
+      delay: Math.random() * 10, // Random delay spread over 10 seconds
+      pose: poses[i % poses.length],
+    }));
+    setConfettiGoats(goats);
+
+    // Clean up after animation completes (10s max delay + 3s animation)
+    const cleanup = setTimeout(() => {
+      setConfettiGoats([]);
+    }, 14000);
+
     return () => clearTimeout(cleanup);
   }, [gameOver]);
 
@@ -3282,8 +3296,20 @@ export default function App() {
         <span className="goat goat7"><CabraIcon pose="headbutt" /></span>
         <span className="goat goat8"><CabraIcon pose="stretch" /></span>
       </div>
-      {/* Goat party when the game ends */}
-      <CabraParty active={goatParty} />
+      {/* Confetti goats when game ends */}
+      {confettiGoats.map((goat) => (
+        <img
+          key={goat.id}
+          className="goatConfetti"
+          src={stillDataUrl(goat.pose)}
+          alt=""
+          style={{
+            left: `${goat.left}%`,
+            animationDelay: `${goat.delay}s`,
+          }}
+          aria-hidden="true"
+        />
+      ))}
 
       {/* Snapshot slideshow overlay when game ends */}
       {slideshowActive && playerSnapshots.length > 0 && (() => {

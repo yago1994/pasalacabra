@@ -64,6 +64,17 @@ export function stillSvgString(pose = "happy") {
   return new XMLSerializer().serializeToString(svg);
 }
 
+const dataUrls = new Map<string, string>();
+/** A still goat as a data: URL, cached per pose (cheap enough for 100 falling goats). */
+export function stillDataUrl(pose = "happy") {
+  let u = dataUrls.get(pose);
+  if (!u) {
+    u = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stillSvgString(pose));
+    dataUrls.set(pose, u);
+  }
+  return u;
+}
+
 let snapshotImg: HTMLImageElement | null = null;
 let snapshotCanvas: HTMLCanvasElement | null = null;
 let snapshotOk = false;

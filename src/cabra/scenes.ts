@@ -525,7 +525,7 @@ const streak3: Scene = {
     stars("stars", 0.48),
     dust("land", "from", 0.82),
   ],
-  cues: [{ t: 0.08, sound: "ding", pitch: 1 }, { t: 0.84, sound: "cowbell" }],
+  cues: [{ t: 0.08, sound: "ding", pitch: 1 }],
 };
 
 const streak5: Scene = {
@@ -553,7 +553,7 @@ const streak5: Scene = {
     stars("stars", 0.94, { burst: 7, alt: 6 }),
     dust("land", "from", 0.94, { burst: 8 }),
   ],
-  cues: [{ t: 0.06, sound: "ding", pitch: 1.12 }, { t: 0.22, sound: "whoosh", gain: 0.5 }, { t: 0.96, sound: "cowbell" }, { t: 1.12, sound: "cowbell", pitch: 1.12, gain: 0.7 }],
+  cues: [{ t: 0.06, sound: "ding", pitch: 1.12 }, { t: 0.22, sound: "whoosh", gain: 0.5 }],
 };
 
 const streak9: Scene = {
@@ -586,7 +586,7 @@ const streak9: Scene = {
     { id: "confetti", type: "emitter", particle: "confetti", at: "goat", alt: 70, start: 0.3, end: 1.5, rate: 40, life: 1.2, speed: 34, spread: 220, gravity: 40 },
     dust("land", "from", 1.06, { burst: 10, speed: 30 }),
   ],
-  cues: [{ t: 0.05, sound: "ding" }, { t: 0.2, sound: "whoosh", gain: 0.6 }, { t: 0.62, sound: "ding", pitch: 1.5, gain: 0.6 }, { t: 1.08, sound: "cowbell" }, { t: 1.24, sound: "cowbell", pitch: 1.1 }, { t: 1.4, sound: "cowbell", pitch: 1.2 }],
+  cues: [{ t: 0.05, sound: "ding" }, { t: 0.2, sound: "whoosh", gain: 0.6 }, { t: 0.62, sound: "ding", pitch: 1.5, gain: 0.6 }],
 };
 
 const streakMega: Scene = {
@@ -753,7 +753,7 @@ const snack: Scene = {
 
 const poke: Scene = {
   name: "poke", group: "reaction", duration: 1.1,
-  description: "Tapped: the cowbell clanks, “¡Beee!” (the game's own bleat) and a quick spin.",
+  description: "Tapped: jumps with a “¡Beee!” (the game's own bleat) and a quick spin.",
   tracks: {
     "body.squash": [k(0, 1), k(0.08, 0.72), k(0.16, 1.2), k(0.3, 1), k(0.76, 1), k(0.8, 0.82), k(1.0, 1, "backOut")],
     "cabra.alt": [k(0, 0), k(0.12, 0), k(0.42, 26, "easeOut"), k(0.76, 0, "easeIn")],
@@ -765,13 +765,12 @@ const poke: Scene = {
     "b.grow": [k(0, 0), k(0.1, 1, "backOut"), k(0.82, 1), k(0.96, 0)],
   },
   props: [{ id: "b", type: "bubble", at: "from", alt: 66, text: "{baa}", grow: 0 }, dust("land", "from", 0.76)],
-  // the bell swings as it jumps: clank, clank… clank on landing
-  cues: [{ t: 0.05, sound: "cowbell" }, { t: 0.32, sound: "cowbell", pitch: 1.06, gain: 0.7 }, { t: 0.78, sound: "cowbell", pitch: 0.96 }],
+  cues: [{ t: 0.05, sound: "cowbell" }],
 };
 
 const giggle: Scene = {
   name: "giggle", group: "reaction", duration: 1.4,
-  description: "Tapped: wiggles, blushes, hearts, and the cowbell jangles.",
+  description: "Tapped: wiggles, blushes, hearts, and rings its cowbell.",
   tracks: {
     "eyes.happy": [k(0, 0), k(0.05, 1, "hold"), k(1.2, 0, "hold")],
     "face.blush": [k(0, 0), k(0.2, 1), k(1.4, 0)],
@@ -785,7 +784,7 @@ const giggle: Scene = {
     { target: "tail.wag", amp: 30, period: 0.12, from: 0.1, to: 1.2 },
   ],
   props: [{ id: "hearts", type: "emitter", particle: "heart", at: "goat", alt: 30, start: 0.1, end: 0.9, rate: 8, life: 1, speed: 20, spread: 90, gravity: -10, size: 1.1 }],
-  cues: [{ t: 0.08, sound: "cowbell" }, { t: 0.3, sound: "cowbell", pitch: 1.08, gain: 0.7 }, { t: 0.52, sound: "cowbell", pitch: 0.94, gain: 0.6 }, { t: 0.76, sound: "cowbell", pitch: 1.04, gain: 0.5 }],
+  cues: [{ t: 0.08, sound: "cowbell" }],
 };
 
 // In-game timing. The game never waits for the goat, so anything between two questions is

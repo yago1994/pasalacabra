@@ -75,8 +75,9 @@ emitter: particles. Static fields: "particle" (${PARTICLES.join(", ")}), "start"
 "dir" (degrees from the prop's up). Animatable: rate (per second), burst (if > 0, that many at
 "start" instead of a stream), life, speed, spread (degrees), gravity (negative floats up), size.
 
-SOUNDS (cues): ${SOUNDS.join(", ")}. baa = a full bleat, beh = short happy, meh = sad falling, munch =
-chewing, plus sound effects. The game reads questions aloud, so only event scenes (correct, wrong,
+SOUNDS (cues): ${SOUNDS.join(", ")}. Each name plays an audio file if one is mapped to it (for now
+only "pasalacabra", the game's bleat, and "cowbell"); the rest are silent placeholders. A bubble saying
+{baa} plays the bleat by itself, so don't add a cue for it. The game reads questions aloud, so only event scenes (correct, wrong,
 victory) should have sounds; moves and idle moments must be silent.
 
 STYLE: lively cartoon timing. Anticipate (squash and drop before a jump), stretch on take-off, tuck
