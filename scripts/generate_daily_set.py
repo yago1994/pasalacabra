@@ -3,7 +3,7 @@ import os
 import random
 import re
 import unicodedata
-from datetime import date
+from datetime import date, timedelta
 from typing import List
 
 from openai import OpenAI
@@ -38,7 +38,8 @@ TOPIC_SLUGS = {
 # Choose when "No. 1" starts (set this to your launch day)
 START_DATE = date(2026, 1, 1)
 
-DEFAULT_SET_PATH = os.getenv("SET_PATH", "src/data/sets/set_01.json")
+# One file per day, daily/es/YYYY-MM-DD.json, named after the day it is played.
+DEFAULT_SETS_DIR = os.getenv("SETS_DIR", "daily/es")
 MODEL = os.getenv("OPENAI_MODEL", "gpt-5")
 MAX_PASSES = 3  # generate -> AI validate/fix -> re-validate
 DEFAULT_BANK_PATH = os.getenv("BANK_PATH", "scripts/used_answers.json")
@@ -310,7 +311,12 @@ def ai_validate_or_fix(
     return json.loads(out)
 
 
+def set_path_for(day: date) -> str:
+    return os.path.join(DEFAULT_SETS_DIR, f"{day.isoformat()}.json")
+
+
 def write_set(path: str, obj: dict) -> None:
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(obj, f, ensure_ascii=False, indent=2)
         f.write("\n")
@@ -359,16 +365,9 @@ def update_answer_bank(
         f.write("\n")
 
 
-def main() -> None:
-    today_local = date.today()
+def generate_for(client: OpenAI, today_local: date) -> None:
     game_no = game_number_for_today(today_local)
     topics = random.sample(TOPICS, 3)
-
-    api_key = os.getenv("OPENAI_KEY") or os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        raise RuntimeError("Missing OPENAI_KEY or OPENAI_API_KEY in environment.")
-
-    client = OpenAI(api_key=api_key)
 
     bank = load_answer_bank(DEFAULT_BANK_PATH)
     excluded = get_excluded_answers(bank)
@@ -403,11 +402,44 @@ def main() -> None:
     if obj is None:
         raise RuntimeError(f"Failed to generate a valid set after {MAX_PASSES} passes: {last_err}")
 
-    write_set(DEFAULT_SET_PATH, obj)
+    # The model is asked for id "set_01" (what the prompts and validator check);
+    # the file on disk is named after its day.
+    obj["id"] = f"es-{today_local.isoformat()}"
+    path = set_path_for(today_local)
+    write_set(path, obj)
     update_answer_bank(DEFAULT_BANK_PATH, today_local, game_no, obj)
-    print(f"Wrote {DEFAULT_SET_PATH} with title: {obj.get('title')}")
+    print(f"Wrote {path} with title: {obj.get('title')}")
     print(f"Updated answer bank at {DEFAULT_BANK_PATH}")
     print(f"Topics used: {', '.join(topics)}")
+
+
+def days_to_generate() -> List[date]:
+    """Today and tomorrow, whichever have no set yet.
+
+    Sets are made a day ahead so the next game is already deployed when
+    midnight comes. Today is included so a failed run heals itself the next
+    time the job runs. TARGET_DATE=YYYY-MM-DD regenerates exactly that day.
+    """
+    override = os.getenv("TARGET_DATE")
+    if override:
+        return [date.fromisoformat(override)]
+    today = date.today()
+    return [d for d in (today, today + timedelta(days=1)) if not os.path.exists(set_path_for(d))]
+
+
+def main() -> None:
+    days = days_to_generate()
+    if not days:
+        print("Today's and tomorrow's sets already exist. Nothing to do.")
+        return
+
+    api_key = os.getenv("OPENAI_KEY") or os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("Missing OPENAI_KEY or OPENAI_API_KEY in environment.")
+
+    client = OpenAI(api_key=api_key)
+    for day in days:
+        generate_for(client, day)
 
 
 if __name__ == "__main__":

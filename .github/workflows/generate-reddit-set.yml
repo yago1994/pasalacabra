@@ -87,9 +87,10 @@ jobs:
       # approve raw.githubusercontent.com). Only the daily/ prefix is
       # synced — the IAM policy on the CI credentials is scoped to that
       # prefix too, so this step can't touch anything else in the bucket.
+      # daily/es holds the Spanish web game's sets, which Reddit doesn't use.
       - name: Sync daily sets to S3
         run: |
           aws s3 sync daily s3://pasalacabra-daily-sets/daily \
-            --exclude "*" --include "*.json" \
+            --exclude "*" --include "*.json" --exclude "es/*" \
             --content-type "application/json" \
             --only-show-errors

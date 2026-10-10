@@ -1,0 +1,182 @@
+{
+  "id": "set-2026-10-03",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Constellation symbolized by a ram.",
+      "answer": "Aries"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Red supergiant in Orion marking his right shoulder.",
+      "answer": "Betelgeuse"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "W-shaped constellation named for a vain queen.",
+      "answer": "Cassiopeia"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Bright star at the tail of Cygnus.",
+      "answer": "Deneb"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Moon of Jupiter with an icy surface hiding a global ocean.",
+      "answer": "Europa"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Italian director of 8½ and La Dolce Vita.",
+      "answer": "Fellini",
+      "alt": [
+        "Federico Fellini"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Arthurian challenger who survives beheading in the tale of Sir Gawain.",
+      "answer": "Green Knight"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Sentient computer antagonist in 2001: A Space Odyssey.",
+      "answer": "HAL 9000",
+      "alt": [
+        "HAL"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Archaeologist adventurer played by Harrison Ford.",
+      "answer": "Indiana Jones",
+      "alt": [
+        "Indy"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Order of Force users opposing the Sith in Star Wars.",
+      "answer": "Jedi"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Giant ape who scales the Empire State Building in a 1933 classic.",
+      "answer": "King Kong"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Norse trickster god and shape-shifter, father of Fenrir.",
+      "answer": "Loki"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Director of Spirited Away and My Neighbor Totoro.",
+      "answer": "Miyazaki",
+      "alt": [
+        "Hayao Miyazaki"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Director of Inception and Dunkirk.",
+      "answer": "Nolan",
+      "alt": [
+        "Christopher Nolan"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Prominent constellation featuring the Belt of three stars.",
+      "answer": "Orion"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "North Star near the end of the Little Dipper's handle.",
+      "answer": "Polaris"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Chinese mythic hooved creature associated with prosperity and serenity.",
+      "answer": "Qilin"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Blue supergiant marking Orion’s left foot.",
+      "answer": "Rigel"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "American filmmaker behind Taxi Driver and The Irishman.",
+      "answer": "Scorsese",
+      "alt": [
+        "Martin Scorsese"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Norse god who wields Mjölnir and controls thunder.",
+      "answer": "Thor"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Constellation known as the Great Bear.",
+      "answer": "Ursa Major"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Bright star in Lyra and one corner of the Summer Triangle.",
+      "answer": "Vega"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Cannibalistic spirit from Algonquian folklore linked to winter hunger.",
+      "answer": "Wendigo"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Luxury starliner that shelters humanity in WALL-E.",
+      "answer": "Axiom"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Legendary Himalayan creature also called the Abominable Snowman.",
+      "answer": "Yeti"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Director of Back to the Future and Forrest Gump.",
+      "answer": "Zemeckis",
+      "alt": [
+        "Robert Zemeckis"
+      ]
+    }
+  ]
+}

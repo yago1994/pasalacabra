@@ -1,0 +1,176 @@
+{
+  "id": "set-2026-10-09",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Operatic solo song.",
+      "answer": "aria"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Composer of the Fifth Symphony, born in Bonn.",
+      "answer": "Beethoven"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Technique using dramatic contrasts of light and shadow to model form.",
+      "answer": "chiaroscuro"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "West African goblet drum played with bare hands.",
+      "answer": "djembe",
+      "alt": [
+        "djembé"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "French term for an instrumental study piece designed to develop technique.",
+      "answer": "etude",
+      "alt": [
+        "étude"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Baroque contrapuntal form built on a subject with imitative entries at different pitch levels.",
+      "answer": "fugue"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Monophonic liturgical chant of the Roman rite named for a pope.",
+      "answer": "Gregorian chant"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Austrian composer nicknamed 'Father of the Symphony'.",
+      "answer": "Haydn"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Romantic-era title for short, introspective piano pieces favored by Brahms.",
+      "answer": "intermezzo"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Fast Spanish dance from Aragon traditionally accompanied by castanets.",
+      "answer": "jota"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Ashkenazi Jewish music tradition often heard at weddings.",
+      "answer": "klezmer"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Text of an opera or musical work for the stage.",
+      "answer": "libretto"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Artwork created from small pieces of stone, glass, or tile set into a surface.",
+      "answer": "mosaic"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Lyric piano piece evocative of night, popularized by Chopin.",
+      "answer": "nocturne"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Large-scale sacred work for chorus and orchestra performed without staging.",
+      "answer": "oratorio"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Virtuoso violinist-composer famed for the 24 Caprices.",
+      "answer": "Paganini"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Andean end-blown flute traditionally made of cane.",
+      "answer": "quena"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "18th-century decorative art style noted for ornate curves, shells, and pastel palettes.",
+      "answer": "rococo"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Large-scale composition for orchestra, typically in four movements, without a featured soloist.",
+      "answer": "symphony"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Sound quality that distinguishes one instrument or voice from another.",
+      "answer": "timbre"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Irish bagpipes powered by bellows strapped to the elbow.",
+      "answer": "uilleann pipes",
+      "alt": [
+        "uilleann pipe"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Performer with exceptional technical skill.",
+      "answer": "virtuoso"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Composer of the Ring Cycle.",
+      "answer": "Wagner"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Single-reed woodwind with a conical brass body, patented in 1846.",
+      "answer": "saxophone",
+      "alt": [
+        "sax"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Singing technique that rapidly alternates between chest voice and falsetto, common in the Alps.",
+      "answer": "yodeling",
+      "alt": [
+        "yodelling"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Fast Caribbean dance music genre from Guadeloupe and Martinique.",
+      "answer": "zouk"
+    }
+  ]
+}

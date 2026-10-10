@@ -1,0 +1,11 @@
+<meta charset="utf-8">
+<title>Cabra contact sheet</title>
+<style>
+  body { margin: 0; background: #0b0f1a; color: #fff; font: 12px system-ui; }
+  #grid { display: grid; grid-template-columns: repeat(var(--cols, 6), 1fr); gap: 4px; padding: 4px; }
+  .cell { position: relative; background: #141a2b; border-radius: 6px; overflow: hidden; }
+  .cell svg { display: block; width: 100%; height: auto; }
+  .cell span { position: absolute; left: 6px; top: 4px; opacity: .8; }
+</style>
+<div id="grid"></div>
+<script type="module" src="./sheet.ts"></script>

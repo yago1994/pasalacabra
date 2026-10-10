@@ -10,7 +10,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "studio:build": "node tools/cabra-studio/build.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.109.0",

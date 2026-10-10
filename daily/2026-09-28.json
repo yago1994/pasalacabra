@@ -1,0 +1,182 @@
+{
+  "id": "set-2026-09-28",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Sicilian rice balls that are breaded, deep-fried, and often filled with ragù and peas.",
+      "answer": "Arancini"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Soft cow's-milk cheese with a bloomy white rind, traditionally from Meaux and Melun in Île-de-France.",
+      "answer": "Brie"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Sicilian pastry tubes filled with sweetened ricotta.",
+      "answer": "Cannoli"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "1988 action film set in Nakatomi Plaza starring Bruce Willis as John McClane.",
+      "answer": "Die Hard"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Oblong choux pastry filled with cream and topped with chocolate icing.",
+      "answer": "Eclair",
+      "alt": [
+        "Éclair"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Swiss dish of melted cheese served in a communal pot for dipping bread.",
+      "answer": "Fondue"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Italian dumplings traditionally made from potato and flour.",
+      "answer": "Gnocchi"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "1978 slasher directed by John Carpenter featuring Michael Myers.",
+      "answer": "Halloween"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "South Indian steamed rice-and-lentil cakes served with sambar and chutney.",
+      "answer": "Idli",
+      "alt": [
+        "Idly"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Chili pepper commonly sliced atop nachos, about 2,500–8,000 on the Scoville scale.",
+      "answer": "Jalapeno",
+      "alt": [
+        "Jalapeño"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Korean fermented cabbage side dish seasoned with chili and garlic.",
+      "answer": "Kimchi",
+      "alt": [
+        "Kimchee"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Australian sponge cake cubes coated in chocolate and rolled in coconut.",
+      "answer": "Lamington"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Layered Greek casserole with eggplant and béchamel.",
+      "answer": "Moussaka"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Sheets of dried seaweed used to wrap sushi rolls.",
+      "answer": "Nori"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Egg dish cooked in a pan and folded around fillings like cheese or herbs.",
+      "answer": "Omelette",
+      "alt": [
+        "Omelet"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Italian sauce of basil, pine nuts, garlic, Parmesan, and olive oil.",
+      "answer": "Pesto"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Tortilla folded over melted cheese, often griddled and served with salsa.",
+      "answer": "Quesadilla"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Square pasta pillows typically filled with cheese or meat and served with sauce.",
+      "answer": "Ravioli"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Japanese preparation of raw sliced fish served without rice.",
+      "answer": "Sashimi"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Upside-down French apple dessert caramelized in a skillet before baking.",
+      "answer": "Tarte Tatin"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Stiff maize porridge, a staple in Kenya and Tanzania, eaten with stews.",
+      "answer": "Ugali"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Dutch painter of Girl with a Pearl Earring.",
+      "answer": "Vermeer",
+      "alt": [
+        "Johannes Vermeer"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Pungent green Japanese paste made from a rhizome, served with sushi.",
+      "answer": "Wasabi"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "1973 horror film directed by William Friedkin about a demonic possession.",
+      "answer": "The Exorcist"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Aromatic East Asian citrus used in ponzu and desserts.",
+      "answer": "Yuzu"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Italian deep-fried dough balls often dusted with sugar, eaten on Saint Joseph's Day.",
+      "answer": "Zeppole",
+      "alt": [
+        "Zeppola"
+      ]
+    }
+  ]
+}

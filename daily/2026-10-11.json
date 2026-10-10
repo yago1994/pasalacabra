@@ -1,0 +1,190 @@
+{
+  "id": "set-2026-10-11",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Informal star pattern like the Summer Triangle.",
+      "answer": "asterism"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Olympic racquet sport played with a shuttlecock.",
+      "answer": "badminton"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Sport where a bowler delivers to a batter on a pitch with wickets.",
+      "answer": "cricket"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Circumpolar constellation whose name means dragon.",
+      "answer": "Draco"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Mythic city of gold sought by Spanish explorers.",
+      "answer": "Eldorado",
+      "alt": [
+        "El Dorado"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Dragon slain by Sigurd in the Völsung saga.",
+      "answer": "Fafnir"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Player who can use hands inside the penalty area in association football.",
+      "answer": "goalkeeper"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Space telescope launched in 1990 that orbits Earth.",
+      "answer": "Hubble",
+      "alt": [
+        "Hubble Space Telescope",
+        "HST"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Saturnian moon with a stark two-tone surface, named for a Titan.",
+      "answer": "Iapetus"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Giant from Norse mythology, foe and sometimes kin of the gods.",
+      "answer": "Jotunn",
+      "alt": [
+        "Jotun",
+        "Jötunn"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Sprite or goblin of German folklore, often a household helper or trickster.",
+      "answer": "kobold"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Team sport using sticks with netted heads to catch and pass a small rubber ball.",
+      "answer": "lacrosse"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Spiral galaxy that contains our Solar System.",
+      "answer": "Milky Way"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Three weavers of fate in Norse mythology.",
+      "answer": "Norns"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Man-eating giant of European folk tales.",
+      "answer": "ogre"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Open star cluster in Taurus also called the Seven Sisters.",
+      "answer": "Pleiades",
+      "alt": [
+        "M45"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Offensive leader who passes the ball in American football.",
+      "answer": "quarterback",
+      "alt": [
+        "QB"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Full-contact code of football with tries and conversions, played with an oval ball.",
+      "answer": "rugby"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Constellation whose brightest pattern is nicknamed the Teapot.",
+      "answer": "Sagittarius"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Olympic combat sport from Korea emphasizing kicks.",
+      "answer": "taekwondo",
+      "alt": [
+        "taekwon-do"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Constellation containing Polaris and forming the Little Dipper.",
+      "answer": "Ursa Minor",
+      "alt": [
+        "Little Bear"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Gymnastics event with a run, springboard, and a table.",
+      "answer": "vault"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "In cricket, the set of three stumps and two bails at each end of the pitch.",
+      "answer": "wicket"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Angle between a planet’s rotation axis and its orbital plane.",
+      "answer": "axial tilt",
+      "alt": [
+        "obliquity"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "MLB team with a record 27 World Series titles.",
+      "answer": "Yankees",
+      "alt": [
+        "New York Yankees"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Defensive system in association football where players cover areas instead of opponents.",
+      "answer": "zonal marking"
+    }
+  ]
+}

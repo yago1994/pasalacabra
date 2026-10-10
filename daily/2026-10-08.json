@@ -1,0 +1,183 @@
+{
+  "id": "set-2026-10-08",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Common fruit said to keep the doctor away.",
+      "answer": "Apple"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Old English epic poem featuring a hero who defeats Grendel.",
+      "answer": "Beowulf"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Earthy spice with elongated, ridged seeds, a staple in chili powder and garam masala.",
+      "answer": "Cumin",
+      "alt": [
+        "jeera"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Medieval poet who wrote the Divine Comedy.",
+      "answer": "Dante",
+      "alt": [
+        "Dante Alighieri"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Ancient Greek tragedian who wrote Medea.",
+      "answer": "Euripides",
+      "alt": [
+        "Eurípides"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "French novelist who wrote Madame Bovary.",
+      "answer": "Flaubert",
+      "alt": [
+        "Gustave Flaubert"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "F. Scott Fitzgerald novel about a mysterious millionaire in the Jazz Age.",
+      "answer": "Great Gatsby",
+      "alt": [
+        "The Great Gatsby"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Tragic prince of Denmark in a Shakespeare play.",
+      "answer": "Hamlet"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "First cantica of Dante's Divine Comedy set in Hell.",
+      "answer": "Inferno"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "The beloved of Romeo in a Shakespeare tragedy.",
+      "answer": "Juliet"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Mughlai curry with a mild, creamy sauce, often enriched with nuts and yogurt.",
+      "answer": "Korma"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Espresso drink with mostly steamed milk, typically served in a tall glass.",
+      "answer": "Latte",
+      "alt": [
+        "caffe latte",
+        "caffè latte"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Confection made from almond paste and sugar.",
+      "answer": "Marzipan"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Leavened flatbread baked in a tandoor.",
+      "answer": "Naan",
+      "alt": [
+        "nan"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Pungent bulb that can make you cry when chopped.",
+      "answer": "Onion"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Red spice made from ground peppers, common in Hungarian cuisine.",
+      "answer": "Paprika"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Golden fruit often made into jelly or paste in Spanish cuisine.",
+      "answer": "Quince"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Creamy Italian rice dish cooked with broth and stirred to release starch.",
+      "answer": "Risotto"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Fourteen-line poem with established rhyme schemes, used by Shakespeare.",
+      "answer": "Sonnet"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Small Spanish plates meant for sharing with drinks.",
+      "answer": "Tapas"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Freshwater eel used in Japanese cuisine.",
+      "answer": "Unagi"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Antagonist known as 'He-Who-Must-Not-Be-Named' in the Harry Potter series.",
+      "answer": "Voldemort"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Round-bottomed Chinese pan used for stir-frying.",
+      "answer": "Wok"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Cured salmon often served on a bagel with cream cheese.",
+      "answer": "Lox"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese stir-fried noodles seasoned with a tangy sauce.",
+      "answer": "Yakisoba"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Chinese sticky rice dumpling wrapped in bamboo leaves, eaten during the Dragon Boat Festival.",
+      "answer": "Zongzi"
+    }
+  ]
+}

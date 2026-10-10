@@ -1,0 +1,173 @@
+{
+  "id": "set-2026-09-30",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Creamy green fruit with a large pit, often spread on toast",
+      "answer": "avocado"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Layered filo pastry sweetened with honey and packed with nuts",
+      "answer": "baklava"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Small nocturnal mammal whose droppings are used to make kopi luwak coffee",
+      "answer": "civet",
+      "alt": [
+        "civet cat"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Wild canine native to Australia",
+      "answer": "dingo"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Large flightless bird featured on Australia’s coat of arms",
+      "answer": "emu"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Crumbly brined cheese from Greece traditionally made from sheep’s milk",
+      "answer": "feta"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Tall African herbivore with a very long neck and spotted coat",
+      "answer": "giraffe"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Traditional Scottish dish of minced sheep offal encased in a stomach",
+      "answer": "haggis"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Japanese art of flower arranging that emphasizes balance and line",
+      "answer": "ikebana"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "West African rice dish cooked in a spiced tomato base",
+      "answer": "jollof",
+      "alt": [
+        "jollof rice"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Tree-dwelling marsupial that feeds on eucalyptus leaves",
+      "answer": "koala"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Primate native to Madagascar with large reflective eyes",
+      "answer": "lemur"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Citrus preserve traditionally made with bitter Seville oranges and peel",
+      "answer": "marmalade"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Arctic whale nicknamed the sea unicorn for its long spiraled tusk",
+      "answer": "narwhal"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Japanese rice ball often wrapped in seaweed with a savory filling",
+      "answer": "onigiri"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Quebec specialty of fries topped with cheese curds and gravy",
+      "answer": "poutine"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Spanish word for cheese, also a melted dip in Tex-Mex cuisine",
+      "answer": "queso"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Nocturnal mammal with dexterous paws and a black facial mask",
+      "answer": "raccoon"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Japanese dish of vinegared rice paired with ingredients such as fish or vegetables",
+      "answer": "sushi"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Herbivorous mammal with a short flexible snout found in the Americas and Southeast Asia",
+      "answer": "tapir"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Savory basic taste identified in foods rich in glutamates",
+      "answer": "umami"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Meat from deer, often featured in game cuisine",
+      "answer": "venison"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Chinese dumpling with thin wrappers, commonly served in soup",
+      "answer": "wonton",
+      "alt": [
+        "won ton"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Castrated male bovine traditionally used as a draft animal",
+      "answer": "ox"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Midwinter festival from Germanic tradition later absorbed into Christmas customs",
+      "answer": "yule"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Levantine herb blend of thyme, sesame, and sumac, eaten with olive oil and bread",
+      "answer": "za'atar",
+      "alt": [
+        "zaatar"
+      ]
+    }
+  ]
+}
