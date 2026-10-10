@@ -77,9 +77,10 @@ emitter: particles. Static fields: "particle" (${PARTICLES.join(", ")}), "start"
 
 SOUNDS (cues): ${SOUNDS.join(", ")}. baa = a full bleat, beh = short happy, meh = sad falling, munch =
 chewing, plus sound effects. The game reads questions aloud, so only event scenes (correct, wrong,
-pasalacabra, victory) should have sounds; moves and idle moments must be silent.
+victory) should have sounds; moves and idle moments must be silent.
 
 STYLE: lively cartoon timing. Anticipate (squash and drop before a jump), stretch on take-off, tuck
-in the air, squash and settle on landing, and overlap (ears, tail, eyes lead or lag). Keep it short:
-events 1–3 s, moves 0.6–2.5 s. Keep the goat near its letter except in travel scenes; props should
+in the air, squash and settle on landing, and overlap (ears, tail, eyes lead or lag). This is a game of speed and the
+game never waits for the goat: a correct-answer scene must finish in about 1.1 s (the narrator just
+says "Sí"), moves in 0.6–1.6 s; a wrong-answer scene can run 2–2.6 s while the right answer is read. Keep the goat near its letter except in travel scenes; props should
 pop in and out (grow) rather than appear abruptly, and be gone by the end.`;

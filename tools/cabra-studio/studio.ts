@@ -261,6 +261,7 @@ startSel.onchange = () => loadPlayer();
 function defaultDistance(s: NormalizedScene) {
   if (s.group !== "move") return 0;
   if (s.name.includes("mountain")) return 3;
+  if (s.name.includes("pasa")) return 1;
   if (s.name.includes("leap")) return 9;
   return 1;
 }
@@ -409,7 +410,7 @@ const state = { drafts: [] as { id: string; scene: Scene; prompt: string }[], sa
 const slotsOf = (name: string) => Object.entries(SLOTS).filter(([, v]) => v.includes(name)).map(([k]) => k);
 const SLOT_LABEL: Record<string, string> = {
   rest: "resting", wait: "waiting to start", sleep: "turn over", proud: "after a perfect game", hop: "1 letter", mountain: "2–4 letters",
-  leap: "5+ letters", correct: "✓", wrong: "✗", pasa: "Pasalacabra", appear: "new game", start: "Empezar", turnEnd: "end of turn", timeUp: "time’s up",
+  leap: "5+ letters", correct: "✓", wrong: "✗", pasaHop: "Pasalacabra", appear: "new game", start: "Empezar", turnEnd: "end of turn", timeUp: "time’s up",
   victory: "perfect game", gameOver: "game over", poke: "tap", moment: "idle", waitMoment: "idle before start",
 };
 function sceneRow(item: { id: string; scene: Scene; prompt?: string }, kind: Source["kind"]) {
@@ -518,7 +519,7 @@ $("specText").textContent = SPEC;
 $("copySpecBtn").onclick = () => copyText(SPEC, (m) => ($("copySpecBtn").textContent = m === "Copied." ? "Copied" : "Copy spec"));
 
 const slotSel = $("slotSel") as HTMLSelectElement;
-for (const s of ["correct", "wrong", "pasa", "hop", "mountain", "leap", "start", "turnEnd", "timeUp", "victory", "poke", "moment"]) slotSel.add(new Option(SLOT_LABEL[s], s));
+for (const s of ["correct", "wrong", "pasaHop", "hop", "mountain", "leap", "start", "turnEnd", "timeUp", "victory", "poke", "moment"]) slotSel.add(new Option(SLOT_LABEL[s], s));
 $("slotBtn").onclick = () => {
   if (!player.scene) return;
   const scene = director.addScene(sceneToJSON(player.scene));

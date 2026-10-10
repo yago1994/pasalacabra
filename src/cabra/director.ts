@@ -50,6 +50,7 @@ export class Director {
   private nextMoment = 0;
   private lastMoment = "";
   private turnClosed = false;
+  private pasaNext = false;
   private seq = 0;
   private lastFrame: Frame | null = null;
   private fading: { frame: Frame; start: number; key: string } | null = null;
@@ -77,8 +78,8 @@ export class Director {
     if (o && this.library.has(o)) return o;
     let name = pick(SLOTS[slot] || [slot], avoid);
     if (this.reducedMotion) {
-      if (slot === "hop" || slot === "mountain" || slot === "leap") name = "fade-move";
-      if (slot === "pasa" || slot === "victory" || slot === "poke") name = "giggle";
+      if (slot === "hop" || slot === "pasaHop" || slot === "mountain" || slot === "leap") name = "fade-move";
+      if (slot === "victory" || slot === "poke") name = "giggle";
       if (slot === "moment" || slot === "waitMoment") name = "chew";
     }
     return this.library.has(name) ? name : "rest";
@@ -106,7 +107,8 @@ export class Director {
       }
       const n = this.inputs?.n ?? 25;
       const d = ((to - from) % n + n) % n;
-      slot = d === 1 ? "hop" : d <= 4 ? "mountain" : "leap";
+      slot = d === 1 ? (this.pasaNext ? "pasaHop" : "hop") : d <= 4 ? "mountain" : "leap";
+      this.pasaNext = false;
     }
     this.queue.push({ slot, scene: this.sceneFor(slot), from, to, kind });
   }
@@ -144,10 +146,12 @@ export class Director {
     } else {
       if (changed.length === 1) {
         const st = norm(inp.statuses[changed[0]]);
-        const slot = st === "correct" ? "correct" : st === "wrong" ? "wrong" : "pasa";
-        this.enqueue(slot, "event", this.tail);
+        // Pasalacabra has no scene of its own: it flavours the hop that follows.
+        if (st === "passed") this.pasaNext = true;
+        else this.enqueue(st === "correct" ? "correct" : "wrong", "event", this.tail);
       }
       if (inp.index !== prev.index && inp.index >= 0) this.enqueue("move", "move", this.tail, inp.index);
+      this.pasaNext = false; // only flavours a move that arrives in the same update
     }
 
     if (prev.phase !== inp.phase || prev.gameOver !== inp.gameOver) {
@@ -197,7 +201,7 @@ export class Director {
     if (c.kind === "rest" || c.kind === "moment") return true;
     const dur = c.ev.scene.duration;
     // let an event's tail be cut once its main beat has played
-    if (c.kind === "event" && next.kind === "move") return c.local >= dur * 0.82;
+    if (c.kind === "event" && next.kind === "move") return c.local >= dur * 0.75;
     return false;
   }
 
@@ -209,7 +213,14 @@ export class Director {
 
     // Advance the current action
     if (this.cur) {
-      this.cur.scale = this.queue.length >= 2 ? 1.8 : this.queue.length === 1 && this.cur.kind !== "rest" && this.cur.kind !== "moment" ? 1.25 : 1;
+      // The game never waits for the goat: an event with a move queued behind it hurries
+      // through its ending, and a backlog of moves plays fast.
+      const next = this.queue[0];
+      this.cur.scale =
+        this.queue.length >= 2 ? 1.8
+        : next && next.kind === "move" && this.cur.kind === "event" ? 2
+        : next && this.cur.kind !== "rest" && this.cur.kind !== "moment" ? 1.25
+        : 1;
       this.cur.local += dt * this.cur.scale;
     }
     const c = this.cur;

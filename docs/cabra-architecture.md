@@ -50,13 +50,18 @@ Inputs from `LetterRing`: `n`, current `index`, per-letter `statuses`, `phase`, 
   director normalises `"current"` → `"pending"` before diffing.
 - One letter becomes **correct** → `graze` / `graze-flower` (grass or a daisy sprouts, the goat
   eats it, "¡Ñam!", hearts). **wrong** → `oops` (rain cloud, droopy ears, shakes off water).
-  **passed** → `pasa-flip` / `pasa-double` (front flip with a "¡Beee!" bubble).
+  **passed** (Pasalacabra) plays no scene of its own: the hop that follows becomes `pasa-hop`
+  (a quick hop with a "¡Beee!" bubble; the game plays its own bleat). `pasa-flip` and
+  `pasa-double` stay in the library but the game doesn't use them (too much, per playtesting).
 - The index moves → a **move**, chosen by forward distance: 1 = `hop` / `hop-skip` / `pronk`,
   2–4 = `mountain` (a mountain rises over the skipped letters; the goat bounds up, rears on
   the summit, slides down), 5+ = `leap` (trampoline, double spin across the middle on a rainbow).
-- Moves wait for events (graze first, then hop). Events cut resting and idle moments, and may
-  cut the last 18% of another event. Queued moves merge. With a backlog, the current action
-  plays 1.25–1.8× faster so the goat catches up with fast play.
+- **Speed:** the game never waits for the goat, so in-game scenes are tightened with
+  `retime()` (`FAST` in `scenes.ts`): ✓ fits inside the narrator's "Sí" (~1.1 s), hop ~0.6 s,
+  mountain ~1.6 s, leap ~1.4 s. ✗ keeps ~2.6 s because the narrator reads the right answer.
+- Moves wait for events (graze first, then hop), but an event with a move queued behind it
+  plays 2× faster and can be cut after 75%. Events cut resting and idle moments. Queued moves
+  merge, and a backlog plays 1.8× faster so the goat keeps up with fast play.
 - A resolved letter going back to unresolved, or several letters resolving at once, means a
   new game or the next player's ring: the goat pops in (`appear`).
 - Phase: idle → playing = `ready`. One closing scene per turn: whole ring green = `victory`,

@@ -16,6 +16,35 @@ const k = (t: number, v: number, e?: Key[2]): Key => (e ? [t, v, e] : [t, v]);
 const sineKeys = (t0: number, t1: number, amp: number, steps = 8): Key[] =>
   Array.from({ length: steps + 1 }, (_, i) => k(t0 + ((t1 - t0) * i) / steps, Math.round(amp * Math.sin((Math.PI * i) / steps) * 10) / 10, "linear"));
 
+/**
+ * Compresses (factor < 1) or stretches a whole scene in time: keys, oscillators, emitters
+ * and cues. The game never waits for the goat, so in-game scenes are kept short; this lets
+ * them be choreographed at a comfortable pace and then tightened to fit the game.
+ */
+export function retime(scene: Scene, factor: number, name = scene.name): Scene {
+  const tr: Record<string, Key[]> = {};
+  for (const [key, keys] of Object.entries(scene.tracks || {})) tr[key] = keys.map(([t, v, e]) => (e ? [t * factor, v, e] : [t * factor, v]) as Key);
+  const num = (v: unknown) => (typeof v === "number" ? v : undefined);
+  return {
+    ...scene,
+    name,
+    duration: Math.round(scene.duration * factor * 100) / 100,
+    tracks: tr,
+    oscillators: scene.oscillators?.map((o) => ({ ...o, period: o.period * factor, from: o.from !== undefined ? o.from * factor : undefined, to: o.to !== undefined ? o.to * factor : undefined, fade: o.fade !== undefined ? o.fade * factor : undefined })),
+    props: scene.props?.map((p) => {
+      if (p.type !== "emitter") return p;
+      const q: Prop = { ...p };
+      if (num(p.start) !== undefined) q.start = num(p.start)! * factor;
+      if (num(p.end) !== undefined) q.end = num(p.end)! * factor;
+      // particles live a little shorter too, but not so short they flicker
+      q.life = Math.max(0.35, (num(p.life) ?? 1) * Math.max(factor, 0.75));
+      if (num(p.rate) !== undefined) q.rate = num(p.rate)! / factor;
+      return q;
+    }),
+    cues: scene.cues?.map((c) => ({ ...c, t: c.t * factor })),
+  };
+}
+
 const dust = (id: string, at: "from" | "to" | "goat", start: number, extra: Partial<Prop> = {}): Prop => ({
   id, type: "emitter", particle: "dust", at, start, burst: 7, life: 0.55, speed: 22, spread: 170, gravity: 30, size: 1.1, ...extra,
 });
@@ -77,6 +106,19 @@ const hop: Scene = {
     dust("kick", "from", 0.15, { burst: 4, speed: 16, dir: -40, spread: 70 }),
     dust("land", "to", 0.52),
   ],
+};
+
+const pasaHop: Scene = {
+  ...hop,
+  name: "pasa-hop",
+  description: "¡Pasalacabra! A quick hop to the next letter with a “¡Beee!” bubble (the game plays the bleat).",
+  tracks: {
+    ...hop.tracks,
+    "jaw.open": [k(0, 0), k(0.06, 0.8), k(0.42, 0.7), k(0.52, 0)],
+    "eyes.happy": [k(0, 0), k(0.05, 1, "hold"), k(0.5, 0, "hold")],
+    "baa.grow": [k(0, 0), k(0.1, 1, "backOut"), k(0.62, 1), k(0.76, 0)],
+  },
+  props: [...(hop.props || []), { id: "baa", type: "bubble", at: "goat", alt: 50, text: "{baa}", grow: 0 }],
 };
 
 const hopSkip: Scene = {
@@ -619,13 +661,21 @@ const giggle: Scene = {
   cues: [{ t: 0.1, sound: "beh", pitch: 1.35, gain: 0.8 }],
 };
 
+// In-game timing. The game never waits for the goat, so anything between two questions is
+// tight: ✓ fits inside the narrator's "Sí" (~1.1 s), moves land quickly. ✗ keeps its length
+// because the narrator reads out the right answer meanwhile.
+const FAST: Record<string, number> = {
+  hop: 0.8, "pasa-hop": 0.8, "hop-skip": 0.75, pronk: 0.78, mountain: 0.65, leap: 0.7,
+  graze: 0.55, "graze-flower": 0.55, appear: 0.8, ready: 0.8,
+};
+
 export const SCENES: Scene[] = [
   rest, restWait, sleep, proud,
-  hop, hopSkip, pronk, mountain, leap, fadeMove,
+  hop, pasaHop, hopSkip, pronk, mountain, leap, fadeMove,
   graze, grazeFlower, oops, pasaFlip, pasaDouble, appear, ready, lieDown, timeUp, victory, bow,
   lookAround, scratch, chew, sniff, littleHop, stretch, headbutt, tailWag, balance, snack,
   poke, giggle,
-];
+].map((sc) => (FAST[sc.name] ? retime(sc, FAST[sc.name]) : sc));
 
 /** Which scenes the director picks from for each game moment. Weighted by repetition. */
 export const SLOTS: Record<string, string[]> = {
@@ -638,7 +688,9 @@ export const SLOTS: Record<string, string[]> = {
   leap: ["leap"],
   correct: ["graze", "graze", "graze-flower"],
   wrong: ["oops"],
-  pasa: ["pasa-flip", "pasa-flip", "pasa-double"],
+  // Pasalacabra itself plays no scene: the move that follows becomes a hop with a "¡Beee!".
+  // (pasa-flip and pasa-double stay in the library for the studio.)
+  pasaHop: ["pasa-hop"],
   appear: ["appear"],
   start: ["ready"],
   turnEnd: ["lie-down"],
