@@ -1,0 +1,167 @@
+{
+  "id": "set-2026-09-25",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Small salty fish often used on pizzas and in Caesar dressing.",
+      "answer": "anchovy"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "String instrument with a circular body common in bluegrass and old-time music.",
+      "answer": "banjo"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Sharp cow's milk cheese originating from Somerset, England.",
+      "answer": "cheddar"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Dog breed nicknamed the sausage dog, with short legs and a long body.",
+      "answer": "dachshund"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Concentrated Italian coffee made by forcing hot water through fine grounds.",
+      "answer": "espresso"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Colloquial name for a violin, especially in folk and bluegrass.",
+      "answer": "fiddle"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Swift antelope noted for graceful bounding on African savannas.",
+      "answer": "gazelle"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Pungent root grated into a sharp condiment often paired with roast beef.",
+      "answer": "horseradish"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Large arboreal lizard with a row of spines along its back.",
+      "answer": "iguana"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Crunchy root vegetable also called Mexican turnip, eaten raw in salads.",
+      "answer": "jicama"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Leafy green brassica popular in salads and smoothies.",
+      "answer": "kale"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Fragrant Asian fruit with bumpy red skin and translucent, juicy flesh.",
+      "answer": "lychee",
+      "alt": [
+        "litchi"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Large wooden-key percussion instrument played with mallets.",
+      "answer": "marimba"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Warm spice ground from the seed of Myristica fragrans.",
+      "answer": "nutmeg"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Mediterranean herb commonly sprinkled on pizza and in tomato sauces.",
+      "answer": "oregano"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Spanish rice dish traditionally cooked in a wide shallow pan.",
+      "answer": "paella"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Ensemble of four musicians.",
+      "answer": "quartet"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Venomous pit viper that warns with a buzzing tail.",
+      "answer": "rattlesnake"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Small oily fish often canned; name derives from the island of Sardinia.",
+      "answer": "sardine"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Brass instrument with three valves and a bright, piercing tone.",
+      "answer": "trumpet"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Small four-string instrument from Hawaii.",
+      "answer": "ukulele",
+      "alt": [
+        "uke"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Scavenging bird with a bare head adapted for feeding on carrion.",
+      "answer": "vulture"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Ridged-shelled nut commonly used in brownies.",
+      "answer": "walnut"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Tuft-eared wildcat of the Northern Hemisphere.",
+      "answer": "lynx"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese skewered chicken grilled over charcoal.",
+      "answer": "yakitori"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Tube-shaped Italian pasta often baked with cheese.",
+      "answer": "ziti"
+    }
+  ]
+}

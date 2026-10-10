@@ -1,131 +1,156 @@
 {
   "id": "set_01",
-  "title": "Pasalacabra 2026-09-20 · No. 263",
+  "title": "Pasalacabra 2026-10-10 · No. 283",
   "questions": [
     {
       "letter": "A",
-      "question": "Empieza por A: Conjunto de estrellas que forma un dibujo reconocible pero que no es una constelación oficial.",
-      "answer": "asterismo"
+      "topic": "musica",
+      "question": "Empieza por A: Instrumento de viento con fuelle y teclado, frecuente en polcas y pasodobles.",
+      "answer": "acordeón"
     },
     {
       "letter": "B",
-      "question": "Empieza por B: Supergigante roja destacada en la constelación de Orión, visible a simple vista.",
-      "answer": "Betelgeuse"
+      "topic": "historia",
+      "question": "Empieza por B: Dinastía que accedió al trono de España con Felipe V.",
+      "answer": "Borbón"
     },
     {
       "letter": "C",
-      "question": "Empieza por C: Tabla con bisagra usada para sincronizar imagen y sonido al iniciar una toma de rodaje.",
-      "answer": "claqueta"
+      "topic": "musica",
+      "question": "Empieza por C: Figura musical que equivale a la mitad de una negra.",
+      "answer": "corchea"
     },
     {
       "letter": "D",
-      "question": "Empieza por D: Relato interno del universo de una película o narración, opuesto a lo extradiegético.",
-      "answer": "diégesis"
+      "topic": "historia",
+      "question": "Empieza por D: Filósofo francés autor del célebre 'pienso, luego existo'.",
+      "answer": "Descartes"
     },
     {
       "letter": "E",
-      "question": "Empieza por E: Técnica de visión 3D en cine basada en la percepción binocular.",
-      "answer": "estereoscopia"
+      "topic": "culturageneral",
+      "question": "Empieza por E: Ave corredora australiana, más pequeña que el avestruz.",
+      "answer": "emú"
     },
     {
       "letter": "F",
-      "question": "Empieza por F: Extensión aparente del cielo donde se ven las estrellas.",
-      "answer": "firmamento"
+      "topic": "historia",
+      "question": "Empieza por F: Organización socioeconómica medieval sustentada en el vasallaje y la tenencia de tierras.",
+      "answer": "feudalismo"
     },
     {
       "letter": "G",
-      "question": "Empieza por G: Instrumento de viento ligado al folklore celta y atlántico, típico en regiones del noroeste de España.",
-      "answer": "gaita"
+      "topic": "musica",
+      "question": "Empieza por G: Estilo del son cubano con temática campesina y carácter bucólico.",
+      "answer": "guajira"
     },
     {
       "letter": "H",
-      "question": "Empieza por H: Línea aparente que separa cielo y tierra, usada en tomas panorámicas.",
-      "answer": "horizonte"
+      "topic": "historia",
+      "question": "Empieza por H: Ciudad japonesa devastada por una bomba atómica el 6 de agosto de 1945.",
+      "answer": "Hiroshima"
     },
     {
       "letter": "I",
-      "question": "Empieza por I: Reino de los muertos en muchos mitos y tradiciones populares.",
-      "answer": "inframundo"
+      "topic": "historia",
+      "question": "Empieza por I: Institución eclesiástica que persiguió la herejía en los reinos católicos.",
+      "answer": "Inquisición"
     },
     {
       "letter": "J",
-      "question": "Empieza por J: Artista medieval que transmitía historias y cantares de tradición popular.",
-      "answer": "juglar"
+      "topic": "historia",
+      "question": "Empieza por J: Movimiento comunista que gobernó Camboya y perpetró un genocidio en los años 70.",
+      "answer": "jemeres rojos"
     },
     {
       "letter": "L",
-      "question": "Empieza por L: Óptica usada en cine para comprimir horizontalmente la imagen y luego descomprimirla en proyección.",
-      "answer": "lente anamórfica"
+      "topic": "historia",
+      "question": "Empieza por L: Reformador que publicó sus 95 tesis contra las indulgencias en 1517.",
+      "answer": "Lutero"
     },
     {
       "letter": "M",
-      "question": "Empieza por M: Proceso de seleccionar y ordenar planos en posproducción cinematográfica.",
-      "answer": "montaje"
+      "topic": "musica",
+      "question": "Empieza por M: Composición vocal renacentista, polifónica y de tema profano.",
+      "answer": "madrigal"
     },
     {
       "letter": "N",
-      "question": "Empieza por N: Parte central de la estructura clásica del guion entre planteamiento y desenlace.",
-      "answer": "nudo"
+      "topic": "culturageneral",
+      "question": "Empieza por N: Especia aromática que se ralla para sazonar salsas como la bechamel.",
+      "answer": "nuez moscada"
     },
     {
       "letter": "Ñ",
-      "question": "Empieza por Ñ: Exceso de sentimentalismo cursi criticado a veces en películas.",
-      "answer": "ñoñería"
+      "topic": "culturageneral",
+      "question": "Contiene la Ñ: Etapa de la vida comprendida entre el nacimiento y la adolescencia.",
+      "answer": "niñez"
     },
     {
       "letter": "O",
-      "question": "Empieza por O: Premio de la Academia de Hollywood a logros cinematográficos.",
-      "answer": "Óscar"
+      "topic": "historia",
+      "question": "Empieza por O: Civilización mesoamericana célebre por sus cabezas colosales de piedra.",
+      "answer": "olmeca"
     },
     {
       "letter": "P",
-      "question": "Empieza por P: Toma prolongada sin cortes que cubre una acción completa.",
-      "answer": "plano secuencia"
+      "topic": "musica",
+      "question": "Empieza por P: Género musical de gran difusión comercial, con melodías pegadizas.",
+      "answer": "pop"
     },
     {
       "letter": "Q",
-      "question": "Contiene la Q: Principio compositivo que busca armonía de pesos visuales en el encuadre.",
-      "answer": "equilibrio"
+      "topic": "culturageneral",
+      "question": "Empieza por Q: Tarta salada de origen francés, famosa en su versión Lorraine.",
+      "answer": "quiche"
     },
     {
       "letter": "R",
-      "question": "Empieza por R: Continuidad entre planos que mantiene coherencia espacial y temporal.",
-      "answer": "raccord"
+      "topic": "musica",
+      "question": "Empieza por R: Género urbano surgido en Puerto Rico en los 90, con base de dancehall.",
+      "answer": "reguetón"
     },
     {
       "letter": "S",
-      "question": "Empieza por S: Cuerpo celeste que orbita un planeta.",
-      "answer": "satélite"
+      "topic": "culturageneral",
+      "question": "Empieza por S: Gran desierto que se extiende por el norte de África.",
+      "answer": "Sáhara"
     },
     {
       "letter": "T",
-      "question": "Empieza por T: Avance publicitario de una película con fragmentos seleccionados.",
-      "answer": "tráiler"
+      "topic": "culturageneral",
+      "question": "Empieza por T: Licor mexicano destilado a partir del agave azul.",
+      "answer": "tequila"
     },
     {
       "letter": "U",
-      "question": "Empieza por U: Conjunto de objetos usados en escena como accesorios en cine o teatro.",
-      "answer": "utilería"
+      "topic": "historia",
+      "question": "Contiene la U: Seguidor de la religión predicada por Mahoma.",
+      "answer": "musulmán"
     },
     {
       "letter": "V",
-      "question": "Empieza por V: Cualidad por la que una historia resulta creíble dentro de sus propias reglas.",
-      "answer": "verosimilitud"
+      "topic": "musica",
+      "question": "Empieza por V: Instrumento de cuerda frotada de registro agudo, usado en la orquesta.",
+      "answer": "violín"
     },
     {
       "letter": "X",
-      "question": "Contiene la X: Sonido o música que no pertenece al mundo de la historia y solo oye el espectador.",
-      "answer": "extradiegético"
+      "topic": "culturageneral",
+      "question": "Contiene la X: Prueba escrita u oral que evalúa conocimientos en un centro educativo.",
+      "answer": "examen"
     },
     {
       "letter": "Y",
-      "question": "Empieza por Y: Árbol cósmico de la mitología nórdica que conecta los nueve mundos.",
-      "answer": "Yggdrasil"
+      "topic": "musica",
+      "question": "Empieza por Y: Género andino de ritmo lento y tono melancólico, propio del Perú y Ecuador.",
+      "answer": "yaraví"
     },
     {
       "letter": "Z",
-      "question": "Empieza por Z: Muerto viviente típico del cine de terror y algunos relatos populares haitianos.",
-      "answer": "zombi"
+      "topic": "culturageneral",
+      "question": "Empieza por Z: Instalación destinada a la conservación y exhibición de animales vivos.",
+      "answer": "zoológico"
     }
   ]
 }

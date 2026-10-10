@@ -1,0 +1,167 @@
+{
+  "id": "set-2026-10-01",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "19th-century mathematician often called the first computer programmer.",
+      "answer": "Ada Lovelace",
+      "alt": [
+        "Ada"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "1964 programming language from Dartmouth designed for beginners.",
+      "answer": "BASIC"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Magnetic tape audio format popular in the 1980s.",
+      "answer": "cassette"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Command-line operating system family for IBM PC compatibles in the 1980s.",
+      "answer": "DOS"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Cipher device used by Germany in World War II, famously decrypted at Bletchley Park.",
+      "answer": "Enigma"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "1950s programming language created for scientific and engineering computation.",
+      "answer": "Fortran"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Distributed version control system created by Linus Torvalds in 2005.",
+      "answer": "Git"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Personal listening device worn over or on the ears, without a microphone.",
+      "answer": "headphones"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Apple's portable music player introduced in 2001.",
+      "answer": "iPod"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Coin-operated music-playing machine found in diners and bars.",
+      "answer": "jukebox"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "German electronic band whose 1974 album Autobahn influenced synthpop.",
+      "answer": "Kraftwerk"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Renaissance string instrument, an ancestor of the guitar.",
+      "answer": "lute"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Standard protocol that lets electronic instruments and computers exchange musical events.",
+      "answer": "MIDI"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "File-sharing service that popularized MP3 swapping around 1999.",
+      "answer": "Napster"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Electronic circuit that generates a periodic waveform used in synthesizers.",
+      "answer": "oscillator"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Episodic digital audio series distributed over the internet.",
+      "answer": "podcast"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Divide-and-conquer sorting algorithm devised by Tony Hoare.",
+      "answer": "quicksort"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Network device that forwards packets between different IP networks.",
+      "answer": "router"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Electronic instrument that generates and shapes sounds via oscillators and filters.",
+      "answer": "synthesizer",
+      "alt": [
+        "synth"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Speed of a musical piece, often given in beats per minute.",
+      "answer": "tempo"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Standard plug-and-play interface for connecting peripherals to a computer.",
+      "answer": "USB"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Audio effect that modulates speech with a carrier signal to create robotic vocals.",
+      "answer": "vocoder"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Sony's portable cassette player that popularized music on the go.",
+      "answer": "Walkman"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Multics-inspired operating system developed at Bell Labs in 1969.",
+      "answer": "Unix"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Computer bug feared at the turn of 2000 due to two-digit year storage.",
+      "answer": "Y2K"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Video-conferencing platform popularized during the COVID-19 pandemic.",
+      "answer": "Zoom"
+    }
+  ]
+}

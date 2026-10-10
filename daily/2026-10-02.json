@@ -1,0 +1,175 @@
+{
+  "id": "set-2026-10-02",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Nearest spiral galaxy to the Milky Way.",
+      "answer": "Andromeda",
+      "alt": [
+        "Andromeda Galaxy",
+        "M31"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Instrument family that includes trumpet and tuba.",
+      "answer": "Brass"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Material that allows electric charge to flow easily, opposite of an insulator.",
+      "answer": "Conductor"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Classification assigned to Pluto by the IAU in 2006.",
+      "answer": "Dwarf planet"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Thermodynamic measure of disorder or randomness.",
+      "answer": "Entropy"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Number of oscillations per second of a wave.",
+      "answer": "Frequency"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Largest moon of Jupiter.",
+      "answer": "Ganymede"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Second most abundant element in the universe.",
+      "answer": "Helium"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Part of the electromagnetic spectrum just beyond red light.",
+      "answer": "Infrared"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "NASA probe that entered Jupiter’s orbit in 2016.",
+      "answer": "Juno"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "German astronomer who formulated the three laws of planetary motion.",
+      "answer": "Kepler",
+      "alt": [
+        "Johannes Kepler"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Device that emits coherent light through stimulated emission.",
+      "answer": "Laser",
+      "alt": [
+        "LASER"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Planet closest to the Sun.",
+      "answer": "Mercury"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Diffuse interstellar cloud of gas and dust, exemplified by the Orion region.",
+      "answer": "Nebula"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Spherical shell of icy bodies at the outermost edge of the Solar System.",
+      "answer": "Oort cloud"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Rapidly rotating neutron star that emits beams of electromagnetic radiation.",
+      "answer": "Pulsar"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Audio device or effect that adjusts specific frequency bands.",
+      "answer": "Equalizer",
+      "alt": [
+        "Equaliser",
+        "EQ"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Classical form featuring a recurring main theme alternating with contrasting sections.",
+      "answer": "Rondo"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Natural or artificial object that orbits a planet.",
+      "answer": "Satellite"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Instrument used to observe distant objects in space.",
+      "answer": "Telescope"
+    },
+    {
+      "letter": "U",
+      "mode": "contains",
+      "question": "Eighth planet from the Sun.",
+      "answer": "Neptune"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Hottest planet in the Solar System due to a runaway greenhouse effect.",
+      "answer": "Venus"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Random signal with equal intensity at all frequencies.",
+      "answer": "White noise"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Planet orbiting a star outside the Solar System.",
+      "answer": "Exoplanet"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Lanthanide element with chemical symbol Yb.",
+      "answer": "Ytterbium"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Point in the sky directly above an observer.",
+      "answer": "Zenith"
+    }
+  ]
+}

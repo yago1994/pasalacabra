@@ -1,0 +1,176 @@
+{
+  "id": "set-2026-10-07",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Sport using bows and targets",
+      "answer": "archery"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Slavic witch who lives in a hut on chicken legs",
+      "answer": "Baba Yaga",
+      "alt": [
+        "Baba-Yaga"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Icy body that develops a tail when near the Sun",
+      "answer": "comet"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Fire-breathing creature in many legends",
+      "answer": "dragon"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Fencing weapon in which the entire body is a valid target",
+      "answer": "epee",
+      "alt": [
+        "épée"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "In American football, three-point score kicked through uprights",
+      "answer": "field goal"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Spiral, elliptical, or irregular star system like the Milky Way",
+      "answer": "galaxy"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Ghostly rider of Sleepy Hollow who lacks a skull",
+      "answer": "Headless Horseman"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Volcanically active moon of Jupiter",
+      "answer": "Io"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Track and field event where athletes throw a spear",
+      "answer": "javelin"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Japanese martial art meaning 'empty hand' that emphasizes punches and kicks",
+      "answer": "karate"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Constellation containing the bright star Vega",
+      "answer": "Lyra"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Streak of light from a small object burning in Earth's atmosphere",
+      "answer": "meteor"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Team sport similar to basketball without dribbling",
+      "answer": "netball"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Largest volcano in the solar system, located on Mars",
+      "answer": "Olympus Mons"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "In soccer, one-on-one shot awarded for a foul in the box",
+      "answer": "penalty kick",
+      "alt": [
+        "penalty"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Case that holds arrows for archers",
+      "answer": "quiver"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Outlaw archer of Sherwood Forest",
+      "answer": "Robin Hood"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Short-distance running race at top speed",
+      "answer": "sprint"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Endurance event combining swimming, cycling, and running",
+      "answer": "triathlon"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Official who makes decisions in baseball and cricket",
+      "answer": "umpire"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Sport played with a net and spiked ball, indoors or on sand",
+      "answer": "volleyball"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Wide position in soccer or rugby responsible for attacking down the flanks",
+      "answer": "winger"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Soccer metric estimating the quality of chances created",
+      "answer": "expected goals",
+      "alt": [
+        "xG"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Caution shown by a referee to a soccer player",
+      "answer": "yellow card"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Machine that resurfaces ice rinks",
+      "answer": "zamboni",
+      "alt": [
+        "ice resurfacer"
+      ]
+    }
+  ]
+}

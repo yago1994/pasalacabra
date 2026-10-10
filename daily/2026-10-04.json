@@ -1,0 +1,193 @@
+{
+  "id": "set-2026-10-04",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Gelling agent derived from red seaweed used in microbiology and desserts.",
+      "answer": "agar",
+      "alt": [
+        "agar-agar"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Laboratory tool that produces a single open gas flame.",
+      "answer": "bunsen burner"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Primary structural polysaccharide in plant cell walls.",
+      "answer": "cellulose"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Japanese broth typically made from kombu and bonito flakes.",
+      "answer": "dashi"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Mixture of immiscible liquids stabilized by surfactants.",
+      "answer": "emulsion"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Process by which microbes convert sugars anaerobically, as in bread, beer, and kimchi.",
+      "answer": "fermentation"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Italian-style frozen dessert churned slowly for dense texture.",
+      "answer": "gelato"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Plant-based dye used to create temporary body art designs.",
+      "answer": "henna",
+      "alt": [
+        "mehndi",
+        "mehandi"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Sweet coating spread on cakes and cupcakes.",
+      "answer": "icing",
+      "alt": [
+        "frosting"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Unrefined cane or palm sugar common in South Asian cuisines.",
+      "answer": "jaggery",
+      "alt": [
+        "gur"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Common American condiment made from tomatoes, vinegar, sugar, and spices, often paired with fries.",
+      "answer": "ketchup",
+      "alt": [
+        "catsup"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Red antioxidant pigment abundant in tomatoes and watermelon.",
+      "answer": "lycopene"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Large artwork painted directly on a wall or ceiling.",
+      "answer": "mural"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Common name for vitamin B3.",
+      "answer": "niacin"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Chemical process involving loss of electrons, often causing browning in cut apples.",
+      "answer": "oxidation",
+      "alt": [
+        "oxidisation"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Art medium of soft pigment sticks used for blendable color drawings.",
+      "answer": "pastel",
+      "alt": [
+        "pastels"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Bitter alkaloid from cinchona used to treat malaria and flavor tonic water.",
+      "answer": "quinine"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Cooked mixture of fat and flour used to thicken sauces.",
+      "answer": "roux"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Junction where a neuron communicates with another cell.",
+      "answer": "synapse"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Sesame seed paste central to Middle Eastern dips and sauces.",
+      "answer": "tahini",
+      "alt": [
+        "tahina"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Nitrogen-rich organic compound excreted by mammals, also used in fertilizers.",
+      "answer": "urea"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Fingerlike projections lining the small intestine that increase surface area for absorption.",
+      "answer": "villi",
+      "alt": [
+        "villus"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Liquid byproduct drained from curds in cheese-making.",
+      "answer": "whey"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Hormone linked to childbirth, lactation, and social bonding.",
+      "answer": "oxytocin"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Starchy tuber native to Africa, distinct from the sweet potato.",
+      "answer": "yam",
+      "alt": [
+        "yams",
+        "true yam"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Branch of biology devoted to the study of animals.",
+      "answer": "zoology"
+    }
+  ]
+}

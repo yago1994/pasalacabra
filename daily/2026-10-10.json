@@ -1,0 +1,183 @@
+{
+  "id": "set-2026-10-10",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Greek goddess of the hunt and the moon, twin of Apollo.",
+      "answer": "Artemis"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Music genre rooted in African American traditions, often using a 12-bar form and blue notes.",
+      "answer": "Blues"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Polish composer and piano virtuoso famed for nocturnes, mazurkas, and polonaises.",
+      "answer": "Chopin"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Spanish surrealist who painted The Persistence of Memory with melting clocks.",
+      "answer": "Dali",
+      "alt": [
+        "Dalí"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Supernatural figure who lures a child in a Goethe ballad famously set by Schubert.",
+      "answer": "Erlking",
+      "alt": [
+        "Erlkönig",
+        "Erlkoenig"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Vocal register allowing male singers to reach pitches above their modal voice.",
+      "answer": "Falsetto"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Hindu deity with an elephant head, revered as remover of obstacles.",
+      "answer": "Ganesha",
+      "alt": [
+        "Ganesh"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Fleet-footed messenger of the Greek gods, depicted with winged sandals and a caduceus.",
+      "answer": "Hermes"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Mesopotamian goddess of love and war associated with the planet Venus.",
+      "answer": "Ishtar",
+      "alt": [
+        "Inanna"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Medieval court entertainer known for comic performance, acrobatics, and a cap with bells.",
+      "answer": "Jester"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Austrian Symbolist painter of The Kiss, noted for gilded, ornamental style.",
+      "answer": "Klimt"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Child-stealing woman-demon from Greek folklore who preys on the young.",
+      "answer": "Lamia"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Bull-headed creature confined to the Labyrinth on Crete, slain by Theseus.",
+      "answer": "Minotaur"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Youth in Greek myth who fell in love with his own reflection in a pool.",
+      "answer": "Narcissus"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Legendary musician who sought to retrieve Eurydice from the underworld by song.",
+      "answer": "Orpheus"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Stately Polish dance in triple meter, later stylized in piano works by a famed compatriot.",
+      "answer": "Polonaise"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Trapezoidal Middle Eastern zither central to Arabic and Turkish music ensembles.",
+      "answer": "Qanun",
+      "alt": [
+        "Qanoun"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Flemish Baroque painter celebrated for dynamic compositions and voluptuous figures.",
+      "answer": "Rubens"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Archaic Greek poet from Lesbos, famed for intimate lyric verse.",
+      "answer": "Sappho"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Venetian Renaissance master of rich color, born Tiziano Vecellio.",
+      "answer": "Titian",
+      "alt": [
+        "Tiziano"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Hans Christian Andersen tale about a ridiculed birdling that grows into a swan.",
+      "answer": "Ugly Duckling"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Preserver deity in the Hindu Trimurti, often depicted with blue skin and four arms.",
+      "answer": "Vishnu"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "French Rococo painter known for fêtes galantes like Pilgrimage to Cythera.",
+      "answer": "Watteau"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Avant-garde composer and architect who pioneered stochastic music.",
+      "answer": "Xenakis"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Moon-shaped Chinese lute used in opera and folk ensembles.",
+      "answer": "Yueqin",
+      "alt": [
+        "Yue qin"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Personification of the gentle west wind in Greek mythology.",
+      "answer": "Zephyr"
+    }
+  ]
+}

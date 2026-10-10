@@ -1,0 +1,176 @@
+{
+  "id": "set-2026-10-06",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Greek god of music and prophecy",
+      "answer": "Apollo"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "German design school founded by Walter Gropius in 1919",
+      "answer": "Bauhaus"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Polish astronomer who proposed the heliocentric model",
+      "answer": "Copernicus"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Title of the spiritual leader of Tibetan Buddhism",
+      "answer": "Dalai Lama"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Inventor who held the patent for the phonograph",
+      "answer": "Edison"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Temperature scale where water freezes at 32 degrees",
+      "answer": "Fahrenheit"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Italian scientist tried by the Inquisition for advocating heliocentrism",
+      "answer": "Galileo",
+      "alt": [
+        "Galileo Galilei"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Byzantine basilica in Istanbul later converted into a mosque and museum",
+      "answer": "Hagia Sophia"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Mythic flyer who fell when his wax wings melted",
+      "answer": "Icarus"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "U.S. holiday commemorating the emancipation of enslaved people, celebrated June 19",
+      "answer": "Juneteenth"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "German philosopher who wrote Critique of Pure Reason",
+      "answer": "Kant",
+      "alt": [
+        "Immanuel Kant"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Swedish naturalist who developed binomial nomenclature",
+      "answer": "Linnaeus"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Chemist who created an early periodic table and predicted undiscovered elements",
+      "answer": "Mendeleev"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Egyptian queen famous for a limestone bust discovered in 1912",
+      "answer": "Nefertiti"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Epic poem recounting a hero's long journey home from Troy",
+      "answer": "Odyssey"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Temple on the Athenian Acropolis dedicated to Athena",
+      "answer": "Parthenon"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Feathered serpent deity of Aztec mythology",
+      "answer": "Quetzalcoatl",
+      "alt": [
+        "Quetzalcóatl"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Physicist who discovered the atomic nucleus via the gold-foil experiment",
+      "answer": "Rutherford"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Earliest known civilization in southern Mesopotamia",
+      "answer": "Sumer",
+      "alt": [
+        "Sumeria"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Coniferous biome of high latitudes",
+      "answer": "Taiga"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Ancient Mesopotamian city traditionally linked to Abraham's birthplace",
+      "answer": "Ur"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Volcano that buried Pompeii in 79 CE",
+      "answer": "Vesuvius"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "1847 novel by Emily Brontë set on the Yorkshire moors",
+      "answer": "Wuthering Heights"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Smallest addressable element of a digital image",
+      "answer": "pixel"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Ivy League university in New Haven, Connecticut",
+      "answer": "Yale",
+      "alt": [
+        "Yale University"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "King of the Greek gods, wielder of the thunderbolt",
+      "answer": "Zeus"
+    }
+  ]
+}
