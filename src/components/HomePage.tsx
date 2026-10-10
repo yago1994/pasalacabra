@@ -1,3 +1,4 @@
+import CabraIcon from "../cabra/CabraIcon";
 import { useMemo, useState } from "react";
 import { formatDateLongES, getDailyGameNo } from "../lib/dailyIssue";
 
@@ -43,8 +44,8 @@ export default function HomePage({ onPlayGroup, onPlay, onOpenStats, onHowToPlay
               alignItems: "center",
               justifyContent: "center"
             }}>
-              <span style={{ fontSize: "clamp(36px, 9vw, 48px)", transform: "scaleX(-1)" }} aria-label="Icono Pasalacabra">
-                🐐
+              <span style={{ fontSize: "clamp(36px, 9vw, 48px)", lineHeight: 1, display: "flex" }}>
+                <CabraIcon pose="happy" size="1.15em" label="Icono Pasalacabra" />
               </span>
             </div>
           </div>

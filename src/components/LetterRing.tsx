@@ -1,5 +1,8 @@
+import { useRef } from "react";
 import type { Letter } from "../data/sets";
-import { useTweenedGoat } from "../components/useTweenedGoat";
+import { RING } from "../cabra/engine";
+import type { Phase } from "../cabra/director";
+import { useCabra } from "../cabra/useCabra";
 
 type LetterStatus = "pending" | "current" | "passed" | "correct" | "wrong";
 
@@ -24,6 +27,12 @@ type Props = {
   statusByLetter: Record<Letter, LetterStatus>;
   recentlyCorrect?: Letter | null;
   currentIndex: number;
+  /** Game phase and end state, so the goat can react (start, end of turn, victory). */
+  phase?: Phase;
+  gameOver?: boolean;
+  /** Seconds left on the active player's clock (the goat gets antsy in the last 10). */
+  timeLeft?: number;
+  getAudioCtx?: () => AudioContext | null;
 };
 
 const TAU = Math.PI * 2;
@@ -33,39 +42,26 @@ function angleForIndex(i: number, total: number) {
   return (i / total) * TAU - Math.PI / 2;
 }
 
-export default function LetterRing({ letters, statusByLetter, currentIndex }: Props) {
-  // SVG coordinate system
-  const size = 400;
-  const cx = size / 2;
-  const cy = size / 2;
+export default function LetterRing({ letters, statusByLetter, currentIndex, phase = "playing", gameOver = false, timeLeft, getAudioCtx }: Props) {
+  // SVG coordinate system (shared with the goat engine)
+  const { size, cx, cy, ringR, nodeR } = RING;
 
-  const ringR = 178;
-  const nodeR = 18;
-
-  // Goat sizing
-  const emojiSize = 56;
-  const emojiRadius = emojiSize / 2;
-
-  const hasCurrent = currentIndex >= 0 && currentIndex < letters.length;
-
-  const currentAngle = hasCurrent ? angleForIndex(currentIndex, letters.length) : 0;
-  const currentX = cx + ringR * Math.cos(currentAngle);
-  const currentY = cy + ringR * Math.sin(currentAngle);
-
-  // Outside the bubble (your existing offset behavior)
-  const goatOffset = nodeR + emojiRadius - 8;
-  const goatX = currentX + goatOffset * Math.cos(currentAngle);
-  const goatY = currentY + goatOffset * Math.sin(currentAngle);
-
-  const goatRotationDeg = (currentAngle - Math.PI / 2) * (180 / Math.PI);
-
-  // Smooth animation (cross-browser)
-  const anim = useTweenedGoat(
-    { x: goatX, y: goatY, rot: goatRotationDeg },
-    220
-  );
-
-  const goatTransform = `translate(${anim.x} ${anim.y}) rotate(${anim.rot}) scale(1 -1)`;
+  // The goat lives in two layers: one under the letters (mountains, rainbows), one over them.
+  const backRef = useRef<SVGGElement>(null);
+  const frontRef = useRef<SVGGElement>(null);
+  useCabra({
+    backRef,
+    frontRef,
+    getAudioCtx,
+    inputs: {
+      n: letters.length,
+      index: currentIndex,
+      statuses: letters.map((l) => statusByLetter[l]),
+      phase,
+      gameOver,
+      timeLeft,
+    },
+  });
 
   return (
     <svg
@@ -84,6 +80,8 @@ export default function LetterRing({ letters, statusByLetter, currentIndex }: Pr
           </feMerge>
         </filter>
       </defs>
+
+      <g ref={backRef} />
 
       {letters.map((letter, i) => {
         const angle = angleForIndex(i, letters.length);
@@ -118,20 +116,7 @@ export default function LetterRing({ letters, statusByLetter, currentIndex }: Pr
         );
       })}
 
-      {hasCurrent && (
-        <g transform={goatTransform}>
-          <text
-            x={0}
-            y={0}
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fontSize={emojiSize}
-            style={{ userSelect: "none", pointerEvents: "none" }}
-          >
-            🐐
-          </text>
-        </g>
-      )}
+      <g ref={frontRef} />
     </svg>
   );
 }

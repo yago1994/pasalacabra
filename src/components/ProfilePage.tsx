@@ -1,3 +1,4 @@
+import CabraIcon from "../cabra/CabraIcon";
 import { useMemo } from "react";
 import { SPANISH_LETTERS } from "../data/sets";
 import { dateForDailyGameNo, formatDateShortES } from "../lib/dailyIssue";
@@ -100,9 +101,7 @@ export default function ProfilePage({
           {signedIn ? (
             initialsFor(displayName, email)
           ) : (
-            <span style={{ transform: "scaleX(-1)", fontSize: 28 }} aria-hidden>
-              🐐
-            </span>
+            <CabraIcon pose="happy" size={36} />
           )}
         </div>
         <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: 3, minWidth: 0 }}>
