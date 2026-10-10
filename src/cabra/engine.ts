@@ -59,6 +59,8 @@ export type Ctx = {
   clock: number;
   /** Localised bubble words. */
   words?: Record<string, string>;
+  /** Rest values that replace the defaults for anything the scene doesn't animate (streak gear). */
+  outfit?: Record<string, number>;
 };
 
 export type Place = { x: number; y: number; rot: number };
@@ -182,7 +184,7 @@ export class Evaluator {
   }
 
   param(key: string, t: number) {
-    return value(this.scene, key, t, DEFAULTS[key] ?? 0);
+    return value(this.scene, key, t, this.ctx.outfit?.[key] ?? DEFAULTS[key] ?? 0);
   }
 
   propField(prop: Prop, field: string, t: number) {

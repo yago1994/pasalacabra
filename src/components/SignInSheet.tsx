@@ -1,3 +1,4 @@
+import CabraIcon from "../cabra/CabraIcon";
 import { useState, type FormEvent } from "react";
 import { ghostPillStyle, panelStyle, primaryPillStyle, statsTheme } from "./statsTheme";
 
@@ -65,7 +66,7 @@ export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSign
             fontSize: 34,
           }}
         >
-          <span style={{ transform: "scaleX(-1)" }} aria-hidden>🐐</span>
+          <CabraIcon pose="cool" size="1.3em" />
         </div>
         <h1 style={{ margin: 0, fontFamily: statsTheme.serif, fontSize: 30, fontWeight: 700, letterSpacing: "-0.01em" }}>
           Guarda tus estadísticas

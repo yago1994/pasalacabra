@@ -479,6 +479,132 @@ const bow: Scene = {
   },
 };
 
+/* ---------------- Clock running out ---------------- */
+
+const antsy: Scene = {
+  name: "antsy", group: "rest", duration: 0.8, loop: true,
+  description: "The last 10 seconds: hops up and down on the spot, sweating, eyes on the clock.",
+  idle: { breathe: 0 },
+  tracks: {
+    "eyes.open": [k(0, 1.25)], "eyes.up": [k(0, 1)], "ears.perk": [k(0, 1)], "brows.sad": [k(0, 0.7)],
+    "mouth.smile": [k(0, -0.4)], "tail.up": [k(0, 1)],
+  },
+  oscillators: [
+    { target: "cabra.alt", amp: 10, period: 0.4, wave: "hop", fade: 0 },
+    { target: "body.squash", amp: 0.08, period: 0.4, phase: 0.25, fade: 0 },
+    { target: "legs.tuck", amp: 0.35, period: 0.4, wave: "hop", fade: 0 },
+    { target: "eyes.look", amp: 1, period: 0.8, wave: "square", fade: 0 },
+    { target: "tail.wag", amp: 30, period: 0.1, fade: 0 },
+  ],
+  props: [{ id: "sweat", type: "emitter", particle: "drop", at: "goat", alt: 40, along: 6, rate: 4, life: 0.6, speed: 22, spread: 70, dir: 30, gravity: 50, size: 0.8 }],
+};
+
+/* ---------------- Streaks (consecutive ✓) ---------------- */
+
+const stars = (id: string, start: number, extra: Partial<Prop> = {}): Prop => ({
+  id, type: "emitter", particle: "star", at: "goat", alt: 22, start, burst: 9, life: 0.7, speed: 40, spread: 360, gravity: 10, ...extra,
+});
+
+const streak3: Scene = {
+  name: "streak-3", group: "event", duration: 1.2,
+  description: "3 in a row: a springy backflip and a gold “¡x3!”.",
+  tracks: {
+    "cabra.alt": [k(0, 0), k(0.14, 0), k(0.48, 30, "easeOut"), k(0.82, 0, "easeIn")],
+    "cabra.spin": [k(0.18, 0), k(0.76, -360, "easeInOut")],
+    "legs.tuck": [k(0.18, 0), k(0.3, 1), k(0.64, 1), k(0.76, 0)],
+    "body.squash": [k(0, 1), k(0.12, 0.8), k(0.18, 1.16), k(0.4, 1), k(0.82, 1), k(0.86, 0.82), k(1.05, 1, "backOut")],
+    "body.drop": [k(0, 0), k(0.12, 4), k(0.18, 0), k(0.82, 0), k(0.86, 3), k(1.0, 0)],
+    "eyes.happy": [k(0, 0), k(0.1, 1, "hold"), k(1.1, 0, "hold")],
+    "mouth.smile": [k(0, 0.3), k(0.1, 1), k(1.2, 0.5)],
+    "ears.perk": [k(0, 0), k(0.1, 1), k(1.2, 0.3)],
+    "tail.up": [k(0, 0), k(0.1, 1), k(1.2, 0.2)],
+    "x.grow": [k(0, 0), k(0.12, 0), k(0.28, 1, "backOut"), k(1.04, 1), k(1.18, 0)],
+  },
+  props: [
+    { id: "x", type: "text", at: "from", alt: 72, text: "¡x{streak}!", size: 1.25, grow: 0 },
+    stars("stars", 0.48),
+    dust("land", "from", 0.82),
+  ],
+  cues: [{ t: 0.08, sound: "ding", pitch: 1 }, { t: 0.84, sound: "cowbell" }],
+};
+
+const streak5: Scene = {
+  name: "streak-5", group: "event", duration: 1.35,
+  description: "5 in a row: a double backflip, “¡En racha!”, and on go the sunglasses for the rest of the streak.",
+  tracks: {
+    "cabra.alt": [k(0, 0), k(0.14, 0), k(0.54, 42, "easeOut"), k(0.94, 0, "easeIn")],
+    "cabra.spin": [k(0.18, 0), k(0.88, -720, "easeInOut")],
+    "legs.tuck": [k(0.18, 0), k(0.28, 1), k(0.78, 1), k(0.88, 0)],
+    "body.squash": [k(0, 1), k(0.12, 0.78), k(0.18, 1.2), k(0.4, 1), k(0.94, 1), k(0.98, 0.8), k(1.2, 1, "backOut")],
+    "body.drop": [k(0, 0), k(0.12, 4.5), k(0.18, 0), k(0.94, 0), k(0.98, 3.5), k(1.15, 0)],
+    "gear.shades": [k(0, 0), k(0.98, 0), k(1.14, 1, "bounce")],
+    "head.tilt": [k(0.98, 0), k(1.08, -12), k(1.3, 0)],
+    "eyes.happy": [k(0, 0), k(0.1, 1, "hold"), k(1.0, 0, "hold")],
+    "mouth.smile": [k(0, 0.3), k(0.1, 1)],
+    "ears.perk": [k(0, 0), k(0.1, 1.2), k(1.35, 0.5)],
+    "tail.up": [k(0, 0), k(0.1, 1)],
+    "x.grow": [k(0, 0), k(0.12, 0), k(0.26, 1, "backOut"), k(1.2, 1), k(1.33, 0)],
+    "hot.grow": [k(0, 0), k(0.96, 0), k(1.08, 1, "backOut"), k(1.26, 1), k(1.35, 0)],
+  },
+  props: [
+    { id: "x", type: "text", at: "from", alt: 86, text: "¡x{streak}!", size: 1.4, grow: 0 },
+    { id: "hot", type: "bubble", at: "goat", alt: 48, along: 10, text: "{hot}", grow: 0 },
+    { id: "trail", type: "emitter", particle: "sparkle", at: "goat", alt: 22, start: 0.2, end: 0.9, rate: 30, life: 0.45, speed: 10, spread: 360, gravity: 0 },
+    stars("stars", 0.94, { burst: 7, alt: 6 }),
+    dust("land", "from", 0.94, { burst: 8 }),
+  ],
+  cues: [{ t: 0.06, sound: "ding", pitch: 1.12 }, { t: 0.22, sound: "whoosh", gain: 0.5 }, { t: 0.96, sound: "cowbell" }, { t: 1.12, sound: "cowbell", pitch: 1.12, gain: 0.7 }],
+};
+
+const streak9: Scene = {
+  name: "streak-9", group: "event", duration: 1.6,
+  description: "9 in a row: a sky-high triple flip through fireworks, and it lands wearing a crown.",
+  tracks: {
+    "cabra.alt": [k(0, 0), k(0.14, 0), k(0.6, 66, "easeOut"), k(1.06, 0, "easeIn")],
+    "cabra.spin": [k(0.18, 0), k(0.98, 1080, "easeInOut")],
+    "legs.tuck": [k(0.18, 0), k(0.28, 1), k(0.88, 1), k(0.98, 0)],
+    "body.squash": [k(0, 1), k(0.12, 0.74), k(0.18, 1.24), k(0.4, 1), k(1.06, 1), k(1.1, 0.78), k(1.34, 1, "backOut")],
+    "body.drop": [k(0, 0), k(0.12, 5), k(0.18, 0), k(1.06, 0), k(1.1, 4), k(1.3, 0)],
+    "gear.shades": [k(0, 1)],
+    "gear.crown": [k(0, 0), k(1.1, 0), k(1.28, 1, "bounce")],
+    "body.rear": [k(1.2, 0), k(1.34, 22, "backOut"), k(1.5, 22), k(1.6, 0)],
+    "eyes.happy": [k(0, 0), k(0.1, 1, "hold")],
+    "mouth.smile": [k(0, 0.3), k(0.1, 1)],
+    "face.blush": [k(0, 0), k(0.4, 0.8)],
+    "ears.perk": [k(0, 0), k(0.1, 1.3)],
+    "tail.up": [k(0, 0), k(0.1, 1)],
+    "x.grow": [k(0, 0), k(0.12, 0), k(0.26, 1, "backOut"), k(1.46, 1), k(1.6, 0)],
+    "wow.grow": [k(0, 0), k(1.12, 0), k(1.24, 1, "backOut"), k(1.5, 1), k(1.6, 0)],
+  },
+  oscillators: [{ target: "tail.wag", amp: 30, period: 0.14, from: 1.1, to: 1.6 }],
+  props: [
+    { id: "x", type: "text", at: "from", alt: 104, text: "¡x{streak}!", size: 1.7, color: "#FFD54A", grow: 0 },
+    { id: "wow", type: "bubble", at: "goat", alt: 54, along: 12, text: "{wow}", grow: 0 },
+    stars("fw1", 0.42, { particle: "sparkle", alt: 40, along: -30, burst: 12 }),
+    stars("fw2", 0.62, { alt: 54, along: 28, burst: 12 }),
+    stars("fw3", 0.84, { particle: "heart", alt: 30, along: 0, burst: 10 }),
+    { id: "confetti", type: "emitter", particle: "confetti", at: "goat", alt: 70, start: 0.3, end: 1.5, rate: 40, life: 1.2, speed: 34, spread: 220, gravity: 40 },
+    dust("land", "from", 1.06, { burst: 10, speed: 30 }),
+  ],
+  cues: [{ t: 0.05, sound: "ding" }, { t: 0.2, sound: "whoosh", gain: 0.6 }, { t: 0.62, sound: "ding", pitch: 1.5, gain: 0.6 }, { t: 1.08, sound: "cowbell" }, { t: 1.24, sound: "cowbell", pitch: 1.1 }, { t: 1.4, sound: "cowbell", pitch: 1.2 }],
+};
+
+const streakMega: Scene = {
+  ...streak9,
+  name: "streak-mega", duration: 1.6,
+  description: "12, 15, 18… in a row: a pronk-spin with crown and shades, “¡Leyenda!”, confetti and fireworks.",
+  tracks: {
+    ...streak9.tracks,
+    "cabra.spin": [k(0.18, 0), k(0.98, 720, "easeInOut")],
+    "cabra.face": [k(0.3, 1), k(0.5, -1, "linear"), k(0.7, 1, "linear"), k(0.9, -1, "linear"), k(1.06, 1, "linear")],
+    "gear.crown": [k(0, 1)],
+  },
+  props: [
+    ...(streak9.props || []).filter((p) => p.id !== "wow"),
+    { id: "wow", type: "bubble", at: "goat", alt: 54, along: 12, text: "{legend}", grow: 0 },
+  ],
+};
+
 /* ---------------- Idle moments (silent: they play while questions are read) ---------------- */
 
 const lookAround: Scene = {
@@ -627,7 +753,7 @@ const snack: Scene = {
 
 const poke: Scene = {
   name: "poke", group: "reaction", duration: 1.1,
-  description: "Tapped: jumps with a startled “Beee!” and a quick spin.",
+  description: "Tapped: the cowbell clanks, “¡Beee!” (the game's own bleat) and a quick spin.",
   tracks: {
     "body.squash": [k(0, 1), k(0.08, 0.72), k(0.16, 1.2), k(0.3, 1), k(0.76, 1), k(0.8, 0.82), k(1.0, 1, "backOut")],
     "cabra.alt": [k(0, 0), k(0.12, 0), k(0.42, 26, "easeOut"), k(0.76, 0, "easeIn")],
@@ -639,12 +765,13 @@ const poke: Scene = {
     "b.grow": [k(0, 0), k(0.1, 1, "backOut"), k(0.82, 1), k(0.96, 0)],
   },
   props: [{ id: "b", type: "bubble", at: "from", alt: 66, text: "{baa}", grow: 0 }, dust("land", "from", 0.76)],
-  cues: [{ t: 0.06, sound: "baa", pitch: 1.1 }],
+  // the bell swings as it jumps: clank, clank… clank on landing
+  cues: [{ t: 0.05, sound: "cowbell" }, { t: 0.32, sound: "cowbell", pitch: 1.06, gain: 0.7 }, { t: 0.78, sound: "cowbell", pitch: 0.96 }],
 };
 
 const giggle: Scene = {
   name: "giggle", group: "reaction", duration: 1.4,
-  description: "Tapped: wiggles, blushes, hearts.",
+  description: "Tapped: wiggles, blushes, hearts, and the cowbell jangles.",
   tracks: {
     "eyes.happy": [k(0, 0), k(0.05, 1, "hold"), k(1.2, 0, "hold")],
     "face.blush": [k(0, 0), k(0.2, 1), k(1.4, 0)],
@@ -658,7 +785,7 @@ const giggle: Scene = {
     { target: "tail.wag", amp: 30, period: 0.12, from: 0.1, to: 1.2 },
   ],
   props: [{ id: "hearts", type: "emitter", particle: "heart", at: "goat", alt: 30, start: 0.1, end: 0.9, rate: 8, life: 1, speed: 20, spread: 90, gravity: -10, size: 1.1 }],
-  cues: [{ t: 0.1, sound: "beh", pitch: 1.35, gain: 0.8 }],
+  cues: [{ t: 0.08, sound: "cowbell" }, { t: 0.3, sound: "cowbell", pitch: 1.08, gain: 0.7 }, { t: 0.52, sound: "cowbell", pitch: 0.94, gain: 0.6 }, { t: 0.76, sound: "cowbell", pitch: 1.04, gain: 0.5 }],
 };
 
 // In-game timing. The game never waits for the goat, so anything between two questions is
@@ -670,7 +797,8 @@ const FAST: Record<string, number> = {
 };
 
 export const SCENES: Scene[] = [
-  rest, restWait, sleep, proud,
+  rest, restWait, sleep, proud, antsy,
+  streak3, streak5, streak9, streakMega,
   hop, pasaHop, hopSkip, pronk, mountain, leap, fadeMove,
   graze, grazeFlower, oops, pasaFlip, pasaDouble, appear, ready, lieDown, timeUp, victory, bow,
   lookAround, scratch, chew, sniff, littleHop, stretch, headbutt, tailWag, balance, snack,
@@ -683,6 +811,11 @@ export const SLOTS: Record<string, string[]> = {
   wait: ["rest-wait"],
   sleep: ["sleep"],
   proud: ["proud"],
+  antsy: ["antsy"],
+  streak3: ["streak-3"],
+  streak5: ["streak-5"],
+  streak9: ["streak-9"],
+  streakMega: ["streak-mega"],
   hop: ["hop", "hop", "hop-skip", "pronk"],
   mountain: ["mountain"],
   leap: ["leap"],

@@ -125,13 +125,16 @@ export const DEFAULTS: Record<string, number> = {
   "legFN.x": 0, "legFN.lift": 0, "legFF.x": 0, "legFF.lift": 0,
   "legBN.x": 0, "legBN.lift": 0, "legBF.x": 0, "legBF.lift": 0,
   "legs.tuck": 0,
+  // Streak gear (the director keeps them on between scenes while the streak lasts)
+  "gear.shades": 0,
+  "gear.crown": 0,
 };
 
 export const PROP_TYPES = [
   "grass", "flower", "mountain", "cloud", "bubble", "text", "trampoline", "rainbow", "puddle", "emitter",
 ] as const;
 export const PARTICLES = ["dust", "grass", "sparkle", "star", "heart", "note", "confetti", "zzz", "drop"] as const;
-export const SOUNDS = ["baa", "beh", "meh", "munch", "boing", "pop", "whoosh", "ding", "rumble", "yawn"] as const;
+export const SOUNDS = ["pasalacabra", "baa", "beh", "meh", "munch", "boing", "pop", "whoosh", "ding", "rumble", "yawn", "cowbell"] as const;
 
 /** Fields every prop has (besides its type-specific ones). */
 export const PROP_COMMON: Record<string, number> = {

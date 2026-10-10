@@ -13,6 +13,7 @@ import { SPEC } from "../../src/cabra/spec";
 import { playSound } from "../../src/cabra/sounds";
 import { CabraStage, WORDS } from "../../src/cabra/stage";
 import { buildGoat, el, renderGoat } from "../../src/cabra/rig";
+import { GoatParty } from "../../src/cabra/party";
 
 declare global {
   interface Window {
@@ -125,7 +126,7 @@ function push() {
   // Mirror the app: exactly one "current".
   sim.statuses = sim.statuses.map((s, i) => (s === "current" && i !== sim.index ? "pending" : s));
   if (sim.statuses[sim.index] !== "correct" && sim.statuses[sim.index] !== "wrong") sim.statuses[sim.index] = "current";
-  const inp: GameInputs = { n: N, index: sim.index, statuses: [...sim.statuses], phase: sim.phase, gameOver: sim.gameOver };
+  const inp: GameInputs = { n: N, index: sim.index, statuses: [...sim.statuses], phase: sim.phase, gameOver: sim.gameOver, timeLeft: sim.timeLeft };
   director.update(inp);
   if (mode === "game") drawLetters(sim.statuses, sim.index);
   syncGameButtons();
@@ -202,6 +203,22 @@ $("gNew").onclick = () => {
   sim.gameOver = false;
   sim.timeLeft = 240;
   push();
+};
+let lastSecond = -1;
+$("gLast10").onclick = () => {
+  if (sim.gameOver) return;
+  sim.timeLeft = Math.min(sim.timeLeft, 12);
+  ensurePlaying();
+  push();
+};
+$("gParty").onclick = () => {
+  const ov = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  ov.setAttribute("aria-hidden", "true");
+  ov.style.cssText = "position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:50";
+  document.body.appendChild(ov);
+  const party = new GoatParty(ov);
+  party.start(() => ov.remove());
+  setTimeout(() => party.end(), 7000);
 };
 $("gAlmost").onclick = () => {
   if (sim.gameOver) return;
@@ -363,9 +380,14 @@ function tick(now: number) {
   const words = WORDS[lang];
   if (mode === "game") {
     const { goat, sets } = director.frame(now / 1000);
-    stage.render(goat, sets, clock, words);
+    stage.render(goat, sets, clock, { ...words, ...director.words });
     if (sim.phase === "playing" && sim.timeLeft > 0) sim.timeLeft = Math.max(0, sim.timeLeft - dt);
     const tl = Math.ceil(sim.timeLeft);
+    if (tl !== lastSecond) {
+      lastSecond = tl;
+      if (sim.phase === "playing" && tl === 0) sim.phase = "idle"; // ¡Tiempo!, like the app
+      push();
+    }
     $("timer").textContent = `${Math.floor(tl / 60)}:${String(tl % 60).padStart(2, "0")}`;
     const st = director.status;
     if (st) {
@@ -376,7 +398,8 @@ function tick(now: number) {
       }
       const q = st.queue.length ? `  ·  next: ${st.queue.join(" → ")}` : "";
       const where = st.from === st.to ? LETTERS[st.from] : `${LETTERS[st.from]} → ${LETTERS[st.to]}`;
-      logLine(`${st.kind} · ${st.scene} at ${where}${q}`);
+      const streak = director.streak >= 2 ? `  ·  streak ${director.streak}` : "";
+      logLine(`${st.kind} · ${st.scene} at ${where}${q}${streak}`);
     }
   } else if (player.scene && player.ev) {
     const s = player.scene;
@@ -397,7 +420,7 @@ function tick(now: number) {
     player.lastCue = player.t;
     player.ev.ctx.clock = clock;
     const fr = player.ev.frame(player.t);
-    stage.render(fr, [{ frame: fr, alpha: 1, key: "p" + player.evId }], clock, words);
+    stage.render(fr, [{ frame: fr, alpha: 1, key: "p" + player.evId }], clock, { ...words, streak: "5" });
     ($("scrub") as HTMLInputElement).value = String(player.t);
     $("timeLbl").textContent = `${player.t.toFixed(2)} / ${s.duration.toFixed(2)} s`;
   }
@@ -410,7 +433,8 @@ const state = { drafts: [] as { id: string; scene: Scene; prompt: string }[], sa
 const slotsOf = (name: string) => Object.entries(SLOTS).filter(([, v]) => v.includes(name)).map(([k]) => k);
 const SLOT_LABEL: Record<string, string> = {
   rest: "resting", wait: "waiting to start", sleep: "turn over", proud: "after a perfect game", hop: "1 letter", mountain: "2–4 letters",
-  leap: "5+ letters", correct: "✓", wrong: "✗", pasaHop: "Pasalacabra", appear: "new game", start: "Empezar", turnEnd: "end of turn", timeUp: "time’s up",
+  leap: "5+ letters", correct: "✓", wrong: "✗", pasaHop: "Pasalacabra", appear: "new game", start: "Empezar", turnEnd: "end of turn", antsy: "last 10 seconds", streak3: "3 in a row", streak5: "5 in a row",
+  streak9: "9 in a row", streakMega: "12, 15, 18… in a row", timeUp: "time’s up",
   victory: "perfect game", gameOver: "game over", poke: "tap", moment: "idle", waitMoment: "idle before start",
 };
 function sceneRow(item: { id: string; scene: Scene; prompt?: string }, kind: Source["kind"]) {
@@ -468,7 +492,7 @@ function sceneRow(item: { id: string; scene: Scene; prompt?: string }, kind: Sou
   }
   return row;
 }
-const GROUPS: [string, string][] = [["Game events", "event"], ["Moving between letters", "move"], ["Idle moments", "moment"], ["Resting", "rest"], ["Tapped", "reaction"]];
+const GROUPS: [string, string][] = [["Game events and streaks", "event"], ["Moving between letters", "move"], ["Idle moments", "moment"], ["Resting", "rest"], ["Tapped", "reaction"]];
 function renderLibrary() {
   const al = $("appList");
   al.innerHTML = "";
@@ -519,7 +543,7 @@ $("specText").textContent = SPEC;
 $("copySpecBtn").onclick = () => copyText(SPEC, (m) => ($("copySpecBtn").textContent = m === "Copied." ? "Copied" : "Copy spec"));
 
 const slotSel = $("slotSel") as HTMLSelectElement;
-for (const s of ["correct", "wrong", "pasaHop", "hop", "mountain", "leap", "start", "turnEnd", "timeUp", "victory", "poke", "moment"]) slotSel.add(new Option(SLOT_LABEL[s], s));
+for (const s of ["correct", "streak3", "streak5", "streak9", "streakMega", "wrong", "pasaHop", "hop", "mountain", "leap", "antsy", "start", "turnEnd", "timeUp", "victory", "poke", "moment"]) slotSel.add(new Option(SLOT_LABEL[s], s));
 $("slotBtn").onclick = () => {
   if (!player.scene) return;
   const scene = director.addScene(sceneToJSON(player.scene));

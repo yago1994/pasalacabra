@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import LetterRing from "./components/LetterRing";
+import CabraIcon from "./cabra/CabraIcon";
+import CabraParty from "./cabra/CabraParty";
 import GameDetails, { type SetupPlayer } from "./components/GameDetails";
 import HomePage from "./components/HomePage";
 import {
@@ -302,7 +304,7 @@ export default function App() {
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [gameOverMessage, setGameOverMessage] = useState<string>("");
   const [isDailyGame, setIsDailyGame] = useState<boolean>(false);
-  const [confettiGoats, setConfettiGoats] = useState<Array<{ id: number; left: number; delay: number }>>([]);
+  const [goatParty, setGoatParty] = useState(false);
 
   // Account + stats. Works signed out too: results then live on the device.
   const account = useAccount();
@@ -2089,26 +2091,14 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft, phase, capturePlayerSnapshot]);
 
-  // Confetti goats when game ends
+  // Goat party when the game ends: goats gallop, hop and flip across the screen.
   useEffect(() => {
     if (!gameOver) {
-      setConfettiGoats([]);
+      setGoatParty(false);
       return;
     }
-
-    // Create 100 confetti goats with random positions and delays spread over 10 seconds
-    const goats = Array.from({ length: 100 }, (_, i) => ({
-      id: Date.now() + i,
-      left: Math.random() * 100, // Random horizontal position (0-100%)
-      delay: Math.random() * 10, // Random delay spread over 10 seconds
-    }));
-    setConfettiGoats(goats);
-
-    // Clean up after animation completes (10s max delay + 3s animation)
-    const cleanup = setTimeout(() => {
-      setConfettiGoats([]);
-    }, 14000);
-
+    setGoatParty(true);
+    const cleanup = setTimeout(() => setGoatParty(false), 12000);
     return () => clearTimeout(cleanup);
   }, [gameOver]);
 
@@ -3283,29 +3273,17 @@ export default function App() {
   return (
     <div className="app">
       <div className="backgroundDecoration" aria-hidden="true">
-        <span className="goat goat1">🐐</span>
-        <span className="goat goat2">🐐</span>
-        <span className="goat goat3">🐐</span>
-        <span className="goat goat4">🐐</span>
-        <span className="goat goat5">🐐</span>
-        <span className="goat goat6">🐐</span>
-        <span className="goat goat7">🐐</span>
-        <span className="goat goat8">🐐</span>
+        <span className="goat goat1"><CabraIcon pose="happy" /></span>
+        <span className="goat goat2"><CabraIcon pose="jump" /></span>
+        <span className="goat goat3"><CabraIcon pose="graze" /></span>
+        <span className="goat goat4"><CabraIcon pose="rear" /></span>
+        <span className="goat goat5"><CabraIcon pose="flip" /></span>
+        <span className="goat goat6"><CabraIcon pose="scratch" /></span>
+        <span className="goat goat7"><CabraIcon pose="headbutt" /></span>
+        <span className="goat goat8"><CabraIcon pose="stretch" /></span>
       </div>
-      {/* Confetti goats when game ends */}
-      {confettiGoats.map((goat) => (
-        <div
-          key={goat.id}
-          className="goatConfetti"
-          style={{
-            left: `${goat.left}%`,
-            animationDelay: `${goat.delay}s`,
-          }}
-          aria-hidden="true"
-        >
-          🐐
-        </div>
-      ))}
+      {/* Goat party when the game ends */}
+      <CabraParty active={goatParty} />
 
       {/* Snapshot slideshow overlay when game ends */}
       {slideshowActive && playerSnapshots.length > 0 && (() => {
@@ -3525,10 +3503,10 @@ export default function App() {
       {signInOpen ? (
         <div className="center" style={{ position: "absolute", inset: 0, zIndex: 50, background: "var(--letter-default)", paddingTop: 16 }}>
           <div className="backgroundDecoration" aria-hidden="true">
-            <span className="goat goat1">🐐</span>
-            <span className="goat goat3">🐐</span>
-            <span className="goat goat5">🐐</span>
-            <span className="goat goat7">🐐</span>
+            <span className="goat goat1"><CabraIcon pose="happy" /></span>
+            <span className="goat goat3"><CabraIcon pose="graze" /></span>
+            <span className="goat goat5"><CabraIcon pose="flip" /></span>
+            <span className="goat goat7"><CabraIcon pose="headbutt" /></span>
           </div>
           <SignInSheet
             localGameCount={account.signedIn ? 0 : account.results.length}
@@ -3543,10 +3521,10 @@ export default function App() {
       {statsOpen ? (
         <div className="center" style={{ position: "absolute", inset: 0, zIndex: 45, background: "var(--letter-default)", paddingTop: 16 }}>
           <div className="backgroundDecoration" aria-hidden="true">
-            <span className="goat goat1">🐐</span>
-            <span className="goat goat3">🐐</span>
-            <span className="goat goat5">🐐</span>
-            <span className="goat goat7">🐐</span>
+            <span className="goat goat1"><CabraIcon pose="happy" /></span>
+            <span className="goat goat3"><CabraIcon pose="graze" /></span>
+            <span className="goat goat5"><CabraIcon pose="flip" /></span>
+            <span className="goat goat7"><CabraIcon pose="headbutt" /></span>
           </div>
           <StatsSheet
             result={todayResult}
@@ -3717,6 +3695,7 @@ export default function App() {
                 currentIndex={currentIndex}
                 phase={phase}
                 gameOver={gameOver}
+                timeLeft={timeLeft}
                 getAudioCtx={getAudioCtx}
               />
             </div>
@@ -3830,7 +3809,14 @@ export default function App() {
                   <>
                     {turnMessage ? (
                       <div className="answerReveal" style={{ marginTop: 2 }}>
-                        <strong>{turnMessage}</strong>
+                        <strong>
+                          {turnMessage.split("🐐").map((part, i) => (
+                            <span key={i}>
+                              {i > 0 && <CabraIcon pose="king" size="1.4em" />}
+                              {part}
+                            </span>
+                          ))}
+                        </strong>
                       </div>
                     ) : null}
                   {gameOver && session ? (

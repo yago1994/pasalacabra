@@ -2,7 +2,27 @@
 // A bleat is a sawtooth voice with the fast (~20–28 Hz) pitch-and-volume tremolo that
 // makes goats sound like goats, shaped by vowel formants ("beee" in Spanish, "baa" in English).
 
+import pasalacabraUrl from "../assets/sfx-pasalacabra.wav";
+
 type Opts = { pitch?: number; gain?: number };
+
+// The game's own Pasalacabra bleat, decoded once per AudioContext. Any "¡Beee!" bubble plays it.
+const samples = new WeakMap<AudioContext, Promise<AudioBuffer | null>>();
+function pasalacabraSample(ctx: AudioContext) {
+  let p = samples.get(ctx);
+  if (!p) {
+    p = fetch(pasalacabraUrl)
+      .then((r) => r.arrayBuffer())
+      .then((b) => ctx.decodeAudioData(b))
+      .catch(() => null);
+    samples.set(ctx, p);
+  }
+  return p;
+}
+/** Starts decoding the bleat sample early so the first "¡Beee!" isn't late. */
+export function preloadSounds(ctx: AudioContext) {
+  void pasalacabraSample(ctx);
+}
 
 let noiseBuf: AudioBuffer | null = null;
 function noise(ctx: AudioContext) {
@@ -117,7 +137,7 @@ function tone(ctx: AudioContext, out: AudioNode, t0: number, type: OscillatorTyp
   return o;
 }
 
-export type SoundName = "baa" | "beh" | "meh" | "munch" | "boing" | "pop" | "whoosh" | "ding" | "rumble" | "yawn";
+export type SoundName = "pasalacabra" | "baa" | "beh" | "meh" | "munch" | "boing" | "pop" | "whoosh" | "ding" | "rumble" | "yawn" | "cowbell";
 
 /** Plays one sound now. `lang` picks the bleat vowel ("beee" vs "baa"). */
 export function playSound(ctx: AudioContext, name: string, opts: Opts = {}, lang = "es", master = 0.5) {
@@ -129,6 +149,40 @@ export function playSound(ctx: AudioContext, name: string, opts: Opts = {}, lang
   const vowel = lang === "en" ? "a" : "e";
   const jitter = 0.94 + Math.random() * 0.12;
   switch (name as SoundName) {
+    case "pasalacabra":
+      void pasalacabraSample(ctx).then((buf) => {
+        if (!buf) return voice(ctx, out, ctx.currentTime + 0.01, 0.78, 360 * pitch, vowel, 1, 0.5);
+        const src = ctx.createBufferSource();
+        src.buffer = buf;
+        src.playbackRate.value = pitch;
+        out.gain.value = (opts.gain ?? 1) * Math.max(master, 0.9);
+        src.connect(out);
+        src.start();
+      });
+      break;
+    case "cowbell": {
+      // The classic two-square-wave cowbell, through a band-pass, with a sharp clank and a ring.
+      const bp = ctx.createBiquadFilter();
+      bp.type = "bandpass";
+      bp.frequency.value = 2640 * pitch;
+      bp.Q.value = 1.4;
+      const env = ctx.createGain();
+      env.gain.setValueAtTime(0.0001, t0);
+      env.gain.exponentialRampToValueAtTime(0.9, t0 + 0.004);
+      env.gain.exponentialRampToValueAtTime(0.25, t0 + 0.06);
+      env.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.55);
+      for (const f of [587, 845]) {
+        const o = ctx.createOscillator();
+        o.type = "square";
+        o.frequency.value = f * pitch * jitter;
+        o.connect(bp);
+        o.start(t0);
+        o.stop(t0 + 0.6);
+      }
+      bp.connect(env).connect(out);
+      noiseHit(ctx, out, t0, 0.025, 4200, 1.2, 0.35);
+      break;
+    }
     case "baa": // a full, proud bleat
       voice(ctx, out, t0, 0.78, 360 * pitch * jitter, vowel, 1, 0.5);
       break;

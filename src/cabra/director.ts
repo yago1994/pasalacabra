@@ -22,11 +22,13 @@ export type GameInputs = {
   statuses: readonly string[];
   phase: Phase;
   gameOver: boolean;
+  /** Seconds left on the active player's clock: the goat gets antsy in the last 10. */
+  timeLeft?: number;
 };
 
 type Kind = "rest" | "moment" | "event" | "move";
 type Action = { slot: string; scene: string; from: number; to: number; kind: Kind };
-type Playing = Action & { ev: Evaluator; local: number; scale: number; id: number; lastCue: number };
+type Playing = Action & { ev: Evaluator; local: number; scale: number; id: number; lastCue: number; bleated: Set<string> };
 
 const BLEND = 0.22;
 const pick = <T,>(arr: T[], avoid?: T) => {
@@ -51,6 +53,8 @@ export class Director {
   private lastMoment = "";
   private turnClosed = false;
   private pasaNext = false;
+  /** Consecutive ✓ this turn; 3, 5, 9, then every 3 from 12 get a special move. */
+  streak = 0;
   private seq = 0;
   private lastFrame: Frame | null = null;
   private fading: { frame: Frame; start: number; key: string } | null = null;
@@ -63,6 +67,16 @@ export class Director {
     const { scene } = normalizeScene(raw);
     this.library.set(scene.name, scene);
     return scene;
+  }
+
+  /** Streak gear that stays on between scenes: sunglasses from 5 in a row, a crown from 9. */
+  private get outfit(): Record<string, number> {
+    return { "gear.shades": this.streak >= 5 ? 1 : 0, "gear.crown": this.streak >= 9 ? 1 : 0 };
+  }
+
+  /** Words the director fills in for bubbles ({streak}). Merge with the language's words. */
+  get words(): Record<string, string> {
+    return { streak: String(this.streak) };
   }
 
   /** Where the goat is, or will be once everything queued has played. */
@@ -92,7 +106,18 @@ export class Director {
       const allGreen = inp.statuses.length > 0 && inp.statuses.every((s) => s === "correct");
       return allGreen ? "proud" : "sleep";
     }
-    return inp.phase === "idle" ? "wait" : "rest";
+    if (inp.phase === "idle") return "wait";
+    return inp.timeLeft !== undefined && inp.timeLeft > 0 && inp.timeLeft <= 10 ? "antsy" : "rest";
+  }
+
+  /** Which scene a ✓ plays, by streak length. */
+  private correctSlot() {
+    const n = this.streak;
+    if (n === 3) return "streak3";
+    if (n === 5) return "streak5";
+    if (n === 9) return "streak9";
+    if (n >= 12 && n % 3 === 0) return "streakMega";
+    return "correct";
   }
 
   private enqueue(slot: string, kind: Kind, from: number, to = from) {
@@ -142,13 +167,20 @@ export class Director {
       this.queue = [];
       this.cur = null;
       this.turnClosed = false;
+      this.streak = 0;
       this.enqueue("appear", "event", Math.max(0, inp.index));
     } else {
       if (changed.length === 1) {
         const st = norm(inp.statuses[changed[0]]);
         // Pasalacabra has no scene of its own: it flavours the hop that follows.
-        if (st === "passed") this.pasaNext = true;
-        else this.enqueue(st === "correct" ? "correct" : "wrong", "event", this.tail);
+        if (st === "correct") {
+          this.streak++;
+          this.enqueue(this.correctSlot(), "event", this.tail);
+        } else {
+          this.streak = 0; // ✗ and Pasalacabra both end a streak
+          if (st === "passed") this.pasaNext = true;
+          else this.enqueue("wrong", "event", this.tail);
+        }
       }
       if (inp.index !== prev.index && inp.index >= 0) this.enqueue("move", "move", this.tail, inp.index);
       this.pasaNext = false; // only flavours a move that arrives in the same update
@@ -159,6 +191,7 @@ export class Director {
       const turnOver = prev.phase === "playing" && inp.phase !== "playing";
       if (inp.phase === "playing" && prev.phase !== "playing") {
         this.turnClosed = false;
+        if (prev.phase === "ended" || prev.gameOver) this.streak = 0;
         this.enqueue("start", "event", this.tail);
       } else if ((turnOver || (inp.gameOver && !prev.gameOver)) && !this.turnClosed) {
         // One closing scene per turn: a perfect ring, time running out, the game ending, or a plain end of turn.
@@ -191,7 +224,7 @@ export class Director {
     }
     const scene = this.library.get(a.scene)!;
     const n = this.inputs?.n ?? 25;
-    this.cur = { ...a, ev: new Evaluator(scene, { n, from: a.from, to: a.to, clock: this.clock }), local: 0, scale: 1, id: ++this.seq, lastCue: -1 };
+    this.cur = { ...a, ev: new Evaluator(scene, { n, from: a.from, to: a.to, clock: this.clock, outfit: this.outfit }), local: 0, scale: 1, id: ++this.seq, lastCue: -1, bleated: new Set() };
     if (a.kind === "rest") this.nextMoment = this.clock + 4 + Math.random() * 5;
   }
 
@@ -235,6 +268,13 @@ export class Director {
       }
     }
 
+    // The resting loop follows the game: antsy in the last 10 seconds, asleep after the turn…
+    const want = this.restSlot();
+    const r = this.cur!;
+    if (!this.queue.length && ((r.kind === "rest" && r.slot !== want) || (r.kind === "moment" && want === "antsy"))) {
+      this.switchTo({ slot: want, scene: this.sceneFor(want), from: r.to, to: r.to, kind: "rest" });
+    }
+
     // Idle moments while resting
     const cur = this.cur!;
     if (cur.kind === "rest" && this.clock >= this.nextMoment && !this.queue.length) {
@@ -254,10 +294,22 @@ export class Director {
 
     // Sound cues crossed this tick
     // While a question is being read or answered, only the game's own events make sound.
-    const quiet = this.inputs?.phase === "playing" && (p.kind !== "event" || p.slot === "poke" || p.slot === "start");
+    // Taps are the player's own doing, so the cowbell always rings.
+    const quiet = this.inputs?.phase === "playing" && p.slot !== "poke" && (p.kind !== "event" || p.slot === "start");
     if (this.onSound && !sc.loop && !quiet) {
       for (const cue of sc.cues) {
         if (cue.t > p.lastCue && cue.t <= t) this.onSound(cue.sound, { pitch: cue.pitch, gain: cue.gain });
+      }
+      // A "¡Beee!" bubble plays the game's real Pasalacabra bleat as it pops up (the game
+      // already plays it for the Pasalacabra hop itself).
+      if (p.slot !== "pasaHop") {
+        for (const pf of fr.props) {
+          if (pf.prop.type !== "bubble" || !String(pf.prop.text ?? "").includes("{baa}") || p.bleated.has(pf.key)) continue;
+          if (pf.f.grow >= 0.5 && pf.f.opacity > 0.1) {
+            p.bleated.add(pf.key);
+            this.onSound("pasalacabra", {});
+          }
+        }
       }
     }
     p.lastCue = t;

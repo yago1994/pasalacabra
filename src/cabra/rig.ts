@@ -112,6 +112,8 @@ export type GoatDom = {
   blush: SVGEllipseElement;
   ear: SVGGElement;
   beard: SVGGElement;
+  shades: SVGGElement;
+  crown: SVGGElement;
   hit: SVGEllipseElement;
 };
 
@@ -197,9 +199,19 @@ export function buildGoat(parent: Element): GoatDom {
   const beardD = "M0,0C1.4,2.4 1,5.2 -0.6,7.2C-1.4,5 -2.2,2.6 -1.6,0.2Z";
   el("path", { d: beardD, fill: C.shade, stroke: C.ink, "stroke-width": 1, "stroke-linejoin": "round" }, beard);
 
+  // Streak gear: sunglasses over the eye (5 in a row) and a little gold crown (9 in a row).
+  const shades = el("g", { visibility: "hidden" }, head);
+  el("path", { d: "M-2.2,-3.6L6.4,-4.2M-2.2,-3.6L-4.8,-2.6", stroke: C.ink, "stroke-width": 1.1, "stroke-linecap": "round" }, shades);
+  el("path", { d: "M-0.6,-4.4H6.6Q6.8,0.2 3.2,0.6Q-0.4,0.6 -0.6,-4.4Z", fill: "#1B2033", stroke: C.ink, "stroke-width": 0.8, "stroke-linejoin": "round" }, shades);
+  el("path", { d: "M0.6,-3.4L2.2,-3.4M0.8,-2.2L1.6,-2.2", stroke: "#8FB4FF", "stroke-width": 0.8, "stroke-linecap": "round" }, shades);
+  const crown = el("g", { visibility: "hidden" }, head);
+  el("path", { d: "M-4,-7.2L-4.6,-12.4L-1.8,-9.8L0.4,-13.6L2.4,-9.8L5,-12.2L4.6,-7.2Z", fill: C.bell, stroke: C.ink, "stroke-width": 0.9, "stroke-linejoin": "round" }, crown);
+  el("circle", { cx: 0.4, cy: -8.6, r: 0.9, fill: C.collar }, crown);
+  el("circle", { cx: 0.4, cy: -13.8, r: 0.7, fill: "#fff", stroke: C.ink, "stroke-width": 0.5 }, crown);
+
   const hit = el("ellipse", { cx: 0, cy: -24, rx: 26, ry: 26, fill: "transparent" }, root);
 
-  return { root, inner, legs, body, neckO, neckF, tail, collar, bell, head, jawO, jawF, mouth, eyeOpen, eyeLid, eyeClosed, pupil, glint, brow, blush, ear, beard, hit };
+  return { root, inner, legs, body, neckO, neckF, tail, collar, bell, head, jawO, jawF, mouth, eyeOpen, eyeLid, eyeClosed, pupil, glint, brow, blush, ear, beard, shades, crown, hit };
 }
 
 /* ---------------- Per-frame update ---------------- */
@@ -317,4 +329,13 @@ export function renderGoat(G: GoatDom, fr: Frame) {
   const perk = clamp(p["ears.perk"], -1.5, 1.5);
   G.ear.setAttribute("transform", `translate(-2.6 -2.6) rotate(${f2(perk * 32 - fr.lag.ear - Math.max(0, -perk) * 10)})`);
   G.beard.setAttribute("transform", `translate(6.4 6.2) rotate(${f2(fr.lag.beard + jaw * 0.6)})`);
+  const gear = (g: SVGGElement, v: number, dy: number) => {
+    const u = clamp(v, 0, 1);
+    g.setAttribute("visibility", u > 0.02 ? "visible" : "hidden");
+    // drops into place from above as it appears
+    g.setAttribute("transform", `translate(0 ${f2((1 - u) * dy)})`);
+    g.setAttribute("opacity", String(f2(Math.min(1, u * 2))));
+  };
+  gear(G.shades, p["gear.shades"], -14);
+  gear(G.crown, p["gear.crown"], -18);
 }

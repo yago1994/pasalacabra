@@ -30,6 +30,8 @@ type Props = {
   /** Game phase and end state, so the goat can react (start, end of turn, victory). */
   phase?: Phase;
   gameOver?: boolean;
+  /** Seconds left on the active player's clock (the goat gets antsy in the last 10). */
+  timeLeft?: number;
   getAudioCtx?: () => AudioContext | null;
 };
 
@@ -40,7 +42,7 @@ function angleForIndex(i: number, total: number) {
   return (i / total) * TAU - Math.PI / 2;
 }
 
-export default function LetterRing({ letters, statusByLetter, currentIndex, phase = "playing", gameOver = false, getAudioCtx }: Props) {
+export default function LetterRing({ letters, statusByLetter, currentIndex, phase = "playing", gameOver = false, timeLeft, getAudioCtx }: Props) {
   // SVG coordinate system (shared with the goat engine)
   const { size, cx, cy, ringR, nodeR } = RING;
 
@@ -57,6 +59,7 @@ export default function LetterRing({ letters, statusByLetter, currentIndex, phas
       statuses: letters.map((l) => statusByLetter[l]),
       phase,
       gameOver,
+      timeLeft,
     },
   });
 

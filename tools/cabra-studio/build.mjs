@@ -15,6 +15,8 @@ const out = await build({
   minify: true,
   write: false,
   legalComments: "none",
+  // the game's Pasalacabra bleat, inlined so "¡Beee!" bubbles play it in the Artifact too
+  loader: { ".wav": "dataurl" },
 });
 const js = out.outputFiles[0].text.replace(/<\/script/gi, "<\\/script");
 // The dev page carries a charset meta for Vite; the Artifact wrapper supplies its own head.

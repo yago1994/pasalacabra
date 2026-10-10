@@ -23,6 +23,8 @@ adding scenes, or wiring it to new game events.
 | `src/cabra/sounds.ts` | Procedural WebAudio bleats ("beee"/"baa") and effects; no audio files |
 | `src/cabra/spec.ts` | The brief Claude gets in the studio (generated from the real defaults) |
 | `src/cabra/useCabra.ts` | React hook: owns director + stage, runs the rAF loop outside React |
+| `src/cabra/still.ts`, `CabraIcon.tsx` | The goat as a still picture in named poses: icons, background goats, the share snapshot |
+| `src/cabra/party.ts`, `CabraParty.tsx` | End-of-game goat party: goats gallop, hop and flip across the screen over rising mountains |
 | `src/components/LetterRing.tsx` | Mounts the two goat layers around the letters |
 | `tools/cabra-studio/` | Studio page (`index.html`, `studio.ts`), `build.mjs`, and a dev contact sheet |
 
@@ -69,12 +71,29 @@ Inputs from `LetterRing`: `n`, current `index`, per-letter `statuses`, `phase`, 
 - Resting: `rest` while playing (idle moment every 4–9 s: look-around, scratch, chew, sniff,
   little-hop, stretch, headbutt, tail-wag, balance, snack), `rest-wait` before a turn,
   `sleep` after one, `proud` after a perfect game.
-- Tap the goat → `poke` / `giggle`.
+- **Streaks** (consecutive ✓ in a turn; ✗, Pasalacabra or a new ring reset it): 3 = `streak-3`
+  (backflip, gold "¡x3!"), 5 = `streak-5` (double backflip, "¡En racha!", sunglasses on),
+  9 = `streak-9` (sky-high triple flip, fireworks, crown), then every 3 from 12 = `streak-mega`.
+  The sunglasses (from 5) and crown (from 9) stay on between scenes as an **outfit**: rest
+  values the evaluator uses for anything a scene doesn't animate (`Ctx.outfit`).
+- **Last 10 seconds** of a turn (`timeLeft` from the game): the rest loop becomes `antsy`
+  (rapid hops, sweat, eyes on the clock) and idle moments stop.
+- Tap the goat → `poke` / `giggle`, with cowbell clanks (always audible: it's the player's own tap).
+- Any bubble saying `{baa}` ("¡Beee!") plays the game's real Pasalacabra bleat as it pops,
+  except on the Pasalacabra hop, where the game already plays it.
 - **Sound:** the game reads questions aloud and listens for answers, so moves and idle
   moments are silent, and while a turn is playing only ✓ / ✗ / Pasalacabra scenes may make
   sound. The app's own goat SFX still plays on Pasalacabra; the goat adds a whoosh. Sounds use
   the game's AudioContext and only play once it is running.
 - Reduced motion: moves become fades, flips become a giggle, idle moments become chewing.
+
+## Outside the ring
+
+- Every goat emoji on the site is now the rig: the home icon, profile and sign-in icons, the
+  floating background goats (each in its own pose), the 🐐 in the end-of-ring message, and the
+  goat in the share snapshot (rasterised once; falls back to the emoji if the browser would
+  taint the canvas). Plain-text shares ("Pasala🐐") keep the emoji.
+- The end-of-game falling goats are replaced by `CabraParty`.
 
 ## Workflows
 

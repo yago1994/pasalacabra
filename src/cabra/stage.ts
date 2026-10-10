@@ -11,8 +11,8 @@ const f2 = (n: number) => Math.round(n * 100) / 100;
 const pts2d = (pts: [number, number][]) => pts.map(([x, y], i) => `${i ? "L" : "M"}${f2(x)},${f2(y)}`).join("");
 
 export const WORDS: Record<string, Record<string, string>> = {
-  es: { baa: "¡Beee!", hop: "¡Hop!", yum: "¡Ñam!", ole: "¡Olé!", oops: "¡Ay!", wow: "¡Toma!", top: "¡Cima!", zzz: "Zzz", boing: "¡Boing!", go: "¡Vamos!", hmm: "¿Mmm?", pasa: "¡Pasa!", time: "¡Tiempo!" },
-  en: { baa: "Baa!", hop: "Hop!", yum: "Yum!", ole: "Olé!", oops: "Oops!", wow: "Wow!", top: "Summit!", zzz: "Zzz", boing: "Boing!", go: "Let’s go!", hmm: "Hmm?", pasa: "Pass!", time: "Time!" },
+  es: { baa: "¡Beee!", hop: "¡Hop!", yum: "¡Ñam!", ole: "¡Olé!", oops: "¡Ay!", wow: "¡Toma ya!", top: "¡Cima!", zzz: "Zzz", boing: "¡Boing!", go: "¡Vamos!", hmm: "¿Mmm?", pasa: "¡Pasa!", time: "¡Tiempo!", hot: "¡En racha!", legend: "¡Leyenda!" },
+  en: { baa: "Baa!", hop: "Hop!", yum: "Yum!", ole: "Olé!", oops: "Oops!", wow: "Wow!", top: "Summit!", zzz: "Zzz", boing: "Boing!", go: "Let’s go!", hmm: "Hmm?", pasa: "Pass!", time: "Time!", hot: "On fire!", legend: "Legend!" },
 };
 export function wordFor(text: string, words: Record<string, string>) {
   return text.replace(/\{(\w+)\}/g, (_, k: string) => words[k] ?? k);

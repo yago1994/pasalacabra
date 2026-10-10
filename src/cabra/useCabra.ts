@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import type { RefObject } from "react";
 import { Director } from "./director";
 import type { GameInputs } from "./director";
-import { playSound } from "./sounds";
+import { playSound, preloadSounds } from "./sounds";
 import { CabraStage, WORDS } from "./stage";
 
 type Options = {
@@ -48,11 +48,19 @@ export function useCabra({ backRef, frontRef, inputs, getAudioCtx, lang = "es" }
     directorRef.current = director;
 
     let raf = 0;
+    let preloaded = false;
     const start = performance.now();
     const tick = (now: number) => {
       const t = (now - start) / 1000;
       const { goat, sets } = director.frame(t);
-      stage.render(goat, sets, t, WORDS[langRef.current] || WORDS.es);
+      stage.render(goat, sets, t, { ...(WORDS[langRef.current] || WORDS.es), ...director.words });
+      if (!preloaded) {
+        const ctx = audioRef.current?.();
+        if (ctx) {
+          preloadSounds(ctx);
+          preloaded = true;
+        }
+      }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -66,7 +74,9 @@ export function useCabra({ backRef, frontRef, inputs, getAudioCtx, lang = "es" }
   }, [backRef, frontRef]);
 
   // Feed the game state every time it changes (the director diffs it).
-  const key = `${inputs.n}|${inputs.index}|${inputs.phase}|${inputs.gameOver}|${inputs.statuses.join(",")}`;
+  // The clock only matters to the goat in its last 10 seconds, so whole seconds are plenty.
+  const clockKey = inputs.timeLeft !== undefined && inputs.timeLeft <= 11 ? Math.ceil(inputs.timeLeft) : "ok";
+  const key = `${inputs.n}|${inputs.index}|${inputs.phase}|${inputs.gameOver}|${clockKey}|${inputs.statuses.join(",")}`;
   useEffect(() => {
     directorRef.current?.update(inputs);
     // eslint-disable-next-line react-hooks/exhaustive-deps

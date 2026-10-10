@@ -1,3 +1,4 @@
+import { snapshotGoat } from "./cabra/still";
 // src/game/snapshotComposer.ts
 
 export type LetterStatus = "idle" | "correct" | "wrong" | "passed";
@@ -325,6 +326,9 @@ function drawCircularVideo(
  * - Goat offset: nodeR + emojiSize/2 - 8
  * - Text y-offset: +6 in SVG coords
  */
+// Decode the goat picture now so drawing a snapshot later stays synchronous.
+if (typeof window !== "undefined") snapshotGoat();
+
 export function drawRing(
   ctx: CanvasRenderingContext2D,
   w: number,
@@ -424,15 +428,28 @@ export function drawRing(
       // Match UI rotation: (currentAngle - PI/2) in degrees
       const goatRotation = currentAngle - Math.PI / 2;
   
-      ctx.save();
-      ctx.translate(goatX, goatY);
-      ctx.rotate(goatRotation);
-      ctx.scale(1, -1); // match UI flip
-      ctx.font = `${emojiSize}px sans-serif`;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText("🐐", 0, 0);
-      ctx.restore();
+      const img = snapshotGoat();
+      if (img) {
+        // The goat from the game, standing on the letter with its hooves on the bubble's edge.
+        const footX = bubbleX + dotR * Math.cos(currentAngle);
+        const footY = bubbleY + dotR * Math.sin(currentAngle);
+        const h = emojiSize * 1.15, w = (h * 64) / 66; // STILL_VIEWBOX is 64 × 66, hooves 4 up from the bottom
+        ctx.save();
+        ctx.translate(footX, footY);
+        ctx.rotate(currentAngle + Math.PI / 2);
+        ctx.drawImage(img, -w * (30 / 64), -h * (62 / 66), w, h);
+        ctx.restore();
+      } else {
+        ctx.save();
+        ctx.translate(goatX, goatY);
+        ctx.rotate(goatRotation);
+        ctx.scale(1, -1); // match UI flip
+        ctx.font = `${emojiSize}px sans-serif`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("🐐", 0, 0);
+        ctx.restore();
+      }
   }
 }
 
