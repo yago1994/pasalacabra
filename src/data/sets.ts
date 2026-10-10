@@ -64,11 +64,50 @@ export function listSets(): SetSummary[] {
     .sort((a, b) => a.id.localeCompare(b.id));
 }
 
+// The daily games, one file per day: daily/es/YYYY-MM-DD.json. Lazy, so each
+// day is its own small chunk fetched on demand instead of the whole history
+// landing in the main bundle.
+const dailyLoaders = import.meta.glob<SetDefinition>("/daily/es/*.json", { import: "default" });
+
+/** The days that have a set, oldest first ("YYYY-MM-DD"). */
+export const DAILY_SET_DAYS: string[] = Object.keys(dailyLoaders)
+  .map((path) => path.slice(path.lastIndexOf("/") + 1, -".json".length))
+  .sort();
+
+// Daily sets already fetched, so getSet() can find them by id.
+const loadedSets = new Map<string, SetDefinition>();
+
 export function getSet(setId: string): SetDefinition | undefined {
+  const loaded = loadedSets.get(setId);
+  if (loaded) return loaded;
   for (const m of Object.values(setModules)) {
     if (m.default.id === setId) return m.default;
   }
   return undefined;
+}
+
+/** Local calendar day as "YYYY-MM-DD" — the day a daily game is played. */
+export function localDayKey(d: Date): string {
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+
+/**
+ * The daily set for a day. Falls back to the latest earlier day if that day's
+ * file is missing (e.g. the generator failed), and to undefined if there are
+ * no daily sets at all. Once loaded, the set is also reachable via getSet().
+ */
+export async function loadDailySet(d: Date): Promise<SetDefinition | undefined> {
+  const wanted = localDayKey(d);
+  let day: string | undefined;
+  for (const candidate of DAILY_SET_DAYS) {
+    if (candidate > wanted) break;
+    day = candidate;
+  }
+  if (!day) return undefined;
+  const set = await dailyLoaders[`/daily/es/${day}.json`]();
+  loadedSets.set(set.id, set);
+  return set;
 }
 
 export function buildQuestionMap(set: SetDefinition): Map<Letter, QA> {

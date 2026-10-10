@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '0 1 * * *' # every day at 1:00a
   workflow_dispatch:
+    inputs:
+      target_date:
+        description: 'Regenerate one day (YYYY-MM-DD). Defaults to whichever of today/tomorrow (UTC) is missing.'
+        required: false
 
 permissions:
   contents: write
@@ -28,7 +32,8 @@ jobs:
       - name: Generate daily set with retries
         env:
           OPENAI_KEY: ${{ vars.OPENAI_KEY }}
-          SET_PATH: src/data/sets/set_01.json
+          SETS_DIR: daily/es
+          TARGET_DATE: ${{ github.event.inputs.target_date }}
         run: |
           set -e
           max_attempts=3
@@ -52,13 +57,13 @@ jobs:
 
       - name: Commit daily set to review branch
         run: |
-          if [[ -z "$(git status --porcelain src/data/sets/set_01.json scripts/used_answers.json)" ]]; then
+          if [[ -z "$(git status --porcelain daily/es scripts/used_answers.json)" ]]; then
             echo "No changes to commit."
             exit 0
           fi
           BRANCH="tomorrow-$(date -u +%Y-%m-%d)"
           git checkout -b "$BRANCH"
-          git add src/data/sets/set_01.json scripts/used_answers.json
+          git add daily/es scripts/used_answers.json
           git -c user.name="github-actions[bot]" -c user.email="github-actions[bot]@users.noreply.github.com" \
             commit -m "chore: update daily set"
           git push -u origin "$BRANCH"
@@ -79,7 +84,7 @@ jobs:
             --title "Daily set for $(date -u +%Y-%m-%d)" \
             --body "$(printf '%s\n' \
               '## Summary' \
-              '- Generate daily `set_01.json` via OpenAI.' \
+              '- Generate the dated Spanish set(s) in `daily/es/` via OpenAI.' \
               '- Validate questions and difficulty requirements.' \
               '' \
               '## Test plan' \

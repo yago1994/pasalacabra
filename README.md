@@ -21,7 +21,7 @@ npm run build
 ## Game flow
 
 ### Home page (entry screen)
-- **Juego de hoy**: Launch a single-player daily game using the predefined `set_01.json` question set. Starts immediately with medium difficulty (4 minutes).
+- **Juego de hoy**: Launch a single-player daily game using today's set from `daily/es/`. Starts immediately with medium difficulty (4 minutes).
 - **Crea tu proprio juego**: Navigate to the game setup screen to customize your own game.
 - Expandable sections for **Cómo Jugar** (How to Play) and **¿Y esto de dónde ha salido?** (About) with full game instructions and project background.
 
@@ -49,7 +49,7 @@ Accessible via "Crea tu proprio juego" button:
 
 ### Game screen
 Accessed from either:
-- **Daily game** (`Juego de hoy`): Single-player game using `set_01.json` with medium difficulty (4 minutes)
+- **Daily game** (`Juego de hoy`): Single-player game using today's set (`daily/es/YYYY-MM-DD.json`) with medium difficulty (4 minutes)
 - **Custom game**: After setup, launches with your selected players, topics, and difficulty
 
 Features:
@@ -60,7 +60,7 @@ Features:
   - **Fácil**: 5 minutes (300 seconds)
 - **Question reading**: questions are **spoken out loud** (no on-screen question text). On mobile, speech is triggered from the **Start** button to comply with browser gesture policies.
 - **Question source**: 
-  - Daily game: Uses predefined set (`set_01.json`)
+  - Daily game: Uses today's dated set (`daily/es/`)
   - Custom game: Uses topic-based generated questions or test mode sets
 
 ### Controls
@@ -103,13 +103,21 @@ The question bank is dynamically generated at game start based on selected topic
 Note: The `cultura.ts` file provides questions for the "Cultura General" topic (mapped as `culturageneral` in the code).
 
 ### Question sets
-Predefined question sets live in:
-- `src/data/sets/set_01.json` … `src/data/sets/set_06.json`
+Question sets live in:
+- `daily/es/YYYY-MM-DD.json` — the Spanish daily games, one file per day, named
+  after the day it is played (id `es-YYYY-MM-DD`). Every day since 2026-01-17 is there.
+- `daily/YYYY-MM-DD.json` — the English daily sets (see the Reddit generator).
+- `src/data/sets/set_01.json` … `src/data/sets/set_06.json` — fixed sets for Test Mode.
+  `set_01.json` used to be the daily game and was overwritten every day; it is
+  no longer updated.
 
 Loaded via:
 - `src/data/sets.ts` using Vite `import.meta.glob` (no `resolveJsonModule` needed).
+  The dated sets are lazy: each day is its own small chunk, and the app fetches
+  today's (`loadDailySet`) as soon as it opens. If a day's file is missing it
+  falls back to the latest earlier day.
 
-**Daily Game** (`Juego de hoy`): Uses `set_01.json` for a quick single-player game with medium difficulty.
+**Daily Game** (`Juego de hoy`): Uses today's dated set for a quick single-player game with medium difficulty.
 
 **Test Mode**: In the setup screen (staging only), enables using a fixed question set instead of topic-based questions.
 
@@ -125,7 +133,10 @@ JSON shape:
 ```
 
 ### Daily set generation
-The daily set can be generated with OpenAI and stored in `src/data/sets/set_01.json`.
+The daily set is generated with OpenAI and stored in `daily/es/YYYY-MM-DD.json`.
+Each run creates whichever of today and tomorrow (UTC) has no set yet, so the
+next game is deployed before midnight and a failed day fills itself in on the
+next run. `TARGET_DATE=YYYY-MM-DD` regenerates one specific day.
 
 Local run:
 ```bash
@@ -147,7 +158,8 @@ Rules enforced by the generator:
 
 Workflow:
 - Run **Generate Daily Set** manually in GitHub Actions.
-- It creates a review branch named `tomorrow-YYYY-MM-DD` with the updated `set_01.json`.
+- Runs every day at 01:00 UTC, or manually (optionally with a `target_date`) in GitHub Actions.
+- It creates a review branch named `tomorrow-YYYY-MM-DD` with the new file(s) in `daily/es/`.
 - Merging that branch into `main` triggers the deploy workflow and rebuilds the Vite app.
 Required secret: `OPENAI_KEY`.
 
@@ -206,10 +218,10 @@ staging/local (`VITE_ALLOW_SUB_STUB=true`) the paywall button calls
 with a Stripe webhook writing `is_subscriber`, then drop that function.
 
 ### Not done yet
-Past games are listed but not playable: only today's set ships in the build.
-The older sets live in the git history of `src/data/sets/set_01.json` (113
-versions so far) and need restoring into dated set files before the archive's
-"Jugar" does anything.
+Past games are listed but not playable yet. Every day's set now ships in
+`daily/es/` (restored from the git history of `set_01.json` by
+`scripts/backfill_spanish_sets.py`), so what's left is starting a game for a
+past date and recording its result under that game's number.
 
 ## Audio on mobile (important)
 
