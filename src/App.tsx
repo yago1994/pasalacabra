@@ -10,6 +10,7 @@ import {
   buildQuestionMap as buildSetQuestionMap,
   getSet,
   listSets,
+  loadDailySet,
 } from "./data/sets";
 import { generatePlayerBanks } from "./questions/index";
 import type { QA as TopicQA } from "./questions/types";
@@ -320,9 +321,36 @@ export default function App() {
     () => account.results.find((r) => r.gameNo === todayGameNo && r.attempt === 1) ?? null,
     [account.results, todayGameNo]
   );
-  // Only today's game ships in the build for now: the older sets live in git
-  // history and get restored in a later pass.
+  // Every day's set now ships (daily/es/), but starting a past game isn't
+  // wired yet, so the archive still only offers today's.
   const playableGames = useMemo(() => [todayGameNo], [todayGameNo]);
+
+  // Today's set, fetched as soon as the app opens so tapping "Juego de hoy"
+  // doesn't wait on the network: startDailyGame stays await-free, which iOS
+  // needs to treat the audio/mic warm-up as part of the tap. "set_01" only
+  // if the build has no dated sets at all.
+  const dailySetIdRef = useRef<string | null>(null);
+  const dailySetLoadRef = useRef<Promise<string> | null>(null);
+  const loadTodaysSet = useCallback((): Promise<string> => {
+    if (!dailySetLoadRef.current) {
+      dailySetLoadRef.current = loadDailySet(new Date()).then(
+        (set) => {
+          const id = set?.id ?? "set_01";
+          dailySetIdRef.current = id;
+          return id;
+        },
+        (err) => {
+          console.warn("Failed to load today's set:", err);
+          dailySetLoadRef.current = null; // try again on the next tap
+          return "set_01";
+        }
+      );
+    }
+    return dailySetLoadRef.current;
+  }, []);
+  useEffect(() => {
+    void loadTodaysSet();
+  }, [loadTodaysSet]);
   const [subscribeNotice, setSubscribeNotice] = useState<string | null>(null);
 
   const openStats = useCallback(() => {
@@ -2169,7 +2197,7 @@ export default function App() {
     void recordResult({
       gameNo,
       playedAt: new Date().toISOString(),
-      setId: "set_01",
+      setId: session?.players[0]?.setId ?? "set_01",
       difficulty,
       correctCount: counts.correct,
       wrongCount: counts.wrong,
@@ -2629,6 +2657,8 @@ export default function App() {
   }, [activePlayerId, screen, statusByLetter, currentIndex, timeLeft, revealed]);
 
   async function startDailyGame() {
+    // Already loaded on open, so this normally doesn't await (see loadTodaysSet).
+    const dailySetId = dailySetIdRef.current ?? (await loadTodaysSet());
     // Check if today's daily game has already been played
     const gameNo = getDailyGameNo(new Date());
     try {
@@ -2639,7 +2669,7 @@ export default function App() {
           // Today's game was already played — restore the end state.
           // It is already in the history, so don't let the recorder fire again.
           recordedGamesRef.current.add(gameNo);
-          const players: Player[] = [{ id: "p1", name: "Jugador 1", setId: "set_01" }];
+          const players: Player[] = [{ id: "p1", name: "Jugador 1", setId: dailySetId }];
           const dailyDifficulty: DifficultyMode = "medio";
           const timePerPlayer = getTimeFromDifficulty(dailyDifficulty);
           const restoredPlayerState: PlayerState = {
@@ -2711,11 +2741,11 @@ export default function App() {
     setSlideshowActive(false);
     setSlideshowIndex(0);
     
-    // Create a single player using set_01 for daily game
+    // Create a single player using today's set
     const players: Player[] = [{ 
       id: "p1", 
       name: "Jugador 1", 
-      setId: "set_01" 
+      setId: dailySetId 
     }];
 
     // Don't set generatedBanks - the game will use the set file directly via setId
