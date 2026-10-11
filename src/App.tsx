@@ -26,6 +26,7 @@ import { createAzureRecognizer } from "./speech/createAzureRecognizer";
 import type { Topic } from "./questions/types";
 import {
   captureSnapshotWithRing,
+  grabVideoFrame,
   type StatusByLetter as SnapshotStatusByLetter,
   type LetterStatus as SnapshotLetterStatus,
 } from "./snapshotComposer";
@@ -42,6 +43,13 @@ import StatsSheet from "./components/StatsSheet";
 import ProfilePage from "./components/ProfilePage";
 import ArchivePage from "./components/ArchivePage";
 import SignInSheet from "./components/SignInSheet";
+import MicStatus from "./components/MicStatus";
+import {
+  classifyMicError,
+  devPreviewFailure,
+  reportMicFailure,
+  type MicFailure,
+} from "./platform/micDiagnostics";
 
 // Player snapshot captured when timer runs out
 export type PlayerSnapshot = {
@@ -56,6 +64,13 @@ export type PlayerSnapshot = {
 
 type GamePhase = "idle" | "playing" | "ended";
 type Screen = "home" | "setup" | "game" | "profile" | "archive";
+
+// Wrong-answer faces: grab the camera a beat after the buzzer (to catch the
+// reaction), keep a random sample per player, and use one for the end photo.
+const WRONG_FACE_DELAY_MS = 700;
+const WRONG_FACES_PER_PLAYER = 6;
+
+type WrongFaces = { seen: number; frames: Array<{ letter: Letter; frame: HTMLCanvasElement }> };
 
 const TURN_SECONDS =180; // Default fallback (will be replaced by difficulty-based time)
 
@@ -382,6 +397,7 @@ export default function App() {
 
   // Player snapshots for end-of-game slideshow
   const [playerSnapshots, setPlayerSnapshots] = useState<PlayerSnapshot[]>([]);
+  const wrongFacesRef = useRef<Map<string, WrongFaces>>(new Map());
   const [slideshowIndex, setSlideshowIndex] = useState<number>(0);
   const [slideshowActive, setSlideshowActive] = useState<boolean>(false);
   const [showAnswers, setShowAnswers] = useState<boolean>(false);
@@ -413,7 +429,13 @@ export default function App() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const [hasCameraStream, setHasCameraStream] = useState<boolean>(false);
-  const [micPermissionDenied, setMicPermissionDenied] = useState<boolean>(false);
+  // Why the mic didn't start (shown next to "Empezar" and reported to Pendo).
+  const [micFailure, setMicFailure] = useState<MicFailure | null>(null);
+  const failMic = useCallback((failure: MicFailure) => {
+    setMicFailure(failure);
+    void reportMicFailure(failure);
+  }, []);
+  const shownMicFailure = devPreviewFailure() ?? micFailure;
   const cameraFacingMode: "user" | "environment" = "user";
 
   // Android-only permission coaching (see src/platform/androidPermissions.ts).
@@ -535,7 +557,7 @@ export default function App() {
 
     if (state === "denied") {
       pendingStartRef.current = retry;
-      setMicPermissionDenied(true);
+      failMic({ reason: "denied", stage: "mic", errorName: "NotAllowedError", errorMessage: "permission state: denied" });
       setPermissionNotice("blocked");
       sttLog("android mic permission blocked");
       return true;
@@ -1054,8 +1076,13 @@ export default function App() {
     currentStatusByLetter: Record<Letter, LetterStatus>,
     playerCurrentIndex: number
   ) => {
+    // Prefer a random face from one of the player's wrong answers; fall back
+    // to the live camera when they never missed (or the camera was off).
+    const faces = wrongFacesRef.current.get(playerId)?.frames ?? [];
+    const wrongFace = faces.length ? faces[Math.floor(Math.random() * faces.length)].frame : null;
     const video = videoRef.current;
-    if (!video || video.videoWidth === 0) {
+    const source = wrongFace ?? (video && video.videoWidth > 0 ? video : null);
+    if (!source) {
       console.warn("Cannot capture snapshot: video not ready");
       return;
     }
@@ -1079,7 +1106,7 @@ export default function App() {
       // Uses same proportions as LetterRing.tsx (800px canvas = 2x the 400px SVG)
       const canvasSize = 800;
       const today = new Date();
-      const blob = await captureSnapshotWithRing(video, {
+      const blob = await captureSnapshotWithRing(source, {
         outWidth: canvasSize,
         outHeight: canvasSize,
         fit: "cover",
@@ -1340,11 +1367,7 @@ export default function App() {
       // Keep the raw name around: on Android it distinguishes a permanent block
       // (NotAllowedError) from device contention (NotReadableError/AbortError).
       setMicErrorName(error?.name ?? "");
-      if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
-        setMicPermissionDenied(true);
-      } else {
-        setMicPermissionDenied(false);
-      }
+      failMic(classifyMicError(err, "mic"));
       sttLog("createAzureRecognizer failed", String(err));
       return;
     }
@@ -1571,7 +1594,7 @@ export default function App() {
       });
       if (gen !== sttGenRef.current) return;
       setIsListening(true);
-      setMicPermissionDenied(false); // Clear permission denied state when listening succeeds
+      setMicFailure(null);
       sttLog("started");
 
       // Signal to the user that they can respond (once per question).
@@ -1587,6 +1610,8 @@ export default function App() {
       setIsListening(false);
       sttDesiredRef.current = false; // don't thrash if start failed
       setSttError(String(err));
+      recognitionRef.current = null;
+      failMic(classifyMicError(err, "azure"));
       sttLog("startContinuousRecognitionAsync failed", String(err));
       try {
         r.close();
@@ -1607,6 +1632,27 @@ export default function App() {
     if (sttInterimAutoSubmitTimerRef.current) window.clearTimeout(sttInterimAutoSubmitTimerRef.current);
     sttInterimAutoSubmitTimerRef.current = null;
   }
+
+  // "Reintentar" next to Empezar: start the mic again without reloading.
+  function retryMic() {
+    setMicFailure(null);
+    setSttError("");
+    if (sttStartPromiseRef.current) return;
+    sttStartPromiseRef.current = startListeningWithHints(sttLastHintsRef.current).finally(() => {
+      sttStartPromiseRef.current = null;
+    });
+  }
+
+  // If the mic still isn't ready after a while, the permission prompt was most
+  // likely ignored or hidden by the browser (getUserMedia never settles).
+  useEffect(() => {
+    if (screen !== "game" || phase !== "idle" || gameOver) return;
+    if (isListening || micFailure || permissionNotice) return;
+    const t = window.setTimeout(() => {
+      failMic({ reason: "waiting", stage: "timeout", errorName: "Timeout", errorMessage: "mic not ready after 10s" });
+    }, 10_000);
+    return () => window.clearTimeout(t);
+  }, [screen, phase, gameOver, isListening, micFailure, permissionNotice, failMic]);
 
   function ensureListeningForQuestion(hints: string[]) {
     // Start recognition once from a user gesture (Start button). After that, keep it running.
@@ -2742,6 +2788,7 @@ export default function App() {
       URL.revokeObjectURL(snapshot.blobUrl);
     }
     setPlayerSnapshots([]);
+    wrongFacesRef.current.clear();
     setSlideshowActive(false);
     setSlideshowIndex(0);
     
@@ -2823,6 +2870,7 @@ export default function App() {
       URL.revokeObjectURL(snapshot.blobUrl);
     }
     setPlayerSnapshots([]);
+    wrongFacesRef.current.clear();
     setSlideshowActive(false);
     setSlideshowIndex(0);
     const players: Player[] = Array.from({ length: setupPlayerCount }, (_, i) => {
@@ -3096,6 +3144,30 @@ export default function App() {
     });
   }
 
+  /** Grab the player's reaction to a wrong answer, kept as a reservoir sample. */
+  function scheduleWrongFaceGrab(letter: Letter) {
+    const playerId = activePlayerIdRef.current;
+    if (!playerId) return;
+    window.setTimeout(() => {
+      if (activePlayerIdRef.current !== playerId) return;
+      const video = videoRef.current;
+      if (!video) return;
+      const frame = grabVideoFrame(video);
+      if (!frame) return;
+
+      const faces = wrongFacesRef.current.get(playerId) ?? { seen: 0, frames: [] };
+      wrongFacesRef.current.set(playerId, faces);
+      faces.seen++;
+      if (faces.frames.length < WRONG_FACES_PER_PLAYER) {
+        faces.frames.push({ letter, frame });
+      } else {
+        // Reservoir sampling: every wrong answer has an equal shot at the photo.
+        const slot = Math.floor(Math.random() * faces.seen);
+        if (slot < WRONG_FACES_PER_PLAYER) faces.frames[slot] = { letter, frame };
+      }
+    }, WRONG_FACE_DELAY_MS);
+  }
+
   function markWrong() {
     if (phaseRef.current !== "playing") return;
 
@@ -3133,6 +3205,8 @@ export default function App() {
 
     // Track which letter was marked wrong (for override button)
     setLastWrongLetter(letter);
+
+    scheduleWrongFaceGrab(letter);
 
     // Calculate next index
     const statusAfter = { ...status, [letter]: "wrong" as LetterStatus };
@@ -3210,6 +3284,10 @@ export default function App() {
     
     // Clear the override state
     setLastWrongLetter(null);
+
+    // It wasn't really a miss, so don't let that face end up in the photo.
+    const faces = activePlayerIdRef.current ? wrongFacesRef.current.get(activePlayerIdRef.current) : undefined;
+    if (faces) faces.frames = faces.frames.filter((f) => f.letter !== letter);
     
     // Clear feedback and revealed states
     setFeedback(null);
@@ -3732,29 +3810,12 @@ export default function App() {
                     <button className="btnPrimary" onClick={startTurn} disabled={timeLeft <= 0 || !isListening}>
                       Empezar
                     </button>
-                    {micPermissionDenied && (
-                      <div className="answerReveal" style={{ marginTop: 8, textAlign: "center" }}>
-                        {isAndroid() ? (
-                          <>
-                            {/* On Android a denial is permanent, so "reload the page"
-                                (correct on iOS) would be useless advice here. */}
-                            ⚠️ Necesitamos el micrófono para oír tus respuestas y tu navegador lo
-                            tiene bloqueado. Recargar la página no lo arregla en Android.
-                            <div style={{ marginTop: 8 }}>
-                              <button
-                                className="btnGhost"
-                                onClick={() => setPermissionNotice("blocked")}
-                              >
-                                Ver cómo desbloquearlo
-                              </button>
-                            </div>
-                          </>
-                        ) : (
-                          <>
-                            ⚠️ Para poder jugar tienes que dar acceso al micrófono de tu teléfono para responder a las preguntas. Cierra la página y vuelve a abrirla para dar acceso y volver a intentarlo.
-                          </>
-                        )}
-                      </div>
+                    {shownMicFailure && !isListening && (
+                      <MicStatus
+                        failure={shownMicFailure}
+                        onRetry={retryMic}
+                        onShowAndroidHelp={() => setPermissionNotice("blocked")}
+                      />
                     )}
                   </>
               ) : phase === "playing" ? (

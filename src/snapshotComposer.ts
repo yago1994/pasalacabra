@@ -154,13 +154,14 @@ export async function waitForVideoReady(video: HTMLVideoElement, timeoutMs = 500
  * - Video fits inside the ring (ringR * 0.89 from CSS: width: 89%)
  */
 export async function captureSnapshotWithRing(
-  video: HTMLVideoElement,
+  source: HTMLVideoElement | HTMLCanvasElement,
   opts: SnapshotOptions
 ): Promise<Blob> {
-  await waitForVideoReady(video);
+  if (source instanceof HTMLVideoElement) await waitForVideoReady(source);
+  const { width: srcW, height: srcH } = sourceSize(source);
 
-  const outW = opts.outWidth ?? video.videoWidth;
-  const outH = opts.outHeight ?? video.videoHeight;
+  const outW = opts.outWidth ?? srcW;
+  const outH = opts.outHeight ?? srcH;
   const size = Math.min(outW, outH);
 
   const canvas = document.createElement("canvas");
@@ -189,7 +190,7 @@ export async function captureSnapshotWithRing(
   // This matches the game UI where the camera circle goes through the center of the letter bubbles
   const videoCircleRadius = ringRadius;
   
-  drawCircularVideo(ctx, video, cx, cy, videoCircleRadius);
+  drawCircularVideo(ctx, source, cx, cy, videoCircleRadius);
 
   // 3) Draw ring overlay (letters in circles)
   drawRing(ctx, outW, outH, opts.ring);
@@ -249,6 +250,37 @@ export async function captureSnapshotUrlWithRing(
   return URL.createObjectURL(blob);
 }
 
+/**
+ * Grab the current camera frame into a small offscreen canvas, cropped to the
+ * centre square the snapshot shows. A single synchronous drawImage, so it is
+ * cheap enough to call mid-game. Returns null if the camera has no frame yet.
+ */
+export function grabVideoFrame(video: HTMLVideoElement, maxSide = 640): HTMLCanvasElement | null {
+  const w = video.videoWidth;
+  const h = video.videoHeight;
+  if (w === 0 || h === 0 || video.readyState < 2) return null;
+
+  const side = Math.min(w, h);
+  const outSide = Math.min(side, maxSide);
+  const canvas = document.createElement("canvas");
+  canvas.width = outSide;
+  canvas.height = outSide;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return null;
+  try {
+    ctx.drawImage(video, (w - side) / 2, (h - side) / 2, side, side, 0, 0, outSide, outSide);
+  } catch {
+    return null;
+  }
+  return canvas;
+}
+
+function sourceSize(source: HTMLVideoElement | HTMLCanvasElement) {
+  return source instanceof HTMLVideoElement
+    ? { width: source.videoWidth, height: source.videoHeight }
+    : { width: source.width, height: source.height };
+}
+
 /* ---------------------------- Drawing helpers ---------------------------- */
 
 /**
@@ -256,13 +288,12 @@ export async function captureSnapshotUrlWithRing(
  */
 function drawCircularVideo(
   ctx: CanvasRenderingContext2D,
-  video: HTMLVideoElement,
+  video: HTMLVideoElement | HTMLCanvasElement,
   cx: number,
   cy: number,
   radius: number
 ) {
-  const srcW = video.videoWidth;
-  const srcH = video.videoHeight;
+  const { width: srcW, height: srcH } = sourceSize(video);
   
   if (srcW === 0 || srcH === 0) return;
 
