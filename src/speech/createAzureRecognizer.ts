@@ -1,6 +1,7 @@
 // src/speech/createAzureRecognizer.ts
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import { getAzureAuth } from "./speechazure";
+import { SpeechServiceError } from "../platform/micDiagnostics";
 import { createPushAudioStreamManager, type PushAudioStreamBundle } from "./PushAudioStreamManager";
 
 export type AzureRecognizerBundle = {
@@ -48,7 +49,14 @@ export interface CreateAzureRecognizerOptions {
 export async function createAzureRecognizer(
   options: CreateAzureRecognizerOptions = {}
 ): Promise<AzureRecognizerBundle> {
-  const { token, region } = await getAzureAuth(false);
+  let auth: Awaited<ReturnType<typeof getAzureAuth>>;
+  try {
+    auth = await getAzureAuth(false);
+  } catch (err) {
+    // Tagged so the UI can tell "no connection" apart from mic errors.
+    throw new SpeechServiceError(err instanceof Error ? err.message : String(err));
+  }
+  const { token, region } = auth;
 
   const speechConfig = sdk.SpeechConfig.fromAuthorizationToken(token, region);
   speechConfig.speechRecognitionLanguage = "es-ES";
