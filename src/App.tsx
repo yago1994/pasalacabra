@@ -72,6 +72,18 @@ const WRONG_FACES_PER_PLAYER = 6;
 
 type WrongFaces = { seen: number; frames: Array<{ letter: Letter; frame: HTMLCanvasElement }> };
 
+// iOS Safari caps total canvas memory per page and only reclaims a dropped
+// canvas on GC; zeroing its size frees the backing store right away.
+function releaseFrame(frame: HTMLCanvasElement) {
+  frame.width = 0;
+  frame.height = 0;
+}
+
+function releaseWrongFaces(all: Map<string, WrongFaces>) {
+  for (const faces of all.values()) faces.frames.forEach((f) => releaseFrame(f.frame));
+  all.clear();
+}
+
 const TURN_SECONDS =180; // Default fallback (will be replaced by difficulty-based time)
 
 function getTimeFromDifficulty(difficulty: DifficultyMode): number {
@@ -1141,6 +1153,13 @@ export default function App() {
       });
 
       const blobUrl = URL.createObjectURL(blob);
+
+      // The photo is baked; the player's other faces are no longer needed.
+      const done = wrongFacesRef.current.get(playerId);
+      if (done) {
+        done.frames.forEach((f) => releaseFrame(f.frame));
+        wrongFacesRef.current.delete(playerId);
+      }
 
       const snapshot: PlayerSnapshot = {
         playerId,
@@ -2788,7 +2807,7 @@ export default function App() {
       URL.revokeObjectURL(snapshot.blobUrl);
     }
     setPlayerSnapshots([]);
-    wrongFacesRef.current.clear();
+    releaseWrongFaces(wrongFacesRef.current);
     setSlideshowActive(false);
     setSlideshowIndex(0);
     
@@ -2870,7 +2889,7 @@ export default function App() {
       URL.revokeObjectURL(snapshot.blobUrl);
     }
     setPlayerSnapshots([]);
-    wrongFacesRef.current.clear();
+    releaseWrongFaces(wrongFacesRef.current);
     setSlideshowActive(false);
     setSlideshowIndex(0);
     const players: Player[] = Array.from({ length: setupPlayerCount }, (_, i) => {
@@ -3163,7 +3182,12 @@ export default function App() {
       } else {
         // Reservoir sampling: every wrong answer has an equal shot at the photo.
         const slot = Math.floor(Math.random() * faces.seen);
-        if (slot < WRONG_FACES_PER_PLAYER) faces.frames[slot] = { letter, frame };
+        if (slot < WRONG_FACES_PER_PLAYER) {
+          releaseFrame(faces.frames[slot].frame);
+          faces.frames[slot] = { letter, frame };
+        } else {
+          releaseFrame(frame);
+        }
       }
     }, WRONG_FACE_DELAY_MS);
   }
@@ -3287,7 +3311,10 @@ export default function App() {
 
     // It wasn't really a miss, so don't let that face end up in the photo.
     const faces = activePlayerIdRef.current ? wrongFacesRef.current.get(activePlayerIdRef.current) : undefined;
-    if (faces) faces.frames = faces.frames.filter((f) => f.letter !== letter);
+    if (faces) {
+      faces.frames.filter((f) => f.letter === letter).forEach((f) => releaseFrame(f.frame));
+      faces.frames = faces.frames.filter((f) => f.letter !== letter);
+    }
     
     // Clear feedback and revealed states
     setFeedback(null);
