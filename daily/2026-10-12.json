@@ -1,0 +1,176 @@
+{
+  "id": "set-2026-10-12",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Negatively charged ion.",
+      "answer": "Anion"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Mother sauce made from a white roux and milk.",
+      "answer": "Bechamel",
+      "alt": [
+        "Béchamel"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Surname of the director of The Godfather trilogy.",
+      "answer": "Coppola"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Ring-shaped fried pastry often glazed.",
+      "answer": "Doughnut",
+      "alt": [
+        "Donut"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Event when one celestial body moves into the shadow of another.",
+      "answer": "Eclipse"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Italian egg dish baked or broiled in a skillet.",
+      "answer": "Frittata"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Unit of heredity composed of DNA that codes for a trait.",
+      "answer": "Gene"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Group 17 elements that form salts with metals.",
+      "answer": "Halogen"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Atoms of the same element differing in neutron number.",
+      "answer": "Isotope"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "2019 film in which Joaquin Phoenix portrays Batman's nemesis.",
+      "answer": "Joker"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Bulbous-stemmed Brassica eaten raw in slaws or roasted.",
+      "answer": "Kohlrabi"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Flat, narrow pasta often served with clam sauce.",
+      "answer": "Linguine",
+      "alt": [
+        "Linguini"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Cell division that produces haploid gametes.",
+      "answer": "Meiosis"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Chewy confection of sugar or honey, nuts, and whipped egg whites.",
+      "answer": "Nougat"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "2023 biopic directed by Christopher Nolan.",
+      "answer": "Oppenheimer"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Fresh Indian cheese that holds its shape when fried.",
+      "answer": "Paneer",
+      "alt": [
+        "Panir"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "State of matter with definite volume but no fixed shape.",
+      "answer": "Liquid"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "2007 animated film about a rat who becomes a Parisian cook.",
+      "answer": "Ratatouille"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Element with atomic number 11.",
+      "answer": "Sodium"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Starch from cassava used to thicken puddings and bubble tea.",
+      "answer": "Tapioca"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Fleshy projection hanging from the soft palate.",
+      "answer": "Uvula"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Aromatized fortified wine used in martinis and Negronis.",
+      "answer": "Vermouth"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Cereal grain milled into flour for bread and pasta.",
+      "answer": "Wheat"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Describes a substance that is poisonous to living organisms.",
+      "answer": "Toxic"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "1961 samurai film directed by Akira Kurosawa.",
+      "answer": "Yojimbo"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Italian dessert made by whisking egg yolks, sugar, and sweet wine over gentle heat.",
+      "answer": "Zabaglione",
+      "alt": [
+        "Zabaione"
+      ]
+    }
+  ]
+}
