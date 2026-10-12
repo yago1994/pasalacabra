@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-14",
-    "answers": [
-      "anaconda",
-      "badger",
-      "cassowary",
-      "dormouse",
-      "echolocation",
-      "fission",
-      "gecko",
-      "hydra",
-      "impala",
-      "jackal",
-      "kookaburra",
-      "lamprey",
-      "mongoose",
-      "nucleus",
-      "ocelot",
-      "platypus",
-      "quagga",
-      "roadrunner",
-      "serval",
-      "tapeworm",
-      "umbrellabird",
-      "vole",
-      "weasel",
-      "xoloitzcuintli",
-      "yellowjacket",
-      "zorilla"
-    ]
-  },
-  {
     "date": "2026-08-15",
     "answers": [
       "acrylic",
@@ -1857,6 +1826,37 @@
       "Toxic",
       "Yojimbo",
       "Zabaglione"
+    ]
+  },
+  {
+    "date": "2026-10-13",
+    "answers": [
+      "Andes",
+      "Bologna",
+      "Calcium",
+      "Danube",
+      "Erosion",
+      "Fungi",
+      "Glacier",
+      "Hawaii",
+      "India",
+      "Java",
+      "Kilimanjaro",
+      "Lactose",
+      "Mitochondria",
+      "Nitrogen",
+      "Oxygen",
+      "Phosphorus",
+      "Aqueous",
+      "Ring of Fire",
+      "Starch",
+      "Turmeric",
+      "Uganda",
+      "Vinegar",
+      "Warsaw",
+      "Toxin",
+      "Yttrium",
+      "Zygote"
     ]
   }
 ]

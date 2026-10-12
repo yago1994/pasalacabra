@@ -1,0 +1,171 @@
+{
+  "id": "set-2026-10-13",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Mountain range along the western edge of South America.",
+      "answer": "Andes"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Italian city, capital of Emilia-Romagna, famed for medieval porticoes.",
+      "answer": "Bologna"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Element vital for bones, teeth, and seashells.",
+      "answer": "Calcium"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "River flowing from Germany to the Black Sea through cities like Vienna and Belgrade.",
+      "answer": "Danube"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Gradual wearing away of rock and soil by wind, water, or ice.",
+      "answer": "Erosion"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Kingdom that includes mushrooms, molds, and yeasts.",
+      "answer": "Fungi"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Mass of moving ice formed from compacted snow.",
+      "answer": "Glacier"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "U.S. state of volcanic islands in the central Pacific; capital is Honolulu.",
+      "answer": "Hawaii"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Country whose capital is New Delhi and currency the rupee.",
+      "answer": "India"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Indonesian island that contains Jakarta.",
+      "answer": "Java"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Highest mountain in Africa, a stratovolcano in Tanzania.",
+      "answer": "Kilimanjaro",
+      "alt": [
+        "Mount Kilimanjaro",
+        "Mt Kilimanjaro"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Milk sugar that causes intolerance in many adults.",
+      "answer": "Lactose"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Cell organelles that generate ATP through cellular respiration.",
+      "answer": "Mitochondria"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Gas comprising about 78 percent of Earth's atmosphere.",
+      "answer": "Nitrogen"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Element required for aerobic respiration and common in oxides.",
+      "answer": "Oxygen"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Element essential for DNA and ATP; white allotrope glows in air.",
+      "answer": "Phosphorus"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Term for a solution in which water is the solvent.",
+      "answer": "Aqueous"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Major belt of earthquakes and volcanoes encircling the Pacific Ocean.",
+      "answer": "Ring of Fire",
+      "alt": [
+        "Pacific Ring of Fire"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Plant carbohydrate stored in tubers and grains, turns blue-black with iodine.",
+      "answer": "Starch"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Golden rhizome spice containing curcumin, common in South Asian cuisine.",
+      "answer": "Turmeric"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "East African country on Lake Victoria with capital Kampala.",
+      "answer": "Uganda"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Acidic liquid produced by acetic acid bacteria; used in pickling.",
+      "answer": "Vinegar"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Capital and largest city of Poland on the Vistula River.",
+      "answer": "Warsaw",
+      "alt": [
+        "Warszawa"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Poisonous substance produced by living organisms, such as botulinum.",
+      "answer": "Toxin"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Element 39 used in LEDs and certain laser crystals.",
+      "answer": "Yttrium"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Single cell formed immediately after the fusion of gametes.",
+      "answer": "Zygote"
+    }
+  ]
+}
