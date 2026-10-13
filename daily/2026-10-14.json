@@ -1,0 +1,176 @@
+{
+  "id": "set-2026-10-14",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Sea between Greece and Turkey known for its many islands.",
+      "answer": "Aegean Sea"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "French wine region centered on a city along the Garonne River.",
+      "answer": "Bordeaux"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Italian island in the Bay of Naples famous for the Blue Grotto.",
+      "answer": "Capri"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Spiky Southeast Asian fruit notorious for its strong odor.",
+      "answer": "Durian"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Dutch semi-hard cheese traditionally sold in red-waxed spheres.",
+      "answer": "Edam"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "North Atlantic archipelago between Iceland and Norway, part of the Kingdom of Denmark.",
+      "answer": "Faroe Islands",
+      "alt": [
+        "Faroes"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Egyptian city near the Great Pyramid and the Sphinx.",
+      "answer": "Giza"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Capital of Vietnam known for its Old Quarter and Hoan Kiem Lake.",
+      "answer": "Hanoi"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Balearic island famous for nightlife and electronic music clubs.",
+      "answer": "Ibiza"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Capital of Indonesia on the northwest coast of Java.",
+      "answer": "Jakarta"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Former imperial capital of Japan renowned for temples and traditional teahouses.",
+      "answer": "Kyoto"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Capital of Portugal overlooking the Tagus estuary.",
+      "answer": "Lisbon"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Italian city famed for its cathedral called the Duomo and its fashion industry.",
+      "answer": "Milan",
+      "alt": [
+        "Milano"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Southern African country home to the Skeleton Coast and Etosha National Park.",
+      "answer": "Namibia"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Mexican state renowned for complex moles and mezcal.",
+      "answer": "Oaxaca"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Capital of the Czech Republic crossed by the Vltava River.",
+      "answer": "Prague",
+      "alt": [
+        "Praha"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Chinese port city known for a major brewery established under German colonial rule.",
+      "answer": "Qingdao",
+      "alt": [
+        "Tsingtao"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Capital of Latvia noted for art nouveau architecture on Alberta Street.",
+      "answer": "Riga"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "River that flows through Paris before emptying into the English Channel.",
+      "answer": "Seine"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Capital of Georgia on the Kura River, famous for historic sulfur baths.",
+      "answer": "Tbilisi"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Dutch city celebrated for the Dom Tower and canals lined with wharf cellars.",
+      "answer": "Utrecht"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Canal-laced city built on a lagoon in northeastern Italy.",
+      "answer": "Venice",
+      "alt": [
+        "Venezia"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Country within the United Kingdom that includes Snowdonia National Park.",
+      "answer": "Wales"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Egyptian port city founded by a Macedonian conqueror, once home to a famed ancient library.",
+      "answer": "Alexandria"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Capital of Armenia with views toward Mount Ararat.",
+      "answer": "Yerevan"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Landlocked southern African country whose capital is Harare and which shares Victoria Falls with a neighbor.",
+      "answer": "Zimbabwe"
+    }
+  ]
+}

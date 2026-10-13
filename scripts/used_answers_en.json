@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-15",
-    "answers": [
-      "acrylic",
-      "Botticelli",
-      "chisel",
-      "Dada",
-      "etching",
-      "Fomalhaut",
-      "gesso",
-      "hazelnut",
-      "impasto",
-      "Janus",
-      "kiln",
-      "lithography",
-      "meringue",
-      "nigiri",
-      "opposition",
-      "Pointillism",
-      "quenelle",
-      "ramekin",
-      "sfumato",
-      "trompe-l'oeil",
-      "Umbriel",
-      "velouté",
-      "whisk",
-      "oxtail",
-      "Yakult",
-      "zest"
-    ]
-  },
-  {
     "date": "2026-08-16",
     "answers": [
       "alveoli",
@@ -1857,6 +1826,37 @@
       "Toxin",
       "Yttrium",
       "Zygote"
+    ]
+  },
+  {
+    "date": "2026-10-14",
+    "answers": [
+      "Aegean Sea",
+      "Bordeaux",
+      "Capri",
+      "Durian",
+      "Edam",
+      "Faroe Islands",
+      "Giza",
+      "Hanoi",
+      "Ibiza",
+      "Jakarta",
+      "Kyoto",
+      "Lisbon",
+      "Milan",
+      "Namibia",
+      "Oaxaca",
+      "Prague",
+      "Qingdao",
+      "Riga",
+      "Seine",
+      "Tbilisi",
+      "Utrecht",
+      "Venice",
+      "Wales",
+      "Alexandria",
+      "Yerevan",
+      "Zimbabwe"
     ]
   }
 ]
