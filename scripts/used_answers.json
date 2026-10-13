@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-15",
-    "game_no": 227,
-    "answers": [
-      "Apolo",
-      "Baloncesto",
-      "cénit",
-      "Dogma 95",
-      "elipse",
-      "Fórmula 1",
-      "gol",
-      "Hiparco",
-      "Innsbruck",
-      "Juegos Olímpicos",
-      "Luna",
-      "Mercurio",
-      "natación",
-      "año sideral",
-      "observatorio",
-      "portero",
-      "quidditch",
-      "regata",
-      "Sol",
-      "tránsito",
-      "UEFA",
-      "Viggo Mortensen",
-      "excentricidad",
-      "Yas Marina",
-      "Zidane"
-    ]
-  },
-  {
     "date": "2026-08-16",
     "game_no": 228,
     "answers": [
@@ -1857,6 +1826,37 @@
       "saxofón",
       "yeyé",
       "zángano"
+    ]
+  },
+  {
+    "date": "2026-10-14",
+    "game_no": 287,
+    "answers": [
+      "Aldebarán",
+      "bachata",
+      "Canopo",
+      "dubstep",
+      "Estopa",
+      "fotosfera",
+      "grunge",
+      "Hamal",
+      "Indiana Jones",
+      "Joaquín Sabina",
+      "Lo imposible",
+      "Marte",
+      "Nolan",
+      "castañuelas",
+      "Oort",
+      "Psicosis",
+      "Quo Vadis",
+      "Rosetta",
+      "Spielberg",
+      "tango",
+      "Un franco, 14 pesetas",
+      "Vivaldi",
+      "Álex de la Iglesia",
+      "Yo, robot",
+      "Zeta Reticuli"
     ]
   }
 ]
