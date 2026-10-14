@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-16",
-    "game_no": 228,
-    "answers": [
-      "Aristóteles",
-      "Bergman",
-      "Cámbrico",
-      "Delfos",
-      "Einstein",
-      "Fahrenheit",
-      "Geiger",
-      "Hubble",
-      "Imhotep",
-      "Jodorowsky",
-      "Lamarck",
-      "Mendel",
-      "Napalm",
-      "Aviñón",
-      "Oppenheimer",
-      "penicilina",
-      "quechua",
-      "Rutherford",
-      "Sputnik",
-      "transistor",
-      "Uruk",
-      "vikingo",
-      "óxido",
-      "yakuza",
-      "zinc"
-    ]
-  },
-  {
     "date": "2026-08-17",
     "game_no": 229,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Álex de la Iglesia",
       "Yo, robot",
       "Zeta Reticuli"
+    ]
+  },
+  {
+    "date": "2026-10-15",
+    "game_no": 288,
+    "answers": [
+      "allegro",
+      "bombo",
+      "croma",
+      "disonancia",
+      "eslalon",
+      "flauta",
+      "guardameta",
+      "horror",
+      "instrumental",
+      "jurado",
+      "largometraje",
+      "microfonía",
+      "nominación",
+      "cañonazo",
+      "octava",
+      "preestreno",
+      "ataque",
+      "remate",
+      "secuela",
+      "toma",
+      "ultra",
+      "videoarbitraje",
+      "extremo",
+      "yudo",
+      "zaga"
     ]
   }
 ]
