@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-16",
-    "answers": [
-      "alveoli",
-      "Bach",
-      "cerebellum",
-      "Debussy",
-      "epiglottis",
-      "Fender",
-      "Golgi apparatus",
-      "hippocampus",
-      "ileum",
-      "Jovian",
-      "koto",
-      "leukocyte",
-      "myosin",
-      "notochord",
-      "oboe",
-      "perihelion",
-      "quorum sensing",
-      "Ravel",
-      "serotonin",
-      "troponin",
-      "Uranus",
-      "ventricle",
-      "woodwind",
-      "Proxima Centauri",
-      "Yo-Yo Ma",
-      "zoonosis"
-    ]
-  },
-  {
     "date": "2026-08-17",
     "answers": [
       "Aphrodite",
@@ -1857,6 +1826,37 @@
       "Alexandria",
       "Yerevan",
       "Zimbabwe"
+    ]
+  },
+  {
+    "date": "2026-10-15",
+    "answers": [
+      "algorithm",
+      "Bluetooth",
+      "capacitor",
+      "diode",
+      "encryption",
+      "firewall",
+      "GPU",
+      "hyperlink",
+      "inductor",
+      "joystick",
+      "karaoke",
+      "limiter",
+      "microphone",
+      "notch filter",
+      "octave",
+      "piano",
+      "quantization",
+      "reverb",
+      "sonata",
+      "techno",
+      "uplink",
+      "voltage",
+      "white dwarf",
+      "mixer",
+      "Yagi antenna",
+      "zydeco"
     ]
   }
 ]

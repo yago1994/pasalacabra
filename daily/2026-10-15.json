@@ -1,0 +1,183 @@
+{
+  "id": "set-2026-10-15",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Step-by-step procedure used by computers to solve a problem or perform a calculation.",
+      "answer": "algorithm"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Short-range wireless standard operating at 2.4 GHz, named after a 10th-century Danish king.",
+      "answer": "Bluetooth"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Electronic component that stores electric charge and can smooth power supply ripple.",
+      "answer": "capacitor"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Two-terminal component that permits current primarily in one direction.",
+      "answer": "diode"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Process of converting readable data into ciphertext to prevent unauthorized access.",
+      "answer": "encryption"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Network security system that filters traffic based on rules between trusted and untrusted zones.",
+      "answer": "firewall"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Specialized processor originally for rendering images, now widely used for parallel computation and AI.",
+      "answer": "GPU",
+      "alt": [
+        "graphics processing unit"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Clickable reference on a webpage that navigates to another resource or location.",
+      "answer": "hyperlink"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Component that stores energy in a magnetic field, typically a coil of wire.",
+      "answer": "inductor"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Handheld input device that pivots on a base to control movement in games or simulations.",
+      "answer": "joystick"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Entertainment where people sing along to instrumental tracks with on-screen lyrics.",
+      "answer": "karaoke"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Audio dynamics processor that prevents a signal from exceeding a set threshold.",
+      "answer": "limiter"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Transducer that converts sound waves into an electrical signal.",
+      "answer": "microphone",
+      "alt": [
+        "mic"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Filter that sharply attenuates a narrow band of frequencies while leaving others mostly unaffected.",
+      "answer": "notch filter"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Musical interval where one pitch has double the frequency of another.",
+      "answer": "octave"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Keyboard instrument with hammers striking strings to produce sound.",
+      "answer": "piano",
+      "alt": [
+        "pianoforte"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "In analog-to-digital conversion, the step that maps continuous amplitudes to discrete levels.",
+      "answer": "quantization",
+      "alt": [
+        "quantisation"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Audio effect that simulates the reflections of sound in an acoustic space.",
+      "answer": "reverb",
+      "alt": [
+        "reverberation"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Classical form in multiple movements for solo instrument or duet, often including a piano.",
+      "answer": "sonata"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Electronic dance music style that originated in Detroit with repetitive four-on-the-floor rhythms.",
+      "answer": "techno"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Transmission from a ground station or device to a satellite or network hub.",
+      "answer": "uplink"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Electrical potential difference between two points, measured in volts.",
+      "answer": "voltage"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Dense stellar remnant left after a Sun-like star sheds its outer layers; roughly Earth-sized.",
+      "answer": "white dwarf"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Device in audio production that combines multiple input channels into one or more outputs.",
+      "answer": "mixer",
+      "alt": [
+        "audio mixer"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Directional antenna with a driven dipole, reflector, and directors, commonly used for television reception.",
+      "answer": "Yagi antenna",
+      "alt": [
+        "Yagi-Uda antenna",
+        "Yagi"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Lively Louisiana music blending Creole traditions with blues, typically featuring accordion and washboard.",
+      "answer": "zydeco"
+    }
+  ]
+}
