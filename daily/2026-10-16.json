@@ -1,0 +1,184 @@
+{
+  "id": "set-2026-10-16",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Capital of Kazakhstan on the Ishim River.",
+      "answer": "Astana"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Neoclassical monument in Berlin that became a symbol of German reunification.",
+      "answer": "Brandenburg Gate",
+      "alt": [
+        "Brandenburger Tor"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Largest inland body of water by area, bordered by Russia, Iran, and three other countries.",
+      "answer": "Caspian Sea"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Australian Aboriginal wind instrument traditionally made from hollowed eucalyptus.",
+      "answer": "Didgeridoo",
+      "alt": [
+        "Didjeridu"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Parisian iron landmark completed for the 1889 Exposition Universelle.",
+      "answer": "Eiffel Tower"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "South Pacific island nation whose capital is Suva.",
+      "answer": "Fiji"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Solomon Islands island that was the site of a pivotal 1942–43 campaign in World War II.",
+      "answer": "Guadalcanal"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Medieval commercial confederation of merchant guilds and cities around the Baltic and North Seas.",
+      "answer": "Hanseatic League",
+      "alt": [
+        "Hansa"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "West African nation with Yamoussoukro as political capital and Abidjan as largest city.",
+      "answer": "Ivory Coast"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Ancient Near Eastern city famed for its early walls in biblical tradition and archaeology.",
+      "answer": "Jericho"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "African city at the confluence of the Blue Nile and White Nile.",
+      "answer": "Khartoum",
+      "alt": [
+        "Khartum"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Capital city of Zambia.",
+      "answer": "Lusaka"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Detroit record label founded by Berry Gordy that popularized a soul sound in the 1960s.",
+      "answer": "Motown"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Post–World War II military tribunals that prosecuted leading Nazi officials.",
+      "answer": "Nuremberg Trials"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "19th-century overland route used by American pioneers to reach the Pacific Northwest.",
+      "answer": "Oregon Trail"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Ancient Nabataean city in modern Jordan famous for the rock-cut Treasury facade.",
+      "answer": "Petra"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Confederacy also known as the Haudenosaunee, originally Five Nations in the northeastern woodlands.",
+      "answer": "Iroquois",
+      "alt": [
+        "Iroquois Confederacy"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Opera by Verdi about a court jester and his daughter Gilda.",
+      "answer": "Rigoletto"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Second-largest island in the Mediterranean after Sicily.",
+      "answer": "Sardinia"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Brass instrument sounded by a player moving a telescoping slide.",
+      "answer": "Trombone"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Capital of Mongolia.",
+      "answer": "Ulaanbaatar",
+      "alt": [
+        "Ulan Bator",
+        "Ulan-Bator"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Seafaring Norse raiders, traders, and settlers active from the late 8th to 11th centuries.",
+      "answer": "Vikings"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Gothic church in London where many English and later British monarchs were crowned and buried.",
+      "answer": "Westminster Abbey"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Maya archaeological site in Yucatán noted for the Pyramid of the Magician.",
+      "answer": "Uxmal"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Belgian town that saw three major battles during World War I, including Passchendaele.",
+      "answer": "Ypres"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Largest city in Switzerland, a global financial center in the German-speaking region.",
+      "answer": "Zurich",
+      "alt": [
+        "Zuerich",
+        "Zürich"
+      ]
+    }
+  ]
+}

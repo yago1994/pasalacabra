@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-17",
-    "answers": [
-      "Aphrodite",
-      "Brontë",
-      "Cubism",
-      "Dior",
-      "Escher",
-      "Frida Kahlo",
-      "Gothic",
-      "Harlem Renaissance",
-      "Ingres",
-      "Jainism",
-      "Kente",
-      "Lorca",
-      "Mona Lisa",
-      "Norse",
-      "Ovid",
-      "Picasso",
-      "Quattrocento",
-      "Rembrandt",
-      "Surrealism",
-      "Tolkien",
-      "Ukiyo-e",
-      "Velázquez",
-      "Whitman",
-      "Expressionism",
-      "Yūgen",
-      "Zarzuela"
-    ]
-  },
-  {
     "date": "2026-08-18",
     "answers": [
       "anatomy",
@@ -1857,6 +1826,37 @@
       "mixer",
       "Yagi antenna",
       "zydeco"
+    ]
+  },
+  {
+    "date": "2026-10-16",
+    "answers": [
+      "Astana",
+      "Brandenburg Gate",
+      "Caspian Sea",
+      "Didgeridoo",
+      "Eiffel Tower",
+      "Fiji",
+      "Guadalcanal",
+      "Hanseatic League",
+      "Ivory Coast",
+      "Jericho",
+      "Khartoum",
+      "Lusaka",
+      "Motown",
+      "Nuremberg Trials",
+      "Oregon Trail",
+      "Petra",
+      "Iroquois",
+      "Rigoletto",
+      "Sardinia",
+      "Trombone",
+      "Ulaanbaatar",
+      "Vikings",
+      "Westminster Abbey",
+      "Uxmal",
+      "Ypres",
+      "Zurich"
     ]
   }
 ]
