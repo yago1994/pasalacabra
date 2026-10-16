@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-18",
-    "game_no": 230,
-    "answers": [
-      "Armenia",
-      "Beethoven",
-      "Cobalto",
-      "Danubio",
-      "Europa",
-      "Frigio",
-      "Gamelán",
-      "Huracán",
-      "Irán",
-      "Jaca",
-      "Léman",
-      "Magnesio",
-      "Nimboestrato",
-      "Ñacunday",
-      "Osa Mayor",
-      "Polinesia",
-      "Qatar",
-      "Renio",
-      "Senegal",
-      "Trompeta",
-      "Usumacinta",
-      "Volga",
-      "Xi'an",
-      "Yangtsé",
-      "Zagreb"
-    ]
-  },
-  {
     "date": "2026-08-19",
     "game_no": 231,
     "answers": [
@@ -1857,6 +1826,37 @@
       "oxidación",
       "Yibuti",
       "zénit"
+    ]
+  },
+  {
+    "date": "2026-10-17",
+    "game_no": 290,
+    "answers": [
+      "arbotante",
+      "bráctea",
+      "clave",
+      "dendrita",
+      "estípite",
+      "forte",
+      "gasterópodo",
+      "hiperrealismo",
+      "insectívoro",
+      "jamba",
+      "líquen",
+      "maestoso",
+      "neoclasicismo",
+      "pañuelo",
+      "ovíparo",
+      "pentatónica",
+      "quimiorrecepción",
+      "réquiem",
+      "sfumato",
+      "trencadís",
+      "ureasa",
+      "vihuela",
+      "exón",
+      "yesería",
+      "zéjel"
     ]
   }
 ]
