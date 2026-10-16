@@ -1,0 +1,178 @@
+{
+  "id": "set-2026-10-17",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Italian tempo marking meaning 'lively; fast' (slower than presto).",
+      "answer": "Allegro"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Classical dance form featuring pointe work and pas de deux.",
+      "answer": "Ballet"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Bowed string instrument held between the knees, tuned C-G-D-A.",
+      "answer": "Cello"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Fictional society characterized by oppression and misery, opposite of utopia.",
+      "answer": "Dystopia"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Poem of mourning or lament.",
+      "answer": "Elegy"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Ballroom dance in 4/4 popularized by Vernon and Irene Castle.",
+      "answer": "Foxtrot"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Arthurian knight, nephew of King Arthur, whose tale involves a beheading game.",
+      "answer": "Gawain"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Halfling race in Tolkien's Middle-earth, including Frodo and Sam.",
+      "answer": "Hobbit",
+      "alt": [
+        "Hobbits"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Norwegian playwright of A Doll's House and Hedda Gabler.",
+      "answer": "Ibsen"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Japanese martial art featuring throws and holds, Olympic since 1964.",
+      "answer": "Judo"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "South Korean chart phenomenon spawning idol groups like BTS and Blackpink.",
+      "answer": "K-pop",
+      "alt": [
+        "Kpop"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Humorous five-line poem with AABBA pattern.",
+      "answer": "Limerick"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Footrace of 42.195 kilometers inspired by Pheidippides' run.",
+      "answer": "Marathon"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Long prose narrative, typically featuring chapters and character development.",
+      "answer": "Novel"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Term for a partial above the fundamental frequency in music or acoustics.",
+      "answer": "Overtone"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Mischievous sprite in A Midsummer Night's Dream.",
+      "answer": "Puck"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Broomstick-based sport in Rowling's wizarding world with the Golden Snitch.",
+      "answer": "Quidditch"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "In association football, signal from the referee that ejects a player from the match.",
+      "answer": "Red card",
+      "alt": [
+        "red-card",
+        "redcard"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Skiing event requiring rapid turns around a series of gates.",
+      "answer": "Slalom"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Game or procedure used to decide a set when the score reaches 6–6 in tennis.",
+      "answer": "Tiebreak",
+      "alt": [
+        "tie-break",
+        "tiebreaker"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Competitor expected to lose against a favored opponent.",
+      "answer": "Underdog"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Plastic stadium horn droned by fans at the 2010 World Cup in South Africa.",
+      "answer": "Vuvuzela"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Grand Slam tennis tournament played on grass in London.",
+      "answer": "Wimbledon"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Annual extreme sports event organized by ESPN.",
+      "answer": "X Games",
+      "alt": [
+        "X-Games"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Skull addressed by a Danish prince in Shakespeare.",
+      "answer": "Yorick"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Surname of the Spanish goalkeeper after whom La Liga's top goalkeeper trophy is named.",
+      "answer": "Zamora"
+    }
+  ]
+}
