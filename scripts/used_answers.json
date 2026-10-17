@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-19",
-    "game_no": 231,
-    "answers": [
-      "álgebra",
-      "botánica",
-      "carbono",
-      "dinastía",
-      "escultura",
-      "friso",
-      "geometría",
-      "hipotenusa",
-      "imán",
-      "jaspe",
-      "lápiz",
-      "mosaico",
-      "nicho",
-      "muñeca",
-      "ósmosis",
-      "papiro",
-      "quinqué",
-      "retablo",
-      "sismología",
-      "torque",
-      "uretra",
-      "vitela",
-      "látex",
-      "yacente",
-      "zoótropo"
-    ]
-  },
-  {
     "date": "2026-08-20",
     "game_no": 232,
     "answers": [
@@ -1857,6 +1826,37 @@
       "exón",
       "yesería",
       "zéjel"
+    ]
+  },
+  {
+    "date": "2026-10-18",
+    "game_no": 291,
+    "answers": [
+      "Atenas",
+      "bulbo",
+      "culombio",
+      "Día D",
+      "ecosistema",
+      "fricción",
+      "Guerra Fría",
+      "herencia",
+      "isómero",
+      "jara",
+      "latitud",
+      "músculo",
+      "Napoleón",
+      "sueño",
+      "onda",
+      "Paleolítico",
+      "queroseno",
+      "reflejo",
+      "selección natural",
+      "tregua",
+      "urogallo",
+      "vapor",
+      "tóxico",
+      "Yugoslavia",
+      "Zaratustra"
     ]
   }
 ]
