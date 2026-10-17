@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-19",
-    "answers": [
-      "armadillo",
-      "beaver",
-      "Casablanca",
-      "dodo",
-      "electron",
-      "falcon",
-      "guppy",
-      "heron",
-      "Inception",
-      "Jurassic Park",
-      "kestrel",
-      "lichen",
-      "meerkat",
-      "neutrino",
-      "orca",
-      "piranha",
-      "quoll",
-      "radar",
-      "sloth",
-      "toucan",
-      "ultraviolet",
-      "velociraptor",
-      "wolf",
-      "flux",
-      "yellowhammer",
-      "Zika"
-    ]
-  },
-  {
     "date": "2026-08-20",
     "answers": [
       "Arles",
@@ -1857,6 +1826,37 @@
       "X Games",
       "Yorick",
       "Zamora"
+    ]
+  },
+  {
+    "date": "2026-10-18",
+    "answers": [
+      "artery",
+      "backstroke",
+      "cerebellum",
+      "dendrite",
+      "epinephrine",
+      "fencing",
+      "Goethe",
+      "hippocampus",
+      "iodine",
+      "Jane Eyre",
+      "kendo",
+      "lepton",
+      "Melville",
+      "nephron",
+      "ozone",
+      "pituitary",
+      "quarto",
+      "RNA",
+      "scrum",
+      "topspin",
+      "ulna",
+      "Virgil",
+      "wolfram",
+      "hexagon",
+      "Yuri Gagarin",
+      "Zora Neale Hurston"
     ]
   }
 ]

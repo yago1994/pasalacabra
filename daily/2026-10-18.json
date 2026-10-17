@@ -1,0 +1,173 @@
+{
+  "id": "set-2026-10-18",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "General type of blood vessel that carries blood away from the heart.",
+      "answer": "artery"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Swimming stroke also called the back crawl, performed on the back with alternating arm pulls.",
+      "answer": "backstroke"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Brain region that coordinates balance and voluntary movement.",
+      "answer": "cerebellum"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Neuronal branch that receives incoming signals from other cells.",
+      "answer": "dendrite"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Fight-or-flight hormone also called adrenaline, secreted by the adrenal medulla.",
+      "answer": "epinephrine"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Olympic combat sport using foil, epee, and sabre.",
+      "answer": "fencing"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "German author of Faust.",
+      "answer": "Goethe"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Brain structure crucial for forming new memories.",
+      "answer": "hippocampus"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Halogen element essential for thyroid hormone production.",
+      "answer": "iodine"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "1847 novel by Charlotte Bronte about a resilient governess and Mr. Rochester.",
+      "answer": "Jane Eyre"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Japanese martial art of swordsmanship practiced with a shinai.",
+      "answer": "kendo"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Particle family that includes the electron, muon, and tau.",
+      "answer": "lepton"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Surname of the author of Moby-Dick.",
+      "answer": "Melville"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Functional unit of the kidney that filters blood and forms urine.",
+      "answer": "nephron"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Triatomic form of oxygen that absorbs most UV-B in the stratosphere.",
+      "answer": "ozone"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Endocrine master gland located at the base of the brain.",
+      "answer": "pituitary",
+      "alt": [
+        "pituitary gland"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Book size produced by folding a full sheet twice to make four leaves.",
+      "answer": "quarto"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Nucleic acid that uses uracil and is typically single-stranded.",
+      "answer": "RNA",
+      "alt": [
+        "ribonucleic acid"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Set-piece restart in rugby where packed forwards contest possession.",
+      "answer": "scrum",
+      "alt": [
+        "scrummage"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Spin that causes a ball to dip forward in flight, common in tennis.",
+      "answer": "topspin"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Forearm bone on the side of the little finger.",
+      "answer": "ulna"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Roman poet who wrote the Aeneid.",
+      "answer": "Virgil",
+      "alt": [
+        "Vergil"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Chemical element whose symbol is W.",
+      "answer": "wolfram"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Six-sided polygon.",
+      "answer": "hexagon"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "First human to orbit Earth, in 1961.",
+      "answer": "Yuri Gagarin"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Harlem Renaissance writer of Their Eyes Were Watching God.",
+      "answer": "Zora Neale Hurston"
+    }
+  ]
+}
