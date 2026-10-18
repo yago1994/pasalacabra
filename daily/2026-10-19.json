@@ -1,0 +1,184 @@
+{
+  "id": "set-2026-10-19",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Brain region central to processing fear and emotional memories.",
+      "answer": "amygdala"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "14th-century pandemic that killed a large share of Europe's population.",
+      "answer": "Black Death",
+      "alt": [
+        "bubonic plague"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Burst of animal diversification about 541 million years ago seen in the fossil record.",
+      "answer": "Cambrian explosion"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Flightless bird from Mauritius driven to extinction in the 17th century.",
+      "answer": "dodo"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Community of organisms interacting with each other and their physical environment.",
+      "answer": "ecosystem"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Medieval European system of lords, vassals, and fiefs based on land for service.",
+      "answer": "feudalism"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Execution device of the French Revolution with a falling blade.",
+      "answer": "guillotine"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Ancient Egyptian goddess of love, beauty, and music, often depicted as a cow or as a woman with cow ears and a sun disk.",
+      "answer": "Hathor"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Archaeological period following the Bronze Age when ferrous metallurgy became widespread.",
+      "answer": "Iron Age"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Roman general and dictator assassinated on the Ides of March, 44 BCE.",
+      "answer": "Julius Caesar",
+      "alt": [
+        "Gaius Julius Caesar"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Large Australian marsupial that moves by powerful hopping and carries young in a pouch.",
+      "answer": "kangaroo"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Largest internal organ that detoxifies blood, stores glycogen, and produces bile.",
+      "answer": "liver"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Wizard and adviser to King Arthur in medieval British legend.",
+      "answer": "Merlin"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "1066 invasion and takeover of England led by William, Duke of Normandy.",
+      "answer": "Norman Conquest"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Great ape of Borneo and Sumatra known for reddish hair and arboreal lifestyle.",
+      "answer": "orangutan",
+      "alt": [
+        "orang-utan",
+        "orang utan"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Title used for the monarchs of ancient Egypt.",
+      "answer": "pharaoh"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Four-headed muscle group on the front of the thigh that extends the knee.",
+      "answer": "quadriceps",
+      "alt": [
+        "quads"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Childhood bone disorder caused by prolonged vitamin D deficiency.",
+      "answer": "rickets"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Feudal Japanese warrior class bound by a code of honor called bushido.",
+      "answer": "samurai"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Predominant combat method on the Western Front in World War I, characterized by dugouts and no-man's-land.",
+      "answer": "trench warfare"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Muscular organ in female mammals where embryos implant and develop.",
+      "answer": "uterus"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Duct that carries sperm from the epididymis toward the ejaculatory ducts.",
+      "answer": "vas deferens",
+      "alt": [
+        "ductus deferens"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Human who transforms into a wolf in European folklore, often during a full moon.",
+      "answer": "werewolf",
+      "alt": [
+        "lycanthrope"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Middle body segment of an insect bearing legs and wings.",
+      "answer": "thorax"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "1973 Arab-Israeli conflict that began on a major Jewish holy day.",
+      "answer": "Yom Kippur War",
+      "alt": [
+        "October War",
+        "1973 Arab-Israeli War"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Reanimated corpse in Haitian folklore and later popular culture.",
+      "answer": "zombie"
+    }
+  ]
+}

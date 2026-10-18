@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-20",
-    "answers": [
-      "Arles",
-      "Basel",
-      "Curling",
-      "Dakar",
-      "Edvard Munch",
-      "Florence",
-      "Guggenheim",
-      "Hurling",
-      "Innsbruck",
-      "Jai alai",
-      "Kilim",
-      "Lascaux",
-      "Monet",
-      "Normandy",
-      "Oslo",
-      "Prado",
-      "Qawwali",
-      "Renoir",
-      "Sagrada Familia",
-      "Tate Modern",
-      "Uffizi",
-      "Valencia",
-      "Wembley",
-      "Fluxus",
-      "Yokohama",
-      "Zaragoza"
-    ]
-  },
-  {
     "date": "2026-08-21",
     "answers": [
       "archaea",
@@ -1857,6 +1826,37 @@
       "hexagon",
       "Yuri Gagarin",
       "Zora Neale Hurston"
+    ]
+  },
+  {
+    "date": "2026-10-19",
+    "answers": [
+      "amygdala",
+      "Black Death",
+      "Cambrian explosion",
+      "dodo",
+      "ecosystem",
+      "feudalism",
+      "guillotine",
+      "Hathor",
+      "Iron Age",
+      "Julius Caesar",
+      "kangaroo",
+      "liver",
+      "Merlin",
+      "Norman Conquest",
+      "orangutan",
+      "pharaoh",
+      "quadriceps",
+      "rickets",
+      "samurai",
+      "trench warfare",
+      "uterus",
+      "vas deferens",
+      "werewolf",
+      "thorax",
+      "Yom Kippur War",
+      "zombie"
     ]
   }
 ]
