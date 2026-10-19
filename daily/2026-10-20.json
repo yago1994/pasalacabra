@@ -1,0 +1,167 @@
+{
+  "id": "set-2026-10-20",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Smallest and shallowest of the world's five major oceans",
+      "answer": "Arctic Ocean"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Island shared by Indonesia, Malaysia, and Brunei",
+      "answer": "Borneo"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "South American country with capital Bogotá and coastlines on both the Pacific and Caribbean",
+      "answer": "Colombia"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Camel species with a single hump",
+      "answer": "Dromedary"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Country named for the equator, home to the Galápagos Islands",
+      "answer": "Ecuador"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Nordic country known as the Land of a Thousand Lakes",
+      "answer": "Finland"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "British Overseas Territory at the entrance to the Mediterranean",
+      "answer": "Gibraltar"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Spiny nocturnal mammal that rolls into a ball when threatened",
+      "answer": "Hedgehog"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Wild mountain goat known for long curved horns and cliff-climbing ability",
+      "answer": "Ibex"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Largest wild cat native to the Americas",
+      "answer": "Jaguar"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Largest living lizard found on Indonesian islands",
+      "answer": "Komodo dragon"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Domesticated South American camelid often used as a pack animal",
+      "answer": "Llama"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Island nation off southeast Africa famous for lemurs",
+      "answer": "Madagascar"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Only country with a non-rectangular national flag, located in the Himalayas",
+      "answer": "Nepal"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Arabian Peninsula country with capital Muscat bordering the Arabian Sea",
+      "answer": "Oman"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Man-made waterway connecting the Atlantic and Pacific through Central America",
+      "answer": "Panama Canal"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Brilliant green bird that is the national symbol of Guatemala",
+      "answer": "Quetzal"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Narrow sea between Africa and the Arabian Peninsula",
+      "answer": "Red Sea"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Slow-moving tree-dwelling mammal of Central and South America",
+      "answer": "Sloth"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Largest cat species with dark vertical stripes",
+      "answer": "Tiger"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Gulf federation of seven sheikhdoms with capital Abu Dhabi",
+      "answer": "United Arab Emirates",
+      "alt": [
+        "UAE"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Waterfall on the Zambezi between Zambia and Zimbabwe known locally as Mosi-oa-Tunya",
+      "answer": "Victoria Falls"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Largest land species of the weasel family, known for ferocity and scavenging",
+      "answer": "Wolverine"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Largest U.S. state by area in the contiguous United States",
+      "answer": "Texas"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "U.S. national park in California famous for El Capitan and Half Dome",
+      "answer": "Yosemite",
+      "alt": [
+        "Yosemite National Park"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Capital city of Croatia",
+      "answer": "Zagreb"
+    }
+  ]
+}
