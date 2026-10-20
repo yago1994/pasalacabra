@@ -1,0 +1,171 @@
+{
+  "id": "set-2026-10-21",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Fast-drying paint made with a polymer emulsion used by many modern painters",
+      "answer": "Acrylic"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Long, thin French loaf with a crisp crust",
+      "answer": "Baguette"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Artwork made by assembling cut paper or other materials onto a surface",
+      "answer": "Collage"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Art movement founded in Zurich during World War I that embraced absurdity and anti-art",
+      "answer": "Dada",
+      "alt": [
+        "Dadaism"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Printmaking process that uses acid to bite lines into a metal plate",
+      "answer": "Etching"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Custard dessert with a caramel top common in Spain and Latin America",
+      "answer": "Flan",
+      "alt": [
+        "creme caramel",
+        "crème caramel"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Semi-hard Dutch cheese often encased in red wax",
+      "answer": "Gouda"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Three-dimensional image formed by interference of light beams",
+      "answer": "Hologram"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Painting technique using thickly applied pigment that stands out from the surface",
+      "answer": "Impasto"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Knife technique cutting vegetables into thin matchsticks",
+      "answer": "Julienne"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "High-temperature oven used for firing pottery",
+      "answer": "Kiln"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Relief printmaking method carving a design into linoleum",
+      "answer": "Linocut"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Browning process between amino acids and sugars responsible for seared flavors",
+      "answer": "Maillard reaction"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Smooth-skinned variety of peach",
+      "answer": "Nectarine"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Rice-shaped Italian pasta often used in soups and salads",
+      "answer": "Orzo"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Insoluble colored particles in paint that give it hue",
+      "answer": "Pigment"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Spotted carnivorous marsupial native to Australia and New Guinea",
+      "answer": "Quoll"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Light-sensitive layer at the back of the eye",
+      "answer": "Retina"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Brownish tone used in drawings and photographs, named after cuttlefish ink",
+      "answer": "Sepia"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Astringent polyphenol in tea and red wine that binds proteins",
+      "answer": "Tannin"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Electromagnetic radiation with wavelengths shorter than visible violet",
+      "answer": "Ultraviolet"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Clear protective finish, traditionally a removable conservation layer on oil paintings",
+      "answer": "Varnish"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Painting medium characterized by transparent washes bound with gum arabic",
+      "answer": "Watercolor",
+      "alt": [
+        "watercolour"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Rate of flow of a field through a surface in physics",
+      "answer": "Flux"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Unit of digital information equal to 10^24 bytes",
+      "answer": "Yottabyte"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Branch of applied chemistry dealing with fermentation in brewing and winemaking",
+      "answer": "Zymurgy"
+    }
+  ]
+}
