@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-23",
-    "game_no": 235,
-    "answers": [
-      "alquimia",
-      "boceto",
-      "contralto",
-      "dodecafonismo",
-      "esmalte",
-      "fotón",
-      "guitarrón",
-      "holografía",
-      "inercia",
-      "jazzista",
-      "ligado",
-      "motete",
-      "neuma",
-      "diseño",
-      "oboe",
-      "polifonía",
-      "quejío",
-      "rubato",
-      "soprano",
-      "tesitura",
-      "urbanismo",
-      "vitral",
-      "xerografía",
-      "yoduro",
-      "zincografía"
-    ]
-  },
-  {
     "date": "2026-08-24",
     "game_no": 236,
     "answers": [
@@ -1857,6 +1826,37 @@
       "reflexión",
       "Yunnan",
       "zorro"
+    ]
+  },
+  {
+    "date": "2026-10-22",
+    "game_no": 295,
+    "answers": [
+      "animación",
+      "butaca",
+      "cartel",
+      "dulzaina",
+      "estreno",
+      "fragua",
+      "galán",
+      "hoguera",
+      "intérprete",
+      "jaque",
+      "leyenda",
+      "musa",
+      "narrador",
+      "campaña",
+      "ortografía",
+      "película",
+      "quórum",
+      "río",
+      "saeta",
+      "traje de luces",
+      "urdimbre",
+      "varal",
+      "Xochimilco",
+      "yuntero",
+      "zagal"
     ]
   }
 ]
