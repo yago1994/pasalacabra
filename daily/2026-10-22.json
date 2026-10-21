@@ -1,0 +1,171 @@
+{
+  "id": "set-2026-10-22",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Constellation represented by the Eagle in the northern sky",
+      "answer": "Aquila"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Largest animal ever known",
+      "answer": "Blue whale"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Supernova remnant in Taurus cataloged as Messier 1",
+      "answer": "Crab Nebula"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Spotted dog breed long associated with firehouses",
+      "answer": "Dalmatian"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Plane of Earth's orbit used as a reference for celestial coordinates",
+      "answer": "Ecliptic"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Pink wading bird that filters algae and shrimp with its beak",
+      "answer": "Flamingo"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Constellation known as the Twins",
+      "answer": "Gemini"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Small bird capable of hovering by beating wings extremely fast",
+      "answer": "Hummingbird"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Category of planet that includes Uranus and Neptune",
+      "answer": "Ice giant"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Gelatinous marine animal with stinging tentacles from the phylum Cnidaria",
+      "answer": "Jellyfish"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Small falcon that often hovers while hunting in open country",
+      "answer": "Kestrel"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Only truly social big cat, living in prides",
+      "answer": "Lion"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Social mongoose famous for sentry behavior in the Kalahari",
+      "answer": "Meerkat"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Striped Australian marsupial that feeds mainly on termites",
+      "answer": "Numbat"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Largest member of the dolphin family",
+      "answer": "Orca",
+      "alt": [
+        "killer whale"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Painting technique built from tiny dots of pure color pioneered by Seurat",
+      "answer": "Pointillism"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Small ground-dwelling game bird often sporting a forward-curling plume",
+      "answer": "Quail"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Sculptural technique in which figures project from a solid background",
+      "answer": "Relief"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Ringed planet that is the sixth from the Sun",
+      "answer": "Saturn"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Tropical bird of Central and South America with a large colorful bill",
+      "answer": "Toucan"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Edo-period Japanese woodblock print genre depicting the 'floating world'",
+      "answer": "Ukiyo-e",
+      "alt": [
+        "ukiyoe",
+        "ukiyo e"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Constellation of the Maiden that contains the bright star Spica",
+      "answer": "Virgo"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Bird that drums on trees with a chisel-like bill",
+      "answer": "Woodpecker"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Mexican salamander that retains larval features into adulthood",
+      "answer": "Axolotl",
+      "alt": [
+        "ajolote"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "European bunting with a bright yellow head",
+      "answer": "Yellowhammer"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Humped breed of domestic cattle originating in South Asia",
+      "answer": "Zebu"
+    }
+  ]
+}

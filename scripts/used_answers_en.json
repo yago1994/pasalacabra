@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-23",
-    "answers": [
-      "allegory",
-      "ballad",
-      "cantata",
-      "diptych",
-      "epic",
-      "fandango",
-      "graffiti",
-      "haute couture",
-      "iconography",
-      "jig",
-      "kimono",
-      "landscape",
-      "minuet",
-      "neoclassicism",
-      "ovation",
-      "pentatonic",
-      "quatrain",
-      "rubato",
-      "sitar",
-      "tapestry",
-      "unison",
-      "vibrato",
-      "woodcut",
-      "Mixolydian",
-      "yukata",
-      "zeitgeist"
-    ]
-  },
-  {
     "date": "2026-08-24",
     "answers": [
       "Adzuki",
@@ -1857,6 +1826,37 @@
       "Flux",
       "Yottabyte",
       "Zymurgy"
+    ]
+  },
+  {
+    "date": "2026-10-22",
+    "answers": [
+      "Aquila",
+      "Blue whale",
+      "Crab Nebula",
+      "Dalmatian",
+      "Ecliptic",
+      "Flamingo",
+      "Gemini",
+      "Hummingbird",
+      "Ice giant",
+      "Jellyfish",
+      "Kestrel",
+      "Lion",
+      "Meerkat",
+      "Numbat",
+      "Orca",
+      "Pointillism",
+      "Quail",
+      "Relief",
+      "Saturn",
+      "Toucan",
+      "Ukiyo-e",
+      "Virgo",
+      "Woodpecker",
+      "Axolotl",
+      "Yellowhammer",
+      "Zebu"
     ]
   }
 ]
