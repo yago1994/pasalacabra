@@ -1,0 +1,161 @@
+{
+  "id": "set-2026-10-23",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Insect-eating mammal with an elongated snout native to the Americas.",
+      "answer": "anteater"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Caped Crusader of Gotham in DC films.",
+      "answer": "Batman"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Great ape noted for tool use and complex social behavior in West and Central Africa.",
+      "answer": "chimpanzee"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Intelligent marine mammal that hunts with echolocation.",
+      "answer": "dolphin"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Largest land animal possessing a trunk and tusks.",
+      "answer": "elephant"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Nickname of the Red Hot Chili Peppers bassist.",
+      "answer": "Flea"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Domesticated caprine famed for climbing and eating shrubs.",
+      "answer": "goat"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Long-legged wading bird often seen stalking fish in wetlands.",
+      "answer": "heron"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "2010 sci-fi heist film about dream infiltration directed by Christopher Nolan.",
+      "answer": "Inception"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Raspy-voiced singer of Big Brother and the Holding Company.",
+      "answer": "Janis Joplin"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Ornamental carp commonly kept in Japanese garden ponds.",
+      "answer": "koi"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Pop star who plays flute on Good as Hell and About Damn Time.",
+      "answer": "Lizzo"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Heavy metal band behind the album Master of Puppets.",
+      "answer": "Metallica"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Clownfish hero of a 2003 Pixar adventure.",
+      "answer": "Nemo"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Playful semiaquatic mammal of the weasel family with webbed feet and dense fur.",
+      "answer": "otter"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Singer behind Purple Rain.",
+      "answer": "Prince"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Nut-storing tree-dwelling rodent with a bushy tail.",
+      "answer": "squirrel"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Barbadian pop star who sang Umbrella.",
+      "answer": "Rihanna"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "2001 animated comedy featuring a green ogre.",
+      "answer": "Shrek"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "1986 fighter-pilot film starring Tom Cruise.",
+      "answer": "Top Gun"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "2009 animated film about a house lifted by thousands of balloons.",
+      "answer": "Up"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Bowed soprano string instrument prominent in orchestras.",
+      "answer": "violin"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Pack-hunting wild canine known for howling.",
+      "answer": "wolf"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "1976 film starring Robert De Niro as a troubled cabbie in New York.",
+      "answer": "Taxi Driver"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Greek new-age composer known for Live at the Acropolis.",
+      "answer": "Yanni"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "2016 Disney animated film set in a city of anthropomorphic animals.",
+      "answer": "Zootopia"
+    }
+  ]
+}

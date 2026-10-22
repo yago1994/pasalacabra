@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-24",
-    "answers": [
-      "Adzuki",
-      "Bulgur",
-      "Cervantes",
-      "Dumas",
-      "Enceladus",
-      "Faulkner",
-      "Ghee",
-      "Hercules",
-      "Ishmael",
-      "Joyce",
-      "Keats",
-      "Lear",
-      "Middlemarch",
-      "Nabokov",
-      "Oolong",
-      "Pistachio",
-      "Quadrature",
-      "Romaine",
-      "Salinger",
-      "Titan",
-      "Ube",
-      "Vonnegut",
-      "Wodehouse",
-      "Xanadu",
-      "Yuba",
-      "Zamyatin"
-    ]
-  },
-  {
     "date": "2026-08-25",
     "answers": [
       "Antarctica",
@@ -1857,6 +1826,37 @@
       "Axolotl",
       "Yellowhammer",
       "Zebu"
+    ]
+  },
+  {
+    "date": "2026-10-23",
+    "answers": [
+      "anteater",
+      "Batman",
+      "chimpanzee",
+      "dolphin",
+      "elephant",
+      "Flea",
+      "goat",
+      "heron",
+      "Inception",
+      "Janis Joplin",
+      "koi",
+      "Lizzo",
+      "Metallica",
+      "Nemo",
+      "otter",
+      "Prince",
+      "squirrel",
+      "Rihanna",
+      "Shrek",
+      "Top Gun",
+      "Up",
+      "violin",
+      "wolf",
+      "Taxi Driver",
+      "Yanni",
+      "Zootopia"
     ]
   }
 ]
