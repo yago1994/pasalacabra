@@ -1,0 +1,191 @@
+{
+  "id": "set-2026-10-24",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Ancient Greek city that hosted the first modern Olympic Games in 1896.",
+      "answer": "Athens",
+      "alt": [
+        "Athina"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Catalan capital famed for Gaudi's Sagrada Familia and a storied football club.",
+      "answer": "Barcelona"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Winter sport where players slide stones toward a house while teammates sweep the ice.",
+      "answer": "Curling"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Capital of Senegal on the Cape Verde Peninsula.",
+      "answer": "Dakar"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Notorious Swiss north face in the Bernese Alps near Grindelwald.",
+      "answer": "Eiger"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Premier international open-wheel motor racing championship.",
+      "answer": "Formula One",
+      "alt": [
+        "F1",
+        "Formula 1"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Sport in which players aim to complete 18 holes in as few strokes as possible.",
+      "answer": "Golf"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Fast Irish field sport played with a hurley and sliotar.",
+      "answer": "Hurling"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "European country famously shaped like a boot.",
+      "answer": "Italy",
+      "alt": [
+        "Italia"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Capital city of Alaska accessible mainly by boat or plane.",
+      "answer": "Juneau"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Gulf monarchy bordered by Iraq and Saudi Arabia.",
+      "answer": "Kuwait"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Landlocked country in Southeast Asia traversed by the Mekong River.",
+      "answer": "Laos"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Portrait by Leonardo da Vinci displayed in the Louvre.",
+      "answer": "Mona Lisa",
+      "alt": [
+        "La Gioconda",
+        "La Joconde"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Landlocked West African nation with capital at Niamey.",
+      "answer": "Niger"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Scandinavian capital situated on its namesake fjord.",
+      "answer": "Oslo"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Spanish painter who co-founded Cubism and painted Guernica.",
+      "answer": "Picasso",
+      "alt": [
+        "Pablo Picasso"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Canadian province whose capital city shares its name with the province.",
+      "answer": "Quebec",
+      "alt": [
+        "Québec"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "French Impressionist known for Bal du moulin de la Galette.",
+      "answer": "Renoir",
+      "alt": [
+        "Pierre-Auguste Renoir"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Australian city home to a sail-shaped opera house.",
+      "answer": "Sydney"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Racquet sport with Grand Slam events like Wimbledon and the US Open.",
+      "answer": "Tennis"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Florentine gallery famed for Botticelli's Birth of Venus and Primavera.",
+      "answer": "Uffizi",
+      "alt": [
+        "Uffizi Gallery",
+        "Galleria degli Uffizi"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Spanish port city known for the City of Arts and Sciences and Las Fallas festival.",
+      "answer": "Valencia"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Capital of Namibia in the Khomas Highlands.",
+      "answer": "Windhoek"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Egyptian city opposite the Valley of the Kings on the Nile's east bank.",
+      "answer": "Luxor"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Major Japanese port city just south of Tokyo in the Kanto region.",
+      "answer": "Yokohama"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Capital of Aragon located on the Ebro River.",
+      "answer": "Zaragoza",
+      "alt": [
+        "Saragossa"
+      ]
+    }
+  ]
+}

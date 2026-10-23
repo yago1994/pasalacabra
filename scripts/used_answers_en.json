@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-25",
-    "answers": [
-      "Antarctica",
-      "Bollywood",
-      "Cumulus",
-      "Delta",
-      "Estuary",
-      "Frozen",
-      "Gobi Desert",
-      "Hurricane",
-      "Interstellar",
-      "Jerusalem",
-      "Krakow",
-      "Lava",
-      "Magma",
-      "Niagara Falls",
-      "Oahu",
-      "Pangaea",
-      "Quicksilver",
-      "Reykjavik",
-      "Seismograph",
-      "Tundra",
-      "Uluru",
-      "Venezuela",
-      "Westerlies",
-      "Coaxial",
-      "Yellowknife",
-      "Zermatt"
-    ]
-  },
-  {
     "date": "2026-08-26",
     "answers": [
       "Anfield",
@@ -1857,6 +1826,37 @@
       "Taxi Driver",
       "Yanni",
       "Zootopia"
+    ]
+  },
+  {
+    "date": "2026-10-24",
+    "answers": [
+      "Athens",
+      "Barcelona",
+      "Curling",
+      "Dakar",
+      "Eiger",
+      "Formula One",
+      "Golf",
+      "Hurling",
+      "Italy",
+      "Juneau",
+      "Kuwait",
+      "Laos",
+      "Mona Lisa",
+      "Niger",
+      "Oslo",
+      "Picasso",
+      "Quebec",
+      "Renoir",
+      "Sydney",
+      "Tennis",
+      "Uffizi",
+      "Valencia",
+      "Windhoek",
+      "Luxor",
+      "Yokohama",
+      "Zaragoza"
     ]
   }
 ]
