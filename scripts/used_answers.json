@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-25",
-    "game_no": 237,
-    "answers": [
-      "atleta",
-      "béisbol",
-      "Caronte",
-      "derbi",
-      "estrella",
-      "fanzine",
-      "Ganímedes",
-      "halterofilia",
-      "Ío",
-      "jornada",
-      "liga",
-      "meta",
-      "nadador",
-      "guiñol",
-      "Orsay",
-      "planeta",
-      "Quirón",
-      "récord",
-      "saque",
-      "Titán",
-      "utillero",
-      "volea",
-      "expulsión",
-      "yarda",
-      "zancada"
-    ]
-  },
-  {
     "date": "2026-08-26",
     "game_no": 238,
     "answers": [
@@ -1857,6 +1826,37 @@
       "óxido",
       "yoduro",
       "zoonosis"
+    ]
+  },
+  {
+    "date": "2026-10-24",
+    "game_no": 297,
+    "answers": [
+      "Alejandro Magno",
+      "Babilonia",
+      "cromosoma",
+      "diodo",
+      "eosinófilo",
+      "Francia",
+      "Galeno",
+      "hidrología",
+      "íleon",
+      "jasmonato",
+      "litio",
+      "microbiología",
+      "neón",
+      "señorío",
+      "osteología",
+      "protón",
+      "arqueología",
+      "redox",
+      "suevos",
+      "tritio",
+      "uretra",
+      "válvula",
+      "xifoides",
+      "Yersinia pestis",
+      "zapotecos"
     ]
   }
 ]
