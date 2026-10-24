@@ -1,0 +1,176 @@
+{
+  "id": "set-2026-10-25",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Colorless gas with formula NH3 widely used in fertilizers.",
+      "answer": "ammonia"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Iconic North American ungulate with a massive shoulder hump, often miscalled 'buffalo', once near extinction and now recovering.",
+      "answer": "bison",
+      "alt": [
+        "American bison"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Venomous hooded snake found in Asia and Africa.",
+      "answer": "cobra"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Aerial insect that holds its wings horizontally at rest; larvae are aquatic predators.",
+      "answer": "dragonfly"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Navigation method using reflected sound used by bats and dolphins.",
+      "answer": "echolocation"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Domesticated form of the European polecat used for hunting rabbits.",
+      "answer": "ferret"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Small lizard known for adhesive toe pads that let it climb walls.",
+      "answer": "gecko"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Social scavenging carnivore of Africa known for laughing calls.",
+      "answer": "hyena",
+      "alt": [
+        "hyaena"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Wading bird with a long decurved bill; includes the sacred species revered in ancient Egypt.",
+      "answer": "ibis"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Cunning canid of Africa and Asia that often scavenges near villages.",
+      "answer": "jackal"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Brightly colored bird that dives to catch fish from perches.",
+      "answer": "kingfisher"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Spotted big cat renowned for carrying prey into trees.",
+      "answer": "leopard"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Large aquatic herbivore of the Atlantic and Caribbean with a paddle-shaped tail, nicknamed sea cow.",
+      "answer": "manatee"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Salamander whose terrestrial juvenile is called an eft; many species regenerate limbs.",
+      "answer": "newt"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "World's largest bird, incapable of flight but runs at high speed.",
+      "answer": "ostrich"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Egg-laying mammal with a duck-like bill native to Australia.",
+      "answer": "platypus"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Extinct subspecies of plains zebra once found in South Africa.",
+      "answer": "quagga"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Bamboo-eating mammal of the eastern Himalayas with a ringed tail and russet fur.",
+      "answer": "red panda",
+      "alt": [
+        "lesser panda"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Spotted African wild cat with oversized ears and long legs.",
+      "answer": "serval"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Large hairy spider that often flicks urticating hairs in defense.",
+      "answer": "tarantula"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Tropical American bird named for the crest that fans like a parasol in males.",
+      "answer": "umbrellabird",
+      "alt": [
+        "umbrella bird"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Venomous snakes with long hinged front fangs; includes adders and rattlesnakes.",
+      "answer": "viper"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Slender mustelid known for preying on rodents in burrows.",
+      "answer": "weasel"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "External support structure found in arthropods such as insects and crabs.",
+      "answer": "exoskeleton"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Common name for aggressive social wasps that often build paper nests.",
+      "answer": "yellowjacket",
+      "alt": [
+        "yellow jacket"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Drifting small animals of the planktonic community, such as copepods.",
+      "answer": "zooplankton"
+    }
+  ]
+}

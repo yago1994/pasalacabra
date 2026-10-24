@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-26",
-    "answers": [
-      "Anfield",
-      "Bismarck",
-      "Cannes",
-      "Dunkirk",
-      "Eisenhower",
-      "FIFA",
-      "Gladiator",
-      "Hannibal",
-      "Iwo Jima",
-      "Jesse Owens",
-      "Keanu Reeves",
-      "LeBron James",
-      "Maradona",
-      "Nixon",
-      "Olympics",
-      "Pele",
-      "Quentin Tarantino",
-      "Rocky",
-      "Serena Williams",
-      "Titanic",
-      "UEFA",
-      "Victoria",
-      "Wright brothers",
-      "Xavi",
-      "Yalta",
-      "Zulu"
-    ]
-  },
-  {
     "date": "2026-08-27",
     "answers": [
       "amphora",
@@ -1857,6 +1826,37 @@
       "Luxor",
       "Yokohama",
       "Zaragoza"
+    ]
+  },
+  {
+    "date": "2026-10-25",
+    "answers": [
+      "ammonia",
+      "bison",
+      "cobra",
+      "dragonfly",
+      "echolocation",
+      "ferret",
+      "gecko",
+      "hyena",
+      "ibis",
+      "jackal",
+      "kingfisher",
+      "leopard",
+      "manatee",
+      "newt",
+      "ostrich",
+      "platypus",
+      "quagga",
+      "red panda",
+      "serval",
+      "tarantula",
+      "umbrellabird",
+      "viper",
+      "weasel",
+      "exoskeleton",
+      "yellowjacket",
+      "zooplankton"
     ]
   }
 ]
