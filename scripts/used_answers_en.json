@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-27",
-    "answers": [
-      "amphora",
-      "basalt",
-      "caryatid",
-      "daguerreotype",
-      "Etruscan",
-      "filigree",
-      "Guernica",
-      "Hellenistic",
-      "indigo",
-      "Jomon",
-      "kaolin",
-      "limestone",
-      "madrigal",
-      "nacre",
-      "ocarina",
-      "palindrome",
-      "quilling",
-      "Romanesque",
-      "selenium",
-      "trilobite",
-      "ultramarine",
-      "vermilion",
-      "weft",
-      "vexillology",
-      "yarn",
-      "zarf"
-    ]
-  },
-  {
     "date": "2026-08-28",
     "answers": [
       "Agincourt",
@@ -1857,6 +1826,37 @@
       "exoskeleton",
       "yellowjacket",
       "zooplankton"
+    ]
+  },
+  {
+    "date": "2026-10-26",
+    "answers": [
+      "Alpaca",
+      "Bagpipes",
+      "Capybara",
+      "Debussy",
+      "Elgar",
+      "Funk",
+      "Gupta Empire",
+      "Handel",
+      "Iggy Pop",
+      "Joan of Arc",
+      "Kudu",
+      "Liszt",
+      "Ming Dynasty",
+      "New Wave",
+      "Oboe",
+      "Pachelbel",
+      "Quadrille",
+      "Ravel",
+      "Sitar",
+      "Tudor",
+      "Ulysses S. Grant",
+      "Vibrato",
+      "Warthog",
+      "Tyrannosaurus rex",
+      "Yo-Yo Ma",
+      "Zulu Kingdom"
     ]
   }
 ]

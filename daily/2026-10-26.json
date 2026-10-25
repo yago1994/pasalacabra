@@ -1,0 +1,205 @@
+{
+  "id": "set-2026-10-26",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Domesticated camelid smaller than llamas, prized for soft fleece in the Andes.",
+      "answer": "Alpaca"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Traditional Scottish reed instrument with airbag and drones.",
+      "answer": "Bagpipes",
+      "alt": [
+        "Bagpipe"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "World's largest rodent native to South America.",
+      "answer": "Capybara"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "French composer of the piano piece Clair de Lune.",
+      "answer": "Debussy",
+      "alt": [
+        "Claude Debussy"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "English composer of the Enigma Variations.",
+      "answer": "Elgar",
+      "alt": [
+        "Edward Elgar"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "James Brown helped pioneer this groove-heavy genre.",
+      "answer": "Funk"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Indian dynasty known for a classical golden age around the 4th–6th centuries CE.",
+      "answer": "Gupta Empire",
+      "alt": [
+        "Gupta dynasty"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Baroque composer of Messiah.",
+      "answer": "Handel",
+      "alt": [
+        "George Frideric Handel"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Punk icon nicknamed the 'Godfather of Punk' and frontman of the Stooges.",
+      "answer": "Iggy Pop"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Teenage French heroine burned in 1431 after leading armies against England.",
+      "answer": "Joan of Arc",
+      "alt": [
+        "Jeanne d'Arc"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Striped African antelope with long spiral horns; species include greater and lesser.",
+      "answer": "Kudu"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Virtuoso pianist-composer famous for Hungarian Rhapsodies.",
+      "answer": "Liszt",
+      "alt": [
+        "Franz Liszt"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Chinese ruling house that built much of the Forbidden City, 1368–1644.",
+      "answer": "Ming Dynasty",
+      "alt": [
+        "Ming dynasty"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Genre blending punk energy with synthesizers in the late 1970s and 80s.",
+      "answer": "New Wave"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Soprano-range double-reed woodwind common in orchestras.",
+      "answer": "Oboe"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Baroque composer of Canon in D.",
+      "answer": "Pachelbel",
+      "alt": [
+        "Johann Pachelbel"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Lively historic square dance popular in 18th–19th-century ballrooms.",
+      "answer": "Quadrille"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "French composer of Boléro.",
+      "answer": "Ravel",
+      "alt": [
+        "Maurice Ravel"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Long-necked plucked lute with sympathetic strings in Hindustani classical music.",
+      "answer": "Sitar"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "English royal house that reigned from Henry VII to Elizabeth I.",
+      "answer": "Tudor",
+      "alt": [
+        "Tudor dynasty"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Union general who became 18th president of the United States.",
+      "answer": "Ulysses S. Grant",
+      "alt": [
+        "Ulysses Grant",
+        "U.S. Grant"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Technique of rapid pitch fluctuation used to add warmth to notes.",
+      "answer": "Vibrato"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "African wild pig with facial warts and curved tusks.",
+      "answer": "Warthog"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Iconic carnivorous dinosaur whose name means 'king' of the tyrant lizards.",
+      "answer": "Tyrannosaurus rex",
+      "alt": [
+        "T. rex",
+        "T rex"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Cellist famed for Bach Cello Suites and the Silkroad Project.",
+      "answer": "Yo-Yo Ma",
+      "alt": [
+        "Yo Yo Ma"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Southern African state founded by Shaka in the early 19th century.",
+      "answer": "Zulu Kingdom"
+    }
+  ]
+}
