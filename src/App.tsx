@@ -44,8 +44,10 @@ import ProfilePage from "./components/ProfilePage";
 import ArchivePage from "./components/ArchivePage";
 import SignInSheet from "./components/SignInSheet";
 import MicStatus from "./components/MicStatus";
+import type { MicHealth } from "./speech/PushAudioStreamManager";
 import {
   classifyMicError,
+  describeBrowser,
   devPreviewFailure,
   reportMicFailure,
   type MicFailure,
@@ -512,6 +514,10 @@ export default function App() {
   const sttRestartTimerRef = useRef<number | null>(null);
   const sttRestartCountRef = useRef<number>(0);
   const sttLastErrorRef = useRef<string | null>(null);
+  // Speech dropped mid-turn: the clock and the questions wait until the
+  // recognizer is back and the player taps "Seguir".
+  const [micPaused, setMicPaused] = useState<boolean>(false);
+  const micPausedRef = useRef<boolean>(false);
   const sttArmedRef = useRef<boolean>(false);
   const sttArmedAtRef = useRef<number>(0); // Timestamp when mic was armed - used to ignore stale results
   const sttPostFlushRef = useRef<boolean>(false); // True when arming after a barrier restart/flush
@@ -537,6 +543,9 @@ export default function App() {
 
   // Optional: expose current mic volume in dB for gating/debug
   const micDbRef = useRef<null | (() => number)>(null);
+  // Is audio really flowing from the mic? (see the mic watchdog)
+  const micHealthRef = useRef<null | (() => MicHealth)>(null);
+  const micSilentReportsRef = useRef<number>(0);
 
   // Push-stream gating: control what audio reaches Azure during TTS
   const openGateRef = useRef<null | (() => void)>(null);
@@ -743,6 +752,13 @@ export default function App() {
   useEffect(() => {
     phaseRef.current = phase;
   }, [phase]);
+  const screenRef = useRef<Screen>(screen);
+  useEffect(() => {
+    screenRef.current = screen;
+  }, [screen]);
+  useEffect(() => {
+    micPausedRef.current = micPaused;
+  }, [micPaused]);
 
   // Sound effects (Web Audio, preloaded + pre-decoded for low latency)
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -759,6 +775,14 @@ export default function App() {
     if (!Ctx) return null;
     // "interactive" prioritizes low latency (best for game-show SFX).
     audioCtxRef.current = new Ctx({ latencyHint: "interactive" });
+    return audioCtxRef.current;
+  }
+
+  // For the goat: its sounds only play once Empezar has unlocked audio, so it
+  // must never be the one to create the context. Creating it on the game
+  // screen's first frame (outside a tap, while the mic is starting) changed
+  // the order iOS sets up its audio session in.
+  function peekAudioCtx() {
     return audioCtxRef.current;
   }
 
@@ -1281,6 +1305,7 @@ export default function App() {
     azureMicCloseRef.current?.();
     azureMicCloseRef.current = null;
     micDbRef.current = null;
+    micHealthRef.current = null;
     // Clear gate refs when stopping
     openGateRef.current = null;
     closeGateRef.current = null;
@@ -1346,6 +1371,39 @@ export default function App() {
     }
   }
 
+  /** Forget the mic stream so the next start asks for a fresh one (a dead track would come back otherwise). */
+  function dropMicStream() {
+    for (const track of azureMicStreamRef.current?.getTracks() ?? []) {
+      try {
+        track.stop();
+      } catch { /* ignore */ }
+    }
+    azureMicStreamRef.current = null;
+  }
+
+  /**
+   * Bring speech back after the session dropped or failed to connect. Quick at
+   * first, then backing off (250 ms … 8 s) so a flaky connection isn't hammered.
+   * Keeps trying for as long as we're on the game screen and still want STT.
+   */
+  function scheduleSttRetry(why: string) {
+    // The screen is checked when the retry fires: a fast failure can land
+    // before React has committed the switch to the game screen.
+    if (!sttDesiredRef.current || phaseRef.current === "ended") return;
+    if (sttRestartTimerRef.current) window.clearTimeout(sttRestartTimerRef.current);
+    const delay = Math.min(8000, 250 * 2 ** sttRestartCountRef.current);
+    sttRestartCountRef.current += 1;
+    sttLog("retry-scheduled", { why, delay, count: sttRestartCountRef.current });
+    sttRestartTimerRef.current = window.setTimeout(() => {
+      sttRestartTimerRef.current = null;
+      if (!sttDesiredRef.current || screenRef.current !== "game" || phaseRef.current === "ended") return;
+      if (sttStartPromiseRef.current) return; // a start is already underway; it retries on failure
+      sttStartPromiseRef.current = startListeningWithHints(sttLastHintsRef.current).finally(() => {
+        sttStartPromiseRef.current = null;
+      });
+    }, delay);
+  }
+
   async function startListeningWithHints(hints: string[]): Promise<void> {
     setSttError("");
 
@@ -1372,22 +1430,29 @@ export default function App() {
       azureMicCloseRef.current?.();      // close any previous stream if it exists  
       azureMicCloseRef.current = bundle.close;   // so you can cleanup on replace/stop
       micDbRef.current = bundle.getDb;           // store function
+      micHealthRef.current = bundle.health;
       // Store gate control functions for TTS integration
       openGateRef.current = bundle.openGate;
       closeGateRef.current = bundle.closeGate;
       resumeAudioContextRef.current = bundle.resume;
     } catch (err) {
-      setSttSupported(false);
       setIsListening(false);
-      sttDesiredRef.current = false;
       setSttError(String(err));
       // Check if it's a permission denied error
       const error = err as DOMException;
       // Keep the raw name around: on Android it distinguishes a permanent block
       // (NotAllowedError) from device contention (NotReadableError/AbortError).
       setMicErrorName(error?.name ?? "");
-      failMic(classifyMicError(err, "mic"));
+      const failure = classifyMicError(err, "mic");
+      failMic(failure);
       sttLog("createAzureRecognizer failed", String(err));
+      if (failure.reason === "network") {
+        // No connection right now; the mic itself is fine, so keep trying.
+        scheduleSttRetry("token");
+      } else {
+        setSttSupported(false);
+        sttDesiredRef.current = false;
+      }
       return;
     }
 
@@ -1570,19 +1635,12 @@ export default function App() {
       }, 300);
     };
 
+    // Also while waiting on "Empezar": a session that drops there (screen lock,
+    // app switch, network blip) used to stay dead and leave the button disabled.
     const scheduleRestart = (why: string) => {
       setIsListening(false);
       sttLog("restart-check", { why, desired: sttDesiredRef.current, phase: phaseRef.current });
-      if (!sttDesiredRef.current) return;
-      if (phaseRef.current !== "playing") return;
-      if (sttRestartTimerRef.current) window.clearTimeout(sttRestartTimerRef.current);
-      sttRestartCountRef.current += 1;
-      sttLog("restart-scheduled", { count: sttRestartCountRef.current, why });
-      if (sttRestartCountRef.current > 10) return; // safety guard
-      sttRestartTimerRef.current = window.setTimeout(() => {
-        sttLog("restarting now");
-        void startListeningWithHints(sttLastHintsRef.current);
-      }, 250);
+      scheduleSttRetry(why);
     };
 
     r.canceled = (_s, e) => {
@@ -1612,8 +1670,21 @@ export default function App() {
         );
       });
       if (gen !== sttGenRef.current) return;
+      // A capture can fail right after getUserMedia resolves: the track just
+      // ends and Azure happily listens to nothing (reproduced in the iOS
+      // simulator). Never light up "Empezar" on a dead mic.
+      const health = micHealthRef.current?.();
+      if (health && health.trackState !== "live") {
+        sttLog("mic track not live after start", health);
+        failMic({ reason: "unknown", stage: "mic", errorName: "TrackEnded", errorMessage: `mic track ${health.trackState} right after start` });
+        dropMicStream();
+        stopListening("replace");
+        scheduleSttRetry("track-ended");
+        return;
+      }
       setIsListening(true);
       setMicFailure(null);
+      sttRestartCountRef.current = 0;
       sttLog("started");
 
       // Signal to the user that they can respond (once per question).
@@ -1627,7 +1698,6 @@ export default function App() {
     } catch (err) {
       if (gen !== sttGenRef.current) return;
       setIsListening(false);
-      sttDesiredRef.current = false; // don't thrash if start failed
       setSttError(String(err));
       recognitionRef.current = null;
       failMic(classifyMicError(err, "azure"));
@@ -1637,6 +1707,8 @@ export default function App() {
       } catch {
         // ignore
       }
+      // Couldn't reach Azure: try again with backoff rather than giving up.
+      scheduleSttRetry("azure-start");
     }
   }
 
@@ -1656,22 +1728,156 @@ export default function App() {
   function retryMic() {
     setMicFailure(null);
     setSttError("");
+    // Skip whatever backoff is pending: the player is asking for it now.
+    if (sttRestartTimerRef.current) window.clearTimeout(sttRestartTimerRef.current);
+    sttRestartTimerRef.current = null;
+    sttRestartCountRef.current = 0;
+    sttDesiredRef.current = true;
     if (sttStartPromiseRef.current) return;
     sttStartPromiseRef.current = startListeningWithHints(sttLastHintsRef.current).finally(() => {
       sttStartPromiseRef.current = null;
     });
   }
 
-  // If the mic still isn't ready after a while, the permission prompt was most
-  // likely ignored or hidden by the browser (getUserMedia never settles).
+  // If the mic still isn't ready after a while, either the permission prompt
+  // was ignored/hidden (getUserMedia never settles) or, with permission already
+  // granted, the speech service is unreachable.
   useEffect(() => {
     if (screen !== "game" || phase !== "idle" || gameOver) return;
     if (isListening || micFailure || permissionNotice) return;
     const t = window.setTimeout(() => {
-      failMic({ reason: "waiting", stage: "timeout", errorName: "Timeout", errorMessage: "mic not ready after 10s" });
+      void getMediaPermissionState("microphone").then((permission) => {
+        failMic(
+          permission === "granted"
+            ? { reason: "network", stage: "timeout", errorName: "Timeout", errorMessage: "speech not ready after 10s (mic granted)" }
+            : { reason: "waiting", stage: "timeout", errorName: "Timeout", errorMessage: "mic not ready after 10s" }
+        );
+      });
     }, 10_000);
     return () => window.clearTimeout(t);
   }, [screen, phase, gameOver, isListening, micFailure, permissionNotice, failMic]);
+
+  // Speech dropped mid-turn (network, phone call, screen lock): stop the clock
+  // and the questions instead of letting the player's time run out while
+  // nothing can hear them. A short grace covers the normal quick restarts.
+  useEffect(() => {
+    if (phase !== "playing" || !sttSupported || isListening || micPaused) return;
+    const t = window.setTimeout(() => {
+      setMicPaused(true);
+      micPausedRef.current = true;
+      ttsSeqRef.current += 1; // drop the rest of the question being read
+      stopSpeaking();
+      disarmListening();
+      sttLog("turn paused: speech dropped");
+      trackPendoEvent("Turn Paused", {
+        cause: sttLastErrorRef.current ?? "unknown",
+        online: navigator.onLine,
+        retries: sttRestartCountRef.current,
+        ...describeBrowser(),
+        userAgent: navigator.userAgent.slice(0, 300),
+      });
+    }, 2000);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, sttSupported, isListening, micPaused]);
+
+  // Mic watchdog. A recognizer can be connected and "listening" while the mic
+  // feeds it nothing: iOS interrupting the audio context, the OS muting the
+  // track (a call, Siri), or a capture that only delivers zeros. Then the clock
+  // ran while nobody could answer. Catch it, report what it looked like, and
+  // start over with a fresh microphone (the turn pauses meanwhile). Also runs
+  // while waiting on "Empezar", so the button doesn't stay lit on a dead mic.
+  useEffect(() => {
+    if (screen !== "game" || (phase !== "playing" && phase !== "idle")) return;
+    if (!isListening || micPaused) return;
+    let mutedChecks = 0;
+    let silenceReported = false;
+    const report = (kind: string, h: MicHealth) => {
+      if (micSilentReportsRef.current++ >= 5) return;
+      trackPendoEvent("Mic Silent", {
+        kind,
+        contextState: h.contextState,
+        sampleRate: h.sampleRate,
+        msSinceFrame: Number.isFinite(h.msSinceFrame) ? h.msSinceFrame : -1,
+        msSinceSound: Number.isFinite(h.msSinceSound) ? h.msSinceSound : -1,
+        trackState: h.trackState,
+        trackMuted: h.trackMuted,
+        ...describeBrowser(),
+        userAgent: navigator.userAgent.slice(0, 300),
+      });
+    };
+    const id = window.setInterval(() => {
+      const h = micHealthRef.current?.();
+      if (!h) return;
+      mutedChecks = h.trackMuted ? mutedChecks + 1 : 0;
+      // Pure zeros for a while: report only. Voice processing *might* output
+      // zeros in a very quiet room, and pausing a thinking player would be worse.
+      if (!silenceReported && h.msSinceSound > 6000 && h.msSinceFrame < 1000) {
+        silenceReported = true;
+        sttLog("mic watchdog: digital silence", h);
+        report("digital-silence", h);
+      }
+      const kind =
+        h.trackState === "ended" ? "track-ended"
+        : mutedChecks >= 3 ? "track-muted"
+        : h.msSinceFrame > 3000 ? `no-frames:${h.contextState}`
+        : null;
+      if (!kind) return;
+      window.clearInterval(id);
+      sttLog("mic watchdog: dead mic", kind, h);
+      report(kind, h);
+      if (phaseRef.current === "idle") {
+        failMic({ reason: "unknown", stage: "mic", errorName: "MicSilent", errorMessage: kind });
+      }
+      dropMicStream();
+      sttLastErrorRef.current = `mic-silent:${kind}`;
+      stopListening("replace");
+      scheduleSttRetry("mic-silent");
+    }, 1000);
+    return () => window.clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [screen, phase, isListening, micPaused]);
+
+  // Leaving the turn any other way (time up, game exit) clears the pause.
+  useEffect(() => {
+    if (phase !== "playing" && micPaused) setMicPaused(false);
+  }, [phase, micPaused]);
+
+  // "Seguir": speech is back, re-read the question and restart the clock.
+  function resumeAfterMicDrop() {
+    unlockAudioOnce();
+    void resumeAudioContextRef.current?.();
+    micPausedRef.current = false;
+    setMicPaused(false);
+    speakCurrentQuestionThenListen();
+  }
+
+  // The browser knows before Azure does: drop the dead session as soon as we go
+  // offline, and reconnect right away when the network comes back.
+  const networkChangeRef = useRef<(online: boolean) => void>(() => {});
+  networkChangeRef.current = (online: boolean) => {
+    if (!sttDesiredRef.current) return;
+    sttLog(online ? "online" : "offline");
+    if (online) {
+      if (recognitionRef.current) return;
+      sttRestartCountRef.current = 0;
+      scheduleSttRetry("online");
+    } else {
+      sttLastErrorRef.current = "offline";
+      stopListening("replace");
+      scheduleSttRetry("offline");
+    }
+  };
+  useEffect(() => {
+    const onOffline = () => networkChangeRef.current(false);
+    const onOnline = () => networkChangeRef.current(true);
+    window.addEventListener("offline", onOffline);
+    window.addEventListener("online", onOnline);
+    return () => {
+      window.removeEventListener("offline", onOffline);
+      window.removeEventListener("online", onOnline);
+    };
+  }, []);
 
   function ensureListeningForQuestion(hints: string[]) {
     // Start recognition once from a user gesture (Start button). After that, keep it running.
@@ -1793,6 +1999,8 @@ export default function App() {
   }
 
   function speakCurrentQuestionThenListen() {
+    // Paused for a speech drop: "Seguir" reads the current question instead.
+    if (micPausedRef.current) return;
     const ttsSeq = ++ttsSeqRef.current;
     // Disarm mic during TTS - don't stop it to avoid audio ducking.
     // The mic stays running continuously; we just ignore its output during TTS.
@@ -1972,6 +2180,8 @@ export default function App() {
     if (!activePlayerId) return;
     // Pause countdown while feedback ("Sí" / "No...") is being read aloud.
     if (feedback !== null) return;
+    // ...and while speech recognition is down (see the "Turn Paused" effect).
+    if (micPaused) return;
 
     const id = window.setInterval(() => {
       setTimeLeft((t) => {
@@ -1981,7 +2191,7 @@ export default function App() {
     }, 1000);
 
     return () => window.clearInterval(id);
-  }, [phase, screen, activePlayerId, feedback]);
+  }, [phase, screen, activePlayerId, feedback, micPaused]);
 
   // Load available voices (async in many browsers)
   useEffect(() => {
@@ -2964,6 +3174,9 @@ export default function App() {
     }
     
     unlockAudioOnce();
+    // The mic's own context is created outside a tap; if iOS left it suspended,
+    // this tap is our chance to start it (nothing reached Azure otherwise).
+    void resumeAudioContextRef.current?.();
     warmupSpeechSynthesisOnce();
     setTurnMessage("");
     setLastWrongLetter(null); // Clear any pending override from previous turn
@@ -3827,7 +4040,7 @@ export default function App() {
                 phase={phase}
                 gameOver={gameOver}
                 timeLeft={timeLeft}
-                getAudioCtx={getAudioCtx}
+                getAudioCtx={peekAudioCtx}
               />
             </div>
 
@@ -3845,6 +4058,31 @@ export default function App() {
                       />
                     )}
                   </>
+              ) : phase === "playing" && micPaused ? (
+                  <div className="micStatus micPause" role="status">
+                    {isListening ? (
+                      <>
+                        <div className="micStatusTitle">✅ Ya funciona el micrófono!</div>
+                        <div className="micStatusBody">El contador esta en pausa. Pulsa Reanudar para continuar la partida.</div>
+                        <button className="btnPrimary micStatusAction" onClick={resumeAfterMicDrop}>
+                          Reanudar
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <div className="micStatusTitle">⏸️ Juego en pausa</div>
+                        <div className="micStatusBody">
+                          {typeof navigator !== "undefined" && !navigator.onLine
+                            ? "Te has quedado sin conexión. "
+                            : "Hemos perdido el reconocimiento de voz. "}
+                          El contador está en pausa mientras reconectamos la señal…
+                        </div>
+                        <button className="btnGhost micStatusAction" onClick={retryMic}>
+                          Reintentar ahora
+                        </button>
+                      </>
+                    )}
+                  </div>
               ) : phase === "playing" ? (
                   <>
                     {/* Override button for single-player mode - stays visible until next question finishes */}

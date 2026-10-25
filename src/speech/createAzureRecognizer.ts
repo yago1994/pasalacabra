@@ -2,7 +2,7 @@
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import { getAzureAuth } from "./speechazure";
 import { SpeechServiceError } from "../platform/micDiagnostics";
-import { createPushAudioStreamManager, type PushAudioStreamBundle } from "./PushAudioStreamManager";
+import { createPushAudioStreamManager, type MicHealth, type PushAudioStreamBundle } from "./PushAudioStreamManager";
 
 export type AzureRecognizerBundle = {
   recognizer: sdk.SpeechRecognizer;
@@ -20,6 +20,8 @@ export type AzureRecognizerBundle = {
   isGateOpen: () => boolean;
   /** Resume AudioContext (call on user gesture or visibility change) */
   resume: () => Promise<void>;
+  /** Is audio actually flowing from the mic? */
+  health: () => MicHealth;
 };
 
 export interface CreateAzureRecognizerOptions {
@@ -90,5 +92,6 @@ export async function createAzureRecognizer(
     closeGate: audioBundle.closeGate,
     isGateOpen: audioBundle.isGateOpen,
     resume: audioBundle.resume,
+    health: audioBundle.health,
   };
 }

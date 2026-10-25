@@ -32,6 +32,24 @@ export interface PushAudioStreamManagerOptions {
   existingStream?: MediaStream;
 }
 
+/** What the capture pipeline is actually doing, for spotting a mic that "listens" but hears nothing. */
+export interface MicHealth {
+  /** "running" when audio flows; iOS can leave it "suspended" or "interrupted". */
+  contextState: string;
+  sampleRate: number;
+  /** ms since the last audio frame reached us (Infinity before the first). */
+  msSinceFrame: number;
+  /** ms since a frame that wasn't pure digital silence (Infinity before the first). */
+  msSinceSound: number;
+  /** The mic track: "live" / "ended", and whether the OS muted it. */
+  trackState: string;
+  trackMuted: boolean;
+}
+
+// Real microphones always pick up some noise (around -70 dBFS in a quiet room);
+// below this the samples are zeros, i.e. the OS is feeding us silence.
+const DIGITAL_SILENCE_DB = -110;
+
 export interface PushAudioStreamBundle {
   /** The PushAudioInputStream to pass to Azure AudioConfig */
   pushStream: sdk.PushAudioInputStream;
@@ -47,6 +65,8 @@ export interface PushAudioStreamBundle {
   getDb: () => number;
   /** Resume AudioContext (call on user gesture or visibility change) */
   resume: () => Promise<void>;
+  /** Snapshot of the capture pipeline's health */
+  health: () => MicHealth;
   /** Clean up all resources */
   close: () => void;
   /** The MediaStream from getUserMedia */
@@ -121,6 +141,8 @@ export async function createPushAudioStreamManager(
   let currentDb = -100;
   let lastAboveThresholdAt = 0;
   let closed = false;
+  let lastFrameAt = 0;
+  let lastSoundAt = 0;
   let streamOwned = false; // Track if we created this stream or it was passed in
 
   // Create Azure PushAudioInputStream
@@ -176,9 +198,20 @@ export async function createPushAudioStreamManager(
   
   // Resume on user gesture (needed for Safari/mobile)
   const resume = async () => {
-    if (audioContext.state === "suspended") {
+    // iOS can also report "interrupted" (after a call, Siri, other audio).
+    if (audioContext.state !== "running" && audioContext.state !== "closed") {
       log("Resuming AudioContext");
       await audioContext.resume();
+    }
+  };
+
+  // iOS suspends or "interrupts" the context when something else takes the
+  // audio session (a call, Siri, another tab, sometimes our own TTS). Nothing
+  // reached Azure after that until the page was hidden and shown again.
+  audioContext.onstatechange = () => {
+    log("AudioContext state:", audioContext.state);
+    if (!closed && audioContext.state !== "running" && audioContext.state !== "closed") {
+      void audioContext.resume().catch(() => {});
     }
   };
 
@@ -198,6 +231,10 @@ export async function createPushAudioStreamManager(
    */
   const processAudio = (samples: Float32Array, sampleRate: number, frameDb: number) => {
     if (closed) return;
+
+    const frameAt = Date.now();
+    lastFrameAt = frameAt;
+    if (frameDb > DIGITAL_SILENCE_DB) lastSoundAt = frameAt;
 
     // Update current dB (smoothed a bit)
     currentDb = currentDb * 0.3 + frameDb * 0.7;
@@ -368,6 +405,18 @@ export async function createPushAudioStreamManager(
     },
     isGateOpen: () => gateOpen,
     getDb: () => currentDb,
+    health: () => {
+      const now = Date.now();
+      const track = stream.getAudioTracks()[0];
+      return {
+        contextState: audioContext.state,
+        sampleRate: audioContext.sampleRate,
+        msSinceFrame: lastFrameAt ? now - lastFrameAt : Infinity,
+        msSinceSound: lastSoundAt ? now - lastSoundAt : Infinity,
+        trackState: track?.readyState ?? "none",
+        trackMuted: track?.muted ?? false,
+      };
+    },
     resume,
     close,
     stream,

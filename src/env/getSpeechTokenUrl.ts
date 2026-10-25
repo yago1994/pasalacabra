@@ -43,3 +43,12 @@ export function getSpeechTokenUrl() {
   return tokenUrl;
 }
 
+
+/**
+ * Optional second token endpoint hosted off Cloudflare (VITE_SPEECH_TOKEN_FALLBACK_URL).
+ * Used when the primary worker is unreachable, e.g. Spanish ISPs blocking
+ * Cloudflare IPs during LaLiga matches.
+ */
+export function getSpeechTokenFallbackUrl(): string | null {
+  return (import.meta.env.VITE_SPEECH_TOKEN_FALLBACK_URL as string | undefined) || null;
+}
