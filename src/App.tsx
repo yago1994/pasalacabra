@@ -48,7 +48,7 @@ import FakeSttPanel from "./components/FakeSttPanel";
 import { FAKE_STT } from "./speech/fakeRecognizer";
 import { getStagingSeconds } from "./env/stagingTime";
 import { SINGLE_AUDIO } from "./platform/audioMode";
-import { getSpeechRate, loadPregeneratedAudio, playTts } from "./speech/azureTts";
+import { getPauseMs, getSpeechRate, loadPregeneratedAudio, playTts } from "./speech/azureTts";
 import type { MicHealth } from "./speech/PushAudioStreamManager";
 import {
   classifyMicError,
@@ -2117,7 +2117,8 @@ export default function App() {
 
     const speakQuestion = () => {
       const QUESTION_RATE = 0.9;
-      const INTRO_TO_BODY_PAUSE_MS = 500;
+      // Shorter with the Azure voice: its clips are trimmed, Safari's aren't.
+      const INTRO_TO_BODY_PAUSE_MS = SINGLE_AUDIO ? getPauseMs("intro") : 500;
 
       // Split "Con la X:" / "Empieza por X:" / "Contiene la X:" so the prefix is read at normal speed,
       // and the actual clue is read at the configured question speed.
@@ -3478,7 +3479,7 @@ export default function App() {
               return;
             }
             setCurrentIndex(nextIdx);
-          }, 200); // Small buffer after speakWithCallback's minimum duration
+          }, SINGLE_AUDIO ? getPauseMs("afterFeedback") : 200); // Small buffer after speakWithCallback's minimum duration
         });
       }, 120);
     });
@@ -3588,7 +3589,7 @@ export default function App() {
                 // This gives the player a chance to override if they realize their answer was correct
                 // The lastWrongLetter will be cleared when questionRead becomes true (via effect)
               }
-            }, 200); // Small buffer after speakWithCallback's minimum duration
+            }, SINGLE_AUDIO ? getPauseMs("afterFeedback") : 200); // Small buffer after speakWithCallback's minimum duration
           } else {
             // Multiplayer with multiple players remaining: end the turn
             if (nextIdx !== -1) setCurrentIndex(nextIdx);

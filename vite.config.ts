@@ -70,5 +70,9 @@ export default defineConfig({
     cors: {
       origin: [/^https?:\/\/(?:(?:[^:]+\.)?localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/, "https://pasalacabra.com"],
     },
+    // The pre-generated question audio lives on the site (gh-pages), not in the repo.
+    proxy: {
+      "/audio": { target: "https://pasalacabra.com", changeOrigin: true },
+    },
   },
 })

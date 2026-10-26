@@ -1,5 +1,21 @@
 import { useRef, useState } from "react";
-import { getSpeechRate, getVoice, listSpanishVoices, playTts, setSpeechRate, setVoice, type VoiceInfo } from "../speech/azureTts";
+import {
+  getPauseMs,
+  getSpeechRate,
+  getVoice,
+  listSpanishVoices,
+  playTts,
+  setPauseMs,
+  setSpeechRate,
+  setVoice,
+  type PauseName,
+  type VoiceInfo,
+} from "../speech/azureTts";
+
+const PAUSES: Array<[PauseName, string]> = [
+  ["intro", "Pausa «Empieza por A» → pista"],
+  ["afterFeedback", "Pausa tras «Sí» / «No…» → siguiente"],
+];
 
 const SAMPLE = "Empieza por A. Instrumento de viento compuesto por un fuelle, un teclado y botones.";
 
@@ -15,6 +31,7 @@ export default function VoicePicker() {
   const [chosen, setChosen] = useState(getVoice());
   const [playing, setPlaying] = useState<string | null>(null);
   const [rate, setRate] = useState(getSpeechRate());
+  const [pauses, setPauses] = useState(() => ({ intro: getPauseMs("intro"), afterFeedback: getPauseMs("afterFeedback") }));
   const ctxRef = useRef<AudioContext | null>(null);
   const stopRef = useRef<null | (() => void)>(null);
 
@@ -90,6 +107,26 @@ export default function VoicePicker() {
           }}
         />
       </label>
+      {PAUSES.map(([name, label]) => (
+        <label key={name} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+          <span style={{ flex: "0 0 55%" }}>
+            {label}: {pauses[name]} ms
+          </span>
+          <input
+            type="range"
+            min={0}
+            max={1000}
+            step={50}
+            value={pauses[name]}
+            style={{ flex: 1 }}
+            onChange={(e) => {
+              const ms = Number(e.target.value);
+              setPauses((p) => ({ ...p, [name]: ms }));
+              setPauseMs(name, ms);
+            }}
+          />
+        </label>
+      ))}
       {error ? <div>No se pudo cargar la lista: {error}</div> : null}
       {!voices && !error ? <div style={{ textAlign: "center" }}>Cargando voces…</div> : null}
       <div style={{ display: "flex", flexDirection: "column", gap: 4, maxHeight: 280, overflowY: "auto" }}>

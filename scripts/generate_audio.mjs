@@ -48,10 +48,16 @@ function escapeXml(s) {
   return s.replace(/[<>&'"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" })[c]);
 }
 
+// A game of speed: no silence around a line, and a short stop between
+// sentences. Same as src/speech/azureTts.ts (which also trims what's left).
+const SILENCE =
+  `<mstts:silence type="Leading-exact" value="0ms"/><mstts:silence type="Tailing-exact" value="0ms"/>` +
+  `<mstts:silence type="Sentenceboundary-exact" value="100ms"/>`;
+
 async function synthesize(text, attempt = 1) {
   const ssml =
-    `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="es-ES">` +
-    `<voice name="${VOICE}"><lang xml:lang="es-ES">${escapeXml(text)}</lang></voice></speak>`;
+    `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="es-ES">` +
+    `<voice name="${VOICE}">${SILENCE}<lang xml:lang="es-ES">${escapeXml(text)}</lang></voice></speak>`;
   const res = await fetch(`https://${REGION}.tts.speech.microsoft.com/cognitiveservices/v1`, {
     method: "POST",
     headers: {

@@ -98,13 +98,42 @@ function withPauses(escaped: string) {
     .replace(/\uE002/g, ` <break time="${SHORT_PAUSE_MS}ms"/> `);
 }
 
+// It's a game of speed: no silence around a line, and a short stop between
+// sentences ("No. La respuesta…" pauses a full second otherwise). Same as
+// scripts/generate_audio.mjs.
+const SILENCE =
+  `<mstts:silence type="Leading-exact" value="0ms"/><mstts:silence type="Tailing-exact" value="0ms"/>` +
+  `<mstts:silence type="Sentenceboundary-exact" value="100ms"/>`;
+
 function ssml(text: string, rate: number, voice: string, pauseMarks: boolean) {
   const pct = Math.round((rate - 1) * 100);
   const body = pauseMarks ? withPauses(escapeXml(text)) : escapeXml(text);
   return (
-    `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="es-ES">` +
-    `<voice name="${voice}"><lang xml:lang="es-ES"><prosody rate="${pct >= 0 ? "+" : ""}${pct}%">${body}</prosody></lang></voice></speak>`
+    `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="es-ES">` +
+    `<voice name="${voice}">${SILENCE}<lang xml:lang="es-ES"><prosody rate="${pct >= 0 ? "+" : ""}${pct}%">${body}</prosody></lang></voice></speak>`
   );
+}
+
+/**
+ * The same audio without the silence at either end (Azure still leaves almost
+ * a second after a lone letter, as in "Empieza por A."), keeping a few ms so
+ * words don't start or end abruptly.
+ */
+function trimSilence(ctx: BaseAudioContext, audio: AudioBuffer): AudioBuffer {
+  const d = audio.getChannelData(0);
+  let peak = 0;
+  for (let i = 0; i < d.length; i++) peak = Math.max(peak, Math.abs(d[i]));
+  const threshold = Math.max(0.004, peak * 0.02);
+  let start = 0;
+  while (start < d.length && Math.abs(d[start]) < threshold) start++;
+  let end = d.length - 1;
+  while (end > start && Math.abs(d[end]) < threshold) end--;
+  start = Math.max(0, start - Math.round(audio.sampleRate * 0.03));
+  end = Math.min(d.length, end + Math.round(audio.sampleRate * 0.08));
+  if (end - start < audio.sampleRate * 0.1 || end - start >= d.length) return audio;
+  const out = ctx.createBuffer(audio.numberOfChannels, end - start, audio.sampleRate);
+  for (let c = 0; c < audio.numberOfChannels; c++) out.copyToChannel(audio.getChannelData(c).subarray(start, end), c);
+  return out;
 }
 
 /** WAV bytes for `text` (cached). */
@@ -137,6 +166,35 @@ export function synthesize(text: string, rate = 1, voice = getVoice(), pauseMark
     cache.set(key, p);
   }
   return p;
+}
+
+/** Pauses around the Azure voice, in ms. Staging can change them (🔊 panel). */
+export const PAUSE_DEFAULTS = {
+  /** "Empieza por A." → the clue. */
+  intro: 250,
+  /** After "Sí" / "No. La respuesta correcta es: …" → the next question. */
+  afterFeedback: 150,
+};
+export type PauseName = keyof typeof PAUSE_DEFAULTS;
+const PAUSE_KEY = "pasalacabra_tts_pause_";
+
+export function getPauseMs(name: PauseName): number {
+  try {
+    const v = localStorage.getItem(PAUSE_KEY + name);
+    const n = v === null ? NaN : Number(v);
+    return n >= 0 && n <= 3000 ? n : PAUSE_DEFAULTS[name];
+  } catch {
+    return PAUSE_DEFAULTS[name];
+  }
+}
+
+export function setPauseMs(name: PauseName, ms: number | null) {
+  try {
+    if (ms === null) localStorage.removeItem(PAUSE_KEY + name);
+    else localStorage.setItem(PAUSE_KEY + name, String(ms));
+  } catch {
+    // the choice just won't stick
+  }
 }
 
 // Pre-generated lines for the current set (scripts/generate_audio.mjs, published
@@ -221,7 +279,7 @@ export function playTts(
     .then((audio) => {
       if (stopped) return finish("stopped");
       src = ctx.createBufferSource();
-      src.buffer = audio;
+      src.buffer = trimSilence(ctx, audio);
       if (speedUp) src.playbackRate.value = rate;
       src.connect(ctx.destination);
       src.onended = () => finish(stopped ? "stopped" : "onend");
