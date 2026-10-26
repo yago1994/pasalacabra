@@ -7,8 +7,29 @@ import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import { getAzureAuth } from "./speechazure";
 import { isStagingMode } from "../env/getSpeechTokenUrl";
 
-const DEFAULT_VOICE = "es-ES-ElviraNeural";
+const DEFAULT_VOICE = "es-ES-XimenaNeural";
 const VOICE_KEY = "pasalacabra_tts_voice";
+const RATE_KEY = "pasalacabra_tts_rate";
+const DEFAULT_RATE = 1.05;
+
+/** How fast the game reads (1 = the voice's normal speed). Staging can change it. */
+export function getSpeechRate(): number {
+  try {
+    const v = Number(localStorage.getItem(RATE_KEY));
+    return v >= 0.5 && v <= 2 ? v : DEFAULT_RATE;
+  } catch {
+    return DEFAULT_RATE;
+  }
+}
+
+export function setSpeechRate(rate: number | null) {
+  try {
+    if (rate) localStorage.setItem(RATE_KEY, String(rate));
+    else localStorage.removeItem(RATE_KEY);
+  } catch {
+    // the choice just won't stick
+  }
+}
 
 /** Voice picked in the staging voice picker, else the default. */
 export function getVoice(): string {
@@ -71,10 +92,10 @@ export const LONG_PAUSE_MS = 700;
 function withPauses(escaped: string) {
   // Mark first, then expand: the <break …/> tags contain "/" themselves.
   return escaped
-    .replace(/\s*\/\/\s*/g, "\u0001")
-    .replace(/\s*\/\s*/g, "\u0002")
-    .replace(/\u0001/g, ` <break time="${LONG_PAUSE_MS}ms"/> `)
-    .replace(/\u0002/g, ` <break time="${SHORT_PAUSE_MS}ms"/> `);
+    .replace(/\s*\/\/\s*/g, "\uE001")
+    .replace(/\s*\/\s*/g, "\uE002")
+    .replace(/\uE001/g, ` <break time="${LONG_PAUSE_MS}ms"/> `)
+    .replace(/\uE002/g, ` <break time="${SHORT_PAUSE_MS}ms"/> `);
 }
 
 function ssml(text: string, rate: number, voice: string, pauseMarks: boolean) {
@@ -118,6 +139,51 @@ export function synthesize(text: string, rate = 1, voice = getVoice(), pauseMark
   return p;
 }
 
+// Pre-generated lines for the current set (scripts/generate_audio.mjs, published
+// to /audio/<set id>/). Generated at normal speed: playback speeds them up.
+let pregen: { base: string; voice: string; files: Record<string, string> } | null = null;
+const pregenBytes = new Map<string, Promise<ArrayBuffer>>();
+
+function fetchPregen(url: string) {
+  let p = pregenBytes.get(url);
+  if (!p) {
+    p = fetch(url).then((r) => (r.ok ? r.arrayBuffer() : Promise.reject(new Error(`audio ${r.status}`))));
+    p.catch(() => pregenBytes.delete(url));
+    pregenBytes.set(url, p);
+  }
+  return p;
+}
+
+/** Load (and start downloading) the set's pre-generated audio, if there is any. */
+export async function loadPregeneratedAudio(setId: string): Promise<number> {
+  const base = `/audio/${setId}/`;
+  if (pregen?.base === base) return Object.keys(pregen.files).length;
+  pregen = null;
+  try {
+    const res = await fetch(`${base}manifest.json`, { cache: "no-cache" });
+    if (!res.ok) throw new Error(`manifest ${res.status}`);
+    const m = (await res.json()) as { voice: string; files: Record<string, string> };
+    pregen = { base, voice: m.voice, files: m.files };
+    console.log("[tts] pre-generated audio", { set: setId, voice: m.voice, lines: Object.keys(m.files).length });
+    // One at a time in the background, so the first question isn't competing.
+    void (async () => {
+      for (const file of Object.values(m.files)) {
+        if (pregen?.base !== base) return;
+        await fetchPregen(base + file).catch(() => {});
+      }
+    })();
+    return Object.keys(m.files).length;
+  } catch (err) {
+    console.log("[tts] no pre-generated audio, reading live", { set: setId, err: String(err) });
+    return 0;
+  }
+}
+
+function pregenUrl(text: string, voice: string) {
+  const file = pregen && pregen.voice === voice ? pregen.files[text] : undefined;
+  return file ? pregen!.base + file : null;
+}
+
 /**
  * Speak `text` through `ctx`. `onDone` is called exactly once: "onend",
  * "stopped" or "error". Returns a function that stops playback.
@@ -138,13 +204,25 @@ export function playTts(
     done = true;
     onDone(why);
   };
-  synthesize(text, rate, voice, pauseMarks)
+  // A pre-generated file plays faster (playbackRate, which raises the pitch a
+  // little); a live one is synthesized at `rate`.
+  const url = pauseMarks ? null : pregenUrl(text.trim(), voice);
+  let speedUp = !!url;
+  const bytes = url
+    ? fetchPregen(url).catch((err) => {
+        console.log("[tts] pre-generated failed, reading live", String(err));
+        speedUp = false;
+        return synthesize(text, rate, voice, pauseMarks);
+      })
+    : synthesize(text, rate, voice, pauseMarks);
+  bytes
     // decodeAudioData detaches its input; keep the cached bytes intact.
     .then((bytes) => ctx.decodeAudioData(bytes.slice(0)))
     .then((audio) => {
       if (stopped) return finish("stopped");
       src = ctx.createBufferSource();
       src.buffer = audio;
+      if (speedUp) src.playbackRate.value = rate;
       src.connect(ctx.destination);
       src.onended = () => finish(stopped ? "stopped" : "onend");
       if (ctx.state !== "running") void ctx.resume().catch(() => {});

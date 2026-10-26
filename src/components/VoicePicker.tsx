@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { getVoice, listSpanishVoices, playTts, setVoice, type VoiceInfo } from "../speech/azureTts";
+import { getSpeechRate, getVoice, listSpanishVoices, playTts, setSpeechRate, setVoice, type VoiceInfo } from "../speech/azureTts";
 
 const SAMPLE = "Empieza por A. Instrumento de viento compuesto por un fuelle, un teclado y botones.";
 
@@ -14,6 +14,7 @@ export default function VoicePicker() {
   const [error, setError] = useState("");
   const [chosen, setChosen] = useState(getVoice());
   const [playing, setPlaying] = useState<string | null>(null);
+  const [rate, setRate] = useState(getSpeechRate());
   const ctxRef = useRef<AudioContext | null>(null);
   const stopRef = useRef<null | (() => void)>(null);
 
@@ -30,7 +31,7 @@ export default function VoicePicker() {
     const ctx = ctxRef.current;
     void ctx.resume();
     setPlaying(name);
-    stopRef.current = playTts(ctx, SAMPLE, 0.9, () => setPlaying((p) => (p === name ? null : p)), name);
+    stopRef.current = playTts(ctx, SAMPLE, rate, () => setPlaying((p) => (p === name ? null : p)), name);
   };
 
   const choose = (name: string) => {
@@ -62,7 +63,7 @@ export default function VoicePicker() {
     return (
       <div style={{ ...box, textAlign: "center" }}>
         <button type="button" style={small} onClick={load}>
-          🔊 Staging · elegir voz ({chosen.replace(/^es-ES-|Neural$/g, "")})
+          🔊 Staging · voz ({chosen.replace(/^es-ES-|Neural$/g, "")}, {rate.toFixed(2)}×)
         </button>
       </div>
     );
@@ -73,6 +74,22 @@ export default function VoicePicker() {
       <div style={{ fontWeight: 700, marginBottom: 6, textAlign: "center" }}>
         🔊 Voz de las preguntas · ahora: {chosen}
       </div>
+      <label style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+        Velocidad {rate.toFixed(2)}×
+        <input
+          type="range"
+          min={0.8}
+          max={1.3}
+          step={0.05}
+          value={rate}
+          style={{ flex: 1 }}
+          onChange={(e) => {
+            const r = Number(e.target.value);
+            setRate(r);
+            setSpeechRate(r);
+          }}
+        />
+      </label>
       {error ? <div>No se pudo cargar la lista: {error}</div> : null}
       {!voices && !error ? <div style={{ textAlign: "center" }}>Cargando voces…</div> : null}
       <div style={{ display: "flex", flexDirection: "column", gap: 4, maxHeight: 280, overflowY: "auto" }}>

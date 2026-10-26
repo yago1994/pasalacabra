@@ -48,7 +48,7 @@ import FakeSttPanel from "./components/FakeSttPanel";
 import { FAKE_STT } from "./speech/fakeRecognizer";
 import { getStagingSeconds } from "./env/stagingTime";
 import { SINGLE_AUDIO } from "./platform/audioMode";
-import { playTts } from "./speech/azureTts";
+import { getSpeechRate, loadPregeneratedAudio, playTts } from "./speech/azureTts";
 import type { MicHealth } from "./speech/PushAudioStreamManager";
 import {
   classifyMicError,
@@ -1055,6 +1055,11 @@ export default function App() {
     playerStatesRef.current = playerStates;
   }, [activePlayerId, activeSetId, currentLetter, currentIndex, currentQA, statusByLetter, session, playerStates]);
 
+  // The set's pre-generated audio (scripts/generate_audio.mjs), when there is some.
+  useEffect(() => {
+    if (SINGLE_AUDIO && activeSetId) void loadPregeneratedAudio(activeSetId);
+  }, [activeSetId]);
+
   const currentPlayerLabel = useMemo(() => {
     if (!session) return "";
     const idx = session.currentPlayerIndex;
@@ -1952,7 +1957,7 @@ export default function App() {
         ttsStopRef.current?.();
         fin();
       }, 15_000);
-      ttsStopRef.current = playTts(micCtx, t, opts?.rate ?? 1.0, (why) => {
+      ttsStopRef.current = playTts(micCtx, t, opts?.rate ?? getSpeechRate(), (why) => {
         sttLog("tts: feedback done (azure)", { why, text: t.slice(0, 24) });
         fin();
       });
@@ -2169,7 +2174,8 @@ export default function App() {
           fin("max-timeout");
         }, 30_000);
         sttLog("tts: speak (azure)", { chunk: chunk.slice(0, 24), context: ctx.state });
-        ttsStopRef.current = playTts(ctx, chunk, rate, fin);
+        // The Azure voice reads everything at one speed (the staging setting).
+        ttsStopRef.current = playTts(ctx, chunk, getSpeechRate(), fin);
       };
 
       const speakChunkBrowser = (text: string, rate: number, onDone: () => void) => {

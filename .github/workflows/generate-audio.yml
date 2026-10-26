@@ -1,0 +1,93 @@
+name: Generate Question Audio
+
+# Reads each daily set aloud with Azure TTS (scripts/generate_audio.mjs) and
+# publishes the MP3s to gh-pages under /audio/<set id>/, shared by prod and
+# staging. Keeps the last 14 days. Needs the SPEECH_KEY secret (and optionally
+# the SPEECH_REGION variable, default westeurope).
+
+on:
+  # New daily sets, and changes to the generator itself.
+  # workflow_dispatch only shows up in the Actions UI once this file is on main.
+  push:
+    branches: [main, staging]
+    paths: ["daily/es/**", "scripts/generate_audio.mjs", ".github/workflows/generate-audio.yml"]
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Days to (re)generate, YYYY-MM-DD space separated. Default: today and tomorrow (Madrid) if missing."
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: question-audio
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check out gh-pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: git clone --depth 1 --branch gh-pages "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}" pages
+
+      - name: Pick days
+        id: days
+        env:
+          INPUT_DAYS: ${{ github.event.inputs.days }}
+        run: |
+          days="$INPUT_DAYS"
+          gen=$(sha1sum scripts/generate_audio.mjs | cut -c1-12)
+          if [ -z "$days" ]; then
+            for d in "$(TZ=Europe/Madrid date +%F)" "$(TZ=Europe/Madrid date -d tomorrow +%F)"; do
+              [ -f "daily/es/$d.json" ] || continue
+              # Already published by this version of the generator? Skip it.
+              if grep -q "\"generator\": \"$gen\"" "pages/audio/es-$d/manifest.json" 2>/dev/null; then
+                continue
+              fi
+              days="$days $d"
+            done
+          fi
+          echo "days=$days" >> "$GITHUB_OUTPUT"
+          echo "Generating: ${days:-nothing}"
+
+      - name: Generate audio
+        if: steps.days.outputs.days != ''
+        env:
+          SPEECH_KEY: ${{ secrets.SPEECH_KEY }}
+          SPEECH_REGION: ${{ vars.SPEECH_REGION || 'westeurope' }}
+        run: node scripts/generate_audio.mjs ${{ steps.days.outputs.days }}
+
+      - name: Publish to gh-pages
+        if: steps.days.outputs.days != ''
+        run: |
+          cd pages
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Deploys push to gh-pages too: retry on a race.
+          for attempt in 1 2 3 4 5; do
+            git fetch --depth 1 origin gh-pages && git reset --hard origin/gh-pages
+            mkdir -p audio && cp -R ../audio-out/. audio/
+            # Keep two weeks of audio.
+            cutoff=$(TZ=Europe/Madrid date -d "14 days ago" +%F)
+            for dir in audio/es-*; do
+              [ -d "$dir" ] || continue
+              day="${dir#audio/es-}"
+              if [[ "$day" < "$cutoff" ]]; then git rm -rq "$dir"; fi
+            done
+            git add audio
+            git diff --cached --quiet && { echo "Nothing new."; exit 0; }
+            git commit -qm "audio: ${{ steps.days.outputs.days }}"
+            git push origin gh-pages && exit 0
+            echo "Push failed (attempt $attempt), retrying…"
+            sleep $((attempt * 10))
+          done
+          exit 1
