@@ -2432,7 +2432,7 @@ export default function App() {
       
       // Small delay to ensure speech cancellation completes before speaking "Tiempoooo!"
       window.setTimeout(() => {
-        speakWithCallback("Tieeeeeeeempoo!", () => {
+        speakWithCallback("Tiempoo!", () => {
           // Use refs to get current values (avoids stale closures)
           const sess = sessionRef.current;
           const states = playerStatesRef.current;

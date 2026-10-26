@@ -22,7 +22,7 @@ const SAMPLES = [
   "Empieza por C: Antigua capital del Imperio romano de Oriente, hoy Estambul.",
   "Contiene la E: Institución colonial que otorgaba indígenas a un español para su servicio y tributo.",
   "No. La respuesta correcta es: Guillermo del Toro",
-  "Tieeeeeeeempoo!",
+  "Tiempoo!",
 ];
 
 export default function VoiceLab() {

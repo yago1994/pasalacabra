@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
     inputs:
       days:
-        description: "Days to (re)generate, YYYY-MM-DD space separated. Default: today and tomorrow (Madrid) if missing."
+        description: "Days to (re)generate, YYYY-MM-DD space separated. Default: yesterday, today and tomorrow (Madrid) if missing."
         required: false
 
 permissions:
@@ -47,7 +47,8 @@ jobs:
           days="$INPUT_DAYS"
           gen=$(sha1sum scripts/generate_audio.mjs | cut -c1-12)
           if [ -z "$days" ]; then
-            for d in "$(TZ=Europe/Madrid date +%F)" "$(TZ=Europe/Madrid date -d tomorrow +%F)"; do
+            # Yesterday too: players in the Americas are still on it.
+            for d in "$(TZ=Europe/Madrid date -d yesterday +%F)" "$(TZ=Europe/Madrid date +%F)" "$(TZ=Europe/Madrid date -d tomorrow +%F)"; do
               [ -f "daily/es/$d.json" ] || continue
               # Already published by this version of the generator? Skip it.
               if grep -q "\"generator\": \"$gen\"" "pages/audio/es-$d/manifest.json" 2>/dev/null; then

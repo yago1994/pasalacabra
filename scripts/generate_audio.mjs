@@ -33,7 +33,7 @@ const INTRO_RE = /^(Con\s+la|Empieza\s+por|Contiene\s+la)\s+([A-ZÑ])\s*:\s*(.+)
 
 /** Every line the game can say during this set. */
 function linesForSet(set) {
-  const lines = new Set(["Sí", "Tieeeeeeeempoo!"]);
+  const lines = new Set(["Sí", "Tiempoo!"]);
   for (const qa of set.questions) {
     const t = qa.question.trim();
     const m = t.match(INTRO_RE);
