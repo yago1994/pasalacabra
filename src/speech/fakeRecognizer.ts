@@ -27,6 +27,12 @@ type FakeRecognizer = {
 };
 
 let current: FakeRecognizer | null = null;
+let sharedContext: AudioContext | null = null;
+// One context for the fake "mic", like the real one, so ?audio=single works here too.
+function fakeContext() {
+  if (!sharedContext || sharedContext.state === "closed") sharedContext = new AudioContext();
+  return sharedContext;
+}
 let outage = false;
 let micDead = false;
 
@@ -81,6 +87,7 @@ export async function createFakeRecognizer(): Promise<AzureRecognizerBundle> {
     isGateOpen: () => gateOpen,
     resume: async () => {},
     health,
+    audioContext: fakeContext(),
   };
 }
 

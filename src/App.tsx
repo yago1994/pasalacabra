@@ -47,6 +47,8 @@ import MicStatus from "./components/MicStatus";
 import FakeSttPanel from "./components/FakeSttPanel";
 import { FAKE_STT } from "./speech/fakeRecognizer";
 import { getStagingSeconds } from "./env/stagingTime";
+import { SINGLE_AUDIO } from "./platform/audioMode";
+import { playTts } from "./speech/azureTts";
 import type { MicHealth } from "./speech/PushAudioStreamManager";
 import {
   classifyMicError,
@@ -552,6 +554,10 @@ export default function App() {
   const micDbRef = useRef<null | (() => number)>(null);
   // Is audio really flowing from the mic? (see the mic watchdog)
   const micHealthRef = useRef<null | (() => MicHealth)>(null);
+  // The mic's AudioContext: in ?audio=single mode every sound plays through it.
+  const micCtxRef = useRef<AudioContext | null>(null);
+  // Stops the Azure TTS playback in progress (?audio=single).
+  const ttsStopRef = useRef<null | (() => void)>(null);
   const micSilentReportsRef = useRef<number>(0);
 
   // Push-stream gating: control what audio reaches Azure during TTS
@@ -617,6 +623,7 @@ export default function App() {
   }
 
   function warmupSpeechSynthesisOnce() {
+    if (SINGLE_AUDIO) return; // no speechSynthesis at all in this mode
     if (ttsWarmRef.current) return;
     if (!("speechSynthesis" in window)) return;
     ttsWarmRef.current = true;
@@ -637,7 +644,7 @@ export default function App() {
   }
 
   function primeSpeechSynthesisIfNeeded(onReady: () => void) {
-    if (!("speechSynthesis" in window)) {
+    if (SINGLE_AUDIO || !("speechSynthesis" in window)) {
       onReady();
       return;
     }
@@ -781,6 +788,11 @@ export default function App() {
   const audioUnlockedRef = useRef<boolean>(false);
 
   function getAudioCtx() {
+    // ?audio=single: no second context, everything plays where the mic captures.
+    if (SINGLE_AUDIO) {
+      const mic = micCtxRef.current;
+      return mic && mic.state !== "closed" ? mic : null;
+    }
     if (audioCtxRef.current) return audioCtxRef.current;
     const Ctx =
       window.AudioContext ||
@@ -796,6 +808,7 @@ export default function App() {
   // screen's first frame (outside a tap, while the mic is starting) changed
   // the order iOS sets up its audio session in.
   function peekAudioCtx() {
+    if (SINGLE_AUDIO) return getAudioCtx();
     return audioCtxRef.current;
   }
 
@@ -1308,8 +1321,12 @@ export default function App() {
 
 
   function stopSpeaking() {
+    ttsStopRef.current?.();
+    ttsStopRef.current = null;
     if (!("speechSynthesis" in window)) return;
-    window.speechSynthesis.cancel();
+    // Only touch speechSynthesis when it's in use: on iOS even a cancel can
+    // wake the audio session (?audio=single never uses it).
+    if (window.speechSynthesis.speaking || window.speechSynthesis.pending) window.speechSynthesis.cancel();
   }
 
   function stopListening(reason: "replace" | "user" = "user") {
@@ -1320,6 +1337,7 @@ export default function App() {
     azureMicCloseRef.current = null;
     micDbRef.current = null;
     micHealthRef.current = null;
+    micCtxRef.current = null;
     // Clear gate refs when stopping
     openGateRef.current = null;
     closeGateRef.current = null;
@@ -1445,6 +1463,7 @@ export default function App() {
       azureMicCloseRef.current = bundle.close;   // so you can cleanup on replace/stop
       micDbRef.current = bundle.getDb;           // store function
       micHealthRef.current = bundle.health;
+      micCtxRef.current = bundle.audioContext;
       // Store gate control functions for TTS integration
       openGateRef.current = bundle.openGate;
       closeGateRef.current = bundle.closeGate;
@@ -1917,11 +1936,32 @@ export default function App() {
   }
 
   function speakWithCallback(text: string, onDone: () => void, opts?: { rate?: number }) {
+    const t = text.trim();
+    const micCtx = micCtxRef.current;
+    if (SINGLE_AUDIO && t && micCtx && micCtx.state !== "closed") {
+      // Feedback ("Sí", "No… era X") through the mic's context too.
+      stopSpeaking();
+      let done = false;
+      const fin = () => {
+        if (done) return;
+        done = true;
+        window.clearTimeout(maxTimer);
+        onDone();
+      };
+      const maxTimer = window.setTimeout(() => {
+        ttsStopRef.current?.();
+        fin();
+      }, 15_000);
+      ttsStopRef.current = playTts(micCtx, t, opts?.rate ?? 1.0, (why) => {
+        sttLog("tts: feedback done (azure)", { why, text: t.slice(0, 24) });
+        fin();
+      });
+      return;
+    }
     if (!("speechSynthesis" in window)) {
       onDone();
       return;
     }
-    const t = text.trim();
     if (!t) {
       onDone();
       return;
@@ -2100,7 +2140,39 @@ export default function App() {
         setQuestionRead(true);
       };
 
+      // ?audio=single: Azure voice through the mic's context; Safari's voice if that fails.
       const speakChunk = (text: string, rate: number, onDone: () => void) => {
+        const ctx = micCtxRef.current;
+        if (!SINGLE_AUDIO || !ctx || ctx.state === "closed") {
+          speakChunkBrowser(text, rate, onDone);
+          return;
+        }
+        const chunk = text.trim();
+        if (!chunk) {
+          onDone();
+          return;
+        }
+        const startedAt = Date.now();
+        let done = false;
+        const fin = (why: string) => {
+          if (done) return;
+          done = true;
+          window.clearTimeout(maxTimer);
+          sttLog("tts: chunk done (azure)", { why, ms: Date.now() - startedAt, chunk: chunk.slice(0, 24) });
+          // Like a cancelled utterance, a stopped one still reports done; the
+          // sequence checks ttsSeq before going on.
+          if (why === "error") speakChunkBrowser(text, rate, onDone);
+          else onDone();
+        };
+        const maxTimer = window.setTimeout(() => {
+          ttsStopRef.current?.();
+          fin("max-timeout");
+        }, 30_000);
+        sttLog("tts: speak (azure)", { chunk: chunk.slice(0, 24), context: ctx.state });
+        ttsStopRef.current = playTts(ctx, chunk, rate, fin);
+      };
+
+      const speakChunkBrowser = (text: string, rate: number, onDone: () => void) => {
         const chunk = text.trim();
         if (!chunk) {
           onDone();
@@ -2153,7 +2225,7 @@ export default function App() {
       };
 
       // Cancel any ongoing speech before starting the (intro + question) sequence.
-      window.speechSynthesis.cancel();
+      stopSpeaking();
 
       if (intro) {
         speakChunk(intro, 1.0, () => {

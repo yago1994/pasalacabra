@@ -67,6 +67,8 @@ export interface PushAudioStreamBundle {
   getDb: () => number;
   /** Resume AudioContext (call on user gesture or visibility change) */
   resume: () => Promise<void>;
+  /** The context the mic is captured in (?audio=single plays everything through it) */
+  audioContext: AudioContext;
   /** Snapshot of the capture pipeline's health */
   health: () => MicHealth;
   /** Clean up all resources */
@@ -214,13 +216,22 @@ export async function createPushAudioStreamManager(
   // is still called from taps (Empezar/Reanudar) and on returning to the page.
   audioContext.onstatechange = () => {
     console.log("[mic] audio context:", audioContext.state);
+    // ...but once the interruption is over iOS leaves it "suspended", and
+    // nothing reaches Azure until something resumes it. That's safe now.
+    if (!closed && audioContext.state === "suspended") {
+      console.log("[mic] interruption over, resuming");
+      void audioContext.resume().catch(() => {});
+    }
   };
 
   // What iOS does to the mic track is the first thing to look at when audio stops.
   const micTrack = stream.getAudioTracks()[0];
   if (micTrack) {
     micTrack.addEventListener("mute", () => console.log("[mic] track muted by the system"));
-    micTrack.addEventListener("unmute", () => console.log("[mic] track unmuted"));
+    micTrack.addEventListener("unmute", () => {
+      console.log("[mic] track unmuted");
+      if (!closed && audioContext.state === "suspended") void audioContext.resume().catch(() => {});
+    });
     micTrack.addEventListener("ended", () => console.log("[mic] track ended"));
   }
   console.log("[mic] capture ready", { sampleRate: audioContext.sampleRate, context: audioContext.state, reused: !streamOwned });
@@ -415,6 +426,7 @@ export async function createPushAudioStreamManager(
     },
     isGateOpen: () => gateOpen,
     getDb: () => currentDb,
+    audioContext,
     health: () => {
       const now = Date.now();
       const track = stream.getAudioTracks()[0];

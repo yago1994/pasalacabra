@@ -23,6 +23,8 @@ export type AzureRecognizerBundle = {
   resume: () => Promise<void>;
   /** Is audio actually flowing from the mic? */
   health: () => MicHealth;
+  /** The context the mic is captured in */
+  audioContext: AudioContext;
 };
 
 export interface CreateAzureRecognizerOptions {
@@ -95,5 +97,6 @@ export async function createAzureRecognizer(
     isGateOpen: audioBundle.isGateOpen,
     resume: audioBundle.resume,
     health: audioBundle.health,
+    audioContext: audioBundle.audioContext,
   };
 }
