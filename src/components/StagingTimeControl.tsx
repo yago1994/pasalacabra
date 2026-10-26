@@ -16,6 +16,7 @@ export default function StagingTimeControl() {
 
   const chip = (label: string, active: boolean, onClick: () => void) => (
     <button
+      key={label}
       type="button"
       onClick={onClick}
       style={{
