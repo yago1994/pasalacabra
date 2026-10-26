@@ -1,11 +1,20 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import {
+  LONG_PAUSE_MS,
+  SHORT_PAUSE_MS,
+  getVoice,
+  listSpanishVoices,
+  playTts,
+  setVoice,
+  type VoiceInfo,
+} from "../speech/azureTts";
 
 /**
  * Staging only (?voicelab): tune how questions are read before generating the
- * audio files. Edit the samples (punctuation, "/" short pause, "//" long
- * pause), pick the speed and voice, listen with this device's own voice, and
- * send the result through the log relay (?devlog=…) so the generator can
- * follow the same rules.
+ * audio files, with the same Azure voices and SSML the generator will use.
+ * Edit the samples (punctuation, "/" short pause, "//" long pause), pick the
+ * speed and voice, listen, and send the result through the log relay
+ * (?devlog=…) so the generator can follow the same rules.
  */
 const SAMPLES = [
   "Empieza por A: Deporte base del programa olímpico moderno, llamado 'rey de los Juegos'.",
@@ -16,71 +25,55 @@ const SAMPLES = [
   "Tieeeeeeeempoo!",
 ];
 
-const SHORT_PAUSE_MS = 300;
-const LONG_PAUSE_MS = 700;
-
-/** "a / b // c" → [{text:"a"}, {pause:300}, {text:"b"}, {pause:700}, {text:"c"}] */
-function parse(text: string): Array<{ text: string } | { pause: number }> {
-  const out: Array<{ text: string } | { pause: number }> = [];
-  for (const part of text.split(/(\/\/|\/)/)) {
-    if (part === "//") out.push({ pause: LONG_PAUSE_MS });
-    else if (part === "/") out.push({ pause: SHORT_PAUSE_MS });
-    else if (part.trim()) out.push({ text: part.trim() });
-  }
-  return out;
-}
-
 export default function VoiceLab() {
   const [texts, setTexts] = useState<string[]>(SAMPLES);
   const [rate, setRate] = useState(0.9);
-  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
-  const [voiceName, setVoiceName] = useState("");
+  const [voices, setVoices] = useState<VoiceInfo[]>([]);
+  const [voiceError, setVoiceError] = useState("");
+  const [voiceName, setVoiceName] = useState(getVoice());
   const [playing, setPlaying] = useState<number | null>(null);
   const [sent, setSent] = useState("");
-  const runRef = useRef(0);
+  const ctxRef = useRef<AudioContext | null>(null);
+  const stopRef = useRef<null | (() => void)>(null);
 
   useEffect(() => {
-    const load = () => {
-      const all = window.speechSynthesis.getVoices().filter((v) => v.lang.startsWith("es"));
-      setVoices(all);
-      setVoiceName((cur) => cur || all.find((v) => /m[oó]nica/i.test(v.name))?.name || all[0]?.name || "");
-    };
-    load();
-    window.speechSynthesis.addEventListener("voiceschanged", load);
-    return () => window.speechSynthesis.removeEventListener("voiceschanged", load);
+    listSpanishVoices().then(
+      (all) => setVoices(all.filter((v) => v.locale === "es-ES")),
+      (e) => setVoiceError(String(e))
+    );
   }, []);
 
-  const voice = useMemo(() => voices.find((v) => v.name === voiceName), [voices, voiceName]);
   const relayOn = Boolean(new URLSearchParams(location.search).get("devlog"));
 
   const stop = () => {
-    runRef.current++;
-    window.speechSynthesis.cancel();
+    stopRef.current?.();
+    stopRef.current = null;
     setPlaying(null);
   };
 
   const play = (i: number) => {
     stop();
-    const run = runRef.current;
-    const steps = parse(texts[i]);
+    // Created inside the tap so iOS lets it play.
+    if (!ctxRef.current || ctxRef.current.state === "closed") ctxRef.current = new AudioContext();
+    const ctx = ctxRef.current;
+    void ctx.resume();
     setPlaying(i);
-    const next = (k: number) => {
-      if (run !== runRef.current) return;
-      if (k >= steps.length) return setPlaying(null);
-      const step = steps[k];
-      if ("pause" in step) {
-        window.setTimeout(() => next(k + 1), step.pause);
-        return;
-      }
-      const u = new SpeechSynthesisUtterance(step.text);
-      if (voice) u.voice = voice;
-      u.lang = voice?.lang ?? "es-ES";
-      u.rate = rate;
-      u.onend = () => next(k + 1);
-      u.onerror = () => next(k + 1);
-      window.speechSynthesis.speak(u);
-    };
-    next(0);
+    stopRef.current = playTts(
+      ctx,
+      texts[i],
+      rate,
+      (why) => {
+        if (why === "error") console.log("[voicelab] synthesis failed for sample", i);
+        setPlaying((p) => (p === i ? null : p));
+      },
+      voiceName,
+      true
+    );
+  };
+
+  const pickVoice = (name: string) => {
+    setVoiceName(name);
+    setVoice(name); // also what ?audio=single games use
   };
 
   const send = () => {
@@ -116,13 +109,15 @@ export default function VoiceLab() {
       <div style={{ display: "grid", gap: 10, marginBottom: 16, fontSize: 14 }}>
         <label>
           Voz:{" "}
-          <select value={voiceName} onChange={(e) => setVoiceName(e.target.value)} style={{ fontSize: 14, maxWidth: "70%" }}>
+          <select value={voiceName} onChange={(e) => pickVoice(e.target.value)} style={{ fontSize: 14, maxWidth: "70%" }}>
+            {voices.length === 0 ? <option value={voiceName}>{voiceName}</option> : null}
             {voices.map((v) => (
               <option key={v.name} value={v.name}>
-                {v.name} ({v.lang})
+                {v.label} · {v.gender} · {v.kind}
               </option>
             ))}
           </select>
+          {voiceError ? <div style={{ fontSize: 12 }}>No se pudo cargar la lista de voces: {voiceError}</div> : null}
         </label>
         <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
           Velocidad:

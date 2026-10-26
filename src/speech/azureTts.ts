@@ -64,17 +64,31 @@ function escapeXml(s: string) {
   return s.replace(/[<>&'"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" })[c]!);
 }
 
-function ssml(text: string, rate: number, voice: string) {
+/** Pause marks used by the voice lab (and the generator): "/" short, "//" long. */
+export const SHORT_PAUSE_MS = 300;
+export const LONG_PAUSE_MS = 700;
+
+function withPauses(escaped: string) {
+  // Mark first, then expand: the <break …/> tags contain "/" themselves.
+  return escaped
+    .replace(/\s*\/\/\s*/g, "\u0001")
+    .replace(/\s*\/\s*/g, "\u0002")
+    .replace(/\u0001/g, ` <break time="${LONG_PAUSE_MS}ms"/> `)
+    .replace(/\u0002/g, ` <break time="${SHORT_PAUSE_MS}ms"/> `);
+}
+
+function ssml(text: string, rate: number, voice: string, pauseMarks: boolean) {
   const pct = Math.round((rate - 1) * 100);
+  const body = pauseMarks ? withPauses(escapeXml(text)) : escapeXml(text);
   return (
     `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="es-ES">` +
-    `<voice name="${voice}"><lang xml:lang="es-ES"><prosody rate="${pct >= 0 ? "+" : ""}${pct}%">${escapeXml(text)}</prosody></lang></voice></speak>`
+    `<voice name="${voice}"><lang xml:lang="es-ES"><prosody rate="${pct >= 0 ? "+" : ""}${pct}%">${body}</prosody></lang></voice></speak>`
   );
 }
 
 /** WAV bytes for `text` (cached). */
-export function synthesize(text: string, rate = 1, voice = getVoice()): Promise<ArrayBuffer> {
-  const key = `${voice}|${rate}|${text}`;
+export function synthesize(text: string, rate = 1, voice = getVoice(), pauseMarks = false): Promise<ArrayBuffer> {
+  const key = `${voice}|${rate}|${pauseMarks ? 1 : 0}|${text}`;
   let p = cache.get(key);
   if (!p) {
     p = (async () => {
@@ -86,7 +100,7 @@ export function synthesize(text: string, rate = 1, voice = getVoice()): Promise<
       try {
         return await new Promise<ArrayBuffer>((resolve, reject) => {
           synth.speakSsmlAsync(
-            ssml(text, rate, voice),
+            ssml(text, rate, voice, pauseMarks),
             (r) =>
               r.reason === sdk.ResultReason.SynthesizingAudioCompleted
                 ? resolve(r.audioData)
@@ -113,7 +127,8 @@ export function playTts(
   text: string,
   rate: number,
   onDone: (why: string) => void,
-  voice = getVoice()
+  voice = getVoice(),
+  pauseMarks = false
 ): () => void {
   let stopped = false;
   let done = false;
@@ -123,7 +138,7 @@ export function playTts(
     done = true;
     onDone(why);
   };
-  synthesize(text, rate, voice)
+  synthesize(text, rate, voice, pauseMarks)
     // decodeAudioData detaches its input; keep the cached bytes intact.
     .then((bytes) => ctx.decodeAudioData(bytes.slice(0)))
     .then((audio) => {
@@ -153,6 +168,10 @@ export function playTts(
 // Staging/dev: lets a console (or Claude, through the log relay) check that
 // synthesis works end to end without playing a game.
 if (import.meta.env.DEV || isStagingMode()) {
-  (window as unknown as { __pasalacabraTts?: (text: string) => Promise<number> }).__pasalacabraTts = (text) =>
-    synthesize(text).then((bytes) => bytes.byteLength);
+  (
+    window as unknown as {
+      __pasalacabraTts?: (text: string, voice?: string, pauseMarks?: boolean, rate?: number) => Promise<number>;
+    }
+  ).__pasalacabraTts = (text, voice = getVoice(), pauseMarks = false, rate = 1) =>
+    synthesize(text, rate, voice, pauseMarks).then((bytes) => bytes.byteLength);
 }
