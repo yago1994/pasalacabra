@@ -7,10 +7,11 @@ export function isStagingMode() {
   if (import.meta.env.VITE_DEFAULT_ENV === "staging") {
     return true;
   }
-  // For mobile testing on the real domain:
-  // https://pasalacabra.com/?env=staging
+  // For mobile testing on the real domain: https://pasalacabra.com/?env=staging
+  // Never in a prod build: staging mode unlocks test tools there, including a
+  // free subscription (AccountProvider's canStubSubscription).
   const env = new URLSearchParams(location.search).get("env");
-  if (env === "staging") {
+  if (env === "staging" && import.meta.env.VITE_DEFAULT_ENV !== "prod") {
     return true;
   }
   // Check if we're in the staging deployment path

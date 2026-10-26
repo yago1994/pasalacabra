@@ -40,7 +40,7 @@ function log(...args: unknown[]) {
   console.log("[fakestt]", ...args);
 }
 
-export async function createFakeRecognizer(): Promise<AzureRecognizerBundle> {
+export async function createFakeRecognizer(audioContext?: AudioContext): Promise<AzureRecognizerBundle> {
   // Like a real token fetch that can't reach the worker.
   await new Promise((r) => setTimeout(r, 150));
   if (outage) throw new SpeechServiceError("fake outage (FakeSttPanel)");
@@ -87,7 +87,7 @@ export async function createFakeRecognizer(): Promise<AzureRecognizerBundle> {
     isGateOpen: () => gateOpen,
     resume: async () => {},
     health,
-    audioContext: fakeContext(),
+    audioContext: audioContext && audioContext.state !== "closed" ? audioContext : fakeContext(),
   };
 }
 

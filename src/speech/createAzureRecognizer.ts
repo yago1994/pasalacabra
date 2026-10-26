@@ -36,6 +36,8 @@ export interface CreateAzureRecognizerOptions {
   debug?: boolean;
   /** Existing MediaStream to reuse (avoids repeated getUserMedia calls) */
   existingStream?: MediaStream;
+  /** Capture in this AudioContext and leave it open on close (single-audio mode) */
+  audioContext?: AudioContext;
 }
 
 /**
@@ -54,7 +56,7 @@ export interface CreateAzureRecognizerOptions {
 export async function createAzureRecognizer(
   options: CreateAzureRecognizerOptions = {}
 ): Promise<AzureRecognizerBundle> {
-  if (FAKE_STT) return createFakeRecognizer();
+  if (FAKE_STT) return createFakeRecognizer(options.audioContext);
   let auth: Awaited<ReturnType<typeof getAzureAuth>>;
   try {
     auth = await getAzureAuth(false);
@@ -73,6 +75,7 @@ export async function createAzureRecognizer(
     hangoverMs: options.hangoverMs,
     debug: options.debug,
     existingStream: options.existingStream,
+    audioContext: options.audioContext,
   });
 
   // Create the recognizer with the push stream audio config

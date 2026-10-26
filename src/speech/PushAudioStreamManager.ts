@@ -30,6 +30,12 @@ export interface PushAudioStreamManagerOptions {
   /** Existing MediaStream to reuse (avoids repeated getUserMedia calls).
    * The stream will NOT be stopped when this manager closes. */
   existingStream?: MediaStream;
+  /**
+   * Capture in this context instead of a new one, and leave it open on close().
+   * Single-audio mode keeps one context for the whole game: a recognizer restart
+   * must not cut off the question playing through it.
+   */
+  audioContext?: AudioContext;
 }
 
 /** What the capture pipeline is actually doing, for spotting a mic that "listens" but hears nothing. */
@@ -120,6 +126,9 @@ function floatTo16BitPCM(samples: Float32Array): ArrayBuffer {
   return buffer;
 }
 
+// Contexts that already loaded the capture worklet.
+const workletContexts = new WeakSet<BaseAudioContext>();
+
 /**
  * Creates a PushAudioStreamManager that captures mic audio and gates it for Azure STT.
  * 
@@ -134,6 +143,7 @@ export async function createPushAudioStreamManager(
     hangoverMs = DEFAULT_HANGOVER_MS,
     debug = false,
     existingStream,
+    audioContext: sharedContext,
   } = options;
 
   const log = (...args: unknown[]) => {
@@ -197,9 +207,10 @@ export async function createPushAudioStreamManager(
     log("Got microphone stream");
   }
 
-  // Create AudioContext
+  // Create AudioContext (or capture in the caller's)
+  const ownsContext = !sharedContext || sharedContext.state === "closed";
   const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-  const audioContext = new AudioCtx();
+  const audioContext = ownsContext ? new AudioCtx() : sharedContext!;
   
   // Resume on user gesture (needed for Safari/mobile)
   const resume = async () => {
@@ -214,7 +225,7 @@ export async function createPushAudioStreamManager(
   // and resumes it by itself ~1.5 s later. Forcing a resume here fought iOS
   // for the audio session and cut the question off, so only log it; resume()
   // is still called from taps (Empezar/Reanudar) and on returning to the page.
-  audioContext.onstatechange = () => {
+  const onContextState = () => {
     console.log("[mic] audio context:", audioContext.state);
     // ...but once the interruption is over iOS leaves it "suspended", and
     // nothing reaches Azure until something resumes it. That's safe now.
@@ -223,17 +234,20 @@ export async function createPushAudioStreamManager(
       void audioContext.resume().catch(() => {});
     }
   };
+  audioContext.addEventListener("statechange", onContextState);
 
   // What iOS does to the mic track is the first thing to look at when audio stops.
+  // (Removed on close: the same track is reused by the next recognizer.)
   const micTrack = stream.getAudioTracks()[0];
-  if (micTrack) {
-    micTrack.addEventListener("mute", () => console.log("[mic] track muted by the system"));
-    micTrack.addEventListener("unmute", () => {
-      console.log("[mic] track unmuted");
-      if (!closed && audioContext.state === "suspended") void audioContext.resume().catch(() => {});
-    });
-    micTrack.addEventListener("ended", () => console.log("[mic] track ended"));
-  }
+  const onTrackMute = () => console.log("[mic] track muted by the system");
+  const onTrackUnmute = () => {
+    console.log("[mic] track unmuted");
+    if (!closed && audioContext.state === "suspended") void audioContext.resume().catch(() => {});
+  };
+  const onTrackEnded = () => console.log("[mic] track ended");
+  micTrack?.addEventListener("mute", onTrackMute);
+  micTrack?.addEventListener("unmute", onTrackUnmute);
+  micTrack?.addEventListener("ended", onTrackEnded);
   console.log("[mic] capture ready", { sampleRate: audioContext.sampleRate, context: audioContext.state, reused: !streamOwned });
 
   // Get the native sample rate
@@ -294,7 +308,11 @@ export async function createPushAudioStreamManager(
   // Try AudioWorklet first (modern browsers, lower latency)
   let usingWorklet = false;
   try {
-    await audioContext.audioWorklet.addModule("/audio-worklet-processor.js");
+    // Once per context: a reused one already has the processor registered.
+    if (!workletContexts.has(audioContext)) {
+      await audioContext.audioWorklet.addModule("/audio-worklet-processor.js");
+      workletContexts.add(audioContext);
+    }
     workletNode = new AudioWorkletNode(audioContext, "audio-capture-processor");
     
     workletNode.port.onmessage = (event) => {
@@ -368,6 +386,10 @@ export async function createPushAudioStreamManager(
 
     document.removeEventListener("visibilitychange", handleVisibilityChange);
     window.removeEventListener("pageshow", handlePageShow);
+    audioContext.removeEventListener("statechange", onContextState);
+    micTrack?.removeEventListener("mute", onTrackMute);
+    micTrack?.removeEventListener("unmute", onTrackUnmute);
+    micTrack?.removeEventListener("ended", onTrackEnded);
 
     try {
       source.disconnect();
@@ -387,9 +409,9 @@ export async function createPushAudioStreamManager(
       } catch { /* ignore */ }
     }
 
-    try {
-      audioContext.close();
-    } catch { /* ignore */ }
+    if (ownsContext) {
+      audioContext.close().catch(() => {});
+    }
 
     // Only stop stream tracks if we created the stream (not if it was passed in)
     if (streamOwned) {

@@ -12,8 +12,13 @@ const VOICE_KEY = "pasalacabra_tts_voice";
 const RATE_KEY = "pasalacabra_tts_rate";
 const DEFAULT_RATE = 1.05;
 
+// Voice, speed and pauses are picked in the staging panel. Staging and prod
+// share an origin (and localStorage), so prod ignores what was picked there.
+const TUNABLE = import.meta.env.DEV || isStagingMode();
+
 /** How fast the game reads (1 = the voice's normal speed). Staging can change it. */
 export function getSpeechRate(): number {
+  if (!TUNABLE) return DEFAULT_RATE;
   try {
     const v = Number(localStorage.getItem(RATE_KEY));
     return v >= 0.5 && v <= 2 ? v : DEFAULT_RATE;
@@ -33,6 +38,7 @@ export function setSpeechRate(rate: number | null) {
 
 /** Voice picked in the staging voice picker, else the default. */
 export function getVoice(): string {
+  if (!TUNABLE) return DEFAULT_VOICE;
   try {
     return localStorage.getItem(VOICE_KEY) || DEFAULT_VOICE;
   } catch {
@@ -179,6 +185,7 @@ export type PauseName = keyof typeof PAUSE_DEFAULTS;
 const PAUSE_KEY = "pasalacabra_tts_pause_";
 
 export function getPauseMs(name: PauseName): number {
+  if (!TUNABLE) return PAUSE_DEFAULTS[name];
   try {
     const v = localStorage.getItem(PAUSE_KEY + name);
     const n = v === null ? NaN : Number(v);
@@ -214,33 +221,41 @@ function fetchPregen(url: string) {
 
 /** Load (and start downloading) the set's pre-generated audio, if there is any. */
 export async function loadPregeneratedAudio(setId: string): Promise<number> {
-  const base = `/audio/${setId}/`;
-  if (pregen?.base === base) return Object.keys(pregen.files).length;
+  // Staging's own generator runs publish to /audio-staging/, so experiments
+  // there never change what prod players hear; prod's audio is the fallback.
+  const roots = isStagingMode() ? ["/audio-staging/", "/audio/"] : ["/audio/"];
+  if (pregen && roots.some((r) => pregen!.base === `${r}${setId}/`)) return Object.keys(pregen.files).length;
   pregen = null;
-  try {
-    const res = await fetch(`${base}manifest.json`, { cache: "no-cache" });
-    if (!res.ok) throw new Error(`manifest ${res.status}`);
-    const m = (await res.json()) as { voice: string; files: Record<string, string> };
-    pregen = { base, voice: m.voice, files: m.files };
-    console.log("[tts] pre-generated audio", { set: setId, voice: m.voice, lines: Object.keys(m.files).length });
-    // One at a time in the background, so the first question isn't competing.
-    void (async () => {
-      for (const file of Object.values(m.files)) {
-        if (pregen?.base !== base) return;
-        await fetchPregen(base + file).catch(() => {});
-      }
-    })();
-    return Object.keys(m.files).length;
-  } catch (err) {
-    console.log("[tts] no pre-generated audio, reading live", { set: setId, err: String(err) });
-    return 0;
+  for (const root of roots) {
+    const base = `${root}${setId}/`;
+    try {
+      const res = await fetch(`${base}manifest.json`, { cache: "no-cache" });
+      if (!res.ok) throw new Error(`manifest ${res.status}`);
+      const m = (await res.json()) as { voice: string; files: Record<string, string> };
+      pregen = { base, voice: m.voice, files: m.files };
+      console.log("[tts] pre-generated audio", { base, voice: m.voice, lines: Object.keys(m.files).length });
+      // One at a time in the background, so the first question isn't competing.
+      void (async () => {
+        for (const file of Object.values(m.files)) {
+          if (pregen?.base !== base) return;
+          await fetchPregen(base + file).catch(() => {});
+        }
+      })();
+      return Object.keys(m.files).length;
+    } catch (err) {
+      console.log("[tts] no pre-generated audio here", { base, err: String(err) });
+    }
   }
+  console.log("[tts] reading live", { set: setId });
+  return 0;
 }
 
 function pregenUrl(text: string, voice: string) {
   const file = pregen && pregen.voice === voice ? pregen.files[text] : undefined;
   return file ? pregen!.base + file : null;
 }
+
+const SYNTH_TIMEOUT_MS = 10_000;
 
 /**
  * Speak `text` through `ctx`. `onDone` is called exactly once: "onend",
@@ -273,7 +288,12 @@ export function playTts(
         return synthesize(text, rate, voice, pauseMarks);
       })
     : synthesize(text, rate, voice, pauseMarks);
-  bytes
+  // A token fetch that's stuck (a blocked worker) shouldn't leave the question
+  // unread: give up and let the caller read it another way.
+  const deadline = new Promise<never>((_, reject) =>
+    window.setTimeout(() => reject(new Error("tts timed out")), SYNTH_TIMEOUT_MS)
+  );
+  Promise.race([bytes, deadline])
     // decodeAudioData detaches its input; keep the cached bytes intact.
     .then((bytes) => ctx.decodeAudioData(bytes.slice(0)))
     .then((audio) => {

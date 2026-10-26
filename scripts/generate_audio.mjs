@@ -23,10 +23,8 @@ const SETS_DIR = process.env.SETS_DIR || "daily/es";
 const KEY = process.env.SPEECH_KEY;
 const REGION = process.env.SPEECH_REGION || "westeurope";
 // Hash of this script: the workflow regenerates a day when it changes.
-const GENERATOR = createHash("sha1")
-  .update(await readFile(new URL(import.meta.url)))
-  .digest("hex")
-  .slice(0, 12);
+const SCRIPT = await readFile(new URL(import.meta.url));
+const GENERATOR = createHash("sha1").update(SCRIPT).digest("hex").slice(0, 12);
 
 // Same split as speakQuestion() in src/App.tsx: the "Empieza por X." intro and
 // the clue are read as two lines.
@@ -79,7 +77,12 @@ async function synthesize(text, attempt = 1) {
 }
 
 async function generateDay(day) {
-  const set = JSON.parse(await readFile(path.join(SETS_DIR, `${day}.json`), "utf8"));
+  const raw = await readFile(path.join(SETS_DIR, `${day}.json`)).catch(() => null);
+  if (!raw) return console.warn(`${day}: no set in ${SETS_DIR}, skipped`);
+  const set = JSON.parse(raw.toString("utf8"));
+  // This script + this day's questions. The workflow skips a day whose
+  // published manifest has the same key (sha1 of the two files, concatenated).
+  const key = createHash("sha1").update(SCRIPT).update(raw).digest("hex").slice(0, 12);
   const dir = path.join(OUT_DIR, set.id);
   await mkdir(dir, { recursive: true });
   const files = {};
@@ -93,7 +96,7 @@ async function generateDay(day) {
     bytes += audio.length;
     chars += text.length;
   }
-  const manifest = { set: set.id, voice: VOICE, generator: GENERATOR, generatedAt: new Date().toISOString(), files };
+  const manifest = { set: set.id, voice: VOICE, generator: GENERATOR, key, generatedAt: new Date().toISOString(), files };
   await writeFile(path.join(dir, "manifest.json"), JSON.stringify(manifest, null, 1));
   console.log(`${set.id}: ${Object.keys(files).length} lines, ${chars} chars, ${(bytes / 1024).toFixed(0)} KB`);
 }

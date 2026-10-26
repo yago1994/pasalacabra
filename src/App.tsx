@@ -510,6 +510,8 @@ export default function App() {
   const sttPreStartTimerRef = useRef<number | null>(null);
   const [isListening, setIsListening] = useState<boolean>(false);
   const [sttSupported, setSttSupported] = useState<boolean>(true);
+  const sttSupportedRef = useRef(true);
+  sttSupportedRef.current = sttSupported;
   const [sttError, setSttError] = useState<string>("");
   const [answerText, setAnswerText] = useState<string>("");
   const userEditedAnswerRef = useRef<boolean>(false);
@@ -789,9 +791,18 @@ export default function App() {
 
   function getAudioCtx() {
     // ?audio=single: no second context, everything plays where the mic captures.
+    // The mic creates it (after the permission prompt, the order tested on
+    // iOS 27) and it lives for the whole page. Without a mic there's no capture
+    // to disturb, so the game gets one of its own.
     if (SINGLE_AUDIO) {
       const mic = micCtxRef.current;
-      return mic && mic.state !== "closed" ? mic : null;
+      if (mic && mic.state !== "closed") return mic;
+      if (sttSupportedRef.current) return null;
+      const Ctx =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+      micCtxRef.current = Ctx ? new Ctx({ latencyHint: "interactive" }) : null;
+      return micCtxRef.current;
     }
     if (audioCtxRef.current) return audioCtxRef.current;
     const Ctx =
@@ -1342,7 +1353,9 @@ export default function App() {
     azureMicCloseRef.current = null;
     micDbRef.current = null;
     micHealthRef.current = null;
-    micCtxRef.current = null;
+    // Single-audio mode keeps the context (and whatever it's playing) for the
+    // next recognizer; otherwise the recognizer closed its own.
+    if (!SINGLE_AUDIO) micCtxRef.current = null;
     // Clear gate refs when stopping
     openGateRef.current = null;
     closeGateRef.current = null;
@@ -1457,6 +1470,7 @@ export default function App() {
       // Reuse existing stream if available (prevents repeated getUserMedia calls)
       const bundle = await createAzureRecognizer({
         existingStream: azureMicStreamRef.current ?? undefined,
+        audioContext: SINGLE_AUDIO ? micCtxRef.current ?? undefined : undefined,
       });
       r = bundle.recognizer;
 
@@ -2095,7 +2109,7 @@ export default function App() {
     // Starting before TTS avoids mid-question audio ducking.
     ensureListeningForQuestion(hints);
 
-    if (!("speechSynthesis" in window)) {
+    if (!SINGLE_AUDIO && !("speechSynthesis" in window)) {
       // No TTS; arm mic and open gate immediately.
       sttCommandKeyRef.current = null;
       openGateRef.current?.();
