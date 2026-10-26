@@ -7,7 +7,55 @@ import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import { getAzureAuth } from "./speechazure";
 import { isStagingMode } from "../env/getSpeechTokenUrl";
 
-const VOICE = "es-ES-ElviraNeural";
+const DEFAULT_VOICE = "es-ES-ElviraNeural";
+const VOICE_KEY = "pasalacabra_tts_voice";
+
+/** Voice picked in the staging voice picker, else the default. */
+export function getVoice(): string {
+  try {
+    return localStorage.getItem(VOICE_KEY) || DEFAULT_VOICE;
+  } catch {
+    return DEFAULT_VOICE;
+  }
+}
+
+export function setVoice(name: string | null) {
+  try {
+    if (name) localStorage.setItem(VOICE_KEY, name);
+    else localStorage.removeItem(VOICE_KEY);
+  } catch {
+    // the choice just won't stick
+  }
+}
+
+export type VoiceInfo = { name: string; label: string; gender: string; locale: string; kind: string };
+
+/** Azure voices that speak Spain Spanish (es-ES natives first, then multilingual ones). */
+export async function listSpanishVoices(): Promise<VoiceInfo[]> {
+  const { token, region } = await getAzureAuth(false);
+  const res = await fetch(`https://${region}.tts.speech.microsoft.com/cognitiveservices/voices/list`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) throw new Error(`voices list ${res.status}`);
+  const all = (await res.json()) as Array<{
+    ShortName: string;
+    DisplayName?: string;
+    LocalName?: string;
+    Gender?: string;
+    Locale: string;
+    VoiceType?: string;
+    SecondaryLocaleList?: string[];
+  }>;
+  const native = all.filter((v) => v.Locale === "es-ES");
+  const multi = all.filter((v) => v.Locale !== "es-ES" && v.SecondaryLocaleList?.includes("es-ES"));
+  return [...native, ...multi].map((v) => ({
+    name: v.ShortName,
+    label: v.LocalName || v.DisplayName || v.ShortName,
+    gender: v.Gender ?? "",
+    locale: v.Locale,
+    kind: v.ShortName.includes("DragonHD") ? "HD" : v.Locale === "es-ES" ? "neural" : "multilingüe",
+  }));
+}
 
 // Same text at the same rate is synthesized once (repeats, re-reads after a pause).
 const cache = new Map<string, Promise<ArrayBuffer>>();
@@ -16,17 +64,17 @@ function escapeXml(s: string) {
   return s.replace(/[<>&'"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" })[c]!);
 }
 
-function ssml(text: string, rate: number) {
+function ssml(text: string, rate: number, voice: string) {
   const pct = Math.round((rate - 1) * 100);
   return (
     `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="es-ES">` +
-    `<voice name="${VOICE}"><prosody rate="${pct >= 0 ? "+" : ""}${pct}%">${escapeXml(text)}</prosody></voice></speak>`
+    `<voice name="${voice}"><lang xml:lang="es-ES"><prosody rate="${pct >= 0 ? "+" : ""}${pct}%">${escapeXml(text)}</prosody></lang></voice></speak>`
   );
 }
 
 /** WAV bytes for `text` (cached). */
-export function synthesize(text: string, rate = 1): Promise<ArrayBuffer> {
-  const key = `${rate}|${text}`;
+export function synthesize(text: string, rate = 1, voice = getVoice()): Promise<ArrayBuffer> {
+  const key = `${voice}|${rate}|${text}`;
   let p = cache.get(key);
   if (!p) {
     p = (async () => {
@@ -38,7 +86,7 @@ export function synthesize(text: string, rate = 1): Promise<ArrayBuffer> {
       try {
         return await new Promise<ArrayBuffer>((resolve, reject) => {
           synth.speakSsmlAsync(
-            ssml(text, rate),
+            ssml(text, rate, voice),
             (r) =>
               r.reason === sdk.ResultReason.SynthesizingAudioCompleted
                 ? resolve(r.audioData)
@@ -60,7 +108,13 @@ export function synthesize(text: string, rate = 1): Promise<ArrayBuffer> {
  * Speak `text` through `ctx`. `onDone` is called exactly once: "onend",
  * "stopped" or "error". Returns a function that stops playback.
  */
-export function playTts(ctx: AudioContext, text: string, rate: number, onDone: (why: string) => void): () => void {
+export function playTts(
+  ctx: AudioContext,
+  text: string,
+  rate: number,
+  onDone: (why: string) => void,
+  voice = getVoice()
+): () => void {
   let stopped = false;
   let done = false;
   let src: AudioBufferSourceNode | null = null;
@@ -69,7 +123,7 @@ export function playTts(ctx: AudioContext, text: string, rate: number, onDone: (
     done = true;
     onDone(why);
   };
-  synthesize(text, rate)
+  synthesize(text, rate, voice)
     // decodeAudioData detaches its input; keep the cached bytes intact.
     .then((bytes) => ctx.decodeAudioData(bytes.slice(0)))
     .then((audio) => {
