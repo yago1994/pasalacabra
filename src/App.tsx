@@ -46,6 +46,7 @@ import SignInSheet from "./components/SignInSheet";
 import MicStatus from "./components/MicStatus";
 import FakeSttPanel from "./components/FakeSttPanel";
 import { FAKE_STT } from "./speech/fakeRecognizer";
+import { getStagingSeconds } from "./env/stagingTime";
 import type { MicHealth } from "./speech/PushAudioStreamManager";
 import {
   classifyMicError,
@@ -92,9 +93,9 @@ const TURN_SECONDS =180; // Default fallback (will be replaced by difficulty-bas
 
 function getTimeFromDifficulty(difficulty: DifficultyMode): number {
   const isStaging = isStagingMode();
-  // Staging/dev only: ?secs=240 for a real-length turn when testing.
-  const secs = Number(new URLSearchParams(location.search).get("secs"));
-  if (isStaging && secs > 0) return secs;
+  // Staging/dev only: the turn length picked on the home screen (or ?secs=N).
+  const stagingSecs = getStagingSeconds();
+  if (stagingSecs) return stagingSecs;
   switch (difficulty) {
     case "dificil": return isStaging ? 2 : 180; // 2 seconds in staging, 3 minutes in prod
     case "medio": return isStaging ? 15 : 240; // 15 seconds in staging, 4 minutes in prod
@@ -2960,10 +2961,11 @@ export default function App() {
   async function startDailyGame() {
     // Already loaded on open, so this normally doesn't await (see loadTodaysSet).
     const dailySetId = dailySetIdRef.current ?? (await loadTodaysSet());
-    // Check if today's daily game has already been played
+    // Check if today's daily game has already been played. Staging (and
+    // localhost) can replay it as often as needed for testing.
     const gameNo = getDailyGameNo(new Date());
     try {
-      const raw = localStorage.getItem(DAILY_STORAGE_KEY);
+      const raw = isStagingMode() ? null : localStorage.getItem(DAILY_STORAGE_KEY);
       if (raw) {
         const saved = JSON.parse(raw) as DailyStoredResult;
         if (saved.gameNo === gameNo) {

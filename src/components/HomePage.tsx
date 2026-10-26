@@ -1,4 +1,6 @@
 import CabraIcon from "../cabra/CabraIcon";
+import StagingTimeControl from "./StagingTimeControl";
+import { isStagingMode } from "../env/getSpeechTokenUrl";
 import { useMemo, useState } from "react";
 import { formatDateLongES, getDailyGameNo } from "../lib/dailyIssue";
 
@@ -112,6 +114,7 @@ export default function HomePage({ onPlayGroup, onPlay, onOpenStats, onHowToPlay
           >
             Crea tu proprio juego
           </button>
+          {isStagingMode() ? <StagingTimeControl /> : null}
         </div>
 
         {/* Secondary actions */}
