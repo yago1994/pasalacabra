@@ -64,5 +64,11 @@ export default defineConfig({
   plugins: [react(), devLog(), cspConnectExtras()],
   server: {
     allowedHosts: ["erma-dogged-edmond.ngrok-free.dev"],
+    // Vite answers CORS preflights itself (localhost only by default), before
+    // our middleware runs. The staging site's log relay comes through ngrok
+    // from pasalacabra.com, so allow that origin too.
+    cors: {
+      origin: [/^https?:\/\/(?:(?:[^:]+\.)?localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/, "https://pasalacabra.com"],
+    },
   },
 })

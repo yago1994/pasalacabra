@@ -1,4 +1,5 @@
 import "./devLog";
+import "./platform/audioSession";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import AccountProvider from "./account/AccountProvider";

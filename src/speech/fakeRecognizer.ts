@@ -62,6 +62,7 @@ export async function createFakeRecognizer(): Promise<AzureRecognizerBundle> {
   };
 
   const health = (): MicHealth => ({
+    msSinceStart: 60_000,
     contextState: "running",
     sampleRate: 48000,
     msSinceFrame: 0,

@@ -34,6 +34,8 @@ export interface PushAudioStreamManagerOptions {
 
 /** What the capture pipeline is actually doing, for spotting a mic that "listens" but hears nothing. */
 export interface MicHealth {
+  /** ms since this capture was set up (a fresh mic needs a moment). */
+  msSinceStart: number;
   /** "running" when audio flows; iOS can leave it "suspended" or "interrupted". */
   contextState: string;
   sampleRate: number;
@@ -141,6 +143,7 @@ export async function createPushAudioStreamManager(
   let currentDb = -100;
   let lastAboveThresholdAt = 0;
   let closed = false;
+  const startedAt = Date.now();
   let lastFrameAt = 0;
   let lastSoundAt = 0;
   let streamOwned = false; // Track if we created this stream or it was passed in
@@ -205,14 +208,12 @@ export async function createPushAudioStreamManager(
     }
   };
 
-  // iOS suspends or "interrupts" the context when something else takes the
-  // audio session (a call, Siri, another tab, sometimes our own TTS). Nothing
-  // reached Azure after that until the page was hidden and shown again.
+  // iOS "interrupts" the context whenever the page plays a sound or speaks,
+  // and resumes it by itself ~1.5 s later. Forcing a resume here fought iOS
+  // for the audio session and cut the question off, so only log it; resume()
+  // is still called from taps (Empezar/Reanudar) and on returning to the page.
   audioContext.onstatechange = () => {
     console.log("[mic] audio context:", audioContext.state);
-    if (!closed && audioContext.state !== "running" && audioContext.state !== "closed") {
-      void audioContext.resume().catch(() => {});
-    }
   };
 
   // What iOS does to the mic track is the first thing to look at when audio stops.
@@ -418,6 +419,7 @@ export async function createPushAudioStreamManager(
       const now = Date.now();
       const track = stream.getAudioTracks()[0];
       return {
+        msSinceStart: now - startedAt,
         contextState: audioContext.state,
         sampleRate: audioContext.sampleRate,
         msSinceFrame: lastFrameAt ? now - lastFrameAt : Infinity,

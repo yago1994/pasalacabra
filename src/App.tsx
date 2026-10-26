@@ -937,6 +937,7 @@ export default function App() {
   function playSfx(key: "correct" | "wrong" | "pasalacabra") {
     const ctx = getAudioCtx();
     const buf = sfxBuffersRef.current[key];
+    console.log("[sfx]", key, { context: ctx?.state, ready: Boolean(buf) });
     if (!ctx || !buf) return;
 
     const start = () => {
@@ -1797,18 +1798,20 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, sttSupported, isListening, micPaused]);
 
-  // Mic watchdog. A recognizer can be connected and "listening" while the mic
-  // feeds it nothing: iOS interrupting the audio context, the OS muting the
-  // track (a call, Siri), or a capture that only delivers zeros. Then the clock
-  // ran while nobody could answer. Catch it, report what it looked like, and
-  // start over with a fresh microphone (the turn pauses meanwhile). Also runs
-  // while waiting on "Empezar", so the button doesn't stay lit on a dead mic.
+  // Mic watchdog. iOS 27 mutes the mic (and the camera) for ~1.5 s every time
+  // the page plays a sound or reads a question aloud, and a fresh mic takes a
+  // moment to deliver audio: both are normal and recover on their own.
+  // Treating them as a dead mic (stop it, ask for a new one) cancelled the
+  // question mid-word, re-paused the game and looped. So only a track iOS has
+  // actually *ended* gets a fresh mic; long mutes and gaps are just reported.
   useEffect(() => {
     if (screen !== "game" || (phase !== "playing" && phase !== "idle")) return;
     if (!isListening || micPaused) return;
-    let mutedChecks = 0;
-    let silenceReported = false;
+    const reported = new Set<string>();
     const report = (kind: string, h: MicHealth) => {
+      if (reported.has(kind)) return;
+      reported.add(kind);
+      sttLog("mic watchdog:", kind, h);
       if (micSilentReportsRef.current++ >= 5) return;
       trackPendoEvent("Mic Silent", {
         kind,
@@ -1822,31 +1825,24 @@ export default function App() {
         userAgent: navigator.userAgent.slice(0, 300),
       });
     };
+    let mutedChecks = 0;
     const id = window.setInterval(() => {
       const h = micHealthRef.current?.();
       if (!h) return;
       mutedChecks = h.trackMuted ? mutedChecks + 1 : 0;
-      // Pure zeros for a while: report only. Voice processing *might* output
-      // zeros in a very quiet room, and pausing a thinking player would be worse.
-      if (!silenceReported && h.msSinceSound > 6000 && h.msSinceFrame < 1000) {
-        silenceReported = true;
-        sttLog("mic watchdog: digital silence", h);
-        report("digital-silence", h);
-      }
-      const kind =
-        h.trackState === "ended" ? "track-ended"
-        : mutedChecks >= 3 ? "track-muted"
-        : h.msSinceFrame > 3000 ? `no-frames:${h.contextState}`
-        : null;
-      if (!kind) return;
+      // Report-only: these come and go with iOS's audio session.
+      if (mutedChecks >= 10) report("track-muted-10s", h);
+      if (h.msSinceStart > 10_000 && h.msSinceFrame > 10_000) report(`no-frames-10s:${h.contextState}`, h);
+      if (h.msSinceSound > 10_000 && h.msSinceFrame < 1000) report("digital-silence", h);
+
+      if (h.trackState !== "ended") return;
       window.clearInterval(id);
-      sttLog("mic watchdog: dead mic", kind, h);
-      report(kind, h);
+      report("track-ended", h);
       if (phaseRef.current === "idle") {
-        failMic({ reason: "unknown", stage: "mic", errorName: "MicSilent", errorMessage: kind });
+        failMic({ reason: "unknown", stage: "mic", errorName: "MicSilent", errorMessage: "track-ended" });
       }
       dropMicStream();
-      sttLastErrorRef.current = `mic-silent:${kind}`;
+      sttLastErrorRef.current = "mic-silent:track-ended";
       stopListening("replace");
       scheduleSttRetry("mic-silent");
     }, 1000);
