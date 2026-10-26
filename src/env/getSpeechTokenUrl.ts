@@ -7,10 +7,11 @@ export function isStagingMode() {
   if (import.meta.env.VITE_DEFAULT_ENV === "staging") {
     return true;
   }
-  // For mobile testing on the real domain:
-  // https://pasalacabra.com/?env=staging
+  // For mobile testing on the real domain: https://pasalacabra.com/?env=staging
+  // Never in a prod build: staging mode unlocks test tools there, including a
+  // free subscription (AccountProvider's canStubSubscription).
   const env = new URLSearchParams(location.search).get("env");
-  if (env === "staging") {
+  if (env === "staging" && import.meta.env.VITE_DEFAULT_ENV !== "prod") {
     return true;
   }
   // Check if we're in the staging deployment path
@@ -43,3 +44,12 @@ export function getSpeechTokenUrl() {
   return tokenUrl;
 }
 
+
+/**
+ * Optional second token endpoint hosted off Cloudflare (VITE_SPEECH_TOKEN_FALLBACK_URL).
+ * Used when the primary worker is unreachable, e.g. Spanish ISPs blocking
+ * Cloudflare IPs during LaLiga matches.
+ */
+export function getSpeechTokenFallbackUrl(): string | null {
+  return (import.meta.env.VITE_SPEECH_TOKEN_FALLBACK_URL as string | undefined) || null;
+}

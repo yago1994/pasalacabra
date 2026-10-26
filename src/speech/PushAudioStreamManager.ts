@@ -30,7 +30,33 @@ export interface PushAudioStreamManagerOptions {
   /** Existing MediaStream to reuse (avoids repeated getUserMedia calls).
    * The stream will NOT be stopped when this manager closes. */
   existingStream?: MediaStream;
+  /**
+   * Capture in this context instead of a new one, and leave it open on close().
+   * Single-audio mode keeps one context for the whole game: a recognizer restart
+   * must not cut off the question playing through it.
+   */
+  audioContext?: AudioContext;
 }
+
+/** What the capture pipeline is actually doing, for spotting a mic that "listens" but hears nothing. */
+export interface MicHealth {
+  /** ms since this capture was set up (a fresh mic needs a moment). */
+  msSinceStart: number;
+  /** "running" when audio flows; iOS can leave it "suspended" or "interrupted". */
+  contextState: string;
+  sampleRate: number;
+  /** ms since the last audio frame reached us (Infinity before the first). */
+  msSinceFrame: number;
+  /** ms since a frame that wasn't pure digital silence (Infinity before the first). */
+  msSinceSound: number;
+  /** The mic track: "live" / "ended", and whether the OS muted it. */
+  trackState: string;
+  trackMuted: boolean;
+}
+
+// Real microphones always pick up some noise (around -70 dBFS in a quiet room);
+// below this the samples are zeros, i.e. the OS is feeding us silence.
+const DIGITAL_SILENCE_DB = -110;
 
 export interface PushAudioStreamBundle {
   /** The PushAudioInputStream to pass to Azure AudioConfig */
@@ -47,6 +73,10 @@ export interface PushAudioStreamBundle {
   getDb: () => number;
   /** Resume AudioContext (call on user gesture or visibility change) */
   resume: () => Promise<void>;
+  /** The context the mic is captured in (?audio=single plays everything through it) */
+  audioContext: AudioContext;
+  /** Snapshot of the capture pipeline's health */
+  health: () => MicHealth;
   /** Clean up all resources */
   close: () => void;
   /** The MediaStream from getUserMedia */
@@ -96,6 +126,9 @@ function floatTo16BitPCM(samples: Float32Array): ArrayBuffer {
   return buffer;
 }
 
+// Contexts that already loaded the capture worklet.
+const workletContexts = new WeakSet<BaseAudioContext>();
+
 /**
  * Creates a PushAudioStreamManager that captures mic audio and gates it for Azure STT.
  * 
@@ -110,6 +143,7 @@ export async function createPushAudioStreamManager(
     hangoverMs = DEFAULT_HANGOVER_MS,
     debug = false,
     existingStream,
+    audioContext: sharedContext,
   } = options;
 
   const log = (...args: unknown[]) => {
@@ -121,6 +155,9 @@ export async function createPushAudioStreamManager(
   let currentDb = -100;
   let lastAboveThresholdAt = 0;
   let closed = false;
+  const startedAt = Date.now();
+  let lastFrameAt = 0;
+  let lastSoundAt = 0;
   let streamOwned = false; // Track if we created this stream or it was passed in
 
   // Create Azure PushAudioInputStream
@@ -170,17 +207,48 @@ export async function createPushAudioStreamManager(
     log("Got microphone stream");
   }
 
-  // Create AudioContext
+  // Create AudioContext (or capture in the caller's)
+  const ownsContext = !sharedContext || sharedContext.state === "closed";
   const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-  const audioContext = new AudioCtx();
+  const audioContext = ownsContext ? new AudioCtx() : sharedContext!;
   
   // Resume on user gesture (needed for Safari/mobile)
   const resume = async () => {
-    if (audioContext.state === "suspended") {
+    // iOS can also report "interrupted" (after a call, Siri, other audio).
+    if (audioContext.state !== "running" && audioContext.state !== "closed") {
       log("Resuming AudioContext");
       await audioContext.resume();
     }
   };
+
+  // iOS "interrupts" the context whenever the page plays a sound or speaks,
+  // and resumes it by itself ~1.5 s later. Forcing a resume here fought iOS
+  // for the audio session and cut the question off, so only log it; resume()
+  // is still called from taps (Empezar/Reanudar) and on returning to the page.
+  const onContextState = () => {
+    console.log("[mic] audio context:", audioContext.state);
+    // ...but once the interruption is over iOS leaves it "suspended", and
+    // nothing reaches Azure until something resumes it. That's safe now.
+    if (!closed && audioContext.state === "suspended") {
+      console.log("[mic] interruption over, resuming");
+      void audioContext.resume().catch(() => {});
+    }
+  };
+  audioContext.addEventListener("statechange", onContextState);
+
+  // What iOS does to the mic track is the first thing to look at when audio stops.
+  // (Removed on close: the same track is reused by the next recognizer.)
+  const micTrack = stream.getAudioTracks()[0];
+  const onTrackMute = () => console.log("[mic] track muted by the system");
+  const onTrackUnmute = () => {
+    console.log("[mic] track unmuted");
+    if (!closed && audioContext.state === "suspended") void audioContext.resume().catch(() => {});
+  };
+  const onTrackEnded = () => console.log("[mic] track ended");
+  micTrack?.addEventListener("mute", onTrackMute);
+  micTrack?.addEventListener("unmute", onTrackUnmute);
+  micTrack?.addEventListener("ended", onTrackEnded);
+  console.log("[mic] capture ready", { sampleRate: audioContext.sampleRate, context: audioContext.state, reused: !streamOwned });
 
   // Get the native sample rate
   const nativeSampleRate = audioContext.sampleRate;
@@ -198,6 +266,10 @@ export async function createPushAudioStreamManager(
    */
   const processAudio = (samples: Float32Array, sampleRate: number, frameDb: number) => {
     if (closed) return;
+
+    const frameAt = Date.now();
+    lastFrameAt = frameAt;
+    if (frameDb > DIGITAL_SILENCE_DB) lastSoundAt = frameAt;
 
     // Update current dB (smoothed a bit)
     currentDb = currentDb * 0.3 + frameDb * 0.7;
@@ -236,7 +308,11 @@ export async function createPushAudioStreamManager(
   // Try AudioWorklet first (modern browsers, lower latency)
   let usingWorklet = false;
   try {
-    await audioContext.audioWorklet.addModule("/audio-worklet-processor.js");
+    // Once per context: a reused one already has the processor registered.
+    if (!workletContexts.has(audioContext)) {
+      await audioContext.audioWorklet.addModule("/audio-worklet-processor.js");
+      workletContexts.add(audioContext);
+    }
     workletNode = new AudioWorkletNode(audioContext, "audio-capture-processor");
     
     workletNode.port.onmessage = (event) => {
@@ -310,6 +386,10 @@ export async function createPushAudioStreamManager(
 
     document.removeEventListener("visibilitychange", handleVisibilityChange);
     window.removeEventListener("pageshow", handlePageShow);
+    audioContext.removeEventListener("statechange", onContextState);
+    micTrack?.removeEventListener("mute", onTrackMute);
+    micTrack?.removeEventListener("unmute", onTrackUnmute);
+    micTrack?.removeEventListener("ended", onTrackEnded);
 
     try {
       source.disconnect();
@@ -329,9 +409,9 @@ export async function createPushAudioStreamManager(
       } catch { /* ignore */ }
     }
 
-    try {
-      audioContext.close();
-    } catch { /* ignore */ }
+    if (ownsContext) {
+      audioContext.close().catch(() => {});
+    }
 
     // Only stop stream tracks if we created the stream (not if it was passed in)
     if (streamOwned) {
@@ -368,6 +448,20 @@ export async function createPushAudioStreamManager(
     },
     isGateOpen: () => gateOpen,
     getDb: () => currentDb,
+    audioContext,
+    health: () => {
+      const now = Date.now();
+      const track = stream.getAudioTracks()[0];
+      return {
+        msSinceStart: now - startedAt,
+        contextState: audioContext.state,
+        sampleRate: audioContext.sampleRate,
+        msSinceFrame: lastFrameAt ? now - lastFrameAt : Infinity,
+        msSinceSound: lastSoundAt ? now - lastSoundAt : Infinity,
+        trackState: track?.readyState ?? "none",
+        trackMuted: track?.muted ?? false,
+      };
+    },
     resume,
     close,
     stream,

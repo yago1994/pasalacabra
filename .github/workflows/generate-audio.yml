@@ -1,0 +1,127 @@
+name: Generate Question Audio
+
+# Reads each daily set aloud with Azure TTS (scripts/generate_audio.mjs) and
+# publishes the MP3s to gh-pages under /audio/<set id>/ (main) or
+# /audio-staging/<set id>/ (staging). Keeps the last 14 days on the site; older
+# days stay in gh-pages' history and can be regenerated from daily/es/ anyway.
+# Needs the SPEECH_KEY secret (and optionally the SPEECH_REGION variable,
+# default westeurope).
+
+on:
+  # After every deploy. Daily sets reach main through a PR the bot merges, and
+  # pushes made with GITHUB_TOKEN don't start push workflows; Deploy runs
+  # after Generate Daily Set (workflow_run), so this runs after both.
+  workflow_run:
+    workflows: ["Deploy (prod + staging)"]
+    types: [completed]
+  # Safety net (and pruning) in case a run above was missed or failed.
+  schedule:
+    - cron: "17 */3 * * *"
+  # Staging: trying out changes to the generator (publishes to /audio-staging/).
+  push:
+    branches: [staging]
+    paths: ["scripts/generate_audio.mjs", ".github/workflows/generate-audio.yml"]
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Days to (re)generate, YYYY-MM-DD space separated. Default: yesterday, today and tomorrow (Madrid) if missing."
+        required: false
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: question-audio
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    env:
+      # workflow_run and schedule always run main's copy of this file.
+      DEST: ${{ github.ref_name == 'main' && 'audio' || 'audio-staging' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check out gh-pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: git clone --depth 1 --branch gh-pages "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}" pages
+
+      - name: Pick days
+        id: days
+        env:
+          INPUT_DAYS: ${{ github.event.inputs.days }}
+        run: |
+          days=""
+          if [ -n "$INPUT_DAYS" ]; then
+            for d in $INPUT_DAYS; do
+              [[ "$d" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] && days="$days $d" || echo "Ignoring '$d'"
+            done
+          else
+            # Yesterday too: players in the Americas are still on it.
+            for d in "$(TZ=Europe/Madrid date -d yesterday +%F)" "$(TZ=Europe/Madrid date +%F)" "$(TZ=Europe/Madrid date -d tomorrow +%F)"; do
+              [ -f "daily/es/$d.json" ] || continue
+              # Same generator, same questions as what's published? Skip it.
+              # (generate_audio.mjs writes the same key into the manifest.)
+              key=$(cat scripts/generate_audio.mjs "daily/es/$d.json" | sha1sum | cut -c1-12)
+              if grep -q "\"key\": \"$key\"" "pages/$DEST/es-$d/manifest.json" 2>/dev/null; then
+                continue
+              fi
+              days="$days $d"
+            done
+          fi
+          echo "days=$days" >> "$GITHUB_OUTPUT"
+          echo "Generating into /$DEST/: ${days:-nothing}"
+
+      - name: Generate audio
+        if: steps.days.outputs.days != ''
+        env:
+          SPEECH_KEY: ${{ secrets.SPEECH_KEY }}
+          SPEECH_REGION: ${{ vars.SPEECH_REGION || 'westeurope' }}
+          DAYS: ${{ steps.days.outputs.days }}
+        run: node scripts/generate_audio.mjs $DAYS
+
+      - name: Publish to gh-pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DAYS: ${{ steps.days.outputs.days }}
+        run: |
+          # Deploy (peaceiris) doesn't retry a rejected push: let a running one finish first.
+          for i in $(seq 1 30); do
+            busy=$(gh run list --repo "${{ github.repository }}" --workflow deploy.yml --json status \
+              --jq '[.[] | select(.status == "in_progress" or .status == "queued")] | length' 2>/dev/null || echo 0)
+            [ "$busy" = "0" ] && break
+            echo "Waiting for a deploy to finish…"
+            sleep 10
+          done
+          cd pages
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Our own push can still race a deploy: retry.
+          for attempt in 1 2 3 4 5; do
+            git fetch --depth 1 origin gh-pages && git reset --hard origin/gh-pages
+            # Adds to a day's folder rather than replacing it: a manifest cached
+            # from a previous run (10 min) still finds its clips.
+            mkdir -p "$DEST"
+            [ -d ../audio-out ] && cp -R ../audio-out/. "$DEST/"
+            # Keep two weeks of audio on the site (older days stay in history).
+            cutoff=$(TZ=Europe/Madrid date -d "14 days ago" +%F)
+            for dir in "$DEST"/es-*; do
+              [ -d "$dir" ] || continue
+              day="${dir#"$DEST"/es-}"
+              if [[ "$day" < "$cutoff" ]]; then git rm -rq "$dir"; fi
+            done
+            git add "$DEST"
+            git diff --cached --quiet && { echo "Nothing new."; exit 0; }
+            git commit -qm "audio ($DEST):${DAYS:- prune}"
+            git push origin gh-pages && exit 0
+            echo "Push failed (attempt $attempt), retrying…"
+            sleep $((attempt * 10))
+          done
+          exit 1

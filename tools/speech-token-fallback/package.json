@@ -1,0 +1,8 @@
+{
+  "name": "pasalacabra-speech-token-fallback",
+  "private": true,
+  "main": "src/functions/*.js",
+  "dependencies": {
+    "@azure/functions": "^4.5.0"
+  }
+}

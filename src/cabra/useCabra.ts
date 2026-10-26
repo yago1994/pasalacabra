@@ -10,7 +10,7 @@ type Options = {
   backRef: RefObject<SVGGElement | null>;
   frontRef: RefObject<SVGGElement | null>;
   inputs: GameInputs;
-  /** The game's AudioContext; the goat only makes sound once it is running. */
+  /** The game's AudioContext, if it exists yet (never created here); the goat only makes sound once it is running. */
   getAudioCtx?: () => AudioContext | null;
   lang?: "es" | "en";
 };
