@@ -1,0 +1,192 @@
+{
+  "id": "set-2026-10-27",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "James Cameron's 2009 sci-fi epic set on Pandora",
+      "answer": "Avatar"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "American bat-and-ball sport with nine innings and home runs",
+      "answer": "Baseball"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Software or hardware method that compresses and decompresses digital media",
+      "answer": "Codec"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "AI-manipulated video technique that swaps faces convincingly",
+      "answer": "Deepfake"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "System for sending electronic mail over the internet",
+      "answer": "Email",
+      "alt": [
+        "e-mail"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Uncontested 15-foot shot awarded after fouls in basketball",
+      "answer": "Free throw",
+      "alt": [
+        "foul shot"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Pivoted mount that stabilizes a camera on multiple axes",
+      "answer": "Gimbal"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Mechanical storage device with spinning platters inside a computer",
+      "answer": "Hard drive",
+      "alt": [
+        "hard disk",
+        "hdd"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Giant-screen cinema format with a tall aspect ratio and immersive sound",
+      "answer": "IMAX"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Lossy image format named after the Joint Photographic Experts Group",
+      "answer": "JPEG",
+      "alt": [
+        "jpg"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Combat sport blending kicks and punches under full-contact rules",
+      "answer": "Kickboxing"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Remote sensing technology using laser pulses to map distances",
+      "answer": "Lidar"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Common abbreviation for the top individual award in many sports leagues",
+      "answer": "MVP",
+      "alt": [
+        "most valuable player"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Short-range wireless standard used for tap-to-pay on smartphones",
+      "answer": "NFC",
+      "alt": [
+        "near field communication"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Display technology where each pixel emits its own light",
+      "answer": "OLED"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Adobe image editing software widely used by photographers and designers",
+      "answer": "Photoshop"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Standard keyboard layout named for its first six letters",
+      "answer": "QWERTY"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Volatile computer memory that clears when power is off",
+      "answer": "RAM",
+      "alt": [
+        "random access memory"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Solid-state storage device with no moving parts",
+      "answer": "SSD",
+      "alt": [
+        "solid state drive"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Six-point scoring play in American football",
+      "answer": "Touchdown"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Web address that specifies the location of an online resource",
+      "answer": "URL",
+      "alt": [
+        "uniform resource locator"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Immersive computer-generated environment experienced via headsets",
+      "answer": "VR",
+      "alt": [
+        "virtual reality"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Nintendo console with motion-sensing controllers released in 2006",
+      "answer": "Wii"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Brand whose name became a verb meaning to photocopy",
+      "answer": "Xerox"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Hardware security key commonly used for two-factor authentication",
+      "answer": "YubiKey"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Semiconductor component used for voltage regulation via reverse breakdown",
+      "answer": "Zener diode"
+    }
+  ]
+}
