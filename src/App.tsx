@@ -44,6 +44,8 @@ import ProfilePage from "./components/ProfilePage";
 import ArchivePage from "./components/ArchivePage";
 import SignInSheet from "./components/SignInSheet";
 import MicStatus from "./components/MicStatus";
+import FakeSttPanel from "./components/FakeSttPanel";
+import { FAKE_STT } from "./speech/fakeRecognizer";
 import type { MicHealth } from "./speech/PushAudioStreamManager";
 import {
   classifyMicError,
@@ -90,6 +92,9 @@ const TURN_SECONDS =180; // Default fallback (will be replaced by difficulty-bas
 
 function getTimeFromDifficulty(difficulty: DifficultyMode): number {
   const isStaging = isStagingMode();
+  // Staging/dev only: ?secs=240 for a real-length turn when testing.
+  const secs = Number(new URLSearchParams(location.search).get("secs"));
+  if (isStaging && secs > 0) return secs;
   switch (difficulty) {
     case "dificil": return isStaging ? 2 : 180; // 2 seconds in staging, 3 minutes in prod
     case "medio": return isStaging ? 15 : 240; // 15 seconds in staging, 4 minutes in prod
@@ -496,6 +501,7 @@ export default function App() {
   const ttsWarmRef = useRef<boolean>(false);
   const ttsPrimeAtRef = useRef<number>(0);
   const ttsPrimingRef = useRef<boolean>(false);
+  const ttsPrimeWaiterRef = useRef<null | (() => void)>(null);
   const ttsSeqRef = useRef<number>(0);
   const sttMicReadyChimeKeyRef = useRef<string | null>(null);
   const sttPreStartTimerRef = useRef<number | null>(null);
@@ -637,8 +643,12 @@ export default function App() {
     const now = Date.now();
     // iOS/Safari can "duck/ramp" TTS volume on the first utterance after inactivity or audio-session changes.
     // Prime with a near-silent, very short utterance so the *real* question starts at full volume.
+    // Already priming: the newest caller takes over (it used to be dropped,
+    // leaving the question unread).
+    ttsPrimeWaiterRef.current = onReady;
     if (ttsPrimingRef.current) return;
     if (ttsPrimeAtRef.current && now - ttsPrimeAtRef.current < 60_000) {
+      ttsPrimeWaiterRef.current = null;
       onReady();
       return;
     }
@@ -650,7 +660,9 @@ export default function App() {
       done = true;
       ttsPrimingRef.current = false;
       ttsPrimeAtRef.current = Date.now();
-      onReady();
+      const next = ttsPrimeWaiterRef.current;
+      ttsPrimeWaiterRef.current = null;
+      next?.();
     };
 
     try {
@@ -1684,6 +1696,9 @@ export default function App() {
       }
       setIsListening(true);
       setMicFailure(null);
+      // A retry scheduled by an earlier failure would tear this one down.
+      if (sttRestartTimerRef.current) window.clearTimeout(sttRestartTimerRef.current);
+      sttRestartTimerRef.current = null;
       sttRestartCountRef.current = 0;
       sttLog("started");
 
@@ -2000,8 +2015,12 @@ export default function App() {
 
   function speakCurrentQuestionThenListen() {
     // Paused for a speech drop: "Seguir" reads the current question instead.
-    if (micPausedRef.current) return;
+    if (micPausedRef.current) {
+      sttLog("tts: skipped, turn paused");
+      return;
+    }
     const ttsSeq = ++ttsSeqRef.current;
+    sttLog("tts: question", { seq: ttsSeq, letter: currentLetterRef.current });
     // Disarm mic during TTS - don't stop it to avoid audio ducking.
     // The mic stays running continuously; we just ignore its output during TTS.
     disarmListening();
@@ -2065,6 +2084,7 @@ export default function App() {
       const body = (m ? m[3] : t).trim();
 
       const finishAll = () => {
+        sttLog("tts: finished", { seq: ttsSeq, current: ttsSeqRef.current });
         if (ttsSeq !== ttsSeqRef.current) return;
         if (sttPreStartTimerRef.current) window.clearTimeout(sttPreStartTimerRef.current);
         sttPreStartTimerRef.current = null;
@@ -2101,24 +2121,26 @@ export default function App() {
         let done = false;
         let pollId: number | null = null;
         let maxTimer: number | null = null;
+        const startedAt = Date.now();
 
-        const finish = () => {
+        const finish = (why = "end") => {
           if (done) return;
           done = true;
+          sttLog("tts: chunk done", { why, ms: Date.now() - startedAt, chunk: chunk.slice(0, 24) });
           if (pollId) window.clearInterval(pollId);
           if (maxTimer) window.clearTimeout(maxTimer);
           onDone();
         };
-        utterance.onend = finish;
-        utterance.onerror = finish;
+        utterance.onend = () => finish("onend");
+        utterance.onerror = (e) => finish(`onerror:${e.error}`);
 
+        sttLog("tts: speak", { chunk: chunk.slice(0, 24), voice: v?.name ?? "default", voices: voices.length });
         window.speechSynthesis.speak(utterance);
 
         // Dynamic TTS end detection:
         // - Safari can have unreliable `onend` timing; also, we never want to "end early".
         // - We poll `speechSynthesis.speaking` and only finish when it truly stops.
         // We still include a generous max timeout as a safety valve.
-        const startedAt = Date.now();
         const words = chunk.split(/\s+/).filter(Boolean).length;
         // Adjust for speech rate: at rate 0.9, TTS is ~10% slower
         const maxMs = Math.min(45000, Math.max(8000, words * (1000 / rate)));
@@ -2127,10 +2149,10 @@ export default function App() {
           if (done) return;
           const now = Date.now();
           if (now - startedAt < 400) return; // avoid false negatives right after speak()
-          if (!window.speechSynthesis.speaking) finish();
+          if (!window.speechSynthesis.speaking) finish("not-speaking");
         }, 120);
 
-        maxTimer = window.setTimeout(finish, maxMs);
+        maxTimer = window.setTimeout(() => finish("max-timeout"), maxMs);
       };
 
       // Cancel any ongoing speech before starting the (intro + question) sequence.
@@ -3194,8 +3216,14 @@ export default function App() {
       if (remaining <= 0) return;
       setTimeLeft(remaining);
     }
+    // Claim the question *before* anything can yield: the auto-read effect fires
+    // as soon as phase flips to "playing", and if we then awaited a pending mic
+    // start below, both would read it and cancel each other (no question read,
+    // Pasalacabra stuck disabled).
+    lastSpokenKeyRef.current = playerId
+      ? `${playerId}:${activeSetIdRef.current}:${currentLetterRef.current}`
+      : null;
     setPhase("playing");
-    lastSpokenKeyRef.current = null;
     setFeedback(null);
 
     // If mic is still initializing (from handoff), wait for it to complete.
@@ -3205,9 +3233,6 @@ export default function App() {
     }
 
     // Speak the question directly in the user gesture (mobile Safari often blocks TTS from effects).
-    if (playerId) {
-      lastSpokenKeyRef.current = `${playerId}:${activeSetIdRef.current}:${currentLetterRef.current}`;
-    }
     speakCurrentQuestionThenListen();
 
     // Preload/prepare SFX in the background; don't await (keeps this handler "gesture-synchronous").
@@ -3614,6 +3639,7 @@ export default function App() {
         <span className="goat goat7"><CabraIcon pose="headbutt" /></span>
         <span className="goat goat8"><CabraIcon pose="stretch" /></span>
       </div>
+      {FAKE_STT && screen === "game" ? <FakeSttPanel answer={currentQA.answer} /> : null}
       {/* Confetti goats when game ends */}
       {confettiGoats.map((goat) => (
         <img

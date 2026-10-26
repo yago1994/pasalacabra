@@ -2,6 +2,7 @@
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import { getAzureAuth } from "./speechazure";
 import { SpeechServiceError } from "../platform/micDiagnostics";
+import { FAKE_STT, createFakeRecognizer } from "./fakeRecognizer";
 import { createPushAudioStreamManager, type MicHealth, type PushAudioStreamBundle } from "./PushAudioStreamManager";
 
 export type AzureRecognizerBundle = {
@@ -51,6 +52,7 @@ export interface CreateAzureRecognizerOptions {
 export async function createAzureRecognizer(
   options: CreateAzureRecognizerOptions = {}
 ): Promise<AzureRecognizerBundle> {
+  if (FAKE_STT) return createFakeRecognizer();
   let auth: Awaited<ReturnType<typeof getAzureAuth>>;
   try {
     auth = await getAzureAuth(false);
