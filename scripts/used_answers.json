@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-28",
-    "game_no": 240,
-    "answers": [
-      "astrolabio",
-      "botarga",
-      "capitel",
-      "dórico",
-      "eclíptica",
-      "fuste",
-      "güiro",
-      "heráldica",
-      "Ixchel",
-      "Jano",
-      "Lares",
-      "Medusa",
-      "naos",
-      "ñusta",
-      "ocaso",
-      "pinacoteca",
-      "Quimbaya",
-      "rosetón",
-      "sinopia",
-      "tríptico",
-      "uncial",
-      "vidriera",
-      "Xipe Tótec",
-      "Yemayá",
-      "Zeus"
-    ]
-  },
-  {
     "date": "2026-08-29",
     "game_no": 241,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Texcoco",
       "Yul Brynner",
       "Zenobia"
+    ]
+  },
+  {
+    "date": "2026-10-27",
+    "game_no": 300,
+    "answers": [
+      "Abre los ojos",
+      "Babel",
+      "cumbia",
+      "Dunkerque",
+      "Egipto",
+      "folclore",
+      "guion",
+      "hégira",
+      "isorritmia",
+      "jaleo",
+      "Los otros",
+      "Mar adentro",
+      "neuma",
+      "Muñeco diabólico",
+      "Olivares",
+      "pentagrama",
+      "quejío",
+      "Rosalía",
+      "soprano",
+      "Tordesillas",
+      "Ugarit",
+      "Volver",
+      "mexica",
+      "Ypres",
+      "zar"
     ]
   }
 ]
