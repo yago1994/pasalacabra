@@ -2585,6 +2585,11 @@ export default function App() {
         audio: false,
       });
       streamRef.current = stream;
+      const camTrack = stream.getVideoTracks()[0];
+      console.log("[camera] started", camTrack?.label ?? "");
+      camTrack?.addEventListener("mute", () => console.log("[camera] track muted by the system"));
+      camTrack?.addEventListener("unmute", () => console.log("[camera] track unmuted"));
+      camTrack?.addEventListener("ended", () => console.log("[camera] track ended"));
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
         await videoRef.current.play();
@@ -2595,6 +2600,7 @@ export default function App() {
       }
     } catch (err) {
       // Camera permission denied or error - just set stream to false
+      console.log("[camera] failed", String(err));
       setHasCameraStream(false);
     }
   }
@@ -2602,6 +2608,7 @@ export default function App() {
   function stopCamera() {
     const stream = streamRef.current;
     if (stream) {
+      console.log("[camera] stopped");
       for (const track of stream.getTracks()) track.stop();
     }
     streamRef.current = null;

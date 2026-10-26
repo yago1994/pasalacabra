@@ -209,11 +209,20 @@ export async function createPushAudioStreamManager(
   // audio session (a call, Siri, another tab, sometimes our own TTS). Nothing
   // reached Azure after that until the page was hidden and shown again.
   audioContext.onstatechange = () => {
-    log("AudioContext state:", audioContext.state);
+    console.log("[mic] audio context:", audioContext.state);
     if (!closed && audioContext.state !== "running" && audioContext.state !== "closed") {
       void audioContext.resume().catch(() => {});
     }
   };
+
+  // What iOS does to the mic track is the first thing to look at when audio stops.
+  const micTrack = stream.getAudioTracks()[0];
+  if (micTrack) {
+    micTrack.addEventListener("mute", () => console.log("[mic] track muted by the system"));
+    micTrack.addEventListener("unmute", () => console.log("[mic] track unmuted"));
+    micTrack.addEventListener("ended", () => console.log("[mic] track ended"));
+  }
+  console.log("[mic] capture ready", { sampleRate: audioContext.sampleRate, context: audioContext.state, reused: !streamOwned });
 
   // Get the native sample rate
   const nativeSampleRate = audioContext.sampleRate;
