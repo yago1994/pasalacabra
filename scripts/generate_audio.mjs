@@ -6,7 +6,8 @@
  *   SPEECH_KEY=… SPEECH_REGION=westeurope node scripts/generate_audio.mjs 2026-10-26 [more days…]
  *
  * Reads daily/es/<day>.json and writes audio-out/<set id>/: one MP3 per line,
- * named by a hash of its text, plus manifest.json ({ voice, files: { text: file } }).
+ * named by a hash of its text and of this script (so a regenerated clip gets a
+ * new URL and no cache serves the old one), plus manifest.json ({ voice, files: { text: file } }).
  * The game looks lines up by exact text (src/speech/azureTts.ts), so the lines
  * here must match what src/App.tsx says, character for character.
  *
@@ -85,7 +86,7 @@ async function generateDay(day) {
   let bytes = 0;
   let chars = 0;
   for (const text of linesForSet(set)) {
-    const name = createHash("sha1").update(`${VOICE}|${text}`).digest("hex").slice(0, 16) + ".mp3";
+    const name = createHash("sha1").update(`${GENERATOR}|${VOICE}|${text}`).digest("hex").slice(0, 16) + ".mp3";
     const audio = await synthesize(text);
     await writeFile(path.join(dir, name), audio);
     files[text] = name;
