@@ -8,12 +8,10 @@ name: Generate Question Audio
 # default westeurope).
 
 on:
-  # After every deploy. Daily sets reach main through a PR the bot merges, and
-  # pushes made with GITHUB_TOKEN don't start push workflows; Deploy runs
-  # after Generate Daily Set (workflow_run), so this runs after both.
-  workflow_run:
-    workflows: ["Deploy (prod + staging)"]
-    types: [completed]
+  # Called by Deploy after every production deploy (deploy.yml). Daily sets
+  # reach main through a PR the bot merges, and pushes made with GITHUB_TOKEN
+  # don't start push workflows; Deploy runs after Generate Daily Set.
+  workflow_call:
   # Safety net (and pruning) in case a run above was missed or failed.
   schedule:
     - cron: "17 */3 * * *"
@@ -41,6 +39,7 @@ jobs:
     env:
       # workflow_run and schedule always run main's copy of this file.
       DEST: ${{ github.ref_name == 'main' && 'audio' || 'audio-staging' }}
+    # (Called from Deploy, github.* describes Deploy's run.)
     steps:
       - uses: actions/checkout@v4
 
@@ -94,8 +93,9 @@ jobs:
         run: |
           # Deploy (peaceiris) doesn't retry a rejected push: let a running one finish first.
           for i in $(seq 1 30); do
-            busy=$(gh run list --repo "${{ github.repository }}" --workflow deploy.yml --json status \
-              --jq '[.[] | select(.status == "in_progress" or .status == "queued")] | length' 2>/dev/null || echo 0)
+            # Not counting the Deploy run that called this one.
+            busy=$(gh run list --repo "${{ github.repository }}" --workflow deploy.yml --json status,databaseId \
+              --jq '[.[] | select(.databaseId != ${{ github.run_id }}) | select(.status == "in_progress" or .status == "queued")] | length' 2>/dev/null || echo 0)
             [ "$busy" = "0" ] && break
             echo "Waiting for a deploy to finish…"
             sleep 10

@@ -55,3 +55,13 @@ jobs:
           destination_dir: ${{ github.ref_name == 'staging' && 'staging' || '' }}
           keep_files: true
           # force_orphan: true
+
+  # Question audio for the daily sets (generate-audio.yml), after each prod deploy.
+  audio:
+    needs: deploy
+    if: github.ref_name == 'main'
+    permissions:
+      contents: write
+      actions: read
+    uses: ./.github/workflows/generate-audio.yml
+    secrets: inherit
