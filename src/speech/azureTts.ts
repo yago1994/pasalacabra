@@ -204,9 +204,13 @@ export function setPauseMs(name: PauseName, ms: number | null) {
   }
 }
 
-// Pre-generated lines for the current set (scripts/generate_audio.mjs, published
-// to /audio/<set id>/). Generated at normal speed: playback speeds them up.
-let pregen: { base: string; voice: string; files: Record<string, string> } | null = null;
+// Pre-generated lines (scripts/generate_audio.mjs, published to /audio/<set id>/),
+// one manifest per set. Generated at normal speed: playback speeds them up.
+type Manifest = { base: string; voice: string; files: Record<string, string> };
+const manifests = new Map<string, Promise<Manifest | null>>();
+const loadedManifests = new Map<string, Manifest | null>();
+// The set being played: only its lines count as pre-generated.
+let currentSet: string | null = null;
 const pregenBytes = new Map<string, Promise<ArrayBuffer>>();
 
 function fetchPregen(url: string) {
@@ -219,40 +223,66 @@ function fetchPregen(url: string) {
   return p;
 }
 
-/** Load (and start downloading) the set's pre-generated audio, if there is any. */
-export async function loadPregeneratedAudio(setId: string): Promise<number> {
+async function fetchManifest(setId: string): Promise<Manifest | null> {
   // Staging's own generator runs publish to /audio-staging/, so experiments
   // there never change what prod players hear; prod's audio is the fallback.
   const roots = isStagingMode() ? ["/audio-staging/", "/audio/"] : ["/audio/"];
-  if (pregen && roots.some((r) => pregen!.base === `${r}${setId}/`)) return Object.keys(pregen.files).length;
-  pregen = null;
   for (const root of roots) {
     const base = `${root}${setId}/`;
     try {
       const res = await fetch(`${base}manifest.json`, { cache: "no-cache" });
       if (!res.ok) throw new Error(`manifest ${res.status}`);
       const m = (await res.json()) as { voice: string; files: Record<string, string> };
-      pregen = { base, voice: m.voice, files: m.files };
       console.log("[tts] pre-generated audio", { base, voice: m.voice, lines: Object.keys(m.files).length });
-      // One at a time in the background, so the first question isn't competing.
-      void (async () => {
-        for (const file of Object.values(m.files)) {
-          if (pregen?.base !== base) return;
-          await fetchPregen(base + file).catch(() => {});
-        }
-      })();
-      return Object.keys(m.files).length;
+      return { base, voice: m.voice, files: m.files };
     } catch (err) {
       console.log("[tts] no pre-generated audio here", { base, err: String(err) });
     }
   }
-  console.log("[tts] reading live", { set: setId });
-  return 0;
+  return null;
+}
+
+/** Fetch a set's manifest ahead of time (e.g. today's set when the app opens). */
+export function prefetchPregeneratedAudio(setId: string): Promise<Manifest | null> {
+  let p = manifests.get(setId);
+  if (!p) {
+    p = fetchManifest(setId).then((m) => {
+      loadedManifests.set(setId, m);
+      if (!m) manifests.delete(setId); // try again next time
+      return m;
+    });
+    manifests.set(setId, p);
+  }
+  return p;
+}
+
+/** The set now being played: use its audio, and start downloading the clips. */
+export async function loadPregeneratedAudio(setId: string): Promise<number> {
+  currentSet = setId;
+  const m = await prefetchPregeneratedAudio(setId);
+  if (!m || currentSet !== setId) return 0;
+  // One at a time in the background, so the first question isn't competing.
+  void (async () => {
+    for (const file of Object.values(m.files)) {
+      if (currentSet !== setId) return;
+      await fetchPregen(m.base + file).catch(() => {});
+    }
+  })();
+  return Object.keys(m.files).length;
 }
 
 function pregenUrl(text: string, voice: string) {
-  const file = pregen && pregen.voice === voice ? pregen.files[text] : undefined;
-  return file ? pregen!.base + file : null;
+  const m = currentSet ? loadedManifests.get(currentSet) : null;
+  const file = m && m.voice === voice ? m.files[text] : undefined;
+  return file ? m!.base + file : null;
+}
+
+/**
+ * Whether `text` has a pre-generated clip in the set being played. Lines that
+ * don't (custom games) are read by the device's voice: live Azure costs money.
+ */
+export function hasPregenerated(text: string, voice = getVoice()): boolean {
+  return pregenUrl(text.trim(), voice) !== null;
 }
 
 const SYNTH_TIMEOUT_MS = 10_000;

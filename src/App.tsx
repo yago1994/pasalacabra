@@ -48,7 +48,14 @@ import FakeSttPanel from "./components/FakeSttPanel";
 import { FAKE_STT } from "./speech/fakeRecognizer";
 import { getStagingSeconds } from "./env/stagingTime";
 import { SINGLE_AUDIO } from "./platform/audioMode";
-import { getPauseMs, getSpeechRate, loadPregeneratedAudio, playTts } from "./speech/azureTts";
+import {
+  getPauseMs,
+  getSpeechRate,
+  hasPregenerated,
+  loadPregeneratedAudio,
+  playTts,
+  prefetchPregeneratedAudio,
+} from "./speech/azureTts";
 import type { MicHealth } from "./speech/PushAudioStreamManager";
 import {
   classifyMicError,
@@ -376,6 +383,8 @@ export default function App() {
         (set) => {
           const id = set?.id ?? "set_01";
           dailySetIdRef.current = id;
+          // Its audio manifest too, so the first question can use it.
+          void prefetchPregeneratedAudio(id);
           return id;
         },
         (err) => {
@@ -624,8 +633,15 @@ export default function App() {
     }
   }
 
+  // Single-audio mode only reads with the device's voice when the set has no
+  // pre-generated audio (custom games); "Sí" is in every manifest.
+  function usesDeviceVoice() {
+    return !SINGLE_AUDIO || !hasPregenerated("Sí");
+  }
+
   function warmupSpeechSynthesisOnce() {
-    if (SINGLE_AUDIO) return; // no speechSynthesis at all in this mode
+    // iOS only lets speechSynthesis talk after a first use inside a tap.
+    if (!usesDeviceVoice()) return;
     if (ttsWarmRef.current) return;
     if (!("speechSynthesis" in window)) return;
     ttsWarmRef.current = true;
@@ -646,7 +662,7 @@ export default function App() {
   }
 
   function primeSpeechSynthesisIfNeeded(onReady: () => void) {
-    if (SINGLE_AUDIO || !("speechSynthesis" in window)) {
+    if (!usesDeviceVoice() || !("speechSynthesis" in window)) {
       onReady();
       return;
     }
@@ -1957,7 +1973,7 @@ export default function App() {
   function speakWithCallback(text: string, onDone: () => void, opts?: { rate?: number }) {
     const t = text.trim();
     const micCtx = micCtxRef.current;
-    if (SINGLE_AUDIO && t && micCtx && micCtx.state !== "closed") {
+    if (SINGLE_AUDIO && t && micCtx && micCtx.state !== "closed" && hasPregenerated(t)) {
       // Feedback ("Sí", "No… era X") through the mic's context too.
       stopSpeaking();
       let done = false;
@@ -2160,10 +2176,12 @@ export default function App() {
         setQuestionRead(true);
       };
 
-      // ?audio=single: Azure voice through the mic's context; Safari's voice if that fails.
+      // ?audio=single: the pre-generated Azure voice through the mic's context.
+      // Lines without a clip (custom games) and failures use the device's voice:
+      // reading them live with Azure would cost money.
       const speakChunk = (text: string, rate: number, onDone: () => void) => {
         const ctx = micCtxRef.current;
-        if (!SINGLE_AUDIO || !ctx || ctx.state === "closed") {
+        if (!SINGLE_AUDIO || !ctx || ctx.state === "closed" || !hasPregenerated(text)) {
           speakChunkBrowser(text, rate, onDone);
           return;
         }
@@ -2195,7 +2213,7 @@ export default function App() {
 
       const speakChunkBrowser = (text: string, rate: number, onDone: () => void) => {
         const chunk = text.trim();
-        if (!chunk) {
+        if (!chunk || !("speechSynthesis" in window)) {
           onDone();
           return;
         }
@@ -3057,6 +3075,9 @@ export default function App() {
   async function startDailyGame() {
     // Already loaded on open, so this normally doesn't await (see loadTodaysSet).
     const dailySetId = dailySetIdRef.current ?? (await loadTodaysSet());
+    // Its pre-generated audio is the voice from here on: no device-voice
+    // warm-up below (on iOS 27 any speechSynthesis use upsets the mic).
+    if (SINGLE_AUDIO) void loadPregeneratedAudio(dailySetId);
     // Check if today's daily game has already been played. Staging (and
     // localhost) can replay it as often as needed for testing.
     const gameNo = getDailyGameNo(new Date());
