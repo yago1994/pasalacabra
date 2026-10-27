@@ -259,6 +259,12 @@ export default function GameDetails({
           </div>
         )}
 
+        {/* Custom games aren't pre-recorded: they're read by the device's own voice. */}
+        <div className="answerReveal" style={{ marginTop: 8, fontSize: 13, opacity: 0.85 }}>
+          ℹ️ Los juegos personalizados se leen con la voz de tu dispositivo. Si en iPhone el
+          micrófono o la cámara fallan, prueba el Juego de hoy.
+        </div>
+
         {/* How to Play Drawer */}
         <div className="howToPlaySection" style={{ marginTop: 24 }}>
           <button
