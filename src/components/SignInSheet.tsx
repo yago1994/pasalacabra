@@ -128,6 +128,7 @@ export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSign
               </label>
               <input
                 id="signin-email"
+                className="signInEmail"
                 type="email"
                 required
                 autoComplete="email"
