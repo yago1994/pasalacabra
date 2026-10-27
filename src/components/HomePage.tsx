@@ -115,7 +115,7 @@ export default function HomePage({ onPlayGroup, onPlay, onOpenStats, onHowToPlay
             onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
             onClick={onPlayGroup}
           >
-            Crea tu proprio juego
+            Crea tu propio juego
           </button>
           {customNeedsAccount ? (
             <div style={{ marginTop: -4, textAlign: "center", fontSize: "clamp(12px, 3vw, 13px)", color: "rgba(255, 255, 255, 0.7)" }}>
