@@ -1,0 +1,186 @@
+{
+  "id": "set-2026-10-28",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Point in a planet’s orbit farthest from the Sun.",
+      "answer": "aphelion"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Gravitationally bound pair of stars orbiting a common center of mass.",
+      "answer": "binary star"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Type of pulsating star used as a standard candle for measuring cosmic distances.",
+      "answer": "Cepheid variable",
+      "alt": [
+        "Cepheid"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Change in observed wavelength due to relative motion, explaining astronomical redshifts and blueshifts.",
+      "answer": "Doppler effect"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Outermost layer of cells covering plant leaves and animal skin.",
+      "answer": "epidermis"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Whip-like cellular appendage used for movement by many bacteria and sperm cells.",
+      "answer": "flagellum"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Organelle that modifies and packages proteins in eukaryotic cells.",
+      "answer": "Golgi apparatus",
+      "alt": [
+        "Golgi complex"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Era after Alexander the Great when Greek culture spread across the Eastern Mediterranean.",
+      "answer": "Hellenistic period",
+      "alt": [
+        "Hellenistic Age"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Animal lacking a backbone.",
+      "answer": "invertebrate"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Elite infantry soldier of the Ottoman Empire recruited through devshirme.",
+      "answer": "Janissary",
+      "alt": [
+        "Janissaries"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Display of a cell’s complete chromosome set arranged in homologous pairs.",
+      "answer": "karyotype",
+      "alt": [
+        "karyogram"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "White blood cell central to adaptive immunity, including T and B cells.",
+      "answer": "lymphocyte"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Motor protein that interacts with actin to power muscle contraction.",
+      "answer": "myosin"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Basic building block of nucleic acids, made of a sugar, phosphate, and base.",
+      "answer": "nucleotide"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Birth name of the Roman leader who became Augustus.",
+      "answer": "Octavius",
+      "alt": [
+        "Gaius Octavius",
+        "Gaius Octavius Thurinus"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Visible surface of the Sun from which most light is emitted.",
+      "answer": "photosphere"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "First imperial unification of China under Shi Huangdi, 221–206 BCE.",
+      "answer": "Qin dynasty",
+      "alt": [
+        "Qin"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Shift of light toward longer wavelengths observed for distant galaxies.",
+      "answer": "redshift"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Stone coffin used in ancient Mediterranean cultures, often inscribed or decorated.",
+      "answer": "sarcophagus"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Membrane sacs inside chloroplasts where the light reactions of photosynthesis occur.",
+      "answer": "thylakoid"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Pyrimidine base found in RNA but not DNA.",
+      "answer": "uracil"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Membrane-bound organelle for storage and turgor pressure in plant cells.",
+      "answer": "vacuole"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Moon phase after full when illumination is decreasing but still exceeds half.",
+      "answer": "waning gibbous"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "1899–1901 anti-foreign uprising in Qing China.",
+      "answer": "Boxer Rebellion",
+      "alt": [
+        "Boxer Uprising"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Thermal recoil force that slowly alters the orbits of rotating asteroids.",
+      "answer": "Yarkovsky effect"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Ancient Iranian religion centered on the dualism of Ahura Mazda and Angra Mainyu.",
+      "answer": "Zoroastrianism"
+    }
+  ]
+}
