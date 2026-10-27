@@ -9,9 +9,12 @@ type Props = {
   onSignInWithApple: () => Promise<{ error: string | null }>;
   onSignInWithEmail: (email: string) => Promise<{ error: string | null }>;
   onSkip: () => void;
+  /** "custom": opened from "Crea tu propio juego", which needs an account. */
+  purpose?: "stats" | "custom";
 };
 
-export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSignInWithApple, onSignInWithEmail, onSkip }: Props) {
+export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSignInWithApple, onSignInWithEmail, onSkip, purpose = "stats" }: Props) {
+  const forCustom = purpose === "custom";
   const [showEmail, setShowEmail] = useState(false);
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "working" | "sent">("idle");
@@ -69,14 +72,17 @@ export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSign
           <CabraIcon pose="cool" size="1.3em" />
         </div>
         <h1 style={{ margin: 0, fontFamily: statsTheme.serif, fontSize: 30, fontWeight: 700, letterSpacing: "-0.01em" }}>
-          Guarda tus estadísticas
+          {forCustom ? "Crea tu propio juego" : "Guarda tus estadísticas"}
         </h1>
         <p style={{ margin: 0, fontSize: 16, lineHeight: 1.5, color: statsTheme.muted }}>
-          Crea una cuenta gratis para conservar tus juegos y tus estadísticas en todos tus dispositivos.
+          {forCustom
+            ? "Los juegos personalizados son para jugadores con cuenta. Es gratis y solo se tarda un momento."
+            : "Crea una cuenta gratis para conservar tus juegos y tus estadísticas en todos tus dispositivos."}
         </p>
       </div>
 
       <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 12 }}>
+        {forCustom ? <Benefit text="Juegos personalizados con tus temas y jugadores" /> : null}
         <Benefit text="Tus estadísticas, en todos tus dispositivos" />
         <Benefit text="Tu porcentaje de aciertos letra a letra" />
         <Benefit text="Acceso al archivo de juegos anteriores" />
@@ -122,6 +128,7 @@ export default function SignInSheet({ localGameCount, onSignInWithGoogle, onSign
               </label>
               <input
                 id="signin-email"
+                className="signInEmail"
                 type="email"
                 required
                 autoComplete="email"

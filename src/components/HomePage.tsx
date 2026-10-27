@@ -12,9 +12,11 @@ export interface HomePageProps {
   onOpenStats?: () => void;
   onHowToPlay?: () => void;
   onAbout?: () => void;
+  /** Custom games need an account: shows a hint under the button. */
+  customNeedsAccount?: boolean;
 }
 
-export default function HomePage({ onPlayGroup, onPlay, onOpenStats, onHowToPlay, onAbout }: HomePageProps) {
+export default function HomePage({ onPlayGroup, onPlay, onOpenStats, onHowToPlay, onAbout, customNeedsAccount }: HomePageProps) {
   const [showHowToPlay, setShowHowToPlay] = useState<boolean>(false);
   const [showAbout, setShowAbout] = useState<boolean>(false);
 
@@ -113,8 +115,13 @@ export default function HomePage({ onPlayGroup, onPlay, onOpenStats, onHowToPlay
             onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
             onClick={onPlayGroup}
           >
-            Crea tu proprio juego
+            Crea tu propio juego
           </button>
+          {customNeedsAccount ? (
+            <div style={{ marginTop: -4, textAlign: "center", fontSize: "clamp(12px, 3vw, 13px)", color: "rgba(255, 255, 255, 0.7)" }}>
+              Necesitas una cuenta gratuita
+            </div>
+          ) : null}
           {isStagingMode() ? <StagingTimeControl /> : null}
           {isStagingMode() ? <VoicePicker /> : null}
         </div>

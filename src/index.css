@@ -10,3 +10,10 @@ body {
   height: 100%;
   margin: 0;
 }
+
+/* The sign-in email field sits on a translucent white fill: the default grey
+   placeholder is barely readable there. */
+.signInEmail::placeholder {
+  color: #ffffff;
+  opacity: 0.8;
+}

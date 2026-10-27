@@ -38,6 +38,7 @@ import { formatDateLongES, getDailyGameNo } from "./lib/dailyIssue";
 import PermissionNotice, { type PermissionNoticeMode } from "./components/PermissionNotice";
 import { getMediaPermissionState, isAndroid } from "./platform/androidPermissions";
 import { useAccount } from "./account/context";
+import { setPendingCustomGame, takePendingCustomGame } from "./account/pendingCustomGame";
 import { computeStats } from "./stats/aggregate";
 import StatsSheet from "./components/StatsSheet";
 import ProfilePage from "./components/ProfilePage";
@@ -360,6 +361,8 @@ export default function App() {
   // the profile and the archive are screens of their own.
   const [statsOpen, setStatsOpen] = useState<boolean>(false);
   const [signInOpen, setSignInOpen] = useState<boolean>(false);
+  // Why the sign-in sheet is open: custom games need an account.
+  const [signInPurpose, setSignInPurpose] = useState<"stats" | "custom">("stats");
 
   const todayGameNo = useMemo(() => getDailyGameNo(new Date()), []);
   const stats = useMemo(() => computeStats(account.results), [account.results]);
@@ -405,6 +408,31 @@ export default function App() {
     setSignInOpen(false);
     setStatsOpen(true);
   }, []);
+
+  // Custom games are for signed-in players only. Signing in leaves the page
+  // (OAuth redirect, email link), so the wish to go there is kept on the
+  // device and honoured once the account is back. Builds without accounts
+  // (local dev with no Supabase) keep custom games open.
+  const customNeedsAccount = account.accountsEnabled && !account.signedIn;
+  function openCustomGame() {
+    if (!customNeedsAccount) {
+      setScreen("setup");
+      return;
+    }
+    setPendingCustomGame(true);
+    setSignInPurpose("custom");
+    setSignInOpen(true);
+  }
+  useEffect(() => {
+    if (!account.signedIn || !takePendingCustomGame()) return;
+    setSignInOpen(false);
+    setSignInPurpose("stats");
+    setScreen("setup");
+  }, [account.signedIn]);
+  // Signed out (or never signed in) on the setup screen: back home.
+  useEffect(() => {
+    if (screen === "setup" && customNeedsAccount && !account.loading) setScreen("home");
+  }, [screen, customNeedsAccount, account.loading]);
 
   // Only today's game can be started for now. The archive keeps the older
   // rows visible (and locked) so the shape of the feature is already there.
@@ -4002,7 +4030,12 @@ export default function App() {
             onSignInWithGoogle={account.signInWithGoogle}
             onSignInWithApple={account.signInWithApple}
             onSignInWithEmail={account.signInWithEmail}
-            onSkip={() => setSignInOpen(false)}
+            purpose={signInPurpose}
+            onSkip={() => {
+              setSignInOpen(false);
+              setSignInPurpose("stats");
+              setPendingCustomGame(false);
+            }}
           />
         </div>
       ) : null}
@@ -4042,7 +4075,8 @@ export default function App() {
 
       {screen === "home" ? (
         <HomePage 
-          onPlayGroup={() => setScreen("setup")}
+          onPlayGroup={openCustomGame}
+          customNeedsAccount={customNeedsAccount}
           onPlay={startDailyGame}
           onOpenStats={openStats}
           onHowToPlay={() => {
@@ -4113,7 +4147,7 @@ export default function App() {
             )}
           </div>
 
-          {screen === "setup" ? (
+          {screen === "setup" && !customNeedsAccount ? (
             <GameDetails
               setupPlayerCount={setupPlayerCount}
               setSetupPlayerCount={setSetupPlayerCount}
