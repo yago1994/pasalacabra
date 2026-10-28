@@ -1,0 +1,174 @@
+{
+  "id": "set-2026-10-29",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Portuguese archipelago in the North Atlantic known for volcanic lakes.",
+      "answer": "Azores"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Caribbean island nation whose capital is Bridgetown.",
+      "answer": "Barbados"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Mediterranean island nation divided since 1974, with Nicosia as capital.",
+      "answer": "Cyprus"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Genus of fruit flies widely used as a model organism in genetics.",
+      "answer": "Drosophila"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Landlocked African kingdom formerly called Swaziland.",
+      "answer": "Eswatini"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "The longest bone in the human body.",
+      "answer": "Femur"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Central African country on the Atlantic with Libreville as its capital.",
+      "answer": "Gabon"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "American 19th-century landscape painting movement associated with Thomas Cole.",
+      "answer": "Hudson River School"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "European island nation with Dublin as its capital.",
+      "answer": "Ireland"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Middle Eastern city sacred to Judaism, Christianity, and Islam.",
+      "answer": "Jerusalem"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Southern African desert spanning parts of Botswana, Namibia, and South Africa.",
+      "answer": "Kalahari Desert"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Voice box located at the top of the trachea.",
+      "answer": "Larynx"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "West African nation whose capital is Bamako and home to Timbuktu.",
+      "answer": "Mali"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Late 18th-century art movement that revived Greco-Roman ideals and emphasized simplicity and symmetry.",
+      "answer": "Neoclassicism"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Organ in female mammals where eggs develop and are released.",
+      "answer": "Ovary"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Muscular passage behind the mouth and nasal cavity leading to the esophagus and larynx.",
+      "answer": "Pharynx"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Common name for the thick-shelled clam native to the Atlantic coast of North America.",
+      "answer": "Quahog",
+      "alt": [
+        "Quahaug",
+        "Quohog"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Light-sensitive pigment found in the rod cells of the retina.",
+      "answer": "Rhodopsin"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Largest island in the Mediterranean Sea, separated from the mainland by the Strait of Messina.",
+      "answer": "Sicily"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Cold, treeless biome with permafrost found in Arctic and alpine regions.",
+      "answer": "Tundra"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Massive sandstone monolith also known as Ayers Rock in Australia.",
+      "answer": "Uluru"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Brilliant red artists pigment historically made from cinnabar.",
+      "answer": "Vermilion",
+      "alt": [
+        "Vermillion"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Stout Australian marsupial known for cube-shaped droppings.",
+      "answer": "Wombat"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Hormone that helps ligaments loosen during pregnancy and childbirth.",
+      "answer": "Relaxin"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Human chromosome that typically determines male sex.",
+      "answer": "Y chromosome",
+      "alt": [
+        "Y-chromosome"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Mosquito-borne virus linked to congenital microcephaly in the 2015–2016 outbreak.",
+      "answer": "Zika",
+      "alt": [
+        "Zika virus"
+      ]
+    }
+  ]
+}
