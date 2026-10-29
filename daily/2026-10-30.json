@@ -1,0 +1,179 @@
+{
+  "id": "set-2026-10-30",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Orange-fleshed stone fruit with velvety skin, often dried and used in jams",
+      "answer": "apricot"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Aromatic herb central to pesto sauce",
+      "answer": "basil"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Animal that primarily eats meat",
+      "answer": "carnivore"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Muscle that separates chest and abdomen and powers breathing",
+      "answer": "diaphragm"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Singer dubbed the 'King of Rock and Roll'",
+      "answer": "Elvis Presley",
+      "alt": [
+        "Elvis"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Anise-flavored bulb vegetable with feathery fronds",
+      "answer": "fennel"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Wheat protein complex that gives bread its chew",
+      "answer": "gluten"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Compound released during allergic reactions that causes itching and swelling",
+      "answer": "histamine"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Colored ring of the eye that controls pupil size",
+      "answer": "iris"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Chewy dried meat snack commonly sold in U.S. convenience stores",
+      "answer": "jerky",
+      "alt": [
+        "beef jerky"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Invasive vine nicknamed 'the vine that ate the South'",
+      "answer": "kudzu"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Enzyme that breaks down milk sugar",
+      "answer": "lactase"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Japanese rice cake made from pounded glutinous rice",
+      "answer": "mochi"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Contagious virus often causing outbreaks of vomiting on cruise ships",
+      "answer": "norovirus"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Hearty porridge made from rolled or steel-cut oats",
+      "answer": "oatmeal"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Gelling polysaccharide from fruit used to set jams",
+      "answer": "pectin"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Cephalopod with eight arms and two longer tentacles, known for ink release",
+      "answer": "squid"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Woody herb traditionally used with roast lamb and potatoes",
+      "answer": "rosemary"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Costly spice from Crocus stigmas that colors dishes golden",
+      "answer": "saffron"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Soybean curd used as a protein-rich meat substitute",
+      "answer": "tofu",
+      "alt": [
+        "bean curd"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "When multiple voices or instruments sound the same pitch together",
+      "answer": "unison"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Small membrane-bound sac that transports materials within cells",
+      "answer": "vesicle"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Instrument family that includes flute, clarinet, and oboe",
+      "answer": "woodwind",
+      "alt": [
+        "woodwinds"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Food additive from bacterial fermentation used to thicken sauces",
+      "answer": "xanthan gum",
+      "alt": [
+        "xanthan"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "British rock band that launched Clapton, Beck, and Page",
+      "answer": "Yardbirds",
+      "alt": [
+        "The Yardbirds"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Shaved citrus peel used to add fragrant oils to dishes",
+      "answer": "zest"
+    }
+  ]
+}
