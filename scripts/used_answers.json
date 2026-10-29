@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-08-31",
-    "game_no": 243,
-    "answers": [
-      "atlas",
-      "Bogotá",
-      "Canadá",
-      "drama",
-      "esófago",
-      "fotosíntesis",
-      "Ganges",
-      "hemisferio",
-      "iglú",
-      "Jordán",
-      "Letonia",
-      "musgo",
-      "nemátodo",
-      "Ñeembucú",
-      "ozono",
-      "pampa",
-      "quirquincho",
-      "reptil",
-      "suspense",
-      "tropismo",
-      "ungulado",
-      "virus",
-      "extinción",
-      "Yamuna",
-      "zooplancton"
-    ]
-  },
-  {
     "date": "2026-09-01",
     "game_no": 244,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Oaxaca",
       "Yecla",
       "zinnia"
+    ]
+  },
+  {
+    "date": "2026-10-30",
+    "game_no": 303,
+    "answers": [
+      "apertura",
+      "botarga",
+      "chotis",
+      "día sideral",
+      "equitación",
+      "folía",
+      "golf",
+      "hórreo",
+      "infrarrojo",
+      "jarabe tapatío",
+      "larguero",
+      "muiñeira",
+      "nutación",
+      "moño",
+      "orientación",
+      "planeta",
+      "quijada",
+      "resolución",
+      "sonda",
+      "tiempo muerto",
+      "unidad astronómica",
+      "vallas",
+      "exósfera",
+      "yincana",
+      "zancada"
     ]
   }
 ]
