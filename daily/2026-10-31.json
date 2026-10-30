@@ -1,0 +1,170 @@
+{
+  "id": "set-2026-10-31",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Pollen-bearing part of a stamen in flowering plants.",
+      "answer": "anther"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Dot traditionally worn on the forehead in South Asian culture.",
+      "answer": "bindi"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Legendary creature blamed for draining livestock in Latin American lore.",
+      "answer": "chupacabra"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Major Hindu festival of lights celebrated with lamps and fireworks.",
+      "answer": "diwali",
+      "alt": [
+        "deepavali"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Welsh festival of literature, music, and performance featuring bardic competitions.",
+      "answer": "eisteddfod"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Short tale conveying a moral, often with animals as characters.",
+      "answer": "fable"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Celtic language group that includes Irish and Scottish varieties.",
+      "answer": "gaelic",
+      "alt": [
+        "goidelic"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Traditional Korean dress characterized by a jeogori jacket and chima skirt.",
+      "answer": "hanbok"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Dome-shaped snow house associated with Inuit culture.",
+      "answer": "igloo"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Conifer whose berries flavor gin.",
+      "answer": "juniper"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Traditional Japanese robe secured with an obi.",
+      "answer": "kimono"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Aquatic flower sacred in many Asian traditions, noted for water-repellent leaves.",
+      "answer": "lotus"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Geometric spiritual diagram in Hinduism and Buddhism used for meditation.",
+      "answer": "mandala"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Sugary fluid produced by flowers to attract pollinators.",
+      "answer": "nectar"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Japanese art of paper folding to create figures.",
+      "answer": "origami"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Fine powder containing male gametes of seed plants.",
+      "answer": "pollen"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "High-collared, form-fitting Chinese dress with side slits.",
+      "answer": "qipao"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Melodic framework for improvisation in Indian classical music.",
+      "answer": "raga"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Long draped garment worn by many South Asian women.",
+      "answer": "sari",
+      "alt": [
+        "saree"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Spirit being or emblem representing a clan in some Indigenous traditions.",
+      "answer": "totem"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Duct that carries urine from kidney to bladder.",
+      "answer": "ureter"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Biologically produced poison injected by certain animals via bite or sting.",
+      "answer": "venom"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Shell beads traditionally used by Northeastern Indigenous peoples for ceremony and record-keeping.",
+      "answer": "wampum"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Leaf pigment responsible for yellow coloration, especially visible in autumn.",
+      "answer": "xanthophyll"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Discipline from India combining postures, breath control, and meditation.",
+      "answer": "yoga"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "School of Mahayana Buddhism emphasizing meditation and direct insight.",
+      "answer": "zen"
+    }
+  ]
+}
