@@ -1,0 +1,188 @@
+{
+  "id": "set-2026-11-01",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Site of the 1415 English victory over France in the Hundred Years' War.",
+      "answer": "Agincourt",
+      "alt": [
+        "Azincourt"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Ancient Mesopotamian city on the Euphrates, capital of Nebuchadnezzar II.",
+      "answer": "Babylon"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Spanish author of Don Quixote.",
+      "answer": "Cervantes",
+      "alt": [
+        "Miguel de Cervantes"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "1894 French political scandal involving the wrongful treason conviction of a Jewish army officer.",
+      "answer": "Dreyfus Affair"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Greek scholar who first calculated the Earth's circumference with remarkable accuracy.",
+      "answer": "Eratosthenes"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "American novelist who wrote The Sound and the Fury and As I Lay Dying.",
+      "answer": "Faulkner",
+      "alt": [
+        "William Faulkner"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Legendary king of Uruk and hero of a Mesopotamian epic.",
+      "answer": "Gilgamesh"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Greek writer known as the 'Father of History'.",
+      "answer": "Herodotus"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Moroccan explorer who journeyed across Africa, the Middle East, and Asia in the 14th century.",
+      "answer": "Ibn Battuta"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "First permanent English settlement in North America, founded in 1607 in Virginia.",
+      "answer": "Jamestown"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Bronze Age Minoan palace complex on Crete associated with the myth of the Labyrinth.",
+      "answer": "Knossos"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "French cave site renowned for Paleolithic wall paintings discovered in 1940.",
+      "answer": "Lascaux"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Mesoamerican civilization that built cities like Tikal and Chichen Itza.",
+      "answer": "Maya",
+      "alt": [
+        "Mayan"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Ancient Assyrian capital on the Tigris, famed for the library of Ashurbanipal.",
+      "answer": "Nineveh"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Spotted wild cat with ringed rosettes native to the Americas.",
+      "answer": "Ocelot"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Scaly ant-eating mammal that curls into a protective ball.",
+      "answer": "Pangolin"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "73-meter brick minaret in Delhi begun by a sultan around 1199.",
+      "answer": "Qutub Minar",
+      "alt": [
+        "Qutb Minar"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "13th-century Persian Sufi poet whose Masnavi is a classic of mystical literature.",
+      "answer": "Rumi",
+      "alt": [
+        "Jalal ad-Din Rumi",
+        "Jalaluddin Rumi",
+        "Mawlana Rumi"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "English playwright and poet known as the Bard of Avon.",
+      "answer": "Shakespeare",
+      "alt": [
+        "William Shakespeare"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Russian author of War and Peace and Anna Karenina.",
+      "answer": "Tolstoy",
+      "alt": [
+        "Leo Tolstoy",
+        "Lev Tolstoi"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Legendary horse-like creature with a single spiraled horn, symbolizing purity.",
+      "answer": "Unicorn"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Small, feathered dromaeosaurid dinosaur made famous by Jurassic Park.",
+      "answer": "Velociraptor"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "1815 battle that ended Napoleon's rule and saw his defeat by Wellington.",
+      "answer": "Waterloo"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Riddle-posing creature of Greek myth defeated by Oedipus.",
+      "answer": "Sphinx"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "1781 siege in Virginia that forced British surrender in the American Revolutionary War.",
+      "answer": "Yorktown"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Rigid airship used by Germany in the early 20th century and in World War I.",
+      "answer": "Zeppelin"
+    }
+  ]
+}

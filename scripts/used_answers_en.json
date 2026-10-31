@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-02",
-    "answers": [
-      "Argo",
-      "Brahms",
-      "Clarinet",
-      "Dune",
-      "Eminem",
-      "Foo Fighters",
-      "Gershwin",
-      "Holst",
-      "Ives",
-      "Joni Mitchell",
-      "Kubrick",
-      "Lumière brothers",
-      "Mahler",
-      "Nirvana",
-      "Oasis",
-      "Pulp Fiction",
-      "Quincy Jones",
-      "Radiohead",
-      "Sunspot",
-      "Taylor Swift",
-      "Universal Pictures",
-      "Verdi",
-      "Weezer",
-      "Pixar",
-      "Yamaha",
-      "Zappa"
-    ]
-  },
-  {
     "date": "2026-09-03",
     "answers": [
       "aardwolf",
@@ -1857,6 +1826,37 @@
       "xanthophyll",
       "yoga",
       "zen"
+    ]
+  },
+  {
+    "date": "2026-11-01",
+    "answers": [
+      "Agincourt",
+      "Babylon",
+      "Cervantes",
+      "Dreyfus Affair",
+      "Eratosthenes",
+      "Faulkner",
+      "Gilgamesh",
+      "Herodotus",
+      "Ibn Battuta",
+      "Jamestown",
+      "Knossos",
+      "Lascaux",
+      "Maya",
+      "Nineveh",
+      "Ocelot",
+      "Pangolin",
+      "Qutub Minar",
+      "Rumi",
+      "Shakespeare",
+      "Tolstoy",
+      "Unicorn",
+      "Velociraptor",
+      "Waterloo",
+      "Sphinx",
+      "Yorktown",
+      "Zeppelin"
     ]
   }
 ]
