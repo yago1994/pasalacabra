@@ -1,0 +1,169 @@
+{
+  "id": "set-2026-11-02",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Immune system protein that binds a specific antigen to mark it for destruction",
+      "answer": "antibody"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Flexible keratin plates used for filter feeding by certain whales",
+      "answer": "baleen"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Mollusk group that includes octopuses, squids, and cuttlefish",
+      "answer": "cephalopod"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Long-term process in which humans selectively breed wild species for desired traits",
+      "answer": "domestication"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Organism whose cells have a true nucleus enclosed by a membrane",
+      "answer": "eukaryote"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Bird of prey whose peregrine species reaches over 300 km/h in a dive",
+      "answer": "falcon"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Lesser ape known for brachiation and loud duetting songs",
+      "answer": "gibbon"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Animal that obtains energy exclusively from plants",
+      "answer": "herbivore"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Graceful African antelope famous for high leaps and black heel marks",
+      "answer": "impala"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Common name for the collared peccary of the Americas",
+      "answer": "javelina"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Rainforest mammal nicknamed the honey bear, with a prehensile tail",
+      "answer": "kinkajou"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Bloodsucking annelid historically used in medicine",
+      "answer": "leech"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Small carnivore renowned for agility in battles with cobras",
+      "answer": "mongoose"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Late Stone Age period characterized by farming, pottery, and polished stone tools",
+      "answer": "Neolithic",
+      "alt": [
+        "Neolithic Age",
+        "Neolithic Period",
+        "New Stone Age"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Animal with a diet consisting of both plant and animal matter",
+      "answer": "omnivore"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Small alpine relative of rabbits that stores hay piles for winter",
+      "answer": "pika"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Adjective meaning relating to horses",
+      "answer": "equine"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Viral disease that causes fatal encephalitis, often spread through bites",
+      "answer": "rabies"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Male reproductive structure of a flower bearing the anther and filament",
+      "answer": "stamen"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Parasitic flatworm composed of segments that absorb nutrients in the intestine",
+      "answer": "tapeworm"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Early Islamic dynasty that ruled from Damascus in the 7th and 8th centuries",
+      "answer": "Umayyad"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Infectious agent consisting of genetic material in a protein coat that replicates only inside cells",
+      "answer": "virus"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Snout-nosed beetle notorious for damaging stored grains",
+      "answer": "weevil"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Term for an adult female fox",
+      "answer": "vixen"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Australian freshwater crustacean similar to a crayfish",
+      "answer": "yabby"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "African mustelid also called the striped polecat, noted for a pungent defensive spray",
+      "answer": "zorilla",
+      "alt": [
+        "zoril"
+      ]
+    }
+  ]
+}
