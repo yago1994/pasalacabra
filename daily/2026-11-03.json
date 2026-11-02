@@ -1,0 +1,161 @@
+{
+  "id": "set-2026-11-03",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "London football club nicknamed the Gunners.",
+      "answer": "Arsenal"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "1995 historical epic that won Best Picture, starring Mel Gibson as William Wallace.",
+      "answer": "Braveheart"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Basic structural and functional unit of living organisms.",
+      "answer": "Cell"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Track and field combined event consisting of ten disciplines across two days.",
+      "answer": "Decathlon"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Negatively charged subatomic particle that orbits an atomic nucleus.",
+      "answer": "Electron"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "1996 crime film by the Coen brothers set in Minnesota and North Dakota.",
+      "answer": "Fargo"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Fundamental force responsible for attraction between masses.",
+      "answer": "Gravity"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Women's combined track and field event featuring seven disciplines.",
+      "answer": "Heptathlon"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Olympic team sport played on ice with sticks, skates, and a puck.",
+      "answer": "Ice hockey"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "2019 satirical film by Taika Waititi about a boy in the Hitler Youth with an imaginary friend.",
+      "answer": "Jojo Rabbit"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "2019 whodunit film written and directed by Rian Johnson, starring Daniel Craig as a Southern detective.",
+      "answer": "Knives Out"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "2016 musical romance starring Emma Stone and Ryan Gosling that won Best Director.",
+      "answer": "La La Land"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "2000 psychological thriller about a man with short-term memory loss told in reverse chronology.",
+      "answer": "Memento"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "1999 romantic comedy pairing Julia Roberts and Hugh Grant, set in a London neighborhood.",
+      "answer": "Notting Hill"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "2003 South Korean neo-noir revenge film directed by Park Chan-wook.",
+      "answer": "Oldboy"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Large biomolecule composed of amino acids folded into specific three-dimensional structures.",
+      "answer": "Protein"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Racket sport played in a four-walled court with a small hollow ball.",
+      "answer": "Squash"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Spontaneous emission of particles or energy from unstable atomic nuclei.",
+      "answer": "Radioactivity"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Cue sport on a large table using 15 reds, six colored balls, and a white cue ball.",
+      "answer": "Snooker"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "1997 romance–disaster film directed by James Cameron that won 11 Academy Awards.",
+      "answer": "Titanic"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Sprinter who set the men's 100 m world record at 9.58 seconds in 2009.",
+      "answer": "Usain Bolt"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "1958 thriller about an ex-detective with acrophobia, starring James Stewart and Kim Novak.",
+      "answer": "Vertigo"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Distance between successive crests or compressions in a periodic wave.",
+      "answer": "Wavelength"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Combat sport contested in a ring with padded gloves and weight classes.",
+      "answer": "Boxing"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Sudden loss of fine motor control in athletes, notoriously affecting golfers on short putts.",
+      "answer": "Yips"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "French playmaker who scored a famous 2002 Champions League final volley and captained his country in the 2006 World Cup final.",
+      "answer": "Zidane"
+    }
+  ]
+}
