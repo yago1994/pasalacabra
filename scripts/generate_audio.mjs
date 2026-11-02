@@ -47,6 +47,22 @@ function escapeXml(s) {
   return s.replace(/[<>&'"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" })[c]);
 }
 
+// How to say the letter in "Contiene la X.": read bare, Azure takes some
+// letters for Roman numerals ("la décima"). Same as src/speech/azureTts.ts.
+const LETTER_NAMES = {
+  B: "be", C: "ce", D: "de", F: "efe", G: "ge", H: "hache", I: "i", J: "jota", K: "ka", L: "ele", M: "eme",
+  N: "ene", Ñ: "eñe", P: "pe", Q: "cu", R: "erre", S: "ese", T: "te", V: "uve", W: "uve doble", X: "equis",
+  Y: "i griega", Z: "zeta",
+};
+const INTRO_LINE_RE = /^(Con la|Empieza por|Contiene la) ([A-ZÑ])\.$/;
+
+/** The line as SSML, with the intro's letter spelled out. */
+function ssmlText(text) {
+  const m = text.match(INTRO_LINE_RE);
+  const name = m && LETTER_NAMES[m[2]];
+  return name ? `${m[1]} <sub alias="${name}">${m[2]}</sub>.` : escapeXml(text);
+}
+
 // A game of speed: no silence around a line, and a short stop between
 // sentences. Same as src/speech/azureTts.ts (which also trims what's left).
 const SILENCE =
@@ -56,7 +72,7 @@ const SILENCE =
 async function synthesize(text, attempt = 1) {
   const ssml =
     `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="es-ES">` +
-    `<voice name="${VOICE}">${SILENCE}<lang xml:lang="es-ES">${escapeXml(text)}</lang></voice></speak>`;
+    `<voice name="${VOICE}">${SILENCE}<lang xml:lang="es-ES">${ssmlText(text)}</lang></voice></speak>`;
   const res = await fetch(`https://${REGION}.tts.speech.microsoft.com/cognitiveservices/v1`, {
     method: "POST",
     headers: {
