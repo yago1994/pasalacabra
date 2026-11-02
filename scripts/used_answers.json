@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-04",
-    "game_no": 247,
-    "answers": [
-      "anuros",
-      "bombardino",
-      "cloroplasto",
-      "diploide",
-      "ectotermo",
-      "fíbula",
-      "giberelina",
-      "hemocianina",
-      "iónico",
-      "jeringa",
-      "lisozima",
-      "miosina",
-      "nucleótido",
-      "añublo",
-      "otolito",
-      "plasma",
-      "quirópteros",
-      "refracción",
-      "samba",
-      "triptófano",
-      "uréter",
-      "vector",
-      "xantoma",
-      "yodo",
-      "zanfona"
-    ]
-  },
-  {
     "date": "2026-09-05",
     "game_no": 248,
     "answers": [
@@ -1857,6 +1826,37 @@
       "Luxemburgo",
       "yarda",
       "zoótropo"
+    ]
+  },
+  {
+    "date": "2026-11-03",
+    "game_no": 307,
+    "answers": [
+      "Arcturus",
+      "barítono",
+      "coro",
+      "Dione",
+      "euskera",
+      "funk",
+      "glissando",
+      "Hidra",
+      "Segovia",
+      "James Webb",
+      "latín",
+      "matemáticas",
+      "Apeninos",
+      "Logroño",
+      "Osa Mayor",
+      "preludio",
+      "quinta",
+      "Rigel",
+      "sol",
+      "tránsito",
+      "universo",
+      "vibrato",
+      "anexo",
+      "yute",
+      "zafiro"
     ]
   }
 ]
