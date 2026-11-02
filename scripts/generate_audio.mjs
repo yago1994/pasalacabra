@@ -47,13 +47,11 @@ function escapeXml(s) {
   return s.replace(/[<>&'"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" })[c]);
 }
 
-// How to say the letter in "Contiene la X.": read bare, Azure takes some
-// letters for Roman numerals ("la décima"). Same as src/speech/azureTts.ts.
-const LETTER_NAMES = {
-  B: "be", C: "ce", D: "de", F: "efe", G: "ge", H: "hache", I: "i", J: "jota", K: "ka", L: "ele", M: "eme",
-  N: "ene", Ñ: "eñe", P: "pe", Q: "cu", R: "erre", S: "ese", T: "te", V: "uve", W: "uve doble", X: "equis",
-  Y: "i griega", Z: "zeta",
-};
+// How to say the letter in "Contiene la X.": read bare, Azure takes the
+// Roman-numeral letters for numbers ("la décima"). Only those: the rest read
+// fine bare, and some read worse spelled out ("cu" came out as "CEO").
+// Same as src/speech/azureTts.ts.
+const LETTER_NAMES = { I: "i", V: "uve", X: "equis", L: "ele", C: "ce", D: "de", M: "eme" };
 const INTRO_LINE_RE = /^(Con la|Empieza por|Contiene la) ([A-ZÑ])\.$/;
 
 /** The line as SSML, with the intro's letter spelled out. */
