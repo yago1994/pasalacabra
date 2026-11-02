@@ -91,6 +91,22 @@ function escapeXml(s: string) {
   return s.replace(/[<>&'"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" })[c]!);
 }
 
+// How to say the letter in "Contiene la X.": read bare, Azure takes some
+// letters for Roman numerals ("la décima"). Same as scripts/generate_audio.mjs.
+const LETTER_NAMES: Record<string, string> = {
+  B: "be", C: "ce", D: "de", F: "efe", G: "ge", H: "hache", I: "i", J: "jota", K: "ka", L: "ele", M: "eme",
+  N: "ene", Ñ: "eñe", P: "pe", Q: "cu", R: "erre", S: "ese", T: "te", V: "uve", W: "uve doble", X: "equis",
+  Y: "i griega", Z: "zeta",
+};
+const INTRO_LINE_RE = /^(Con la|Empieza por|Contiene la) ([A-ZÑ])\.$/;
+
+/** The line as SSML, with the intro's letter spelled out. */
+function ssmlText(text: string) {
+  const m = text.match(INTRO_LINE_RE);
+  const name = m && LETTER_NAMES[m[2]];
+  return name ? `${m[1]} <sub alias="${name}">${m[2]}</sub>.` : escapeXml(text);
+}
+
 /** Pause marks used by the voice lab (and the generator): "/" short, "//" long. */
 export const SHORT_PAUSE_MS = 300;
 export const LONG_PAUSE_MS = 700;
@@ -113,7 +129,7 @@ const SILENCE =
 
 function ssml(text: string, rate: number, voice: string, pauseMarks: boolean) {
   const pct = Math.round((rate - 1) * 100);
-  const body = pauseMarks ? withPauses(escapeXml(text)) : escapeXml(text);
+  const body = pauseMarks ? withPauses(escapeXml(text)) : ssmlText(text.trim());
   return (
     `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="es-ES">` +
     `<voice name="${voice}">${SILENCE}<lang xml:lang="es-ES"><prosody rate="${pct >= 0 ? "+" : ""}${pct}%">${body}</prosody></lang></voice></speak>`
