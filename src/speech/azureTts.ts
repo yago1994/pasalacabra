@@ -92,10 +92,11 @@ function escapeXml(s: string) {
 }
 
 // How to say the letter in "Contiene la X.": read bare, Azure takes the
-// Roman-numeral letters for numbers ("la décima"). Only those: the rest read
-// fine bare, and some read worse spelled out ("cu" came out as "CEO").
+// Roman-numeral letters for numbers ("la décima"), and bare Q sounds odd.
+// Only those: the rest read fine bare. "cú" with the accent: "cu" came out
+// as "CEO".
 // Same as scripts/generate_audio.mjs.
-const LETTER_NAMES: Record<string, string> = { I: "i", V: "uve", X: "equis", L: "ele", C: "ce", D: "de", M: "eme" };
+const LETTER_NAMES: Record<string, string> = { I: "i", V: "uve", X: "equis", L: "ele", C: "ce", D: "de", M: "eme", Q: "cú" };
 const INTRO_LINE_RE = /^(Con la|Empieza por|Contiene la) ([A-ZÑ])\.$/;
 
 /** The line as SSML, with the intro's letter spelled out. */
