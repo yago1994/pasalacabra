@@ -1,0 +1,167 @@
+{
+  "id": "set-2026-11-04",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Large ocean-going seabird famed for exceptionally long wingspans.",
+      "answer": "albatross"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Burrowing mammal with bold black-and-white facial stripes native to Europe.",
+      "answer": "badger"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "North American name for the reindeer.",
+      "answer": "caribou"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Marine mammal related to the manatee found in the Indo-Pacific.",
+      "answer": "dugong"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Small, pointy-eared being from Germanic and Norse tradition.",
+      "answer": "elf"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Bioluminescent beetle commonly seen flashing on summer nights.",
+      "answer": "firefly"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Common aquarium fish selectively bred for orange coloration.",
+      "answer": "goldfish"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Small rodent often kept as a pet that stores food in cheek pouches.",
+      "answer": "hamster"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Larva of a geometer moth that moves by looping its body.",
+      "answer": "inchworm"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Professional rider in horse racing.",
+      "answer": "jockey"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Australian kingfisher known for a call that sounds like loud laughter.",
+      "answer": "kookaburra"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Small red beetle with black spots, common in gardens.",
+      "answer": "ladybug",
+      "alt": [
+        "ladybird"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Mythical being with a human upper body and a fish tail.",
+      "answer": "mermaid"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Cephalopod with a chambered spiral shell used for buoyancy.",
+      "answer": "nautilus"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Forest-dwelling relative of the giraffe with striped legs from the Congo.",
+      "answer": "okapi"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Seabird with a colorful beak that nests in cliffs and burrows.",
+      "answer": "puffin"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Olympic sport category that includes show jumping and dressage.",
+      "answer": "equestrian"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Ground-dwelling cuckoo of North American deserts famous for speed.",
+      "answer": "roadrunner"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "North American folklore creature said to be a giant, hairy, human-like figure.",
+      "answer": "sasquatch"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Mythical being from Scandinavian folklore, often dwelling in mountains or caves.",
+      "answer": "troll"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Running race longer than the standard marathon distance.",
+      "answer": "ultramarathon"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Critically endangered porpoise native to the Gulf of California.",
+      "answer": "vaquita"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Slim sighthound breed developed for racing and coursing.",
+      "answer": "whippet"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Horned desert antelope of Africa and Arabia with long, nearly straight, parallel horns.",
+      "answer": "oryx"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Small toy breed with a long silky blue-and-tan coat.",
+      "answer": "yorkshire terrier",
+      "alt": [
+        "yorkie"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "European predatory freshwater fish related to perch and pike.",
+      "answer": "zander"
+    }
+  ]
+}
