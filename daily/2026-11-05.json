@@ -1,0 +1,180 @@
+{
+  "id": "set-2026-11-05",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Ancient calculating device of rods and beads used for arithmetic.",
+      "answer": "Abacus"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Pattern of parallel lines scanned to identify products at checkout.",
+      "answer": "Barcode",
+      "alt": [
+        "Bar code"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Program that translates source code into machine code.",
+      "answer": "Compiler"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Early photographic process using silvered copper plates introduced in 1839.",
+      "answer": "Daguerreotype"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Vertical transport device invented by Elisha Otis.",
+      "answer": "Elevator"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Splitting of a heavy atomic nucleus that releases energy.",
+      "answer": "Fission"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Science of Earth's physical structure, history, and rocks.",
+      "answer": "Geology"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Testable tentative explanation in the scientific method.",
+      "answer": "Hypothesis"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Tendency of an object to resist changes in motion.",
+      "answer": "Inertia"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Early programmable loom that used punched cards in the 1800s.",
+      "answer": "Jacquard loom",
+      "alt": [
+        "Jacquard"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Noble gas used in lighting with atomic number 36.",
+      "answer": "Krypton"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Member of a 19th‑century English movement that destroyed textile machinery.",
+      "answer": "Luddite"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Central integrated circuit that performs computations in a computer.",
+      "answer": "Microprocessor"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Prestigious international award first presented in 1901 for achievements in physics, chemistry, medicine, literature, and peace.",
+      "answer": "Nobel Prize"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "SI unit of electrical resistance.",
+      "answer": "Ohm"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Antibiotic discovered by Alexander Fleming in 1928.",
+      "answer": "Penicillin"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Branch of physics describing matter and energy at atomic and subatomic scales.",
+      "answer": "Quantum mechanics",
+      "alt": [
+        "Quantum physics"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "System that uses radio waves to detect the position and speed of objects.",
+      "answer": "Radar",
+      "alt": [
+        "RADAR"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "First artificial Earth satellite launched by the USSR in 1957.",
+      "answer": "Sputnik"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Long‑distance electrical communication system developed by Samuel Morse.",
+      "answer": "Telegraph"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "German submarine used in World War I and World War II.",
+      "answer": "U-boat",
+      "alt": [
+        "U boat",
+        "Uboat"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Physical quantity characterized by both magnitude and direction.",
+      "answer": "Vector"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Pioneers who achieved the first powered, controlled airplane flight in 1903.",
+      "answer": "Wright brothers",
+      "alt": [
+        "Wright Bros"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Gemstone variety of chrysoberyl known for dramatic green‑to‑red color change.",
+      "answer": "Alexandrite"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Viral hemorrhagic disease transmitted by Aedes mosquitoes.",
+      "answer": "Yellow fever"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Microporous aluminosilicate mineral used as a catalyst and water softener.",
+      "answer": "Zeolite"
+    }
+  ]
+}
