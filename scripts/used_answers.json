@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-07",
-    "game_no": 250,
-    "answers": [
-      "atún",
-      "batuta",
-      "clarinete",
-      "doblaje",
-      "escena",
-      "fotofobia",
-      "gaviota",
-      "hígado",
-      "idiófono",
-      "jazz",
-      "lactasa",
-      "marimba",
-      "níspero",
-      "jalapeño",
-      "ornitorrinco",
-      "púa",
-      "quena",
-      "ritmo",
-      "semicorchea",
-      "tapir",
-      "urticante",
-      "valva",
-      "xenofobia",
-      "yódel",
-      "zarzuela"
-    ]
-  },
-  {
     "date": "2026-09-08",
     "game_no": 251,
     "answers": [
@@ -1857,6 +1826,37 @@
       "exosoma",
       "yodo",
       "zoología"
+    ]
+  },
+  {
+    "date": "2026-11-06",
+    "game_no": 310,
+    "answers": [
+      "Avatar",
+      "Bollywood",
+      "cráter",
+      "Dolby Digital",
+      "estrella",
+      "filmoteca",
+      "galaxia",
+      "Hollywood",
+      "islam",
+      "Jerusalén",
+      "liberalismo",
+      "monarquía",
+      "nebulosa",
+      "España",
+      "Osa Menor",
+      "Pixar",
+      "Qing",
+      "Resnais",
+      "Sistema Solar",
+      "Trento",
+      "Urartu",
+      "Venecia",
+      "excentricidad",
+      "Yalta",
+      "zodíaco"
     ]
   }
 ]
