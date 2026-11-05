@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-07",
-    "answers": [
-      "Albedo",
-      "Bosphorus",
-      "Caucasus",
-      "Dnieper",
-      "Ebro",
-      "Fauvism",
-      "Gaia",
-      "Hokusai",
-      "Ionian Sea",
-      "Jutland",
-      "Karnak",
-      "Loire",
-      "Mimas",
-      "Namib Desert",
-      "Oxbow lake",
-      "Pegasus",
-      "Quatrefoil",
-      "Rhine",
-      "Sumatra",
-      "Thames",
-      "Udaipur",
-      "Vistula",
-      "Wadi",
-      "Praxiteles",
-      "Yayoi Kusama",
-      "Zagros Mountains"
-    ]
-  },
-  {
     "date": "2026-09-08",
     "answers": [
       "archipelago",
@@ -1857,6 +1826,37 @@
       "Alexandrite",
       "Yellow fever",
       "Zeolite"
+    ]
+  },
+  {
+    "date": "2026-11-06",
+    "answers": [
+      "Aardvark",
+      "Basophil",
+      "Coelacanth",
+      "Diploid",
+      "Estuary",
+      "Fibrin",
+      "Guanine",
+      "Hammurabi",
+      "Ichthyology",
+      "Jerboa",
+      "Kakapo",
+      "Lichen",
+      "Mendel",
+      "Notochord",
+      "Oviparity",
+      "Primate",
+      "Quorum sensing",
+      "Rosetta Stone",
+      "Salamander",
+      "Trilobite",
+      "Ultrasound",
+      "Ventricle",
+      "Wildebeest",
+      "Taxon",
+      "Yucca",
+      "Zygomatic arch"
     ]
   }
 ]

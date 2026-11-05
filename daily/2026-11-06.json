@@ -1,0 +1,180 @@
+{
+  "id": "set-2026-11-06",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Nocturnal African mammal that feeds on ants with a long sticky tongue.",
+      "answer": "Aardvark"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Circulating granulocyte that releases histamine during allergic reactions.",
+      "answer": "Basophil"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Lobe-finned fish once thought extinct until rediscovered in 1938.",
+      "answer": "Coelacanth"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Having two sets of chromosomes, one from each parent.",
+      "answer": "Diploid"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Coastal habitat at a river mouth where freshwater mixes with seawater.",
+      "answer": "Estuary"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Insoluble protein that forms the mesh of a blood clot.",
+      "answer": "Fibrin"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "One of the four DNA bases that pairs with cytosine.",
+      "answer": "Guanine"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Babylonian king renowned for a codified set of laws.",
+      "answer": "Hammurabi"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Branch of biology focused on the study of fishes.",
+      "answer": "Ichthyology"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Long-tailed Afro-Eurasian desert rodent that hops on powerful hind legs.",
+      "answer": "Jerboa"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Flightless nocturnal parrot native to New Zealand.",
+      "answer": "Kakapo",
+      "alt": [
+        "kākāpō"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Composite organism of a fungus and an alga or cyanobacterium.",
+      "answer": "Lichen"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Monk whose pea experiments laid the foundations of genetics.",
+      "answer": "Mendel",
+      "alt": [
+        "gregor mendel"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Flexible rod supporting the body in chordate embryos.",
+      "answer": "Notochord"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Reproductive mode in which eggs develop outside the mother's body.",
+      "answer": "Oviparity",
+      "alt": [
+        "oviparous"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Member of the mammalian order that includes monkeys, apes, and humans.",
+      "answer": "Primate"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Bacterial communication via autoinducer molecules that triggers coordinated group behaviors.",
+      "answer": "Quorum sensing",
+      "alt": [
+        "quorum-sensing"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Granodiorite stele that enabled the decipherment of Egyptian hieroglyphs.",
+      "answer": "Rosetta Stone"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Common name for members of the amphibian order Caudata.",
+      "answer": "Salamander"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Extinct marine arthropod with a three-lobed exoskeleton common in Paleozoic fossils.",
+      "answer": "Trilobite"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Imaging method using high-frequency sound waves to visualize internal tissues in real time.",
+      "answer": "Ultrasound",
+      "alt": [
+        "ultrasonography",
+        "sonography"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Lower chamber of the heart that pumps blood out.",
+      "answer": "Ventricle"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Antelope famous for massive Serengeti migrations.",
+      "answer": "Wildebeest",
+      "alt": [
+        "gnu"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Any named unit in biological classification, such as species or genus.",
+      "answer": "Taxon"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Genus of spiky-leaved desert plants pollinated by a namesake moth.",
+      "answer": "Yucca"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Bony arch of the cheek formed by the temporal and malar bones.",
+      "answer": "Zygomatic arch"
+    }
+  ]
+}
