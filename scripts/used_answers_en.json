@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-08",
-    "answers": [
-      "archipelago",
-      "barometer",
-      "cirrus",
-      "doldrums",
-      "earthquake",
-      "floodplain",
-      "geyser",
-      "horizon",
-      "isthmus",
-      "jetty",
-      "karst",
-      "lagoon",
-      "meander",
-      "nitrate",
-      "observatory",
-      "peninsula",
-      "quarantine",
-      "reef",
-      "stratosphere",
-      "trade winds",
-      "upwelling",
-      "valley",
-      "weathering",
-      "oxide",
-      "yardang",
-      "zoetrope"
-    ]
-  },
-  {
     "date": "2026-09-09",
     "answers": [
       "Aesop",
@@ -1857,6 +1826,37 @@
       "Taxon",
       "Yucca",
       "Zygomatic arch"
+    ]
+  },
+  {
+    "date": "2026-11-07",
+    "answers": [
+      "arugula",
+      "biryani",
+      "chimichurri",
+      "Decameron",
+      "Eton mess",
+      "fufu",
+      "gazpacho",
+      "harissa",
+      "injera",
+      "jalebi",
+      "knish",
+      "laksa",
+      "macaron",
+      "Neruda",
+      "oolong",
+      "pancetta",
+      "qawwali",
+      "ricotta",
+      "samosa",
+      "tagine",
+      "Upanishads",
+      "vichyssoise",
+      "Welsh rarebit",
+      "xiao long bao",
+      "Yorkshire pudding",
+      "Zinfandel"
     ]
   }
 ]

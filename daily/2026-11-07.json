@@ -1,0 +1,190 @@
+{
+  "id": "set-2026-11-07",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Peppery salad green popular in Mediterranean cuisine.",
+      "answer": "arugula",
+      "alt": [
+        "rocket"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Spiced rice dish layered with meat or vegetables in South Asian cuisine.",
+      "answer": "biryani",
+      "alt": [
+        "biriyani"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Herb sauce from Argentina served with grilled meats.",
+      "answer": "chimichurri"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Fourteenth-century story collection by Boccaccio.",
+      "answer": "Decameron"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "British dessert of crushed meringue, strawberries, and cream.",
+      "answer": "Eton mess"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "West African staple made by pounding starchy foods into a smooth dough.",
+      "answer": "fufu",
+      "alt": [
+        "foofoo"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Chilled Spanish tomato soup from Andalusia.",
+      "answer": "gazpacho"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "North African chili paste used to spice couscous and stews.",
+      "answer": "harissa"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Spongy sourdough flatbread essential to Ethiopian cuisine.",
+      "answer": "injera"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Coiled Indian sweet deep-fried and soaked in syrup.",
+      "answer": "jalebi"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Ashkenazi pastry stuffed with potato or kasha, often baked or fried.",
+      "answer": "knish"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Spicy Southeast Asian noodle soup with coconut milk or tamarind.",
+      "answer": "laksa"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "French almond meringue sandwich cookie with ganache filling.",
+      "answer": "macaron"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Chilean Nobel laureate poet of Twenty Love Poems and a Song of Despair.",
+      "answer": "Neruda",
+      "alt": [
+        "Pablo Neruda"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Partially oxidized Chinese tea between green and black.",
+      "answer": "oolong"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Italian cured pork belly used to flavor pasta sauces.",
+      "answer": "pancetta"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Devotional music associated with Sufi shrines in South Asia.",
+      "answer": "qawwali",
+      "alt": [
+        "qawali",
+        "qawwālī"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Soft Italian cheese traditionally made from whey.",
+      "answer": "ricotta"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Triangular pastry filled with spiced potatoes and peas, deep-fried and served with chutney.",
+      "answer": "samosa"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Moroccan slow-cooked stew named after its conical earthenware pot.",
+      "answer": "tagine",
+      "alt": [
+        "tajine"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Ancient Sanskrit philosophical texts forming the end of the Vedas.",
+      "answer": "Upanishads",
+      "alt": [
+        "Upanisads"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Chilled puréed soup of leeks, potatoes, and cream.",
+      "answer": "vichyssoise"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Savory dish of toasted bread topped with a cheese and ale sauce.",
+      "answer": "Welsh rarebit",
+      "alt": [
+        "Welsh rabbit"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Chinese soup dumplings with broth trapped inside the wrapper.",
+      "answer": "xiao long bao",
+      "alt": [
+        "xiaolongbao",
+        "XLB"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "British batter side dish baked to puff alongside a roast.",
+      "answer": "Yorkshire pudding"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Red wine grape variety prominent in California.",
+      "answer": "Zinfandel"
+    }
+  ]
+}
