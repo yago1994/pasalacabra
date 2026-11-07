@@ -1,0 +1,173 @@
+{
+  "id": "set-2026-11-08",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "In biology, an invertebrate with a segmented body and jointed appendages, such as an insect or spider.",
+      "answer": "Arthropod"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Renaissance painter of The Birth of Venus.",
+      "answer": "Botticelli"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Tough polysaccharide forming insect exoskeletons and fungal cell walls.",
+      "answer": "Chitin"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "2021 science-fiction film directed by Denis Villeneuve.",
+      "answer": "Dune",
+      "alt": [
+        "Dune: Part One"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Hard, highly mineralized outer layer of a tooth.",
+      "answer": "Enamel"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "2013 Disney animated film featuring sisters Anna and Elsa.",
+      "answer": "Frozen"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Reproductive cell that fuses during fertilization.",
+      "answer": "Gamete"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Upper arm bone between shoulder and elbow.",
+      "answer": "Humerus"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "2015 Pixar film set inside the mind of a girl, personifying emotions.",
+      "answer": "Inside Out"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Middle section of the small intestine between the duodenum and the ileum.",
+      "answer": "Jejunum"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Organ that filters blood and helps regulate fluid balance.",
+      "answer": "Kidney"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Italian Renaissance master who painted The Last Supper in Milan.",
+      "answer": "Leonardo da Vinci",
+      "alt": [
+        "Leonardo"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "French Fauvist painter known for The Dance and bold use of color.",
+      "answer": "Matisse"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Edward Hopper’s 1942 painting of a late-night diner.",
+      "answer": "Nighthawks"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "1960s movement employing visual illusions, associated with Bridget Riley.",
+      "answer": "Op art",
+      "alt": [
+        "Optical art"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Organ that nourishes a fetus by exchanging nutrients and wastes with the mother.",
+      "answer": "Placenta"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Feather pen used for writing and drawing before metal nibs became common.",
+      "answer": "Quill"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "French sculptor of The Thinker and The Kiss.",
+      "answer": "Rodin"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "2012 James Bond film featuring the villain Raoul Silva.",
+      "answer": "Skyfall"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Endocrine gland in the neck that secretes T3 and T4.",
+      "answer": "Thyroid"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Tube that carries urine from the bladder to the outside of the body.",
+      "answer": "Urethra"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Spanish Golden Age painter of Las Meninas.",
+      "answer": "Velázquez",
+      "alt": [
+        "Velazquez"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "2014 drama about an ambitious drummer and his relentless teacher.",
+      "answer": "Whiplash"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Long nerve fiber that conducts impulses away from the cell body.",
+      "answer": "Axon"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Conceptual and performance artist who collaborated with John Lennon.",
+      "answer": "Yoko Ono"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "1963 home movie that famously captured the Kennedy assassination.",
+      "answer": "Zapruder film"
+    }
+  ]
+}
