@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-09",
-    "game_no": 252,
-    "answers": [
-      "arpa",
-      "balada",
-      "cúmulo",
-      "dragón",
-      "eclipse",
-      "falsete",
-      "gong",
-      "helio",
-      "isa",
-      "jota",
-      "lira",
-      "milonga",
-      "nana",
-      "cabañuelas",
-      "ópera",
-      "pandero",
-      "qanún",
-      "rap",
-      "sitar",
-      "tambor",
-      "ukelele",
-      "vals",
-      "mixolidio",
-      "payador",
-      "zortziko"
-    ]
-  },
-  {
     "date": "2026-09-10",
     "game_no": 253,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xilófono",
       "yoruba",
       "zarzuela"
+    ]
+  },
+  {
+    "date": "2026-11-08",
+    "game_no": 312,
+    "answers": [
+      "alfarería",
+      "basalto",
+      "califato",
+      "despotismo ilustrado",
+      "epidermis",
+      "franquismo",
+      "gimnosperma",
+      "herbario",
+      "impasto",
+      "jugo gástrico",
+      "laca",
+      "menhir",
+      "naíf",
+      "acuñación",
+      "oligarquía",
+      "policromía",
+      "Quimbaya",
+      "ribosa",
+      "sufragio",
+      "tetrarquía",
+      "uréter",
+      "voluta",
+      "xantofila",
+      "mayólica",
+      "zimógeno"
     ]
   }
 ]
