@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-10",
-    "answers": [
-      "Antigone",
-      "Bastille",
-      "Canterbury Tales",
-      "Domesday Book",
-      "Elizabeth II",
-      "Florence Nightingale",
-      "Grimm Brothers",
-      "Helen of Troy",
-      "Ivanhoe",
-      "Jean Valjean",
-      "Kublai Khan",
-      "Le Morte d'Arthur",
-      "Machiavelli",
-      "Nibelungenlied",
-      "Oedipus Rex",
-      "Punic Wars",
-      "Qing dynasty",
-      "Raskolnikov",
-      "Salem witch trials",
-      "Tartuffe",
-      "Uncle Tom's Cabin",
-      "Vanity Fair",
-      "War and Peace",
-      "Xenophon",
-      "Yamato period",
-      "Zealots"
-    ]
-  },
-  {
     "date": "2026-09-11",
     "answers": [
       "aperture",
@@ -1857,6 +1826,37 @@
       "Axon",
       "Yoko Ono",
       "Zapruder film"
+    ]
+  },
+  {
+    "date": "2026-11-09",
+    "answers": [
+      "Aachen",
+      "Baghdad",
+      "Carthage",
+      "Dardanelles",
+      "Edo",
+      "Fez",
+      "Gaul",
+      "Hattusa",
+      "Inca",
+      "Jaipur",
+      "Karnak",
+      "Lindisfarne",
+      "Memphis",
+      "Nara",
+      "Orkney",
+      "Persepolis",
+      "Qattara Depression",
+      "Rurik",
+      "Samarkand",
+      "Teotihuacan",
+      "Uruk",
+      "Valkyrie",
+      "Wessex",
+      "Xi'an",
+      "Yucatán Peninsula",
+      "Zagros Mountains"
     ]
   }
 ]

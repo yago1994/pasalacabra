@@ -1,0 +1,197 @@
+{
+  "id": "set-2026-11-09",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Imperial city where Charlemagne is buried and many Holy Roman Emperors were crowned.",
+      "answer": "Aachen",
+      "alt": [
+        "Aix-la-Chapelle"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Abbasid capital on the Tigris founded in the 8th century.",
+      "answer": "Baghdad"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Phoenician-founded North African city and rival of Rome destroyed in 146 BCE.",
+      "answer": "Carthage"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Narrow strait linking the Aegean Sea to the Sea of Marmara and site of the WWI Gallipoli campaign.",
+      "answer": "Dardanelles",
+      "alt": [
+        "Hellespont"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Former name of Japan’s capital prior to the Meiji Restoration.",
+      "answer": "Edo"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Historic Moroccan city home to the medieval University of al-Qarawiyyin.",
+      "answer": "Fez",
+      "alt": [
+        "Fes"
+      ]
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Roman name for the region encompassing much of modern France, Belgium, and parts of Switzerland.",
+      "answer": "Gaul",
+      "alt": [
+        "Gallia"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Ancient capital of the Hittite Empire in central Anatolia.",
+      "answer": "Hattusa",
+      "alt": [
+        "Hattusha"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Pre-Columbian empire centered in the Andes that built Machu Picchu.",
+      "answer": "Inca"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Indian ‘Pink City’ and capital of Rajasthan founded by Sawai Jai Singh II in 1727.",
+      "answer": "Jaipur"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Vast Egyptian temple complex at Thebes dedicated largely to Amun and linked to Luxor Temple by an avenue of sphinxes.",
+      "answer": "Karnak"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Tidal island monastery in Northumbria famed for an illuminated Gospel book and a Viking raid in 793.",
+      "answer": "Lindisfarne"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Ancient capital near the apex of the Nile Delta, home to the necropolis of Saqqara.",
+      "answer": "Memphis"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Early Japanese capital in the 8th century, noted for Tōdai-ji and the Great Buddha.",
+      "answer": "Nara"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Scottish archipelago north of the mainland, home to Neolithic sites including Skara Brae.",
+      "answer": "Orkney",
+      "alt": [
+        "Orkney Islands"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Ceremonial capital of the Achaemenid Empire, burned by Alexander the Great.",
+      "answer": "Persepolis"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Desert basin in Egypt’s Western Desert that contains one of the lowest elevations in Africa.",
+      "answer": "Qattara Depression"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Varangian leader traditionally credited with founding the ruling dynasty of Kievan Rus'.",
+      "answer": "Rurik"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Silk Road city in Uzbekistan famed for the blue-tiled madrasas of the Registan.",
+      "answer": "Samarkand",
+      "alt": [
+        "Samarqand"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Ancient city northeast of Mexico City known for the Pyramid of the Sun and Avenue of the Dead.",
+      "answer": "Teotihuacan",
+      "alt": [
+        "Teotihuacán"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Major Sumerian city-state associated with the Epic of Gilgamesh.",
+      "answer": "Uruk"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "In Norse myth, a chooser of the slain who brings warriors to Odin’s hall.",
+      "answer": "Valkyrie",
+      "alt": [
+        "Valkyrja"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Anglo-Saxon kingdom ruled by Alfred the Great before the unification of England.",
+      "answer": "Wessex"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Chinese city that served as the capital for multiple dynasties and is home to the Terracotta Army.",
+      "answer": "Xi'an",
+      "alt": [
+        "Xian"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Limestone landform separating the Gulf of Mexico from the Caribbean and site of the Chicxulub crater.",
+      "answer": "Yucatán Peninsula",
+      "alt": [
+        "Yucatan Peninsula"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Long mountain range in Iran and Iraq running northwest–southeast along the Persian Gulf.",
+      "answer": "Zagros Mountains",
+      "alt": [
+        "Zagros"
+      ]
+    }
+  ]
+}
