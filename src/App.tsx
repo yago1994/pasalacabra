@@ -1014,8 +1014,10 @@ export default function App() {
         src.buffer = buf;
 
         const gain = ctx.createGain();
-        // Slight per-SFX tuning.
-        const volume = key === "pasalacabra" ? 1.0 : 0.95;
+        // Per-SFX tuning. The pasalacabra file is mastered hot (~-7 LUFS) while
+        // the Azure voice clips sit around -22 LUFS, so at full gain it drowned
+        // the voice out; 0.18 (~-15 dB) brings it to about the voice's level.
+        const volume = key === "pasalacabra" ? 0.18 : 0.95;
         gain.gain.value = volume;
 
         src.connect(gain);
