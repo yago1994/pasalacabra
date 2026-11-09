@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-11",
-    "answers": [
-      "aperture",
-      "benzene",
-      "canvas",
-      "diffusion",
-      "embryo",
-      "fractal",
-      "graphite",
-      "hematite",
-      "insect",
-      "Jurassic",
-      "kilogram",
-      "lipase",
-      "melanin",
-      "neurotransmitter",
-      "ovule",
-      "phloem",
-      "quenching",
-      "rumen",
-      "stethoscope",
-      "titration",
-      "umbel",
-      "viscosity",
-      "wisteria",
-      "matrix",
-      "yew",
-      "zirconium"
-    ]
-  },
-  {
     "date": "2026-09-12",
     "answers": [
       "adenine",
@@ -1857,6 +1826,37 @@
       "Xi'an",
       "Yucatán Peninsula",
       "Zagros Mountains"
+    ]
+  },
+  {
+    "date": "2026-11-10",
+    "answers": [
+      "adobo",
+      "bulgogi",
+      "curry",
+      "daikon",
+      "endive",
+      "folklore",
+      "ginger",
+      "hormone",
+      "ikigai",
+      "jainism",
+      "kombucha",
+      "leek",
+      "matcha",
+      "nachos",
+      "okra",
+      "pancake",
+      "quorum",
+      "rye",
+      "saliva",
+      "tamarind",
+      "umeboshi",
+      "veganism",
+      "wakame",
+      "oxidase",
+      "yarrow",
+      "zinnia"
     ]
   }
 ]

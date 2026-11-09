@@ -1,0 +1,171 @@
+{
+  "id": "set-2026-11-10",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Philippine dish of meat marinated in vinegar, soy sauce, and garlic, then braised.",
+      "answer": "adobo"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Korean dish of thinly sliced marinated beef grilled or stir-fried.",
+      "answer": "bulgogi"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Dish featuring a spiced sauce served over meat or vegetables, common in South Asia.",
+      "answer": "curry"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Long white Japanese radish used in pickles and salads.",
+      "answer": "daikon",
+      "alt": [
+        "mooli"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Bitter leafy vegetable with tight pale heads, often served raw or grilled.",
+      "answer": "endive"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Traditional beliefs, tales, and customs handed down within a community.",
+      "answer": "folklore"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Spicy aromatic rhizome used fresh or dried in cooking and baking.",
+      "answer": "ginger"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Chemical messenger produced by endocrine glands to regulate body functions.",
+      "answer": "hormone"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Japanese concept describing a person’s motivating reason for being.",
+      "answer": "ikigai"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Ancient Indian religion emphasizing nonviolence toward all living beings and ascetic discipline.",
+      "answer": "jainism"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Fermented tea beverage made with a symbiotic culture of bacteria and yeast.",
+      "answer": "kombucha"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Mild allium with flat leaves and a thick white shank, a national emblem of Wales.",
+      "answer": "leek"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Finely ground powdered green tea used in ceremonies and desserts.",
+      "answer": "matcha",
+      "alt": [
+        "maccha"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Tex-Mex dish of tortilla chips topped with melted cheese and various garnishes.",
+      "answer": "nachos"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Green pod vegetable with a mucilaginous texture, integral to gumbo.",
+      "answer": "okra"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Flat cake made from a leavened batter and cooked on a griddle, often served with syrup.",
+      "answer": "pancake",
+      "alt": [
+        "hotcake",
+        "hotcakes"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Minimum number of members required for a deliberative body to conduct official business.",
+      "answer": "quorum"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Cereal grain used for robust breads and certain whiskies.",
+      "answer": "rye"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Enzyme-containing fluid secreted in the mouth that begins digestion.",
+      "answer": "saliva"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Tangy brown pulp from pods used in chutneys, curries, and pad thai.",
+      "answer": "tamarind"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Japanese pickled plum that is intensely sour and salty.",
+      "answer": "umeboshi"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Philosophy and practice of avoiding animal products in diet and lifestyle.",
+      "answer": "veganism"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Edible brown seaweed common in Japanese soups and salads.",
+      "answer": "wakame"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Enzyme that catalyzes oxidation-reduction reactions using O2 as the terminal electron acceptor.",
+      "answer": "oxidase"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Aromatic flowering herb Achillea millefolium used in teas and bitters.",
+      "answer": "yarrow"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Bright daisy-like annual widely grown in summer gardens.",
+      "answer": "zinnia"
+    }
+  ]
+}
