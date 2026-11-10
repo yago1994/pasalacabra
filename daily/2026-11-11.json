@@ -1,0 +1,180 @@
+{
+  "id": "set-2026-11-11",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Electrode where oxidation occurs in electrochemistry.",
+      "answer": "Anode"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Dark, fine-grained igneous rock formed from cooled lava.",
+      "answer": "Basalt"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Temperature scale named for a Swedish astronomer, with water freezing at 0 degrees.",
+      "answer": "Celsius"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Shoulder muscle shaped like a triangle.",
+      "answer": "Deltoid"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Icy moon of Saturn with geysers at its south pole.",
+      "answer": "Enceladus"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Self-similar geometric pattern with fractional dimension.",
+      "answer": "Fractal"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Animals' main storage form of glucose.",
+      "answer": "Glycogen"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Iron ore mineral that leaves a red streak.",
+      "answer": "Hematite"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Type of rock formed from solidified magma or lava.",
+      "answer": "Igneous"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Fast, narrow air current in the upper atmosphere that guides weather systems.",
+      "answer": "Jet stream",
+      "alt": [
+        "jetstream"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "SI temperature scale that starts at absolute zero.",
+      "answer": "Kelvin"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Another term for a white blood cell.",
+      "answer": "Leukocyte",
+      "alt": [
+        "leucocyte"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Space rock that reaches the ground after passing through the atmosphere.",
+      "answer": "Meteorite"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Nearly massless particle that rarely interacts with matter.",
+      "answer": "Neutrino"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "U-shaped water body formed when a river meander is cut off.",
+      "answer": "Oxbow lake",
+      "alt": [
+        "oxbow"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Larger of the two moons of Mars.",
+      "answer": "Phobos"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Public health practice of isolating exposed individuals to prevent disease spread.",
+      "answer": "Quarantine"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Loose, dusty layer covering bedrock on the Moon and other airless bodies.",
+      "answer": "Regolith"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Medical instrument used to listen to heart and lung sounds.",
+      "answer": "Stethoscope"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Disease caused by Clostridium tetani leading to muscle spasms.",
+      "answer": "Tetanus"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Irritating plant oil responsible for poison ivy rashes.",
+      "answer": "Urushiol"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Zone of charged particles trapped by Earth's magnetic field.",
+      "answer": "Van Allen belt",
+      "alt": [
+        "Van Allen belts"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Moon phase just after new, showing a thin growing sliver of light.",
+      "answer": "Waxing crescent"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Electromagnetic radiation used in medical imaging to view bones.",
+      "answer": "X-ray",
+      "alt": [
+        "x ray",
+        "xray"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Measure of a material's stiffness in tension or compression.",
+      "answer": "Young's modulus",
+      "alt": [
+        "Young modulus"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Durable mineral often used for uranium-lead dating of ancient rocks.",
+      "answer": "Zircon"
+    }
+  ]
+}
