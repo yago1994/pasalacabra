@@ -1,0 +1,200 @@
+{
+  "id": "set-2026-11-12",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Mesoamerican civilization that built Tenochtitlan.",
+      "answer": "Aztec",
+      "alt": [
+        "Aztecs"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Beet soup of Eastern European origin, often served with sour cream.",
+      "answer": "Borscht",
+      "alt": [
+        "Borsch",
+        "Borsht"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Fire-breathing creature with lion, goat, and serpent parts in Greek myth.",
+      "answer": "Chimera",
+      "alt": [
+        "Chimaera"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Powerful feudal lords of premodern Japan subordinate to the shogun.",
+      "answer": "Daimyo"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Pastry turnover common in Latin America, often filled with meat or cheese.",
+      "answer": "Empanada",
+      "alt": [
+        "Empanadas"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Oven-baked Italian bread dimpled with olive oil and herbs.",
+      "answer": "Focaccia"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Animated being from Jewish folklore fashioned from clay.",
+      "answer": "Golem"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "1066 battle that led to William the Conqueror taking the English throne.",
+      "answer": "Hastings",
+      "alt": [
+        "Battle of Hastings"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Traditional hearty dish of lamb or beef with potatoes and onions from Ireland.",
+      "answer": "Irish stew"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Reanimated 'hopping' corpse from Chinese folklore.",
+      "answer": "Jiangshi",
+      "alt": [
+        "Jiang shi",
+        "Geungsi"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Cheese-filled bread from the country of Georgia, often topped with an egg.",
+      "answer": "Khachapuri",
+      "alt": [
+        "Hachapuri"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Knight of the Round Table famed for his affair with Guinevere.",
+      "answer": "Lancelot"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Honey-based alcoholic drink associated with Vikings.",
+      "answer": "Mead"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Pasta-like strands made from unleavened dough, found in dishes from ramen to lo mein.",
+      "answer": "Noodles"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Norse All-Father who sacrificed an eye for wisdom.",
+      "answer": "Odin"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Polish dumplings typically filled with potato, cheese, or meat.",
+      "answer": "Pierogi",
+      "alt": [
+        "Pierogy",
+        "Pirogi"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Hardwood commonly used to smoke barbecue in the American Southwest.",
+      "answer": "Mesquite"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Cataclysmic final battle in Norse myth that ends the world of gods.",
+      "answer": "Ragnarok",
+      "alt": [
+        "Ragnarök"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Breaded, pan-fried cutlet popular in Austria and Germany.",
+      "answer": "Schnitzel"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Shapeshifting trickster of Japanese folklore often depicted with a sake bottle.",
+      "answer": "Tanuki"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Father of King Arthur in legend.",
+      "answer": "Uther Pendragon",
+      "alt": [
+        "Uther"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Clear spirit traditionally distilled from grains or potatoes in Eastern Europe.",
+      "answer": "Vodka"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "City where Luther is said to have posted the Ninety-five Theses in 1517.",
+      "answer": "Wittenberg"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Legendary sword of King Arthur often associated with the Lady of the Lake.",
+      "answer": "Excalibur"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese super-battleship sunk in 1945.",
+      "answer": "Yamato",
+      "alt": [
+        "Battleship Yamato"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Battle in 202 BCE where Scipio defeated Hannibal.",
+      "answer": "Zama",
+      "alt": [
+        "Battle of Zama"
+      ]
+    }
+  ]
+}
