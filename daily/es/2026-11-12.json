@@ -1,0 +1,156 @@
+{
+  "id": "es-2026-11-12",
+  "title": "Pasalacabra 2026-11-12 · No. 316",
+  "questions": [
+    {
+      "letter": "A",
+      "topic": "biologia",
+      "question": "Empieza por A: Estructura sensorial en la cabeza de muchos insectos que detecta estímulos químicos y táctiles.",
+      "answer": "antena"
+    },
+    {
+      "letter": "B",
+      "topic": "biologia",
+      "question": "Empieza por B: Órgano del sistema circulatorio e inmunitario que retira eritrocitos envejecidos.",
+      "answer": "bazo"
+    },
+    {
+      "letter": "C",
+      "topic": "biologia",
+      "question": "Empieza por C: Orgánulo de células vegetales y de algunas algas donde ocurre la fotosíntesis.",
+      "answer": "cloroplasto"
+    },
+    {
+      "letter": "D",
+      "topic": "deporte",
+      "question": "Empieza por D: Práctica prohibida de consumir sustancias o métodos para mejorar artificialmente el rendimiento deportivo.",
+      "answer": "dopaje"
+    },
+    {
+      "letter": "E",
+      "topic": "ciencia",
+      "question": "Empieza por E: Ocultación temporal total o parcial de un astro por la interposición de otro cuerpo celeste.",
+      "answer": "eclipse"
+    },
+    {
+      "letter": "F",
+      "topic": "biologia",
+      "question": "Empieza por F: Estructura filiforme que proporciona movilidad a bacterias y protozoos.",
+      "answer": "flagelo"
+    },
+    {
+      "letter": "G",
+      "topic": "biologia",
+      "question": "Empieza por G: Órgano que produce y libera hormonas o secreciones como saliva o sudor.",
+      "answer": "glándula"
+    },
+    {
+      "letter": "H",
+      "topic": "ciencia",
+      "question": "Empieza por H: Imagen tridimensional generada mediante la interferencia de luz láser.",
+      "answer": "holograma"
+    },
+    {
+      "letter": "I",
+      "topic": "ciencia",
+      "question": "Empieza por I: Objeto que genera un campo magnético permanente y atrae ciertos metales.",
+      "answer": "imán"
+    },
+    {
+      "letter": "J",
+      "topic": "deporte",
+      "question": "Empieza por J: Deportista que practica un arte marcial olímpico de agarres y proyecciones.",
+      "answer": "judoca"
+    },
+    {
+      "letter": "L",
+      "topic": "biologia",
+      "question": "Empieza por L: Estado juvenil de muchos insectos tras la eclosión del huevo.",
+      "answer": "larva"
+    },
+    {
+      "letter": "M",
+      "topic": "deporte",
+      "question": "Empieza por M: Tabla que clasifica a países según oros, platas y bronces en una competición.",
+      "answer": "medallero"
+    },
+    {
+      "letter": "N",
+      "topic": "biologia",
+      "question": "Empieza por N: Líquido azucarado secretado por flores para atraer polinizadores.",
+      "answer": "néctar"
+    },
+    {
+      "letter": "Ñ",
+      "topic": "biologia",
+      "question": "Contiene la Ñ: Enfermedad fúngica de los cereales que produce manchas y marchitez.",
+      "answer": "añublo"
+    },
+    {
+      "letter": "O",
+      "topic": "ciencia",
+      "question": "Empieza por O: Rama de la física que estudia la luz, su propagación y sus fenómenos.",
+      "answer": "óptica"
+    },
+    {
+      "letter": "P",
+      "topic": "biologia",
+      "question": "Empieza por P: Cadena corta de aminoácidos unida por enlaces amida.",
+      "answer": "péptido"
+    },
+    {
+      "letter": "Q",
+      "topic": "biologia",
+      "question": "Empieza por Q: Mamífero del orden Chiroptera que se orienta con ecolocación y tiene alas formadas por membranas.",
+      "answer": "quiróptero"
+    },
+    {
+      "letter": "R",
+      "topic": "ciencia",
+      "question": "Empieza por R: Energía emitida en forma de ondas o partículas desde una fuente.",
+      "answer": "radiación"
+    },
+    {
+      "letter": "S",
+      "topic": "deporte",
+      "question": "Empieza por S: En voleibol, acción de poner el balón en juego desde detrás de la línea de fondo.",
+      "answer": "saque"
+    },
+    {
+      "letter": "T",
+      "topic": "biologia",
+      "question": "Empieza por T: Hueso largo de la pierna situado medialmente y paralelo al peroné.",
+      "answer": "tibia"
+    },
+    {
+      "letter": "U",
+      "topic": "ciencia",
+      "question": "Empieza por U: Radiación electromagnética con longitud de onda menor que la luz violeta.",
+      "answer": "ultravioleta"
+    },
+    {
+      "letter": "V",
+      "topic": "deporte",
+      "question": "Empieza por V: Atleta especializado en carreras cortas como 100 o 200 metros.",
+      "answer": "velocista"
+    },
+    {
+      "letter": "X",
+      "topic": "ciencia",
+      "question": "Empieza por X: Técnica de copiado e impresión basada en cargas electrostáticas y tóner.",
+      "answer": "xerografía"
+    },
+    {
+      "letter": "Y",
+      "topic": "deporte",
+      "question": "Contiene la Y: En waterpolo, posición del atacante ubicado frente a la portería rival.",
+      "answer": "boya"
+    },
+    {
+      "letter": "Z",
+      "topic": "biologia",
+      "question": "Empieza por Z: Espora móvil dotada de flagelos presente en ciertas algas y hongos.",
+      "answer": "zoóspora"
+    }
+  ]
+}
