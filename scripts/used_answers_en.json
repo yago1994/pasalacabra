@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-14",
-    "answers": [
-      "ampere",
-      "Bacteria",
-      "chlorophyll",
-      "dryad",
-      "Euglena",
-      "fairy",
-      "glucose",
-      "hemoglobin",
-      "isopod",
-      "joule",
-      "keratin",
-      "lysosome",
-      "mitosis",
-      "natural selection",
-      "octopus",
-      "polymer",
-      "quartz",
-      "refraction",
-      "silicon",
-      "telomere",
-      "urine",
-      "vitamin",
-      "walrus",
-      "Xenopus",
-      "yaws",
-      "zymogen"
-    ]
-  },
-  {
     "date": "2026-09-15",
     "answers": [
       "almond",
@@ -1857,6 +1826,37 @@
       "Excalibur",
       "Yamato",
       "Zama"
+    ]
+  },
+  {
+    "date": "2026-11-13",
+    "answers": [
+      "aurora",
+      "big bang",
+      "cytoplasm",
+      "dark matter",
+      "enzyme",
+      "fossil",
+      "greenhouse effect",
+      "habitat",
+      "insulin",
+      "jurassic",
+      "keystone species",
+      "luminosity",
+      "magma",
+      "niche",
+      "organelle",
+      "photosynthesis",
+      "quantum dot",
+      "ribosome",
+      "spore",
+      "tardigrade",
+      "universe",
+      "vaccine",
+      "wormhole",
+      "helix",
+      "yolk",
+      "horizon"
     ]
   }
 ]

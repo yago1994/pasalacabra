@@ -1,0 +1,170 @@
+{
+  "id": "set-2026-11-13",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Natural light displays near polar regions caused by charged particles from the Sun interacting with the magnetosphere.",
+      "answer": "aurora",
+      "alt": [
+        "aurora borealis",
+        "northern lights",
+        "aurora australis",
+        "southern lights"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Prevailing cosmological model positing the universe began from a hot, dense state and has been expanding since.",
+      "answer": "big bang",
+      "alt": [
+        "big bang theory"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "All cell contents between the plasma membrane and the nucleus, including organelles.",
+      "answer": "cytoplasm"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Invisible mass inferred from gravitational effects on galaxies and galaxy clusters.",
+      "answer": "dark matter"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Protein catalyst that speeds up biochemical reactions.",
+      "answer": "enzyme"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Preserved remains or traces of ancient life found in rock.",
+      "answer": "fossil"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Warming of Earth caused by atmospheric gases trapping outgoing infrared radiation.",
+      "answer": "greenhouse effect"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Natural environment where an organism lives and grows.",
+      "answer": "habitat"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Pancreatic hormone that lowers blood glucose by promoting cellular uptake.",
+      "answer": "insulin"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Geologic period between the Triassic and Cretaceous when many dinosaurs thrived.",
+      "answer": "jurassic"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Organism whose impact on an ecosystem is disproportionately large relative to its abundance.",
+      "answer": "keystone species"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Total energy output of an astronomical object per unit time.",
+      "answer": "luminosity"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Molten rock located beneath Earth’s surface.",
+      "answer": "magma"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Ecological role and resource-use pattern of a population within its community.",
+      "answer": "niche"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Membrane-bound structure within a eukaryotic cell, such as a mitochondrion or nucleus.",
+      "answer": "organelle"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Process by which plants and some microbes convert light energy, water, and carbon dioxide into sugars and oxygen.",
+      "answer": "photosynthesis"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Nanoscale semiconductor crystal that emits specific colors when excited.",
+      "answer": "quantum dot"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Cellular machine that assembles amino acids into polypeptides using an mRNA template.",
+      "answer": "ribosome"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Reproductive cell adapted for dispersal and survival in harsh conditions, common in fungi and plants.",
+      "answer": "spore"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Microscopic \"water bear\" famous for surviving extreme heat, cold, radiation, and vacuum.",
+      "answer": "tardigrade"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "All space, time, matter, and energy considered as a single entity.",
+      "answer": "universe"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Biological preparation that stimulates an immune response to confer protection against a specific disease.",
+      "answer": "vaccine"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Hypothetical shortcut through spacetime connecting distant regions.",
+      "answer": "wormhole"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Coiled molecular shape found in DNA and some proteins.",
+      "answer": "helix"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Nutrient-rich portion of a bird egg that nourishes the developing embryo.",
+      "answer": "yolk"
+    },
+    {
+      "letter": "Z",
+      "mode": "contains",
+      "question": "Apparent boundary where the sky seems to meet Earth’s surface.",
+      "answer": "horizon"
+    }
+  ]
+}
