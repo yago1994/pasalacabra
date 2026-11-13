@@ -1,0 +1,174 @@
+{
+  "id": "set-2026-11-14",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Earth’s southernmost continent, home to the South Pole.",
+      "answer": "Antarctica"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "European nation on the Black Sea with capital Sofia.",
+      "answer": "Bulgaria"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Italian coffee drink traditionally made with equal parts espresso, steamed milk, and milk foam.",
+      "answer": "Cappuccino"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Largest city in the UAE, site of the Burj Khalifa.",
+      "answer": "Dubai"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Immature soybeans served in pods as a snack or appetizer.",
+      "answer": "Edamame"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Western European country known for Bordeaux, Provence, and the Loire Valley, capital Paris.",
+      "answer": "France"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Vast Asian desert spanning southern Mongolia and northern China.",
+      "answer": "Gobi Desert",
+      "alt": [
+        "Gobi"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Northernmost of Japan’s main islands, famous for Sapporo and snow festivals.",
+      "answer": "Hokkaido"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "U.S. state nicknamed the Gem State, known for potato production.",
+      "answer": "Idaho"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "East Asian island nation nicknamed the Land of the Rising Sun.",
+      "answer": "Japan"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Central Asian nation that is the world’s largest landlocked country.",
+      "answer": "Kazakhstan"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Small Grand Duchy bordered by Belgium, France, and Germany.",
+      "answer": "Luxembourg"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "North African country with cities Marrakech, Casablanca, and Fez.",
+      "answer": "Morocco"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "African country with the largest population on the continent, capital Abuja.",
+      "answer": "Nigeria"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Canadian province containing Toronto and Niagara Falls.",
+      "answer": "Ontario"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Southeast Asian archipelago nation with capital Manila.",
+      "answer": "Philippines"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Australian state whose capital is Brisbane and home to much of the Great Barrier Reef.",
+      "answer": "Queensland"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Eastern European country that includes Transylvania, capital Bucharest.",
+      "answer": "Romania"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Scandinavian nation with capital Stockholm and a long Baltic Sea coastline.",
+      "answer": "Sweden"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Country that spans Europe and Asia, capital Ankara; historic city of Istanbul lies here.",
+      "answer": "Turkey",
+      "alt": [
+        "Türkiye",
+        "Republic of Türkiye"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Eastern European country with capital Kyiv, situated on the Dnipro River.",
+      "answer": "Ukraine"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Southeast Asian country with capital Hanoi, known for pho and Ha Long Bay.",
+      "answer": "Vietnam",
+      "alt": [
+        "Viet Nam"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Least populous U.S. state, whose capital is Cheyenne and home to Grand Teton National Park.",
+      "answer": "Wyoming"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Outermost layer of Earth’s atmosphere where it gradually transitions into space.",
+      "answer": "exosphere"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Capital of Russia’s Sakha Republic, noted for some of the world’s coldest winters.",
+      "answer": "Yakutsk"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "African river that plunges over Victoria Falls on the Zambia–Zimbabwe border.",
+      "answer": "Zambezi",
+      "alt": [
+        "Zambezi River"
+      ]
+    }
+  ]
+}

@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-15",
-    "answers": [
-      "almond",
-      "bagel",
-      "cheetah",
-      "duck",
-      "eel",
-      "futsal",
-      "gorilla",
-      "horse",
-      "ice cream",
-      "jackfruit",
-      "kiwifruit",
-      "lentil",
-      "mango",
-      "nightingale",
-      "orange",
-      "penguin",
-      "quinoa",
-      "radish",
-      "soccer",
-      "tuna",
-      "ugli fruit",
-      "vanilla",
-      "watermelon",
-      "fox",
-      "yak",
-      "zucchini"
-    ]
-  },
-  {
     "date": "2026-09-16",
     "answers": [
       "Austen",
@@ -1857,6 +1826,37 @@
       "helix",
       "yolk",
       "horizon"
+    ]
+  },
+  {
+    "date": "2026-11-14",
+    "answers": [
+      "Antarctica",
+      "Bulgaria",
+      "Cappuccino",
+      "Dubai",
+      "Edamame",
+      "France",
+      "Gobi Desert",
+      "Hokkaido",
+      "Idaho",
+      "Japan",
+      "Kazakhstan",
+      "Luxembourg",
+      "Morocco",
+      "Nigeria",
+      "Ontario",
+      "Philippines",
+      "Queensland",
+      "Romania",
+      "Sweden",
+      "Turkey",
+      "Ukraine",
+      "Vietnam",
+      "Wyoming",
+      "exosphere",
+      "Yakutsk",
+      "Zambezi"
     ]
   }
 ]
