@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-16",
-    "answers": [
-      "Austen",
-      "Blade Runner",
-      "Chloroplast",
-      "Dolly",
-      "Estrogen",
-      "Fight Club",
-      "Gollum",
-      "Hitchcock",
-      "Immunity",
-      "Jaws",
-      "Kafka",
-      "Les Miserables",
-      "Marsupial",
-      "Nightcrawler",
-      "On the Waterfront",
-      "Pinocchio",
-      "plaque",
-      "Rashomon",
-      "Spirited Away",
-      "The Terminator",
-      "Ursula Le Guin",
-      "Voltaire",
-      "Wasp",
-      "Xenomorph",
-      "Yeats",
-      "Zodiac"
-    ]
-  },
-  {
     "date": "2026-09-17",
     "answers": [
       "Aral Sea",
@@ -1857,6 +1826,37 @@
       "exosphere",
       "Yakutsk",
       "Zambezi"
+    ]
+  },
+  {
+    "date": "2026-11-15",
+    "answers": [
+      "anemone",
+      "barracuda",
+      "chlorophyll",
+      "daphnia",
+      "eel",
+      "fox",
+      "glucose",
+      "hemoglobin",
+      "isopod",
+      "jackrabbit",
+      "keratin",
+      "lungfish",
+      "mitosis",
+      "nematode",
+      "octopus",
+      "pufferfish",
+      "qubit",
+      "ruminant",
+      "silicon",
+      "tendon",
+      "urchin",
+      "vole",
+      "walrus",
+      "exon",
+      "yak",
+      "zebra"
     ]
   }
 ]

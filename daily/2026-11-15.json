@@ -1,0 +1,183 @@
+{
+  "id": "set-2026-11-15",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Sea-dwelling cnidarian with tentacles that often hosts clownfish.",
+      "answer": "anemone",
+      "alt": [
+        "sea anemone"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Fast predatory fish with a long torpedo-shaped body and fearsome teeth.",
+      "answer": "barracuda"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Green pigment in plants essential for absorbing light in photosynthesis.",
+      "answer": "chlorophyll"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Tiny freshwater crustacean nicknamed water flea, common in ponds.",
+      "answer": "daphnia"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Elongated fish that often migrates between ocean and freshwater.",
+      "answer": "eel"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Small canid known for bushy tail and cunning in folklore.",
+      "answer": "fox"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Primary simple sugar used by cells for energy.",
+      "answer": "glucose",
+      "alt": [
+        "dextrose"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Oxygen-carrying protein in red blood cells.",
+      "answer": "hemoglobin",
+      "alt": [
+        "haemoglobin"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Crustacean group that includes pill bugs and some giant deep-sea species.",
+      "answer": "isopod"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Long-eared hare native to North America known for swift speed.",
+      "answer": "jackrabbit"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Fibrous structural protein in hair, nails, and hooves.",
+      "answer": "keratin"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Ancient fish capable of breathing air using a modified swim bladder.",
+      "answer": "lungfish"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Process of eukaryotic cell division producing two identical daughter cells.",
+      "answer": "mitosis"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Roundworm phylum that includes C. elegans.",
+      "answer": "nematode",
+      "alt": [
+        "roundworm"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Intelligent cephalopod with eight arms and a beak.",
+      "answer": "octopus"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Spiny fish that inflates when threatened and can contain tetrodotoxin.",
+      "answer": "pufferfish",
+      "alt": [
+        "blowfish",
+        "fugu"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Basic unit of quantum information that can exist in superposition.",
+      "answer": "qubit"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Mammal with a four-chambered stomach that chews cud, like cows and deer.",
+      "answer": "ruminant"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Semiconductor element central to most computer chips.",
+      "answer": "silicon"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Fibrous connective tissue attaching muscle to bone.",
+      "answer": "tendon",
+      "alt": [
+        "sinew"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Spiny echinoderm that grazes on algae on the seafloor.",
+      "answer": "urchin",
+      "alt": [
+        "sea urchin"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Small burrowing rodent often mistaken for a mouse, with a short tail.",
+      "answer": "vole"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Large Arctic pinniped with long tusks and whiskers.",
+      "answer": "walrus"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "DNA segment that remains in mature mRNA and codes for protein.",
+      "answer": "exon"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Long-haired bovine adapted to high altitudes of the Himalayas.",
+      "answer": "yak"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "African equid known for its black-and-white stripes.",
+      "answer": "zebra"
+    }
+  ]
+}
