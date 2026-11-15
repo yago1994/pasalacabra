@@ -1,0 +1,182 @@
+{
+  "id": "set-2026-11-16",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Home stadium of Liverpool FC.",
+      "answer": "Anfield"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Distributed ledger system behind many cryptocurrencies.",
+      "answer": "Blockchain"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Ancient Roman amphitheater famed for gladiatorial games.",
+      "answer": "Colosseum",
+      "alt": [
+        "Coliseum"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Revolutionary British battleship launched in 1906 that made earlier designs obsolete.",
+      "answer": "Dreadnought"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Early U.S. electronic computer completed in 1945.",
+      "answer": "ENIAC"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "High-jump technique debuted at the 1968 Olympics, going over the bar headfirst and backward.",
+      "answer": "Fosbury Flop"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Camera-based system confirming whether a soccer ball completely crosses the boundary under the crossbar.",
+      "answer": "Goal-line technology",
+      "alt": [
+        "Goal line technology"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "U-shaped snowboarding venue used for aerial tricks.",
+      "answer": "Halfpipe"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Company founded by Gordon Moore and Robert Noyce, famed for x86 processors.",
+      "answer": "Intel"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Type of propulsion that generates thrust by expelling fast-moving exhaust gases.",
+      "answer": "Jet propulsion"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Strong aramid fiber used in bullet-resistant vests.",
+      "answer": "Kevlar"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Defensive position in American football stationed between the line and the secondary.",
+      "answer": "Linebacker"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "French fortification system built along the German border before World War II.",
+      "answer": "Maginot Line"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Browser company behind Navigator that helped popularize the web in the 1990s.",
+      "answer": "Netscape"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Rule penalizing an attacker positioned beyond the second-last defender at the moment the pass is played.",
+      "answer": "Offside"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Brand name of Intel microprocessors launched in 1993.",
+      "answer": "Pentium"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Square black-and-white pattern scanned by phones to open links.",
+      "answer": "QR code",
+      "alt": [
+        "QR Code"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "River crossed by Julius Caesar in 49 BCE, an act tantamount to declaring war on the Roman Senate.",
+      "answer": "Rubicon"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Material with conductivity between a conductor and an insulator, vital for modern chips.",
+      "answer": "Semiconductor"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Assessment proposed in 1950 where a machine tries to be indistinguishable from a human in conversation.",
+      "answer": "Turing Test"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "European governing body for association football.",
+      "answer": "UEFA",
+      "alt": [
+        "Union of European Football Associations"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "System that assists soccer officials by reviewing incidents on replays.",
+      "answer": "VAR",
+      "alt": [
+        "Video Assistant Referee"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Iconic London stadium hosting England home matches and FA Cup finals.",
+      "answer": "Wembley",
+      "alt": [
+        "Wembley Stadium"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Microsoft video game console brand launched in 2001.",
+      "answer": "Xbox"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "In cricket, fast delivery that pitches at the batter’s feet near the base of the stumps.",
+      "answer": "Yorker"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Unpatched software vulnerability known to attackers before the vendor becomes aware.",
+      "answer": "Zero-day",
+      "alt": [
+        "Zero day"
+      ]
+    }
+  ]
+}
