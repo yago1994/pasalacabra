@@ -1,0 +1,204 @@
+{
+  "id": "set-2026-11-17",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Lion ruler of Narnia in C. S. Lewis's series.",
+      "answer": "Aslan"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Author of Dracula.",
+      "answer": "Bram Stoker",
+      "alt": [
+        "Stoker"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Author of The Canterbury Tales.",
+      "answer": "Chaucer",
+      "alt": [
+        "Geoffrey Chaucer"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Victorian author of Great Expectations.",
+      "answer": "Dickens",
+      "alt": [
+        "Charles Dickens"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Antarctic bird that incubates eggs on its feet under a brood pouch.",
+      "answer": "Emperor penguin"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Mary Shelley's novel about a scientist who creates life.",
+      "answer": "Frankenstein"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Brothers who collected German folk tales such as Hansel and Gretel.",
+      "answer": "Grimm",
+      "alt": [
+        "Brothers Grimm"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Epic poet traditionally credited with the Iliad.",
+      "answer": "Homer"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Narrator who opens Moby-Dick with the words 'Call me'.",
+      "answer": "Ishmael"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Modernist author of Ulysses and Dubliners.",
+      "answer": "Joyce",
+      "alt": [
+        "James Joyce"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Czech-born author of The Metamorphosis.",
+      "answer": "Kafka",
+      "alt": [
+        "Franz Kafka"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Tragic king who divides his realm in a Shakespeare play.",
+      "answer": "Lear",
+      "alt": [
+        "King Lear"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "French playwright of Tartuffe.",
+      "answer": "Molière",
+      "alt": [
+        "Moliere",
+        "Jean-Baptiste Poquelin"
+      ]
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Songbird famed for powerful nocturnal singing.",
+      "answer": "Nightingale"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Tragic Shakespeare play about a Moorish general.",
+      "answer": "Othello"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Winged horse of Greek mythology.",
+      "answer": "Pegasus"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Hunchbacked bell-ringer of Notre-Dame in Hugo's novel.",
+      "answer": "Quasimodo"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Large herbivore with one or two horns on its snout.",
+      "answer": "Rhinoceros",
+      "alt": [
+        "Rhino"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Author of The Catcher in the Rye.",
+      "answer": "Salinger",
+      "alt": [
+        "J. D. Salinger",
+        "JD Salinger"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Author who created Middle-earth.",
+      "answer": "Tolkien",
+      "alt": [
+        "J. R. R. Tolkien",
+        "JRR Tolkien"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "1516 work by Thomas More depicting an ideal society.",
+      "answer": "Utopia"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Enlightenment satirist who wrote Candide.",
+      "answer": "Voltaire",
+      "alt": [
+        "Francois-Marie Arouet",
+        "François-Marie Arouet"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Playwright of The Importance of Being Earnest.",
+      "answer": "Wilde",
+      "alt": [
+        "Oscar Wilde"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Songbird whose name comes from the glossy tips on its wing feathers.",
+      "answer": "waxwing"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "High German–derived language historically used by Ashkenazi Jews.",
+      "answer": "Yiddish"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "British author of White Teeth.",
+      "answer": "Zadie Smith"
+    }
+  ]
+}
