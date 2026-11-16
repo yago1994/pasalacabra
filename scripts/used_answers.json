@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-18",
-    "game_no": 261,
-    "answers": [
-      "astronomía",
-      "big bang",
-      "cosmología",
-      "deuterio",
-      "enzima",
-      "física",
-      "geología",
-      "heliocentrismo",
-      "iridio",
-      "Jápeto",
-      "láser",
-      "metano",
-      "neutrino",
-      "ñu",
-      "ornitología",
-      "paleontología",
-      "qubit",
-      "róver",
-      "silicio",
-      "tectónica de placas",
-      "uranio",
-      "Vía Láctea",
-      "xenotrasplante",
-      "yacimiento",
-      "zincita"
-    ]
-  },
-  {
     "date": "2026-09-19",
     "game_no": 262,
     "answers": [
@@ -1857,6 +1826,37 @@
       "xilografía",
       "yakuza",
       "zurdazo"
+    ]
+  },
+  {
+    "date": "2026-11-17",
+    "game_no": 321,
+    "answers": [
+      "Alhambra",
+      "Bismarck",
+      "Cartagena",
+      "Don Quijote",
+      "Edicto de Granada",
+      "Francisco Franco",
+      "Goya",
+      "Honduras",
+      "Islandia",
+      "judaísmo",
+      "Lenin",
+      "Murillo",
+      "Nilo",
+      "ñame",
+      "Octavio",
+      "Pompeya",
+      "Quito",
+      "Ródano",
+      "Sorolla",
+      "Teotihuacán",
+      "Unamuno",
+      "Velázquez",
+      "México",
+      "Yucatán",
+      "Zaragoza"
     ]
   }
 ]
