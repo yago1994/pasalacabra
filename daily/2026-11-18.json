@@ -1,0 +1,194 @@
+{
+  "id": "set-2026-11-18",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Capital of Algeria on the Mediterranean coast.",
+      "answer": "Algiers"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Chewy ring-shaped bread boiled before baking, associated with New York delis.",
+      "answer": "Bagel",
+      "alt": [
+        "Beigel"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Former capital of the Inca Empire in Peru.",
+      "answer": "Cusco",
+      "alt": [
+        "Cuzco"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Sweet fruit of the palm widely used in Middle Eastern desserts.",
+      "answer": "Date"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Horn of Africa nation on the Red Sea with capital Asmara.",
+      "answer": "Eritrea"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Belgian region that saw heavy World War I fighting, including the Ypres salient.",
+      "answer": "Flanders"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "West African country formerly called the Gold Coast, capital Accra.",
+      "answer": "Ghana"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Sweet confection made from sesame paste, popular across the Middle East and Balkans.",
+      "answer": "Halva",
+      "alt": [
+        "Halvah"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "World’s largest archipelagic nation spanning islands such as Java and Sumatra.",
+      "answer": "Indonesia"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Peninsula forming mainland Denmark and site of a major 1916 naval battle.",
+      "answer": "Jutland"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Capital city of Ukraine on the Dnieper River.",
+      "answer": "Kyiv",
+      "alt": [
+        "Kiev"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Largest city in Nigeria and former national capital.",
+      "answer": "Lagos"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Mediterranean island country whose capital is Valletta.",
+      "answer": "Malta"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Region of northern France where Allied forces landed on D-Day.",
+      "answer": "Normandy"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Major Black Sea port city in Ukraine founded in the 18th century.",
+      "answer": "Odesa",
+      "alt": [
+        "Odessa"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "South American country home to the Andes and the Nazca Lines.",
+      "answer": "Peru",
+      "alt": [
+        "Perú"
+      ]
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Protein-rich Andean seed cooked like a grain in salads and bowls.",
+      "answer": "Quinoa",
+      "alt": [
+        "Quinua"
+      ]
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Northernmost national capital, located on Faxaflói Bay.",
+      "answer": "Reykjavik",
+      "alt": [
+        "Reykjavík"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Andalusian city on the Guadalquivir River known for its cathedral and Alcázar.",
+      "answer": "Seville",
+      "alt": [
+        "Sevilla"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "North African country whose capital is Tunis and coastline faces the Mediterranean.",
+      "answer": "Tunisia"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Purple yam used in Filipino desserts such as halaya and ice cream.",
+      "answer": "Ube"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Smallest independent state, an enclave within Rome and seat of the Holy See.",
+      "answer": "Vatican City",
+      "alt": [
+        "Vatican"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Capital of Manitoba located where the Red and Assiniboine rivers meet.",
+      "answer": "Winnipeg"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "German federal state whose capital is Dresden.",
+      "answer": "Saxony",
+      "alt": [
+        "Sachsen"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Major Indian river that flows past Delhi and Agra before joining the Ganges.",
+      "answer": "Yamuna"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Historic Croatian city on the Adriatic famed for its Roman forum and Sea Organ.",
+      "answer": "Zadar"
+    }
+  ]
+}
