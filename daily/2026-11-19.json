@@ -1,0 +1,161 @@
+{
+  "id": "set-2026-11-19",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Surname of the author of Pride and Prejudice.",
+      "answer": "Austen"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Alias of the anonymous British street artist known for provocative murals.",
+      "answer": "Banksy"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Art movement pioneered by Picasso and Braque.",
+      "answer": "Cubism"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Spanish knight-errant created by Cervantes.",
+      "answer": "Don Quixote"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Stand used by painters to hold a canvas.",
+      "answer": "Easel"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Technique of painting on wet plaster with water-based pigments.",
+      "answer": "Fresco"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Largest living primate genus.",
+      "answer": "Gorilla"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Japanese artist who created The Great Wave off Kanagawa.",
+      "answer": "Hokusai"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Epic poem about the Trojan War attributed to Homer.",
+      "answer": "Iliad"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Surname of the scientist who transforms into Hyde in Stevenson's novella.",
+      "answer": "Jekyll"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Russian painter and Bauhaus teacher regarded as a pioneer of abstract art.",
+      "answer": "Kandinsky"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Dog breed with black, yellow, and chocolate varieties, often used as a service animal.",
+      "answer": "Labrador retriever"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Belgian surrealist who painted The Son of Man.",
+      "answer": "Magritte"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Fantasy realm entered through a wardrobe in C. S. Lewis's series.",
+      "answer": "Narnia"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Roman poet who wrote Metamorphoses.",
+      "answer": "Ovid"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Flightless seabird native to Antarctica and the Southern Hemisphere.",
+      "answer": "Penguin"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Poetic stanza of four lines.",
+      "answer": "Quatrain"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Dutch master who painted The Night Watch.",
+      "answer": "Rembrandt"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "French painter of A Sunday Afternoon on the Island of La Grande Jatte.",
+      "answer": "Seurat"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Shelled reptile that defeats a hare in an Aesop fable.",
+      "answer": "Tortoise"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Modernist novel set in Dublin that follows Leopold Bloom over the course of a single day.",
+      "answer": "Ulysses"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Post-Impressionist who painted Starry Night.",
+      "answer": "Van Gogh"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Pop artist who created Campbell's Soup Cans.",
+      "answer": "Warhol"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Gaulish comic hero, namesake of the series, who gains strength from a druid's potion.",
+      "answer": "Asterix"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Irish poet who wrote The Second Coming.",
+      "answer": "Yeats"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "French novelist who wrote Germinal and penned 'J'accuse!'.",
+      "answer": "Zola"
+    }
+  ]
+}
