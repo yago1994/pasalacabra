@@ -1,0 +1,168 @@
+{
+  "id": "set-2026-11-20",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Garlicky Provençal sauce made by emulsifying garlic with oil",
+      "answer": "aioli",
+      "alt": [
+        "aïoli",
+        "allioli"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Winter sport combining cross-country skiing and rifle shooting",
+      "answer": "biathlon"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Small frosted cake baked in a paper liner",
+      "answer": "cupcake"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Equestrian discipline judged on precise movements and harmony of horse and rider",
+      "answer": "dressage"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Purple nightshade vegetable also called aubergine",
+      "answer": "eggplant"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Small-sided indoor variant of soccer played with a low-bounce ball",
+      "answer": "futsal"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Silky mixture of chocolate and cream used to fill or glaze pastries",
+      "answer": "ganache"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Fast-paced indoor team sport where players pass and shoot to score on a goal",
+      "answer": "handball"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Frozen dessert typically made from dairy, sugar, and flavorings",
+      "answer": "ice cream"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "American music style characterized by improvisation, swing, and blue notes",
+      "answer": "jazz"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Tiny citrus fruit eaten whole, including the peel",
+      "answer": "kumquat",
+      "alt": [
+        "cumquat"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Winter sliding sport where riders race feet-first on a small sled",
+      "answer": "luge"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Off-road motorcycle racing over jumps and rough dirt tracks",
+      "answer": "motocross"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Sushi style with a hand-pressed rice oval topped with sliced fish or seafood",
+      "answer": "nigiri"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Small Mediterranean fruit commonly cured in brine or pressed for oil",
+      "answer": "olive"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Italian dish of boiled cornmeal served creamy or cooled and grilled",
+      "answer": "polenta"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "British term for a musical eighth note",
+      "answer": "quaver"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Catalan sauce of roasted red peppers, tomatoes, almonds, and garlic",
+      "answer": "romesco"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Bread leavened with a wild-yeast starter that gives a tangy flavor",
+      "answer": "sourdough"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Painting medium using pigments mixed with egg yolk",
+      "answer": "tempera"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Team field sport known for self-officiation and a flying disc",
+      "answer": "ultimate"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Flavoring derived from cured pods of orchids native to Mesoamerica",
+      "answer": "vanilla"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Olympic strength sport featuring the snatch and the clean and jerk",
+      "answer": "weightlifting"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Percussion instrument made of tuned wooden bars struck with mallets",
+      "answer": "xylophone"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Microorganism that ferments sugars in baking and brewing",
+      "answer": "yeast"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Summer squash commonly called courgette in British English",
+      "answer": "zucchini"
+    }
+  ]
+}
