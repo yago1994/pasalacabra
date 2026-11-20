@@ -300,6 +300,8 @@ export function hasPregenerated(text: string, voice = getVoice()): boolean {
 }
 
 const SYNTH_TIMEOUT_MS = 10_000;
+/** Question read-aloud volume: 1.5 = 50% louder than the files as generated. */
+const VOICE_GAIN = 1.5;
 
 /**
  * Speak `text` through `ctx`. `onDone` is called exactly once: "onend",
@@ -345,7 +347,17 @@ export function playTts(
       src = ctx.createBufferSource();
       src.buffer = trimSilence(ctx, audio);
       if (speedUp) src.playbackRate.value = rate;
-      src.connect(ctx.destination);
+      // Players found the voice too quiet: play it 50% louder (~+3.5 dB). The
+      // clips peak around -4 dBFS, so a limiter catches any that would clip.
+      const gain = ctx.createGain();
+      gain.gain.value = VOICE_GAIN;
+      const limiter = ctx.createDynamicsCompressor();
+      limiter.threshold.value = -1;
+      limiter.knee.value = 0;
+      limiter.ratio.value = 20;
+      limiter.attack.value = 0.002;
+      limiter.release.value = 0.1;
+      src.connect(gain).connect(limiter).connect(ctx.destination);
       src.onended = () => finish(stopped ? "stopped" : "onend");
       if (ctx.state !== "running") void ctx.resume().catch(() => {});
       src.start();
