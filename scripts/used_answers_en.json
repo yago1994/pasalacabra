@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-22",
-    "answers": [
-      "Anansi",
-      "Banshee",
-      "Cicada",
-      "Druid",
-      "Echidna",
-      "Fossa",
-      "Gouache",
-      "Harp",
-      "Ichor",
-      "Jorogumo",
-      "Kirin",
-      "Lich",
-      "Mandrake",
-      "Naiad",
-      "Oil paint",
-      "Papyrus",
-      "Quokka",
-      "Roc",
-      "Selkie",
-      "Tarot",
-      "Underworld",
-      "Vampire",
-      "Wyvern",
-      "Xerophyte",
-      "Yuki-onna",
-      "Zebrafish"
-    ]
-  },
-  {
     "date": "2026-09-23",
     "answers": [
       "Amadeus",
@@ -1857,6 +1826,37 @@
       "xylophone",
       "yeast",
       "zucchini"
+    ]
+  },
+  {
+    "date": "2026-11-21",
+    "answers": [
+      "ATP",
+      "biopic",
+      "CRISPR",
+      "diffusion",
+      "edema",
+      "Foley",
+      "genome",
+      "hertz",
+      "ion",
+      "Jaws",
+      "key light",
+      "lysosome",
+      "momentum",
+      "neuron",
+      "osmosis",
+      "plasmid",
+      "torque",
+      "rotoscoping",
+      "storyboard",
+      "telomere",
+      "uranium",
+      "visual effects",
+      "work",
+      "The Matrix",
+      "yaw",
+      "zinc"
     ]
   }
 ]

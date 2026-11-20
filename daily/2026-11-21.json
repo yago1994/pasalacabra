@@ -1,0 +1,194 @@
+{
+  "id": "set-2026-11-21",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Molecule that provides immediate energy for many cellular processes.",
+      "answer": "ATP",
+      "alt": [
+        "adenosine triphosphate"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Film genre that dramatizes the life of a real person.",
+      "answer": "biopic",
+      "alt": [
+        "biographical film"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Gene-editing technique that uses a guide RNA and Cas enzymes.",
+      "answer": "CRISPR",
+      "alt": [
+        "CRISPR-Cas9"
+      ]
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Passive movement of particles from higher to lower concentration.",
+      "answer": "diffusion"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Medical term for swelling due to excess fluid in tissues.",
+      "answer": "edema",
+      "alt": [
+        "oedema"
+      ]
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Post-production method of recreating everyday sounds for movies.",
+      "answer": "Foley"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Complete set of genetic material in an organism.",
+      "answer": "genome"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "SI unit for frequency equal to one cycle per second.",
+      "answer": "hertz",
+      "alt": [
+        "Hz"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Atom or molecule with a net electric charge.",
+      "answer": "ion"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "1975 thriller directed by Steven Spielberg that birthed the summer blockbuster.",
+      "answer": "Jaws"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Primary source in three-point lighting that defines the subject’s form.",
+      "answer": "key light",
+      "alt": [
+        "keylight"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Membrane-bound cellular compartment packed with digestive enzymes.",
+      "answer": "lysosome"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Quantity equal to mass times velocity that is conserved in isolated systems.",
+      "answer": "momentum"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Excitable cell specialized for transmitting signals in the nervous system.",
+      "answer": "neuron",
+      "alt": [
+        "nerve cell"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Net movement of water across a semipermeable membrane.",
+      "answer": "osmosis"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Small circular DNA molecule in bacteria often used as a cloning vector.",
+      "answer": "plasmid"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Rotational equivalent of force, measured in newton-meters.",
+      "answer": "torque"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Animation method that traces live-action footage frame by frame.",
+      "answer": "rotoscoping",
+      "alt": [
+        "rotoscope"
+      ]
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Series of panels used to previsualize shots before filming.",
+      "answer": "storyboard"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Protective DNA sequence at a chromosome end that shortens with replication.",
+      "answer": "telomere",
+      "alt": [
+        "telomeres"
+      ]
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Heavy element commonly used as fuel in nuclear reactors.",
+      "answer": "uranium"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Digital imagery integrated into live-action shots to create illusions.",
+      "answer": "visual effects",
+      "alt": [
+        "VFX"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "In physics, energy transferred when a force moves an object through a distance.",
+      "answer": "work"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "1999 cyberpunk action film starring Keanu Reeves as Neo.",
+      "answer": "The Matrix",
+      "alt": [
+        "Matrix"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Rotation around a vertical axis, as described in flight dynamics.",
+      "answer": "yaw"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Metallic element used to galvanize steel and as a cofactor in many enzymes.",
+      "answer": "zinc"
+    }
+  ]
+}
