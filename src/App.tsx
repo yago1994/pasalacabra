@@ -755,6 +755,9 @@ export default function App() {
   const sfxBuffersRef = useRef<Partial<Record<"correct" | "wrong" | "pasalacabra", AudioBuffer>>>({});
   const sfxRawRef = useRef<Partial<Record<"correct" | "wrong" | "pasalacabra", ArrayBuffer>>>({});
   const sfxLoadPromiseRef = useRef<Promise<void> | null>(null);
+  // Set by a pass: the next question waits for the pasalacabra sound to end, so
+  // the two don't overlap (playing over the voice made it sound much quieter).
+  const afterPasalacabraRef = useRef<Promise<void> | null>(null);
   const audioUnlockedRef = useRef<boolean>(false);
 
   function getAudioCtx() {
@@ -926,46 +929,51 @@ export default function App() {
     return sfxLoadPromiseRef.current;
   }
 
-  function playSfx(key: "correct" | "wrong" | "pasalacabra") {
+  /** Plays an SFX; resolves when it has finished (or right away if it can't play). */
+  function playSfx(key: "correct" | "wrong" | "pasalacabra"): Promise<void> {
     const ctx = getAudioCtx();
     const buf = sfxBuffersRef.current[key];
     console.log("[sfx]", key, { context: ctx?.state, ready: Boolean(buf) });
-    if (!ctx || !buf) return;
+    if (!ctx || !buf) return Promise.resolve();
 
-    const start = () => {
-      try {
-        const src = ctx.createBufferSource();
-        src.buffer = buf;
+    return new Promise<void>((resolve) => {
+      const start = () => {
+        try {
+          const src = ctx.createBufferSource();
+          src.buffer = buf;
 
-        const gain = ctx.createGain();
-        // Per-SFX tuning. The pasalacabra file is mastered hot (~-7 LUFS) while
-        // the Azure voice clips sit around -22 LUFS, so at full gain it drowned
-        // the voice out; 0.18 (~-15 dB) brings it to about the voice's level.
-        const volume = key === "pasalacabra" ? 0.18 : 0.95;
-        gain.gain.value = volume;
+          const gain = ctx.createGain();
+          // Per-SFX tuning. The pasalacabra file is mastered hot (~-7 LUFS);
+          // 0.27 puts it at the read-aloud's level (~-18 LUFS, after its 1.5x
+          // VOICE_GAIN in speech/azureTts.ts).
+          const volume = key === "pasalacabra" ? 0.27 : 0.95;
+          gain.gain.value = volume;
 
-        src.connect(gain);
-        gain.connect(ctx.destination);
-        src.start();
-      } catch (err) {
-        console.warn("Failed to play SFX:", key, err);
+          src.connect(gain);
+          gain.connect(ctx.destination);
+          src.onended = () => resolve();
+          src.start();
+        } catch (err) {
+          console.warn("Failed to play SFX:", key, err);
+          resolve();
+        }
+      };
+
+      // Always try to resume first on mobile (context can get suspended unexpectedly).
+      // Then play the sound.
+      if (ctx.state !== "running") {
+        void ctx
+          .resume()
+          .then(() => start())
+          .catch(() => {
+            // Try to play anyway - some browsers report wrong state
+            start();
+          });
+        return;
       }
-    };
 
-    // Always try to resume first on mobile (context can get suspended unexpectedly).
-    // Then play the sound.
-    if (ctx.state !== "running") {
-      void ctx
-        .resume()
-        .then(() => start())
-        .catch(() => {
-          // Try to play anyway - some browsers report wrong state
-          start();
-        });
-      return;
-    }
-
-    start();
+      start();
+    });
   }
 
   function playMicReadyChime() {
@@ -2313,7 +2321,17 @@ export default function App() {
     if (lastSpokenKeyRef.current === key) return;
 
     lastSpokenKeyRef.current = key;
-    speakCurrentQuestionThenListen();
+    const afterPasalacabra = afterPasalacabraRef.current;
+    afterPasalacabraRef.current = null;
+    if (!afterPasalacabra) {
+      speakCurrentQuestionThenListen();
+      return;
+    }
+    void afterPasalacabra.then(() => {
+      // Still on this letter and still playing (no pass, timeout or handoff meanwhile)?
+      if (phaseRef.current !== "playing" || lastSpokenKeyRef.current !== key) return;
+      speakCurrentQuestionThenListen();
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, currentLetter, activePlayerId, activeSetId]);
 
@@ -3392,7 +3410,12 @@ export default function App() {
     if (ctx && ctx.state !== "running") {
       void ctx.resume().catch(() => {});
     }
-    void ensureSfxReady().then(() => playSfx("pasalacabra"));
+    const pasalacabraDone = ensureSfxReady().then(() => playSfx("pasalacabra"));
+    // The next question (same player) starts once the sound ends; never wait
+    // more than 2 s in case it doesn't play or report its end.
+    afterPasalacabraRef.current = shouldContinuePlaying
+      ? Promise.race([pasalacabraDone, new Promise<void>((r) => window.setTimeout(r, 2000))])
+      : null;
 
     setStatusByLetter((prev) => {
       const next = { ...prev };
