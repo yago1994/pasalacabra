@@ -944,9 +944,10 @@ export default function App() {
 
           const gain = ctx.createGain();
           // Per-SFX tuning. The pasalacabra file is mastered hot (~-7 LUFS);
-          // 0.27 puts it at the read-aloud's level (~-18 LUFS, after its 1.5x
-          // VOICE_GAIN in speech/azureTts.ts).
-          const volume = key === "pasalacabra" ? 0.27 : 0.95;
+          // 0.27 put it at the read-aloud's level (~-18 LUFS, after its 1.5x
+          // VOICE_GAIN in speech/azureTts.ts), and playtesters wanted it 30%
+          // louder than that: 0.35 (~-16 LUFS).
+          const volume = key === "pasalacabra" ? 0.35 : 0.95;
           gain.gain.value = volume;
 
           src.connect(gain);
