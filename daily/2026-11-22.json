@@ -1,0 +1,182 @@
+{
+  "id": "set-2026-11-22",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Organic molecule composed of a central carbon, a carboxyl group, a hydrogen, and a variable side chain; building block of proteins.",
+      "answer": "amino acid"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Sample of tissue taken for diagnostic examination under a microscope.",
+      "answer": "biopsy"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Small, fast memory that stores recently used data for quicker access by the processor.",
+      "answer": "cache"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Device that delivers an electric shock to restore a normal heart rhythm.",
+      "answer": "defibrillator",
+      "alt": [
+        "defib"
+      ]
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Primary female sex hormone that regulates the menstrual cycle and reproductive tissues.",
+      "answer": "estrogen"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Low-level software programmed into a device's non-volatile memory, controlling its basic functions.",
+      "answer": "firmware"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Positioned in front of the net to prevent scores in ice hockey.",
+      "answer": "goalie",
+      "alt": [
+        "goaltender"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Group of muscles at the back of the thigh that flex the knee and extend the hip.",
+      "answer": "hamstring",
+      "alt": [
+        "hamstrings"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Miniaturized electronic components fabricated together on a semiconductor chip, also called a microchip.",
+      "answer": "integrated circuit",
+      "alt": [
+        "IC"
+      ]
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Site where two bones meet, allowing movement and sometimes cushioning by cartilage.",
+      "answer": "joint"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Unit of digital information equal to 1,024 bytes in many binary contexts.",
+      "answer": "kilobyte",
+      "alt": [
+        "KB"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Band of tough connective tissue that connects one bone to another.",
+      "answer": "ligament"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Software designed to disrupt, damage, or gain unauthorized access to a computer system.",
+      "answer": "malware"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "One-billionth of a meter, commonly used to specify chip features and biomolecule sizes.",
+      "answer": "nanometer"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Bundle that transmits visual signals from the retina to the brain.",
+      "answer": "optic nerve"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Major component of cell membranes with a hydrophilic head and two hydrophobic tails.",
+      "answer": "phospholipid"
+    },
+    {
+      "letter": "Q",
+      "mode": "contains",
+      "question": "Strength exercise that lowers the body by bending hips and knees, then returns to standing.",
+      "answer": "squat"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Official responsible for enforcing the rules and making decisions during a match.",
+      "answer": "referee"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Unsolicited bulk messages, especially sent via email.",
+      "answer": "spam"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Shinbone; the larger and stronger of the two bones in the lower leg.",
+      "answer": "tibia"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Install a newer version of software or hardware to improve features, security, or performance.",
+      "answer": "upgrade"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "A single bone of the spinal column surrounding and protecting the spinal cord.",
+      "answer": "vertebra"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Neoprene garment that insulates swimmers, surfers, and divers in cold water.",
+      "answer": "wetsuit",
+      "alt": [
+        "wet suit"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Plant tissue that transports water and dissolved minerals from roots to leaves.",
+      "answer": "xylem"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Total distance gained or allowed, tracked as a statistic in American football.",
+      "answer": "yardage"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Tactic in which defenders guard areas of the playing surface rather than specific opponents.",
+      "answer": "zone defense",
+      "alt": [
+        "zone defence"
+      ]
+    }
+  ]
+}
