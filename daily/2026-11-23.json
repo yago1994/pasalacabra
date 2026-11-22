@@ -1,0 +1,179 @@
+{
+  "id": "set-2026-11-23",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "European mountain range spanning France, Italy, Switzerland, Austria, and more.",
+      "answer": "Alps"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Winter Olympic event raced in teams of two or four down an iced track in a steerable sled.",
+      "answer": "Bobsleigh",
+      "alt": [
+        "Bobsled"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Three-headed hound guarding the entrance to Hades in Greek myth.",
+      "answer": "Cerberus"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Landlocked salt lake between Jordan and Israel known for extreme buoyancy and Earth's lowest shoreline.",
+      "answer": "Dead Sea"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Highest mountain above sea level on Earth, on the Nepal–China border.",
+      "answer": "Everest"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Global sport governed by FIFA and called soccer in some countries.",
+      "answer": "Football"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Monster who terrorized Heorot, slain by Beowulf in the Old English epic.",
+      "answer": "Grendel"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Asian mountain system containing Earth's highest peaks, stretching from Pakistan to Bhutan.",
+      "answer": "Himalayas",
+      "alt": [
+        "Himalaya"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Largest city in Turkey, spanning the Bosporus between Europe and Asia.",
+      "answer": "Istanbul"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Basque court sport using a curved cesta to hurl a ball against a wall at high speed.",
+      "answer": "Jai alai",
+      "alt": [
+        "Jai-alai"
+      ]
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Capital city of Afghanistan located in the eastern part of the country.",
+      "answer": "Kabul",
+      "alt": [
+        "Kabol"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Mischievous fairy of Irish tradition said to hide a pot of gold at a rainbow's end.",
+      "answer": "Leprechaun"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Landlocked Asian nation between Russia and China, known for vast steppe and the Naadam festival.",
+      "answer": "Mongolia"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Major African river flowing northward to the Mediterranean through countries including Sudan and Egypt.",
+      "answer": "Nile"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Sport combining navigation and running where competitors use a map and compass to visit checkpoints.",
+      "answer": "Orienteering"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Mountain range forming a natural border between Spain and France.",
+      "answer": "Pyrenees"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Gulf nation whose capital is Doha and which hosted the 2022 FIFA World Cup.",
+      "answer": "Qatar"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Water sport in which crews propel shells using oars over set distances such as 2000 meters.",
+      "answer": "Rowing"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Track-and-field event where athletes push a heavy metal ball for distance from a circle.",
+      "answer": "Shot put",
+      "alt": [
+        "Shot-put"
+      ]
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Legendary Anatolian city central to the Trojan War of Greek myth.",
+      "answer": "Troy"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "South American country on the Atlantic with capital Montevideo, bordered by Brazil and Argentina.",
+      "answer": "Uruguay"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "South American country home to Angel Falls in Canaima National Park.",
+      "answer": "Venezuela"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Female magic-user in European folklore, often depicted riding a broomstick and casting spells.",
+      "answer": "Witch"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "English name for Kublai Khan’s summer capital, memorialized in a poem by Samuel Taylor Coleridge.",
+      "answer": "Xanadu"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Canadian territory whose capital is Whitehorse and which borders Alaska.",
+      "answer": "Yukon",
+      "alt": [
+        "Yukon Territory"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Landlocked southern African nation with capital Lusaka and the Zambezi along much of its southern boundary.",
+      "answer": "Zambia"
+    }
+  ]
+}

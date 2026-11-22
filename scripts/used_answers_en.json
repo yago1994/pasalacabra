@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-24",
-    "answers": [
-      "anaphora",
-      "bildungsroman",
-      "couplet",
-      "dactyl",
-      "endemic",
-      "familiar",
-      "genotype",
-      "haiku",
-      "iamb",
-      "Jabberwock",
-      "kenning",
-      "leitmotif",
-      "molecule",
-      "neologism",
-      "oni",
-      "plasma",
-      "equation",
-      "rhyme scheme",
-      "sublimation",
-      "trochee",
-      "undead",
-      "villanelle",
-      "will-o'-the-wisp",
-      "xenon",
-      "Yama",
-      "zeugma"
-    ]
-  },
-  {
     "date": "2026-09-25",
     "answers": [
       "anchovy",
@@ -1857,6 +1826,37 @@
       "xylem",
       "yardage",
       "zone defense"
+    ]
+  },
+  {
+    "date": "2026-11-23",
+    "answers": [
+      "Alps",
+      "Bobsleigh",
+      "Cerberus",
+      "Dead Sea",
+      "Everest",
+      "Football",
+      "Grendel",
+      "Himalayas",
+      "Istanbul",
+      "Jai alai",
+      "Kabul",
+      "Leprechaun",
+      "Mongolia",
+      "Nile",
+      "Orienteering",
+      "Pyrenees",
+      "Qatar",
+      "Rowing",
+      "Shot put",
+      "Troy",
+      "Uruguay",
+      "Venezuela",
+      "Witch",
+      "Xanadu",
+      "Yukon",
+      "Zambia"
     ]
   }
 ]
