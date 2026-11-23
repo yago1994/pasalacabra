@@ -1,0 +1,178 @@
+{
+  "id": "set-2026-11-24",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Mauryan emperor famed for spreading Buddhism after the Kalinga War.",
+      "answer": "Ashoka",
+      "alt": [
+        "Asoka"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Iceni queen who led an uprising against Roman rule in Britain.",
+      "answer": "Boudica",
+      "alt": [
+        "Boudicca",
+        "Boadicea"
+      ]
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Largest Greek island and cradle of the Minoan civilization.",
+      "answer": "Crete"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "French port where a 1940 Allied evacuation took place.",
+      "answer": "Dunkirk"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Ancient Ionian city famed for the Temple of Artemis.",
+      "answer": "Ephesus"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Arc-shaped region in Southwest Asia where agriculture first flourished.",
+      "answer": "Fertile Crescent"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Swiss city on Lake Léman famed for the Jet d'Eau fountain.",
+      "answer": "Geneva",
+      "alt": [
+        "Genève",
+        "Geneve"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Japanese city devastated by an atomic bomb on 6 August 1945.",
+      "answer": "Hiroshima"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Volcanic island captured by U.S. Marines in 1945, famed for a flag-raising photo.",
+      "answer": "Iwo Jima"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Largest city in South Africa, founded on the Witwatersrand gold reef.",
+      "answer": "Johannesburg"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Historic Polish city with Wawel Castle and a vast medieval market square.",
+      "answer": "Kraków",
+      "alt": [
+        "Krakow"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Ancient Anatolian kingdom credited with early coinage under Croesus.",
+      "answer": "Lydia"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Historical region between the Tigris and Euphrates, cradle of early cities.",
+      "answer": "Mesopotamia"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Ancient region south of Egypt along the Nile, home to Kushite kings.",
+      "answer": "Nubia"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Capital city of Burkina Faso.",
+      "answer": "Ouagadougou"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Roman city buried by Mount Vesuvius in 79 CE.",
+      "answer": "Pompeii"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Indigenous people and language that served as the lingua franca of the Inca Empire.",
+      "answer": "Quechua"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Indigenous name for Easter Island and its people famed for moai statues.",
+      "answer": "Rapa Nui"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Militaristic city-state that fought Athens in the Peloponnesian War.",
+      "answer": "Sparta"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Historical region of Romania associated with Dracula legends.",
+      "answer": "Transylvania"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Southern part of ancient Egypt symbolized by the white crown.",
+      "answer": "Upper Egypt"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Austrian capital on the Danube long seat of the Habsburgs.",
+      "answer": "Vienna"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Region that gave its name to the 1648 treaties ending the Thirty Years' War.",
+      "answer": "Westphalia"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Earliest dynasty in traditional Chinese historiography, preceding the Shang.",
+      "answer": "Xia dynasty",
+      "alt": [
+        "Xia"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "World tree of Norse mythology linking the nine realms.",
+      "answer": "Yggdrasil"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Stepped temple tower common in ancient Mesopotamian cities.",
+      "answer": "Ziggurat"
+    }
+  ]
+}
