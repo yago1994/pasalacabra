@@ -1,0 +1,164 @@
+{
+  "id": "set-2026-11-25",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Enzyme in saliva and pancreas that breaks starch into sugars.",
+      "answer": "amylase"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Prokaryotes with peptidoglycan cell walls.",
+      "answer": "bacteria"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Substance that speeds a chemical reaction without being consumed.",
+      "answer": "catalyst"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Molecule carrying genetic instructions in most organisms.",
+      "answer": "DNA"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Pure substance made of one type of atom listed in the periodic table.",
+      "answer": "element"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Simple sugar commonly found in fruit; a ketohexose.",
+      "answer": "fructose"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Muscular organ in many birds that grinds food with swallowed grit.",
+      "answer": "gizzard"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Process by which living systems maintain stable internal conditions.",
+      "answer": "homeostasis"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Molecule with the same molecular formula as another but a different structure.",
+      "answer": "isomer"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "SI unit of work or energy equal to a newton meter.",
+      "answer": "joule"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Organic compound whose carbonyl group is bonded to two carbon atoms.",
+      "answer": "ketone"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Class of hydrophobic biomolecules including fats, oils, and sterols.",
+      "answer": "lipid"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Disaccharide of two glucose units produced during starch breakdown.",
+      "answer": "maltose"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Electrically neutral subatomic particle found in atomic nuclei.",
+      "answer": "neutron"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Aromatic herb in the mint family often sprinkled on pizza.",
+      "answer": "oregano"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Stomach enzyme that breaks proteins into peptides.",
+      "answer": "pepsin"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Fundamental particle that combines to form protons and neutrons.",
+      "answer": "quark"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Bending of light as it passes from one medium to another.",
+      "answer": "refraction"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Disaccharide of glucose and fructose known as table sugar.",
+      "answer": "sucrose"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Laboratory method for finding an unknown concentration by reaction with a standard solution.",
+      "answer": "titration"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Organism made up of only one cell.",
+      "answer": "unicellular"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Organic micronutrient required in small amounts for normal metabolism.",
+      "answer": "vitamin"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "SI unit of power equal to one joule per second.",
+      "answer": "watt"
+    },
+    {
+      "letter": "X",
+      "mode": "starts",
+      "question": "Noble gas used in high-intensity lamps and ion propulsion.",
+      "answer": "xenon"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Fermented milk product thickened by bacterial cultures.",
+      "answer": "yogurt",
+      "alt": [
+        "yoghurt"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Disease naturally transmissible from animals to humans.",
+      "answer": "zoonosis"
+    }
+  ]
+}
