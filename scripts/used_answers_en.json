@@ -1,36 +1,5 @@
 [
   {
-    "date": "2026-09-27",
-    "answers": [
-      "Ahab",
-      "Byzantine Empire",
-      "Cairo",
-      "Dublin",
-      "Elizabeth I",
-      "Falkland Islands",
-      "Granada",
-      "Havana",
-      "Iceland",
-      "Jordan",
-      "Kenya",
-      "Lima",
-      "Mongol Empire",
-      "Norway",
-      "Oxford",
-      "Paris",
-      "Quito",
-      "Rhodes",
-      "Sahara",
-      "Tokyo",
-      "United Kingdom",
-      "Versailles",
-      "Washington, D.C.",
-      "Mexico",
-      "Yemen",
-      "Zanzibar"
-    ]
-  },
-  {
     "date": "2026-09-28",
     "answers": [
       "Arancini",
@@ -1857,6 +1826,37 @@
       "xenon",
       "yogurt",
       "zoonosis"
+    ]
+  },
+  {
+    "date": "2026-11-26",
+    "answers": [
+      "Amarna Period",
+      "Baroque",
+      "Cuneiform",
+      "Doric",
+      "Etruscans",
+      "Fauvism",
+      "Gothic",
+      "Hieroglyphs",
+      "Impressionism",
+      "Jethro Tull",
+      "Kora",
+      "Louvre",
+      "Madrigal",
+      "Napoleon",
+      "Ottoman Empire",
+      "Prohibition",
+      "Quattrocento",
+      "Renaissance",
+      "Sistine Chapel",
+      "Treaty of Tordesillas",
+      "Ukulele",
+      "Vivaldi",
+      "Woodcut",
+      "Expressionism",
+      "Yuan dynasty",
+      "Zither"
     ]
   }
 ]

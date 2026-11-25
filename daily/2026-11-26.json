@@ -1,0 +1,186 @@
+{
+  "id": "set-2026-11-26",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Egyptian artistic era under Akhenaten characterized by elongated figures and intimate court scenes.",
+      "answer": "Amarna Period",
+      "alt": [
+        "Amarna"
+      ]
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Seventeenth-century European style in art and music marked by drama, contrast, and grandeur.",
+      "answer": "Baroque"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Ancient Mesopotamian writing of wedge-shaped impressions on clay tablets.",
+      "answer": "Cuneiform"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Simplest classical Greek architectural order with fluted columns and plain capitals.",
+      "answer": "Doric"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Ancient central Italian people whose culture strongly influenced early Rome.",
+      "answer": "Etruscans"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Early 20th-century French art movement led by Matisse, noted for bold, nonnaturalistic color.",
+      "answer": "Fauvism"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Medieval architectural style distinguished by pointed arches, ribbed vaults, and flying buttresses.",
+      "answer": "Gothic"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Pictorial writing system of ancient Egypt used on monuments and papyri.",
+      "answer": "Hieroglyphs",
+      "alt": [
+        "Hieroglyphics"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "19th-century movement capturing fleeting light and atmosphere with visible brushstrokes.",
+      "answer": "Impressionism"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "British band led by Ian Anderson, famed for flute-driven progressive rock.",
+      "answer": "Jethro Tull"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "West African 21-string harp-lute central to Mande musical traditions.",
+      "answer": "Kora"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Paris museum that houses the Mona Lisa and the Winged Victory of Samothrace.",
+      "answer": "Louvre",
+      "alt": [
+        "The Louvre",
+        "Louvre Museum"
+      ]
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Renaissance secular polyphonic song for several voices, often about love.",
+      "answer": "Madrigal"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "French leader who crowned himself emperor in 1804 and met defeat at Waterloo.",
+      "answer": "Napoleon",
+      "alt": [
+        "Napoleon Bonaparte"
+      ]
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "State that captured Constantinople in 1453 and ruled from Istanbul until 1922.",
+      "answer": "Ottoman Empire",
+      "alt": [
+        "Ottomans"
+      ]
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "U.S. nationwide ban on alcohol from 1920 to 1933 under the 18th Amendment.",
+      "answer": "Prohibition"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Italian term for the 1400s, key to early Renaissance art and architecture.",
+      "answer": "Quattrocento"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Cultural revival of classical learning and the arts beginning in 14th-century Italy.",
+      "answer": "Renaissance"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Vatican chapel whose ceiling frescoes were painted by Michelangelo.",
+      "answer": "Sistine Chapel"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "1494 pact dividing newly discovered lands outside Europe between Spain and Portugal.",
+      "answer": "Treaty of Tordesillas"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Small four-string instrument closely associated with Hawaiian music.",
+      "answer": "Ukulele",
+      "alt": [
+        "Ukelele"
+      ]
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Italian composer of The Four Seasons.",
+      "answer": "Vivaldi",
+      "alt": [
+        "Antonio Vivaldi"
+      ]
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Relief printmaking method using carved blocks, mastered by Albrecht Durer.",
+      "answer": "Woodcut"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Early 20th-century movement prioritizing inner emotion and distortion over naturalism.",
+      "answer": "Expressionism"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Chinese dynasty established by the Mongols under Kublai Khan.",
+      "answer": "Yuan dynasty",
+      "alt": [
+        "Yuan"
+      ]
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Flat-box string instrument plucked or strummed, common in central European folk music.",
+      "answer": "Zither"
+    }
+  ]
+}
