@@ -1,0 +1,170 @@
+{
+  "id": "set-2026-11-27",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Greek goddess of love and beauty in classical mythology.",
+      "answer": "Aphrodite"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Marine crustacean that cements itself to ships' hulls.",
+      "answer": "Barnacle"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Afro-Brazilian martial art combining dance and acrobatics.",
+      "answer": "Capoeira"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Neurotransmitter associated with reward signaling in the brain.",
+      "answer": "Dopamine"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "In Greek myth, the nymph whose husband Orpheus tried to rescue from Hades.",
+      "answer": "Eurydice"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Mexican painter known for self-portraits with symbolic flora and fauna.",
+      "answer": "Frida Kahlo"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Spanish court painter who created The Third of May 1808.",
+      "answer": "Goya",
+      "alt": [
+        "Francisco Goya"
+      ]
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Mythic strongman who completed twelve labors.",
+      "answer": "Hercules",
+      "alt": [
+        "Heracles"
+      ]
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Extinct marine reptile resembling a dolphin from the Mesozoic era.",
+      "answer": "Ichthyosaur"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Stacking block game where players remove pieces from a tower.",
+      "answer": "Jenga"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Classical Japanese theater known for elaborate makeup and stylized movement.",
+      "answer": "Kabuki"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Small Arctic rodent famous in myth for mass migrations.",
+      "answer": "Lemming"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Lower jawbone in vertebrates.",
+      "answer": "Mandible"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "External opening of the nasal cavity.",
+      "answer": "Nostril"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Word formed to imitate a natural sound, like buzz or hiss.",
+      "answer": "Onomatopoeia"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Bony ring at the base of the spine that supports the legs.",
+      "answer": "Pelvis"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Musical ensemble of five players.",
+      "answer": "Quintet"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Forearm bone on the thumb side.",
+      "answer": "Radius"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Organ that filters blood and helps mount immune responses.",
+      "answer": "Spleen"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Argentine partner dance in 2/4 or 4/4 time.",
+      "answer": "Tango"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Thick Japanese wheat noodles often served in broth.",
+      "answer": "Udon"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Cranial nerve that helps regulate heart rate and digestion.",
+      "answer": "Vagus nerve"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Watersport combining elements of surfing and sailing using a rigged board.",
+      "answer": "Windsurfing"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Greek hero of the Trojan War famed for his immense size and shield.",
+      "answer": "Ajax the Great",
+      "alt": [
+        "Telamonian Ajax"
+      ]
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Bacterium that causes bubonic plague.",
+      "answer": "Yersinia pestis"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Iraqi-British architect nicknamed the Queen of the Curve.",
+      "answer": "Zaha Hadid"
+    }
+  ]
+}
