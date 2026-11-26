@@ -138,6 +138,12 @@ Each run creates whichever of today and tomorrow (UTC) has no set yet, so the
 next game is deployed before midnight and a failed day fills itself in on the
 next run. `TARGET_DATE=YYYY-MM-DD` regenerates one specific day.
 
+Both the Spanish daily generator and the English Reddit generator (and any other
+OpenAI usage) default to **GPT-5**. The OpenAI API key is locked down so only
+GPT-5 is allowed. Later we should try other models to see whether they produce
+sets of similar quality at lower cost (`OPENAI_MODEL` overrides the default once
+the API allowlist is widened).
+
 Local run:
 ```bash
 OPENAI_KEY=... python3 scripts/generate_daily_set.py

@@ -49,6 +49,7 @@ import FakeSttPanel from "./components/FakeSttPanel";
 import { FAKE_STT } from "./speech/fakeRecognizer";
 import { getStagingSeconds } from "./env/stagingTime";
 import { SINGLE_AUDIO } from "./platform/audioMode";
+import { isAnswerCorrect, normalizeForCompare, removeDiacritics } from "./lib/answerMatch";
 import {
   getPauseMs,
   getSpeechRate,
@@ -133,23 +134,6 @@ function countLetterStatuses(
   return { correct, wrong, passed, unanswered };
 }
 
-function removeDiacritics(s: string) {
-  // `NFD` splits letters+diacritics into separate codepoints.
-  // Then we remove the combining diacritic marks.
-  return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-}
-
-function normalizeForCompare(raw: string) {
-  const s = removeDiacritics(raw)
-    .toLowerCase()
-    .replace(/[¡!¿?.,;:()[\]{}"“”'’`]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-
-  // Strip common Spanish leading articles / contractions (helps with STT).
-  return s.replace(/^(el|la|los|las|un|una|unos|unas|al|del)\s+/i, "").trim();
-}
-
 function computeWinnerIds(snaps: PlayerSnapshot[]): Set<string> {
   if (!snaps.length) return new Set();
   const maxCorrect = Math.max(...snaps.map((s) => s.correctCount));
@@ -216,66 +200,6 @@ function buildPhraseHintsForAnswer(answer: string) {
     `el ${a}`,
     `la ${a}`,
   ]).slice(0, 10);
-}
-
-function isAnswerCorrect(spoken: string, expected: string) {
-  const s = normalizeForCompare(spoken);
-  const e = normalizeForCompare(expected);
-  if (!s || !e) return false;
-  if (s === e) return true;
-
-  // If the spoken text contains the expected answer (like "pasalacabra" detection),
-  // mark it as correct. This handles cases like "Es ADN" or "La respuesta es ADN".
-  if (s.includes(e)) return true;
-
-  function levenshteinRatio(a: string, b: string) {
-    if (a === b) return 1;
-    const n = a.length;
-    const m = b.length;
-    if (n === 0 || m === 0) return 0;
-    const maxLen = Math.max(n, m);
-
-    // DP with two rows to keep it small.
-    let prev = new Array<number>(m + 1);
-    let cur = new Array<number>(m + 1);
-    for (let j = 0; j <= m; j++) prev[j] = j;
-    for (let i = 1; i <= n; i++) {
-      cur[0] = i;
-      const ca = a.charCodeAt(i - 1);
-      for (let j = 1; j <= m; j++) {
-        const cost = ca === b.charCodeAt(j - 1) ? 0 : 1;
-        const del = prev[j] + 1;
-        const ins = cur[j - 1] + 1;
-        const sub = prev[j - 1] + cost;
-        cur[j] = Math.min(del, ins, sub);
-      }
-      const tmp = prev;
-      prev = cur;
-      cur = tmp;
-    }
-    const dist = prev[m];
-    return 1 - dist / maxLen;
-  }
-
-  // Common STT confusion in Spanish: ñ → n.
-  const sN = s.replace(/ñ/g, "n");
-  const eN = e.replace(/ñ/g, "n");
-  if (sN === eN) return true;
-
-  // Very small plural/singular tolerance for short one-word answers.
-  if (s === `${e}s` || e === `${s}s`) return true;
-  if (s === `${e}es` || e === `${s}es`) return true;
-
-  // Fuzzy match for single-word answers (helps with minor phoneme confusions like d→k):
-  // e.g. "delfin" vs "kelfin" should be accepted.
-  const sOneWord = !/\s/.test(sN);
-  const eOneWord = !/\s/.test(eN);
-  if (sOneWord && eOneWord && sN.length >= 4 && eN.length >= 4) {
-    const ratio = levenshteinRatio(sN, eN);
-    if (ratio >= 0.6) return true;
-  }
-
-  return false;
 }
 
 function formatTime(totalSeconds: number) {
@@ -831,6 +755,9 @@ export default function App() {
   const sfxBuffersRef = useRef<Partial<Record<"correct" | "wrong" | "pasalacabra", AudioBuffer>>>({});
   const sfxRawRef = useRef<Partial<Record<"correct" | "wrong" | "pasalacabra", ArrayBuffer>>>({});
   const sfxLoadPromiseRef = useRef<Promise<void> | null>(null);
+  // Set by a pass: the next question waits for the pasalacabra sound to end, so
+  // the two don't overlap (playing over the voice made it sound much quieter).
+  const afterPasalacabraRef = useRef<Promise<void> | null>(null);
   const audioUnlockedRef = useRef<boolean>(false);
 
   function getAudioCtx() {
@@ -1002,44 +929,52 @@ export default function App() {
     return sfxLoadPromiseRef.current;
   }
 
-  function playSfx(key: "correct" | "wrong" | "pasalacabra") {
+  /** Plays an SFX; resolves when it has finished (or right away if it can't play). */
+  function playSfx(key: "correct" | "wrong" | "pasalacabra"): Promise<void> {
     const ctx = getAudioCtx();
     const buf = sfxBuffersRef.current[key];
     console.log("[sfx]", key, { context: ctx?.state, ready: Boolean(buf) });
-    if (!ctx || !buf) return;
+    if (!ctx || !buf) return Promise.resolve();
 
-    const start = () => {
-      try {
-        const src = ctx.createBufferSource();
-        src.buffer = buf;
+    return new Promise<void>((resolve) => {
+      const start = () => {
+        try {
+          const src = ctx.createBufferSource();
+          src.buffer = buf;
 
-        const gain = ctx.createGain();
-        // Slight per-SFX tuning.
-        const volume = key === "pasalacabra" ? 1.0 : 0.95;
-        gain.gain.value = volume;
+          const gain = ctx.createGain();
+          // Per-SFX tuning. The pasalacabra file is mastered hot (~-7 LUFS);
+          // 0.27 put it at the read-aloud's level (~-18 LUFS, after its 1.5x
+          // VOICE_GAIN in speech/azureTts.ts), and playtesters wanted it 30%
+          // louder than that: 0.35 (~-16 LUFS).
+          const volume = key === "pasalacabra" ? 0.35 : 0.95;
+          gain.gain.value = volume;
 
-        src.connect(gain);
-        gain.connect(ctx.destination);
-        src.start();
-      } catch (err) {
-        console.warn("Failed to play SFX:", key, err);
+          src.connect(gain);
+          gain.connect(ctx.destination);
+          src.onended = () => resolve();
+          src.start();
+        } catch (err) {
+          console.warn("Failed to play SFX:", key, err);
+          resolve();
+        }
+      };
+
+      // Always try to resume first on mobile (context can get suspended unexpectedly).
+      // Then play the sound.
+      if (ctx.state !== "running") {
+        void ctx
+          .resume()
+          .then(() => start())
+          .catch(() => {
+            // Try to play anyway - some browsers report wrong state
+            start();
+          });
+        return;
       }
-    };
 
-    // Always try to resume first on mobile (context can get suspended unexpectedly).
-    // Then play the sound.
-    if (ctx.state !== "running") {
-      void ctx
-        .resume()
-        .then(() => start())
-        .catch(() => {
-          // Try to play anyway - some browsers report wrong state
-          start();
-        });
-      return;
-    }
-
-    start();
+      start();
+    });
   }
 
   function playMicReadyChime() {
@@ -2387,7 +2322,17 @@ export default function App() {
     if (lastSpokenKeyRef.current === key) return;
 
     lastSpokenKeyRef.current = key;
-    speakCurrentQuestionThenListen();
+    const afterPasalacabra = afterPasalacabraRef.current;
+    afterPasalacabraRef.current = null;
+    if (!afterPasalacabra) {
+      speakCurrentQuestionThenListen();
+      return;
+    }
+    void afterPasalacabra.then(() => {
+      // Still on this letter and still playing (no pass, timeout or handoff meanwhile)?
+      if (phaseRef.current !== "playing" || lastSpokenKeyRef.current !== key) return;
+      speakCurrentQuestionThenListen();
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, currentLetter, activePlayerId, activeSetId]);
 
@@ -3466,7 +3411,12 @@ export default function App() {
     if (ctx && ctx.state !== "running") {
       void ctx.resume().catch(() => {});
     }
-    void ensureSfxReady().then(() => playSfx("pasalacabra"));
+    const pasalacabraDone = ensureSfxReady().then(() => playSfx("pasalacabra"));
+    // The next question (same player) starts once the sound ends; never wait
+    // more than 2 s in case it doesn't play or report its end.
+    afterPasalacabraRef.current = shouldContinuePlaying
+      ? Promise.race([pasalacabraDone, new Promise<void>((r) => window.setTimeout(r, 2000))])
+      : null;
 
     setStatusByLetter((prev) => {
       const next = { ...prev };
