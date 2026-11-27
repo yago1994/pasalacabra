@@ -1,0 +1,161 @@
+{
+  "id": "set-2026-11-28",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Branch of biology that studies body structure.",
+      "answer": "anatomy"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "Copper and tin alloy widely used for casting sculptures.",
+      "answer": "bronze"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Heavy woven fabric commonly stretched on frames for painting.",
+      "answer": "canvas"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "In basketball or soccer, advance while controlling the ball with repeated touches.",
+      "answer": "dribble"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Twice-yearly moment when day and night are nearly equal worldwide.",
+      "answer": "equinox"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Force that resists sliding motion between surfaces in contact.",
+      "answer": "friction"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Opaque watercolor paint favored for illustrations and posters.",
+      "answer": "gouache"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Half of a spherical object, as in one side of Earth.",
+      "answer": "hemisphere"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Pigmented liquid used in pens, calligraphy, and printing.",
+      "answer": "ink"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Shirt worn by players that displays team colors and numbers.",
+      "answer": "jersey"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Scientific study of human movement, especially in sport and rehabilitation.",
+      "answer": "kinesiology"
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Curved optical element that focuses or disperses light.",
+      "answer": "lens"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Timing device that produces regular clicks to guide musicians.",
+      "answer": "metronome"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Top U.S. stock-car racing series and governing body.",
+      "answer": "NASCAR"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Pigment suspended in drying oils, used for slow-drying traditional artworks.",
+      "answer": "oil paint"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Flat surface used by painters to hold and mix colors.",
+      "answer": "palette"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Extremely luminous active galactic nucleus powered by a supermassive black hole.",
+      "answer": "quasar"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Enclosed surface for ice skating or hockey.",
+      "answer": "rink"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Template with cut-out shapes used to apply paint in precise patterns.",
+      "answer": "stencil"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Artwork consisting of three panels hinged together.",
+      "answer": "triptych"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Darkest inner region of a shadow during an eclipse.",
+      "answer": "umbra"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Measure of how strongly a fluid resists flowing.",
+      "answer": "viscosity"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Grappling sport in which the goal is to pin or outscore an opponent.",
+      "answer": "wrestling"
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Natural polymer from rubber tree sap used to make gloves and elastic products.",
+      "answer": "latex"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Spun fibers used in knitting, weaving, or crocheting.",
+      "answer": "yarn"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Pre-film animation device that shows motion using images on a spinning drum viewed through slits.",
+      "answer": "zoetrope"
+    }
+  ]
+}
