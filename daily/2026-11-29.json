@@ -1,0 +1,167 @@
+{
+  "id": "set-2026-11-29",
+  "questions": [
+    {
+      "letter": "A",
+      "mode": "starts",
+      "question": "Verdi opera about an Ethiopian princess and a captive Egyptian general",
+      "answer": "Aida"
+    },
+    {
+      "letter": "B",
+      "mode": "starts",
+      "question": "German Romantic composer of Hungarian Dances and a famous lullaby",
+      "answer": "Brahms"
+    },
+    {
+      "letter": "C",
+      "mode": "starts",
+      "question": "Fairy-tale heroine who loses a glass slipper at the royal ball",
+      "answer": "Cinderella"
+    },
+    {
+      "letter": "D",
+      "mode": "starts",
+      "question": "Florentine sculptor of the nude bronze David created before Michelangelo's",
+      "answer": "Donatello"
+    },
+    {
+      "letter": "E",
+      "mode": "starts",
+      "question": "Graphic artist famed for impossible staircases in his lithograph Relativity",
+      "answer": "Escher"
+    },
+    {
+      "letter": "F",
+      "mode": "starts",
+      "question": "Melancholic Portuguese music genre often sung with Portuguese guitar",
+      "answer": "Fado"
+    },
+    {
+      "letter": "G",
+      "mode": "starts",
+      "question": "Picasso's monumental anti-war painting depicting the bombing of a Basque town",
+      "answer": "Guernica"
+    },
+    {
+      "letter": "H",
+      "mode": "starts",
+      "question": "Traditional Maori challenge-dance performed by New Zealand rugby teams",
+      "answer": "Haka"
+    },
+    {
+      "letter": "I",
+      "mode": "starts",
+      "question": "Scheming antagonist who manipulates a Venetian general in a Shakespeare tragedy",
+      "answer": "Iago"
+    },
+    {
+      "letter": "J",
+      "mode": "starts",
+      "question": "Lewis Carroll poem filled with portmanteau words like frabjous and galumphing",
+      "answer": "Jabberwocky"
+    },
+    {
+      "letter": "K",
+      "mode": "starts",
+      "question": "Japanese director of Seven Samurai and Rashomon",
+      "answer": "Kurosawa",
+      "alt": [
+        "Kurosawa Akira"
+      ]
+    },
+    {
+      "letter": "L",
+      "mode": "starts",
+      "question": "Verdi opera in which Violetta sings Sempre libera",
+      "answer": "La Traviata"
+    },
+    {
+      "letter": "M",
+      "mode": "starts",
+      "question": "Shakespeare tragedy featuring the Weird Sisters and King Duncan",
+      "answer": "Macbeth"
+    },
+    {
+      "letter": "N",
+      "mode": "starts",
+      "question": "Seattle grunge band behind the album Nevermind",
+      "answer": "Nirvana"
+    },
+    {
+      "letter": "O",
+      "mode": "starts",
+      "question": "Clay flute popularized by a 1998 Legend of Zelda video game",
+      "answer": "Ocarina"
+    },
+    {
+      "letter": "P",
+      "mode": "starts",
+      "question": "Italian tenor who joined Carreras and Domingo as the Three Tenors",
+      "answer": "Pavarotti"
+    },
+    {
+      "letter": "Q",
+      "mode": "starts",
+      "question": "Film director of Pulp Fiction and Kill Bill",
+      "answer": "Quentin Tarantino"
+    },
+    {
+      "letter": "R",
+      "mode": "starts",
+      "question": "Italian composer of The Barber of Seville",
+      "answer": "Rossini"
+    },
+    {
+      "letter": "S",
+      "mode": "starts",
+      "question": "Cuban-rooted partner dance that shares its name with a spicy sauce",
+      "answer": "Salsa"
+    },
+    {
+      "letter": "T",
+      "mode": "starts",
+      "question": "Venetian painter nicknamed Il Furioso for his energetic style",
+      "answer": "Tintoretto"
+    },
+    {
+      "letter": "U",
+      "mode": "starts",
+      "question": "Treasure-hunting video game series starring Nathan Drake",
+      "answer": "Uncharted"
+    },
+    {
+      "letter": "V",
+      "mode": "starts",
+      "question": "Dutch painter of Girl with a Pearl Earring",
+      "answer": "Vermeer"
+    },
+    {
+      "letter": "W",
+      "mode": "starts",
+      "question": "Animator who created Mickey Mouse and built a namesake theme park",
+      "answer": "Walt Disney",
+      "alt": [
+        "Walter Disney"
+      ]
+    },
+    {
+      "letter": "X",
+      "mode": "contains",
+      "question": "Mythic bird said to be reborn from its own ashes",
+      "answer": "Phoenix"
+    },
+    {
+      "letter": "Y",
+      "mode": "starts",
+      "question": "Japanese skewered chicken grilled over charcoal, often seasoned with tare",
+      "answer": "Yakitori"
+    },
+    {
+      "letter": "Z",
+      "mode": "starts",
+      "question": "Princess frequently saved by Link in a long-running Nintendo series",
+      "answer": "Zelda"
+    }
+  ]
+}
